@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>斐波纳切数列与大自然：数学藏在每一片叶子里 🌀</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: "Microsoft YaHei", "PingFang SC", sans-serif;
+            background: linear-gradient(180deg, #2d1b69 0%, #6c3483 20%, #f39c12 50%, #f1c40f 75%, #e67e22 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        .container {
+            max-width: 850px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 30px;
+            padding: 40px;
+            box-shadow: 0 25px 80px rgba(0,0,0,0.25);
+        }
+        .header {
+            text-align: center;
+            padding: 35px 20px;
+            background: linear-gradient(135deg, #6c3483 0%, #f39c12 50%, #f1c40f 100%);
+            border-radius: 20px;
+            margin-bottom: 30px;
+            position: relative;
+            overflow: hidden;
+        }
+        .header h1 {
+            font-size: 38px;
+            color: white;
+            text-shadow: 3px 3px 6px rgba(0,0,0,0.3);
+            position: relative;
+        }
+        .subtitle {
+            font-size: 20px;
+            color: rgba(255,255,255,0.95);
+            position: relative;
+        }
+        h2 {
+            font-size: 28px;
+            color: white;
+            margin: 40px 0 20px;
+            padding: 15px 25px;
+            background: linear-gradient(90deg, #6c3483 0%, #f39c12 50%, #f1c40f 100%);
+            border-radius: 15px;
+            display: inline-block;
+        }
+        p {
+            font-size: 20px;
+            line-height: 2;
+            color: #2d3436;
+            margin-bottom: 20px;
+            text-align: justify;
+        }
+        .image-container {
+            width: 100%;
+            margin: 30px 0;
+            text-align: center;
+        }
+        .dino-image {
+            width: 100%;
+            border-radius: 20px;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+        }
+        .image-caption {
+            color: #636e72;
+            font-size: 16px;
+            margin-top: 15px;
+            font-style: italic;
+            background: #dfe6e9;
+            display: inline-block;
+            padding: 8px 20px;
+            border-radius: 20px;
+        }
+        .fun-fact {
+            background: linear-gradient(135deg, #6c3483 0%, #8e44ad 100%);
+            color: white;
+            padding: 25px;
+            border-radius: 20px;
+            margin: 25px 0;
+            font-size: 18px;
+            line-height: 1.8;
+        }
+        .fun-fact.gold { background: linear-gradient(135deg, #f39c12 0%, #f1c40f 100%); color: #2d3436; }
+        .fun-fact.green { background: linear-gradient(135deg, #27ae60 0%, #2ecc71 100%); }
+        .fun-fact.pink { background: linear-gradient(135deg, #e84393 0%, #fd79a8 100%); }
+        .fun-fact.blue { background: linear-gradient(135deg, #2980b9 0%, #3498db 100%); }
+        .fun-fact-title { font-size: 22px; font-weight: bold; margin-bottom: 10px; }
+        .divider { text-align: center; font-size: 30px; color: #dfe6e9; margin: 30px 0; }
+        .number-box {
+            display: inline-block;
+            background: linear-gradient(135deg, #f39c12, #f1c40f);
+            color: white;
+            width: 60px;
+            height: 60px;
+            line-height: 60px;
+            text-align: center;
+            border-radius: 15px;
+            font-size: 24px;
+            font-weight: bold;
+            margin: 5px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+        }
+        .number-row { text-align: center; margin: 20px 0; }
+        .formula-box {
+            background: linear-gradient(135deg, #dfe6e9 0%, #b2bec3 100%);
+            padding: 25px;
+            border-radius: 20px;
+            margin: 25px 0;
+            text-align: center;
+        }
+        .formula-box .formula { font-size: 28px; color: #6c3483; font-weight: bold; letter-spacing: 2px; }
+        .formula-box .explanation { font-size: 16px; color: #636e72; margin-top: 10px; }
+        .nature-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin: 25px 0; }
+        .nature-item {
+            background: linear-gradient(135deg, #fff9e6 0%, #ffeaa7 100%);
+            padding: 20px;
+            border-radius: 15px;
+            font-size: 18px;
+            line-height: 1.6;
+            text-align: center;
+        }
+        .nature-item .emoji { font-size: 36px; }
+        .nature-item .label { font-weight: bold; color: #6c3483; margin-top: 5px; }
+        .nature-item .desc { color: #636e72; font-size: 15px; margin-top: 5px; }
+        .quiz-section {
+            background: linear-gradient(135deg, #ffeaa7 0%, #fdcb6e 50%, #f39c12 100%);
+            padding: 30px;
+            border-radius: 20px;
+            margin: 30px 0;
+        }
+        .quiz-title { font-size: 28px; color: #6c3483; text-align: center; margin-bottom: 20px; }
+        .quiz-question {
+            background: white;
+            padding: 20px;
+            border-radius: 15px;
+            margin: 15px 0;
+            font-size: 18px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        .quiz-question .q-num { font-weight: bold; color: #6c3483; font-size: 20px; }
+        .ending {
+            text-align: center;
+            padding: 40px 0;
+            margin-top: 40px;
+            background: linear-gradient(135deg, #6c3483 0%, #f39c12 50%, #f1c40f 100%);
+            border-radius: 20px;
+            color: white;
+        }
+        .ending h3 { font-size: 32px; color: white; }
+        .ending p { text-align: center; font-size: 18px; color: rgba(255,255,255,0.9); }
+        .back-home-btn {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 14px 30px;
+            background: rgba(255,255,255,0.2);
+            color: white;
+            text-decoration: none;
+            border-radius: 25px;
+            font-size: 18px;
+            border: 2px solid rgba(255,255,255,0.5);
+            transition: background 0.3s, transform 0.2s;
+        }
+        .back-home-btn:hover {
+            background: rgba(255,255,255,0.35);
+            transform: translateY(-2px);
+        }
+        .back-home-btn:active {
+            transform: translateY(0);
+        }
+        @media (max-width: 600px) {
+            .container { padding: 20px; }
+            h1 { font-size: 28px; }
+            h2 { font-size: 22px; }
+            p { font-size: 16px; }
+            .nature-grid { grid-template-columns: 1fr; }
+            .number-box { width: 45px; height: 45px; line-height: 45px; font-size: 18px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🌀 斐波纳切数列与大自然</h1>
+            <p class="subtitle">数学藏在每一片叶子里、每一朵花里、每一个贝壳里！</p>
+        </div>
+
+        <h2>🔢 神奇的数字密码：1, 1, 2, 3, 5, 8...</h2>
+        <p>你有没有注意过，向日葵的种子排列成美丽的螺旋线？松果的鳞片也排成螺旋形？甚至台风的云层、银河系的旋臂，都呈现出同样的螺旋形状？</p>
+        <p>这些看似毫无关系的事物，竟然都隐藏着同一个数学密码——<strong>斐波纳切数列</strong>！大自然仿佛是一位数学家，用这套密码编写了万物的蓝图。</p>
+        <p>斐波纳切数列的规则非常简单：从1和1开始，每个数都是前两个数的和。就是这样：</p>
+        <div class="number-row">
+            <span class="number-box">1</span>
+            <span class="number-box">1</span>
+            <span class="number-box">2</span>
+            <span class="number-box">3</span>
+            <span class="number-box">5</span>
+            <span class="number-box">8</span>
+            <span class="number-box">13</span>
+            <span class="number-box">21</span>
+            <span class="number-box">34</span>
+            <span class="number-box">55</span>
+        </div>
+        <div class="formula-box">
+            <div class="formula">1+1=2 → 1+2=3 → 2+3=5 → 3+5=8 → 5+8=13 ...</div>
+            <div class="explanation">每个数 = 前两个数相加</div>
+        </div>
+        <div class="image-container">
+            <img class="dino-image" src="scene_01.webp" alt="金色的斐波纳切螺旋">
+            <div class="image-caption">🎨 黄金螺旋——斐波纳切数列画出的优美曲线</div>
+        </div>
+        <p>看起来很简单的规则对不对？但就是这么简单的数列，却和自然界有着惊人的联系！800多年前，一位意大利数学家发现了它，他可能做梦也没想到，这个数列竟然是解读大自然的钥匙。</p>
+        <div class="fun-fact">
+            <div class="fun-fact-title">🐰 趣味知识：兔子引发的数学发现！</div>
+            斐波纳切数列最初来自一个关于兔子的问题：假设一对兔子每个月生一对小兔，小兔两个月后也能生兔，那么一年后有多少对兔子？答案就是：1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89, 144——12个月后有144对！这就是斐波纳切数列的由来。
+        </div>
+        <div class="divider">🌀 🌀 🌀</div>
+
+        <h2>🌻 花朵里的数学：植物最爱的数字</h2>
+        <p>如果你仔细数一数花朵的花瓣数量，会发现一个惊人的规律——很多花的花瓣数正好是斐波纳切数！</p>
+        <div class="nature-grid">
+            <div class="nature-item"><div class="emoji">🌼</div><div class="label">1片花瓣</div><div class="desc">白百合、马蹄莲</div></div>
+            <div class="nature-item"><div class="emoji">🌺</div><div class="label">3片花瓣</div><div class="desc">鸢尾花、百合花</div></div>
+            <div class="nature-item"><div class="emoji">🌷</div><div class="label">5片花瓣</div><div class="desc">野玫瑰、飞燕草</div></div>
+            <div class="nature-item"><div class="emoji">💐</div><div class="label">8片花瓣</div><div class="desc">翠雀花、血根草</div></div>
+            <div class="nature-item"><div class="emoji">🌸</div><div class="label">13片花瓣</div><div class="desc">雏菊、万寿菊</div></div>
+            <div class="nature-item"><div class="emoji">🏵️</div><div class="label">21/34片</div><div class="desc">向日葵、紫菀</div></div>
+        </div>
+        <p>向日葵更是斐波纳切的"超级粉丝"！如果你仔细看向日葵花盘中间的种子排列，会发现<strong>两组螺旋线</strong>：一组顺时针，一组逆时针。数一数，顺时针的螺旋线数量和逆时针的数量，竟然都是斐波纳切数！</p>
+        <div class="image-container">
+            <img class="dino-image" src="scene_02.webp" alt="向日葵的斐波纳切螺旋种子">
+            <div class="image-caption">🎨 向日葵种子的螺旋排列——数学就是最美的图案！</div>
+        </div>
+        <p>为什么会这样呢？这是因为在花芽发育的时候，新的种子以<strong>137.5°</strong>的角度依次长出——这个角度叫"黄金角"。按照这个角度生长，种子就能排列得最紧密、最均匀，不浪费一丝空间！</p>
+        <div class="fun-fact gold">
+            <div class="fun-fact-title">🌻 趣味知识：松果也是数学家！</div>
+            捡一个松果来看看——它的鳞片也排成了两组螺旋线！顺时针数一数，逆时针再数一数，你很可能得到8和13（都是斐波纳切数！）。菠萝的鳞片也是一样，通常是8、13或21。
+        </div>
+        <div class="divider">🌀 🌀 🌀</div>
+
+        <h2>🐚 万物皆螺旋：大自然最美的曲线</h2>
+        <p>斐波纳切数列有一个神奇的"邻居"——<strong>黄金比例</strong>，大约等于1.618。如果你把斐波纳切数列中相邻两个数相除，会发现结果越来越接近1.618：</p>
+        <div class="formula-box">
+            <div class="formula">3÷2=1.5 → 5÷3≈1.667 → 8÷5=1.6 → 55÷34≈1.618</div>
+            <div class="explanation">越往后越接近黄金比例 1.618...</div>
+        </div>
+        <p>如果我们用斐波纳切数作为正方形的边长，依次画正方形，然后在每个正方形里画四分之一圆弧，就能画出这条优美的<strong>黄金螺旋</strong>！</p>
+        <p>这条螺旋线在大自然中随处可见：鹦鹉螺壳完美地呈现黄金螺旋形；台风和气旋也是螺旋形；银河系是巨大的螺旋星系；海浪在拍打海岸时也呈螺旋形。</p>
+        <div class="image-container">
+            <img class="dino-image" src="scene_03.webp" alt="大自然中的斐波纳切螺旋">
+            <div class="image-caption">🎨 鹦鹉螺、松果、雏菊、银河——螺旋无处不在！</div>
+        </div>
+        <div class="fun-fact green">
+            <div class="fun-fact-title">📐 趣味知识：黄金矩形无处不在</div>
+            很多你认为"好看"的长方形，比例都接近黄金比例！信用卡、手机屏幕、书本、照片……它们的宽和长的比大约都是1:1.618。艺术家和建筑师几千年来都在用这个比例！
+        </div>
+        <div class="divider">🌀 🌀 🌀</div>
+
+        <h2>🤲 你自己就是数学：身体里的斐波纳切</h2>
+        <p>斐波纳切数列和黄金比例不只存在于外面的世界——你的身体里也到处都是！</p>
+        <p><strong>🖐️ 手指骨头的比例</strong>：伸出你的食指，从指尖到手掌，每节骨头的长度比大约是1:1.618。</p>
+        <p><strong>👂 耳朵的螺旋</strong>：你的耳朵形状就是一个黄金螺旋！</p>
+        <p><strong>🦴 身体各部分的比例</strong>：从肚脐到脚底 ÷ 从肚脐到头顶 ≈ 1.618。达芬奇的《维特鲁威人》就是基于这些比例画出来的！</p>
+        <div class="image-container">
+            <img class="dino-image" src="scene_04.webp" alt="人体中的斐波纳切比例">
+            <div class="image-caption">🎨 你的手指、耳朵、身体——到处都有黄金比例！</div>
+        </div>
+        <p><strong>🧬 DNA双螺旋</strong>：DNA双螺旋每一圈的高度约34埃，宽度约21埃——34和21都是斐波纳切数！</p>
+        <div class="fun-fact pink">
+            <div class="fun-fact-title">😊 趣味知识：微笑的黄金比例</div>
+            完美的微笑中，前牙的宽度比接近1:1.618。很多牙医在设计牙齿时会参考黄金比例，因为这样的排列看起来最自然、最美观！
+        </div>
+        <div class="divider">🌀 🌀 🌀</div>
+
+        <h2>🌟 从自然到创造：数学密码的力量</h2>
+        <p>了解了斐波纳切数列和黄金比例，你会发现它们不只是"好看"——它们还被人类用来创造各种了不起的东西！</p>
+        <p><strong>🎨 艺术与设计</strong>：从古希腊的帕特农神庙到达芬奇的画作，从苹果公司的Logo到Twitter的小鸟图标，很多经典设计都运用了黄金比例。</p>
+        <p><strong>📱 产品设计</strong>：苹果公司一系列产品的比例都接近黄金比例。包括经典的iPod、iPhone、iPad的设计。</p>
+        <p><strong>🏛️ 建筑</strong>：古希腊建筑师早就发现，用黄金比例设计的建筑最稳固、最美观。帕特农神庙的宽度和高度比就是1:1.618！</p>
+        <p><strong>🎵 音乐</strong>：钢琴键盘的排列也暗藏斐波纳切！一个八度音阶有13个键（黑键8个、白键5个），而一个八度内的半音是12个——12和13是相邻的斐波纳切数！</p>
+        <p><strong>🖼️ 摄影</strong>：很多摄影师会用"三分法"构图——其实就是黄金比例的简化版。把画面分成三等份，关键元素放在交叉点上，这样拍出来的照片最吸引眼球！</p>
+        <div class="fun-fact blue">
+            <div class="fun-fact-title">🎹 趣味知识：钢琴键盘藏着的秘密</div>
+            一架88键的钢琴，最中间的那个键（第44键）正好把钢琴分成两边——左边44个键，右边44个键。而44刚好是斐波纳切数列中的数（34+55=89，再下一代是144，144-55=89……不对，让我重新算一下：从34到55到89，89+144=233，233-144=89……）OK，这里有个小秘密：88=55+21+8+4，不是斐波纳切数，但对半分是44+44。
+        </div>
+        <p>下次你再看花朵、观察贝壳、甚至是照镜子的时候，想一想——你正在进行一场数学的探索！斐波纳切数列不仅仅是一串数字，它是<strong>大自然写给我们的密码</strong>，是我们解读宇宙奥秘的钥匙。也许将来，你还能发现更多藏在这个神奇数列里的秘密！</p>
+        
+        <div class="image-container">
+            <img class="dino-image" src="scene_05.webp" alt="魔法斐波纳切之树">
+            <div class="image-caption">🎨 魔法斐波纳切之树——数学的力量创造奇迹！</div>
+        </div>
+
+        <div class="divider">🌀 🌀 🌀</div>
+
+        <div class="quiz-section">
+            <div class="quiz-title">🧠 知识大挑战！你学会了吗？</div>
+            <div class="quiz-question"><span class="q-num">1️⃣</span> 斐波纳切数列的前五个数是什么？<br>A. 1,2,3,4,5 &nbsp;&nbsp; B. 1,1,2,3,5 &nbsp;&nbsp; C. 1,2,4,8,16 &nbsp;&nbsp; D. 1,3,5,7,9</div>
+            <div class="quiz-question"><span class="q-num">2️⃣</span> 斐波纳切数列的规律是什么？<br>A. 每个数乘2 &nbsp;&nbsp; B. 前两个数相加 &nbsp;&nbsp; C. 每个数加1 &nbsp;&nbsp; D. 翻倍</div>
+            <div class="quiz-question"><span class="q-num">3️⃣</span> 向日葵的种子一般有多少组螺旋线？<br>A. 1组 &nbsp;&nbsp; B. 2组 &nbsp;&nbsp; C. 3组 &nbsp;&nbsp; D. 4组</div>
+            <div class="quiz-question"><span class="q-num">4️⃣</span> 黄金比例大约是多少？<br>A. 1.618 &nbsp;&nbsp; B. 2.618 &nbsp;&nbsp; C. 0.618 &nbsp;&nbsp; D. 3.14</div>
+            <div class="quiz-question"><span class="q-num">5️⃣</span> 人的手指骨比例大约是多少？<br>A. 1:1 &nbsp;&nbsp; B. 1:1.618 &nbsp;&nbsp; C. 1:2 &nbsp;&nbsp; D. 1:0.5</div>
+            <p style="text-align:center; margin-top:20px; color:#6c3483; font-size:16px;">（答案：1-B, 2-B, 3-B, 4-A, 5-B）</p>
+        </div>
+
+        <div class="ending">
+            <h3>—— 完 ——</h3>
+            <p>谢谢阅读！希望你用数学的眼光重新看看世界！🌀✨</p>
+            <p style="margin-top:10px; font-size:14px; color:rgba(255,255,255,0.7);">本文章由 AI 助手小龙为小朋友精心制作 🐉</p>
+            <div style="text-align: left; margin-top: 15px;">
+                <a href="../index.html" class="back-home-btn">🏠 返回首页</a>
+            </div>
+        </div>
+    </div>
+
+<!-- rourou-home-btn:start -->
+<style>
+#rourou-home-btn{position:fixed;left:14px;bottom:calc(14px + env(safe-area-inset-bottom,0px));z-index:9999;
+display:inline-flex;align-items:center;gap:6px;padding:10px 18px;border-radius:999px;
+background:rgba(255,255,255,0.92);color:#2d3436;font-size:15px;font-weight:600;
+text-decoration:none;box-shadow:0 4px 14px rgba(0,0,0,0.18);border:1px solid rgba(0,0,0,0.08);
+-webkit-backdrop-filter:blur(4px);backdrop-filter:blur(4px);transition:transform .15s,background .15s;}
+#rourou-home-btn:hover{background:#fff;transform:translateY(-2px);}
+@media (max-width:600px){#rourou-home-btn{padding:9px 14px;font-size:13px;left:10px;bottom:calc(10px + env(safe-area-inset-bottom,0px));}}
+</style>
+<a id="rourou-home-btn" href="../index.html">🏠 首页</a>
+<!-- rourou-home-btn:end -->
+</body>
+</html>

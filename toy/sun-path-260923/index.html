@@ -1,0 +1,1335 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>太阳为什么不是从正东升起 · 循环动画</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{height:100%}
+body{
+  background:#03060b;color:#e6eff9;overflow-x:hidden;
+  font:400 15px/1.6 -apple-system,BlinkMacSystemFont,"PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;
+  -webkit-font-smoothing:antialiased;
+}
+.app{max-width:1240px;margin:0 auto;padding:18px 18px 34px}
+h1{font-size:23px;font-weight:700;letter-spacing:.2px}
+.sub{margin-top:7px;font-size:13.5px;color:#7d94ac}
+.tabs{display:flex;gap:8px;margin-top:16px;flex-wrap:wrap}
+.tab{
+  flex:0 0 auto;padding:9px 16px;border-radius:11px;cursor:pointer;font-family:inherit;
+  border:1px solid #16222f;background:#080d15;color:#93a8bd;font-size:14px;
+  transition:background .18s,border-color .18s,color .18s;
+}
+.tab b{margin-right:7px;font-weight:800;color:#5d7a96}
+.tab:hover{border-color:#22364a;color:#c5d6e6}
+.tab.on{background:#101c2a;border-color:#2b4c6e;color:#eaf3fb}
+.tab.on b{color:#ffca28}
+.days{display:flex;gap:8px;margin:14px 0 0;flex-wrap:wrap;align-items:center}
+.days .lead{font-size:13px;color:#5f7c98;margin-right:2px}
+.day{
+  padding:8px 15px;border-radius:10px;cursor:pointer;font-family:inherit;font-size:14px;
+  border:1px solid #17232f;background:#070d15;color:#8ea4ba;transition:.18s;
+}
+.day:hover{border-color:#24394d;color:#c5d6e6}
+.day.on{border-color:#8a6a16;color:#ffca28;background:#1a1408;box-shadow:0 0 0 1px #4a3a0e inset}
+.stageWrap{margin-top:14px}
+.stage{display:none}
+.stage.active{display:block}
+.fig{border-radius:18px;background:#03060b;border:1px solid #101a25;overflow:hidden}
+.fig svg{display:block;width:100%;height:auto}
+.caption{
+  margin-top:12px;padding:13px 18px;border-radius:12px;background:#070c14;
+  border:1px solid #101a25;font-size:14.5px;line-height:1.75;color:#a8bccf;
+  text-align:center;min-height:48px;
+}
+.caption b{color:#ffca28;font-weight:700}
+.controls{display:flex;gap:10px;margin-top:12px;flex-wrap:wrap;align-items:center}
+.tool{
+  padding:9px 16px;border-radius:11px;cursor:pointer;font-size:14px;font-family:inherit;
+  border:1px solid #16222f;background:#080d15;color:#93a8bd;transition:.18s;
+}
+.tool:hover{border-color:#22364a;color:#c5d6e6}
+.tool.on{border-color:#2b4c6e;color:#ffca28;background:#101c2a}
+.tool.mute{color:#66798e}
+.tool:disabled{opacity:.4;cursor:not-allowed}
+.tool:disabled:hover{border-color:#16222e;color:#66798e}
+.hint{font-size:12.5px;color:#4a5d70;margin-left:auto}
+.mOnly{display:none}
+@media (max-width:940px){
+  .app{padding:12px 10px 24px}
+  h1{font-size:18px}
+  .sub{font-size:12px}
+  .tab{padding:8px 12px;font-size:13px}
+  .days{gap:6px;margin-top:10px}
+  .days .lead{width:100%;margin-bottom:-2px}
+  .day{padding:7px 12px;font-size:13px}
+  .fig{overflow-x:auto;-webkit-overflow-scrolling:touch;border-radius:14px}
+  .fig svg{width:auto;min-width:680px;height:auto}
+  .caption{font-size:13px;text-align:left}
+  .hint{display:none}
+  .mOnly{display:inline}
+}
+  /* ── 返回首页（肉肉网站导航）2026-09-26 补 ── */
+  .topbar{display:flex;justify-content:flex-end;margin:-6px 0 2px}
+  #home{display:inline-flex;align-items:center;gap:6px;padding:7px 12px;border-radius:10px;
+        background:rgba(24,38,58,.8);border:1px solid rgba(120,170,230,.28);color:#dbe9f8;
+        font-size:12.5px;line-height:1;text-decoration:none;font-family:inherit;white-space:nowrap;
+        transition:background .16s ease,transform .16s ease}
+  #home:hover{background:rgba(42,66,102,.92)}
+  #home:active{transform:scale(.96)}
+  @media (pointer:coarse){#home{min-height:38px}}
+  @media (max-width:940px){.topbar{margin:-4px 0 2px}#home{padding:6px 10px;font-size:11.5px}}
+</style>
+</head>
+<body>
+<div class="app">
+  <div class="topbar"><a id="home" href="../../index.html">🏠 返回首页</a></div>
+
+  <header class="top">
+    <h1>太阳为什么不是从正东升起？</h1>
+    <p class="sub">上北 · 下南 · 左西 · 右东　│　圆圈的边＝地平线，圆心＝你头顶正上方　│　全程自动循环播放<span class="mOnly">　│　手机可左右滑动看图</span></p>
+  </header>
+
+  <nav class="tabs" id="tabs">
+    <button class="tab on" data-i="0"><b>①</b>一天怎么走</button>
+    <button class="tab" data-i="1"><b>②</b>一年怎么变</button>
+    <button class="tab" data-i="2"><b>③</b>南北差多少</button>
+    <button class="tab" data-i="3"><b>④</b>五条线上的四季</button>
+  </nav>
+
+  <div class="stageWrap">
+    <section class="stage active" id="stg0">
+      <div class="days" id="days0">
+        <span class="lead">四个日子挨个讲一遍，也可以点一个直接跳到那天：</span>
+        <button class="day on" data-i="0">春分 · 3月21日</button>
+        <button class="day" data-i="1">夏至 · 6月21日</button>
+        <button class="day" data-i="2">秋分 · 9月23日</button>
+        <button class="day" data-i="3">冬至 · 12月22日</button>
+      </div>
+      <div class="fig"><svg id="svg0" viewBox="0 0 1000 910"></svg></div>
+    </section>
+    <section class="stage" id="stg1"><div class="fig"><svg id="svg1" viewBox="0 0 1090 740"></svg></div></section>
+    <section class="stage" id="stg2"><div class="fig"><svg id="svg2" viewBox="0 0 1090 800"></svg></div></section>
+    <section class="stage" id="stg3"><div class="fig"><svg id="svg3" viewBox="0 0 1240 870"></svg></div></section>
+  </div>
+
+  <div class="caption" id="cap">准备中…</div>
+
+  <div class="controls">
+    <button class="tool on" id="autoBtn">❚❚ 暂停</button>
+    <button class="tool on" id="voiceBtn">🔊 语音讲解：开</button>
+    <button class="tool" id="rateBtn">语速 ×1.0</button>
+    <button class="tool" id="replayBtn">↻ 重念这句</button>
+    <span class="hint">空格＝暂停/继续　│　点标签跳到任意一段　│　← → 翻页　│　嫌吵就点「语音讲解」关掉</span>
+  </div>
+
+</div>
+<script>(function(){
+"use strict";
+
+var D2R = Math.PI/180, R2D = 180/Math.PI;
+function clamp(v,a,b){ return v<a?a:(v>b?b:v); }
+function fx(v){ return (+v).toFixed(1); }
+function esc(s){ return String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;"); }
+function num(v,d){ d = (d===undefined?0:d); return (+v).toFixed(d); }
+
+/* ===================== 天文计算（只用来算数，不给小朋友看） ===================== */
+var TILT = 23.44;
+
+function declination(doy){ return -TILT*Math.cos(2*Math.PI*(doy+10)/365.24); }
+function hourAngle(phi,dec){
+  var p=phi*D2R, d=dec*D2R;
+  var c = (Math.sin(-0.833*D2R) - Math.sin(p)*Math.sin(d)) / (Math.cos(p)*Math.cos(d));
+  return Math.acos(clamp(c,-1,1))*R2D;
+}
+function sunPos(phi,dec,H){
+  var p=phi*D2R, d=dec*D2R, h=H*D2R;
+  var U = Math.sin(d)*Math.sin(p) + Math.cos(d)*Math.cos(p)*Math.cos(h);
+  var E = -Math.cos(d)*Math.sin(h);
+  var N = Math.sin(d)*Math.cos(p) - Math.cos(d)*Math.sin(p)*Math.cos(h);
+  var az = Math.atan2(E,N)*R2D; if(az<0) az += 360;
+  return { alt: Math.asin(clamp(U,-1,1))*R2D, az: az };
+}
+function dayInfo(phi,doy){
+  var dec = declination(doy), H0 = hourAngle(phi,dec);
+  var r = sunPos(phi,dec,-H0), n = sunPos(phi,dec,0);
+  return { dec:dec, H0:H0, rise:r.az, set:360-r.az, noonAlt:n.alt, dayLen:2*H0/15 };
+}
+var MON = [31,28,31,30,31,30,31,31,30,31,30,31];
+function doy2md(n){
+  n = clamp(Math.round(n),1,365);
+  var m=0, d=n;
+  while(d > MON[m]){ d -= MON[m]; m++; }
+  return (m+1)+"月"+d+"日";
+}
+var DOY = { 春分:80, 夏至:172, 秋分:266, 冬至:355 };
+
+function dirWord(dev){
+  var a = Math.abs(dev);
+  if(a < 0.8) return "正东";
+  return "东偏" + (dev>0?"北":"南") + " " + a.toFixed(0) + "°";
+}
+function dirWordSet(az){
+  var dev = az-270, a = Math.abs(dev);
+  if(a < 0.8) return "正西";
+  return "西偏" + (dev>0?"北":"南") + " " + a.toFixed(0) + "°";
+}
+
+var CITIES = [
+  { name:"三亚", phi:18.25, color:"#ff9a4d" },
+  { name:"上海", phi:31.23, color:"#ffca28" },
+  { name:"漠河", phi:52.97, color:"#6fc3ff" }
+];
+var SH = { name:"上海", phi:31.23 };
+
+/* ===================== 天穹圆盘 ===================== */
+var DIRS  = [ {az:0,t:"北"}, {az:90,t:"东"}, {az:180,t:"南"}, {az:270,t:"西"} ];
+var DIRS2 = [ {az:45,t:"东北"}, {az:135,t:"东南"}, {az:225,t:"西南"}, {az:315,t:"西北"} ];
+
+function ring3(az, rad, cx, cy){
+  var a = az*D2R;
+  return { x: cx + rad*Math.sin(a), y: cy - rad*Math.cos(a) };
+}
+function sky3(az, alt, cx, cy, R){
+  var r = R*Math.cos(clamp(alt,0,90)*D2R);
+  var a = az*D2R;
+  return { x: cx + r*Math.sin(a), y: cy - r*Math.cos(a) };
+}
+function path3(phi, dec, cx, cy, R){
+  var H0 = hourAngle(phi,dec);
+  if(H0 < 0.4) return "";
+  var s = [];
+  for(var i=0;i<=160;i++){
+    var H = -H0 + 2*H0*i/160;
+    var p = sunPos(phi,dec,H);
+    if(p.alt < -0.5) continue;
+    var q = sky3(p.az, p.alt, cx, cy, R);
+    s.push(fx(q.x)+" "+fx(q.y));
+  }
+  return s.length>1 ? "M"+s.join(" L") : "";
+}
+
+/* ===== 地平线以下：太阳钻到地球背面去了，投影落在圆盘外面的一圈带子上 =====
+   注意：必须在 alt=0 处与白天的 r=R·cos(alt) 平滑对接。
+   r=R·cos(alt) 在 alt=0 处斜率为 0（太阳是"切着地平线"走的），
+   所以下面的函数也必须斜率为 0，否则日落点会出现折角。
+   (1-cos(πx))/2 同时满足：x=0 斜率为 0，x=1 斜率为 0。 */
+var NIGHT_BAND = 0.56;
+function rOut(alt, R){
+  var x = clamp(-alt, 0, 90)/90;
+  return R*(1 + NIGHT_BAND*(1 - Math.cos(Math.PI*x))/2);
+}
+function skyAny(az, alt, cx, cy, R){
+  var down = alt < 0;
+  var r = down ? rOut(alt,R) : R*Math.cos(clamp(alt,0,90)*D2R);
+  var a = az*D2R;
+  return { x: cx + r*Math.sin(a), y: cy - r*Math.cos(a), down: down };
+}
+/* 地平线以下那条带子／它的外沿：从日落方位顺时针经正北到日出方位 */
+function bandArc(azSet, azRise, r, cx, cy){
+  var p0 = ring3(azSet, r, cx, cy), p1 = ring3(azRise, r, cx, cy);
+  var span = ((azRise-azSet)%360+360)%360;
+  var large = span > 180 ? 1 : 0;
+  return "M"+fx(p0.x)+" "+fx(p0.y)+" A"+fx(r)+" "+fx(r)+" 0 "+large+" 1 "+fx(p1.x)+" "+fx(p1.y);
+}
+function nightBandPath(azSet, azRise, R, cx, cy){
+  return bandArc(azSet, azRise, R + R*NIGHT_BAND/2, cx, cy);
+}
+function nightBandOuter(azSet, azRise, R, cx, cy){
+  return bandArc(azSet, azRise, R + R*NIGHT_BAND, cx, cy);
+}
+/* 夜里的太阳：暗红色小球 + 暗红光晕 */
+function sunDotNight(uid, x, y, r){
+  var d = "";
+  d += '<circle cx="'+fx(x)+'" cy="'+fx(y)+'" r="'+fx(r*4.4)+'" fill="url(#'+uid+'glowR)" opacity=".85"/>';
+  d += '<circle cx="'+fx(x)+'" cy="'+fx(y)+'" r="'+fx(r*0.94)+'" fill="#7d1a14"/>';
+  d += '<circle cx="'+fx(x)+'" cy="'+fx(y)+'" r="'+fx(r*0.94)+'" fill="none" stroke="#e05a4a" stroke-width="1.8" stroke-opacity=".9"/>';
+  d += '<circle cx="'+fx(x)+'" cy="'+fx(y)+'" r="'+fx(r*0.38)+'" fill="#c0402f"/>';
+  return d;
+}
+/* 从日落地平线点，到当前时刻，太阳在地平线以下走过的那段弧 */
+function nightPath(phi, dec, Hnow, cx, cy, R){
+  var H0 = hourAngle(phi,dec);
+  if(Hnow <= H0) return "";
+  var s = [];
+  for(var i=0;i<=140;i++){
+    var H = H0 + (Hnow-H0)*i/140;
+    var p = sunPos(phi,dec,H);
+    var q = skyAny(p.az, p.alt, cx, cy, R);
+    s.push(fx(q.x)+" "+fx(q.y));
+  }
+  return s.length>1 ? "M"+s.join(" L") : "";
+}
+/* 沿圆盘边缘从 az0 到 az1 的弧 */function arc3(az0, az1, rad, cx, cy){
+  var p0 = ring3(az0,rad,cx,cy), p1 = ring3(az1,rad,cx,cy);
+  var sw = az1-az0;
+  var lg = Math.abs(sw)>180 ? 1 : 0;
+  var dr = sw>0 ? 1 : 0;
+  return "M"+fx(p0.x)+" "+fx(p0.y)+" A"+fx(rad)+" "+fx(rad)+" 0 "+lg+" "+dr+" "+fx(p1.x)+" "+fx(p1.y);
+}
+/* 沿圆盘内部从 az0 到 az1 的弧（半径 rad） */
+function arcIn(az0, az1, rad, cx, cy){
+  return arc3(az0, az1, rad, cx, cy);
+}
+
+function discBase(uid, cx, cy, R, opt){
+  opt = opt || {};
+  var k = opt.k || 1;              /* 标签缩放 */
+  var d = "";
+  d += '<defs>';
+  d += '<radialGradient id="'+uid+'dome" cx="42%" cy="36%" r="72%">';
+  d += '<stop offset="0%" stop-color="#10283e"/><stop offset="52%" stop-color="#0a1725"/>';
+  d += '<stop offset="100%" stop-color="#04090f"/></radialGradient>';
+  d += '<radialGradient id="'+uid+'glow"><stop offset="0%" stop-color="#fff8d8" stop-opacity="1"/>';
+  d += '<stop offset="34%" stop-color="#ffd54f" stop-opacity=".52"/>';
+  d += '<stop offset="100%" stop-color="#ff9d00" stop-opacity="0"/></radialGradient>';
+  d += '<linearGradient id="'+uid+'warm" x1="0" y1="1" x2="1" y2="0">';
+  d += '<stop offset="0%" stop-color="#ff8a3d"/><stop offset="100%" stop-color="#ffd54f"/></linearGradient>';
+  /* 地平线以下的太阳：暗红色 */
+  d += '<radialGradient id="'+uid+'glowR"><stop offset="0%" stop-color="#ff6b6b" stop-opacity=".95"/>';
+  d += '<stop offset="40%" stop-color="#c62828" stop-opacity=".42"/>';
+  d += '<stop offset="100%" stop-color="#6d0f0f" stop-opacity="0"/></radialGradient>';
+  d += '</defs>';
+
+  d += '<circle cx="'+cx+'" cy="'+cy+'" r="'+R+'" fill="url(#'+uid+'dome)"/>';
+
+  [30,60].forEach(function(a){
+    d += '<circle cx="'+cx+'" cy="'+cy+'" r="'+fx(R*Math.cos(a*D2R))+'" fill="none" stroke="#183150" stroke-width="1" stroke-dasharray="5 8"/>';
+  });
+  for(var i=0;i<8;i++){
+    var p = ring3(i*45, R, cx, cy);
+    d += '<line x1="'+cx+'" y1="'+cy+'" x2="'+fx(p.x)+'" y2="'+fx(p.y)+'" stroke="#122336" stroke-width="1"/>';
+  }
+  var e = ring3(90,R,cx,cy), w = ring3(270,R,cx,cy), n = ring3(0,R,cx,cy), s = ring3(180,R,cx,cy);
+  d += '<line x1="'+cx+'" y1="'+cy+'" x2="'+fx(e.x)+'" y2="'+fx(e.y)+'" stroke="#2f5580" stroke-width="1.6" stroke-dasharray="8 7"/>';
+  d += '<line x1="'+cx+'" y1="'+cy+'" x2="'+fx(w.x)+'" y2="'+fx(w.y)+'" stroke="#2f5580" stroke-width="1.6" stroke-dasharray="8 7"/>';
+  d += '<line x1="'+fx(n.x)+'" y1="'+fx(n.y)+'" x2="'+fx(s.x)+'" y2="'+fx(s.y)+'" stroke="#1d3450" stroke-width="1.2" stroke-dasharray="6 8"/>';
+  d += '<circle cx="'+cx+'" cy="'+cy+'" r="'+R+'" fill="none" stroke="#77a4d0" stroke-width="2.4" stroke-opacity=".9"/>';
+  d += '<circle cx="'+cx+'" cy="'+cy+'" r="'+(R-9)+'" fill="none" stroke="#2f5580" stroke-width="1" stroke-opacity=".5"/>';
+
+  for(var t=0;t<36;t++){
+    var a2 = t*10, p2 = ring3(a2,R,cx,cy), p3 = ring3(a2,R-9,cx,cy);
+    d += '<line x1="'+fx(p2.x)+'" y1="'+fx(p2.y)+'" x2="'+fx(p3.x)+'" y2="'+fx(p3.y)+'" stroke="#4a7ba8" stroke-width="1" stroke-opacity=".4"/>';
+  }
+  if(opt.inLabel){
+    var fs = fx(21*k);
+    var lb = ' fill="#dceaf8" font-size="'+fs+'" font-weight="700" text-anchor="middle" paint-order="stroke" stroke="#050b13" stroke-width="4"';
+    d += '<text x="'+cx+'" y="'+fx(cy-R+32*k)+'"'+lb+'>北</text>';
+    d += '<text x="'+cx+'" y="'+fx(cy+R-14*k)+'"'+lb+'>南</text>';
+    d += '<text x="'+fx(cx+R-24*k)+'" y="'+fx(cy+8*k)+'"'+lb+'>东</text>';
+    d += '<text x="'+fx(cx-R+24*k)+'" y="'+fx(cy+8*k)+'"'+lb+'>西</text>';
+  } else if(!opt.noLabel){
+    if(!opt.noMid){
+      DIRS2.forEach(function(c){
+        var p = ring3(c.az, R+24*k, cx, cy);
+        d += '<text x="'+fx(p.x)+'" y="'+fx(p.y+4*k)+'" fill="#57799c" font-size="'+fx(14*k)+'" text-anchor="middle">'+c.t+'</text>';
+      });
+    }
+    DIRS.forEach(function(c){
+      var p = ring3(c.az, R+44*k, cx, cy);
+      d += '<text x="'+fx(p.x)+'" y="'+fx(p.y+9*k)+'" fill="#d3e6f8" font-size="'+fx(25*k)+'" font-weight="700" text-anchor="middle" paint-order="stroke" stroke="#04080f" stroke-width="6">'+c.t+'</text>';
+    });
+  }
+  if(opt.zenith){
+    d += '<path d="M'+(cx-10)+' '+cy+' H'+(cx+10)+' M'+cx+' '+(cy-10)+' V'+(cy+10)+'" stroke="#6f9ac4" stroke-width="1.5" stroke-opacity=".8"/>';
+  }
+  if(opt.extra) d += opt.extra;
+  return d;
+}
+function sunDot(uid,x,y,r,op){
+  op = (op===undefined ? 1 : op);
+  var d = "";
+  d += '<circle cx="'+fx(x)+'" cy="'+fx(y)+'" r="'+fx(r*3.6)+'" fill="url(#'+uid+'glow)" opacity="'+op+'"/>';
+  d += '<circle cx="'+fx(x)+'" cy="'+fx(y)+'" r="'+fx(r)+'" fill="#fff3c4" opacity="'+op+'"/>';
+  d += '<circle cx="'+fx(x)+'" cy="'+fx(y)+'" r="'+fx(r*0.62)+'" fill="#fffde7" opacity="'+op+'"/>';
+  return d;
+}
+function buildSky(svg, uid, cx, cy, R, opt, pre){
+  svg.innerHTML = (pre || "") + discBase(uid,cx,cy,R,opt) +
+    '<g id="'+uid+'-band"></g>' +
+    '<g id="'+uid+'-ghost"></g>' +
+    '<g id="'+uid+'-trail"></g>' +
+    '<g id="'+uid+'-night"></g>' +
+    '<g id="'+uid+'-marks"></g>' +
+    '<g id="'+uid+'-sun"></g>' +
+    '<g id="'+uid+'-foot"></g>' +
+    '<g id="'+uid+'-ui"></g>';
+}
+function setL(svg, uid, name, html){
+  var g = svg.querySelector("#"+uid+"-"+name);
+  if(g) g.innerHTML = html;
+}
+/* ===================== 通用小工具 ===================== */
+function toHM(h){
+  var H = Math.floor(h), M = Math.round((h-H)*60);
+  if(M===60){ H++; M=0; }
+  return H+"小时"+String(M).padStart(2,"0")+"分";
+}
+function clockStr(H){
+  var x = 12 + H/15;
+  x = ((x%24)+24)%24;
+  var h = Math.floor(x), m = Math.round((x-h)*60);
+  if(m===60){ h++; m=0; }
+  if(h>=24) h -= 24;
+  return h+":"+String(m).padStart(2,"0");
+}
+/* 从日出点到指定时角的亮线路径 */
+function trailPath(phi, dec, Hnow, cx, cy, R){
+  var H0 = hourAngle(phi,dec);
+  var s = [];
+  for(var i=0;i<=140;i++){
+    var H = -H0 + (Hnow+H0)*i/140;
+    var p = sunPos(phi,dec,H);
+    if(p.alt < -0.6) continue;
+    var q = sky3(p.az,p.alt,cx,cy,R);
+    s.push(fx(q.x)+" "+fx(q.y));
+  }
+  return s.length>1 ? "M"+s.join(" L") : "";
+}
+/* 日出/日落位置标记：mode = up | down | left | right */
+function riseMark(x, y, col, txt, sub, mode){
+  if(mode === true) mode = "down";
+  if(!mode) mode = "up";
+  var d = "";
+  d += '<circle cx="'+fx(x)+'" cy="'+fx(y)+'" r="13" fill="none" stroke="'+col+'" stroke-width="3.4"/>';
+  d += '<circle cx="'+fx(x)+'" cy="'+fx(y)+'" r="5" fill="'+col+'"/>';
+  var ps = 'paint-order="stroke" stroke="#050b13" stroke-width="4"';
+  if(mode === "right" || mode === "left"){
+    var tx = mode === "right" ? x+32 : x-32;
+    var an = mode === "right" ? "start" : "end";
+    if(txt) d += '<text x="'+fx(tx)+'" y="'+fx(y-2)+'" fill="'+col+'" font-size="16" font-weight="700" text-anchor="'+an+'" '+ps+'>'+esc(txt)+'</text>';
+    if(sub) d += '<text x="'+fx(tx)+'" y="'+fx(y+20)+'" fill="'+col+'" fill-opacity=".8" font-size="13" text-anchor="'+an+'" '+ps+'>'+esc(sub)+'</text>';
+    return d;
+  }
+  var s = (mode === "down") ? 1 : -1;
+  if(txt) d += '<text x="'+fx(x)+'" y="'+fx(y+s*30)+'" fill="'+col+'" font-size="16" font-weight="700" text-anchor="middle" '+ps+'>'+esc(txt)+'</text>';
+  if(sub) d += '<text x="'+fx(x)+'" y="'+fx(y+s*50)+'" fill="'+col+'" fill-opacity=".8" font-size="13" text-anchor="middle" '+ps+'>'+esc(sub)+'</text>';
+  return d;
+}
+function dataRow(items, y, W){
+  var n = items.length, w = (W||1000)/n, d = "";
+  items.forEach(function(it,i){
+    var x = w*(i+0.5);
+    d += '<text x="'+x+'" y="'+y+'" fill="#5d81a6" font-size="14" text-anchor="middle">'+it[0]+'</text>';
+    d += '<text x="'+x+'" y="'+(y+30)+'" fill="'+it[2]+'" font-size="'+(it[3]||21)+'" font-weight="700" text-anchor="middle">'+it[1]+'</text>';
+  });
+  return d;
+}
+
+/* ===================== 讲解脚本：按「念完这句要多久」分时间窗 =====================
+   语音和画面是解耦的：画面按自己的节拍一圈一圈跑，语音只负责把手上这句老老实实
+   念完（不打断、不在队列里堆积）。代价是——**字幕窗口必须 ≥ 念完这句所需的时间**，
+   否则下一句会把它挤掉，听感就是「说半句」。所以脚本的时间轴不能平均分，
+   要按估算的语音时长加权分配。中文语速约 4.5 字/秒，再留一点起步和收尾的余量。 */
+function narrSec(html){
+  var t = String(html).replace(/<[^>]*>/g,"");
+  return Math.max(2.8, t.length/4.5 + 1.8);
+}
+/* 一组句子总共需要多久（用来定这一页/这一轮的时长） */
+function scriptSpan(items){
+  var s = 0; items.forEach(function(x){ s += narrSec(x); });
+  return +s.toFixed(1);
+}
+/* 把一组句子铺在 [from,to] 上，权重 = 各自要念多久 */
+function timeline(items, from, to){
+  var ws = [], sum = 0;
+  items.forEach(function(s){ var w = narrSec(s); ws.push(w); sum += w; });
+  var span = to - from, out = [], a = from;
+  items.forEach(function(s,i){ a += span*ws[i]/sum; out.push({ t:+a.toFixed(2), s:s }); });
+  if(out.length) out[out.length-1].t = +to.toFixed(2);   /* 末句兜到末尾，不让浮点误差漏出去 */
+  return out;
+}
+function scriptAt(sc, t){
+  for(var i=0;i<sc.length;i++){ if(t < sc[i].t) return sc[i].s; }
+  return sc[sc.length-1].s;
+}
+/* 多组脚本首尾相接，组的长度用同一个 scriptSpan 算，和动画分段的时长严格对得上 */
+function stitched(groups){
+  var out = [], a = 0;
+  groups.forEach(function(g){
+    var sp = scriptSpan(g);
+    timeline(g, a, +(a+sp).toFixed(2)).forEach(function(o){ out.push(o); });
+    a = +(a+sp).toFixed(2);
+  });
+  return out;
+}
+
+/* ===================== 段 0：一天怎么走 =====================
+   四个日子（春分 / 夏至 / 秋分 / 冬至）**依次各讲一遍**，每个日子占一个 slot。
+   slot 里太阳按自己的节拍一圈一圈转（dayDur 秒一圈），台词按脚本走 ——
+   一圈讲不完就接着第二圈，直到把这个日子讲透。 */
+var S0 = { cx:500, cy:486, R:224, uid:"d0", dayDur:21.0, doy:80 };
+var DATES = [
+  { doy:80,  nm:"春分", md:"3月21日" },
+  { doy:172, nm:"夏至", md:"6月21日" },
+  { doy:266, nm:"秋分", md:"9月23日" },
+  { doy:355, nm:"冬至", md:"12月22日" }
+];
+function curDate(){
+  for(var i=0;i<DATES.length;i++){ if(DATES[i].doy === S0.doy) return DATES[i]; }
+  return DATES[0];
+}
+/* 一个日子讲五句：先日出（是不是正东）→ 怎么爬 → 中天多高 → 从哪落、白天多长 → 夜里绕哪儿去了 */
+function dateLines(d){
+  var info = dayInfo(SH.phi, d.doy), riseDev = 90 - info.rise;
+  return [
+    /* 二分日太阳就是正东升，不能套「从 X 升起，不是正东」那个句式 —— 会念成
+       「从正东升起，正东，一年里只有……」，所以零偏差单独给一句说法 */
+    (Math.abs(riseDev) < 0.8
+      ? "先看<b>"+d.nm+"</b>，"+d.md+"。这天太阳<b>正好从正东升起</b> —— 一年里只有春分和秋分这两天是这样。"
+      : "先看<b>"+d.nm+"</b>，"+d.md+"。太阳从<b>"+dirWord(riseDev)+"</b>升起，不是正东。"),
+    "起来以后，它一边往南挪，一边往高处爬。",
+    "爬到最高的地方是中午，太阳离地面 <b>"+Math.round(info.noonAlt)+" 度</b>。",
+    "然后一路往西，从<b>"+dirWordSet(info.set)+"</b>落下去。这天白天一共 <b>"+toHM(info.dayLen)+"</b>。",
+    "太阳落下去以后没有停 —— 它从地球背面绕过去，等天亮再从东边冒出来。"
+  ];
+}
+S0.lines  = DATES.map(dateLines);
+S0.slot   = Math.max.apply(null, S0.lines.map(scriptSpan));   /* 一个日子占多久，由台词长度决定 */
+S0.dur    = +(S0.slot*DATES.length).toFixed(1);
+S0.script = stitched(S0.lines);
+/* 注意：SVG 里 <b> 无效，必须用 tspan 做强调 */
+function sumLine(d){
+  var k = '<tspan fill="#fff6d0">';
+  if(d.nm === "夏至") return "整条路都斜在 "+k+"偏北</tspan> 这一边 —— 这就是夏天";
+  if(d.nm === "冬至") return "整条路都斜在 "+k+"偏南</tspan> 这一边 —— 这就是冬天";
+  return "正好 "+k+"正东升、正西落</tspan> —— 一年里只有这两天是这样";
+}
+function ghostLegend(d){
+  if(d.nm === "夏至") return "蓝色虚线 ＝ 冬至那天走的路线";
+  if(d.nm === "冬至") return "暖色虚线 ＝ 夏至那天走的路线";
+  return "暖色虚线＝夏至的路线　蓝色虚线＝冬至的路线";
+}
+
+function buildS0(){
+  var svg = document.getElementById("svg0");
+  var info = dayInfo(SH.phi, S0.doy), d = curDate();
+  markDay(DATES.indexOf(d));            /* 日期按钮的高亮只在这里设 */
+
+  /* 地平线以下的暗带：画在最底层，压在方位大字下面 */
+  var pre =
+    '<path d="'+nightBandPath(info.set, info.rise, S0.R, S0.cx, S0.cy)+'" fill="none" stroke="#0d1b28" stroke-width="'+fx(S0.R*NIGHT_BAND)+'" stroke-linecap="butt"/>' +
+    '<path d="'+nightBandPath(info.set, info.rise, S0.R, S0.cx, S0.cy)+'" fill="none" stroke="#25435e" stroke-width="1.2" stroke-dasharray="5 7" stroke-linecap="butt" stroke-opacity=".5"/>' +
+    '<path d="'+nightBandOuter(info.set, info.rise, S0.R, S0.cx, S0.cy)+'" fill="none" stroke="#2a4a68" stroke-width="1.6" stroke-dasharray="5 7" stroke-linecap="butt" stroke-opacity=".8"/>';
+  buildSky(svg, S0.uid, S0.cx, S0.cy, S0.R, { zenith:true }, pre);
+
+  /* 参考路线：另一天的道 */
+  var gl = "";
+  if(d.nm !== "冬至"){
+    var w = dayInfo(SH.phi, DOY.冬至);
+    gl += '<path d="'+path3(SH.phi,w.dec,S0.cx,S0.cy,S0.R)+'" fill="none" stroke="#6fa8ff" stroke-width="2.2" stroke-opacity=".5" stroke-dasharray="9 9"/>';
+  }
+  if(d.nm !== "夏至"){
+    var su = dayInfo(SH.phi, DOY.夏至);
+    gl += '<path d="'+path3(SH.phi,su.dec,S0.cx,S0.cy,S0.R)+'" fill="none" stroke="#ffb14d" stroke-width="2.2" stroke-opacity=".5" stroke-dasharray="9 9"/>';
+  }
+  setL(svg, S0.uid, "ghost", gl);
+
+  /* 正东正西基准线 */
+  var pe = ring3(90,S0.R,S0.cx,S0.cy), pw = ring3(270,S0.R,S0.cx,S0.cy);
+  setL(svg, S0.uid, "band",
+    '<line x1="'+S0.cx+'" y1="'+S0.cy+'" x2="'+fx(pe.x)+'" y2="'+fx(pe.y)+'" stroke="#8fd0ff" stroke-width="1.6" stroke-dasharray="8 8" stroke-opacity=".45"/>' +
+    '<line x1="'+S0.cx+'" y1="'+S0.cy+'" x2="'+fx(pw.x)+'" y2="'+fx(pw.y)+'" stroke="#8fd0ff" stroke-width="1.6" stroke-dasharray="8 8" stroke-opacity=".45"/>');
+
+  /* 标题 + 数据条 */
+  setL(svg, S0.uid, "ui",
+    '<text x="500" y="58" fill="#ffffff" font-size="33" font-weight="700" text-anchor="middle">'+d.nm+'这天（'+d.md+'），太阳走哪条路？</text>' +
+    '<text x="500" y="98" fill="#9cb8d4" font-size="17" text-anchor="middle">上海　│　从早到晚看一整天，再看它夜里绕到哪儿去了</text>' +
+    '<text x="42" y="152" fill="#7d9bb8" font-size="13.5" paint-order="stroke" stroke="#04080f" stroke-width="5">'+ghostLegend(d)+'</text>' +
+    '<text x="42" y="176" fill="#6f8fae" font-size="13.5" paint-order="stroke" stroke="#04080f" stroke-width="5">外面那条暗带 ＝ 地平线以下</text>' +
+    '<text x="42" y="698" fill="#5f7f9e" font-size="13.5" paint-order="stroke" stroke="#04080f" stroke-width="5">亮圈 ＝ 地平线：圈里面是白天太阳走的路</text>' +
+    '<text x="42" y="722" fill="#5f7f9e" font-size="13.5" paint-order="stroke" stroke="#04080f" stroke-width="5">太阳一落到圈外，就等于沉到地平线下面去了</text>' +
+    '<text x="'+fx(pe.x-26)+'" y="'+(S0.cy-18)+'" fill="#8fd0ff" font-size="15" text-anchor="end" paint-order="stroke" stroke="#04080f" stroke-width="6">正东</text>' +
+    '<text x="'+fx(pw.x+26)+'" y="'+(S0.cy-18)+'" fill="#8fd0ff" font-size="15" text-anchor="start" paint-order="stroke" stroke="#04080f" stroke-width="6">正西</text>' +
+    dataRow([
+      ["日出方向", dirWord(90-info.rise), "#ff9a6c"],
+      ["日落方向", dirWordSet(info.set), "#a48bff"],
+      ["正午高度", Math.round(info.noonAlt)+"°", "#ffd54f"],
+      ["白天长度", toHM(info.dayLen), "#cfe3f6", 19]
+    ], 860));
+  setL(svg, S0.uid, "foot", "");
+  /* 注意：这里不能自己调 frameS0 —— 四个日子共用一个段，帧函数靠 t 判断当前
+     是哪个日子；buildS0 里若再调 frameS0(0) 会把它拽回春分并无限递归。 */
+}
+/* 高亮「现在讲到哪个日子」—— 唯一入口是 buildS0（每次换日子都必经这里），
+   别再分散到别的分支里去设，否则状态一多就对不上（之前加过一层缓存，就出过
+   「点了冬至、高亮还停在秋分」的错）。 */
+function markDay(i){
+  Array.prototype.forEach.call(document.querySelectorAll(".day"), function(x,k){
+    x.classList.toggle("on", k === i);
+  });
+}
+
+function frameS0(t){
+  var svg = document.getElementById("svg0");
+  /* 四个日子依次讲：t 落在哪个 slot，就讲哪个日子 */
+  var idx = Math.min(DATES.length-1, Math.floor(t / S0.slot));
+  var d = DATES[idx];
+  if(d.doy !== S0.doy){ S0.doy = d.doy; buildS0(); }
+  var lt = t - idx*S0.slot;                 /* slot 内的时间，从头开始算 */
+  var info = dayInfo(SH.phi, S0.doy), dec = info.dec, H0 = info.H0;
+  var p = (lt / S0.dayDur) % 1;             /* 太阳按自己的节拍跑，slot 里可以跑一圈多 */
+  var H = -H0 + 360*p;
+
+  /* 白天：暖色实线尾迹 */
+  setL(svg, S0.uid, "trail", (H > -H0+0.1)
+    ? '<path d="'+trailPath(SH.phi,dec,Math.min(H,H0),S0.cx,S0.cy,S0.R)+'" fill="none" stroke="url(#'+S0.uid+'warm)" stroke-width="5" stroke-linecap="round" stroke-linejoin="round" stroke-opacity=".95"/>'
+    : "");
+
+  /* 夜里：暗红虚线，绕圆盘外面走 —— 太阳躲到地球背面去了 */
+  setL(svg, S0.uid, "night", (H > H0+0.1)
+    ? '<path d="'+nightPath(SH.phi,dec,H,S0.cx,S0.cy,S0.R)+'" fill="none" stroke="#a8341f" stroke-width="4.5" stroke-dasharray="12 9" stroke-linecap="round" stroke-opacity="1"/>'
+    : "");
+
+  /* 太阳本体：地平线以下换成暗红色 */
+  var s = sunPos(SH.phi,dec,H);
+  var sp = skyAny(s.az, s.alt, S0.cx, S0.cy, S0.R);
+  var isDown = s.alt < -1.2;
+  var ly = isDown ? 58 : -46;
+  var lc = isDown ? "#e8836f" : "#fff3c4";
+  setL(svg, S0.uid, "sun",
+    (isDown ? sunDotNight(S0.uid, sp.x, sp.y, 13) : sunDot(S0.uid, sp.x, sp.y, 15)) +
+    '<text x="'+fx(sp.x)+'" y="'+fx(sp.y+ly)+'" fill="'+lc+'" font-size="18" font-weight="700" text-anchor="middle" paint-order="stroke" stroke="#050b13" stroke-width="4">'+clockStr(H)+'</text>' +
+    (s.alt < -9 ? '<text x="'+fx(sp.x)+'" y="'+fx(sp.y+ly+22)+'" fill="#b16a5c" font-size="13" text-anchor="middle" paint-order="stroke" stroke="#050b13" stroke-width="4">地平线下面</text>' : ""));
+
+  /* 日出日落标记 */
+  var pr = ring3(info.rise,S0.R,S0.cx,S0.cy), ps = ring3(info.set,S0.R,S0.cx,S0.cy);
+  setL(svg, S0.uid, "marks",
+    riseMark(pr.x, pr.y, "#ff7043", "日出", dirWord(90-info.rise), Math.abs(info.rise-90)<22 ? "down":"right") +
+    riseMark(ps.x, ps.y, "#9575ff", "日落", dirWordSet(info.set), Math.abs(info.set-270)<22 ? "down":"left"));
+
+  /* 日落后跳出来的总结字幕 */
+  setL(svg, S0.uid, "foot", (H > H0)
+    ? '<text x="500" y="800" fill="#ffca28" font-size="21" font-weight="700" text-anchor="middle" paint-order="stroke" stroke="#050b13" stroke-width="6">'+sumLine(d)+'</text>' +
+      '<text x="500" y="828" fill="#8fa9c2" font-size="14.5" text-anchor="middle" paint-order="stroke" stroke="#050b13" stroke-width="5">太阳落下去以后没有停 —— 它从地球背面绕过去，等天亮再从东边冒出来</text>'
+    : "");
+
+  /* 底部旁白：按整段的时间轴取（四个日子的台词拼在一起），窗口是「念完这句要多久」算出来的 */
+  CAP.innerHTML = scriptAt(S0.script, t);
+}
+
+/* ===================== 段 1：一年怎么变（地球 ⇄ 当天太阳轨迹 联动） ===================== */
+var S1 = { cx:800, cy:352, R:228, uid:"d1", dur:0 };
+var ORB = { cx:238, cy:330, r:160, sun:37, earth:26, axis:54 };
+var TH_S = 90 + TILT;                               /* 夏至时地球所在的方位角 */
+var AX = { x: Math.sin(TILT*D2R), y: -Math.cos(TILT*D2R) };  /* 地轴的倾斜方向（永远不变） */
+
+function orbPos(th){
+  return { x: ORB.cx + ORB.r*Math.cos(th*D2R), y: ORB.cy + ORB.r*Math.sin(th*D2R) };
+}
+function decAt(th){
+  return Math.asin(Math.sin(TILT*D2R)*Math.cos((th-TH_S)*D2R))*R2D;
+}
+function orbArc(th0, th1){
+  var p0 = orbPos(th0), p1 = orbPos(th1);
+  var sw = th1-th0, lg = Math.abs(sw)>180?1:0, dr = sw>0?1:0;
+  return "M"+fx(p0.x)+" "+fx(p0.y)+" A"+ORB.r+" "+ORB.r+" 0 "+lg+" "+dr+" "+fx(p1.x)+" "+fx(p1.y);
+}
+
+/* 一个循环 = 四个节气。每个节气一组台词，组内 2/3 的时间让太阳走完一整天，
+   剩下 1/3 用来「地球继续公转」。组有多长，由台词要念多久决定 ——
+   原来写死 30 秒时，长句会被挤成半句，听着就是「没念完」。 */
+var S1_GROUPS = [
+  [ "先看<b>夏至</b>：地球走到左边这个位置，北极朝着太阳歪过去。",
+    "地轴哪一天都不动，永远指着同一个方向 —— 是地球绕着太阳转，才让北半球一阵子朝太阳歪、一阵子躲开。",
+    "北极朝太阳歪的时候，太阳直射北回归线。上海的白天最长，太阳从<b>东北</b>升起。" ],
+  [ "地球继续往前走，来到<b>秋分</b>。",
+    "这会儿地轴既不朝着太阳歪，也不躲开 —— 太阳正好直射赤道。",
+    "全世界都是十二小时白天。上海这天<b>正东升、正西落</b>。" ],
+  [ "再走到<b>冬至</b>：地球跑到太阳的另一边，这回轮到南极朝着太阳歪了。",
+    "太阳直射南回归线。上海的太阳从<b>东南</b>升起，白天只剩下十个小时。",
+    "注意看四根地轴 —— 方向一直一模一样，从来没有动过。" ],
+  [ "最后是<b>春分</b>：地球转到和秋分正好相对的位置，效果却完全一样。",
+    "地轴又不偏了，太阳正东升、正西落，白天黑夜一样长。",
+    "一年就这样转一圈。太阳的路来回摆，是地球在绕着太阳转 —— 不是太阳在动。" ]
+];
+var S1_NAMES = ["夏至","秋分","冬至","春分"];
+var S1_SEQ = [], S1_ACC = 0;
+S1_GROUPS.forEach(function(g,k){
+  var sp = scriptSpan(g), dseg = +(sp*0.66).toFixed(2);
+  var th0 = TH_S + 90*k, th1 = TH_S + 90*(k+1);
+  S1_SEQ.push({ a:S1_ACC, b:+(S1_ACC+dseg).toFixed(2), th0:th0, th1:th0, day:true, nm:S1_NAMES[k] });
+  S1_SEQ.push({ a:+(S1_ACC+dseg).toFixed(2), b:+(S1_ACC+sp).toFixed(2),
+                th0:th0, th1:th1, day:false, nm:S1_NAMES[k]+" → "+S1_NAMES[(k+1)%4] });
+  S1_ACC = +(S1_ACC+sp).toFixed(2);
+});
+S1.dur = S1_ACC;
+var S1_SCRIPT = stitched(S1_GROUPS);
+function s1State(t){
+  var seg = S1_SEQ[0];
+  for(var i=0;i<S1_SEQ.length;i++){ if(t >= S1_SEQ[i].a && t < S1_SEQ[i].b){ seg = S1_SEQ[i]; break; } }
+  var u = (t - seg.a) / (seg.b - seg.a);
+  u = clamp(u, 0, 1);
+  var th = seg.th0 + (seg.th1-seg.th0)*u;
+  var dec = decAt(th);
+  var H0 = hourAngle(SH.phi, dec);
+  var H = seg.day ? (-H0 + 2*H0*u) : 0;
+  return { th:th, dec:dec, H0:H0, H:H, day:seg.day, nm:seg.nm, u:u };
+}
+
+/* 画一颗地球：亮面 / 暗面 / 地轴 / 我们所在的小点 */
+function globe(p, rE, act, H){
+  var d = "";
+  var ux = ORB.cx - p.x, uy = ORB.cy - p.y;
+  var ul = Math.sqrt(ux*ux+uy*uy) || 1;
+  ux /= ul; uy /= ul;
+  d += '<circle cx="'+fx(p.x)+'" cy="'+fx(p.y)+'" r="'+fx(rE)+'" fill="#2f6389"/>';
+  var A = { x:p.x - uy*rE, y:p.y + ux*rE };
+  var B = { x:p.x + uy*rE, y:p.y - ux*rE };
+  d += '<path d="M'+fx(A.x)+' '+fx(A.y)+' A'+fx(rE)+' '+fx(rE)+' 0 0 1 '+fx(B.x)+' '+fx(B.y)+' Z" fill="#060d15" fill-opacity=".94"/>';
+  d += '<circle cx="'+fx(p.x)+'" cy="'+fx(p.y)+'" r="'+fx(rE)+'" fill="none" stroke="#9fd4f5" stroke-width="1.6" stroke-opacity="'+(act?.95:.6)+'"/>';
+  /* 地轴：方向永远一样 */
+  var a0 = { x:p.x-AX.x*ORB.axis, y:p.y-AX.y*ORB.axis };
+  var a1 = { x:p.x+AX.x*ORB.axis, y:p.y+AX.y*ORB.axis };
+  d += '<line x1="'+fx(a0.x)+'" y1="'+fx(a0.y)+'" x2="'+fx(a1.x)+'" y2="'+fx(a1.y)+'" stroke="'+(act?"#ffe082":"#b8a271")+'" stroke-width="'+(act?3.4:2.2)+'" stroke-linecap="round" stroke-opacity="'+(act?1:.68)+'"/>';
+  if(act){
+    d += '<circle cx="'+fx(a1.x)+'" cy="'+fx(a1.y)+'" r="4.5" fill="#fff59d"/>';
+    d += '<text x="'+fx(a1.x)+'" y="'+fx(a1.y-14)+'" fill="#ffe082" font-size="13.5" text-anchor="middle">北</text>';
+  }
+  /* 我们所在的小点，随地球自转跑圈 */
+  if(act){
+    var ang = Math.atan2(uy, ux) - H*D2R;
+    var mpx = p.x + rE*Math.cos(ang), mpy = p.y + rE*Math.sin(ang);
+    var lit = Math.cos(ang - Math.atan2(uy,ux)) > 0;
+    d += '<circle cx="'+fx(mpx)+'" cy="'+fx(mpy)+'" r="5.5" fill="'+(lit?"#ff5252":"#7a2634")+'" stroke="#ffffff" stroke-width="1.8"/>';
+  }
+  return d;
+}
+
+function buildS1(){
+  var svg = document.getElementById("svg1");
+  if(!svg.firstChild) buildSky(svg, S1.uid, S1.cx, S1.cy, S1.R, { zenith:true });
+
+  /* 静止层：轨道 + 四颗地球 + 太阳 + 分隔线 */
+  var d = "";
+  d += '<circle cx="'+ORB.cx+'" cy="'+ORB.cy+'" r="'+ORB.r+'" fill="none" stroke="#1e3b58" stroke-width="1.6" stroke-dasharray="7 9"/>';
+
+  var SEASONS = [
+    { th:TH_S,      nm:"夏至", dx:-54, dy:6 },
+    { th:TH_S+90,   nm:"秋分", dx:-48, dy:6 },
+    { th:TH_S+180,  nm:"冬至", dx: 56, dy:6 },
+    { th:TH_S+270,  nm:"春分", dx: 56, dy:6 }
+  ];
+  SEASONS.forEach(function(s){
+    var p = orbPos(s.th);
+    d += globe(p, ORB.earth, false, 0);
+    d += '<text x="'+fx(p.x+s.dx)+'" y="'+fx(p.y+s.dy)+'" fill="#8fb0cc" font-size="16" font-weight="600" text-anchor="middle">'+s.nm+'</text>';
+  });
+
+  d += '<circle cx="'+ORB.cx+'" cy="'+ORB.cy+'" r="'+ORB.sun+'" fill="url(#'+S1.uid+'glow)"/>';
+  d += '<circle cx="'+ORB.cx+'" cy="'+ORB.cy+'" r="'+(ORB.sun*0.62)+'" fill="#ffd54f"/>';
+  d += '<text x="'+ORB.cx+'" y="'+(ORB.cy+72)+'" fill="#ffca28" font-size="16" font-weight="700" text-anchor="middle">太阳</text>';
+  d += '<line x1="480" y1="128" x2="480" y2="628" stroke="#12202e" stroke-width="1" stroke-dasharray="6 10"/>';
+  d += '<text x="238" y="608" fill="#6b8ba9" font-size="14" text-anchor="middle">从上往下看地球公转 · 四根黄色地轴，方向永远一模一样</text><text x="238" y="636" fill="#5f8cb8" font-size="14" text-anchor="middle">右边圆盘：圆的边＝地平线　圆心＝你头顶正上方</text>';
+
+  svg.querySelector("#"+S1.uid+"-band").innerHTML = d;
+
+  /* 圆盘上先画好春分秋分的参考路线（正东正西） */
+  setL(svg, S1.uid, "ghost",
+    '<path d="'+path3(SH.phi, 0, S1.cx, S1.cy, S1.R)+'" fill="none" stroke="#5fbf8a" stroke-width="2.2" stroke-opacity=".5" stroke-dasharray="9 9"/>' +
+    '<text x="'+S1.cx+'" y="'+(S1.cy+S1.R-40)+'" fill="#5fbf8a" font-size="14.5" text-anchor="middle">绿线 = 春分/秋分走的路（正东→正西）</text>');
+}
+function frameS1(t){
+  var svg = document.getElementById("svg1");
+  var st = s1State(t);
+  var th = st.th, dec = st.dec, H = st.H;
+
+  /* 公转进度弧 */
+  var arc = (Math.abs(th-TH_S) > 0.3)
+    ? '<path d="'+orbArc(TH_S, th)+'" fill="none" stroke="#ffca28" stroke-width="4" stroke-opacity=".6" stroke-linecap="round"/>'
+    : "";
+  setL(svg, S1.uid, "trail", arc);
+
+  /* 当前地球高亮（叠在静态层上的那一颗） */
+  var p = orbPos(th);
+
+  /* 圆盘：当天的太阳路线 */
+  var riseAz = sunPos(SH.phi, dec, -st.H0).az, setAz = 360 - riseAz;
+  var pr = ring3(riseAz,S1.R,S1.cx,S1.cy), ps = ring3(setAz,S1.R,S1.cx,S1.cy);
+  setL(svg, S1.uid, "ghost",
+    '<path d="'+path3(SH.phi, 0, S1.cx, S1.cy, S1.R)+'" fill="none" stroke="#5fbf8a" stroke-width="2.2" stroke-opacity=".45" stroke-dasharray="9 9"/>' +
+    '<path d="'+path3(SH.phi, dec, S1.cx, S1.cy, S1.R)+'" fill="none" stroke="url(#'+S1.uid+'warm)" stroke-width="3.6" stroke-opacity=".85"/>' +
+    riseMark(pr.x, pr.y, "#ff7043", "", "") +
+    riseMark(ps.x, ps.y, "#9575ff", "", ""));
+
+  /* 太阳 */
+  var sp = sunPos(SH.phi, dec, H);
+  var spx = sky3(sp.az, sp.alt, S1.cx, S1.cy, S1.R);
+  var showSun = sp.alt > -1;
+  var moving = st.day
+    ? globe(p, ORB.earth*1.02, true, H)
+    : '<circle cx="'+fx(p.x)+'" cy="'+fx(p.y)+'" r="'+(ORB.earth+8)+'" fill="none" stroke="#ffca28" stroke-width="2.6" stroke-dasharray="5 7" opacity=".9"/>' +
+      '<circle cx="'+fx(p.x)+'" cy="'+fx(p.y)+'" r="5" fill="#ffca28"/>';
+  setL(svg, S1.uid, "sun", moving + (showSun ? sunDot(S1.uid, spx.x, spx.y, 13) : ""));
+
+  /* 圆盘上的说明 */
+  var nm = st.nm;
+  setL(svg, S1.uid, "ui",
+    '<text x="545" y="52" fill="#ffffff" font-size="30" font-weight="700" text-anchor="middle">地球转到哪儿，太阳的路就跟着变</text>' +
+    '<text x="545" y="86" fill="#8fb0cc" font-size="16" text-anchor="middle">左边看地球怎么转 · 右边看那天的太阳怎么走</text>' +
+    '<text x="'+S1.cx+'" y="'+(S1.cy-58)+'" fill="#ffca28" font-size="28" font-weight="700" text-anchor="middle">'+nm+'</text>' +
+    
+    '<text x="58" y="700" fill="#5f8cb8" font-size="14">圆的边 ＝ 地平线</text>' +
+    '<text x="58" y="724" fill="#5f8cb8" font-size="14">圆心 ＋ ＝ 你头顶正上方</text>' +
+    dataRow([
+      ["日出方向", dirWord(90-riseAz), "#ff9a6c"],
+      ["日落方向", dirWordSet(setAz), "#a48bff"],
+      ["正午高度", Math.round(sunPos(SH.phi,dec,0).alt)+"°", "#ffd54f"],
+      ["上海白天", toHM(2*st.H0/15), "#cfe3f6", 19]
+    ], 678, 1090));
+
+  /* 过渡段不动字幕 —— 上一句才有时间念完，不会说半句 */
+  CAP.innerHTML = scriptAt(S1_SCRIPT, t);
+}
+/* ===================== 段 2：南北差多少 ===================== */
+/* 一个地方一年里日出位置能摆多远（度） */
+function swingDeg(phi){
+  return dayInfo(phi, DOY.冬至).rise - dayInfo(phi, DOY.夏至).rise;
+}
+var S2_LINES = [
+  "同一天，看三个地方：<b>三亚</b>、<b>上海</b>、<b>漠河</b>。",
+  "三个圆盘一模一样大，代表同一片天空 —— 圆的边是地平线，圆心是你头顶正上方。",
+  "<b>三亚</b>最靠南，几乎贴着赤道。它一年里日出的位置几乎不动，总在东边那一小块地方，来回只有 " +
+    swingDeg(18.25).toFixed(0) + " 度。",
+  "<b>上海</b>在中间：日出点从东偏北 28 度，一直荡到东偏南 27 度，来回快 " +
+    swingDeg(31.23).toFixed(0) + " 度。",
+  "<b>漠河</b>最靠北：日出点从东北一直荡到东南，快 <b>" + swingDeg(52.97).toFixed(0) +
+    " 度</b> —— 太阳像从侧面绕过来的。",
+  "下面那三排小圆点就是答案：三亚的点几乎原地不动，越往北，点跑得越远。",
+  "所以纬度越高，太阳升起落下的位置，一年里摆得就越厉害。",
+  "这就是为什么北方的夏天，太阳能从背后那扇窗户照进来。"
+];
+var S2 = { dur:scriptSpan(S2_LINES), cy:258, R:124, cx:[192,545,898], x0:250, x1:1030 };
+var S2_SCRIPT = timeline(S2_LINES, 0, S2.dur);
+function az2x(az){ return S2.x0 + (az-45)/90*(S2.x1-S2.x0); }
+var CITY_BAR_Y = [578, 650, 722];
+function buildS2(){
+  var svg = document.getElementById("svg2");
+  var d = "";
+  CITIES.forEach(function(c,i){
+    var uid = "n"+i;
+    d += discBase(uid, S2.cx[i], S2.cy, S2.R, { k:0.92, inLabel:true });
+    d += '<g id="'+uid+'-ghost"></g><g id="'+uid+'-trail"></g><g id="'+uid+'-marks"></g><g id="'+uid+'-sun"></g><g id="'+uid+'-ui"></g>';
+  });
+  d += '<g id="s2bars"></g><g id="s2ui"></g>';
+  svg.innerHTML = d;
+
+  CITIES.forEach(function(c,i){
+    var uid = "n"+i, cx = S2.cx[i];
+    setL(svg, uid, "ghost",
+      '<path d="'+path3(c.phi, declination(DOY.夏至), cx, S2.cy, S2.R)+'" fill="none" stroke="#ff7043" stroke-width="2.8" stroke-opacity=".6"/>' +
+      '<path d="'+path3(c.phi, declination(DOY.冬至), cx, S2.cy, S2.R)+'" fill="none" stroke="#5b8dff" stroke-width="2.8" stroke-opacity=".6"/>');
+    setL(svg, uid, "ui",
+      '<text x="'+cx+'" y="418" fill="#e6eff9" font-size="21" font-weight="700" text-anchor="middle">'+c.name+'</text>' +
+      '<text x="'+cx+'" y="442" fill="#7d94ac" font-size="14" text-anchor="middle">北纬 '+c.phi.toFixed(0)+'°</text>' +
+      '<text x="'+cx+'" y="472" fill="'+c.color+'" font-size="21" font-weight="700" text-anchor="middle">摆动 '+Math.round(swingDeg(c.phi))+'°</text>');
+  });
+
+  var bars = "";
+  bars += '<text x="545" y="58" fill="#ffffff" font-size="29" font-weight="700" text-anchor="middle">同一个太阳，越往北摆动得越厉害</text>';
+  bars += '<text x="545" y="90" fill="#8fb0cc" font-size="15.5" text-anchor="middle">橙线＝夏至太阳走的路　蓝线＝冬至太阳走的路　亮线＝今天太阳走的路</text>';
+  bars += '<text x="545" y="520" fill="#e6eff9" font-size="17" font-weight="700" text-anchor="middle">把三地的日出位置横着排一排 —— 摆动的长度一目了然</text>';
+  [45,60,75,105,120,135].forEach(function(a){
+    var x = az2x(a);
+    bars += '<line x1="'+fx(x)+'" y1="546" x2="'+fx(x)+'" y2="558" stroke="#2b4c6e" stroke-width="1.2"/>';
+    bars += '<text x="'+fx(x)+'" y="540" fill="#4f708f" font-size="13" text-anchor="middle">'+a+'°</text>';
+  });
+  bars += '<text x="'+fx(az2x(90))+'" y="540" fill="#8fd0ff" font-size="14.5" font-weight="700" text-anchor="middle">正东</text>';
+  CITIES.forEach(function(c,i){
+    var y = CITY_BAR_Y[i];
+    var a0 = dayInfo(c.phi, DOY.夏至).rise, a1 = dayInfo(c.phi, DOY.冬至).rise;
+    bars += '<text x="56" y="'+(y+7)+'" fill="'+c.color+'" font-size="18" font-weight="700">'+c.name+'</text>';
+    bars += '<rect x="'+fx(S2.x0)+'" y="'+(y-12)+'" width="'+fx(S2.x1-S2.x0)+'" height="24" rx="12" fill="#0b1520" stroke="#16263a"/>';
+    bars += '<rect x="'+fx(az2x(a0))+'" y="'+(y-10)+'" width="'+fx(az2x(a1)-az2x(a0))+'" height="20" rx="10" fill="'+c.color+'" fill-opacity=".45"/>';
+    bars += '<line x1="'+fx(az2x(a0))+'" y1="'+(y-16)+'" x2="'+fx(az2x(a0))+'" y2="'+(y+16)+'" stroke="#ff7043" stroke-width="3"/>';
+    bars += '<line x1="'+fx(az2x(a1))+'" y1="'+(y-16)+'" x2="'+fx(az2x(a1))+'" y2="'+(y+16)+'" stroke="#5b8dff" stroke-width="3"/>';
+    bars += '<text x="56" y="'+(y+28)+'" fill="#546b82" font-size="12.5">夏至 '+a0.toFixed(0)+'° → 冬至 '+a1.toFixed(0)+'°</text>';
+  });
+  bars += '<text x="545" y="788" fill="#4f708f" font-size="14" text-anchor="middle">三个圆盘同时播放同一年的同一天 —— 差别不是画出来的，是算出来的</text>';
+  svg.querySelector("#s2bars").innerHTML = bars;
+}
+function frameS2(t){
+  var svg = document.getElementById("svg2");
+  var u = clamp(t/S2.dur, 0, 1);
+  var doy = 80 + 365*u;
+  var dec = declination(doy);
+  var md = doy2md(doy > 365 ? doy-365 : doy);
+
+  CITIES.forEach(function(c,i){
+    var uid = "n"+i, cx = S2.cx[i];
+    var info = dayInfo(c.phi, doy);
+    setL(svg, uid, "ghost",
+      '<path d="'+path3(c.phi, declination(DOY.夏至), cx, S2.cy, S2.R)+'" fill="none" stroke="#ff7043" stroke-width="2.8" stroke-opacity=".6"/>' +
+      '<path d="'+path3(c.phi, declination(DOY.冬至), cx, S2.cy, S2.R)+'" fill="none" stroke="#5b8dff" stroke-width="2.8" stroke-opacity=".6"/>' +
+      '<path d="'+path3(c.phi, dec, cx, S2.cy, S2.R)+'" fill="none" stroke="url(#'+uid+'warm)" stroke-width="4" stroke-opacity="1"/>');
+
+    var rp = ring3(info.rise, S2.R, cx, S2.cy), sp2 = ring3(info.set, S2.R, cx, S2.cy);
+    var sp = sunPos(c.phi, dec, 0);
+    var q = sky3(sp.az, sp.alt, cx, S2.cy, S2.R);
+    setL(svg, uid, "marks",
+      '<line x1="'+cx+'" y1="'+S2.cy+'" x2="'+fx(rp.x)+'" y2="'+fx(rp.y)+'" stroke="#ff7043" stroke-width="2" stroke-opacity=".65"/>' +
+      '<line x1="'+cx+'" y1="'+S2.cy+'" x2="'+fx(sp2.x)+'" y2="'+fx(sp2.y)+'" stroke="#9575ff" stroke-width="2" stroke-opacity=".65"/>' +
+      '<circle cx="'+fx(rp.x)+'" cy="'+fx(rp.y)+'" r="11" fill="none" stroke="#ff7043" stroke-width="3.4"/>' +
+      '<circle cx="'+fx(rp.x)+'" cy="'+fx(rp.y)+'" r="4.5" fill="#ff7043"/>' +
+      '<circle cx="'+fx(sp2.x)+'" cy="'+fx(sp2.y)+'" r="11" fill="none" stroke="#9575ff" stroke-width="3.4"/>' +
+      '<circle cx="'+fx(sp2.x)+'" cy="'+fx(sp2.y)+'" r="4.5" fill="#9575ff"/>');
+    setL(svg, uid, "sun", sunDot(uid, q.x, q.y, 10));
+  });
+
+  var dyn = "";
+  CITIES.forEach(function(c,i){
+    var y = CITY_BAR_Y[i];
+    var a = dayInfo(c.phi, doy).rise;
+    var x = az2x(a);
+    dyn += '<circle cx="'+fx(x)+'" cy="'+y+'" r="10.5" fill="'+c.color+'" stroke="#ffffff" stroke-width="2.4"/>';
+    dyn += '<text x="'+fx(x)+'" y="'+(y-19)+'" fill="'+c.color+'" font-size="14" font-weight="700" text-anchor="middle">'+a.toFixed(0)+'°</text>';
+  });
+  svg.querySelector("#s2ui").innerHTML =
+    '<text x="1060" y="58" fill="#ffca28" font-size="20" font-weight="700" text-anchor="end">今天 '+md+'</text>' +
+    dyn;
+
+  /* 底部旁白：整段共用一个时间轴，不跟着日期每帧跳 —— 否则语音永远排不上队 */
+  CAP.innerHTML = scriptAt(S2_SCRIPT, t);
+}
+/* ===================== 段 3：五条线上的四季 =====================
+   北极圈 / 北回归线 / 赤道 / 南回归线 / 南极圈 —— 五个地方同时过四季。
+   编码方式：盘里的亮线 = 白天太阳走的路（越靠圆心 = 太阳越高），
+   贴着盘边的暗红虚线 = 太阳在地平线以下时方位角扫过的那一段。
+   注意：暗线长度对应的是「方位角扫过的范围」，不是夜里的小时数 ——
+   白天到底多长，看盘下那行字和底部的横条，别看暗线长短。 */
+var S3 = { dur:0, spin:3.3, cy:340, R:105, cx:[128,371,620,869,1112] };
+var S3BAR = { x0:212, x1:1160, y:[590,640,690,740,790] };
+/* sub 里直接写明白「这条线特殊在哪」—— 不用等语音，看图就知道 */
+var BELTS = [
+  { name:"北极圈",   sub:"66.5°N · 极昼极夜线", phi: 66.56, color:"#8fd0ff" },
+  { name:"北回归线", sub:"23.4°N · 直射最北",   phi: 23.44, color:"#ffca28" },
+  { name:"赤道",     sub:"0° · 终年昼夜平分",   phi:  0.00, color:"#7ee0a8" },
+  { name:"南回归线", sub:"23.4°S · 直射最南",   phi:-23.44, color:"#ff9a4d" },
+  { name:"南极圈",   sub:"66.5°S · 极昼极夜线", phi:-66.56, color:"#c39bff" }
+];
+/* 四个锚点直接带「赤纬真值」，不从 doy 反算 dec —— 这条很关键：
+   ① 简单公式 -23.44cos(2π(doy+10)/365.24) 有约 2 天相位误差，doy=80 时 dec 其实是 -0.54°，
+      于是二分日各纬度昼长会变成 11.8 / 12.0 / 12.2 小时，和「所有地方都十二小时」的字幕打架；
+      而二分日相隔 186 天、公式半周期只有 182.6 天，光移相位两边不可能同时为 0。
+   ② dec 取 ±23.44 精确值后，66.56 + 23.44 = 90 正好成立（tan66.56·tan23.44 = 1），
+      极圈上的太阳刚好擦着地平线：夏至午夜高度角 0°、冬至正午高度角 0°，
+      极昼/极夜是「算出来的」，不是靠容差凑的。 */
+var ANCH = [
+  { doy: 80, nm:"春分", dec:  0      },
+  { doy:172, nm:"夏至", dec: 23.44   },
+  { doy:266, nm:"秋分", dec:  0      },
+  { doy:355, nm:"冬至", dec:-23.44   }
+];
+
+/* 几何地平线（不做 -0.833° 折射修正）：这一页要的是「整天不落 / 整天不露面」的
+   干净边界。带上折射，北极圈冬至当天也会亮上 2 小时，极夜就演示不出来了。 */
+function hourAngleGeo(phi,dec){
+  return Math.acos(clamp(-Math.tan(phi*D2R)*Math.tan(dec*D2R), -1, 1))*R2D;
+}
+function dayLenOf(phi,dec){ return 2*hourAngleGeo(phi,dec)/15; }
+function smooth01(x){ x = clamp(x,0,1); return x*x*(3-2*x); }
+function fullCircle(cx,cy,r){
+  return "M"+fx(cx-r)+" "+fx(cy)+" a"+fx(r)+" "+fx(r)+" 0 1 0 "+fx(2*r)+" 0"+
+         " a"+fx(r)+" "+fx(r)+" 0 1 0 "+fx(-2*r)+" 0";
+}
+/* 一整天太阳走的路：地平线以上画进盘里，以下贴着盘边
+   极昼 / 极夜判据用「高度角的两个极端」，不用 H0 的阈值 ——
+   因为 dec 的峰值只有 23.4387°（够不到 23.44），66.56° 上 H0 会停在 179.35°，
+   卡阈值会漏出 0.3° 的假夜弧。太阳正好擦着地平线的极圈，留 0.3° 容差才对。 */
+function ringPaths(phi, dec, cx, cy, R){
+  var H0 = hourAngleGeo(phi,dec);
+  var noonAlt = sunPos(phi,dec,0).alt, midAlt = sunPos(phi,dec,180).alt;
+  var pd = midAlt > -0.3, pn = noonAlt < 0.3;      /* pd=极昼  pn=极夜 */
+  var day = [], i, H, p, q;
+  if(!pn){
+    for(i=0;i<=150;i++){
+      H = -H0 + 2*H0*i/150;
+      p = sunPos(phi,dec,H);
+      if(p.alt < -0.02) continue;
+      q = sky3(p.az,p.alt,cx,cy,R);
+      day.push(fx(q.x)+" "+fx(q.y));
+    }
+  }
+  var riseAz = sunPos(phi,dec,-H0).az, rr = R*0.985;
+  return {
+    H0: H0, pd: pd, pn: pn,
+    day: day.length>1 ? "M"+day.join(" L") : "",
+    /* 夜里的那一段：从日落方位经正北绕到日出方位（与第①段的夜带同一套画法），
+       所以必须用 bandArc —— 它会做 360° 取模，arc3 不会，会把弧画到南边去 */
+    night: pn ? fullCircle(cx,cy,rr)
+         : (pd ? "" : bandArc(360-riseAz, riseAz, rr, cx, cy)),
+    riseAz: riseAz, setAz: 360-riseAz,
+    ok: !pd && !pn
+  };
+}
+/* 这一页分两轮讲。
+   第一轮「四季巡讲」：按季节分段，每一季的长短由那一季的台词要念多久决定
+   （所以四段不是等长的）；开场那句并进春季段里一起讲。
+   第二轮「讲脾气」：动画继续走四季，台词讲这五条线各自的特性。 */
+var S3_A = [
+  [ "同一颗太阳，五个不一样的地方。从左到右：<b>北极圈</b>、<b>北回归线</b>、<b>赤道</b>、<b>南回归线</b>、<b>南极圈</b>。",
+    "<b>春分</b>：五条线上的白天，全都是十二小时。" ],
+  [ "<b>夏至</b>这天，北极圈最特别：太阳整天不落，半夜也挂在地平线上；同一天，南极圈正好相反，太阳整天不露面。" ],
+  [ "<b>秋分</b>：又回到平分，五条线重新变回十二小时。" ],
+  [ "<b>冬至</b>：两极圈完全掉了个个儿 —— 北极圈整天不露面，南极圈整天不落。" ]
+];
+var S3_B = [
+  "再看一遍这五条线 —— 每一条都有自己的脾气。",
+  "<b>赤道</b>最公平：一年三百六十五天，天天都是十二小时白天、十二小时黑夜，一天都不差。",
+  "<b>南北回归线</b>是太阳直射能走到的最远的地方。一年里，太阳直射点就在这两条线之间来回走。",
+  "站在两条回归线之间（比如三亚），一年里太阳能从头顶正上方经过两次；正好站在回归线上，就只有一次。",
+  "<b>南北极圈</b>是极昼和极夜的门槛。跨进极圈，一年里总能碰上太阳整天不落、或者整天不露面的日子。",
+  "越往里走，这种极端的日子越长。到了北极点上，就是半年白天、半年黑夜。",
+  "所以纬度决定三件事：太阳中午能爬多高、白天能有多长、一年里摆动有多大。"
+];
+S3.segs = S3_A.map(scriptSpan);
+S3.cycA = +(S3.segs.reduce(function(a,b){ return a+b; }, 0)).toFixed(2);
+S3.cycB = scriptSpan(S3_B);
+S3.dur  = +(S3.cycA + S3.cycB).toFixed(2);
+var S3_SCRIPT = stitched(S3_A).concat(timeline(S3_B, S3.cycA, S3.dur));
+function buildS3(){
+  var svg = document.getElementById("svg3");
+  var d = "";
+  d += '<text x="620" y="42" fill="#ffffff" font-size="27" font-weight="700" text-anchor="middle">同一个太阳，五个地方，走的路完全不同</text>';
+  d += '<text x="620" y="82" fill="#ffca28" font-size="22" font-weight="700" text-anchor="middle" id="s3date">6月21日 · 夏至</text>';
+  d += '<text x="620" y="110" fill="#8fb0cc" font-size="14.5" text-anchor="middle">盘里的亮线＝白天太阳走的路（离盘边越远＝太阳爬得越高）　贴边的暗红虚线＝它在地平线下面走的那一段</text>';
+  BELTS.forEach(function(b,i){
+    var uid = "b"+i;
+    d += discBase(uid, S3.cx[i], S3.cy, S3.R, { k:0.9, inLabel:true });
+    d += '<g id="'+uid+'-trail"></g><g id="'+uid+'-night"></g><g id="'+uid+'-marks"></g>' +
+         '<g id="'+uid+'-sun"></g><g id="'+uid+'-ui"></g>';
+  });
+  d += '<g id="s3bars"></g><g id="s3ui"></g>';
+  svg.innerHTML = d;
+
+  BELTS.forEach(function(b,i){
+    var uid = "b"+i, cx = S3.cx[i];
+    setL(svg, uid, "ui",
+      '<text x="'+cx+'" y="196" fill="'+b.color+'" font-size="19" font-weight="700" text-anchor="middle">'+b.name+'</text>' +
+      '<text x="'+cx+'" y="217" fill="#6f8ba8" font-size="13.5" text-anchor="middle">'+b.sub+'</text>' +
+      '<text x="'+cx+'" y="480" fill="#dbe8f5" font-size="16" font-weight="700" text-anchor="middle" id="'+uid+'len">白天 12 小时</text>' +
+      '<text x="'+cx+'" y="503" fill="#6f8ba8" font-size="13" text-anchor="middle" id="'+uid+'alt">中午太阳 90 度</text>');
+  });
+
+  /* 底部：把五地的白昼长度横着排一排，随四季伸缩 */
+  var bars = "";
+  bars += '<text x="620" y="536" fill="#e6eff9" font-size="17" font-weight="700" text-anchor="middle">这天白天有多长 —— 横条越长，白天越久</text>';
+  [0,6,12,18,24].forEach(function(h){
+    var x = S3BAR.x0 + h/24*(S3BAR.x1-S3BAR.x0);
+    bars += '<line x1="'+fx(x)+'" y1="566" x2="'+fx(x)+'" y2="812" stroke="'+(h===12?"#3d6a96":"#1b2c3e")+'" stroke-width="1"'+(h===12?' stroke-dasharray="7 6"':'')+'/>';
+    bars += '<text x="'+fx(x)+'" y="834" fill="#4f708f" font-size="12.5" text-anchor="middle">'+(h===12?"半天 12h":h+"h")+'</text>';
+  });
+  BELTS.forEach(function(b,i){
+    var yc = S3BAR.y[i];
+    bars += '<text x="30" y="'+(yc+6)+'" fill="'+b.color+'" font-size="16" font-weight="700">'+b.name+'</text>';
+    bars += '<text x="30" y="'+(yc+24)+'" fill="#546b82" font-size="12">'+b.sub+'</text>';
+  });
+  bars += '<text x="620" y="858" fill="#4f708f" font-size="13.5" text-anchor="middle">亮线和暗线、横条的长短，都是真实算出来的 —— 不是画上去的</text>';
+  svg.querySelector("#s3bars").innerHTML = bars;
+}
+function frameS3(t){
+  var svg = document.getElementById("svg3");
+  if(!svg.querySelector("#s3date")) return;
+  /* 四季：每段前 23% 从上一季平滑走到本季，剩下时间停住让太阳跑几圈。
+     第一轮各季**长短不同**（跟着那一季的台词走），第二轮把四季均分。 */
+  var inA = t < S3.cycA;
+  var span = inA ? S3.cycA : (S3.dur - S3.cycA);
+  var lt   = inA ? t : (t - S3.cycA);
+  var segs = inA ? S3.segs : [span/4, span/4, span/4, span/4];
+  var acc = 0, i = 3, lu = 1;
+  for(var k=0;k<4;k++){
+    if(lt < acc + segs[k]){ i = k; lu = (lt-acc)/segs[k]; break; }
+    acc += segs[k];
+  }
+  var curD = ANCH[i].doy, prevD = (i===0 ? ANCH[3].doy-365 : ANCH[i-1].doy);
+  var curDec = ANCH[i].dec, prevDec = (i===0 ? ANCH[3].dec : ANCH[i-1].dec);
+  var a = smooth01(lu/0.23);
+  var doy = prevD + (curD-prevD)*a;
+  var dec = prevDec + (curDec-prevDec)*a;     /* 赤纬与日期用同一个进度插值，两者始终对得上 */
+
+  var dd = ((Math.round(doy)-1)%365+365)%365 + 1;
+  var nm = "", best = 99;
+  ANCH.forEach(function(A){
+    var d2 = Math.abs(doy-A.doy);
+    d2 = Math.min(d2, Math.abs(d2-365));
+    if(d2 < 3.5 && d2 < best){ best = d2; nm = A.nm; }
+  });
+  svg.querySelector("#s3date").textContent = doy2md(dd) + (nm ? " · "+nm : "");
+
+  var Hn = -180 + 360*((t/S3.spin)%1);      /* 太阳自己的一天，和季节各走各的 */
+  var rpAll = [];
+
+  BELTS.forEach(function(b,i){
+    var uid = "b"+i, cx = S3.cx[i];
+    var rp = ringPaths(b.phi, dec, cx, S3.cy, S3.R);
+    rpAll[i] = rp;
+    setL(svg, uid, "trail", rp.day
+      ? '<path d="'+rp.day+'" fill="none" stroke="url(#'+uid+'warm)" stroke-width="3.6" stroke-linecap="round" stroke-linejoin="round"/>' : '');
+    setL(svg, uid, "night", rp.night
+      ? '<path d="'+rp.night+'" fill="none" stroke="#8f2a1c" stroke-width="2.6" stroke-dasharray="9 7" stroke-linecap="round"/>' : '');
+    var mk = "";
+    if(rp.ok){
+      var m1 = ring3(rp.riseAz, S3.R, cx, S3.cy), m2 = ring3(rp.setAz, S3.R, cx, S3.cy);
+      mk += '<circle cx="'+fx(m1.x)+'" cy="'+fx(m1.y)+'" r="5.5" fill="#ff7043"/>';
+      mk += '<circle cx="'+fx(m2.x)+'" cy="'+fx(m2.y)+'" r="5.5" fill="#9575ff"/>';
+    }
+    setL(svg, uid, "marks", mk);
+
+    var p = sunPos(b.phi, dec, Hn), up = p.alt >= 0;
+    var q = up ? sky3(p.az, p.alt, cx, S3.cy, S3.R) : ring3(p.az, S3.R*0.985, cx, S3.cy);
+    setL(svg, uid, "sun", up ? sunDot(uid, q.x, q.y, 9) : sunDotNight(uid, q.x, q.y, 7.5));
+
+    /* 昼长文字、横条长度、极昼极夜都只认 rp 里的同一组判定，不再各算各的 */
+    var L = rp.pd ? 24 : (rp.pn ? 0 : dayLenOf(b.phi, dec));
+    var altNoon = sunPos(b.phi, dec, 0).alt;
+    var lt = document.getElementById(uid+"len"), at = document.getElementById(uid+"alt");
+    if(lt){
+      lt.textContent = rp.pd ? "白天 24 小时 · 整天不落"
+                     : (rp.pn ? "白天 0 小时 · 整天不露面" : "白天 " + toHM(L));
+      lt.setAttribute("fill", (rp.pd || rp.pn) ? b.color : "#dbe8f5");
+    }
+    if(at) at.textContent = altNoon > 0.2 ? "中午太阳 "+Math.round(altNoon)+" 度" : "中午太阳也不出来";
+  });
+
+  var dyn = "";
+  BELTS.forEach(function(b,i){
+    var rp = rpAll[i];
+    var L = rp.pd ? 24 : (rp.pn ? 0 : dayLenOf(b.phi, dec));
+    var yc = S3BAR.y[i];
+    var x = S3BAR.x0 + clamp(L,0,24)/24*(S3BAR.x1-S3BAR.x0);
+    dyn += '<rect x="'+fx(S3BAR.x0)+'" y="'+fx(yc-11)+'" width="'+fx(S3BAR.x1-S3BAR.x0)+'" height="22" rx="11" fill="#0b1520" stroke="#16263a"/>';
+    dyn += '<rect x="'+fx(S3BAR.x0)+'" y="'+fx(yc-11)+'" width="'+fx(Math.max(5, x-S3BAR.x0))+'" height="22" rx="11" fill="'+b.color+'" fill-opacity=".72"/>';
+    dyn += '<text x="1232" y="'+(yc+6)+'" fill="'+b.color+'" font-size="15" font-weight="700" text-anchor="end">'+L.toFixed(0)+(L>=24||L<=0?" 小时":".0 小时")+'</text>';
+  });
+  svg.querySelector("#s3ui").innerHTML = dyn;
+
+  /* 旁白 */
+  CAP.innerHTML = scriptAt(S3_SCRIPT, t);
+}
+/* ===================== 语音讲解（默认关闭） =====================
+   设计要点：语音「不打断」。
+   画面照自己的节奏跑，语音只负责把手上这一句念完 —— 念的过程中画面
+   又变了，就把最新那句记下来排队（只留最新一条，不堆积）。这样绝不会
+   出现「说半句就被切掉」，代价是语音和画面允许不同步，这是刻意的。
+   另外绝不逐帧 cancel()：Chrome 在高频 cancel+speak 之后会彻底哑掉，
+   这正是原来第三段一句话都出不来的原因。 */
+var Narrator = {
+  on:true, voice:null, supported:("speechSynthesis" in window),
+  rate:1.0, queue:[], speaking:false, wd:0, lastText:"", session:0,
+  init:function(){
+    if(!this.supported) return;
+    var self = this;
+    function pick(){
+      var vs = window.speechSynthesis.getVoices() || [];
+      var zh = vs.filter(function(v){ return /^zh/i.test(v.lang); });
+      var prefer = ["Tingting","Ting-Ting","婷婷","Sinji","Meijia","Xiaoxiao","Chinese"];
+      for(var i=0;i<prefer.length;i++){
+        for(var j=0;j<zh.length;j++){ if(zh[j].name.indexOf(prefer[i])>=0){ self.voice = zh[j]; return; } }
+      }
+      self.voice = zh[0] || null;
+    }
+    pick();
+    window.speechSynthesis.onvoiceschanged = pick;
+  },
+  /* 这句话大概要念多久（中文约 4.5 字/秒），留足缓冲当看门狗 */
+  _ms:function(t){ return Math.max(2800, t.length * 250 / this.rate + 2400); },
+  _stopWatch:function(){ if(this.wd){ clearTimeout(this.wd); this.wd = 0; } },
+  _clean:function(s){
+    return String(s).replace(/<[^>]*>/g,"")
+                    .replace(/\s*——\s*/g,"，")
+                    .replace(/°/g,"度")
+                    .replace(/[→＝丨│·]/g,"，")
+                    .replace(/\s+/g," ").trim();
+  },
+  /* 排队式：正在念就不打断，只把最新一句记下来 */
+  say:function(text){
+    if(!this.on || !this.supported) return;
+    var clean = this._clean(text);
+    if(!clean || clean === this.lastText) return;
+    this.lastText = clean;
+    if(this.speaking){ this.queue = [clean]; return; }
+    this._speak(clean);
+  },
+  /* 打断式：切段 / 手动重念 / 换语速时用 */
+  force:function(text){
+    if(!this.on || !this.supported) return;
+    var clean = this._clean(text);
+    if(!clean) return;
+    this.lastText = clean;
+    this._abort();
+    this._speak(clean);
+  },
+  _abort:function(){
+    this.session++;                 /* 让旧句残留的 onend/onerror 失效 */
+    this.queue = [];
+    this.speaking = false;
+    this._stopWatch();
+    if(this.supported){ try{ window.speechSynthesis.cancel(); }catch(e){} }
+  },
+  _speak:function(t){
+    var self = this, my = ++this.session;
+    this.speaking = true;
+    var u = new SpeechSynthesisUtterance(t);
+    u.lang = "zh-CN";
+    if(this.voice) u.voice = this.voice;
+    u.rate = this.rate; u.pitch = 1.02;
+    u.onend = function(){ self._done(my); };
+    u.onerror = function(){ self._done(my); };
+    this._stopWatch();
+    this.wd = setTimeout(function(){ self._done(my); }, this._ms(t));
+    try{ window.speechSynthesis.speak(u); }
+    catch(e){ this.speaking = false; this._stopWatch(); }
+  },
+  _done:function(my){
+    if(my !== this.session) return;   /* 旧句的迟到回调，丢掉 */
+    this.speaking = false;
+    this._stopWatch();
+    if(this.queue.length){ this._speak(this.queue.shift()); }
+  },
+  stop:function(){ this.lastText = ""; this._abort(); },
+  setRate:function(r){
+    this.rate = r;
+    if(this.on && this.lastText) this.force(this.lastText);
+  }
+};
+Narrator.init();
+
+/* ===================== 主循环 ===================== */
+var CAP = document.getElementById("cap");
+var svg0 = document.getElementById("svg0"), svg1 = document.getElementById("svg1"), svg2 = document.getElementById("svg2"), svg3 = document.getElementById("svg3");
+var STAGES = [
+  { el:document.getElementById("stg0"), dur:S0.dur, frame:frameS0, build:buildS0, loops:1 },
+  { el:document.getElementById("stg1"), dur:S1.dur, frame:frameS1, build:buildS1, loops:1 },
+  { el:document.getElementById("stg2"), dur:S2.dur, frame:frameS2, build:buildS2, loops:1 },
+  { el:document.getElementById("stg3"), dur:S3.dur, frame:frameS3, build:buildS3, loops:1 }
+];
+var cur = 0, tt = 0, playing = true, lastTs = 0, lapsLeft = 1, lastCap = "";
+
+function showStage(i){
+  cur = (i+STAGES.length)%STAGES.length;
+  STAGES.forEach(function(s,k){ s.el.classList.toggle("active", k===cur); });
+  Array.prototype.forEach.call(document.querySelectorAll(".tab"), function(b){
+    b.classList.toggle("on", (+b.dataset.i)===cur);
+  });
+  tt = 0;
+  lapsLeft = STAGES[cur].loops;
+  STAGES[cur].build();
+  STAGES[cur].frame(0);
+  Array.prototype.forEach.call(document.querySelectorAll(".fig"), function(w){ w.scrollLeft = Math.max(0,(w.scrollWidth-w.clientWidth)/2); });
+  window.scrollTo({ top:0, behavior:"smooth" });
+  lastCap = CAP.textContent;
+  if(Narrator.on) Narrator.force(lastCap);   /* 切段属于换话题，这里打断是对的 */
+}
+function tick(ts){
+  var dt = lastTs ? Math.min((ts-lastTs)/1000, 0.06) : 0;
+  lastTs = ts;
+  if(playing && dt > 0){
+    var s = STAGES[cur];
+    tt += dt;
+    if(tt >= s.dur){
+      tt -= s.dur;
+      lapsLeft--;
+      if(lapsLeft <= 0) showStage(cur+1);
+    }
+    STAGES[cur].frame(tt);
+    var c = CAP.textContent;
+    if(c !== lastCap){ lastCap = c; Narrator.say(c); }
+  }
+  requestAnimationFrame(tick);
+}
+
+/* 控制 */
+document.getElementById("tabs").addEventListener("click", function(e){
+  var b = e.target.closest(".tab");
+  if(b) showStage(+b.dataset.i);
+});
+/* 语速：字幕窗口是按「中文 4.5 字/秒」估算的，慢到 ×0.9 还有余量，
+   再慢长句就会被下一句挤掉 —— 所以最慢只到 ×0.9。 */
+var RATES = [{r:0.9,t:"×0.9"},{r:1.0,t:"×1.0"},{r:1.15,t:"×1.15"},{r:1.3,t:"×1.3"},{r:1.5,t:"×1.5"}];
+var rateIdx = 1;
+var autoBtn = document.getElementById("autoBtn");
+var voiceBtn = document.getElementById("voiceBtn");
+var rateBtn = document.getElementById("rateBtn");
+var replayBtn = document.getElementById("replayBtn");
+
+autoBtn.addEventListener("click", function(){
+  playing = !playing;
+  autoBtn.innerHTML = playing ? "❚❚ 暂停" : "▶ 继续";
+  autoBtn.classList.toggle("on", playing);
+  if(!playing) Narrator._abort();                          /* 暂停就闭嘴，但留着重念用 */
+  else if(Narrator.on) Narrator.force(CAP.textContent);
+});
+voiceBtn.addEventListener("click", function(){
+  Narrator.on = !Narrator.on;
+  voiceBtn.innerHTML = Narrator.on ? "🔊 语音讲解：开" : "🔇 语音讲解：关";
+  voiceBtn.classList.toggle("on", Narrator.on);
+  voiceBtn.classList.toggle("mute", !Narrator.on);
+  rateBtn.disabled = !Narrator.on;
+  replayBtn.disabled = !Narrator.on;
+  if(!Narrator.on) Narrator.stop();
+  else Narrator.force(CAP.textContent);
+});
+rateBtn.addEventListener("click", function(){
+  rateIdx = (rateIdx+1) % RATES.length;
+  rateBtn.innerHTML = "语速 " + RATES[rateIdx].t;
+  Narrator.setRate(RATES[rateIdx].r);                      /* 换速度立刻用新速度重念当前句 */
+});
+replayBtn.addEventListener("click", function(){
+  if(Narrator.on) Narrator.force(CAP.textContent);
+});
+document.addEventListener("keydown", function(e){
+  if(e.key === " "){ e.preventDefault(); autoBtn.click(); }
+  if(e.key === "ArrowRight") showStage(cur+1);
+  if(e.key === "ArrowLeft") showStage(cur-1);
+});
+
+/* 段 0 的日期按钮：点一下＝跳到那个日子的讲解起点 */
+document.getElementById("days0").addEventListener("click", function(e){
+  var b = e.target.closest(".day");
+  if(!b) return;
+  var i = clamp(+b.dataset.i, 0, DATES.length-1);
+  if(cur !== 0) showStage(0);               /* 不在第一段就先切过去 */
+  S0.doy = DATES[i].doy;                    /* 先把日子定下来，buildS0 会顺带把按钮高亮设好 */
+  buildS0();
+  tt = +(i * S0.slot).toFixed(2);           /* 这一段开始讲第 i 个日子 */
+  lastCap = "";
+  STAGES[0].frame(tt);
+  lastCap = CAP.textContent;
+  if(Narrator.on) Narrator.force(lastCap);  /* 换日子＝换话题，立刻念新的一句 */
+});
+
+/* 语音默认打开：浏览器可能因为「还没交互过」把头一次播报吞掉，
+   所以首次点按/按键时补念一次（已经在念就跳过）。 */
+function nudgeVoice(){
+  if(!Narrator.on || !Narrator.supported || !Narrator.lastText) return;
+  if(window.speechSynthesis.speaking || window.speechSynthesis.pending) return;
+  Narrator.force(Narrator.lastText);
+}
+document.addEventListener("pointerdown", nudgeVoice, { once:true });
+document.addEventListener("keydown", nudgeVoice, { once:true });
+
+showStage(0);
+requestAnimationFrame(tick);
+window.__dbg = {
+  show: function(i){ showStage(i); },
+  set: function(v){ playing = false; tt = v; STAGES[cur].frame(v); },
+  go: function(){ playing = true; },
+  date: function(i){
+    var b = document.querySelectorAll(".day")[i];
+    if(b) b.click();
+  },
+  /* 自检用：把各段的时长和讲解脚本的时间轴吐出来 */
+  info: function(){
+    return {
+      slot:S0.slot,
+      dur:{ s0:S0.dur, s1:S1.dur, s2:S2.dur, s3:S3.dur,
+            s3cycA:S3.cycA, s3cycB:S3.cycB, s3segs:S3.segs,
+            总:+(S0.dur+S1.dur+S2.dur+S3.dur).toFixed(1) },
+      script:{ s0:S0.script, s1:S1_SCRIPT, s2:S2_SCRIPT, s3:S3_SCRIPT }
+    };
+  }
+};
+})();</script>
+</body>
+</html>

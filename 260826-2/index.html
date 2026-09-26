@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>泥石流：会奔跑的山</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: "Microsoft YaHei", "PingFang SC", sans-serif;
+            background: linear-gradient(180deg, #ffeaa7 0%, #fab1a0 30%, #ff7675 60%, #fd79a8 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        .container {
+            max-width: 850px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 30px;
+            padding: 40px;
+            box-shadow: 0 25px 80px rgba(0,0,0,0.15);
+        }
+        .header {
+            text-align: center;
+            padding: 30px 0;
+            background: linear-gradient(135deg, #ff6b6b 0%, #feca57 50%, #48dbfb 100%);
+            border-radius: 20px;
+            margin-bottom: 30px;
+        }
+        .header h1 {
+            font-size: 48px;
+            color: white;
+            text-shadow: 3px 3px 6px rgba(0,0,0,0.2);
+        }
+        .subtitle {
+            font-size: 20px;
+            color: rgba(255,255,255,0.95);
+        }
+        h2 {
+            font-size: 32px;
+            color: #2d3436;
+            margin: 40px 0 20px;
+            padding: 15px 25px;
+            background: linear-gradient(90deg, #ff9ff3 0%, #feca57 100%);
+            border-radius: 15px;
+            display: inline-block;
+        }
+        p {
+            font-size: 20px;
+            line-height: 2;
+            color: #2d3436;
+            margin-bottom: 20px;
+            text-align: justify;
+        }
+        .image-container {
+            width: 100%;
+            margin: 30px 0;
+            text-align: center;
+        }
+        .dino-image {
+            width: 100%;
+            border-radius: 20px;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.2);
+        }
+        .image-caption {
+            color: #636e72;
+            font-size: 16px;
+            margin-top: 15px;
+            font-style: italic;
+            background: #ffeaa7;
+            display: inline-block;
+            padding: 8px 20px;
+            border-radius: 20px;
+        }
+        .fun-fact {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 25px;
+            border-radius: 20px;
+            margin: 25px 0;
+            font-size: 18px;
+            line-height: 1.8;
+        }
+        .fun-fact.pink {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+        }
+        .fun-fact.green {
+            background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);
+        }
+        .fun-fact.orange {
+            background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);
+        }
+        .fun-fact-title {
+            font-size: 22px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        .divider {
+            text-align: center;
+            font-size: 30px;
+            color: #ddd;
+            margin: 30px 0;
+        }
+        .quiz-section {
+            background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);
+            padding: 30px;
+            border-radius: 20px;
+            margin: 30px 0;
+        }
+        .quiz-title {
+            font-size: 28px;
+            color: #e17055;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .quiz-question {
+            background: white;
+            padding: 20px;
+            border-radius: 15px;
+            margin: 15px 0;
+            font-size: 18px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        .ending {
+            text-align: center;
+            padding: 40px 0;
+            margin-top: 40px;
+            background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);
+            border-radius: 20px;
+        }
+        .ending h3 { font-size: 32px; color: #2d3436; }
+        .ending p { text-align: center; font-size: 18px; color: #636e72; }
+        .back-home-btn {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 14px 30px;
+            background: rgba(0,0,0,0.08);
+            color: #2d3436;
+            text-decoration: none;
+            border-radius: 25px;
+            font-size: 18px;
+            border: 2px solid rgba(0,0,0,0.15);
+            transition: background 0.3s, transform 0.2s;
+        }
+        .back-home-btn:hover {
+            background: rgba(0,0,0,0.15);
+            transform: translateY(-2px);
+        }
+        .back-home-btn:active {
+            transform: translateY(0);
+        }
+        @media (max-width: 600px) {
+            .container { padding: 20px; }
+            h1 { font-size: 32px; }
+            h2 { font-size: 24px; }
+            p { font-size: 18px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>泥石流：会奔跑的山</h1>
+            <p class="subtitle">当大山开始「流动」</p>
+        </div>
+
+        <h2>第一章：大山也会「奔跑」</h2>
+        <p>你见过山吗？山又高又稳，几百年都一动不动，好像永远待在那里。可是，有一种可怕的力量，能让大山的一部分「奔跑」起来——它像一条灰色的巨龙，从山坡上轰隆隆地冲下来，卷走石头、树木，甚至整栋房子。</p>
+        <p>这种力量，就是<strong>泥石流</strong>。它的名字很直白：一半是「泥」，一半是「石」，再加上「流」——它是一股由泥浆和石头混在一起、会流动的洪流。</p>
+        <p>泥石流不是普通的洪水。普通洪水只是水，比较「轻」；泥石流里装满了泥沙和石头，又重又黏，跑起来像一锅滚烫的「石头粥」。它可以在一瞬间，把山谷里的一切都吞没。今天，我们就来揭开这条「灰色巨龙」的秘密。</p>
+        <div class="image-container">
+            <img class="dino-image" src="scene_01.webp" alt="泥石流">
+            <div class="image-caption">泥石流像一条灰色巨龙冲下山坡</div>
+        </div>
+        <div class="fun-fact pink">
+            <div class="fun-fact-title">🌟 趣味知识</div>
+            泥石流在民间还有个名字叫「走蛟」。古人没见过真正的龙，但看到泥石流裹着石头树木呼啸而下、像一条长龙在山谷里游动，就以为是大山里藏着一条蛟龙跑出来了！其实那只是水和泥石的力量。
+        </div>
+
+        <h2>第二章：泥石流是怎么形成的？</h2>
+        <p>要造出一场泥石流，需要三位「主角」同时登场，缺一个都不行。</p>
+        <p>第一位主角是<strong>松软的泥土和石头</strong>。山坡上如果堆满了松散的泥沙、碎石，就像一堆没固定好的积木，随时可能塌下来。</p>
+        <p>第二位主角是<strong>大量的水</strong>。暴雨哗啦啦地下，或者山上的冰雪突然融化，水渗进泥土里，把土泡软、泡透。水就像「润滑剂」，让原本老老实实待在山上的土石，变得又湿又滑。</p>
+        <p>第三位主角是<strong>陡峭的坡</strong>。山坡越陡，土石越容易往下滑。就像滑滑梯，坡越陡，滑得越快。</p>
+        <p>当这三样凑齐了——松软的土石 + 大量的水 + 陡峭的山坡——土石就会被水「唤醒」，变成一锅流动的泥浆，借着坡势轰隆隆地冲下去。这就是泥石流的诞生。</p>
+        <div class="image-container">
+            <img class="dino-image" src="scene_02.webp" alt="泥石流形成">
+            <div class="image-caption">暴雨、松土和陡坡，是泥石流的三大「元凶」</div>
+        </div>
+        <div class="fun-fact green">
+            <div class="fun-fact-title">🔬 趣味知识</div>
+            一场泥石流里，泥和石头的含量可以高达六成以上！也就是说，你看到的「洪水」，其实一大半是沙子和石头，只有一小半是水。所以它比水重得多，也危险得多。
+        </div>
+
+        <h2>第三章：泥石流为什么跑得又快又猛？</h2>
+        <p>泥石流有个让人害怕的本领：它跑得特别快，破坏力也特别大。这是为什么呢？</p>
+        <p>先说「快」。泥石流里裹着石头，石头在泥浆里翻滚、碰撞，反而让泥浆流动得更顺畅——这有点像你搅动一碗浓汤，越搅它越「活」。而且泥石流「体重」很大，往下冲的时候，重力拼命拽着它，速度就越冲越快。它的速度，快的能达到每秒十几米，比人跑步快得多，甚至能追上一辆小汽车！</p>
+        <p>再说「猛」。你想想，一块普通的小石头砸过来已经很疼了。泥石流里装的是成千上万块大石头，有的比人还大，被泥浆裹着一起冲下来，就像一列装满石头的火车。所以它能把大树连根拔起、把桥梁冲垮、把房子掩埋，破坏力惊人。</p>
+        <p>而且它还有个「龙头」——泥石流的最前面，常常拱起一道高高的「石墙」，像龙头一样，撞向什么就摧毁什么，所以特别危险。</p>
+        <div class="image-container">
+            <img class="dino-image" src="scene_03.webp" alt="泥石流破坏力">
+            <div class="image-caption">泥石流的「龙头」裹着巨石，破坏力惊人</div>
+        </div>
+        <div class="fun-fact orange">
+            <div class="fun-fact-title">🌱 趣味知识</div>
+            泥石流冲下来之前，山谷里常常会先传来轰隆隆的巨响，像打雷一样。这是因为石头在泥浆里翻滚碰撞发出的声音。所以如果在大山里听到奇怪的「雷声」，可要当心了！
+        </div>
+
+        <h2>第四章：哪里容易发生泥石流？</h2>
+        <p>泥石流不是到处都会发生的。它特别喜欢在几个地方「出没」。</p>
+        <p>首先是<strong>山区</strong>，尤其是又高又陡的大山。我国西南部（比如四川、云南、贵州）山地多、坡陡，是泥石流最常出现的地方。</p>
+        <p>其次是<strong>地震过后</strong>的地方。地震会把山体震松，山上落下大量松散的碎石，这些碎石就像「火药」，一旦遇上暴雨，就容易被冲成泥石流。</p>
+        <p>还有<strong>树木被砍光的山坡</strong>。树的根就像一张大网，把泥土紧紧抓住。如果没有了树，泥土就「没人管」了，一下雨就容易被水冲走，变成泥石流。所以种树、保护森林，是防止泥石流的好办法。</p>
+        <p>聪明的科学家会提前在这些地方装上「监测器」，像给大山量体温一样，随时观察雨量和山体的动静，一有危险就拉响警报，提醒大家赶紧撤离。</p>
+        <div class="image-container">
+            <img class="dino-image" src="scene_04.webp" alt="泥石流监测">
+            <div class="image-caption">科学家用监测设备守护山区安全</div>
+        </div>
+        <div class="fun-fact">
+            <div class="fun-fact-title">💰 趣味知识</div>
+            树木的根能抓住泥土，所以一片茂密的森林，就像给山坡穿上了一件「防护衣」。科学家说，保护森林，有时候比修一百道墙还管用，因为树是从「根」上把泥石流的「火药」给拆掉了。
+        </div>
+
+        <h2>第五章：遇到泥石流怎么办？</h2>
+        <p>泥石流虽然可怕，但只要我们懂得正确的躲避方法，就能保护好自己。</p>
+        <p>最重要的一条：<strong>往高处跑，往两边跑，千万不要顺着沟往下跑！</strong>泥石流是沿着山谷往下冲的，你如果顺着它跑，永远跑不过它。正确的做法是，立刻朝泥石流两侧的高处、或者垂直的方向跑，爬到坚固的高坡上。</p>
+        <p>还要记住：<strong>不要躲在沟谷里，也不要躲在大树、石头旁边</strong>，因为泥石流会把它们一起冲走。要跑到开阔、坚硬的高地上。</p>
+        <p>最后，如果你住在山区，下雨天一定要多留意天气预报，听到预警警报就要听大人和救援人员的话，早早撤离到安全的地方。生命最宝贵，安全第一！</p>
+        <div class="image-container">
+            <img class="dino-image" src="scene_05.webp" alt="逃生知识">
+            <div class="image-caption">记住：往两侧高处跑，别顺着沟往下跑</div>
+        </div>
+        <div class="fun-fact green">
+            <div class="fun-fact-title">🚀 趣味知识</div>
+            现在很多山区都装上了「泥石流预警系统」，它会在泥石流到来前的几分钟甚至更早发出警报。别小看这几分钟，它往往能救下很多人的命！所以听到警报，一定要立刻行动。
+        </div>
+
+        <div class="divider">✿ ✿ ✿</div>
+
+        <div class="quiz-section">
+            <div class="quiz-title">🎯 考考你（互动小测试）</div>
+            <div class="quiz-question">
+                <strong>第1题：</strong>泥石流的「三大元凶」不包括下面哪一项？<br>
+                A. 松软的土石　B. 大量的水　C. 陡峭的山坡　D. 强烈的大风
+            </div>
+            <div class="quiz-question">
+                <strong>第2题：</strong>泥石流为什么比普通洪水破坏力更大？<br>
+                A. 因为里面装满了泥沙和石头，又重又黏　B. 因为它是蓝色的　C. 因为它会发光　D. 因为它在夏天才出现
+            </div>
+            <div class="quiz-question">
+                <strong>第3题：</strong>泥石流冲下来之前，山谷里常会听到什么声音？<br>
+                A. 鸟叫声　B. 轰隆隆的巨响　C. 流水声　D. 音乐声
+            </div>
+            <div class="quiz-question">
+                <strong>第4题：</strong>防止泥石流的好办法是什么？<br>
+                A. 把树全砍光　B. 保护森林、种树　C. 挖空山坡　D. 往山谷里倒垃圾
+            </div>
+            <div class="quiz-question">
+                <strong>第5题：</strong>遇到泥石流，下面哪种做法是对的？<br>
+                A. 顺着沟往下跑　B. 躲在大树旁　C. 朝两侧高处跑　D. 待在沟谷里不动
+            </div>
+            <p style="text-align:center; font-size:16px; color:#e17055; margin-top:10px;">（答案：D、A、B、B、C。你都答对了吗？）</p>
+        </div>
+
+        <div class="ending">
+            <h3>—— 完 ——</h3>
+            <p>谢谢阅读！希望你学到了很多知识！</p>
+            <p style="margin-top: 10px; font-size: 14px; color: #b2bec3;">本故事由 AI 助手小龙为小朋友精心制作 🐉</p>
+            <div style="text-align: left; margin-top: 15px;">
+                <a href="../index.html" class="back-home-btn">🏠 返回首页</a>
+            </div>
+        </div>
+    </div>
+
+<!-- rourou-home-btn:start -->
+<style>
+#rourou-home-btn{position:fixed;left:14px;bottom:calc(14px + env(safe-area-inset-bottom,0px));z-index:9999;
+display:inline-flex;align-items:center;gap:6px;padding:10px 18px;border-radius:999px;
+background:rgba(255,255,255,0.92);color:#2d3436;font-size:15px;font-weight:600;
+text-decoration:none;box-shadow:0 4px 14px rgba(0,0,0,0.18);border:1px solid rgba(0,0,0,0.08);
+-webkit-backdrop-filter:blur(4px);backdrop-filter:blur(4px);transition:transform .15s,background .15s;}
+#rourou-home-btn:hover{background:#fff;transform:translateY(-2px);}
+@media (max-width:600px){#rourou-home-btn{padding:9px 14px;font-size:13px;left:10px;bottom:calc(10px + env(safe-area-inset-bottom,0px));}}
+</style>
+<a id="rourou-home-btn" href="../index.html">🏠 首页</a>
+<!-- rourou-home-btn:end -->
+</body>
+</html>

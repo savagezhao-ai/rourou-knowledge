@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🚢 邮轮：海上漂浮的城堡</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: "Microsoft YaHei", "PingFang SC", sans-serif;
+            background: linear-gradient(180deg, #74b9ff 0%, #0984e3 30%, #00b894 60%, #55efc4 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        .container {
+            max-width: 850px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 30px;
+            padding: 40px;
+            box-shadow: 0 25px 80px rgba(0,0,0,0.15);
+        }
+        .header {
+            text-align: center;
+            padding: 30px 0;
+            background: linear-gradient(135deg, #0984e3 0%, #00cec9 50%, #6c5ce7 100%);
+            border-radius: 20px;
+            margin-bottom: 30px;
+        }
+        .header h1 {
+            font-size: 48px;
+            color: white;
+            text-shadow: 3px 3px 6px rgba(0,0,0,0.2);
+        }
+        .subtitle {
+            font-size: 20px;
+            color: rgba(255,255,255,0.95);
+        }
+        h2 {
+            font-size: 32px;
+            color: #2d3436;
+            margin: 40px 0 20px;
+            padding: 15px 25px;
+            background: linear-gradient(90deg, #74b9ff 0%, #a29bfe 100%);
+            border-radius: 15px;
+            display: inline-block;
+        }
+        p {
+            font-size: 20px;
+            line-height: 2;
+            color: #2d3436;
+            margin-bottom: 20px;
+            text-align: justify;
+        }
+        .image-container {
+            width: 100%;
+            margin: 30px 0;
+            text-align: center;
+        }
+        .dino-image {
+            width: 100%;
+            border-radius: 20px;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.2);
+        }
+        .image-caption {
+            color: #636e72;
+            font-size: 16px;
+            margin-top: 15px;
+            font-style: italic;
+            background: #dfe6e9;
+            display: inline-block;
+            padding: 8px 20px;
+            border-radius: 20px;
+        }
+        .fun-fact {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 25px;
+            border-radius: 20px;
+            margin: 25px 0;
+            font-size: 18px;
+            line-height: 1.8;
+        }
+        .fun-fact.pink {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+        }
+        .fun-fact.green {
+            background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);
+        }
+        .fun-fact.orange {
+            background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);
+        }
+        .fun-fact.blue {
+            background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+        }
+        .fun-fact-title {
+            font-size: 22px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        .divider {
+            text-align: center;
+            font-size: 30px;
+            color: #ddd;
+            margin: 30px 0;
+        }
+        .timeline {
+            position: relative;
+            padding-left: 40px;
+            margin: 20px 0;
+        }
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 15px;
+            top: 0;
+            bottom: 0;
+            width: 4px;
+            background: linear-gradient(180deg, #0984e3, #6c5ce7);
+            border-radius: 2px;
+        }
+        .timeline-item {
+            position: relative;
+            margin-bottom: 25px;
+            padding: 15px 20px;
+            background: #f8f9fa;
+            border-radius: 15px;
+            border-left: 4px solid #0984e3;
+        }
+        .timeline-item .year {
+            font-size: 22px;
+            font-weight: bold;
+            color: #0984e3;
+        }
+        .timeline-item .desc {
+            font-size: 17px;
+            color: #2d3436;
+            margin-top: 5px;
+            line-height: 1.6;
+        }
+        .comparison-table {
+            width: 100%;
+            border-collapse: separate;
+            border-spacing: 0;
+            border-radius: 15px;
+            overflow: hidden;
+            margin: 20px 0;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        .comparison-table th {
+            background: linear-gradient(135deg, #0984e3, #6c5ce7);
+            color: white;
+            padding: 15px;
+            font-size: 18px;
+        }
+        .comparison-table td {
+            padding: 12px 15px;
+            font-size: 16px;
+            text-align: center;
+            border-bottom: 1px solid #eee;
+        }
+        .comparison-table tr:nth-child(even) td {
+            background: #f0f7ff;
+        }
+        .comparison-table tr:hover td {
+            background: #dfe6e9;
+        }
+        .quiz-section {
+            background: linear-gradient(135deg, #dfe6e9 0%, #b2bec3 100%);
+            padding: 30px;
+            border-radius: 20px;
+            margin: 30px 0;
+        }
+        .quiz-title {
+            font-size: 28px;
+            color: #2d3436;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .quiz-question {
+            background: white;
+            padding: 20px;
+            border-radius: 15px;
+            margin: 15px 0;
+            font-size: 18px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        .quiz-question .q-num {
+            display: inline-block;
+            background: linear-gradient(135deg, #0984e3, #6c5ce7);
+            color: white;
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 32px;
+            font-weight: bold;
+            margin-right: 10px;
+        }
+        .ending {
+            text-align: center;
+            padding: 40px 0;
+            margin-top: 40px;
+            background: linear-gradient(135deg, #74b9ff 0%, #a29bfe 50%, #55efc4 100%);
+            border-radius: 20px;
+        }
+        .ending h3 { font-size: 32px; color: #2d3436; }
+        .ending p { text-align: center; font-size: 18px; color: #2d3436; }
+        .back-home-btn {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 14px 30px;
+            background: rgba(255,255,255,0.4);
+            color: #2d3436;
+            text-decoration: none;
+            border-radius: 25px;
+            font-size: 18px;
+            border: 2px solid rgba(255,255,255,0.6);
+            transition: background 0.3s, transform 0.2s;
+        }
+        .back-home-btn:hover {
+            background: rgba(255,255,255,0.6);
+            transform: translateY(-2px);
+        }
+        .back-home-btn:active {
+            transform: translateY(0);
+        }
+        @media (max-width: 600px) {
+            .container { padding: 20px; }
+            h1 { font-size: 32px; }
+            h2 { font-size: 24px; }
+            p { font-size: 18px; }
+            .comparison-table td, .comparison-table th { padding: 8px; font-size: 14px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🚢 邮轮：海上漂浮的城堡</h1>
+            <p class="subtitle">从蒸汽时代到海上乐园的奇妙旅程</p>
+        </div>
+
+        <!-- 第一章：海上巨无霸 -->
+        <h2>🌊 第一章：海上巨无霸</h2>
+        <p>你有没有想过，一座会移动的城市是什么样子的？邮轮就是这样的存在！它比足球场还长，比20层楼还高，能装下好几千人，在大海上自由航行。邮轮就像一座漂浮在海上的城堡，里面有餐厅、游泳池、电影院，甚至还有过山车和跳伞模拟器！</p>
+        
+        <div class="image-container">
+            <img class="dino-image" src="scene_01.webp" alt="巨大的彩色邮轮在大海上航行">
+            <p class="image-caption">🚢 邮轮就像一座漂浮在海上的城市</p>
+        </div>
+
+        <p>邮轮和普通的渡轮可不一样。渡轮只是把你从A地送到B地，相当于"海上的公交车"。但邮轮本身就是目的地！你上船是为了享受船上的生活，而不只是到达某个地方。它就像一座移动的度假村，带你边走边玩。</p>
+
+        <div class="fun-fact">
+            <div class="fun-fact-title">🤯 你知道吗？</div>
+            世界上最大的邮轮"海洋标志号"（Icon of the Seas）长365米，相当于3个足球场首尾相连！它可以容纳7600名乘客和2350名船员，比很多小镇的人口还多！
+        </div>
+
+        <!-- 第二章：从蒸汽到豪华 -->
+        <h2>🔧 第二章：从蒸汽到豪华</h2>
+        <p>邮轮的历史要从19世纪说起。那时候还没有飞机，人们想跨越大西洋只能坐船。1840年，英国人塞缪尔·丘纳德创办了定期跨大西洋航线，用蒸汽船运送乘客和邮件，这就是"邮轮"名字的由来——最初它真的就是运"邮"件的轮船！</p>
+
+        <div class="image-container">
+            <img class="dino-image" src="scene_02.webp" alt="早期的蒸汽邮轮在港口">
+            <p class="image-caption">⚓ 19世纪的蒸汽邮轮，跨越大洋的先锋</p>
+        </div>
+
+        <p>早期的蒸汽船条件很艰苦，乘客们挤在狭小的船舱里，晕船是家常便饭。但到了20世纪初，航运公司开始竞争——谁家的船更快、更豪华。著名的"毛里塔尼亚号"1907年创下了横渡大西洋的速度纪录：4天10小时！这个纪录保持了22年！</p>
+
+        <div class="timeline">
+            <div class="timeline-item">
+                <div class="year">1840年</div>
+                <div class="desc">丘纳德航运开通第一条定期跨大西洋航线，邮轮时代开启</div>
+            </div>
+            <div class="timeline-item">
+                <div class="year">1900年</div>
+                <div class="desc">"维多利亚公主号"首次专门为休闲巡航而建，而非单纯的交通运输</div>
+            </div>
+            <div class="timeline-item">
+                <div class="year">1907年</div>
+                <div class="desc">"毛里塔尼亚号"创下横渡大西洋速度纪录，4天10小时！</div>
+            </div>
+            <div class="timeline-item">
+                <div class="year">1960年代</div>
+                <div class="desc">喷气式飞机普及，邮轮从"交通工具"转型为"度假体验"</div>
+            </div>
+            <div class="timeline-item">
+                <div class="year">2000年代</div>
+                <div class="desc">超级邮轮时代到来，船只越来越大，设施越来越豪华</div>
+            </div>
+        </div>
+
+        <div class="fun-fact pink">
+            <div class="fun-fact-title">📮 名字的秘密</div>
+            "邮轮"英文叫 Cruise Ship，但最早叫 Ocean Liner（远洋客轮）。中国叫"邮轮"是因为早期轮船确实承担了运送邮件的任务，就像"邮"递员一样！所以"邮"轮的"邮"可不是写错字哦！
+        </div>
+
+        <!-- 第三章：泰坦尼克的教训 -->
+        <h2>🧊 第三章：泰坦尼克的教训</h2>
+        <p>说到邮轮历史，有一艘船的名字你一定听过——泰坦尼克号。1912年4月15日，这艘号称"永不沉没"的豪华巨轮在首航中撞上冰山，沉入大西洋冰冷的海水。超过1500人在这场灾难中失去了生命。</p>
+
+        <div class="image-container">
+            <img class="dino-image" src="scene_03.webp" alt="泰坦尼克号在夕阳下的海面">
+            <p class="image-caption">🌟 泰坦尼克号——一段永不被遗忘的历史</p>
+        </div>
+
+        <p>泰坦尼克号为什么会沉没？原因有很多：船开得太快、冰山警告被忽视、救生艇数量严重不足……但最根本的原因是人们太自信了，认为这艘船永远不会出事。泰坦尼克号的悲剧告诉我们：永远不要对大自然掉以轻心。</p>
+
+        <p>好在，这场灾难带来了重要的改变：</p>
+        <div class="fun-fact orange">
+            <div class="fun-fact-title">🛟 泰坦尼克之后的变化</div>
+            <p>① 1914年，《国际海上人命安全公约》签订，所有船只必须配备足够的救生艇</p>
+            <p>② 成立了国际冰情巡逻队，监测北大西洋的冰山</p>
+            <p>③ 所有船只必须保持24小时无线电监听，不能关机</p>
+            <p>④ 安全演习成为强制要求——就像你坐飞机前的安全演示一样</p>
+        </div>
+
+        <div class="fun-fact blue">
+            <div class="fun-fact-title">🎬 电影与真实</div>
+            1997年詹姆斯·卡梅隆导演的电影《泰坦尼克号》获得了11项奥斯卡奖，是全球最卖座的电影之一。电影中很多细节都是真实的，比如乐队在沉船时仍在演奏、船长与船共存亡。但也有虚构的部分，比如杰克和露丝的爱情故事是导演创作的。
+        </div>
+
+        <!-- 第四章：现代邮轮有多酷 -->
+        <h2>🏊 第四章：现代邮轮有多酷</h2>
+        <p>今天的邮轮早已不是当年的"交通船"了，它们简直就是海上主题公园！让我们一起看看现代邮轮上有哪些让人尖叫的设施：</p>
+
+        <div class="image-container">
+            <img class="dino-image" src="scene_04.webp" alt="现代超级邮轮上的各种娱乐设施">
+            <p class="image-caption">🎪 现代邮轮上的设施比你想象的还要多！</p>
+        </div>
+
+        <table class="comparison-table">
+            <tr>
+                <th>设施</th>
+                <th>描述</th>
+                <th>在哪家船上有</th>
+            </tr>
+            <tr>
+                <td>🏎️ 赛车跑道</td>
+                <td>在船顶开卡丁车</td>
+                <td>皇家加勒比</td>
+            </tr>
+            <tr>
+                <td>🪂 跳伞模拟</td>
+                <td>垂直风洞体验"飞翔"</td>
+                <td>皇家加勒比</td>
+            </tr>
+            <tr>
+                <td>🎢 过山车</td>
+                <td>船顶的真正过山车！</td>
+                <td>嘉年华</td>
+            </tr>
+            <tr>
+                <td>🏄 冲浪模拟</td>
+                <td>甲板上冲浪不用等浪来</td>
+                <td>皇家加勒比</td>
+            </tr>
+            <tr>
+                <td>🧊 真冰溜冰场</td>
+                <td>船上居然有真冰场！</td>
+                <td>皇家加勒比</td>
+            </tr>
+            <tr>
+                <td>🌳 中央公园</td>
+                <td>船中央种满真植物的公园</td>
+                <td>皇家加勒比</td>
+            </tr>
+        </table>
+
+        <p>除了好玩的，吃的也不含糊！现代邮轮上通常有十几甚至几十家餐厅：自助餐厅、法式大餐、日本料理、意大利披萨……有些船还有米其林星级大厨坐镇。很多餐厅都是包含在船票里的，想吃什么随便吃！</p>
+
+        <div class="fun-fact green">
+            <div class="fun-fact-title">🍽️ 吃货数据</div>
+            一艘大型邮轮每周要消耗：约18万颗鸡蛋、6万升牛奶、1万公斤牛肉、2万份甜点！厨师团队超过200人，24小时不停为你准备美食。难怪很多人坐邮轮回来都胖了好几斤！😂
+        </div>
+
+        <!-- 第五章：未来的海上之城 -->
+        <h2>🌟 第五章：未来的海上之城</h2>
+        <p>未来的邮轮会变成什么样？工程师们已经画出了让人目瞪口呆的设计图！</p>
+
+        <div class="image-container">
+            <img class="dino-image" src="scene_05.webp" alt="未来科幻风格的邮轮">
+            <p class="image-caption">🚀 未来的邮轮可能比科幻电影还酷</p>
+        </div>
+
+        <p>想象一下：你住在一个可以移动的海上社区，它不只是一个度假的地方，而是你的家！邮轮可能会变成"海上城市"，有人长期住在上面，每到一个港口就下去逛几天，然后再启航去下一个国家。一年下来，你可以环游世界好几圈！</p>
+
+        <p>未来的邮轮还可能使用清洁能源，比如液化天然气（LNG）和氢燃料电池，减少对海洋的污染。有些设计甚至加入了太阳能板和风力发电，让邮轮变得更加环保。</p>
+
+        <div class="fun-fact">
+            <div class="fun-fact-title">🏠 海上住宅邮轮</div>
+            世界上已经有一艘叫"世界号"（The World）的住宅邮轮，它有165套豪华公寓，居民真的住在船上！这艘船在海上不停航行，每年访问约100个港口。住在船上的人平均每年在海上度过8个月。这大概是最酷的"房车生活"了！
+        </div>
+
+        <p>也许有一天，你也可以设计一艘属于自己的邮轮！是加上水下观景舱，还是建一座海上天文台？未来的大海，等着你去探索！⚓</p>
+
+        <div class="divider">⚓ 🌊 ⚓</div>
+
+        <!-- 互动测试 -->
+        <div class="quiz-section">
+            <div class="quiz-title">🧠 知识小测验</div>
+
+            <div class="quiz-question">
+                <span class="q-num">1</span> 邮轮的"邮"字是什么意思？<br>
+                A. 游玩的"游"的谐音<br>
+                B. 最早真的负责运送邮件<br>
+                C. "油"轮，靠石油驱动<br>
+                D. 只是随便取的名字
+            </div>
+
+            <div class="quiz-question">
+                <span class="q-num">2</span> 泰坦尼克号沉没后，以下哪项不是新增加的安全规定？<br>
+                A. 船只必须配备足够救生艇<br>
+                B. 成立冰情巡逻队<br>
+                C. 所有乘客必须会游泳<br>
+                D. 船只必须24小时监听无线电
+            </div>
+
+            <div class="quiz-question">
+                <span class="q-num">3</span> 世界上最大的邮轮"海洋标志号"大约有多长？<br>
+                A. 100米<br>
+                B. 200米<br>
+                C. 365米<br>
+                D. 500米
+            </div>
+
+            <div class="quiz-question">
+                <span class="q-num">4</span> 邮轮和渡轮最大的区别是什么？<br>
+                A. 邮轮更大，渡轮更小<br>
+                B. 渡轮只是交通工具，邮轮本身就是度假目的地<br>
+                C. 邮轮在海里，渡轮在河里<br>
+                D. 邮轮有餐厅，渡轮没有
+            </div>
+
+            <div class="quiz-question">
+                <span class="q-num">5</span> "世界号"住宅邮轮上的居民平均每年在海上生活多久？<br>
+                A. 1个月<br>
+                B. 3个月<br>
+                C. 8个月<br>
+                D. 12个月
+            </div>
+
+            <p style="text-align:center; margin-top:20px; font-size:16px; color:#636e72;">💡 答案：1-B 2-C 3-C 4-B 5-C</p>
+        </div>
+
+        <div class="ending">
+            <h3>—— 完 ——</h3>
+            <p>谢谢阅读！希望你爱上了海上漂浮的城堡！</p>
+            <p style="margin-top: 10px; font-size: 14px; color: #2d3436;">本故事由 AI 助手小龙为小朋友精心制作 🐉</p>
+            <div style="text-align: left; margin-top: 15px;">
+                <a href="../index.html" class="back-home-btn">🏠 返回首页</a>
+            </div>
+        </div>
+    </div>
+
+<!-- rourou-home-btn:start -->
+<style>
+#rourou-home-btn{position:fixed;left:14px;bottom:calc(14px + env(safe-area-inset-bottom,0px));z-index:9999;
+display:inline-flex;align-items:center;gap:6px;padding:10px 18px;border-radius:999px;
+background:rgba(255,255,255,0.92);color:#2d3436;font-size:15px;font-weight:600;
+text-decoration:none;box-shadow:0 4px 14px rgba(0,0,0,0.18);border:1px solid rgba(0,0,0,0.08);
+-webkit-backdrop-filter:blur(4px);backdrop-filter:blur(4px);transition:transform .15s,background .15s;}
+#rourou-home-btn:hover{background:#fff;transform:translateY(-2px);}
+@media (max-width:600px){#rourou-home-btn{padding:9px 14px;font-size:13px;left:10px;bottom:calc(10px + env(safe-area-inset-bottom,0px));}}
+</style>
+<a id="rourou-home-btn" href="../index.html">🏠 首页</a>
+<!-- rourou-home-btn:end -->
+</body>
+</html>

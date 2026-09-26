@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>激光</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: "Microsoft YaHei", "PingFang SC", sans-serif;
+            background: linear-gradient(180deg, #ffeaa7 0%, #fab1a0 30%, #ff7675 60%, #fd79a8 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        .container {
+            max-width: 850px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 30px;
+            padding: 40px;
+            box-shadow: 0 25px 80px rgba(0,0,0,0.15);
+        }
+        .header {
+            text-align: center;
+            padding: 30px 0;
+            background: linear-gradient(135deg, #ff6b6b 0%, #feca57 50%, #48dbfb 100%);
+            border-radius: 20px;
+            margin-bottom: 30px;
+        }
+        .header h1 {
+            font-size: 48px;
+            color: white;
+            text-shadow: 3px 3px 6px rgba(0,0,0,0.2);
+        }
+        .subtitle {
+            font-size: 20px;
+            color: rgba(255,255,255,0.95);
+        }
+        h2 {
+            font-size: 32px;
+            color: #2d3436;
+            margin: 40px 0 20px;
+            padding: 15px 25px;
+            background: linear-gradient(90deg, #ff9ff3 0%, #feca57 100%);
+            border-radius: 15px;
+            display: inline-block;
+        }
+        p {
+            font-size: 20px;
+            line-height: 2;
+            color: #2d3436;
+            margin-bottom: 20px;
+            text-align: justify;
+        }
+        .image-container {
+            width: 100%;
+            margin: 30px 0;
+            text-align: center;
+        }
+        .dino-image {
+            width: 100%;
+            border-radius: 20px;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.2);
+        }
+        .image-caption {
+            color: #636e72;
+            font-size: 16px;
+            margin-top: 15px;
+            font-style: italic;
+            background: #ffeaa7;
+            display: inline-block;
+            padding: 8px 20px;
+            border-radius: 20px;
+        }
+        .fun-fact {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 25px;
+            border-radius: 20px;
+            margin: 25px 0;
+            font-size: 18px;
+            line-height: 1.8;
+        }
+        .fun-fact.pink {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+        }
+        .fun-fact.green {
+            background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);
+        }
+        .fun-fact.orange {
+            background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);
+        }
+        .fun-fact-title {
+            font-size: 22px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        .divider {
+            text-align: center;
+            font-size: 30px;
+            color: #ddd;
+            margin: 30px 0;
+        }
+        .quiz-section {
+            background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);
+            padding: 30px;
+            border-radius: 20px;
+            margin: 30px 0;
+        }
+        .quiz-title {
+            font-size: 28px;
+            color: #e17055;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .quiz-question {
+            background: white;
+            padding: 20px;
+            border-radius: 15px;
+            margin: 15px 0;
+            font-size: 18px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        .ending {
+            text-align: center;
+            padding: 40px 0;
+            margin-top: 40px;
+            background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);
+            border-radius: 20px;
+        }
+        .ending h3 { font-size: 32px; color: #2d3436; }
+        .ending p { text-align: center; font-size: 18px; color: #636e72; }
+        .back-home-btn {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 14px 30px;
+            background: rgba(0,0,0,0.08);
+            color: #2d3436;
+            text-decoration: none;
+            border-radius: 25px;
+            font-size: 18px;
+            border: 2px solid rgba(0,0,0,0.15);
+            transition: background 0.3s, transform 0.2s;
+        }
+        .back-home-btn:hover {
+            background: rgba(0,0,0,0.15);
+            transform: translateY(-2px);
+        }
+        .back-home-btn:active {
+            transform: translateY(0);
+        }
+        @media (max-width: 600px) {
+            .container { padding: 20px; }
+            h1 { font-size: 32px; }
+            h2 { font-size: 24px; }
+            p { font-size: 18px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>激光</h1>
+            <p class="subtitle">最亮、最直、最「专一」的光</p>
+        </div>
+
+        <h2>第一章：一道「不会散开」的光</h2>
+        <p>你玩过手电筒吗？打开手电筒，光会照出去，但越照越远，光斑就越大、越模糊，最后散成一片。你有没有想过，世界上有没有一种光，能一直「抱成一团」，走多远都不散开，又直又亮？</p>
+        <p>有的！这种光，就是<strong>激光</strong>。激光的英文名叫「Laser」，它其实是一句很长的话的缩写，意思是「受激辐射的光放大」。听起来很复杂，但你可以先记住一件事：激光是世界上最特别的光——它又亮、又直、又「专一」。</p>
+        <p>普通的光，像一群人在操场上各跑各的方向；而激光，像一群训练有素的士兵，排着整齐的队伍，朝同一个方向、迈着一样的步子前进。所以激光才能照得那么远，亮得那么厉害。今天，我们就来认识这道神奇的光。</p>
+        <div class="image-container">
+            <img class="dino-image" src="scene_01.webp" alt="激光">
+            <div class="image-caption">激光又直又亮，走多远都不散开</div>
+        </div>
+        <div class="fun-fact pink">
+            <div class="fun-fact-title">🌟 趣味知识</div>
+            「激光」这个名字，是「Laser」翻译过来的。早些年，有人把它翻译成「雷射」，因为它的光束像雷电一样厉害。后来大家觉得「激光」更好——因为它是一种「激动」（受激发）出来的光。你看，连名字都藏着科学道理！
+        </div>
+
+        <h2>第二章：光到底是什么？</h2>
+        <p>要弄懂激光，我们得先搞清楚：光到底是什么？</p>
+        <p>光是一种<strong>波</strong>，就像水面上的一圈圈波纹。太阳光、灯光、手电筒的光，都是由无数种不同「波长」的光混在一起的。波长不同，颜色就不同——红光、橙光、黄光、绿光、蓝光、紫光，还有我们眼睛看不见的紫外线和红外线，都是不同波长的光。</p>
+        <p>普通的光，波长很杂、方向很乱，就像一锅「大杂烩」。而激光不一样，它通常只有一种波长，也就是只有一种颜色，而且所有的光波都「步调一致」，朝着同一个方向前进。这种「整齐划一」，就是激光最大的本事。</p>
+        <p>打个比方：普通光是广场上一群各说各话的人；激光是一群人齐声唱同一首歌，声音又响亮又整齐，能传得特别远。</p>
+        <div class="image-container">
+            <img class="dino-image" src="scene_02.webp" alt="光波">
+            <div class="image-caption">光是一种波，波长不同颜色就不同</div>
+        </div>
+        <div class="fun-fact green">
+            <div class="fun-fact-title">🔬 趣味知识</div>
+            我们常说的「红激光」「绿激光」，其实指的就是不同波长的激光。绿色激光的波长比红色激光短，能量也更高，所以在夜里，绿色的激光笔照出去，常常比红色的更亮、更显眼。
+        </div>
+
+        <h2>第三章：激光是怎么「造」出来的？</h2>
+        <p>普通的光是「自然」发出来的，比如太阳发光、灯泡发光。激光则是科学家「造」出来的。他们是怎么做到的呢？</p>
+        <p>秘密藏在一个词里——「受激辐射」。我们可以把物质里的<strong>原子</strong>想象成一排排小弹簧。平时，这些原子安安静静地待在低能量的位置。科学家给它们「喂」能量（比如用电或闪光），把它们「泵」到高能量的位置，这叫「激发」。</p>
+        <p>当这些被激发的原子受到一个光的「信号」刺激时，它们会一起「跳」回低能量位置，同时放出光。神奇的是，它们放出来的光，颜色（波长）一样、方向一样、步调也完全一致——这就是激光！</p>
+        <p>为了让光越来越强，科学家还会在两头各放一面镜子，让光来回反射、不断放大，最后从一端冲出去，就成了一道又强又亮的激光束。</p>
+        <div class="image-container">
+            <img class="dino-image" src="scene_03.webp" alt="激光原理">
+            <div class="image-caption">原子被激发后，一起放出步调一致的光</div>
+        </div>
+        <div class="fun-fact orange">
+            <div class="fun-fact-title">🌱 趣味知识</div>
+            第一台激光器是 1960 年造出来的，距离现在才几十年！发明激光的美国科学家叫梅曼，他用一根红宝石棒，做出了世界上第一道激光。从那时候起，激光就像打开了魔法盒子，一下子涌现出成千上万种用途。
+        </div>
+
+        <h2>第四章：激光能做什么？</h2>
+        <p>激光的本事太大了，它几乎无处不在。你每天的生活里，可能都在和激光打交道。</p>
+        <p>在超市收银台，收银员扫商品条码用的那道光，就是激光；你家里看的 DVD、蓝光光盘，是用激光来读取信息的；打印机、光纤上网，也靠激光来传输信号。激光还特别「精准」，所以医院用它来做手术——激光刀能切开很小的伤口，出血少、恢复快。工厂里，激光能切割厚厚的钢板，比锯子还厉害。</p>
+        <p>科学家还用激光做更酷的事：把激光射向月球上的镜子，再接收反射回来的光，就能精确测出地球到月球的距离；甚至还有激光武器和激光核聚变的研究，想用激光为人类造出「小太阳」，解决能源问题。</p>
+        <div class="image-container">
+            <img class="dino-image" src="scene_04.webp" alt="激光的用途">
+            <div class="image-caption">从扫码到手术，激光无处不在</div>
+        </div>
+        <div class="fun-fact">
+            <div class="fun-fact-title">💰 趣味知识</div>
+            激光能切钢板、能做手术，但它的「开关」却可能小得只有你指甲盖那么大。激光器的核心，有时只是一小块特殊的晶体或气体，却能产生照亮几十万公里之外的光，是不是很神奇？
+        </div>
+
+        <h2>第五章：小心！激光也很危险</h2>
+        <p>激光虽然厉害，但它也有危险的一面，我们必须学会安全地对待它。</p>
+        <p>最需要注意的是<strong>眼睛</strong>。激光特别亮、能量特别集中，如果激光笔直接照进眼睛，可能会灼伤眼睛里的视网膜，造成永久的伤害。所以，千万不要拿激光笔对着自己或别人的眼睛照，也不要盯着激光看。</p>
+        <p>另外，有些强激光的功率很高，照到皮肤上会烫伤，照到易燃物上甚至可能引发火灾。所以，我们小朋友玩激光玩具时，一定要在大人的指导下，选择安全的、低功率的激光产品。</p>
+        <p>记住：激光是了不起的科学发明，但越厉害的工具，越要懂得敬畏和正确使用。学会安全使用激光，你才能真正和这道神奇的光做朋友。</p>
+        <div class="image-container">
+            <img class="dino-image" src="scene_05.webp" alt="激光安全">
+            <div class="image-caption">激光很厉害，但千万不能照眼睛</div>
+        </div>
+        <div class="fun-fact green">
+            <div class="fun-fact-title">🚀 趣味知识</div>
+            科学家正在研究一种叫「激光核聚变」的技术，用很多束超强的激光，同时打在一个比米粒还小的燃料球上，试图点燃一个「小太阳」。如果成功了，人类就能拥有几乎用不完的清洁能源！激光，可能真的会改变我们的未来。
+        </div>
+
+        <div class="divider">✿ ✿ ✿</div>
+
+        <div class="quiz-section">
+            <div class="quiz-title">🎯 考考你（互动小测试）</div>
+            <div class="quiz-question">
+                <strong>第1题：</strong>激光最大的特点是什么？<br>
+                A. 又散又暗　B. 又亮又直、步调一致　C. 会拐弯　D. 只有一种颜色但不是直的
+            </div>
+            <div class="quiz-question">
+                <strong>第2题：</strong>「Laser」这个英文词，大意是什么？<br>
+                A. 会发光的水晶　B. 受激辐射的光放大　C. 电灯泡　D. 一种宝石
+            </div>
+            <div class="quiz-question">
+                <strong>第3题：</strong>激光是怎么造出来的？<br>
+                A. 太阳自己发出来的　B. 给原子喂能量后，让它们一起放出步调一致的光　C. 把灯泡擦亮　D. 磨一块石头
+            </div>
+            <div class="quiz-question">
+                <strong>第4题：</strong>下面哪个不是激光的用途？<br>
+                A. 超市扫条码　B. 医院做手术　C. 切钢板　D. 用来给房间取暖
+            </div>
+            <div class="quiz-question">
+                <strong>第5题：</strong>关于激光安全，下面哪种做法是对的？<br>
+                A. 用激光笔照别人的眼睛　B. 盯着激光看　C. 不用激光照眼睛，选安全产品　D. 用强激光照皮肤玩
+            </div>
+            <p style="text-align:center; font-size:16px; color:#e17055; margin-top:10px;">（答案：B、B、B、D、C。你都答对了吗？）</p>
+        </div>
+
+        <div class="ending">
+            <h3>—— 完 ——</h3>
+            <p>谢谢阅读！希望你学到了很多知识！</p>
+            <p style="margin-top: 10px; font-size: 14px; color: #b2bec3;">本故事由 AI 助手小龙为小朋友精心制作 🐉</p>
+            <div style="text-align: left; margin-top: 15px;">
+                <a href="../index.html" class="back-home-btn">🏠 返回首页</a>
+            </div>
+        </div>
+    </div>
+
+<!-- rourou-home-btn:start -->
+<style>
+#rourou-home-btn{position:fixed;left:14px;bottom:calc(14px + env(safe-area-inset-bottom,0px));z-index:9999;
+display:inline-flex;align-items:center;gap:6px;padding:10px 18px;border-radius:999px;
+background:rgba(255,255,255,0.92);color:#2d3436;font-size:15px;font-weight:600;
+text-decoration:none;box-shadow:0 4px 14px rgba(0,0,0,0.18);border:1px solid rgba(0,0,0,0.08);
+-webkit-backdrop-filter:blur(4px);backdrop-filter:blur(4px);transition:transform .15s,background .15s;}
+#rourou-home-btn:hover{background:#fff;transform:translateY(-2px);}
+@media (max-width:600px){#rourou-home-btn{padding:9px 14px;font-size:13px;left:10px;bottom:calc(10px + env(safe-area-inset-bottom,0px));}}
+</style>
+<a id="rourou-home-btn" href="../index.html">🏠 首页</a>
+<!-- rourou-home-btn:end -->
+</body>
+</html>

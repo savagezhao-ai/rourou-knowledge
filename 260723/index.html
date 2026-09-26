@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>霉菌·真菌·细菌 三兄弟大不同</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: "Microsoft YaHei", "PingFang SC", sans-serif;
+            background: linear-gradient(180deg, #e8f5e9 0%, #c8e6c9 30%, #a5d6a7 60%, #81c784 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        .container {
+            max-width: 850px;
+            margin: 0 auto;
+            background: #fffef9;
+            border-radius: 30px;
+            padding: 40px;
+            box-shadow: 0 25px 80px rgba(0,0,0,0.12);
+        }
+        .header {
+            text-align: center;
+            padding: 35px 0;
+            background: linear-gradient(135deg, #55efc4 0%, #00b894 30%, #6c5ce7 70%, #a29bfe 100%);
+            border-radius: 20px;
+            margin-bottom: 30px;
+        }
+        .header h1 {
+            font-size: 40px;
+            color: white;
+            text-shadow: 3px 3px 8px rgba(0,0,0,0.25);
+        }
+        .subtitle {
+            font-size: 20px;
+            color: rgba(255,255,255,0.95);
+            margin-top: 8px;
+        }
+        h2 {
+            font-size: 30px;
+            color: #2d3436;
+            margin: 40px 0 20px;
+            padding: 14px 24px;
+            background: linear-gradient(90deg, #a29bfe 0%, #6c5ce7 100%);
+            color: white;
+            border-radius: 15px;
+            display: inline-block;
+        }
+        p {
+            font-size: 20px;
+            line-height: 2;
+            color: #2d3436;
+            margin-bottom: 20px;
+            text-align: justify;
+        }
+        .image-container {
+            width: 100%;
+            margin: 30px 0;
+            text-align: center;
+        }
+        .dino-image {
+            width: 100%;
+            border-radius: 20px;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.18);
+        }
+        .image-caption {
+            color: #636e72;
+            font-size: 16px;
+            margin-top: 15px;
+            font-style: italic;
+            background: #dfe6e9;
+            display: inline-block;
+            padding: 8px 20px;
+            border-radius: 20px;
+        }
+        .fun-fact {
+            background: linear-gradient(135deg, #6c5ce7 0%, #a29bfe 100%);
+            color: white;
+            padding: 25px;
+            border-radius: 20px;
+            margin: 25px 0;
+            font-size: 18px;
+            line-height: 1.8;
+        }
+        .fun-fact.green-bg {
+            background: linear-gradient(135deg, #00b894 0%, #55efc4 100%);
+        }
+        .fun-fact.orange-bg {
+            background: linear-gradient(135deg, #fdcb6e 0%, #e17055 100%);
+        }
+        .fun-fact.pink-bg {
+            background: linear-gradient(135deg, #fd79a8 0%, #e84393 100%);
+        }
+        .fun-fact.blue-bg {
+            background: linear-gradient(135deg, #0984e3 0%, #74b9ff 100%);
+        }
+        .fun-fact-title {
+            font-size: 22px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        .compare-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 25px rgba(0,0,0,0.1);
+        }
+        .compare-table th {
+            background: #6c5ce7;
+            color: white;
+            padding: 15px;
+            font-size: 18px;
+        }
+        .compare-table td {
+            padding: 14px;
+            font-size: 17px;
+            text-align: center;
+            background: white;
+            border-bottom: 1px solid #eee;
+        }
+        .compare-table tr:nth-child(even) td {
+            background: #f8f9fa;
+        }
+        .compare-table .label {
+            font-weight: bold;
+            text-align: left;
+            background: #f0f0ff;
+        }
+        .divider {
+            text-align: center;
+            font-size: 30px;
+            color: #ddd;
+            margin: 30px 0;
+        }
+        .quiz-section {
+            background: linear-gradient(135deg, #dfe6e9 0%, #b2bec3 100%);
+            padding: 30px;
+            border-radius: 20px;
+            margin: 30px 0;
+        }
+        .quiz-title {
+            font-size: 28px;
+            color: #2d3436;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .quiz-question {
+            background: white;
+            padding: 20px;
+            border-radius: 15px;
+            margin: 15px 0;
+            font-size: 18px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+        }
+        .ending {
+            text-align: center;
+            padding: 40px 0;
+            margin-top: 40px;
+            background: linear-gradient(135deg, #dfe6e9 0%, #b2bec3 100%);
+            border-radius: 20px;
+        }
+        .ending h3 { font-size: 32px; color: #2d3436; }
+        .ending p { text-align: center; font-size: 18px; color: #636e72; }
+        .back-home-btn {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 14px 30px;
+            background: rgba(0,0,0,0.06);
+            color: #2d3436;
+            text-decoration: none;
+            border-radius: 25px;
+            font-size: 18px;
+            border: 2px solid rgba(0,0,0,0.12);
+            transition: background 0.3s, transform 0.2s;
+        }
+        .back-home-btn:hover {
+            background: rgba(0,0,0,0.12);
+            transform: translateY(-2px);
+        }
+        .back-home-btn:active {
+            transform: translateY(0);
+        }
+        @media (max-width: 600px) {
+            .container { padding: 20px; }
+            h1 { font-size: 30px; }
+            h2 { font-size: 24px; }
+            p { font-size: 18px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🔬 霉菌·真菌·细菌 三兄弟大不同</h1>
+            <p class="subtitle">一块发霉的面包上，到底住着谁？</p>
+        </div>
+
+        <h2>🍞 第一章：面包上的绿色毛毛是什么？</h2>
+        <p>你有没有见过这样的场景：面包放了几天忘记吃，上面长出了一层绿色的毛毛？妈妈会说「面包发霉了，不能吃了」，然后把它扔掉。</p>
+        <p>但你想过没有——这些绿色的毛毛到底是什么东西？如果拿显微镜看一看，你会发现这些毛毛不是植物、不是动物，而是属于一个神秘的生物王国：<strong>真菌</strong>。</p>
+        <p>而发霉的那个「霉」，只是真菌家族里的一小类——<strong>霉菌</strong>。</p>
+        <p>那细菌又是什么呢？为什么有时候妈妈说「细菌感染了要吃药」，有时候又说「酸奶里的细菌对身体好」？</p>
+        <p>今天，我们就来把这三个容易搞混的「微生物三兄弟」彻底搞清楚！</p>
+
+        <div class="fun-fact orange-bg">
+            <div class="fun-fact-title">🤯 冷知识</div>
+            一块发霉的面包上可能住着好几种不同的霉菌！绿的是青霉菌（就是提取青霉素的那种），黑的是黑曲霉，白色毛毛可能是毛霉菌。它们就像住在同一栋楼里的不同租户！
+        </div>
+
+        <div class="image-container">
+            <img class="dino-image" src="scene_01.webp" alt="面包发霉放大图">
+        </div>
+        <p class="image-caption">🔬 图1：放大看看发霉面包上都有什么</p>
+
+        <div class="divider">🍄 🍄 🍄</div>
+
+        <h2>🍄 第二章：真菌——一个超级大家族</h2>
+        <p>在生物学分类里，真菌是一整个「王国」——就像动物王国、植物王国一样，真菌也有自己的专属王国！</p>
+        <p>真菌家族里有很多你认识的成员：</p>
+        <p>🍄 <strong>蘑菇</strong>——菜市场里卖的香菇、金针菇、杏鲍菇，都是真菌！蘑菇其实是真菌的「果实」，就像苹果是苹果树的果实一样。蘑菇冒出地面，是为了把孢子（真菌的「种子」）散播到空气中去。</p>
+        <p>🍞 <strong>酵母</strong>——烤面包、蒸馒头时放的那一小勺酵母粉，也是真菌！它是个单细胞的微小真菌，能把面粉里的糖变成二氧化碳气体，馒头就变得又松又软了。</p>
+        <p>🟢 <strong>霉菌</strong>——面包上的绿毛、橘子上的蓝绿斑点，这些都是霉菌。霉菌也是真菌，它们是「丝状真菌」——身体由一根根细细的菌丝组成，像棉花糖一样蓬松。</p>
+        <p><strong>所以记住这个关系：霉菌 是 真菌 的一种！</strong>就像「狗 是 动物 的一种」一样。</p>
+
+        <div class="fun-fact green-bg">
+            <div class="fun-fact-title">🌍 地球最大的生物</div>
+            你知道吗？世界上最大的生物不是蓝鲸，也不是巨杉，而是一株真菌！在美国俄勒冈州，有一株蜜环菌，它的菌丝在地下延伸了约 9.6 平方公里，活了 2400 多年！你在森林里看到的一丛丛小蘑菇，可能只是同一个巨型真菌的不同「手指」。
+        </div>
+
+        <div class="image-container">
+            <img class="dino-image" src="scene_02.webp" alt="蘑菇森林真菌">
+        </div>
+        <p class="image-caption">🍄 图2：森林里的蘑菇是真菌的果实，地下菌丝才是真身</p>
+
+        <div class="divider">🔬 🔬 🔬</div>
+
+        <h2>🦠 第三章：细菌——和霉菌根本不是一家人！</h2>
+        <p>好，现在我们来认识一个跟真菌「完全不是一家人」的微生物——<strong>细菌</strong>。</p>
+        <p>细菌和真菌（包括霉菌）的区别，比老虎和蘑菇的区别还大！它们在不同生物分类体系中甚至不属于同一个「域」——这是比「界」还高一级的分类，是生命最根本的分支。</p>
+        <p>来看看它们的核心区别：</p>
+
+        <table class="compare-table">
+            <tr><th>特征</th><th>真菌（含霉菌）</th><th>细菌</th></tr>
+            <tr><td class="label">细胞类型</td><td>真核生物（有细胞核）</td><td>原核生物（没有细胞核）</td></tr>
+            <tr><td class="label">大小</td><td>比较大（显微镜下清晰可见）</td><td>非常小（真菌的 1/10 到 1/100）</td></tr>
+            <tr><td class="label">生长方式</td><td>长成菌丝或出芽</td><td>分裂成两个（一分为二）</td></tr>
+            <tr><td class="label">繁殖</td><td>靠孢子（像种子）</td><td>直接分裂（裂殖）</td></tr>
+            <tr><td class="label">细胞壁成分</td><td>几丁质（和螃蟹壳一样！）</td><td>肽聚糖（独有的）</td></tr>
+            <tr><td class="label">和人类的关系</td><td>蘑菇能吃、酵母做面包、霉菌做青霉素</td><td>肠道菌群帮消化、酸奶发酵、也有致病菌</td></tr>
+        </table>
+
+        <p>简单总结：<strong>真菌更像动物和植物的「远房亲戚」，而细菌是地球上最古老最原始的生命形式之一。</strong>细菌出现在地球上大约 35 亿年前，比真菌早了 20 多亿年！</p>
+
+        <div class="fun-fact pink-bg">
+            <div class="fun-fact-title">🧫 数量惊人</div>
+            一个人的身体里大约有 39 万亿个细菌！比你全身的细胞数量（约 30 万亿）还多。所以你看，你身体里超过一半的「居民」不是你自己，而是细菌！别担心——大多数是有益的好细菌。
+        </div>
+
+        <div class="image-container">
+            <img class="dino-image" src="scene_03.webp" alt="霉菌真菌细菌对比">
+        </div>
+        <p class="image-caption">🦠 图3：三兄弟站在一起比一比——霉菌（左）、蘑菇（中）、细菌（右）</p>
+
+        <div class="divider">🔬 🔬 🔬</div>
+
+        <h2>🔬 第四章：显微镜下的真实面目</h2>
+        <p>如果我们有一台高倍显微镜，把这三种微生物放在一起观察，你会发现它们的长相完全不同：</p>
+        <p>🔎 <strong>霉菌：</strong>像一丛丛棉花或羽毛。菌丝一根根伸展开，顶端挂着一个个小球——那是孢子囊，里面装满了孢子。孢子飘到空气里，落到合适的食物上，又会长出新的霉菌。</p>
+        <p>🔎 <strong>蘑菇（真菌的果实）：</strong>伞盖下面有一排排「菌褶」，像扇子的骨架。菌褶上长满了微小的孢子，一个成熟的蘑菇可以释放出几十亿个孢子！</p>
+        <p>🔎 <strong>细菌：</strong>单独来看就是一个极小的球、杆或螺旋。没有菌丝，没有菌褶，没有孢子囊。它们就是最朴素的生命形式——一个小小的细胞袋子，里面飘着散乱的遗传物质。</p>
+
+        <div class="fun-fact blue-bg">
+            <div class="fun-fact-title">💊 青霉菌的传奇</div>
+            1928年，英国科学家弗莱明发现他培养细菌的皿里长了霉菌，而且霉菌周围的细菌全死了。这个霉菌就是青霉菌，它分泌的物质后来被提取出来做成了青霉素——人类历史上第一种抗生素，拯救了数以亿计的生命！这就是为什么发霉的东西不能吃——霉菌会分泌各种化学物质，有的能救人，有的却有毒。
+        </div>
+
+        <div class="image-container">
+            <img class="dino-image" src="scene_04.webp" alt="显微镜下三兄弟">
+        </div>
+        <p class="image-caption">🔬 图4：显微镜下，三兄弟长得完全不一样</p>
+
+        <div class="divider">🛡️ 🛡️ 🛡️</div>
+
+        <h2>🛡️ 第五章：怎样和微生物和平相处？</h2>
+        <p>知道了这些区别之后，我们就可以更聪明地和它们打交道啦：</p>
+        <p>🍞 <strong>防霉菌：</strong>霉菌喜欢温暖、潮湿的环境。所以面包要密封保存，水果放冰箱，浴室要保持通风干燥。看到食物发霉了不要只切掉长毛的部分——菌丝可能已经深入食物内部了，安全做法是整块扔掉。</p>
+        <p>🥛 <strong>善用有益菌：</strong>酸奶里的乳酸菌、泡菜里的发酵菌都是好细菌，它们能帮我们消化食物、增强免疫力。不是所有细菌都是坏蛋哦！</p>
+        <p>💊 <strong>抗生素只对细菌有效：</strong>感冒时吃抗生素没用——因为感冒多数是病毒引起的，抗生素只杀细菌，对真菌和病毒都不管用。滥用抗生素反而会害了身体里的好细菌。</p>
+        <p>🧼 <strong>洗手要勤快：</strong>有害细菌到处都有——门把手、手机屏幕、厕所按钮上。用肥皂洗够 20 秒，就能冲走绝大部分细菌。</p>
+
+        <div class="fun-fact">
+            <div class="fun-fact-title">🎯 快速记忆口诀</div>
+            <strong>真菌大，细菌小；</strong><br>
+            <strong>真菌有核，细菌没核；</strong><br>
+            <strong>霉菌是真菌的小分支；</strong><br>
+            <strong>蘑菇酵母也是真菌大家庭的一员！</strong>
+        </div>
+
+        <div class="image-container">
+            <img class="dino-image" src="scene_05.webp" alt="厨房食物保存">
+        </div>
+        <p class="image-caption">🛡️ 图5：密封保存、放冰箱，让霉菌无机可乘</p>
+
+        <div class="divider">✨ ✨ ✨</div>
+
+        <div class="quiz-section">
+            <div class="quiz-title">🎯 考考你！</div>
+            <div class="quiz-question">
+                <strong>1. 霉菌属于下面哪个家族？</strong><br>
+                A. 细菌 &nbsp; B. 病毒 &nbsp; C. 真菌 &nbsp; D. 植物
+            </div>
+            <div class="quiz-question">
+                <strong>2. 真菌和细菌最根本的区别是什么？</strong><br>
+                A. 颜色不同 &nbsp; B. 真菌有细胞核，细菌没有 &nbsp; C. 真菌会动，细菌不会 &nbsp; D. 细菌更大
+            </div>
+            <div class="quiz-question">
+                <strong>3. 下面哪个不是真菌？</strong><br>
+                A. 蘑菇 &nbsp; B. 酵母 &nbsp; C. 乳酸菌 &nbsp; D. 青霉菌
+            </div>
+            <div class="quiz-question">
+                <strong>4. 抗生素（如青霉素）对什么有效？</strong><br>
+                A. 细菌 &nbsp; B. 病毒 &nbsp; C. 真菌 &nbsp; D. 所有微生物
+            </div>
+            <div class="quiz-question">
+                <strong>5. 面包发霉了，最好怎么做？</strong><br>
+                A. 切掉发霉部分继续吃 &nbsp; B. 加热后吃掉 &nbsp; C. 整块扔掉 &nbsp; D. 给小鸟吃
+            </div>
+        </div>
+
+        <div class="ending">
+            <h3>—— 完 ——</h3>
+            <p>下次看到发霉的面包，你已经知道上面住着谁啦！</p>
+            <p style="margin-top: 10px; font-size: 14px; color: #999;">本故事由 AI 助手小龙为小朋友精心制作 🐉</p>
+            <div style="text-align: left; margin-top: 15px;">
+                <a href="../index.html" class="back-home-btn">🏠 返回首页</a>
+            </div>
+        </div>
+    </div>
+
+<!-- rourou-home-btn:start -->
+<style>
+#rourou-home-btn{position:fixed;left:14px;bottom:calc(14px + env(safe-area-inset-bottom,0px));z-index:9999;
+display:inline-flex;align-items:center;gap:6px;padding:10px 18px;border-radius:999px;
+background:rgba(255,255,255,0.92);color:#2d3436;font-size:15px;font-weight:600;
+text-decoration:none;box-shadow:0 4px 14px rgba(0,0,0,0.18);border:1px solid rgba(0,0,0,0.08);
+-webkit-backdrop-filter:blur(4px);backdrop-filter:blur(4px);transition:transform .15s,background .15s;}
+#rourou-home-btn:hover{background:#fff;transform:translateY(-2px);}
+@media (max-width:600px){#rourou-home-btn{padding:9px 14px;font-size:13px;left:10px;bottom:calc(10px + env(safe-area-inset-bottom,0px));}}
+</style>
+<a id="rourou-home-btn" href="../index.html">🏠 首页</a>
+<!-- rourou-home-btn:end -->
+</body>
+</html>

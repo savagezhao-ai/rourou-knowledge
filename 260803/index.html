@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>贝壳里的微塑料 🐚🔬</title>
+<style>
+:root { --bg: #fffef5; --text: #333; }
+* { margin:0; padding:0; box-sizing:border-box; }
+body {
+  font-family: 'PingFang SC','Hiragino Sans GB','Microsoft YaHei',sans-serif;
+  background: var(--bg); color: var(--text); line-height:1.8;
+  max-width:800px; margin:0 auto; padding:20px 16px;
+}
+h1 { font-size:1.8em; text-align:center; color:#1a5276; margin:16px 0; }
+h2 { font-size:1.5em; margin:28px 0 12px; color:#1a5276; border-left:5px solid #3498db; padding-left:12px; }
+h3 { font-size:1.15em; margin:16px 0 8px; color:#2c3e50; }
+p { margin:10px 0; font-size:1.05em; }
+img { max-width:100%; border-radius:16px; margin:12px 0; box-shadow:0 4px 16px rgba(0,0,0,.1); display:block; }
+
+.fun-box {
+  background:linear-gradient(135deg,#e8f8f5,#d4efdf);
+  border:2px solid #1abc9c; border-radius:14px; padding:14px 18px; margin:16px 0;
+}
+.fun-box::before { content:'🐚 趣味知识：'; font-weight:bold; color:#16a085; }
+.warn-box {
+  background:linear-gradient(135deg,#ffeaea,#ffd6d6);
+  border:2px solid #e74c3c; border-radius:14px; padding:14px 18px; margin:16px 0;
+}
+.warn-box::before { content:'⚠️ 惊人事实：'; font-weight:bold; color:#e74c3c; }
+.tip-box {
+  background:linear-gradient(135deg,#d5f5e3,#a9dfbf);
+  border:2px solid #27ae60; border-radius:14px; padding:14px 18px; margin:16px 0;
+}
+.tip-box::before { content:'💪 我能做什么：'; font-weight:bold; color:#27ae60; }
+.think-box {
+  background:linear-gradient(135deg,#f9e79f,#fadbd8);
+  border:2px solid #e67e22; border-radius:14px; padding:14px 18px; margin:16px 0;
+}
+.think-box::before { content:'🤔 想一想：'; font-weight:bold; color:#e67e22; }
+
+.test-box {
+  background:linear-gradient(135deg,#ebf5fb,#d4e6f1);
+  border:2px solid #2980b9; border-radius:14px; padding:18px; margin:20px 0;
+}
+.test-box h2 { border-left-color:#2980b9; color:#2980b9; }
+.ans-btn {
+  background:#2980b9; color:white; border:none; padding:8px 20px;
+  border-radius:20px; font-size:1em; cursor:pointer; margin:8px 0;
+}
+.ans-btn:hover { background:#1a5276; }
+.answer { display:none; background:#fef9e7; padding:12px; border-radius:10px; margin-top:10px; }
+
+.compare-table { width:100%; border-collapse:collapse; margin:16px 0; border-radius:12px; overflow:hidden; }
+.compare-table th { background:#3498db; color:white; padding:10px; }
+.compare-table td { padding:10px; text-align:center; border:1px solid #d4e6f1; }
+.compare-table tr:nth-child(even) { background:#ebf5fb; }
+
+.steps { counter-reset:step; list-style:none; padding:0; }
+.steps li {
+  counter-increment:step; padding:12px 16px; margin:10px 0;
+  background:white; border-radius:12px; box-shadow:0 2px 8px rgba(0,0,0,.06);
+  border-left:4px solid #3498db;
+}
+.steps li::before {
+  content:counter(step); background:#3498db; color:white;
+  width:28px; height:28px; border-radius:50%; display:inline-flex;
+  align-items:center; justify-content:center; font-weight:bold; margin-right:10px;
+}
+
+.ending {
+  background:linear-gradient(135deg,#aed6f1,#d4efdf);
+  border-radius:18px; padding:24px; margin:28px 0;
+  display:flex; flex-direction:column; align-items:center; gap:16px;
+}
+.ending a {
+  background:#1a5276; color:white; text-decoration:none;
+  padding:10px 24px; border-radius:25px; font-size:1.1em; transition:0.2s;
+}
+.ending a:hover { background:#154360; transform:scale(1.05); }
+</style>
+</head>
+<body>
+
+<h1>🐚 贝壳里的微塑料：大海的隐形入侵者</h1>
+<p>你捡起过海滩上的贝壳吗？它们在阳光下闪闪发光，里面曾经住着一个小生命。但你知道吗——今天的贝壳里，除了珍珠，还有一种肉眼几乎看不见的"隐形入侵者"：<strong>微塑料</strong>。</p>
+
+<img src="scene_01.webp" alt="美丽贝壳与隐藏的微塑料">
+
+<!-- 第一章 -->
+<h2>第一章：贝壳——软体动物的小房子</h2>
+
+<p>贝壳不是石头，也不是植物。它是<strong>软体动物</strong>自己建造的房子！</p>
+
+<p>蛤蜊、牡蛎、扇贝、海螺……这些动物身体柔软，需要硬壳保护自己。它们从海水里吸收钙离子，用一种叫<strong>「外套膜」</strong>的特殊组织，一层一层地分泌碳酸钙，像3D打印一样造出螺旋形、扇形、椭圆形的漂亮外壳。</p>
+
+<div class="fun-box">有的贝壳还会造<strong>珍珠</strong>！当一粒沙子或寄生虫钻进贝壳里，软体动物会分泌一层又一层珍珠质把它包起来。一颗珍珠要花3-7年才能长成。天然珍珠比钻石还稀有——每2万只牡蛎里才有一颗天然珍珠！</div>
+
+<h3>🦪 贝类是怎么吃饭的？</h3>
+<p>蛤蜊和牡蛎是<strong>滤食动物</strong>。它们没有嘴巴，而是用<strong>鳃</strong>来过滤海水——水从入水管流进来，鳃像一张精密的大网，把水里的浮游藻类和有机碎屑滤出来吃掉，然后把干净的水排出去。一只成年牡蛎每小时能过滤5升海水，<strong>一天相当于过滤满满一浴缸的水</strong>！</p>
+
+<div class="think-box">正因为贝类不停地过滤海水，它们也成了海洋里最容易"中招"的动物——水里有什么，它们就会把什么吃进肚子里。</div>
+
+<img src="scene_02.webp" alt="贝类滤食海水示意图">
+
+<!-- 第二章 -->
+<h2>第二章：微塑料——隐形的塑料碎片</h2>
+
+<p>微塑料，就是直径<strong>小于5毫米</strong>的塑料碎片。有的小到肉眼根本看不见，要用显微镜才能找到。</p>
+
+<h3>它们从哪来？</h3>
+
+<table class="compare-table">
+<tr><th>来源</th><th>怎么变成微塑料的</th></tr>
+<tr><td>🛍️ 塑料袋/塑料瓶</td><td>日晒、海浪冲击，碎成越来越小的碎片</td></tr>
+<tr><td>👕 化纤衣服（聚酯纤维）</td><td>每洗一件衣服释放<strong>几十万根</strong>微纤维，随水流进海洋</td></tr>
+<tr><td>🧴 磨砂洗面奶/牙膏</td><td>含塑料微珠，洗脸时冲进下水道 → 河流 → 海洋</td></tr>
+<tr><td>🚗 汽车轮胎</td><td>轮胎磨损的橡胶微粒被雨水冲进排水系统</td></tr>
+<tr><td>🖌️ 油漆/涂料</td><td>船底防锈漆脱落的塑料微粒直接入海</td></tr>
+</table>
+
+<div class="warn-box">全球每年约<strong>800万吨</strong>塑料流入海洋，相当于每分钟就有一卡车的塑料被倒进大海。这些塑料不会消失，只会不断碎裂成微塑料——一个矿泉水瓶在海里要<strong>450年</strong>才能分解。</div>
+
+<p>科学家已经在<strong>地球上最偏远的角落</strong>找到了微塑料：马里亚纳海沟10927米深处、南极冰层里、甚至珠穆朗玛峰的山顶上。</p>
+
+<img src="scene_03.webp" alt="微塑料的来源和在海洋中的传播">
+
+<!-- 第三章 -->
+<h2>第三章：微塑料怎么钻进贝壳里？</h2>
+
+<p>还记得贝类是怎样滤食的吗？每只蛤蜊每天喝掉成吨的海水，把里面的东西全部吃进去。</p>
+
+<p>微塑料的大小（几微米到几毫米）<strong>恰好和浮游藻类差不多</strong>。贝类的鳃分不清「这个是能吃的藻类」还是「这个是塑料碎片」——<strong>统统吃进去</strong>。</p>
+
+<div class="fun-box">2020年的一项研究发现，在检测的<strong>每100只贻贝中，有99只体内含有微塑料</strong>。平均每只贻贝体内有4-5片微塑料。如果一个人每周吃一次海虹（贻贝），一年吃进去的微塑料多达成千上万片。</div>
+
+<h3>🔬 微塑料在贝类体内的"旅行路线"</h3>
+<ol class="steps">
+<li><strong>随水入体</strong> — 微塑料随海水从入水管进入</li>
+<li><strong>被鳃捕获</strong> — 鳃的过滤网挡住微塑料颗粒</li>
+<li><strong>进入消化道</strong> — 微塑料被误当食物吞入肠道</li>
+<li><strong>留在体内</strong> — 部分微塑料卡在组织里，无法排出</li>
+<li><strong>随食物链传递</strong> — 吃了这些贝类的鱼、螃蟹、甚至人类</li>
+</ol>
+
+<div class="think-box">微塑料本身可能含有有毒添加剂（增塑剂、阻燃剂），而且它们像小海绵一样吸附海水里的重金属和农药——所以微塑料不仅堵塞身体，还是一种<b>有毒物质的"搬运车"</b>。</div>
+
+<img src="scene_04.webp" alt="贝类体内的微塑料放大效果">
+
+<!-- 第四章 -->
+<h2>第四章：微塑料对贝壳的四大伤害</h2>
+
+<h3>1️⃣ 假饱腹感——饿着肚子以为自己饱了</h3>
+<p>微塑料没有营养，但占地方。贝类吃了大量微塑料后，胃里满了，就停止滤食真正的食物。结果——<strong>营养不足，长得慢，能量储存减少</strong>。</p>
+
+<h3>2️⃣ 堵塞鳃部——呼吸和进食都受影响</h3>
+<p>微塑料纤维会缠绕和堵塞贝类精细的鳃丝结构。鳃既是呼吸器官又是滤食工具——一旦被堵，贝类就像被人捂住鼻子和嘴巴一样。</p>
+
+<h3>3️⃣ 细胞层面伤害</h3>
+<p>最细小的微塑料（纳米级）能穿透细胞膜，引发<strong>炎症反应</strong>和<strong>氧化应激</strong>——类似于人类的过敏反应，但发生在每个细胞里。</p>
+
+<h3>4️⃣ 影响繁殖——下一代也遭殃</h3>
+<p>研究发现，长期暴露在微塑料环境中的牡蛎，产卵数量减少，幼体存活率下降。海洋的下一代正在被塑料"断子绝孙"。</p>
+
+<div class="warn-box">科学家预测：如果塑料污染不加以控制，到<strong>2050年</strong>，海洋里的塑料重量将超过所有鱼类的总重量！</div>
+
+<!-- 第五章 -->
+<h2>第五章：我们能做什么？——每个人都是海洋守护者</h2>
+
+<p>问题看起来很可怕，但好消息是：<strong>我们能做很多事</strong>来减少微塑料进入海洋。</p>
+
+<h3>🏠 在家就能做的五件事</h3>
+
+<ol class="steps">
+<li><strong>自带购物袋</strong> — 拒绝塑料袋，用布袋或书包。一个布袋用一年，能少用至少300个塑料袋</li>
+<li><strong>换水瓶</strong> — 用不锈钢或玻璃水瓶代替一次性塑料瓶。每年能省下约150个塑料瓶</li>
+<li><strong>检查护肤品</strong> — 看看成分表中有没有<b>聚乙烯、聚丙烯、尼龙</b>——这些都是塑料微珠</li>
+<li><strong>衣服穿久一点</strong> — 买纯棉、麻等天然纤维的衣服。化纤衣服不仅洗出微纤维，品质还越来越差</li>
+<li><strong>参加净滩</strong> — 和爸爸妈妈去海滩捡垃圾，每捡起一个塑料瓶，就等于阻止了它变成成千上万的微塑料</li>
+</ol>
+
+<div class="tip-box">你知道吗？一个9岁的小朋友在巴厘岛海滩发起了"再见塑料袋"运动，带动整个岛屿<strong>禁用一次性塑料</strong>。小孩能改变世界，你也可以！</div>
+
+<h3>🧑‍🔬 科学家也在努力</h3>
+<p>科学家们正在研发<strong>可降解塑料</strong>（用玉米淀粉、甘蔗做的）、<strong>吃塑料的酶</strong>（微生物能分解PET塑料）、以及<strong>海洋清理装置</strong>（巨大的网筛在海洋环流中捞塑料）。最酷的是：最近发现了一种叫<strong>Ideonella sakaiensis</strong>的细菌，专门吃PET塑料作为食物！</p>
+
+<div class="fun-box">塑料的历史不过150年。在这之前，人类用木头、贝壳、兽皮、陶罐。塑料很便宜很方便，但对大自然来说——它是一个不收欢迎的"客人"，来了就不肯走。减少塑料用品，就是给大自然最棒的礼物。</div>
+
+<!-- 测试 -->
+<div class="test-box">
+<h2>🧩 贝壳微塑料小测试</h2>
+
+<p><strong>1. 微塑料的定义是什么？</strong></p>
+<p>A) 透明的塑料 &nbsp; B) 直径小于5毫米的塑料碎片 &nbsp; C) 塑料袋碎片 &nbsp; D) 塑料瓶残渣</p>
+<button class="ans-btn" onclick="this.nextElementSibling.style.display='block'">查看答案</button>
+<p class="answer">✅ B) 直径小于5毫米的塑料碎片（有的甚至到纳米级）</p>
+
+<p><strong>2. 贝类是怎么把微塑料吃进去的？</strong></p>
+<p>A) 张开嘴吞 &nbsp; B) 滤食海水时连水带塑料一起吸进 &nbsp; C) 从沙里钻进去 &nbsp; D) 被海浪冲进去</p>
+<button class="ans-btn" onclick="this.nextElementSibling.style.display='block'">查看答案</button>
+<p class="answer">✅ B) 贝类是滤食动物，用鳃过滤海水时误把微塑料当食物吃进去</p>
+
+<p><strong>3. 洗一件化纤衣服会释放多少根微纤维？</strong></p>
+<p>A) 几十根 &nbsp; B) 几百根 &nbsp; C) 几十万根 &nbsp; D) 几根</p>
+<button class="ans-btn" onclick="this.nextElementSibling.style.display='block'">查看答案</button>
+<p class="answer">✅ C) 几十万根！每次洗化纤衣服都是一次"微塑料排放"</p>
+
+<p><strong>4. 微塑料对贝类最直接的影响是？</strong></p>
+<p>A) 让贝壳变成彩色 &nbsp; B) 假饱腹感——胃里满了但没吃到营养 &nbsp; C) 长出更多珍珠 &nbsp; D) 游泳更快</p>
+<button class="ans-btn" onclick="this.nextElementSibling.style.display='block'">查看答案</button>
+<p class="answer">✅ B) 微塑料占据胃部空间，导致真正的食物摄入不足</p>
+
+<p><strong>5. 以下哪件事最能减少微塑料进入海洋？</strong></p>
+<p>A) 用更多塑料袋 &nbsp; B) 自带水瓶和购物袋 &nbsp; C) 扔垃圾桶（可能被风吹走） &nbsp; D) 把塑料埋起来</p>
+<button class="ans-btn" onclick="this.nextElementSibling.style.display='block'">查看答案</button>
+<p class="answer">✅ B) 从源头减少使用！自带水瓶、购物袋，拒绝一次性塑料品。减量比回收更有效</p>
+</div>
+
+<div class="ending">
+<p><strong>🐚 每一片贝壳都是大海写来的信</strong><br>
+每次去海滩捡起一个贝壳，别忘了跟你说捡到的不只是碳酸钙<br>——里面可能还有一小块人类丢掉的塑料。</p>
+<p>但别灰心！今天减少一个塑料袋，明天少喝一瓶塑料瓶装水<br>——每一次小决定都在保护海洋。</p>
+<p><strong>大海很大，但你的好习惯能保护它。🐋</strong></p>
+<a href="../index.html">🏠 返回首页</a>
+</div>
+
+
+<!-- rourou-home-btn:start -->
+<style>
+#rourou-home-btn{position:fixed;left:14px;bottom:calc(14px + env(safe-area-inset-bottom,0px));z-index:9999;
+display:inline-flex;align-items:center;gap:6px;padding:10px 18px;border-radius:999px;
+background:rgba(255,255,255,0.92);color:#2d3436;font-size:15px;font-weight:600;
+text-decoration:none;box-shadow:0 4px 14px rgba(0,0,0,0.18);border:1px solid rgba(0,0,0,0.08);
+-webkit-backdrop-filter:blur(4px);backdrop-filter:blur(4px);transition:transform .15s,background .15s;}
+#rourou-home-btn:hover{background:#fff;transform:translateY(-2px);}
+@media (max-width:600px){#rourou-home-btn{padding:9px 14px;font-size:13px;left:10px;bottom:calc(10px + env(safe-area-inset-bottom,0px));}}
+</style>
+<a id="rourou-home-btn" href="../index.html">🏠 首页</a>
+<!-- rourou-home-btn:end -->
+</body>
+</html>

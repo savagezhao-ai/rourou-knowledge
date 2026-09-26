@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>光为什么会在水里折射</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: "Microsoft YaHei", "PingFang SC", sans-serif;
+            background: linear-gradient(180deg, #ffeaa7 0%, #fab1a0 30%, #ff7675 60%, #fd79a8 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        .container {
+            max-width: 850px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 30px;
+            padding: 40px;
+            box-shadow: 0 25px 80px rgba(0,0,0,0.15);
+        }
+        .header {
+            text-align: center;
+            padding: 30px 0;
+            background: linear-gradient(135deg, #ff6b6b 0%, #feca57 50%, #48dbfb 100%);
+            border-radius: 20px;
+            margin-bottom: 30px;
+        }
+        .header h1 {
+            font-size: 48px;
+            color: white;
+            text-shadow: 3px 3px 6px rgba(0,0,0,0.2);
+        }
+        .subtitle {
+            font-size: 20px;
+            color: rgba(255,255,255,0.95);
+        }
+        h2 {
+            font-size: 32px;
+            color: #2d3436;
+            margin: 40px 0 20px;
+            padding: 15px 25px;
+            background: linear-gradient(90deg, #ff9ff3 0%, #feca57 100%);
+            border-radius: 15px;
+            display: inline-block;
+        }
+        p {
+            font-size: 20px;
+            line-height: 2;
+            color: #2d3436;
+            margin-bottom: 20px;
+            text-align: justify;
+        }
+        .image-container {
+            width: 100%;
+            margin: 30px 0;
+            text-align: center;
+        }
+        .dino-image {
+            width: 100%;
+            border-radius: 20px;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.2);
+        }
+        .image-caption {
+            color: #636e72;
+            font-size: 16px;
+            margin-top: 15px;
+            font-style: italic;
+            background: #ffeaa7;
+            display: inline-block;
+            padding: 8px 20px;
+            border-radius: 20px;
+        }
+        .fun-fact {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 25px;
+            border-radius: 20px;
+            margin: 25px 0;
+            font-size: 18px;
+            line-height: 1.8;
+        }
+        .fun-fact.pink {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+        }
+        .fun-fact.green {
+            background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);
+        }
+        .fun-fact.orange {
+            background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);
+        }
+        .fun-fact-title {
+            font-size: 22px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        .divider {
+            text-align: center;
+            font-size: 30px;
+            color: #ddd;
+            margin: 30px 0;
+        }
+        .quiz-section {
+            background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);
+            padding: 30px;
+            border-radius: 20px;
+            margin: 30px 0;
+        }
+        .quiz-title {
+            font-size: 28px;
+            color: #e17055;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .quiz-question {
+            background: white;
+            padding: 20px;
+            border-radius: 15px;
+            margin: 15px 0;
+            font-size: 18px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        .ending {
+            text-align: center;
+            padding: 40px 0;
+            margin-top: 40px;
+            background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);
+            border-radius: 20px;
+        }
+        .ending h3 { font-size: 32px; color: #2d3436; }
+        .ending p { text-align: center; font-size: 18px; color: #636e72; }
+        .back-home-btn {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 14px 30px;
+            background: rgba(0,0,0,0.08);
+            color: #2d3436;
+            text-decoration: none;
+            border-radius: 25px;
+            font-size: 18px;
+            border: 2px solid rgba(0,0,0,0.15);
+            transition: background 0.3s, transform 0.2s;
+        }
+        .back-home-btn:hover {
+            background: rgba(0,0,0,0.15);
+            transform: translateY(-2px);
+        }
+        .back-home-btn:active {
+            transform: translateY(0);
+        }
+        @media (max-width: 600px) {
+            .container { padding: 20px; }
+            h1 { font-size: 32px; }
+            h2 { font-size: 24px; }
+            p { font-size: 18px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>光为什么会在水里折射</h1>
+            <p class="subtitle">「变弯」的光，藏着大秘密</p>
+        </div>
+
+        <h2>第一章：吸管「断」了吗？</h2>
+        <p>把一根吸管放进装了水的玻璃杯里，你会看到一个奇怪的现象：吸管看起来像是「断了」，水面上的部分和水面下的部分，好像错开了一截。再把手伸进水里，手也显得变短了、弯了。</p>
+        <p>可是把吸管拿出来一看，它明明还是好好的，一点没断。这是怎么回事呢？难道是我们的眼睛在骗我们？</p>
+        <p>其实，不是吸管断了，而是光在「捣鬼」。光从水里跑到空气里的时候，会<strong>拐弯</strong>，这个拐弯的现象，就叫做<strong>折射</strong>。因为光拐了弯，我们看到的吸管位置就「跑偏」了，所以看起来像是断了。今天，我们就来揭开这个「光变弯」的秘密。</p>
+        <div class="image-container">
+            <img class="dino-image" src="scene_01.webp" alt="吸管折射">
+            <div class="image-caption">水里的吸管看起来像「断了」</div>
+        </div>
+        <div class="fun-fact pink">
+            <div class="fun-fact-title">🌟 趣味知识</div>
+            因为光的折射，池塘里的鱼看起来会比它实际的位置更浅、更靠近水面。所以有经验的渔民叉鱼时，会朝着看到的位置再往下一点的地方叉，才能叉中。眼睛看到的位置，和鱼真实的位置，可不在同一个地方哦！
+        </div>
+
+        <h2>第二章：光是怎么走路的？</h2>
+        <p>要弄懂折射，我们先要知道光平时是怎么「走路」的。</p>
+        <p>光最喜欢走<strong>直线</strong>，而且它还是个「急性子」——它总是想用最短的时间，从起点赶到终点。在同一个东西里（比如一直在空气里、或者一直在水里），光会笔直地前进，因为直线就是最快的路。</p>
+        <p>可是，光在不同的东西里，跑得快慢是不一样的。它在空气里跑得快，到了水里就慢了下来，到了玻璃里更慢。我们把这个「跑得快慢」的本领，叫做<strong>光速</strong>。不同的材料，光速不同。</p>
+        <p>打个比方：光在空气里，像一个人在马路上飞快地跑；一进到水里，就像踩进了泥巴地，速度一下子慢了下来。</p>
+        <div class="image-container">
+            <img class="dino-image" src="scene_02.webp" alt="光走直线">
+            <div class="image-caption">光在同一个东西里，喜欢走直线</div>
+        </div>
+        <div class="fun-fact green">
+            <div class="fun-fact-title">🔬 趣味知识</div>
+            光在真空里跑得最快，速度大约是每秒 30 万公里，一秒钟就能绕地球七圈半！但是在水里，光的速度会变慢，大约只有真空里的四分之三。慢下来的光，才会发生「拐弯」的怪事。
+        </div>
+
+        <h2>第三章：为什么速度一变，光就拐弯？</h2>
+        <p>现在关键的问题来了：为什么光速一变慢，光就要拐弯呢？</p>
+        <p>我们可以把一束光想象成一支<strong>并排前进的小队伍</strong>，光的前面有好多「队员」。当这支队伍斜着从空气进入水里时，先碰到水面的那一侧的「队员」，会先踩进「泥巴地」，速度先慢下来；而另一侧的「队员」，还在空气里，跑得比较快。</p>
+        <p>这样一来，队伍两边一个快、一个慢，整个队伍就会「拐」一下，改变前进的方向。这就像你骑自行车，一个轮子先骑进了沙地，速度变慢，车头就会不自觉地偏一下。</p>
+        <p>所以，光会折射的根本原因就是：<strong>光从一种东西进入另一种东西时，速度改变了，方向就跟着改变了</strong>。速度变慢得越多，光拐得就越厉害。</p>
+        <div class="image-container">
+            <img class="dino-image" src="scene_03.webp" alt="光速改变">
+            <div class="image-caption">光速一变，方向就跟着拐弯</div>
+        </div>
+        <div class="fun-fact orange">
+            <div class="fun-fact-title">🌱 趣味知识</div>
+            科学家用一个叫「折射率」的数字，来表示光在一种东西里跑得有多慢。折射率越大，光跑得越慢，拐弯也越厉害。空气的折射率很小，水的大一些，玻璃的更大，所以光在玻璃里拐得比在水里还厉害。
+        </div>
+
+        <h2>第四章：折射让世界「变魔术」</h2>
+        <p>折射可不只是让吸管「断掉」那么简单，它每天都在给我们「变魔术」。</p>
+        <p>下雨后，天上会出现美丽的<strong>彩虹</strong>，这就是折射的杰作。太阳光本来是白色的，但它里面藏着红、橙、黄、绿、蓝、靛、紫七种颜色。当阳光照进小水滴时，不同颜色的光拐弯的程度不一样，七种颜色就被「分开」了，于是我们就看到了彩虹。</p>
+        <p>你戴的<strong>眼镜</strong>，也是靠折射工作的。近视眼镜用凹透镜，让光散开一点，帮近视的人看清楚远处；老花眼镜用凸透镜，把光聚起来。还有<strong>放大镜、显微镜、望远镜、照相机镜头</strong>，全都利用了光的折射。</p>
+        <p>可以说，没有折射，就没有眼镜，也没有彩虹，我们看世界的方式会完全不一样。</p>
+        <div class="image-container">
+            <img class="dino-image" src="scene_04.webp" alt="彩虹和眼镜">
+            <div class="image-caption">彩虹、眼镜，都是折射变的魔术</div>
+        </div>
+        <div class="fun-fact">
+            <div class="fun-fact-title">💰 趣味知识</div>
+            海市蜃楼也和折射有关！在沙漠或大海上，有时你会看到远处「飘」着一座城市或一片水面，其实那是假的。因为空气的冷热不均匀，光在空气里不停地折射、拐弯，把远方的景象「搬」到了你的眼前，就像大自然放的一场「电影」。
+        </div>
+
+        <h2>第五章：光为什么偏偏在水里折射？</h2>
+        <p>回到我们最初的问题：光为什么会在水里折射？现在你应该能自己回答了——因为光在空气和在水里的速度不一样，当它斜着穿过水面时，速度突然改变，方向就跟着拐弯了。</p>
+        <p>其实，不只是水，光进入玻璃、进入油、进入任何「光速不同」的东西，都会折射。水只是我们最常见、最容易观察到的例子。</p>
+        <p>如果你想让光不折射，也有办法：让光<strong>垂直</strong>地照进水面。这时候，整支光队伍是「正着」踩进水里的，两边同时变慢，就不会拐弯。所以，垂直射入的光，会直直地穿过水面，不改变方向。</p>
+        <p>下次你再看到水里的吸管「断掉」、或者雨后的彩虹，就可以骄傲地告诉别人：这是光的折射！是光速改变引起的「拐弯」。</p>
+        <div class="image-container">
+            <img class="dino-image" src="scene_05.webp" alt="垂直射入">
+            <div class="image-caption">垂直照进水里，光就不拐弯了</div>
+        </div>
+        <div class="fun-fact green">
+            <div class="fun-fact-title">🚀 趣味知识</div>
+            你可以做一个简单的小实验：把一根筷子放进玻璃水杯，从侧面看，筷子「断」了；再从上往下垂直看，筷子好像又没断。这说明折射和「光射入的角度」有关系——斜着射入会拐弯，垂直射入就不拐。快回家试试吧！
+        </div>
+
+        <div class="divider">✿ ✿ ✿</div>
+
+        <div class="quiz-section">
+            <div class="quiz-title">🎯 考考你（互动小测试）</div>
+            <div class="quiz-question">
+                <strong>第1题：</strong>把吸管放进水里，看起来「断了」，这是因为光发生了？<br>
+                A. 反射　B. 折射　C. 消失　D. 发光
+            </div>
+            <div class="quiz-question">
+                <strong>第2题：</strong>光在空气和在水里，跑得一样快吗？<br>
+                A. 一样快　B. 空气里快，水里慢　C. 水里快，空气里慢　D. 都不动
+            </div>
+            <div class="quiz-question">
+                <strong>第3题：</strong>光折射的根本原因是什么？<br>
+                A. 光太亮　B. 光从一种东西进入另一种，速度改变、方向改变　C. 水太冷　D. 空气太热
+            </div>
+            <div class="quiz-question">
+                <strong>第4题：</strong>下面哪个现象和光的折射有关？<br>
+                A. 彩虹　B. 影子　C. 回声　D. 打雷
+            </div>
+            <div class="quiz-question">
+                <strong>第5题：</strong>怎样让光射进水里时不拐弯？<br>
+                A. 斜着照　B. 垂直照进水面　C. 用手电筒照　D. 在水里加盐
+            </div>
+            <p style="text-align:center; font-size:16px; color:#e17055; margin-top:10px;">（答案：B、B、B、A、B。你都答对了吗？）</p>
+        </div>
+
+        <div class="ending">
+            <h3>—— 完 ——</h3>
+            <p>谢谢阅读！希望你学到了很多知识！</p>
+            <p style="margin-top: 10px; font-size: 14px; color: #b2bec3;">本故事由 AI 助手小龙为小朋友精心制作 🐉</p>
+            <div style="text-align: left; margin-top: 15px;">
+                <a href="../index.html" class="back-home-btn">🏠 返回首页</a>
+            </div>
+        </div>
+    </div>
+
+<!-- rourou-home-btn:start -->
+<style>
+#rourou-home-btn{position:fixed;left:14px;bottom:calc(14px + env(safe-area-inset-bottom,0px));z-index:9999;
+display:inline-flex;align-items:center;gap:6px;padding:10px 18px;border-radius:999px;
+background:rgba(255,255,255,0.92);color:#2d3436;font-size:15px;font-weight:600;
+text-decoration:none;box-shadow:0 4px 14px rgba(0,0,0,0.18);border:1px solid rgba(0,0,0,0.08);
+-webkit-backdrop-filter:blur(4px);backdrop-filter:blur(4px);transition:transform .15s,background .15s;}
+#rourou-home-btn:hover{background:#fff;transform:translateY(-2px);}
+@media (max-width:600px){#rourou-home-btn{padding:9px 14px;font-size:13px;left:10px;bottom:calc(10px + env(safe-area-inset-bottom,0px));}}
+</style>
+<a id="rourou-home-btn" href="../index.html">🏠 首页</a>
+<!-- rourou-home-btn:end -->
+</body>
+</html>

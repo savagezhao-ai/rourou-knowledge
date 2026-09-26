@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>厄尔尼诺</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: "Microsoft YaHei", "PingFang SC", sans-serif;
+            background: linear-gradient(180deg, #ffeaa7 0%, #fab1a0 30%, #ff7675 60%, #fd79a8 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        .container {
+            max-width: 850px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 30px;
+            padding: 40px;
+            box-shadow: 0 25px 80px rgba(0,0,0,0.15);
+        }
+        .header {
+            text-align: center;
+            padding: 30px 0;
+            background: linear-gradient(135deg, #ff6b6b 0%, #feca57 50%, #48dbfb 100%);
+            border-radius: 20px;
+            margin-bottom: 30px;
+        }
+        .header h1 {
+            font-size: 48px;
+            color: white;
+            text-shadow: 3px 3px 6px rgba(0,0,0,0.2);
+        }
+        .subtitle {
+            font-size: 20px;
+            color: rgba(255,255,255,0.95);
+        }
+        h2 {
+            font-size: 32px;
+            color: #2d3436;
+            margin: 40px 0 20px;
+            padding: 15px 25px;
+            background: linear-gradient(90deg, #ff9ff3 0%, #feca57 100%);
+            border-radius: 15px;
+            display: inline-block;
+        }
+        p {
+            font-size: 20px;
+            line-height: 2;
+            color: #2d3436;
+            margin-bottom: 20px;
+            text-align: justify;
+        }
+        .image-container {
+            width: 100%;
+            margin: 30px 0;
+            text-align: center;
+        }
+        .dino-image {
+            width: 100%;
+            border-radius: 20px;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.2);
+        }
+        .image-caption {
+            color: #636e72;
+            font-size: 16px;
+            margin-top: 15px;
+            font-style: italic;
+            background: #ffeaa7;
+            display: inline-block;
+            padding: 8px 20px;
+            border-radius: 20px;
+        }
+        .fun-fact {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 25px;
+            border-radius: 20px;
+            margin: 25px 0;
+            font-size: 18px;
+            line-height: 1.8;
+        }
+        .fun-fact.pink {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+        }
+        .fun-fact.green {
+            background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);
+        }
+        .fun-fact.orange {
+            background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);
+        }
+        .fun-fact-title {
+            font-size: 22px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        .divider {
+            text-align: center;
+            font-size: 30px;
+            color: #ddd;
+            margin: 30px 0;
+        }
+        .quiz-section {
+            background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);
+            padding: 30px;
+            border-radius: 20px;
+            margin: 30px 0;
+        }
+        .quiz-title {
+            font-size: 28px;
+            color: #e17055;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .quiz-question {
+            background: white;
+            padding: 20px;
+            border-radius: 15px;
+            margin: 15px 0;
+            font-size: 18px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        .ending {
+            text-align: center;
+            padding: 40px 0;
+            margin-top: 40px;
+            background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);
+            border-radius: 20px;
+        }
+        .ending h3 { font-size: 32px; color: #2d3436; }
+        .ending p { text-align: center; font-size: 18px; color: #636e72; }
+        .back-home-btn {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 14px 30px;
+            background: rgba(0,0,0,0.08);
+            color: #2d3436;
+            text-decoration: none;
+            border-radius: 25px;
+            font-size: 18px;
+            border: 2px solid rgba(0,0,0,0.15);
+            transition: background 0.3s, transform 0.2s;
+        }
+        .back-home-btn:hover {
+            background: rgba(0,0,0,0.15);
+            transform: translateY(-2px);
+        }
+        .back-home-btn:active {
+            transform: translateY(0);
+        }
+        @media (max-width: 600px) {
+            .container { padding: 20px; }
+            h1 { font-size: 32px; }
+            h2 { font-size: 24px; }
+            p { font-size: 18px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>厄尔尼诺</h1>
+            <p class="subtitle">来自太平洋的「坏脾气」</p>
+        </div>
+
+        <h2>第一章：一个会搅乱全球天气的「名字」</h2>
+        <p>如果有一天，天气预报说：今年冬天的天气会很反常，可能是「厄尔尼诺」来了。你会不会很好奇——厄尔尼诺是什么？是一个人？一个怪兽？还是一阵风？</p>
+        <p>其实，厄尔尼诺（读作 è ěr ní nuò）是一个西班牙语词，意思是「小男孩」，或者更准确地说是「圣婴」。为什么给它起这个名字呢？因为这种现象常常在圣诞节前后出现，而圣诞节是庆祝小耶稣诞生的日子，所以人们就用「圣婴」来称呼它。</p>
+        <p>但你可别被这个可爱的名字骗了！厄尔尼诺不是温柔的小男孩，它是发生在太平洋的一种巨大气候现象，一旦出现，就能搅乱全球的天气，让有的地方暴雨成灾，有的地方又干旱得冒烟。今天，我们就来认识这位「坏脾气的小男孩」。</p>
+        <div class="image-container">
+            <img class="dino-image" src="scene_01.webp" alt="厄尔尼诺">
+            <div class="image-caption">厄尔尼诺：名字可爱，脾气却很大</div>
+        </div>
+        <div class="fun-fact pink">
+            <div class="fun-fact-title">🌟 趣味知识</div>
+            厄尔尼诺这个名字，最早是南美洲秘鲁和厄瓜多尔一带的渔民起的。他们发现，每隔几年，圣诞节前后，海里的冷水就会突然变暖，鱼群也跟着变少了，于是就用「圣婴」（小男孩）来称呼这股神秘的暖流。
+        </div>
+
+        <h2>第二章：太平洋的「大空调」和它的「跷跷板」</h2>
+        <p>要弄懂厄尔尼诺，我们得先认识太平洋这个大舞台。太平洋太大了，它的海水温度，就像一台超级大空调，直接影响着全世界的天气。</p>
+        <p>在正常情况下，太平洋东边（靠近南美洲）的海水比较<strong>冷</strong>，西边（靠近亚洲）的海水比较<strong>暖</strong>。这股温暖的海水，让西太平洋（比如东南亚、澳大利亚一带）的雨水特别多，而东太平洋（南美洲）则比较干燥。这就像一架跷跷板，一边翘起来，另一边就压下去。</p>
+        <p>可是每隔几年，这架跷跷板就会「翻过来」：东风变弱了，原本堆积在西边的暖水，会慢慢「溜」回东边，让东太平洋的海水变暖。这一变暖，全世界的天气就乱了套。这就是厄尔尼诺的「真面目」——它不是一阵风，而是整个太平洋海水温度的「大翻转」。</p>
+        <div class="image-container">
+            <img class="dino-image" src="scene_02.webp" alt="太平洋暖水流动">
+            <div class="image-caption">太平洋的暖水从西边溜回东边，天气就乱了</div>
+        </div>
+        <div class="fun-fact green">
+            <div class="fun-fact-title">🔬 趣味知识</div>
+            厄尔尼诺还有一个「双胞胎兄弟」叫「拉尼娜」，意思是「小女孩」。拉尼娜正好相反，它让东太平洋的海水变得比平时更冷。所以「小男孩」和「小女孩」轮流登场，一会儿暖、一会儿冷，像在玩跷跷板。
+        </div>
+
+        <h2>第三章：厄尔尼诺是怎么搅乱天气的？</h2>
+        <p>你可能想问：太平洋东边的海水变暖，为什么会影响到几万公里以外的天气呢？秘密在于——海洋和大气是一对「好朋友」，它们会互相影响。</p>
+        <p>暖海水会把热量「传」给上方的空气，让空气变热、往上升，然后形成云和雨。所以哪里海水暖，哪里就容易下雨。反过来，海水冷的地方，空气就干燥，容易干旱。</p>
+        <p>当厄尔尼诺让东太平洋变暖时，原本应该下雨的地方（比如澳大利亚、东南亚）突然不下雨了，变得又干又热，容易发生森林大火；而原本干燥的地方（比如南美洲西海岸）却突然暴雨连连，甚至发洪水。就像有人把全世界「雨水的开关」重新拨了一遍，有的地方被关掉，有的地方被打开。</p>
+        <p>更厉害的是，这股「混乱」还会沿着大气传遍全球，让我们的冬天忽冷忽热，夏天忽旱忽涝。</p>
+        <div class="image-container">
+            <img class="dino-image" src="scene_03.webp" alt="天气混乱">
+            <div class="image-caption">一边暴雨成灾，一边干旱冒烟</div>
+        </div>
+        <div class="fun-fact orange">
+            <div class="fun-fact-title">🌱 趣味知识</div>
+            厄尔尼诺会影响的东西可多了：它可能让某些海域的鱼群消失，渔民打不到鱼；可能让一些地方的小麦、水稻歉收，粮食变少；甚至还能影响飓风、台风的数量。所以它不只是一个天气现象，还关系到很多人的生活。
+        </div>
+
+        <h2>第四章：科学家是怎么「看穿」厄尔尼诺的？</h2>
+        <p>厄尔尼诺这么厉害，科学家们当然要想办法提前发现它。现在，他们已经能在厄尔尼诺出现前的几个月，就发出预警了。他们是怎么做到的呢？</p>
+        <p>科学家用上了各种各样的「千里眼」：海面上漂浮着成千上万个<strong>浮标</strong>，它们像哨兵一样，日夜测量海水的温度；天上的<strong>卫星</strong>，从太空盯着海洋的变化；还有海洋考察船，深入大海收集数据。</p>
+        <p>这些数据汇到一起，科学家就能画出太平洋海水温度的「地图」，看清楚暖水是不是正在往东边移动。再加上超级计算机的模拟，他们就能预测：厄尔尼诺会不会来、什么时候来、会有多强。</p>
+        <p>有了这些预警，农民可以提前改种耐旱的作物，渔民可以提前做好准备，政府也能提前防灾，减少损失。科学，真的能帮我们「未卜先知」。</p>
+        <div class="image-container">
+            <img class="dino-image" src="scene_04.webp" alt="监测预警">
+            <div class="image-caption">浮标和卫星日夜监测海洋温度</div>
+        </div>
+        <div class="fun-fact">
+            <div class="fun-fact-title">💰 趣味知识</div>
+            在太平洋上，有一支叫「TAO」的浮标队伍，它们整齐地排成好几条线，横跨整个太平洋。这些浮标会把海水温度实时传回陆地，是科学家预测厄尔尼诺的「秘密武器」。想象一下，一群浮标在海上默默「站岗」，保护着我们的天气预报呢！
+        </div>
+
+        <h2>第五章：厄尔尼诺和我们的关系</h2>
+        <p>你可能觉得，厄尔尼诺离我们很远。其实，它和每个人的生活都息息相关。</p>
+        <p>当厄尔尼诺来临时，我们可能会遇到「暖冬」——冬天没那么冷了，但也可能出现极端的暴雨、暴雪或者干旱。粮食的收成、海鲜的价格、夏天的用电量，都可能跟着受影响。所以，关注厄尔尼诺，就是关注我们自己的吃穿住行。</p>
+        <p>更重要的是，科学家正在研究一个问题：随着全球变暖，厄尔尼诺会不会变得越来越频繁、越来越强？这提醒我们，要爱护环境、减少污染，保护我们共同的地球。</p>
+        <p>认识了厄尔尼诺，你就读懂了一个「地球的秘密」——原来，遥远的太平洋海水的温度变化，竟然能牵动全世界的天气。大自然就是这么神奇，又这么环环相扣。</p>
+        <div class="image-container">
+            <img class="dino-image" src="scene_05.webp" alt="保护地球">
+            <div class="image-caption">爱护地球，是我们每个人的责任</div>
+        </div>
+        <div class="fun-fact green">
+            <div class="fun-fact-title">🚀 趣味知识</div>
+            下一次你听到天气预报说「受厄尔尼诺影响」时，你就比别人多懂一层啦！你可以骄傲地告诉家人：厄尔尼诺是太平洋海水变暖、搅乱全球天气的现象，名字来自西班牙语，意思是「小男孩」。是不是特别酷？
+        </div>
+
+        <div class="divider">✿ ✿ ✿</div>
+
+        <div class="quiz-section">
+            <div class="quiz-title">🎯 考考你（互动小测试）</div>
+            <div class="quiz-question">
+                <strong>第1题：</strong>「厄尔尼诺」这个词，原本是什么意思？<br>
+                A. 大风暴　B. 小男孩／圣婴　C. 海浪　D. 火山
+            </div>
+            <div class="quiz-question">
+                <strong>第2题：</strong>厄尔尼诺发生时，太平洋东边（南美洲附近）的海水会怎样？<br>
+                A. 变冷　B. 变暖　C. 结冰　D. 消失
+            </div>
+            <div class="quiz-question">
+                <strong>第3题：</strong>厄尔尼诺会带来什么影响？<br>
+                A. 全世界的天气乱套，有地方暴雨、有地方干旱　B. 全世界一起变凉快　C. 没有影响　D. 只影响海洋里的鱼
+            </div>
+            <div class="quiz-question">
+                <strong>第4题：</strong>科学家靠什么提前预测厄尔尼诺？<br>
+                A. 猜谜语　B. 海上浮标、卫星和计算机模拟　C. 看云朵形状　D. 听老人讲故事
+            </div>
+            <div class="quiz-question">
+                <strong>第5题：</strong>下面哪种说法是正确的？<br>
+                A. 厄尔尼诺是一阵风　B. 厄尔尼诺是太平洋海水温度的「大翻转」　C. 厄尔尼诺是一只怪兽　D. 厄尔尼诺只会下雪
+            </div>
+            <p style="text-align:center; font-size:16px; color:#e17055; margin-top:10px;">（答案：B、B、A、B、B。你都答对了吗？）</p>
+        </div>
+
+        <div class="ending">
+            <h3>—— 完 ——</h3>
+            <p>谢谢阅读！希望你学到了很多知识！</p>
+            <p style="margin-top: 10px; font-size: 14px; color: #b2bec3;">本故事由 AI 助手小龙为小朋友精心制作 🐉</p>
+            <div style="text-align: left; margin-top: 15px;">
+                <a href="../index.html" class="back-home-btn">🏠 返回首页</a>
+            </div>
+        </div>
+    </div>
+
+<!-- rourou-home-btn:start -->
+<style>
+#rourou-home-btn{position:fixed;left:14px;bottom:calc(14px + env(safe-area-inset-bottom,0px));z-index:9999;
+display:inline-flex;align-items:center;gap:6px;padding:10px 18px;border-radius:999px;
+background:rgba(255,255,255,0.92);color:#2d3436;font-size:15px;font-weight:600;
+text-decoration:none;box-shadow:0 4px 14px rgba(0,0,0,0.18);border:1px solid rgba(0,0,0,0.08);
+-webkit-backdrop-filter:blur(4px);backdrop-filter:blur(4px);transition:transform .15s,background .15s;}
+#rourou-home-btn:hover{background:#fff;transform:translateY(-2px);}
+@media (max-width:600px){#rourou-home-btn{padding:9px 14px;font-size:13px;left:10px;bottom:calc(10px + env(safe-area-inset-bottom,0px));}}
+</style>
+<a id="rourou-home-btn" href="../index.html">🏠 首页</a>
+<!-- rourou-home-btn:end -->
+</body>
+</html>

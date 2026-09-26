@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🌡️ 为什么吃完饭，身体会热起来？</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: "Microsoft YaHei", "PingFang SC", sans-serif;
+            background: linear-gradient(180deg, #ff9a9e 0%, #fecfef 30%, #ffecd2 60%, #fcb69f 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        .container {
+            max-width: 850px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 30px;
+            padding: 40px;
+            box-shadow: 0 25px 80px rgba(0,0,0,0.15);
+        }
+        .header {
+            text-align: center;
+            padding: 30px 0;
+            background: linear-gradient(135deg, #ff6b6b 0%, #feca57 100%);
+            border-radius: 20px;
+            margin-bottom: 30px;
+        }
+        .header h1 {
+            font-size: 42px;
+            color: white;
+            text-shadow: 3px 3px 6px rgba(0,0,0,0.25);
+            line-height: 1.3;
+        }
+        .subtitle {
+            font-size: 20px;
+            color: rgba(255,255,255,0.95);
+            margin-top: 12px;
+        }
+        h2 {
+            font-size: 30px;
+            color: #2d3436;
+            margin: 40px 0 20px;
+            padding: 15px 25px;
+            background: linear-gradient(90deg, #ff9a9e 0%, #fecfef 100%);
+            border-radius: 15px;
+            display: inline-block;
+        }
+        p {
+            font-size: 20px;
+            line-height: 2;
+            color: #2d3436;
+            margin-bottom: 20px;
+            text-align: justify;
+        }
+        .image-container {
+            width: 100%;
+            margin: 30px 0;
+            text-align: center;
+        }
+        .dino-image {
+            width: 100%;
+            border-radius: 20px;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.2);
+        }
+        .image-caption {
+            color: #636e72;
+            font-size: 16px;
+            margin-top: 15px;
+            font-style: italic;
+            background: #ffeaa7;
+            display: inline-block;
+            padding: 8px 20px;
+            border-radius: 20px;
+        }
+        .fun-fact {
+            background: linear-gradient(135deg, #ff6b6b 0%, #feca57 100%);
+            color: white;
+            padding: 25px;
+            border-radius: 20px;
+            margin: 25px 0;
+            font-size: 18px;
+            line-height: 1.8;
+        }
+        .fun-fact.pink {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+        }
+        .fun-fact.green {
+            background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);
+        }
+        .fun-fact.blue {
+            background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+        }
+        .fun-fact.orange {
+            background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);
+        }
+        .fun-fact-title {
+            font-size: 22px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        .divider {
+            text-align: center;
+            font-size: 30px;
+            color: #ddd;
+            margin: 30px 0;
+        }
+        .quiz-section {
+            background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);
+            padding: 30px;
+            border-radius: 20px;
+            margin: 30px 0;
+        }
+        .quiz-title {
+            font-size: 28px;
+            color: #e17055;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .quiz-question {
+            background: white;
+            padding: 20px;
+            border-radius: 15px;
+            margin: 15px 0;
+            font-size: 18px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        .ending {
+            text-align: center;
+            padding: 40px 0;
+            margin-top: 40px;
+            background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);
+            border-radius: 20px;
+        }
+        .ending h3 { font-size: 32px; color: #2d3436; }
+        .ending p { text-align: center; font-size: 18px; color: #636e72; }
+        .back-home-btn {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 14px 30px;
+            background: rgba(0,0,0,0.08);
+            color: #2d3436;
+            text-decoration: none;
+            border-radius: 25px;
+            font-size: 18px;
+            border: 2px solid rgba(0,0,0,0.15);
+            transition: background 0.3s, transform 0.2s;
+        }
+        .back-home-btn:hover {
+            background: rgba(0,0,0,0.15);
+            transform: translateY(-2px);
+        }
+        .back-home-btn:active {
+            transform: translateY(0);
+        }
+        @media (max-width: 600px) {
+            .container { padding: 20px; }
+            h1 { font-size: 30px; }
+            h2 { font-size: 24px; }
+            p { font-size: 18px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🌡️ 为什么吃完饭，身体会热起来？</h1>
+            <p class="subtitle">一场发生在你身体里的「生火」与「散热」大作战</p>
+        </div>
+
+        <h2>第一章：你的体温，根本不是饭菜 "烫" 出来的</h2>
+        <p>吃完一碗热汤面，脸红扑扑、身上暖烘烘，有时候还会冒汗。很多人以为："是饭菜太烫了。"可你喝一碗<strong>冰凉的果汁</strong>，身体照样会慢慢热起来——这说明，热量不是从外面"带"进来的。</p>
+        <p>那热量到底从哪来？追到最根本的一层：<strong>你的身体里有几十万亿个小火炉。</strong>每一个细胞里都有一种叫<strong>线粒体</strong>的小结构，它们的工作就是把食物里的化学能"烧"掉，转化成身体能用的能量。这个过程叫<em>细胞呼吸</em>——没错，你的每个细胞都在"呼吸"。</p>
+        <p>关键在这里：<strong>能量转换从来不是百分之百的。</strong>就像汽车发动机烧汽油，一部分变成动力，还有很大一部分变成了热——发动机是烫的。你的细胞也一样，"烧"食物的时候，相当一部分能量没能存起来，而是直接变成了热。这些热，正好用来把你维持在 <strong>37℃</strong> 左右。所以你不是"被饭菜烫热的"，你是<strong>自己烧热的</strong>。</p>
+        <div class="image-container">
+            <img src="scene_01.webp" alt="细胞里的小火炉线粒体" class="dino-image">
+            <div class="image-caption">🔥 每个细胞里的小线粒体，都在发光发热</div>
+        </div>
+        <div class="fun-fact">
+            <div class="fun-fact-title">💡 趣味知识框</div>
+            小宝宝身上有一种特殊的"产热脂肪"叫<strong>棕色脂肪</strong>，它不像普通脂肪那样存能量，而是专门<em>直接烧掉产热</em>。因为小宝宝还不太会靠发抖取暖，就得靠它。
+        </div>
+
+        <h2>第二章：饭后为什么特别热？——身体在收「加工费」</h2>
+        <p>既然细胞一直在烧，为什么吃完饭会<em>格外</em>热？因为从你咬下第一口开始，身体就启动了一整套浩大的"加工工程"，而<strong>这套工程本身是要花力气的</strong>。</p>
+        <p>我们一项项数：牙齿咀嚼要动肌肉；胃要不停地蠕动搅拌，还要分泌胃酸；小肠要分泌消化液；营养被吸收进血液时，很多得靠<strong>主动运输</strong>——就像逆着人流推车进门，得消耗细胞的"能量币" ATP；吸进来的营养还要先送到肝脏去<strong>加工、分类、储存</strong>（比如把多余的糖变成糖原存起来、把氨基酸重新组装成身体需要的蛋白质）。</p>
+        <p>这一整套加起来，科学家给它起了个名字：<strong>食物热效应</strong>（也叫食物的特殊动力作用）。意思很直白——<em>为了处理这顿饭，身体自己先烧掉了一部分能量，而这部分能量最后基本都变成了热。</em>吃得越多，这套工程越浩大，热得越明显。</p>
+        <div class="image-container">
+            <img src="scene_02.webp" alt="消化系统开工" class="dino-image">
+            <div class="image-caption">🍽️ 食物一路走下去，胃肠全线开工，热就来了</div>
+        </div>
+        <div class="fun-fact pink">
+            <div class="fun-fact-title">💡 趣味知识框</div>
+            不同的食物，"加工费"差很多：<strong>蛋白质最贵</strong>（吃进去 100 份能量，约有 20～30 份被花在加工上），碳水居中（约 5～10 份），<strong>脂肪最省</strong>（只有 0～3 份）。所以一顿高蛋白的大餐，往往让你更暖。
+        </div>
+
+        <h2>第三章：为什么蛋白质最"费火"？</h2>
+        <p>上一章留了个问题：同样是食物，为什么蛋白质的加工费这么高？继续往下追。</p>
+        <p>蛋白质是一长串<strong>氨基酸</strong>串成的链条，像一条很长的项链。身体要用的不是整条项链，而是珠子。所以它必须：① 把长链<strong>一根根剪断</strong>，拆成单个氨基酸；② 氨基酸里含有<strong>氮</strong>，身体用不上那么多氮，还不能直接扔（有毒），必须在肝脏里走一趟叫<strong>尿素循环</strong>的流程，把氮变成尿素再排出去——这一步<em>特别费能量</em>；③ 剩下的部分，还要重新组装成你自己的肌肉、酶、抗体。</p>
+        <p>相比之下，脂肪就"省事"太多了：它拆开后基本可以直接打包存起来，或者原样烧掉，中间几乎不用重新改造。步骤越少，花的力气越少，变成的热也越少。这就是"加工费"差异的根源：<strong>不是食物本身热量不同，而是身体为它做的"加工程序"长短不同。</strong></p>
+        <div class="image-container">
+            <img src="scene_03.webp" alt="蛋白质加工步骤多" class="dino-image">
+            <div class="image-caption">🔗 蛋白质要拆、要脱氮、要重组，步骤多所以更热</div>
+        </div>
+        <div class="fun-fact green">
+            <div class="fun-fact-title">💡 趣味知识框</div>
+            这也解释了一个生活现象：天冷的时候，吃一顿<strong>富含蛋白质的热乎饭</strong>会格外暖和——不是错觉，是它的"加工费"真的更高。
+        </div>
+
+        <h2>第四章：血都跑哪儿去了？——脸红、手暖、犯困</h2>
+        <p>除了"烧得多"，饭后还有第二个变化：<strong>血液改道了。</strong></p>
+        <p>小肠吸进来的营养，得有"运输队"送到肝脏去加工。于是身体把更多血液调往胃肠，医学上叫内脏充血。血液是温热的，血流往哪里集中，哪里就热；更关键的是，身体处理不过来的那部分热量，会通过<strong>皮肤</strong>散出去——皮肤里的血管扩张，更多的温血流过体表，热量就辐射到空气里。所以你会<strong>脸红、耳朵热、手心发烫</strong>。</p>
+        <p>那为什么会犯困？因为这时候身体切换到"<strong>休息与消化</strong>"模式（副交感神经主导）：既然要专心消化，就先把"战斗或逃跑"的兴奋压下去。再加上血流偏向肚子、血糖和激素变化，大脑就收到"现在可以歇会儿"的信号。所以吃完大餐想躺一会儿，是很正常的事。</p>
+        <div class="image-container">
+            <img src="scene_04.webp" alt="血流改道与皮肤散热" class="dino-image">
+            <div class="image-caption">💨 温热的血涌向皮肤，热量就这样散进空气里</div>
+        </div>
+        <div class="fun-fact blue">
+            <div class="fun-fact-title">💡 趣味知识框</div>
+            你的"恒温器"在大脑里一个叫<strong>下丘脑</strong>的地方。它一旦发现核心温度高了一点点，就会下令：皮肤血管扩张 + 出汗。汗<em>蒸发</em>时会带走大量热，所以出汗是最有效的散热法。
+        </div>
+
+        <h2>第五章：这是发烧吗？什么时候要当心？</h2>
+        <p>饭后体温会升高，但通常只有<strong>零点几度</strong>，一两个小时内就会回落——这<em>不是</em>发烧。区别在哪？追到底层：<strong>发烧是你的"恒温器被调高了"</strong>，身体受感染信号影响，主动把设定温度往上调，所以你会觉得冷、会发抖；而饭后的热是"<strong>火烧得更旺了</strong>"，恒温器的<strong>设定值没变</strong>，只是一时产热变多，于是身体赶紧开散热器把它排掉。一个是"调高了空调设定"，一个是"屋里 temporarily 多开了台暖风机"，完全是两回事。</p>
+        <p>还有一种很容易混淆的情况：<strong>吃辣出汗</strong>。辣椒里的辣椒素会和舌头上的一种"热感受器"（TRPV1）结合，而这个感受器本来是用来探测<em>真实的高温</em>的。于是大脑收到假情报："好烫！"立刻下令出汗、脸红——可其实你的体温根本没升高。这纯粹是一场<strong>假警报</strong>。</p>
+        <p>什么情况要留意？如果每次吃完某些食物都<strong>满脸通红、心跳很快、肚子不舒服或拉肚子</strong>，或者吃完很快就<strong>头晕、出冷汗、心慌</strong>，最好告诉爸爸妈妈，去看医生查一查。对大多数人来说，饭后暖起来恰恰说明——<strong>你的小火炉和散热器都工作得很好。</strong></p>
+        <div class="image-container">
+            <img src="scene_05.webp" alt="吃辣出汗是假警报" class="dino-image">
+            <div class="image-caption">🌶️ 辣椒骗过了"热感受器"，大脑以为着火了</div>
+        </div>
+        <div class="fun-fact orange">
+            <div class="fun-fact-title">💡 趣味知识框</div>
+            想让饭后的"热浪"温和一点？办法很简单：<strong>吃慢一点、每顿别太撑</strong>。工程量小了，加工费自然就少，身体也不用急着开散热器啦。
+        </div>
+
+        <div class="quiz-section">
+            <div class="quiz-title">🧩 互动小测验：你搞懂身体的火炉了吗？</div>
+            <div class="quiz-question">1. 我们身体的热量，主要来自哪里？<br>A. 饭菜是烫的　B. 细胞里的线粒体"烧"食物产生的　C. 衣服太厚　D. 太阳晒的</div>
+            <div class="quiz-question">2. 「食物热效应」指的是什么？<br>A. 食物自己会发热　B. 身体消化处理食物本身要消耗能量并产热　C. 饭菜的温度　D. 食物变凉了</div>
+            <div class="quiz-question">3. 三大营养素里，哪种"加工费"最高？<br>A. 脂肪　B. 碳水　C. 蛋白质（要拆链、脱氮、重组）　D. 水</div>
+            <div class="quiz-question">4. 饭后脸红、手心发烫，主要是因为？<br>A. 害羞　B. 皮肤血管扩张，更多温血流过体表散热　C. 血压变低　D. 衣服穿多了</div>
+            <div class="quiz-question">5. 吃辣为什么会出汗？<br>A. 辣椒真的把体温升高了　B. 辣椒素骗过了探测高温的感受器，是假警报　C. 辣椒含水　D. 辣椒是热的食物</div>
+        </div>
+
+        <div class="ending">
+            <h3>—— 完 ——</h3>
+            <p>谢谢阅读！希望你学到了很多知识！</p>
+            <p style="margin-top: 10px; font-size: 14px; color: #b2bec3;">本故事由 AI 助手小龙为小朋友精心制作 🐉</p>
+            <div style="text-align: left; margin-top: 15px;">
+                <a href="../index.html" class="back-home-btn">🏠 返回首页</a>
+            </div>
+        </div>
+    </div>
+
+<!-- rourou-home-btn:start -->
+<style>
+#rourou-home-btn{position:fixed;left:14px;bottom:calc(14px + env(safe-area-inset-bottom,0px));z-index:9999;
+display:inline-flex;align-items:center;gap:6px;padding:10px 18px;border-radius:999px;
+background:rgba(255,255,255,0.92);color:#2d3436;font-size:15px;font-weight:600;
+text-decoration:none;box-shadow:0 4px 14px rgba(0,0,0,0.18);border:1px solid rgba(0,0,0,0.08);
+-webkit-backdrop-filter:blur(4px);backdrop-filter:blur(4px);transition:transform .15s,background .15s;}
+#rourou-home-btn:hover{background:#fff;transform:translateY(-2px);}
+@media (max-width:600px){#rourou-home-btn{padding:9px 14px;font-size:13px;left:10px;bottom:calc(10px + env(safe-area-inset-bottom,0px));}}
+</style>
+<a id="rourou-home-btn" href="../index.html">🏠 首页</a>
+<!-- rourou-home-btn:end -->
+</body>
+</html>

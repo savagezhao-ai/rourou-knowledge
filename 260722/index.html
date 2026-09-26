@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>飞蛾扑火大揭秘</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: "Microsoft YaHei", "PingFang SC", sans-serif;
+            background: linear-gradient(180deg, #1a1a2e 0%, #16213e 30%, #0f3460 60%, #533483 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        .container {
+            max-width: 850px;
+            margin: 0 auto;
+            background: #fffdf7;
+            border-radius: 30px;
+            padding: 40px;
+            box-shadow: 0 25px 80px rgba(0,0,0,0.25);
+        }
+        .header {
+            text-align: center;
+            padding: 35px 0;
+            background: linear-gradient(135deg, #ffd32a 0%, #ff9f43 50%, #ee5a24 100%);
+            border-radius: 20px;
+            margin-bottom: 30px;
+        }
+        .header h1 {
+            font-size: 44px;
+            color: white;
+            text-shadow: 3px 3px 8px rgba(0,0,0,0.3);
+        }
+        .subtitle {
+            font-size: 20px;
+            color: rgba(255,255,255,0.95);
+            margin-top: 8px;
+        }
+        h2 {
+            font-size: 30px;
+            color: #2d3436;
+            margin: 40px 0 20px;
+            padding: 14px 24px;
+            background: linear-gradient(90deg, #ffeaa7 0%, #fdcb6e 100%);
+            border-radius: 15px;
+            display: inline-block;
+        }
+        p {
+            font-size: 20px;
+            line-height: 2;
+            color: #2d3436;
+            margin-bottom: 20px;
+            text-align: justify;
+        }
+        .image-container {
+            width: 100%;
+            margin: 30px 0;
+            text-align: center;
+        }
+        .dino-image {
+            width: 100%;
+            border-radius: 20px;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.2);
+        }
+        .image-caption {
+            color: #636e72;
+            font-size: 16px;
+            margin-top: 15px;
+            font-style: italic;
+            background: #ffeaa7;
+            display: inline-block;
+            padding: 8px 20px;
+            border-radius: 20px;
+        }
+        .fun-fact {
+            background: linear-gradient(135deg, #6c5ce7 0%, #a29bfe 100%);
+            color: white;
+            padding: 25px;
+            border-radius: 20px;
+            margin: 25px 0;
+            font-size: 18px;
+            line-height: 1.8;
+        }
+        .fun-fact.pink {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+        }
+        .fun-fact.green {
+            background: linear-gradient(135deg, #55efc4 0%, #00b894 100%);
+        }
+        .fun-fact.orange {
+            background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);
+        }
+        .fun-fact-title {
+            font-size: 22px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        .divider {
+            text-align: center;
+            font-size: 30px;
+            color: #dfe6e9;
+            margin: 30px 0;
+        }
+        .quiz-section {
+            background: linear-gradient(135deg, #dfe6e9 0%, #b2bec3 100%);
+            padding: 30px;
+            border-radius: 20px;
+            margin: 30px 0;
+        }
+        .quiz-title {
+            font-size: 28px;
+            color: #2d3436;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .quiz-question {
+            background: white;
+            padding: 20px;
+            border-radius: 15px;
+            margin: 15px 0;
+            font-size: 18px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        .ending {
+            text-align: center;
+            padding: 40px 0;
+            margin-top: 40px;
+            background: linear-gradient(135deg, #1a1a2e 0%, #533483 100%);
+            border-radius: 20px;
+        }
+        .ending h3 { font-size: 32px; color: #ffd32a; }
+        .ending p { text-align: center; font-size: 18px; color: #dfe6e9; }
+        .back-home-btn {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 14px 30px;
+            background: rgba(255,255,255,0.1);
+            color: #ffd32a;
+            text-decoration: none;
+            border-radius: 25px;
+            font-size: 18px;
+            border: 2px solid rgba(255,255,255,0.2);
+            transition: background 0.3s, transform 0.2s;
+        }
+        .back-home-btn:hover {
+            background: rgba(255,255,255,0.2);
+            transform: translateY(-2px);
+        }
+        .back-home-btn:active {
+            transform: translateY(0);
+        }
+        @media (max-width: 600px) {
+            .container { padding: 20px; }
+            h1 { font-size: 32px; }
+            h2 { font-size: 24px; }
+            p { font-size: 18px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🦋 飞蛾扑火大揭秘</h1>
+            <p class="subtitle">为什么飞蛾和其他小虫总喜欢往灯光上撞？</p>
+        </div>
+
+        <h2>🌙 第一章：夏夜灯光下的舞者</h2>
+        <p>夏天的夜晚，你坐在窗户旁边看书，突然听到「啪」的一声——一只小小的飞蛾，正扑在台灯上不肯离开。你有没有想过：为什么这些小家伙那么喜欢灯光，哪怕撞得头晕眼花也不肯走呢？</p>
+        <p>其实不只是飞蛾。蚊子、甲虫、草蛉、飞蚁……很多在夜里活动的昆虫都会被灯光吸引。这个现象在中国有一个古老的说法，叫做「飞蛾扑火」——就是说飞蛾像不怕死一样冲向火焰。</p>
+        <p>但科学家们发现，<strong>飞蛾并不是真的「喜欢」火光</strong>。这背后藏着一个充满误会的故事……</p>
+        <div class="fun-fact orange">
+            <div class="fun-fact-title">🤯 你知道吗？</div>
+            全世界有大约 16 万种蛾子！有些蛾子比蝴蝶还漂亮。蛾子的触角形状多样，有的像羽毛，有的像梳子，这可是它们夜晚导航的秘密武器哦！
+        </div>
+
+        <div class="image-container">
+            <img class="dino-image" src="scene_01.webp" alt="飞蛾飞向灯光">
+        </div>
+        <p class="image-caption">🦋 图1：一只可爱的小飞蛾正朝着温暖的灯笼飞去</p>
+
+        <div class="divider">✨ ✨ ✨</div>
+
+        <h2>🧭 第二章：月光的导航——亿万年的老习惯</h2>
+        <p>要理解飞蛾为什么扑灯，我们先得回到很久很久以前——在人类发明电灯之前。</p>
+        <p>那时候，夜空中最亮的东西只有一个：<strong>月亮</strong>。飞蛾在黑暗的夜晚飞行时，需要一个固定的参考物来导航。它们发明了一个天才的办法：</p>
+        <p>💡 <strong>「横定向」飞行法：</strong>飞蛾让月亮（或其他遥远的光源）始终保持在眼睛的某个固定角度上。比如，飞蛾让月亮一直在它身体的右侧45度角。因为月亮非常非常远，所以月光到达地面的角度几乎不变，飞蛾只要保持这个角度不变，它就能沿着一条直线飞行——就像我们看北极星认北极一样！</p>
+        <p>这个方法用了上亿年，一直运转完美。直到……人类点起了灯。</p>
+
+        <div class="fun-fact green">
+            <div class="fun-fact-title">🌕 天文学小知识</div>
+            月球离地球大约 38 万千米远！正因为这么远，月光到达地球两点的角度几乎完全相同，形成了「平行光」。这就是飞蛾横定向导航能成功的关键原因。
+        </div>
+
+        <div class="image-container">
+            <img class="dino-image" src="scene_02.webp" alt="飞蛾月光导航">
+        </div>
+        <p class="image-caption">🧭 图2：飞蛾用月光做指南针，沿着直线快乐地飞行</p>
+
+        <div class="divider">✨ ✨ ✨</div>
+
+        <h2>🔬 第三章：一盏灯怎么就成了「陷阱」？</h2>
+        <p>现在让我们来做一个思维实验：</p>
+        <p>想象你是一只飞蛾，你的导航规则是「让光源保持在身体右侧45度角」。如果光源是 <strong>月亮</strong>（非常非常远），你飞一公里，月亮在你右侧的角度还是45度，所以你是沿一条<strong>直线</strong>在飞——完美！</p>
+        <p>但如果光源换成了一盏 <strong>台灯</strong>（就在你身边几米远），情况就完全不同了：</p>
+        <ul style="font-size:20px; line-height:2.2; margin:20px 0; padding-left:30px; color:#2d3436;">
+            <li>你一开始让台灯在你右侧45度</li>
+            <li>你往前飞一小段，台灯的位置就变了——因为它太近了！</li>
+            <li>你赶紧调整方向保持45度，结果飞着飞着就变成了绕着灯<strong>打转</strong></li>
+            <li>最后，你离灯越来越近，直到撞上去——「啪」！</li>
+        </ul>
+        <p>这就是真相：<strong>飞蛾并不是想扑灯，它是被自己用了上亿年的导航系统给「骗」了！</strong>人造灯光很近很近，破坏了飞蛾的平行光假设，让它它绕着灯越绕越近。</p>
+
+        <div class="fun-fact pink">
+            <div class="fun-fact-title">🔎 放大镜观察</div>
+            飞蛾的眼睛是「复眼」，由成千上万个小眼组成，在黑暗中能捕捉非常微弱的光，比人类灵敏几千倍！但复眼分不清远近，所以飞蛾无法判断人间的灯和月亮的差别。
+        </div>
+
+        <div class="image-container">
+            <img class="dino-image" src="scene_03.webp" alt="飞蛾复眼显微图">
+        </div>
+        <p class="image-caption">🔬 图3：看看飞蛾神奇的复眼和触角，像不像外星科技？</p>
+
+        <div class="divider">✨ ✨ ✨</div>
+
+        <h2>🪲 第四章：不只飞蛾——所有被灯光迷惑的小生命</h2>
+        <p>其实，这个「被灯光骗了」的故事主角不只有飞蛾！</p>
+        <p>很多夜间活动的昆虫都会用类似的方法导航——靠天空中最亮的固定参考物。当人造灯光出现，它们同样会中招：</p>
+        <p>🦟 <strong>蚊子</strong>依靠月光和气味辨别方向，却被路灯扰乱飞行路线，绕来绕去绕到了你家的纱窗上。</p>
+        <p>🐞 <strong>萤火虫</strong>靠闪烁的光信号寻找伴侣，但城市的灯光太亮，让它们根本看不到伙伴发出的微弱求偶闪光——久而久之，萤火虫数量就变少了。</p>
+        <p>🪲 <strong>金龟子和甲虫</strong>也会飞向路灯和建筑物外灯，有些甲虫绕到力竭，掉在地上一动不动。</p>
+        <p>这个现象有个专门的科学名词：<strong>「趋光性」photoaxis</strong>。虽然科学家还在争论具体机制（有横定向说、视盲说、紫外传粉信号说），但有一点是共识：人造灯光对夜行昆虫的生活造成了巨大的影响。</p>
+
+        <div class="fun-fact">
+            <div class="fun-fact-title">📊 数据小窗</div>
+            研究估计，一盏普通的路灯一年能杀死大约 150 只夜行昆虫！在世界各地加起来，每年有数以亿计的小虫子因为人造光而死亡或迷路。
+        </div>
+
+        <div class="image-container">
+            <img class="dino-image" src="scene_04.webp" alt="不同昆虫围灯">
+        </div>
+        <p class="image-caption">🪲 图4：不同昆虫围在不同光源旁边，它们都被光「骗」了</p>
+
+        <div class="divider">✨ ✨ ✨</div>
+
+        <h2>🌟 第五章：我们能帮飞蛾做些什么？</h2>
+        <p>知道了真相之后，我们就可以做点什么来帮助这些夜晚的小居民啦！</p>
+        <p>✅ <strong>关掉不需要的户外灯：</strong>睡觉前看看窗外，有没有一直亮着的花园灯或走廊灯？如果不需要，关掉它！</p>
+        <p>💛 <strong>使用黄光灯泡：</strong>研究发现，暖黄光（低色温）比冷白光（高色温）对昆虫的吸引力小很多。有的黄光「驱虫灯泡」可以减少80%以上的昆虫聚集。</p>
+        <p>🔦 <strong>用感应灯代替常亮灯：</strong>让灯只有人经过时才亮起，这样既省电又保护昆虫。</p>
+        <p>🌿 <strong>在花园角落留一片黑暗区：</strong>给夜行小昆虫一个安全的空间，它们也是大自然食物链中重要的一环——没有飞蛾，很多鸟儿和小蝙蝠就没有晚餐了！</p>
+        <p>下一次看到飞蛾在灯旁打转，你就知道：<strong>这不是它笨，而是它导航太厉害了——厉害到把一盏台灯当成了月亮呢。</strong></p>
+
+        <div class="image-container">
+            <img class="dino-image" src="scene_05.webp" alt="温馨保护飞蛾场景">
+        </div>
+        <p class="image-caption">🌟 图5：关掉多余的灯，用暖黄光，飞蛾们也会感谢你的！</p>
+
+        <div class="divider">✨ ✨ ✨</div>
+
+        <div class="quiz-section">
+            <div class="quiz-title">🎯 考考你！</div>
+            <div class="quiz-question">
+                <strong>1. 飞蛾在人类发明电灯以前，用什么东西来导航？</strong><br>
+                A. 北极星 &nbsp; B. 月亮 &nbsp; C. 地图 &nbsp; D. 听声音
+            </div>
+            <div class="quiz-question">
+                <strong>2. 「横定向飞行法」是什么意思？</strong><br>
+                A. 横着飞 &nbsp; B. 让光源保持在身体的固定角度 &nbsp; C. 只看左边 &nbsp; D. 飞Z字形
+            </div>
+            <div class="quiz-question">
+                <strong>3. 为什么月光导航对台灯不管用？</strong><br>
+                A. 台灯太暗 &nbsp; B. 台灯太近，角度会变化 &nbsp; C. 飞蛾没睡醒 &nbsp; D. 台灯颜色不对
+            </div>
+            <div class="quiz-question">
+                <strong>4. 下面哪种做法能帮助夜行昆虫？</strong><br>
+                A. 把灯开得更亮 &nbsp; B. 用暖黄光灯泡 &nbsp; C. 整夜开户外灯 &nbsp; D. 用白色LED灯
+            </div>
+            <div class="quiz-question">
+                <strong>5. 昆虫趋光现象的科学名词叫什么？</strong><br>
+                A. 趋光性 &nbsp; B. 趋暗性 &nbsp; C. 趋热性 &nbsp; D. 趋水性
+            </div>
+        </div>
+
+        <div class="ending">
+            <h3>—— 完 ——</h3>
+            <p>谢谢阅读！下次夏夜见到飞蛾绕灯，你已经知道它的秘密啦！</p>
+            <p style="margin-top: 10px; font-size: 14px; color: #b2bec3;">本故事由 AI 助手小龙为小朋友精心制作 🐉</p>
+            <div style="text-align: left; margin-top: 15px;">
+                <a href="../index.html" class="back-home-btn">🏠 返回首页</a>
+            </div>
+        </div>
+    </div>
+
+<!-- rourou-home-btn:start -->
+<style>
+#rourou-home-btn{position:fixed;left:14px;bottom:calc(14px + env(safe-area-inset-bottom,0px));z-index:9999;
+display:inline-flex;align-items:center;gap:6px;padding:10px 18px;border-radius:999px;
+background:rgba(255,255,255,0.92);color:#2d3436;font-size:15px;font-weight:600;
+text-decoration:none;box-shadow:0 4px 14px rgba(0,0,0,0.18);border:1px solid rgba(0,0,0,0.08);
+-webkit-backdrop-filter:blur(4px);backdrop-filter:blur(4px);transition:transform .15s,background .15s;}
+#rourou-home-btn:hover{background:#fff;transform:translateY(-2px);}
+@media (max-width:600px){#rourou-home-btn{padding:9px 14px;font-size:13px;left:10px;bottom:calc(10px + env(safe-area-inset-bottom,0px));}}
+</style>
+<a id="rourou-home-btn" href="../index.html">🏠 首页</a>
+<!-- rourou-home-btn:end -->
+</body>
+</html>

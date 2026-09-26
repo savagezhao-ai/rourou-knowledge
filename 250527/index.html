@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>昆虫的秘密：小小身体的超级力量 🐛🦋</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: "Microsoft YaHei", "PingFang SC", sans-serif;
+            background: linear-gradient(180deg, #1a5e1a 0%, #2ecc71 15%, #f39c12 40%, #e67e22 60%, #8e44ad 80%, #2d1b69 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        .container {
+            max-width: 850px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 30px;
+            padding: 40px;
+            box-shadow: 0 25px 80px rgba(0,0,0,0.25);
+        }
+        .header {
+            text-align: center;
+            padding: 35px 20px;
+            background: linear-gradient(135deg, #27ae60 0%, #f39c12 50%, #8e44ad 100%);
+            border-radius: 20px;
+            margin-bottom: 30px;
+            position: relative;
+            overflow: hidden;
+        }
+        .header h1 {
+            font-size: 38px;
+            color: white;
+            text-shadow: 3px 3px 6px rgba(0,0,0,0.3);
+            position: relative;
+        }
+        .subtitle {
+            font-size: 20px;
+            color: rgba(255,255,255,0.95);
+            position: relative;
+        }
+        h2 {
+            font-size: 28px;
+            color: white;
+            margin: 40px 0 20px;
+            padding: 15px 25px;
+            background: linear-gradient(90deg, #27ae60 0%, #f39c12 50%, #8e44ad 100%);
+            border-radius: 15px;
+            display: inline-block;
+        }
+        p {
+            font-size: 20px;
+            line-height: 2;
+            color: #2d3436;
+            margin-bottom: 20px;
+            text-align: justify;
+        }
+        .image-container {
+            width: 100%;
+            margin: 30px 0;
+            text-align: center;
+        }
+        .dino-image {
+            width: 100%;
+            border-radius: 20px;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+        }
+        .image-caption {
+            color: #636e72;
+            font-size: 16px;
+            margin-top: 15px;
+            font-style: italic;
+            background: #dfe6e9;
+            display: inline-block;
+            padding: 8px 20px;
+            border-radius: 20px;
+        }
+        .fun-fact {
+            background: linear-gradient(135deg, #27ae60 0%, #2ecc71 100%);
+            color: white;
+            padding: 25px;
+            border-radius: 20px;
+            margin: 25px 0;
+            font-size: 18px;
+            line-height: 1.8;
+        }
+        .fun-fact.orange { background: linear-gradient(135deg, #f39c12 0%, #f1c40f 100%); color: #2d3436; }
+        .fun-fact.purple { background: linear-gradient(135deg, #8e44ad 0%, #9b59b6 100%); }
+        .fun-fact.pink { background: linear-gradient(135deg, #e84393 0%, #fd79a8 100%); }
+        .fun-fact.blue { background: linear-gradient(135deg, #2980b9 0%, #3498db 100%); }
+        .fun-fact-title { font-size: 22px; font-weight: bold; margin-bottom: 10px; }
+        .divider { text-align: center; font-size: 30px; color: #dfe6e9; margin: 30px 0; }
+        .stat-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin: 25px 0;
+        }
+        .stat-item {
+            background: linear-gradient(135deg, #eafaf1 0%, #abebc6 100%);
+            padding: 20px;
+            border-radius: 15px;
+            text-align: center;
+        }
+        .stat-item .emoji { font-size: 36px; }
+        .stat-item .label { font-weight: bold; color: #27ae60; margin-top: 5px; font-size: 18px; }
+        .stat-item .desc { color: #636e72; font-size: 15px; margin-top: 5px; line-height: 1.5; }
+        .lifecycle-box {
+            background: linear-gradient(135deg, #fef9e7 0%, #fdebd0 100%);
+            padding: 25px;
+            border-radius: 20px;
+            margin: 25px 0;
+            text-align: center;
+        }
+        .lifecycle-step {
+            display: inline-block;
+            width: 22%;
+            vertical-align: top;
+            margin: 0 1%;
+            text-align: center;
+        }
+        .lifecycle-step .emoji { font-size: 40px; }
+        .lifecycle-step .name { font-weight: bold; color: #27ae60; font-size: 16px; margin-top: 5px; }
+        .lifecycle-arrow { display: inline-block; font-size: 24px; color: #f39c12; vertical-align: middle; margin: 0 2px; }
+        .ant-city-box {
+            background: linear-gradient(135deg, #f5f0e1 0%, #e8daef 100%);
+            padding: 25px;
+            border-radius: 20px;
+            margin: 25px 0;
+        }
+        .ant-city-box .title { font-size: 22px; font-weight: bold; color: #8e44ad; margin-bottom: 15px; text-align: center; }
+        .ant-room {
+            display: inline-block;
+            width: 45%;
+            margin: 5px 2%;
+            padding: 12px;
+            background: white;
+            border-radius: 12px;
+            text-align: center;
+            box-shadow: 0 3px 8px rgba(0,0,0,0.08);
+        }
+        .ant-room .emoji { font-size: 28px; }
+        .ant-room .name { font-weight: bold; color: #6c3483; font-size: 15px; }
+        .ant-room .desc { color: #636e72; font-size: 13px; margin-top: 3px; }
+        .quiz-section {
+            background: linear-gradient(135deg, #abebc6 0%, #fdebd0 50%, #e8daef 100%);
+            padding: 30px;
+            border-radius: 20px;
+            margin: 30px 0;
+        }
+        .quiz-title { font-size: 28px; color: #27ae60; text-align: center; margin-bottom: 20px; }
+        .quiz-question {
+            background: white;
+            padding: 20px;
+            border-radius: 15px;
+            margin: 15px 0;
+            font-size: 18px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        .quiz-question .q-num { font-weight: bold; color: #27ae60; font-size: 20px; }
+        .ending {
+            text-align: center;
+            padding: 40px 0;
+            margin-top: 40px;
+            background: linear-gradient(135deg, #27ae60 0%, #f39c12 50%, #8e44ad 100%);
+            border-radius: 20px;
+            color: white;
+        }
+        .ending h3 { font-size: 32px; color: white; }
+        .ending p { text-align: center; font-size: 18px; color: rgba(255,255,255,0.9); }
+        .back-home-btn {
+            display: inline-block;
+            margin-top: 20px;
+            margin-right: auto;
+            padding: 14px 30px;
+            background: rgba(255,255,255,0.2);
+            color: white;
+            text-decoration: none;
+            border-radius: 25px;
+            font-size: 18px;
+            border: 2px solid rgba(255,255,255,0.5);
+            transition: background 0.3s, transform 0.2s;
+        }
+        .back-home-btn:hover {
+            background: rgba(255,255,255,0.35);
+            transform: translateY(-2px);
+        }
+        .back-home-btn:active {
+            transform: translateY(0);
+        }
+        @media (max-width: 600px) {
+            .container { padding: 20px; }
+            h1 { font-size: 28px; }
+            h2 { font-size: 22px; }
+            p { font-size: 16px; }
+            .stat-grid { grid-template-columns: 1fr; }
+            .lifecycle-step { width: 45%; margin: 2px 1%; }
+            .ant-room { width: 95%; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🐛 昆虫的秘密</h1>
+            <p class="subtitle">小小身体的超级力量！🐜🦋🐝</p>
+        </div>
+
+        <!-- 第一章：引入 -->
+        <h2>🔍 昆虫王国：就在你脚下</h2>
+
+        <p>你有没有蹲在草地上，仔细看过脚下的世界？那里有一个你从没注意过的微型王国——蚂蚁排着整齐的队伍搬运食物，蝴蝶在花间翩翩起舞，蜜蜂嗡嗡地忙着采蜜……</p>
+
+        <p>昆虫，是地球上<strong>数量最多、种类最多</strong>的动物！科学家已经发现了超过<strong>100万种</strong>昆虫，而且每年还在发现新的种类！如果把地球上所有的动物放在一起数一数，每5只动物里就有4只是昆虫！</p>
+
+        <p>它们住在沙漠里、雪山上、温泉里、深海中……甚至在你家的厨房里！昆虫能活到今天，靠的可不是运气——它们拥有让人惊叹的超级能力！</p>
+
+        <div class="image-container">
+            <img class="dino-image" src="scene_01.webp" alt="昆虫王国的微观世界">
+            <div class="image-caption">🎨 欢迎来到昆虫王国——一个你脚下的小宇宙！</div>
+        </div>
+
+        <div class="fun-fact">
+            <div class="fun-fact-title">🌍 趣味知识：昆虫占领了地球！</div>
+            在你走一步路的时间里，全世界大约有100亿只昆虫正在活动。如果把全世界的昆虫放在天平的一端，把全人类放在另一端——昆虫比人类重<strong>70倍</strong>！
+        </div>
+
+        <div class="divider">🐛 🦋 🐝</div>
+
+        <!-- 第二章：超能力 -->
+        <h2>💪 超能力大比拼：昆虫的惊人力量</h2>
+
+        <p>别看昆虫个头小，它们的力量大到让你不敢相信！</p>
+
+        <div class="stat-grid">
+            <div class="stat-item">
+                <div class="emoji">🐜</div>
+                <div class="label">蚂蚁举重王</div>
+                <div class="desc">能举起自身体重50倍的东西！相当于你举起一辆汽车！</div>
+            </div>
+            <div class="stat-item">
+                <div class="emoji">🦗</div>
+                <div class="label">跳蚤跳高冠军</div>
+                <div class="desc">能跳自身高度的100倍！相当于你跳过埃菲尔铁塔！</div>
+            </div>
+            <div class="stat-item">
+                <div class="emoji">🪲</div>
+                <div class="label">屎壳郎推球手</div>
+                <div class="desc">能推动自身体重1140倍的粪球！相当于你推走6辆双层巴士！</div>
+            </div>
+            <div class="stat-item">
+                <div class="emoji">🦟</div>
+                <div class="label">摇蚊抗冻侠</div>
+                <div class="desc">能在零下60°C冻成冰，化冻后还能活过来！</div>
+            </div>
+        </div>
+
+        <div class="image-container">
+            <img class="dino-image" src="scene_02.webp" alt="昆虫的超能力">
+            <div class="image-caption">🎨 昆虫的超能力——小小身体，大大能量！</div>
+        </div>
+
+        <p>昆虫为什么这么厉害？秘密在于它们的<strong>外骨骼</strong>！和人类不同，昆虫的"骨头"长在身体外面，像穿了一副铠甲。这副铠甲既保护内脏，又提供了强大的支撑力。而且昆虫的肌肉按体重比例比人类强壮得多——因为它们不需要花能量维持体温！</p>
+
+        <p>还有一种叫<strong>水熊虫</strong>的微小生物（虽然严格来说不是昆虫），它的生存能力更夸张：能承受零下272°C的极寒、151°C的高温、甚至是太空的真空环境！科学家曾把水熊虫放到太空中，10天后收回——它们居然还活着！</p>
+
+        <div class="fun-fact orange">
+            <div class="fun-fact-title">🏃 趣味知识：昆虫的速度</div>
+            如果按身体长度来算，蜈蚣的远亲——蜚蠊目的一种小虫，每秒能跑自身体长的50倍！换算成人类，就相当于你以每小时480公里的速度奔跑——比高铁还快！
+        </div>
+
+        <div class="divider">🐛 🦋 🐝</div>
+
+        <!-- 第三章：变态发育 -->
+        <h2>🦋 魔法变身：昆虫的变态发育</h2>
+
+        <p>你可能听说过"毛毛虫变成蝴蝶"的故事，但这到底是怎样一个神奇的过程呢？</p>
+
+        <p>昆虫的变身叫<strong>"变态发育"</strong>，分为两种：</p>
+
+        <p><strong>完全变态</strong>——经历四个阶段：</p>
+
+        <div class="lifecycle-box">
+            <div class="lifecycle-step">
+                <div class="emoji">🥚</div>
+                <div class="name">卵</div>
+            </div>
+            <span class="lifecycle-arrow">→</span>
+            <div class="lifecycle-step">
+                <div class="emoji">🐛</div>
+                <div class="name">幼虫</div>
+            </div>
+            <span class="lifecycle-arrow">→</span>
+            <div class="lifecycle-step">
+                <div class="emoji">🫧</div>
+                <div class="name">蛹</div>
+            </div>
+            <span class="lifecycle-arrow">→</span>
+            <div class="lifecycle-step">
+                <div class="emoji">🦋</div>
+                <div class="name">成虫</div>
+            </div>
+        </div>
+
+        <div class="image-container">
+            <img class="dino-image" src="scene_03.webp" alt="昆虫的变态发育">
+            <div class="image-caption">🎨 从毛毛虫到蝴蝶——大自然最神奇的变身术！</div>
+        </div>
+
+        <p>蝴蝶、蜜蜂、甲虫都是完全变态。最神奇的是<strong>蛹的阶段</strong>——毛毛虫进入蛹以后，身体会<strong>完全溶解</strong>！没错，变成一锅"细胞汤"！然后特殊的细胞（叫"成虫盘"）会像3D打印机一样，用这些"汤"重新组装出蝴蝶的翅膀、腿、眼睛……整个变身过程就像魔法一样！</p>
+
+        <p><strong>不完全变态</strong>——只有三个阶段：卵→若虫→成虫。若虫长得像成虫的缩小版，每次蜕皮就长大一点。蝗虫、蜻蜓、蟑螂都是不完全变态。</p>
+
+        <div class="fun-fact purple">
+            <div class="fun-fact-title">🔄 趣味知识：蜕皮的秘密</div>
+            昆虫的外骨骼不能跟着身体一起长大，所以它们必须<strong>蜕皮</strong>！蜕皮时，昆虫会长出一件新的更大的"铠甲"。毛毛虫在变成蛹之前要蜕皮4-5次。蝉的幼虫在地下生活2-17年（不同种类不同），期间蜕皮5次，最后爬出地面再蜕一次皮，变成会飞的成年蝉！
+        </div>
+
+        <div class="divider">🐛 🦋 🐝</div>
+
+        <!-- 第四章：蚂蚁城市 -->
+        <h2>🏗️ 蚂蚁城市：地下的大都会</h2>
+
+        <p>如果你能缩小到蚂蚁那么小，走进一个蚂蚁窝，你会被眼前的景象惊呆——那简直是一座<strong>地下大都市</strong>！</p>
+
+        <div class="ant-city-box">
+            <div class="title">🏛️ 蚂蚁城市的房间</div>
+            <div class="ant-room"><div class="emoji">👑</div><div class="name">女王室</div><div class="desc">蚁后住在这里，每天产几千颗卵</div></div>
+            <div class="ant-room"><div class="emoji">🍼</div><div class="name">育婴室</div><div class="desc">工蚁照顾卵和幼虫</div></div>
+            <div class="ant-room"><div class="emoji">🥜</div><div class="name">粮仓</div><div class="desc">储存种子和其他食物</div></div>
+            <div class="ant-room"><div class="emoji">🍄</div><div class="name">蘑菇园</div><div class="desc">切叶蚁种的真菌农场</div></div>
+            <div class="ant-room"><div class="emoji">🗑️</div><div class="name">垃圾场</div><div class="desc">专门堆放废料的房间</div></div>
+            <div class="ant-room"><div class="emoji">🪖</div><div class="name">兵营</div><div class="desc">兵蚁驻守的入口</div></div>
+        </div>
+
+        <div class="image-container">
+            <img class="dino-image" src="scene_04.webp" alt="蚂蚁城市的地下剖面">
+            <div class="image-caption">🎨 蚂蚁城市——比人类城市还古老的社会！</div>
+        </div>
+
+        <p>最大的蚂蚁窝可以深达<strong>8米</strong>（相当于两层楼！），住着<strong>几百万只</strong>蚂蚁。蚂蚁用信息素（一种化学气味）来交流——它们用触角"闻"路，留下气味标记告诉同伴"这里有食物！"或"危险！快跑！"</p>
+
+        <p>最厉害的是，蚂蚁社会中每个成员都有自己的职业：<strong>蚁后</strong>负责产卵，<strong>工蚁</strong>负责找食物和照顾宝宝，<strong>兵蚁</strong>负责保卫家园，<strong>雄蚁</strong>负责交配。它们不需要老板指挥，却能完美配合——这叫<strong>自组织</strong>，科学家至今还在研究蚂蚁是怎么做到的！</p>
+
+        <div class="fun-fact pink">
+            <div class="fun-fact-title">🧮 趣味知识：蚂蚁的数学课</div>
+            科学家发现，蚂蚁居然会算数！当蚂蚁发现食物后，它们能计算出回窝的最短路径。阿根廷蚁甚至能根据食物的数量来决定派出多少工蚁——食物越多，派的蚁越多。这就像一个天然的物流系统！
+        </div>
+
+        <div class="divider">🐛 🦋 🐝</div>
+
+        <!-- 第五章：昆虫启发 -->
+        <h2>🌟 向昆虫学习：小虫子的大发明</h2>
+
+        <p>你可能会觉得昆虫又小又不起眼，但人类从它们身上学到了非常多东西！很多改变世界的发明，灵感都来自昆虫：</p>
+
+        <p><strong>🚁 直升机 → 蜻蜓</strong>：蜻蜓是自然界最厉害的飞行家！它能悬停、倒飞、急转弯——直升机的设计师就是从蜻蜓身上获得了灵感。蜻蜓的翅膀前缘有一块加厚的"翅痣"，能防止翅膀颤动，飞机设计师也借鉴了这个结构！</p>
+
+        <p><strong>📷 广角镜头 → 昆虫复眼</strong>：昆虫的复眼由几千个小眼组成，能看到几乎360度的画面！科学家根据复眼的结构，发明了超广角相机和全景监控设备。</p>
+
+        <p><strong>🧲 爬墙机器人 → 苍蝇脚</strong>：苍蝇能在天花板和玻璃上行走，是因为脚底有无数细小的毛，能产生分子级的吸附力。科学家模仿这个原理，发明了能爬墙的机器人！</p>
+
+        <div class="image-container">
+            <img class="dino-image" src="scene_05.webp" alt="昆虫启发的人类发明">
+            <div class="image-caption">🎨 从昆虫身上学习——小虫子是大发明家！</div>
+        </div>
+
+        <p><strong>💊 抗生素 → 昆虫免疫系统</strong>：昆虫虽然小，但它们的免疫系统非常强大。科学家正在研究昆虫体内的抗菌肽，有望开发出新型抗生素，对付那些对传统药物产生抗药性的超级细菌。</p>
+
+        <p><strong>🏗️ 建筑结构 → 蜂巢</strong>：蜜蜂用最少的蜂蜡建造出最坚固的六边形蜂巢，这种结构被建筑师广泛运用——既省材料又超坚固！北京的"水立方"游泳馆就借鉴了蜂巢结构。</p>
+
+        <p>下次你看到一只小虫子的时候，别急着走开——仔细看看它，你面前的可能是一位了不起的"工程师"、"飞行员"或"建筑师"！昆虫虽然小，但它们的秘密值得我们用一辈子去探索。谁知道呢，也许下一个改变世界的大发明，灵感就藏在一只小小的虫子身上！</p>
+
+        <div class="fun-fact blue">
+            <div class="fun-fact-title">🔬 趣味知识：仿生学——向大自然偷师</div>
+            人类从大自然中学习来发明新技术，这门学问叫<strong>仿生学</strong>。除了昆虫，壁虎的脚启发了不干胶，鲨鱼皮启发了速泳衣，翠鸟的嘴启发了高铁车头……大自然已经花了38亿年做实验，我们只需要认真观察就能学到很多！
+        </div>
+
+        <div class="divider">🐛 🦋 🐝</div>
+
+        <!-- 互动测试 -->
+        <div class="quiz-section">
+            <div class="quiz-title">🧠 知识大挑战！你学会了吗？</div>
+            <div class="quiz-question"><span class="q-num">1️⃣</span> 地球上数量最多的动物类型是什么？<br>A. 哺乳动物 &nbsp;&nbsp; B. 鸟类 &nbsp;&nbsp; C. 昆虫 &nbsp;&nbsp; D. 鱼类</div>
+            <div class="quiz-question"><span class="q-num">2️⃣</span> 蚂蚁能举起自身体重多少倍的东西？<br>A. 5倍 &nbsp;&nbsp; B. 20倍 &nbsp;&nbsp; C. 50倍 &nbsp;&nbsp; D. 100倍</div>
+            <div class="quiz-question"><span class="q-num">3️⃣</span> 蝴蝶的变态发育叫什么？<br>A. 不完全变态 &nbsp;&nbsp; B. 完全变态 &nbsp;&nbsp; C. 半变态 &nbsp;&nbsp; D. 渐变态</div>
+            <div class="quiz-question"><span class="q-num">4️⃣</span> 毛毛虫变成蛹后身体会怎样？<br>A. 直接长大翅膀 &nbsp;&nbsp; B. 完全溶解后重新组装 &nbsp;&nbsp; C. 只是睡觉 &nbsp;&nbsp; D. 脱一层皮</div>
+            <div class="quiz-question"><span class="q-num">5️⃣</span> 人类从蜻蜓身上获得了什么发明的灵感？<br>A. 潜水艇 &nbsp;&nbsp; B. 直升机 &nbsp;&nbsp; C. 汽车 &nbsp;&nbsp; D. 火箭</div>
+            <p style="text-align:center; margin-top:20px; color:#27ae60; font-size:16px;">（答案：1-C, 2-C, 3-B, 4-B, 5-B）</p>
+        </div>
+
+        <div class="ending">
+            <h3>—— 完 ——</h3>
+            <p>谢谢阅读！希望你开始喜欢这些小虫子啦！🐛✨</p>
+            <p style="margin-top:10px; font-size:14px; color:rgba(255,255,255,0.7);">本文章由 AI 助手小龙为小朋友精心制作 🐉</p>
+            <div style="text-align: left; margin-top: 15px;">
+                <a href="../index.html" class="back-home-btn">🏠 返回首页</a>
+            </div>
+        </div>
+    </div>
+
+<!-- rourou-home-btn:start -->
+<style>
+#rourou-home-btn{position:fixed;left:14px;bottom:calc(14px + env(safe-area-inset-bottom,0px));z-index:9999;
+display:inline-flex;align-items:center;gap:6px;padding:10px 18px;border-radius:999px;
+background:rgba(255,255,255,0.92);color:#2d3436;font-size:15px;font-weight:600;
+text-decoration:none;box-shadow:0 4px 14px rgba(0,0,0,0.18);border:1px solid rgba(0,0,0,0.08);
+-webkit-backdrop-filter:blur(4px);backdrop-filter:blur(4px);transition:transform .15s,background .15s;}
+#rourou-home-btn:hover{background:#fff;transform:translateY(-2px);}
+@media (max-width:600px){#rourou-home-btn{padding:9px 14px;font-size:13px;left:10px;bottom:calc(10px + env(safe-area-inset-bottom,0px));}}
+</style>
+<a id="rourou-home-btn" href="../index.html">🏠 首页</a>
+<!-- rourou-home-btn:end -->
+</body>
+</html>

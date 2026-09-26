@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>艾宾浩斯记忆法</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: "Microsoft YaHei", "PingFang SC", sans-serif;
+            background: linear-gradient(180deg, #ffeaa7 0%, #fab1a0 30%, #ff7675 60%, #fd79a8 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        .container {
+            max-width: 850px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 30px;
+            padding: 40px;
+            box-shadow: 0 25px 80px rgba(0,0,0,0.15);
+        }
+        .header {
+            text-align: center;
+            padding: 30px 0;
+            background: linear-gradient(135deg, #ff6b6b 0%, #feca57 50%, #48dbfb 100%);
+            border-radius: 20px;
+            margin-bottom: 30px;
+        }
+        .header h1 {
+            font-size: 48px;
+            color: white;
+            text-shadow: 3px 3px 6px rgba(0,0,0,0.2);
+        }
+        .subtitle {
+            font-size: 20px;
+            color: rgba(255,255,255,0.95);
+        }
+        h2 {
+            font-size: 32px;
+            color: #2d3436;
+            margin: 40px 0 20px;
+            padding: 15px 25px;
+            background: linear-gradient(90deg, #ff9ff3 0%, #feca57 100%);
+            border-radius: 15px;
+            display: inline-block;
+        }
+        p {
+            font-size: 20px;
+            line-height: 2;
+            color: #2d3436;
+            margin-bottom: 20px;
+            text-align: justify;
+        }
+        .image-container {
+            width: 100%;
+            margin: 30px 0;
+            text-align: center;
+        }
+        .dino-image {
+            width: 100%;
+            border-radius: 20px;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.2);
+        }
+        .image-caption {
+            color: #636e72;
+            font-size: 16px;
+            margin-top: 15px;
+            font-style: italic;
+            background: #ffeaa7;
+            display: inline-block;
+            padding: 8px 20px;
+            border-radius: 20px;
+        }
+        .fun-fact {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 25px;
+            border-radius: 20px;
+            margin: 25px 0;
+            font-size: 18px;
+            line-height: 1.8;
+        }
+        .fun-fact.pink {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+        }
+        .fun-fact.green {
+            background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);
+        }
+        .fun-fact.orange {
+            background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);
+        }
+        .fun-fact-title {
+            font-size: 22px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        .divider {
+            text-align: center;
+            font-size: 30px;
+            color: #ddd;
+            margin: 30px 0;
+        }
+        .quiz-section {
+            background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);
+            padding: 30px;
+            border-radius: 20px;
+            margin: 30px 0;
+        }
+        .quiz-title {
+            font-size: 28px;
+            color: #e17055;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .quiz-question {
+            background: white;
+            padding: 20px;
+            border-radius: 15px;
+            margin: 15px 0;
+            font-size: 18px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        .ending {
+            text-align: center;
+            padding: 40px 0;
+            margin-top: 40px;
+            background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);
+            border-radius: 20px;
+        }
+        .ending h3 { font-size: 32px; color: #2d3436; }
+        .ending p { text-align: center; font-size: 18px; color: #636e72; }
+        .back-home-btn {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 14px 30px;
+            background: rgba(0,0,0,0.08);
+            color: #2d3436;
+            text-decoration: none;
+            border-radius: 25px;
+            font-size: 18px;
+            border: 2px solid rgba(0,0,0,0.15);
+            transition: background 0.3s, transform 0.2s;
+        }
+        .back-home-btn:hover {
+            background: rgba(0,0,0,0.15);
+            transform: translateY(-2px);
+        }
+        .back-home-btn:active {
+            transform: translateY(0);
+        }
+        @media (max-width: 600px) {
+            .container { padding: 20px; }
+            h1 { font-size: 32px; }
+            h2 { font-size: 24px; }
+            p { font-size: 18px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>艾宾浩斯记忆法</h1>
+            <p class="subtitle">跟「遗忘」赛跑的秘诀</p>
+        </div>
+
+        <h2>第一章：刚背完就忘了？</h2>
+        <p>你有没有过这样的经历：昨天背得滚瓜烂熟的课文，今天早上却想不起来了；考试前临时抱佛脚背的单词，考完没几天就忘得干干净净。明明很努力地背了，为什么还是会忘？</p>
+        <p>别着急，这不是你「记性差」，而是我们的大脑天生就是这样工作的——它会<strong>遗忘</strong>。遗忘不是坏事的全部，它其实是我们大脑在「清理仓库」，把不常用的东西慢慢收起来。</p>
+        <p>一百多年前，有一位德国科学家叫<strong>艾宾浩斯</strong>，他专门研究「人是怎么忘记事情的」。他做了很多有趣的实验，最后发现了一个了不起的规律。这个规律，就是我们今天要讲的「艾宾浩斯记忆法」。学会了它，你就能让知识记得更牢、忘得更慢。</p>
+        <div class="image-container">
+            <img class="dino-image" src="scene_01.webp" alt="遗忘">
+            <div class="image-caption">刚背完的知识，会像沙漏一样慢慢漏掉</div>
+        </div>
+        <div class="fun-fact pink">
+            <div class="fun-fact-title">🌟 趣味知识</div>
+            艾宾浩斯做实验用的材料特别「无聊」——他专门造了一堆没有意义的音节，比如「ZOF」「QAB」这样的组合，然后逼自己去背它们。为什么要这么麻烦呢？因为他想测出「纯记忆」，不被「有意义的东西」干扰。真是个又认真又可爱的科学家！
+        </div>
+
+        <h2>第二章：遗忘曲线——记忆是怎么溜走的</h2>
+        <p>艾宾浩斯发现，人记住一样东西后，遗忘的速度并不是均匀的，而是「先快后慢」。他画了一条曲线，这条曲线后来成了心理学里最有名的曲线之一——<strong>遗忘曲线</strong>。</p>
+        <p>这条曲线告诉我们：刚学完的 20 分钟里，你可能已经忘掉了大约 40% 的内容；过了一天，会忘掉大约 70%；之后遗忘的速度才慢慢变慢。也就是说，<strong>遗忘最快的时候，恰恰是刚学完之后的那一小段时间</strong>。</p>
+        <p>为什么会这样呢？我们可以把记忆想象成沙滩上的脚印。刚踩下去的时候，脚印又深又清楚；可是海浪一遍遍冲过来，脚印很快就变浅了。如果过一阵子你回来再补踩几下，脚印就会重新变深，而且比原来更牢固。记忆也是这样，需要「补一补」。</p>
+        <div class="image-container">
+            <img class="dino-image" src="scene_02.webp" alt="遗忘曲线">
+            <div class="image-caption">遗忘曲线：一开始掉得飞快，后来慢慢变平</div>
+        </div>
+        <div class="fun-fact green">
+            <div class="fun-fact-title">🔬 趣味知识</div>
+            遗忘曲线的「先快后慢」，其实对我们是个大好消息！因为它意味着，我们只要抓住「忘得最快」的那几个时间点，及时复习一下，就能把大部分记忆救回来。就像在脚印快被冲掉前，赶紧补踩一脚。
+        </div>
+
+        <h2>第三章：为什么「间隔复习」最有效？</h2>
+        <p>既然遗忘是「先快后慢」的，那最好的办法就很清楚了：在快要忘记的时候，及时复习。这就是艾宾浩斯记忆法的核心——<strong>在正确的时间点复习</strong>。</p>
+        <p>你可能会想：那我干脆一口气背一百遍，不就不会忘了吗？其实不一定。科学家发现，死记硬背很多遍，效果反而不如「分几次、隔一段时间」复习来得好。因为大脑需要一点时间，把新知识「搬」进长期记忆的仓库里，这个过程叫<strong>巩固</strong>。就像盖房子，水泥需要时间慢慢变硬，急不得。</p>
+        <p>而且，每次「快要忘记却还没忘」的时候复习，大脑会认为这个知识「很重要，得存好」，于是把它记得更牢。这就像锻炼肌肉：每次练到有点累，肌肉才会变强。太轻松了没效果，太用力了又容易受伤。</p>
+        <div class="image-container">
+            <img class="dino-image" src="scene_03.webp" alt="间隔复习">
+            <div class="image-caption">在正确的时间点复习，记忆越练越牢</div>
+        </div>
+        <div class="fun-fact orange">
+            <div class="fun-fact-title">🌱 趣味知识</div>
+            有人做过实验：同样背 100 个单词，一组人一口气背 10 遍，另一组人分 5 天、每天背 2 遍。过了一个月再测试，分几天背的那组人记住的单词，竟然多得多！「少食多餐」的道理，用在记忆上特别管用。
+        </div>
+
+        <h2>第四章：艾宾浩斯的「复习时间表」</h2>
+        <p>艾宾浩斯还给大家总结了一张「复习时间表」，告诉我们学完一个新知识后，最好在哪些时间点复习。常见的时间点是这样的：</p>
+        <p>学完后的<strong> 20 分钟</strong>复习第一次，然后<strong> 1 小时</strong>、<strong> 1 天</strong>、<strong> 3 天</strong>、<strong> 7 天</strong>、<strong> 30 天</strong>，各复习一次。每一次复习，都是在「遗忘曲线」快要往下掉的时候，把它拉回来。</p>
+        <p>当然，我们不用真的掐着秒表去背。对小朋友来说，更实用的办法是：<strong>当天学、当天复习</strong>，第二天再复习一次，过两三天再看一眼，一周后再巩固一下。这样一轮下来，知识就会牢牢地「住」进你的脑子里，想忘都难。</p>
+        <p>你还可以给自己做一个「复习小日历」，在日历上标好哪天该复习哪一课。坚持几次，你就会发现，自己好像变得「记性超好」啦！</p>
+        <div class="image-container">
+            <img class="dino-image" src="scene_04.webp" alt="复习时间表">
+            <div class="image-caption">在日历上标好复习时间，按时「打卡」</div>
+        </div>
+        <div class="fun-fact">
+            <div class="fun-fact-title">💰 趣味知识</div>
+            现在很多背单词的 App，里面就藏着「艾宾浩斯复习法」！它们会偷偷算好你该在什么时候复习哪个单词，然后在合适的时间提醒你。所以你会发现，用这些 App 背单词，好像记得特别牢——秘密就在这里。
+        </div>
+
+        <h2>第五章：把记忆法用起来</h2>
+        <p>学了这么多，最重要的还是「用起来」。下次背课文、背单词、背公式的时候，你可以试试这几个小步骤：</p>
+        <p>第一步，<strong>先专心学一遍</strong>，搞清楚意思，而不是死记硬背——理解了的东西，本来就不容易忘。</p>
+        <p>第二步，<strong>当天晚上复习一次</strong>，趁「脚印」还新的时候补一脚。</p>
+        <p>第三步，<strong>隔一两天再复习一次</strong>，把快忘记的部分捡回来。</p>
+        <p>第四步，<strong>一周后再巩固一次</strong>，让知识真正搬进「长期记忆仓库」。</p>
+        <p>记住，遗忘并不可怕，它是大脑的正常工作。聪明的人不是「不会忘」，而是懂得在正确的时间「复习」。学会了艾宾浩斯记忆法，你就等于拿到了一把对抗遗忘的金钥匙！</p>
+        <div class="image-container">
+            <img class="dino-image" src="scene_05.webp" alt="记忆钥匙">
+            <div class="image-caption">掌握了复习节奏，就掌握了记忆的金钥匙</div>
+        </div>
+        <div class="fun-fact green">
+            <div class="fun-fact-title">🚀 趣味知识</div>
+            科学家发现，睡眠对记忆特别重要！白天学的东西，会在你睡觉的时候被大脑「整理归档」。所以，保证充足的睡眠，再配合艾宾浩斯的复习节奏，你的记忆会变得更强。早点睡觉，也是在帮自己「记东西」哦！
+        </div>
+
+        <div class="divider">✿ ✿ ✿</div>
+
+        <div class="quiz-section">
+            <div class="quiz-title">🎯 考考你（互动小测试）</div>
+            <div class="quiz-question">
+                <strong>第1题：</strong>遗忘曲线告诉我们，人遗忘的速度是怎样的？<br>
+                A. 先慢后快　B. 先快后慢　C. 一直很快　D. 一直很慢
+            </div>
+            <div class="quiz-question">
+                <strong>第2题：</strong>遗忘最快的时候，是在什么时候？<br>
+                A. 学完很久以后　B. 刚学完不久　C. 睡觉时　D. 考试时
+            </div>
+            <div class="quiz-question">
+                <strong>第3题：</strong>「间隔复习」为什么比「一口气背很多遍」更有效？<br>
+                A. 因为省时间　B. 因为大脑需要时间巩固，快忘时复习记得更牢　C. 因为更好玩　D. 因为不用动脑
+            </div>
+            <div class="quiz-question">
+                <strong>第4题：</strong>下面哪个是艾宾浩斯推荐的复习时间点？<br>
+                A. 学完 100 年后再看　B. 学完后 1 天、3 天、7 天等　C. 从来不复习　D. 只在考试前一秒看
+            </div>
+            <div class="quiz-question">
+                <strong>第5题：</strong>关于遗忘，下面哪种说法是对的？<br>
+                A. 遗忘说明记性差、没办法　B. 遗忘是大脑正常工作，及时复习就能记住　C. 聪明人永远不会忘　D. 遗忘没有规律
+            </div>
+            <p style="text-align:center; font-size:16px; color:#e17055; margin-top:10px;">（答案：B、B、B、B、B。你都答对了吗？）</p>
+        </div>
+
+        <div class="ending">
+            <h3>—— 完 ——</h3>
+            <p>谢谢阅读！希望你学到了很多知识！</p>
+            <p style="margin-top: 10px; font-size: 14px; color: #b2bec3;">本故事由 AI 助手小龙为小朋友精心制作 🐉</p>
+            <div style="text-align: left; margin-top: 15px;">
+                <a href="../index.html" class="back-home-btn">🏠 返回首页</a>
+            </div>
+        </div>
+    </div>
+
+<!-- rourou-home-btn:start -->
+<style>
+#rourou-home-btn{position:fixed;left:14px;bottom:calc(14px + env(safe-area-inset-bottom,0px));z-index:9999;
+display:inline-flex;align-items:center;gap:6px;padding:10px 18px;border-radius:999px;
+background:rgba(255,255,255,0.92);color:#2d3436;font-size:15px;font-weight:600;
+text-decoration:none;box-shadow:0 4px 14px rgba(0,0,0,0.18);border:1px solid rgba(0,0,0,0.08);
+-webkit-backdrop-filter:blur(4px);backdrop-filter:blur(4px);transition:transform .15s,background .15s;}
+#rourou-home-btn:hover{background:#fff;transform:translateY(-2px);}
+@media (max-width:600px){#rourou-home-btn{padding:9px 14px;font-size:13px;left:10px;bottom:calc(10px + env(safe-area-inset-bottom,0px));}}
+</style>
+<a id="rourou-home-btn" href="../index.html">🏠 首页</a>
+<!-- rourou-home-btn:end -->
+</body>
+</html>

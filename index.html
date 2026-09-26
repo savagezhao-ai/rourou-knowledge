@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🌟 肉肉的知识宝库</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: "Microsoft YaHei","PingFang SC","Hiragino Sans GB",sans-serif; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); min-height: 100vh; padding: 20px; }
+        .container { max-width: 900px; margin: 0 auto; }
+        .header { text-align: center; padding: 40px 20px; background: rgba(255,255,255,0.95); border-radius: 30px; margin-bottom: 25px; box-shadow: 0 20px 60px rgba(0,0,0,0.2); position: relative; overflow: hidden; }
+        .header::before { content: "📚"; position: absolute; font-size: 100px; opacity: 0.1; top: -20px; right: -20px; transform: rotate(-15deg); }
+        .header h1 { font-size: 42px; color: #764ba2; margin-bottom: 10px; text-shadow: 2px 2px 4px rgba(0,0,0,0.1); }
+        .header .subtitle { font-size: 18px; color: #999; margin-bottom: 20px; }
+        .header .stats { display: flex; justify-content: center; gap: 30px; margin-top: 20px; }
+        .stat-item { text-align: center; }
+        .stat-number { font-size: 32px; font-weight: bold; color: #667eea; }
+        .stat-label { font-size: 14px; color: #999; }
+
+        /* 分类筛选栏 */
+        .filter-bar { display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; margin-bottom: 25px; }
+        .filter-btn { padding: 10px 20px; border-radius: 25px; border: 2px solid rgba(255,255,255,0.4); background: rgba(255,255,255,0.15); color: #fff; font-size: 15px; cursor: pointer; transition: all 0.2s; backdrop-filter: blur(5px); white-space: nowrap; }
+        .filter-btn:hover { background: rgba(255,255,255,0.3); transform: translateY(-2px); }
+        .filter-btn.active { background: #fff; color: #764ba2; border-color: #fff; font-weight: bold; box-shadow: 0 4px 15px rgba(0,0,0,0.2); }
+        .filter-btn .count { font-size: 12px; opacity: 0.7; margin-left: 4px; }
+
+        .article-list { display: flex; flex-direction: column; gap: 20px; }
+        .article-card { background: rgba(255,255,255,0.95); border-radius: 20px; padding: 25px; box-shadow: 0 10px 40px rgba(0,0,0,0.15); transition: transform 0.3s ease, box-shadow 0.3s ease; cursor: pointer; text-decoration: none; color: inherit; display: block; }
+        .article-card:hover { transform: translateY(-5px); box-shadow: 0 15px 50px rgba(0,0,0,0.2); }
+        .article-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 15px; }
+        .article-title { font-size: 24px; color: #2d3436; font-weight: bold; display: flex; align-items: center; gap: 10px; }
+        .article-date { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 8px 15px; border-radius: 20px; font-size: 14px; white-space: nowrap; }
+        .article-desc { font-size: 16px; color: #636e72; line-height: 1.6; margin-bottom: 15px; }
+        .article-tags { display: flex; gap: 10px; flex-wrap: wrap; }
+        .tag { padding: 5px 12px; border-radius: 15px; font-size: 13px; }
+        .tag.cat-earth { background: #55efc4; color: #00695c; }
+        .tag.cat-tech { background: #74b9ff; color: #01579b; }
+        .tag.cat-transport { background: #fdcb6e; color: #e65100; }
+        .tag.cat-math { background: #fd79a8; color: #880e4f; }
+        .tag.cat-safety { background: #ff7675; color: #7f0000; }
+        .tag.cat-health { background: #a29bfe; color: #311b92; }
+        .tag.cat-toy { background: #6fe3e1; color: #00494d; }
+
+        .empty-state { text-align: center; padding: 60px 20px; background: rgba(255,255,255,0.95); border-radius: 20px; box-shadow: 0 10px 40px rgba(0,0,0,0.15); }
+        .empty-state .icon { font-size: 80px; margin-bottom: 20px; }
+        .empty-state h3 { font-size: 24px; color: #2d3436; margin-bottom: 10px; }
+        .empty-state p { font-size: 16px; color: #636e72; }
+        .footer { text-align: center; padding: 30px; color: rgba(255,255,255,0.8); font-size: 14px; }
+        .refresh-btn { position: fixed; top: 25px; left: 25px; width: 50px; height: 50px; border-radius: 50%; background: rgba(255,255,255,0.9); border: none; font-size: 24px; cursor: pointer; box-shadow: 0 4px 15px rgba(0,0,0,0.2); z-index: 1000; transition: transform 0.2s, box-shadow 0.2s; display: flex; align-items: center; justify-content: center; }
+        .refresh-btn:hover { transform: scale(1.1); box-shadow: 0 6px 20px rgba(0,0,0,0.3); }
+        .refresh-btn:active { transform: scale(0.95); }
+        @media (max-width: 600px) { .header h1 { font-size: 28px; } .article-header { flex-direction: column; gap: 10px; } .article-title { font-size: 20px; } .filter-btn { padding: 8px 14px; font-size: 13px; } }
+    </style>
+</head>
+<body>
+    <button class="refresh-btn" onclick="location.reload()" title="刷新页面">🔄</button>
+    <div class="container">
+        <div class="header">
+            <h1>🌟 肉肉的知识宝库</h1>
+            <p class="subtitle">每天一篇有趣的科普故事</p>
+            <div class="stats">
+                <div class="stat-item">
+                    <div class="stat-number" id="article-count">66</div>
+                    <div class="stat-label">篇文章</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">7</div>
+                    <div class="stat-label">大分类</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">5</div>
+                    <div class="stat-label">章/篇</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 分类筛选 -->
+        <div class="filter-bar">
+            <button class="filter-btn active" data-cat="all" onclick="filterArticles('all')">📚 全部 <span class="count">66</span></button>
+            <button class="filter-btn" data-cat="earth" onclick="filterArticles('earth')">🌍 自然地球 <span class="count">27</span></button>
+            <button class="filter-btn" data-cat="tech" onclick="filterArticles('tech')">🚀 科技探索 <span class="count">13</span></button>
+            <button class="filter-btn" data-cat="transport" onclick="filterArticles('transport')">🚂 交通工程 <span class="count">4</span></button>
+            <button class="filter-btn" data-cat="math" onclick="filterArticles('math')">🧮 趣味数学 <span class="count">4</span></button>
+            <button class="filter-btn" data-cat="safety" onclick="filterArticles('safety')">🛡️ 安全常识 <span class="count">4</span></button>
+            <button class="filter-btn" data-cat="health" onclick="filterArticles('health')">🌱 环保健康 <span class="count">11</span></button>
+            <button class="filter-btn" data-cat="toy" onclick="filterArticles('toy')">🧸 小玩具 <span class="count">3</span></button>
+        </div>
+
+        <div class="article-list" id="article-list"></div>
+
+        <div class="footer">
+            <p>🐉 由小龙精心制作 | 每天更新有趣的知识</p>
+        </div>
+    </div>
+
+    <script>
+        const articles = [
+            { date: "250520", displayDate: "2025年5月20日", title: "🦕 恐龙王国大冒险", desc: "很久很久以前，地球上生活着一群神奇的动物——恐龙！它们有的凶猛，有的温顺，有的会飞，有的会游泳。让我们一起穿越时空，探索神秘的恐龙世界吧！", cat: "earth", path: "./250520/index.html" },
+            { date: "250521", displayDate: "2025年5月21日", title: "马斯克的太空梦想：SpaceX的故事", desc: "从一个人疯狂的想法到改变世界的火箭公司", cat: "tech", path: "./250521/index.html" },
+            { date: "250522", displayDate: "2025年5月22日", title: "什么是人工智能？——小朋友的AI第一课", desc: "了解AI如何学习和帮助人类", cat: "tech", path: "./250522/index.html" },
+            { date: "250523", displayDate: "2025年5月23日", title: "会飞的火车？磁悬浮列车大揭秘！", desc: "没有轮子的火车，用磁铁的力量飘起来跑得比飞机还快！", cat: "tech", path: "./250523/index.html" },
+            { date: "250525", displayDate: "2025年5月25日", title: "鳗鱼的繁殖秘密", desc: "大海最深处藏了2000年的谜团，鳗鱼跨越整个大洋去产卵", cat: "earth", path: "./250525/index.html" },
+            { date: "250526", displayDate: "2025年5月26日", title: "斐波纳切数列与大自然", desc: "数学藏在每一片叶子里、每一朵花里、每一个贝壳里", cat: "math", path: "./250526/index.html" },
+            { date: "250527", displayDate: "2025年5月27日", title: "昆虫的秘密", desc: "小小身体的超级力量", cat: "earth", path: "./250527/index.html" },
+            { date: "250528", displayDate: "2025年5月28日", title: "🚁 无人机：天空中的小飞侠", desc: "会飞的机器人，正在改变我们的世界！从玩具到救援英雄，了解无人机家族的超能力", cat: "tech", path: "./250528/index.html" },
+            { date: "250529", displayDate: "2025年5月29日", title: "🚢 邮轮：海上漂浮的城堡", desc: "从蒸汽时代到泰坦尼克，再到现代海上乐园的奇妙旅程", cat: "transport", path: "./250529/index.html" },
+            { date: "250530", displayDate: "2025年5月30日", title: "🚂 火车：铁轨上的时光旅行", desc: "从蒸汽机车到磁悬浮的200年飞跃", cat: "transport", path: "./250530/index.html" },
+            { date: "250531", displayDate: "2025年5月31日", title: "✈️ 飞机：人类插上翅膀的故事", desc: "从莱特兄弟到超音速客机的120年奇迹", cat: "transport", path: "./250531/index.html" },
+            { date: "260601", displayDate: "2026年6月1日", title: "💧 物质三态：水的魔法变身", desc: "冰、水、汽——同一种东西的三个面孔", cat: "tech", path: "./260601/index.html" },
+            { date: "260602", displayDate: "2026年6月2日", title: "🌋 火山：地球的超级引擎", desc: "从地下岩浆到天空中的灰云", cat: "earth", path: "./260602/index.html" },
+            { date: "260603", displayDate: "2026年6月3日", title: "🧬 人类起源：我们从哪里来", desc: "从非洲大草原到全人类", cat: "earth", path: "./260603/index.html" },
+            { date: "260613", displayDate: "2026年6月13日", title: "⛳ 高尔夫球场和水资源：一场「绿色」的危机", desc: "美丽的草地背后藏着惊人的用水秘密，让我们一起探索高尔夫球场和水资源的故事", cat: "health", path: "./260613/index.html" },
+            { date: "260624", displayDate: "2026年6月24日", title: "🤧 鼻子的「假警报」：认识过敏性鼻炎", desc: "为什么春天一来鼻子就受不了？揭开过敏性鼻炎的秘密，学会和鼻子做朋友！", cat: "health", path: "./260624/index.html" },
+            { date: "260625", displayDate: "2026年6月25日", title: "⛽ 石油的魔法之旅：从地下到车轮", desc: "石油从哪里来？汽油怎么让汽车跑起来？一起探索从远古生物到未来新能源的奇妙旅程！", cat: "tech", path: "./260625/index.html" },
+            { date: "260626", displayDate: "2026年6月26日", title: "🏖️ 沙滩上的隐形陷阱：挖沙坑的安全风险", desc: "挖沙坑是沙滩上最好玩的游戏，但你知道它藏着哪些危险吗？学做安全小卫士，开心玩沙不受伤！", cat: "safety", path: "./260626/index.html" },
+            { date: "260719", displayDate: "2026年7月19日", title: "🕊️ 假如人类有鸟的气囊", desc: "大开脑洞！如果人类也有鸟的气囊系统，跑步不喘、高原无障碍、潜水更久——生活会变成什么样？", cat: "earth", path: "./260719/index.html" },
+            { date: "260720", displayDate: "2026年7月20日", title: "⚡ 国标拖线板能带多少电？", desc: "拖线板是家里的「电力小助手」，但它不是无限供电的魔法盒子！一个国标拖线板最多能带多少电？大功率电器为什么不能挤在一起？一起来学安全用电！", cat: "safety", path: "./260720/index.html" },
+            { date: "260721", displayDate: "2026年7月21日", title: "📐 什么是「平均数」？", desc: "一个让数字说出故事的超级魔法！从全班身高到AA制账单，平均数是我们身边最常用的数学魔法，但你知道吗，它有时候也会「说谎」哦！", cat: "math", path: "./260721/index.html" },
+            { date: "260722", displayDate: "2026年7月22日", title: "飞蛾扑火大揭秘", desc: "飞蛾喜欢灯光？全球每年上千亿夜行昆虫因人造灯光而迷路，到底是爱还是被导航系统给骗了", cat: "earth", path: "./260722/index.html" },
+            { date: "260723", displayDate: "2026年7月23日", title: "霉菌·真菌·细菌 三兄弟大不同", desc: "发霉面包上的绿毛是真菌的一种，真菌和细菌根本不是一个物种！微生物三兄弟的超级对比", cat: "earth", path: "./260723/index.html" },
+            { date: "260726", displayDate: "2026年7月26日", title: "战斗机大阅兵", desc: "从木头双翼机到隐形幽灵——战斗机的百年进化史！双翼老爷爷、喷气小帅哥、隐身轰炸机三兄弟各有什么绝活？", cat: "tech", path: "./260726/index.html" },
+            { date: "260727", displayDate: "2026年7月27日", title: "加减乘除里的秘密", desc: "加法凑10魔法、乘法手指魔术、数字侦探破案、鳄鱼嘴比大小、混合运算铁规矩——数学原来这么好玩！内含互动天平游戏和心算魔术", cat: "math", path: "./260727/index.html" },
+            { date: "260730", displayDate: "2026年7月30日", title: "🍎🍊🍇🍉 四季水果大冒险", desc: "🍎 春天的草莓樱桃、☀️ 夏天的西瓜芒果、🍂 秋天的苹果梨、❄️ 冬天的柑橘柿子——穿越四季，寻找每个季节最好吃的水果！", cat: "earth", path: "./260730/index.html" },
+            { date: "260731", displayDate: "2026年7月31日", title: "🏠💨 地震了该怎么办？", desc: "蹲下·掩护·抓牢三步骤保命、板块碰撞原理、在家在学校在户外的正确避险姿势、家庭应急包清单、12秒黄金逃生窗口", cat: "earth", path: "./260731/index.html" },
+            { date: "260803", displayDate: "2026年8月3日", title: "🐚 贝壳里的微塑料：大海的隐形入侵者", desc: "贝壳如何被微塑料入侵？滤食机制、微塑料来源、四大伤害，从源头减塑守护海洋，每个人都是海洋守护者", cat: "health", path: "./260803/index.html" },
+            { date: "260804", displayDate: "2026年8月4日", title: "🏚️ 石棉：看不见的纤维杀手", desc: "天然矿物的双面人生：防火绝缘超能力 vs 针状纤维入肺致癌。石棉藏身老建筑哪些角落、六大防护铁律、全球百日禁令历程", cat: "safety", path: "./260804/index.html" },
+            { date: "260806", displayDate: "2026年8月6日", title: "🌀 台风是怎么来的？", desc: "台风需要三大配方才能「煮」出来；切开台风看三层结构——台风眼、眼墙、螺旋雨带；14国共同起名的机制；台风来了怎么办的六大安全法则", cat: "earth", path: "./260806/index.html" },
+            { date: "260807", displayDate: "2026年8月7日", title: "🌍 地球在跳舞：自转、公转与四季的秘密", desc: "地球每天转一圈造出昼夜、每年绕太阳一圈造出一年；地轴歪了23.5度才是四季的真正导演；阳光角度决定冷热、极昼极夜的魔法、如果地轴不歪会怎样", cat: "earth", path: "./260807/index.html" },
+            { date: "260808", displayDate: "2026年8月8日", title: "😷 看不见的杀手：粉尘污染与尘肺病", desc: "空气中的粉尘颗粒如何潜入肺部、什么是PM2.5、肺的三道防线、尘肺病的纤维化过程、矽肺煤工尘肺等类型、预防靠口罩和除尘设备", cat: "health", path: "./260808/index.html" },
+            { date: "260808-2", displayDate: "2026年8月8日", title: "🐱 猫和狗谁更聪明？", desc: "狗的大脑皮层神经元5.28亿比猫多一倍，但猫保留了90%野生狩猎本能；从神经元数量到驯化历史到生存智能，一场关于「聪明」不同维度的深度科学对决", cat: "earth", path: "./260808-2/index.html" },
+            { date: "260808-3", displayDate: "2026年8月8日", title: "🌞 日食与月食", desc: "从手影游戏到月轨倾斜5度，从本影半影到血月形成，揭开太阳地球月亮三个天体精确「影子游戏」的全部秘密", cat: "earth", path: "./260808-3/index.html" },
+            { date: "260813", displayDate: "2026年8月13日", title: "🌊 什么是漩涡：水里的旋转小怪兽", desc: "拔掉浴缸塞子水为什么会转圈圈？从涡心到科里奥利力，认识浴缸漩涡、海洋大漩涡和龙卷风，还能在家亲手做漩涡实验", cat: "earth", path: "./260813/index.html" },
+            { date: "260814", displayDate: "2026年8月14日", title: "🦠 阿米巴原虫：会走路的单细胞小怪兽", desc: "一滴池塘水里的变形金刚：没有脚却能用伪足走路、没有嘴却能包住食物吞进去、还会一分为二生宝宝，认识地球上最古老的生命之一", cat: "earth", path: "./260814/index.html" },
+            { date: "260814-2", displayDate: "2026年8月14日", title: "🍉 西瓜史：一颗瓜的五千年旅行", desc: "从非洲沙漠里的苦野瓜，到夏天最甜的消暑水果：古埃及人怎么把西瓜「种」甜、它如何环游世界来到中国，红瓤和无籽西瓜的秘密一次讲清", cat: "earth", path: "./260814-2/index.html" },
+            { date: "260825", displayDate: "2026年8月25日", title: "🏔️ 长白山为何有那么多水", desc: "一座会「造水」的神奇火山！天池没有河流进来却永远满满，地下水、火山岩和降雨雪共同打造了这座东北水塔。", cat: "earth", path: "./260825/index.html" },
+            { date: "260826", displayDate: "2026年8月26日", title: "🌿 人参的秘密", desc: "土里长出的「百草之王」：根会装成小人、细胞里的小清洁工、为什么又慢又贵？", cat: "earth", path: "./260826/index.html" },
+            { date: "260826-2", displayDate: "2026年8月26日", title: "🌋 泥石流：会奔跑的山", desc: "大山怎么会「流动」？泥石流的三大元凶、为何又重又猛、遇到它往哪跑", cat: "safety", path: "./260826-2/index.html" },
+            { date: "260827", displayDate: "2026年8月27日", title: "🦁 新加坡的故事", desc: "从一个小渔村变成「花园城市」：狮城的由来、世界最忙港口、多元文化大拼盘", cat: "earth", path: "./260827/index.html" },
+            { date: "260828", displayDate: "2026年8月28日", title: "🧠 艾宾浩斯记忆法", desc: "跟「遗忘」赛跑的秘诀：遗忘曲线为何先快后慢、间隔复习的神奇力量、复习时间表", cat: "health", path: "./260828/index.html" },
+            { date: "260828-2", displayDate: "2026年8月28日", title: "🌊 厄尔尼诺", desc: "来自太平洋的「坏脾气」小男孩：海水温度大翻转、为何搅乱全球天气、科学如何预警", cat: "earth", path: "./260828-2/index.html" },
+            { date: "260828-3", displayDate: "2026年8月28日", title: "🔴 激光", desc: "最亮最直最「专一」的光：光是什么、激光怎么造出来、从扫码到手术的魔法用途", cat: "tech", path: "./260828-3/index.html" },
+            { date: "260828-4", displayDate: "2026年8月28日", title: "💧 光为什么会在水里折射", desc: "吸管为什么「断了」？光速一变方向就拐弯，彩虹和眼镜的秘密都藏在这里", cat: "tech", path: "./260828-4/index.html" },
+            { date: "260829", displayDate: "2026年8月29日", title: "🐟 鱼是怎么呼吸的", desc: "水下的氧气工厂：鳃的秘密、氧气如何扩散进血里、为什么鱼离不开水", cat: "earth", path: "./260829/index.html" },
+            { date: "260830", displayDate: "2026年8月30日", title: "🧊 弯曲冰发电？", desc: "弯一弯冰块竟然冒出电：挠曲电效应、压电打火机、冰里的水分子秘密", cat: "tech", path: "./260830/index.html" },
+            { date: "260831", displayDate: "2026年8月31日", title: "⚡ 火力发电 水力发电", desc: "电从哪里来？烧煤烧水推机器，还是大坝拦水冲水轮机，两种发电大比拼", cat: "tech", path: "./260831/index.html" },
+            { date: "260901", displayDate: "2026年9月1日", title: "🍞 面包为什么有洞？", desc: "酵母菌吹气球、面筋网兜气、烤箱大爆发、淀粉老化回生——从面粉到面包的魔法变身，每个洞洞都是一座小房子", cat: "tech", path: "./260901/index.html" },
+            { date: "260906", displayDate: "2026年9月6日", title: "🩸 糖尿病：身体里的「糖门卫」罢工了", desc: "为什么有人不能吃太多糖？用第一性原理看懂胰岛素这把「钥匙」、血糖为什么会「堵车」，以及怎样守护身体的糖交通。", cat: "health", path: "./260906/index.html" },
+            { date: "260906-2", displayDate: "2026年9月6日", title: "🧠 大脑里的两个小工人：前额叶和杏仁核", desc: "为什么小朋友容易发脾气？用第一性原理看懂大脑的警报器杏仁核和理智指挥官前额叶，以及怎么帮指挥官长大。", cat: "health", path: "./260906-2/index.html" },
+            { date: "260907", displayDate: "2026年9月7日", title: "🏔️ 喜马拉雅的白色帽子", desc: "为什么山顶永远戴着雪？气压变低空气膨胀会降温，高处离地面暖气片远、被子又薄，雪落得多化得少，还靠白色把阳光弹回去。", cat: "earth", path: "./260907/index.html" },
+            { date: "260909", displayDate: "2026年9月9日", title: "🦠 合胞病毒：为什么小宝宝最容易中招？", desc: "用第一性原理看懂这个会把细胞焊成一团的病毒：它怎么躲抗体、为什么宝宝的气管更容易堵、为什么能反复感染，以及肥皂和单抗的真正原理。", cat: "health", path: "./260909/index.html" },
+            { date: "260911", displayDate: "2026年9月11日", title: "⛽ 汽油、柴油、煤油：三兄弟为什么各烧各的？", desc: "同一桶原油怎么分出三兄弟？用第一性原理看懂火花塞点火、柴油机压燃、飞机为什么独爱煤油，以及加错油为什么会毁掉发动机。", cat: "transport", path: "./260911/index.html" },
+            { date: "260913", displayDate: "2026年9月13日", title: "🌡️ 为什么吃完饭，身体会热起来？", desc: "用第一性原理看懂：体温是细胞小火炉烧出来的，饭后格外热是在收食物的加工费，蛋白质为什么最费火，脸红出汗怎么散热，以及它和发烧、吃辣出汗的区别。", cat: "health", path: "./260913/index.html" },
+            { date: "260916", displayDate: "2026年9月16日", title: "🌀 头顶上的小旋风：头发里为什么会有漩涡？", desc: "毛囊是斜着长的，头皮被拉扯时留下的「张力地图」；因为头顶是个球面，毛球定理说球面上的毛永远梳不平，必然留下一个打转的点。为什么有人两个旋、方向由谁定，一次讲透。", cat: "health", path: "./260916/index.html" },
+            { date: "260919", displayDate: "2026年9月19日", title: "⏰ 时间是什么？一个看不见却一直在走的东西", desc: "用第一性原理追问时间：我们靠变化发现时间、时间之箭为什么指向更乱、为什么跑得越快时间越慢、身体里的生物钟怎么工作，以及为什么开心时短无聊时长。", cat: "tech", path: "./260919/index.html" },
+            { date: "260919-2", displayDate: "2026年9月19日", title: "🌧️ 天上的雨干净么？", desc: "一滴雨的一生：水蒸气要借一粒尘埃才能出生，云滴靠碰撞合并才能长大，而变脏主要发生在这1~2公里的下落路上——初雨最脏、天然雨水pH约5.6、酸雨的根源在燃烧。", cat: "earth", path: "./260919-2/index.html" },
+            { date: "260920", displayDate: "2026年9月20日", title: "🧮 拉马努金：他为什么能「看见」答案？", desc: "一个没上过大学的印度青年，写下了几千个没有推导过程的公式。他的直觉来自亲手算过的成千上万个例子；3 = √(1+2√(1+3√…)) 这个永远套不完的「根号套娃」为什么刚好等于 3；1729 为什么是最有意思的出租车号；以及天才为什么也需要「证明」。", cat: "math", path: "./260920/index.html" },
+            { date: "260921", displayDate: "2026年9月21日", title: "🌌 奥特曼的家乡 M78 星云：真的存在吗？", desc: "答案是真的存在，就在猎户座。M 是梅西耶的「彗星黑名单」，M78 是第 78 号；它自己不发光，靠尘埃把年轻恒星的蓝光弹开——跟天空为什么蓝是同一个道理；它还是正在点亮新恒星的「产房」。以及：300 万光年 vs 1600 光年，为什么我们看到的星空都是过去。", cat: "earth", path: "./260921/index.html" },
+            { date: "260922", displayDate: "2026年9月22日", title: "🚲 鹈鹕骑单车 · 3D 世界", desc: "会骑单车的鹈鹕，还能切换晴、雨、雪、雷暴！鼠标拖拽转视角、滚轮缩放，空格暂停，还能录制小视频——一个打开就能玩的 3D 小世界。", cat: "toy", path: "./toy/pelican-bike-260922/index.html?v=260926" },
+            { date: "260922", displayDate: "2026年9月22日", title: "🪐 太阳系 3D 模型", desc: "按 JPL 真实轨道根数运行的太阳系：拖动旋转、滚轮缩放、点击行星聚焦，还能调时间流速或跳到任意日期，看八大行星此刻各自跑到哪里了。", cat: "toy", path: "./toy/solar-system-260922/index.html?v=2609242313" },
+            { date: "260923", displayDate: "2026年9月23日", title: "🌅 太阳起落演示 · 为什么不是从正东升起", desc: "以上海为例，用「上北下南左西右东」的俯视天穹，看太阳一天怎么走、一年怎么摆：点春分 / 夏至 / 秋分 / 冬至切换路线，看太阳日落后绕到地球背面继续跑；再对比三亚、上海、漠河，越往北摆动越厉害。自动循环播放，可开语音讲解。", cat: "toy", path: "./toy/sun-path-260923/index.html" },
+            { date: "260924", displayDate: "2026年9月24日", title: "🦐 螃蟹和虾，为什么一煮就变红？", desc: "红色一直就在壳里，只是被蛋白质「攥」住了。从「颜色是没被吃掉的光」讲到虾青素、蛋白质变性松手，再拉开视野：火烈鸟的粉红、三文鱼的橙红、深海虾的隐身衣，全是同一个分子。", cat: "health", path: "./260924/index.html" },
+            { date: "260926", displayDate: "2026年9月26日", title: "🐌 能吃的蜗牛和鲍鱼：一对背壳的表兄弟", desc: "一个在菜园里慢慢爬，一个在礁石上死死吸，它们竟是同一个家族的亲戚。它们怎么长壳、怎么走路、怎么用一条「锉刀舌头」吃饭，又为什么一个贵一个便宜？", cat: "earth", path: "./260926/index.html" },
+            { date: "260926-2", displayDate: "2026年9月26日", title: "⛈️ 冬天下雪为何不打雷", desc: "夏天雷雨轰轰烈烈，冬天的雪却静悄悄——把「打雷」拆到底：静电工厂需要热电梯、冰晶碰撞、电荷分拣三条原料，冬天的太阳给不起电费。还有罕见的「雷打雪」反例，藏着更精确的规律。", cat: "earth", path: "./260926-2/index.html" }];
+        const catLabels = {
+            earth: "🌍 自然地球",
+            tech: "🚀 科技探索",
+            transport: "🚂 交通工程",
+            math: "🧮 趣味数学",
+            safety: "🛡️ 安全常识",
+            health: "🌱 环保健康",
+            toy: "🧸 小玩具"
+        };
+
+        let activeCat = "all";
+
+        function renderArticles() {
+            const listContainer = document.getElementById("article-list");
+            let filtered = [...articles].sort((a, b) => b.date.localeCompare(a.date));
+
+            if (activeCat !== "all") {
+                filtered = filtered.filter(a => a.cat === activeCat);
+            }
+
+            if (filtered.length === 0) {
+                listContainer.innerHTML = `<div class="empty-state"><div class="icon">📭</div><h3>这个分类还没有文章哦</h3><p>敬请期待，更多精彩内容即将上线！</p></div>`;
+            } else {
+                listContainer.innerHTML = filtered.map(a => `
+                    <a href="${a.path}" class="article-card">
+                        <div class="article-header">
+                            <div class="article-title">${a.title}</div>
+                            <div class="article-date">${a.displayDate}</div>
+                        </div>
+                        <div class="article-desc">${a.desc}</div>
+                        <div class="article-tags">
+                            <span class="tag cat-${a.cat}">${catLabels[a.cat]}</span>
+                        </div>
+                    </a>
+                `).join("");
+            }
+
+            // 头部统计始终显示总条数，不随分类筛选变化
+            document.getElementById("article-count").textContent = articles.length;
+        }
+
+        function filterArticles(cat) {
+            activeCat = cat;
+            document.querySelectorAll(".filter-btn").forEach(b => {
+                b.classList.toggle("active", b.dataset.cat === cat);
+            });
+            renderArticles();
+        }
+
+        renderArticles();
+    </script>
+</body>
+</html>

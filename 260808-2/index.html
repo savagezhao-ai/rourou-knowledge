@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>猫和狗谁更聪明？</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: "Microsoft YaHei", "PingFang SC", sans-serif;
+            background: linear-gradient(180deg, #ffeaa7 0%, #fab1a0 30%, #ff7675 60%, #fd79a8 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        .container {
+            max-width: 850px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 30px;
+            padding: 40px;
+            box-shadow: 0 25px 80px rgba(0,0,0,0.15);
+        }
+        .header {
+            text-align: center;
+            padding: 30px 0;
+            background: linear-gradient(135deg, #ff6b6b 0%, #feca57 50%, #48dbfb 100%);
+            border-radius: 20px;
+            margin-bottom: 30px;
+        }
+        .header h1 {
+            font-size: 48px;
+            color: white;
+            text-shadow: 3px 3px 6px rgba(0,0,0,0.2);
+        }
+        .subtitle {
+            font-size: 20px;
+            color: rgba(255,255,255,0.95);
+        }
+        h2 {
+            font-size: 32px;
+            color: #2d3436;
+            margin: 40px 0 20px;
+            padding: 15px 25px;
+            background: linear-gradient(90deg, #ff9ff3 0%, #feca57 100%);
+            border-radius: 15px;
+            display: inline-block;
+        }
+        p {
+            font-size: 20px;
+            line-height: 2;
+            color: #2d3436;
+            margin-bottom: 20px;
+            text-align: justify;
+        }
+        .image-container {
+            width: 100%;
+            margin: 30px 0;
+            text-align: center;
+        }
+        .dino-image {
+            width: 100%;
+            border-radius: 20px;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.2);
+        }
+        .image-caption {
+            color: #636e72;
+            font-size: 16px;
+            margin-top: 15px;
+            font-style: italic;
+            background: #ffeaa7;
+            display: inline-block;
+            padding: 8px 20px;
+            border-radius: 20px;
+        }
+        .fun-fact {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 25px;
+            border-radius: 20px;
+            margin: 25px 0;
+            font-size: 18px;
+            line-height: 1.8;
+        }
+        .fun-fact.pink {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+        }
+        .fun-fact.green {
+            background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);
+        }
+        .fun-fact.orange {
+            background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);
+        }
+        .fun-fact-title {
+            font-size: 22px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        .divider {
+            text-align: center;
+            font-size: 30px;
+            color: #ddd;
+            margin: 30px 0;
+        }
+        .quiz-section {
+            background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);
+            padding: 30px;
+            border-radius: 20px;
+            margin: 30px 0;
+        }
+        .quiz-title {
+            font-size: 28px;
+            color: #e17055;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .quiz-question {
+            background: white;
+            padding: 20px;
+            border-radius: 15px;
+            margin: 15px 0;
+            font-size: 18px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        .table-wrap {
+            overflow-x: auto;
+            margin: 20px 0;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 17px;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+        }
+        th {
+            background: linear-gradient(135deg, #a29bfe, #6c5ce7);
+            color: white;
+            padding: 14px;
+            font-size: 18px;
+        }
+        td {
+            padding: 12px 16px;
+            background: #f8f9fa;
+            border-bottom: 1px solid #e9ecef;
+        }
+        tr:last-child td { border-bottom: none; }
+        .ending {
+            text-align: center;
+            padding: 40px 0;
+            margin-top: 40px;
+            background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);
+            border-radius: 20px;
+        }
+        .ending h3 { font-size: 32px; color: #2d3436; }
+        .ending p { text-align: center; font-size: 18px; color: #636e72; }
+        .back-home-btn {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 14px 30px;
+            background: rgba(0,0,0,0.08);
+            color: #2d3436;
+            text-decoration: none;
+            border-radius: 25px;
+            font-size: 18px;
+            border: 2px solid rgba(0,0,0,0.15);
+            transition: background 0.3s, transform 0.2s;
+        }
+        .back-home-btn:hover {
+            background: rgba(0,0,0,0.15);
+            transform: translateY(-2px);
+        }
+        .back-home-btn:active {
+            transform: translateY(0);
+        }
+        @media (max-width: 600px) {
+            .container { padding: 20px; }
+            h1 { font-size: 32px; }
+            h2 { font-size: 24px; }
+            p { font-size: 18px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🐱 猫和狗谁更聪明？🆚🐶</h1>
+            <p class="subtitle">一场并不公平的比赛</p>
+        </div>
+        
+        <h2>第一章：宠物界的「世纪大战」🐱🆚🐶</h2>
+        
+        <p>你有没有想过一个问题：家里那只高冷的猫，和隔壁那只热情扑人的狗，谁更聪明？</p>
+        <p>这个问题看似简单，却让科学家们争论了几十年。在互联网上，「猫派」和「狗派」的论战从未停歇——狗主人说：「我家的狗会握手、趴下、接飞盘！」猫主人反驳：「我家猫只是<b>懒得</b>配合你那些无聊的把戏。」</p>
+        <p>但问题出在这儿：我们用「听话程度」来衡量聪明吗？那一个不听话的天才小孩，是不是就不如一个听话的普通小孩？</p>
+        <p>所以，在比谁更聪明之前，我们需要先回答一个更深层的问题：<b>聪明，到底怎么测量？</b></p>
+        
+        <div class="fun-fact">
+            <div class="fun-fact-title">💡 趣味知识</div>
+            狗大约在 1.5 万到 4 万年前被人类驯化，是<b>最早</b>被驯化的动物。猫的驯化历史比狗晚了约 2 万年——它们大约在 1 万年前才主动「靠近」了人类的粮仓（因为粮仓里有老鼠）。
+        </div>
+        
+        <div class="image-container">
+            <img src="scene_01.webp" alt="猫和狗面对面" class="dino-image">
+            <div class="image-caption">🐱🆚🐶 这场「世纪智力对决」，谁会更胜一筹？</div>
+        </div>
+        
+        <h2>第二章：大脑里的数学——数一数谁有更多「脑细胞」🧠🔢</h2>
+        
+        <p>聪明不聪明，归根结底要看大脑。大脑皮层神经元越多，处理信息的能力就越强——这是最直接的物理指标。</p>
+        <p>2017 年，一组科学家专门解剖了猫、狗和其他食肉动物的脑组织，得出了惊人的数据：</p>
+        
+        <div class="table-wrap">
+            <table>
+                <tr><th>动物</th><th>大脑皮层神经元数量</th></tr>
+                <tr><td>🐕 狗（金毛猎犬）</td><td>约 <b>5.28 亿</b></td></tr>
+                <tr><td>🐈 猫</td><td>约 <b>2.5 亿</b></td></tr>
+                <tr><td>🧑 人</td><td>约 <b>160 亿</b></td></tr>
+            </table>
+        </div>
+        
+        <p>狗的皮层神经元数量，是猫的<b>两倍还多</b>。从这个角度看，狗在大脑处理能力上确实领先了一大截。</p>
+        <p>但这里有个关键的「why」——<b>为什么狗的大脑进化出了更多神经元？</b></p>
+        <p>答案藏在它们的行为差异里：狗是<b>群居动物</b>（狼的后代），群居动物的生存依赖复杂的社会交往——记住谁是谁、判断盟友和对手、协调合作捕猎。这些社会行为需要更发达的大脑皮层来支撑。</p>
+        <p>猫的祖先是<b>独居动物</b>（非洲野猫），它们不需要处理复杂的社交关系，所以大脑皮层的发展方向不同。猫的大脑在其他方面做了「专业化改造」——比如它们的<b>视觉皮层</b>异常发达，能在几乎完全黑暗的环境中感知猎物的微小移动；它们的<b>小脑</b>（负责协调运动）也非常发达，这解释了猫惊人的跳跃和平衡能力。</p>
+        
+        <div class="fun-fact orange">
+            <div class="fun-fact-title">🧪 深入探究：大脑皮层</div>
+            大脑皮层（cerebral cortex）是哺乳动物大脑最外层的区域，负责高级认知功能——计划、决策、学习、记忆。层数越多、褶皱越深，通常意味着越「聪明」。如果把大脑皮层展开，人的约 0.25 平方米（一大张报纸那么大），狗的约一张 A4 纸大小，猫的更小一些。但大小不是全部——结构密度（每平方毫米的神经元数）同样关键，而猫的神经元密度实际上比狗更高！这不是非黑即白的问题。
+        </div>
+        
+        <div class="image-container">
+            <img src="scene_02.webp" alt="猫和狗的大脑对比" class="dino-image">
+            <div class="image-caption">🧠 神经元越多，处理信息越强——但聪明可不止看数量</div>
+        </div>
+        
+        <h2>第三章：狗为什么看起来更听话？——驯化的魔法⏳🐕</h2>
+        
+        <p>狗之所以看起来「更聪明」，很大程度取决于一个事实：<b>它们被人类深度「改造」了 3 万多年</b>。</p>
+        <p>驯化和繁殖一直在筛选「理解人类意图」的能力。能看懂人类手指的方向吗？能理解眼神的含义吗？能解读语气吗？这些能力不是天生的，而是几万年人工选择的结果。</p>
+        <p>科学家做过一个经典实验：把两个倒扣的杯子放在狗面前，实验者用手指指向藏着食物的那个。狗会<b>直接跟着人的手势找到食物</b>——而黑猩猩（我们的近亲！）反而一次都做不到。狼也需要大量训练才能完成这个任务。</p>
+        <p>这被称为「社会认知」（social cognition）——理解他人意图的能力。狗在这种能力上，甚至超过了大猩猩和 3 岁以下的婴幼儿。</p>
+        <p>轮到猫做这个实验呢？科学家也很努力地试过了。结果：猫……<b>完全不在意</b>。它们根本不看手指，只看杯子。不是它们不理解，而是它们对此不感兴趣。</p>
+        <p>这就引发了关键问题：猫是「做不到」还是「不想做」？</p>
+        
+        <div class="fun-fact pink">
+            <div class="fun-fact-title">💡 趣味知识</div>
+            日本科学家发现，猫<b>能</b>识别自己的名字。但当主人喊出名字时，猫只是动了动耳朵或尾巴，而不会像狗一样冲过来。测试证明：猫听到了、识别了——它只是<b>选择不回应</b>。这不叫不聪明，这叫「我能，但我不想」。
+        </div>
+        
+        <div class="image-container">
+            <img src="scene_03.webp" alt="狗跟随人类手势实验" class="dino-image">
+            <div class="image-caption">👆 经典的「指杯子实验」——狗能看懂人类手势，比黑猩猩还厉害！</div>
+        </div>
+        
+        <h2>第四章：猫的智慧——沉默但真实存在🐱🎯</h2>
+        
+        <p>如果说狗把智商投到了「跟人合作」上，猫就是把智商投到了「独自生存」上。</p>
+        <p>来看一个自然界的事实：如果把一只家猫放到野外，它能在数小时内切换到捕猎模式，抓老鼠、找庇护所、识别危险。一只家犬呢？大概率会在垃圾桶里找剩饭，然后去敲别人的门。</p>
+        <p>这不是智商问题，而是「生存智能」（survival intelligence）的不同方向。猫保留了非洲野猫约 90% 的狩猎本能和独立生存能力，而狗的祖先狼的独立生存能力在多代驯化中被大量削弱。</p>
+        <p>还有一个被严重低估的猫类能力：<b>问题解决</b>。</p>
+        <p>2018 年的一项研究把食物放在带机关的盒子里，观察猫和狗谁能打开。狗会不停尝试直到累，或者直接向人类求助（最聪明的策略）。猫呢？猫先观察、分析，然后<b>在最小动作下精准打开机关</b>。这被称为「高效问题解决」——动作少、能量消耗低、成功率高。</p>
+        
+        <div class="fun-fact green">
+            <div class="fun-fact-title">🧪 猫的三个被低估的聪明表现</div>
+            ① <b>因果推理</b>：猫能理解「按按钮 = 出食物」的因果关系，而且比狗更快学会——只是它们会按到够吃就停，不像狗会不停地按<br>
+            ② <b>空间记忆</b>：猫能记住至少 16 个藏食点的精确位置——这个数字与松鼠相当<br>
+            ③ <b>时间感知</b>：实验表明猫能在脑海中「计时」，精确判断猎物的移动速度和到达位置
+        </div>
+        
+        <div class="image-container">
+            <img src="scene_04.webp" alt="猫开机关盒子" class="dino-image">
+            <div class="image-caption">🔓 猫精打细算地解决问题——动作少、效率高</div>
+        </div>
+        
+        <h2>第五章：聪明没有冠军——不同任务的「金牌」得主🏅🌍</h2>
+        
+        <p>如果非要选一个「更聪明」，那么答案取决于你在问什么：</p>
+        
+        <div class="table-wrap">
+            <table>
+                <tr><th>能力</th><th>赢家</th><th>原因</th></tr>
+                <tr><td>理解人类意图</td><td>🐶 狗</td><td>3万年驯化筛选的结果</td></tr>
+                <tr><td>团队协作</td><td>🐶 狗</td><td>群居祖先留下的社会技能</td></tr>
+                <tr><td>声控指令执行</td><td>🐶 狗</td><td>驯化后高度配合人类</td></tr>
+                <tr><td>独立生存</td><td>🐱 猫</td><td>保留了野生祖先 90% 的狩猎本能</td></tr>
+                <tr><td>复杂问题解决效率</td><td>🐱 猫</td><td>少动作、高成功率</td></tr>
+                <tr><td>空间记忆和导航</td><td>🐱 猫</td><td>独自捕猎需要强大的空间记忆</td></tr>
+                <tr><td>皮层神经元总数</td><td>🐶 狗</td><td>5.28 亿 vs 2.5 亿</td></tr>
+                <tr><td>纯记忆能力（单词）</td><td>🐶 狗</td><td>可以记住 1000 多个单词</td></tr>
+            </table>
+        </div>
+        
+        <p>那为什么网上那么多「猫很蠢」的视频呢？因为猫的行为更容易被误解。一只猫盯着墙看 10 分钟——不是它傻，是它听到了墙里老鼠的超声波动静（人耳听不到的 40kHz 以上高频）。猫推东西从桌上掉下去——不是在破坏，是在用脚垫测试物体的弹性，判断「能不能追着玩」。</p>
+        
+        <div class="fun-fact">
+            <div class="fun-fact-title">💡 趣味知识</div>
+            宾夕法尼亚大学的研究人员总结道：「比较猫和狗的智商，就像比较鱼和鹰的飞行能力——它们走的是完全不同的进化道路。鱼不会飞，但能在水里呼吸；老鹰不会游泳，但能飞越整个大陆。」
+        </div>
+        
+        <div class="image-container">
+            <img src="scene_05.webp" alt="猫和狗一起站在领奖台上" class="dino-image">
+            <div class="image-caption">🏅 真正的聪明没有唯一冠军——各有各的赛道，各有各的金牌</div>
+        </div>
+        
+        <div class="quiz-section">
+            <div class="quiz-title">🎮 互动测试：测测你学到了多少！</div>
+            
+            <div class="quiz-question">
+                <b>Q1：狗的脑子里有多少大脑皮层神经元？</b><br>
+                A) 约 1 亿&nbsp;&nbsp;&nbsp;B) 约 5.28 亿&nbsp;&nbsp;&nbsp;C) 约 10 亿&nbsp;&nbsp;&nbsp;D) 和猫一样多
+            </div>
+            <div class="quiz-question">
+                <b>Q2：为什么群居动物的大脑皮层神经元更多？</b><br>
+                A) 因为群居动物吃得更饱&nbsp;&nbsp;&nbsp;B) 因为社交关系需要复杂的大脑处理能力<br>
+                C) 因为身体更大所以需要更大的大脑&nbsp;&nbsp;&nbsp;D) 纯粹是巧合
+            </div>
+            <div class="quiz-question">
+                <b>Q3：猫能识别自己的名字吗？</b><br>
+                A) 不能，猫听不懂人类语言&nbsp;&nbsp;&nbsp;B) 能识别，但常常选择不回应<br>
+                C) 只能训练后才能识别&nbsp;&nbsp;&nbsp;D) 只能识别主人喊的名字
+            </div>
+            <div class="quiz-question">
+                <b>Q4：以下哪项能力猫明显强于狗？</b><br>
+                A) 理解人类手势&nbsp;&nbsp;&nbsp;B) 声控指令执行&nbsp;&nbsp;&nbsp;C) 独立生存和狩猎能力&nbsp;&nbsp;&nbsp;D) 大脑皮层神经元总数
+            </div>
+            <div class="quiz-question">
+                <b>Q5：科学家说「比较猫和狗的智商，就像比较鱼和鹰的飞行能力」，这句话的意思是？</b><br>
+                A) 猫和狗一样聪明&nbsp;&nbsp;&nbsp;B) 鱼和鹰其实都会飞<br>
+                C) 它们走的是不同的进化道路，聪明有不同的形式和维度&nbsp;&nbsp;&nbsp;D) 猫比狗笨，就像鱼不会飞一样
+            </div>
+        </div>
+        
+        <div class="ending">
+            <h3>—— 完 ——</h3>
+            <p>谢谢阅读！希望你学到了很多知识！</p>
+            <p style="margin-top: 10px; font-size: 14px; color: #b2bec3;">本故事由 AI 助手小龙为小朋友精心制作 🐉</p>
+            <div style="text-align: left; margin-top: 15px;">
+                <a href="../index.html" class="back-home-btn">🏠 返回首页</a>
+            </div>
+        </div>
+    </div>
+
+<!-- rourou-home-btn:start -->
+<style>
+#rourou-home-btn{position:fixed;left:14px;bottom:calc(14px + env(safe-area-inset-bottom,0px));z-index:9999;
+display:inline-flex;align-items:center;gap:6px;padding:10px 18px;border-radius:999px;
+background:rgba(255,255,255,0.92);color:#2d3436;font-size:15px;font-weight:600;
+text-decoration:none;box-shadow:0 4px 14px rgba(0,0,0,0.18);border:1px solid rgba(0,0,0,0.08);
+-webkit-backdrop-filter:blur(4px);backdrop-filter:blur(4px);transition:transform .15s,background .15s;}
+#rourou-home-btn:hover{background:#fff;transform:translateY(-2px);}
+@media (max-width:600px){#rourou-home-btn{padding:9px 14px;font-size:13px;left:10px;bottom:calc(10px + env(safe-area-inset-bottom,0px));}}
+</style>
+<a id="rourou-home-btn" href="../index.html">🏠 首页</a>
+<!-- rourou-home-btn:end -->
+</body>
+</html>

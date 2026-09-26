@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🌋 火山：地球的超级引擎</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: "Microsoft YaHei", "PingFang SC", sans-serif;
+            background: linear-gradient(180deg, #e17055 0%, #d63031 30%, #6c5ce7 60%, #2d3436 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        .container {
+            max-width: 850px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 30px;
+            padding: 40px;
+            box-shadow: 0 25px 80px rgba(0,0,0,0.15);
+        }
+        .header {
+            text-align: center;
+            padding: 30px 0;
+            background: linear-gradient(135deg, #d63031 0%, #e17055 50%, #fdcb6e 100%);
+            border-radius: 20px;
+            margin-bottom: 30px;
+        }
+        .header h1 { font-size: 48px; color: white; text-shadow: 3px 3px 6px rgba(0,0,0,0.2); }
+        .subtitle { font-size: 20px; color: rgba(255,255,255,0.95); }
+        h2 {
+            font-size: 32px; color: #2d3436; margin: 40px 0 20px;
+            padding: 15px 25px;
+            background: linear-gradient(90deg, #d63031 0%, #e17055 100%);
+            border-radius: 15px; display: inline-block; color: white;
+        }
+        p { font-size: 20px; line-height: 2; color: #2d3436; margin-bottom: 20px; text-align: justify; }
+        .image-container { width: 100%; margin: 30px 0; text-align: center; }
+        .dino-image { width: 100%; border-radius: 20px; box-shadow: 0 15px 40px rgba(0,0,0,0.2); }
+        .image-caption { color: #636e72; font-size: 16px; margin-top: 15px; font-style: italic; background: #dfe6e9; display: inline-block; padding: 8px 20px; border-radius: 20px; }
+        .fun-fact {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white; padding: 25px; border-radius: 20px; margin: 25px 0; font-size: 18px; line-height: 1.8;
+        }
+        .fun-fact.pink { background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%); }
+        .fun-fact.green { background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%); }
+        .fun-fact.orange { background: linear-gradient(135deg, #fa709a 0%, #fee140 100%); }
+        .fun-fact.blue { background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%); }
+        .fun-fact.red { background: linear-gradient(135deg, #d63031 0%, #e17055 100%); }
+        .fun-fact-title { font-size: 22px; font-weight: bold; margin-bottom: 10px; }
+        .divider { text-align: center; font-size: 30px; color: #ddd; margin: 30px 0; }
+        .comparison-table {
+            width: 100%; border-collapse: separate; border-spacing: 0; border-radius: 15px;
+            overflow: hidden; margin: 20px 0; box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        .comparison-table th {
+            background: linear-gradient(135deg, #d63031, #e17055); color: white;
+            padding: 15px; font-size: 18px;
+        }
+        .comparison-table td { padding: 12px 15px; font-size: 16px; text-align: center; border-bottom: 1px solid #eee; }
+        .comparison-table tr:nth-child(even) td { background: #fff5f5; }
+        .comparison-table tr:hover td { background: #ffe8e0; }
+        .volcano-cards { display: flex; flex-wrap: wrap; gap: 15px; margin: 20px 0; }
+        .volcano-card {
+            flex: 1; min-width: 200px; background: #fff5f5; border-radius: 20px;
+            padding: 20px; text-align: center; box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+            border-top: 4px solid;
+        }
+        .volcano-card.strato { border-top-color: #d63031; }
+        .volcano-card.shield { border-top-color: #00b894; }
+        .volcano-card.cinder { border-top-color: #fdcb6e; }
+        .volcano-card .emoji { font-size: 50px; }
+        .volcano-card .name { font-size: 22px; font-weight: bold; margin: 10px 0 5px; color: #2d3436; }
+        .volcano-card .desc { font-size: 15px; color: #636e72; line-height: 1.6; }
+        .timeline { position: relative; padding-left: 40px; margin: 20px 0; }
+        .timeline::before {
+            content: ''; position: absolute; left: 15px; top: 0; bottom: 0; width: 4px;
+            background: linear-gradient(180deg, #d63031, #e17055, #fdcb6e); border-radius: 2px;
+        }
+        .timeline-item {
+            position: relative; margin-bottom: 25px; padding: 15px 20px;
+            background: #fff5f5; border-radius: 15px; border-left: 4px solid #d63031;
+        }
+        .timeline-item .year { font-size: 22px; font-weight: bold; color: #d63031; }
+        .timeline-item .desc { font-size: 17px; color: #2d3436; margin-top: 5px; line-height: 1.6; }
+        .quiz-section {
+            background: linear-gradient(135deg, #ffe8d6 0%, #ff7675 100%);
+            padding: 30px; border-radius: 20px; margin: 30px 0;
+        }
+        .quiz-title { font-size: 28px; color: #d63031; text-align: center; margin-bottom: 20px; }
+        .quiz-question {
+            background: white; padding: 20px; border-radius: 15px; margin: 15px 0;
+            font-size: 18px; box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        .quiz-question .q-num {
+            display: inline-block; background: linear-gradient(135deg, #d63031, #e17055);
+            color: white; width: 32px; height: 32px; border-radius: 50%;
+            text-align: center; line-height: 32px; font-weight: bold; margin-right: 10px;
+        }
+        .ending {
+            text-align: center; padding: 40px 0; margin-top: 40px;
+            background: linear-gradient(135deg, #d63031 0%, #e17055 50%, #fdcb6e 100%);
+            border-radius: 20px;
+        }
+        .ending h3 { font-size: 32px; color: white; text-shadow: 1px 1px 3px rgba(0,0,0,0.2); }
+        .ending p { text-align: center; font-size: 18px; color: rgba(255,255,255,0.95); }
+        .back-home-btn {
+            display: inline-block; margin-top: 20px; padding: 14px 30px;
+            background: rgba(255,255,255,0.3); color: white; text-decoration: none;
+            border-radius: 25px; font-size: 18px; border: 2px solid rgba(255,255,255,0.5);
+            transition: background 0.3s, transform 0.2s;
+        }
+        .back-home-btn:hover { background: rgba(255,255,255,0.5); transform: translateY(-2px); }
+        @media (max-width: 600px) {
+            .container { padding: 20px; }
+            h1 { font-size: 32px; } h2 { font-size: 24px; } p { font-size: 18px; }
+            .volcano-card { min-width: 100%; }
+            .comparison-table td, .comparison-table th { padding: 8px; font-size: 14px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🌋 火山：地球的超级引擎</h1>
+            <p class="subtitle">从地下岩浆到天空中的灰云——地球最壮观的力量</p>
+        </div>
+
+        <!-- 第一章：地球肚子里有什么 -->
+        <h2>🌍 第一章：地球肚子里有什么</h2>
+        <p>要理解火山，我们得先钻到地球肚子里去看看！地球就像一个巨大的煮鸡蛋：最外面是薄薄的<strong>地壳</strong>（蛋壳），中间是厚厚的<strong>地幔</strong>（蛋白），最里面是炽热的<strong>地核</strong>（蛋黄）。</p>
+
+        <p>地壳不是完整的一块，而是像拼图一样碎成了很多大块，科学家叫它们<strong>板块</strong>。地球表面有7大板块和几个小板块，它们漂浮在软软的地幔上，每年移动几厘米——差不多和你指甲生长的速度一样！</p>
+
+        <div class="image-container">
+            <img class="dino-image" src="scene_01.webp" alt="火山喷发全景">
+            <p class="image-caption">🌋 火山喷发——地球内部力量的壮观释放！</p>
+        </div>
+
+        <p>当板块互相碰撞、分离或擦肩而过时，地壳就会出现裂缝。地球内部温度高达5000°C以上，岩石被烤成了半流质的<strong>岩浆</strong>（magma）。岩浆比周围的固体岩石轻，就像水里的气泡一样不断往上挤。一旦找到裂缝，它就会猛烈地冲出地表——这就是<strong>火山喷发</strong>！</p>
+
+        <p>岩浆冲出地面后，我们就改叫它<strong>熔岩</strong>（lava）了。在地下叫岩浆，在地上叫熔岩，这是科学家的"行规"。</p>
+
+        <div class="fun-fact">
+            <div class="fun-fact-title">🌡️ 地球内部到底有多热？</div>
+            <p>地壳表面温度：约15°C（你脚下踩的地面）</p>
+            <p>地壳底部（地下30-50公里）：约1000°C</p>
+            <p>地幔（地下2900公里）：约3000°C</p>
+            <p>地核中心（地下6371公里）：约6000°C——跟太阳表面一样热！</p>
+            <p>如果把地球比作一个100°C的热鸡蛋，地壳就像蛋壳外面那层不到1毫米的薄膜！</p>
+        </div>
+
+        <!-- 第二章：火山的身体构造 -->
+        <h2>🏗️ 第二章：火山的身体构造</h2>
+        <p>火山其实有自己的"身体结构"，让我们像解剖学家一样把它拆开来看看：</p>
+
+        <div class="image-container">
+            <img class="dino-image" src="scene_02.webp" alt="火山剖面图">
+            <p class="image-caption">🔬 火山的身体构造——地下藏着一个岩浆的大房间！</p>
+        </div>
+
+        <p><strong>🌋 火山口（Crater）</strong>——火山顶上的大碗状凹陷，岩浆就是从这里喷出来的。有些火山口很大，下雨后能积水成湖，叫<strong>火山口湖</strong>。中国长白山天池就是一个火山口湖，水深373米，是中国最深的湖！</p>
+
+        <p><strong>🛤️ 火山通道（Conduit）</strong>——连接岩浆房和火山口的"管道"，岩浆通过这条通道上升。就像吸管里的饮料，岩浆被压力从地下"吸"上来。</p>
+
+        <p><strong>🏠 岩浆房（Magma Chamber）</strong>——地下几公里到几十公里处的巨大空间，储存着大量岩浆。这里就像火山的"蓄水池"，岩浆在这里积蓄压力，直到忍无可忍——砰！喷发！</p>
+
+        <p><strong>⛰️ 火山锥（Volcanic Cone）</strong>——火山喷发时，熔岩和火山灰一层层堆积，形成了像锥子一样的山体。越喷越高，有些火山锥能长到几千米！</p>
+
+        <div class="fun-fact pink">
+            <div class="fun-fact-title">🌋 什么是破火山口？</div>
+            有些超级火山喷发太猛烈了，把整个火山体都炸飞了，只留下一个巨大的凹陷坑，叫<strong>破火山口</strong>（Caldera）。美国的黄石公园就是一个超级破火山口，长72公里、宽55公里——面积比香港还大！它地下仍然有一个巨大的岩浆房，科学家一直在监测它。别担心，它最近一次大喷发是64万年前。
+        </div>
+
+        <!-- 第三章：火山三兄弟 -->
+        <h2>🏔️ 第三章：火山三兄弟</h2>
+        <p>不是所有火山都长得一样！根据形状和喷发方式，火山主要分为三大类型：</p>
+
+        <div class="volcano-cards">
+            <div class="volcano-card strato">
+                <div class="emoji">🏔️</div>
+                <div class="name">层状火山</div>
+                <div class="desc">也叫复式火山<br>又高又陡，像倒扣的漏斗<br>交替喷出熔岩和火山灰<br><strong>代表</strong>：富士山、维苏威火山<br>喷发猛烈💥</div>
+            </div>
+            <div class="volcano-card shield">
+                <div class="emoji">🛡️</div>
+                <div class="name">盾状火山</div>
+                <div class="desc">又矮又宽，像扣着的一面盾牌<br>流动性好的熔岩慢慢流出来<br>坡度很缓<br><strong>代表</strong>：夏威夷莫纳罗亚<br>喷发温和🌿</div>
+            </div>
+            <div class="volcano-card cinder">
+                <div class="emoji">🗼</div>
+                <div class="name">火山渣锥</div>
+                <div class="desc">最小的一种<br>像一个小土堆<br>由碎石和火山灰堆成<br><strong>代表</strong>：墨西哥帕里库廷<br>寿命短🥾</div>
+            </div>
+        </div>
+
+        <div class="image-container">
+            <img class="dino-image" src="scene_03.webp" alt="三种火山类型对比">
+            <p class="image-caption">🏔️🛡️🗼 三种火山——高瘦的、矮胖的、小巧的</p>
+        </div>
+
+        <table class="comparison-table">
+            <tr>
+                <th>特征</th>
+                <th>🏔️ 层状火山</th>
+                <th>🛡️ 盾状火山</th>
+                <th>🗼 火山渣锥</th>
+            </tr>
+            <tr>
+                <td><strong>形状</strong></td>
+                <td>高而陡</td>
+                <td>矮而宽</td>
+                <td>小锥形</td>
+            </tr>
+            <tr>
+                <td><strong>高度</strong></td>
+                <td>可达数千米</td>
+                <td>可达数千米（但坡缓）</td>
+                <td>通常<300米</td>
+            </tr>
+            <tr>
+                <td><strong>熔岩</strong></td>
+                <td>黏稠，流动慢</td>
+                <td>稀薄，流动快</td>
+                <td>较少</td>
+            </tr>
+            <tr>
+                <td><strong>喷发</strong></td>
+                <td>💥 猛烈爆炸</td>
+                <td>🌿 温和溢流</td>
+                <td>中等</td>
+            </tr>
+            <tr>
+                <td><strong>代表</strong></td>
+                <td>富士山、皮纳图博</td>
+                <td>莫纳罗亚、基拉韦厄</td>
+                <td>帕里库廷</td>
+            </tr>
+        </table>
+
+        <div class="fun-fact green">
+            <div class="fun-fact-title">🗻 富士山是活火山吗？</div>
+            是的！美丽的富士山是一座活火山，只不过它现在在"睡觉"——最后一次喷发是1707年，已经300多年没动静了。科学家把它归类为<strong>"休眠火山"</strong>。别被它美丽的对称外形骗了——那完美的圆锥形正是几千年来一次又一次喷发堆积出来的！日本最高的山其实是一颗沉睡的炸弹。
+        </div>
+
+        <!-- 第四章：火山喷发有多可怕 -->
+        <h2>💥 第四章：火山喷发有多可怕</h2>
+        <p>火山喷发可不是只喷点岩浆那么简单。一次大型喷发会释放出好几种致命"武器"：</p>
+
+        <div class="image-container">
+            <img class="dino-image" src="scene_04.webp" alt="火山喷发产物">
+            <p class="image-caption">💨🔥 火山喷发的各种"武器"——远不止岩浆！</p>
+        </div>
+
+        <p><strong>🔥 熔岩流</strong>——从火山口流出的滚烫熔岩，温度700-1200°C，像一条燃烧的河流缓缓前进。它速度不快（每小时几米到几十公里），但所到之处一切化为灰烬。好在你可以跑得比它快——除非你站在它的必经之路上！</p>
+
+        <p><strong>💨 火山碎屑流</strong>——这是最致命的！高温气体、灰烬和岩石碎块以每小时700公里的速度冲下山坡，温度超过700°C。比高铁还快，比烤箱还热！1902年培雷火山喷发，碎屑流在3分钟内摧毁了28公里外的圣皮埃尔城，全城3万人只有2人幸存。</p>
+
+        <p><strong>🌫️ 火山灰</strong>——喷到高空中的细小玻璃碎片和岩石粉末，能飘到几百公里外。火山灰不是"灰"——它是微小的锐利玻璃颗粒！吸入会损伤肺部，落在屋顶能让房子塌掉，进入飞机引擎能让飞机坠毁。2010年冰岛艾雅法拉火山喷发，火山灰导致欧洲航空停飞数周，影响了1000万旅客！</p>
+
+        <p><strong>🌋 火山弹</strong>——喷到空中的大块熔岩，有些比汽车还大！它们在空中飞行时表面冷却变硬，落地时还是滚烫的。见过天上掉"火球"吗？这就是。</p>
+
+        <div class="fun-fact orange">
+            <div class="fun-fact-title">📜 维苏威火山与庞贝古城</div>
+            公元79年，意大利维苏威火山突然猛烈喷发。火山灰和碎屑流在短短几个小时内把繁华的庞贝城完全掩埋！城市和居民被"定格"在了那一刻——有人还在吃面包，有人抱着孩子逃跑。1700多年后，考古学家挖出了这座城市，发现面包还在烤箱里！那些被火山灰包裹的遗体，变成了一个个空洞，考古学家注入石膏后，再现了他们最后的姿态。这是人类历史上最著名的火山灾难。
+        </div>
+
+        <p><strong>🌊 火山海啸</strong>——海底火山喷发或火山体崩塌入海，会引发巨大海啸。1883年印尼喀拉喀托火山喷发引发40米高海啸，3.6万人遇难，爆炸声在4800公里外的澳大利亚都能听到——这是人类历史上最大的声音！</p>
+
+        <!-- 第五章：火山也是"好东西" -->
+        <h2>🌱 第五章：火山也是"好东西"</h2>
+        <p>说了这么多可怕的，但火山其实也是地球的"大功臣"！没有火山，我们生活的地球会完全不一样：</p>
+
+        <div class="image-container">
+            <img class="dino-image" src="scene_05.webp" alt="海底火山与火山岛">
+            <p class="image-caption">🏝️ 海底火山——创造新土地的巨人</p>
+        </div>
+
+        <p><strong>🏝️ 创造新土地</strong>——夏威夷群岛、冰岛、加拉帕戈斯群岛……这些美丽的地方全都是火山"造"出来的！海底火山不断喷发，熔岩堆积，最终露出海面变成岛屿。夏威夷的大岛现在还在"长大"——基拉韦厄火山几乎天天在喷发，土地每年都在增加！</p>
+
+        <p><strong>🌱 造出肥沃土壤</strong>——火山灰富含矿物质和营养元素，风化后变成超级肥沃的土壤。意大利维苏威火山脚下，农民种出了全世界最好吃的番茄和葡萄！爪哇岛只占印尼面积的7%，却养活了全国60%的人口——全靠火山土的肥力。</p>
+
+        <p><strong>♨️ 地热能源</strong>——火山地下储存着巨大的热能，可以用来发电、供暖。冰岛90%的家庭用地热取暖，首都雷克雅未克是世界上供暖最清洁的城市。地热是真正的可再生能源，太阳不会灭，地球也不会凉！</p>
+
+        <p><strong>💎 宝石和矿产</strong>——很多珍贵矿产都是火山的"礼物"。钻石来自地下150公里深的火山管道，金、银、铜矿很多都和火山活动有关。连你手机里用的铜线，可能都来自古代火山活动形成的矿床！</p>
+
+        <p><strong>🌍 大气的来源</strong>——科学家认为，40多亿年前地球早期的大量和气体喷发，释放出的水蒸气、二氧化碳和氮气，形成了地球最初的大气层和海洋！没有火山，就没有空气，没有海洋，也就没有生命！</p>
+
+        <div class="timeline">
+            <div class="timeline-item">
+                <div class="year">公元79年</div>
+                <div class="desc">维苏威火山喷发，庞贝城被掩埋</div>
+            </div>
+            <div class="timeline-item">
+                <div class="year">1815年</div>
+                <div class="desc">印尼坦博拉火山大喷发，1816年成为"无夏之年"——北半球夏天飘雪！</div>
+            </div>
+            <div class="timeline-item">
+                <div class="year">1883年</div>
+                <div class="desc">喀拉喀托火山喷发，史上最大声音，40米海啸</div>
+            </div>
+            <div class="timeline-item">
+                <div class="year">1980年</div>
+                <div class="desc">美国圣海伦斯火山喷发，整座山头被炸飞400米</div>
+            </div>
+            <div class="timeline-item">
+                <div class="year">1991年</div>
+                <div class="desc">菲律宾皮纳图博火山喷发，全球平均温度下降0.5°C</div>
+            </div>
+            <div class="timeline-item">
+                <div class="year">2010年</div>
+                <div class="desc">冰岛火山灰导致欧洲航空瘫痪数周</div>
+            </div>
+            <div class="timeline-item">
+                <div class="year">2022年</div>
+                <div class="desc">汤加海底火山喷发，海啸波及整个太平洋</div>
+            </div>
+        </table>
+
+        <div class="fun-fact blue">
+            <div class="fun-fact-title">🇨🇳 中国的火山</div>
+            <p>中国也有不少火山！最著名的：</p>
+            <p>🏔️ <strong>长白山</strong>——中国最大的休眠火山，天池是火山口湖，最后一次大喷发约1000年前</p>
+            <p>🌋 <strong>五大连池</strong>——黑龙江，14座火山渣锥，保存完好的火山地貌博物馆</p>
+            <p>🏝️ <strong>涠洲岛</strong>——广西，中国最年轻的火山岛，海水+火山岩=绝美风景</p>
+            <p>🔥 <strong>腾冲</strong>——云南，有著名的热海温泉群，地下岩浆活动仍在持续</p>
+        </div>
+
+        <div class="fun-fact red">
+            <div class="fun-fact-title">🌡️ 火山能让地球变冷？</div>
+            大型火山喷发会把大量二氧化硫喷入平流层，形成一层遮挡阳光的"硫酸雾幕"。1815年坦博拉火山喷发后，1816年全球气温骤降，北半球6月下雪，庄稼颗粒无收，被称为<strong>"无夏之年"</strong>。1991年皮纳图博火山喷发让全球温度下降了0.5°C持续2年！所以火山既能毁灭，也能给发烧的地球"退烧"——不过靠火山降温可不是什么好办法！
+        </div>
+
+        <p>火山就像地球的"压力锅"——内部热量不断积累，必须找个出口释放。它既是大自然的毁灭者，也是创造者。没有火山，就没有我们脚下的大地、呼吸的空气、吃的粮食。火山提醒我们：我们生活的这颗星球，其实是一颗活的、呼吸着的、充满力量的星球。🌋✨</p>
+
+        <div class="divider">🌋 🏔️ 💥 🌱 🏝️</div>
+
+        <!-- 互动测试 -->
+        <div class="quiz-section">
+            <div class="quiz-title">🧠 知识小测验</div>
+
+            <div class="quiz-question">
+                <span class="q-num">1</span> 岩浆冲出地面后叫什么？<br>
+                A. 还是岩浆<br>
+                B. 熔岩<br>
+                C. 火山灰<br>
+                D. 岩浆流
+            </div>
+
+            <div class="quiz-question">
+                <span class="q-num">2</span> 夏威夷的火山属于哪种类型？<br>
+                A. 层状火山<br>
+                B. 盾状火山<br>
+                C. 火山渣锥<br>
+                D. 破火山口
+            </div>
+
+            <div class="quiz-question">
+                <span class="q-num">3</span> 火山喷发最致命的"武器"是什么？<br>
+                A. 熔岩流<br>
+                B. 火山灰<br>
+                C. 火山碎屑流<br>
+                D. 火山弹
+            </div>
+
+            <div class="quiz-question">
+                <span class="q-num">4</span> 1816年"无夏之年"是什么原因造成的？<br>
+                A. 小行星撞击<br>
+                B. 火山喷发遮挡阳光<br>
+                C. 太阳活动减少<br>
+                D. 冰川期到来
+            </div>
+
+            <div class="quiz-question">
+                <span class="q-num">5</span> 以下哪个不是火山带来的好处？<br>
+                A. 肥沃的土壤<br>
+                B. 地热能源<br>
+                C. 火山碎屑流<br>
+                D. 创造新岛屿
+            </div>
+
+            <p style="text-align:center; margin-top:20px; font-size:16px; color:#636e72;">💡 答案：1-B 2-B 3-C 4-B 5-C</p>
+        </div>
+
+        <div class="ending">
+            <h3>—— 完 ——</h3>
+            <p>谢谢阅读！希望你对火山有了新的认识！</p>
+            <p style="margin-top: 10px; font-size: 14px; color: rgba(255,255,255,0.8);">本故事由 AI 助手小龙为小朋友精心制作 🐉</p>
+            <div style="text-align: left; margin-top: 15px;">
+                <a href="../index.html" class="back-home-btn">🏠 返回首页</a>
+            </div>
+        </div>
+    </div>
+
+<!-- rourou-home-btn:start -->
+<style>
+#rourou-home-btn{position:fixed;left:14px;bottom:calc(14px + env(safe-area-inset-bottom,0px));z-index:9999;
+display:inline-flex;align-items:center;gap:6px;padding:10px 18px;border-radius:999px;
+background:rgba(255,255,255,0.92);color:#2d3436;font-size:15px;font-weight:600;
+text-decoration:none;box-shadow:0 4px 14px rgba(0,0,0,0.18);border:1px solid rgba(0,0,0,0.08);
+-webkit-backdrop-filter:blur(4px);backdrop-filter:blur(4px);transition:transform .15s,background .15s;}
+#rourou-home-btn:hover{background:#fff;transform:translateY(-2px);}
+@media (max-width:600px){#rourou-home-btn{padding:9px 14px;font-size:13px;left:10px;bottom:calc(10px + env(safe-area-inset-bottom,0px));}}
+</style>
+<a id="rourou-home-btn" href="../index.html">🏠 首页</a>
+<!-- rourou-home-btn:end -->
+</body>
+</html>

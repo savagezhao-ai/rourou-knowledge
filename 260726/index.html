@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>战斗机大阅兵</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: "Microsoft YaHei", "PingFang SC", sans-serif;
+            background: linear-gradient(180deg, #b2d8f7 0%, #e3f2fd 20%, #90caf9 50%, #64b5f6 80%, #1976d2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        .container {
+            max-width: 850px;
+            margin: 0 auto;
+            background: #fffef9;
+            border-radius: 30px;
+            padding: 40px;
+            box-shadow: 0 25px 80px rgba(0,0,0,0.15);
+        }
+        .header {
+            text-align: center;
+            padding: 40px 0;
+            background: linear-gradient(135deg, #1976d2 0%, #42a5f5 30%, #e53935 60%, #ff7043 100%);
+            border-radius: 20px;
+            margin-bottom: 30px;
+            position: relative;
+            overflow: hidden;
+        }
+        .header::before {
+            content: "✈️ 🛩️ 🛫 ✈️ 🛩️ 🛫";
+            position: absolute;
+            top: 10px;
+            left: -100px;
+            font-size: 30px;
+            opacity: 0.15;
+            white-space: nowrap;
+            animation: flyby 20s linear infinite;
+        }
+        @keyframes flyby {
+            from { transform: translateX(-200px); }
+            to { transform: translateX(1000px); }
+        }
+        .header h1 {
+            font-size: 44px;
+            color: white;
+            text-shadow: 4px 4px 10px rgba(0,0,0,0.3);
+            position: relative;
+            z-index: 1;
+        }
+        .subtitle {
+            font-size: 20px;
+            color: rgba(255,255,255,0.95);
+            margin-top: 8px;
+            position: relative;
+            z-index: 1;
+        }
+        h2 {
+            font-size: 30px;
+            color: white;
+            margin: 40px 0 20px;
+            padding: 14px 24px;
+            background: linear-gradient(90deg, #ff7043 0%, #e53935 100%);
+            border-radius: 15px;
+            display: inline-block;
+        }
+        h2.ch2 { background: linear-gradient(90deg, #43a047 0%, #2e7d32 100%); }
+        h2.ch3 { background: linear-gradient(90deg, #5c6bc0 0%, #283593 100%); }
+        h2.ch4 { background: linear-gradient(90deg, #8e24aa 0%, #6a1b9a 100%); }
+        h2.ch5 { background: linear-gradient(90deg, #00acc1 0%, #00838f 100%); }
+        p {
+            font-size: 20px;
+            line-height: 2;
+            color: #2d3436;
+            margin-bottom: 20px;
+            text-align: justify;
+        }
+        .image-container {
+            width: 100%;
+            margin: 30px 0;
+            text-align: center;
+        }
+        .dino-image {
+            width: 100%;
+            border-radius: 20px;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.18);
+        }
+        .image-caption {
+            color: #636e72;
+            font-size: 16px;
+            margin-top: 15px;
+            font-style: italic;
+            background: #dfe6e9;
+            display: inline-block;
+            padding: 8px 20px;
+            border-radius: 20px;
+        }
+        .fun-fact {
+            background: linear-gradient(135deg, #e53935 0%, #ff7043 100%);
+            color: white;
+            padding: 25px;
+            border-radius: 20px;
+            margin: 25px 0;
+            font-size: 18px;
+            line-height: 1.8;
+        }
+        .fun-fact.green-bg {
+            background: linear-gradient(135deg, #43a047 0%, #66bb6a 100%);
+        }
+        .fun-fact.blue-bg {
+            background: linear-gradient(135deg, #1565c0 0%, #42a5f5 100%);
+        }
+        .fun-fact.purple-bg {
+            background: linear-gradient(135deg, #6a1b9a 0%, #ab47bc 100%);
+        }
+        .fun-fact-title {
+            font-size: 22px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        .jet-card {
+            background: linear-gradient(135deg, #e3f2fd 0%, #bbdefb 100%);
+            padding: 25px;
+            border-radius: 20px;
+            margin: 20px 0;
+            border-left: 6px solid #1976d2;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+        }
+        .jet-card h3 {
+            font-size: 24px;
+            color: #1565c0;
+            margin-bottom: 12px;
+        }
+        .jet-card.f22 { border-left-color: #e53935; background: linear-gradient(135deg, #ffebee 0%, #ffcdd2 100%); }
+        .jet-card.f22 h3 { color: #c62828; }
+        .jet-card.stealth { border-left-color: #424242; background: linear-gradient(135deg, #f5f5f5 0%, #e0e0e0 100%); }
+        .jet-card.stealth h3 { color: #212121; }
+        .divider {
+            text-align: center;
+            font-size: 30px;
+            color: #ddd;
+            margin: 30px 0;
+        }
+        .quiz-section {
+            background: linear-gradient(135deg, #eceff1 0%, #cfd8dc 100%);
+            padding: 30px;
+            border-radius: 20px;
+            margin: 30px 0;
+        }
+        .quiz-title {
+            font-size: 28px;
+            color: #2d3436;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .quiz-question {
+            background: white;
+            padding: 20px;
+            border-radius: 15px;
+            margin: 15px 0;
+            font-size: 18px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+        }
+        .ending {
+            text-align: center;
+            padding: 40px 0;
+            margin-top: 40px;
+            background: linear-gradient(135deg, #dfe6e9 0%, #b2bec3 100%);
+            border-radius: 20px;
+        }
+        .ending h3 { font-size: 32px; color: #2d3436; }
+        .ending p { text-align: center; font-size: 18px; color: #636e72; }
+        .back-home-btn {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 14px 30px;
+            background: rgba(0,0,0,0.06);
+            color: #2d3436;
+            text-decoration: none;
+            border-radius: 25px;
+            font-size: 18px;
+            border: 2px solid rgba(0,0,0,0.12);
+            transition: background 0.3s, transform 0.2s;
+        }
+        .back-home-btn:hover {
+            background: rgba(0,0,0,0.12);
+            transform: translateY(-2px);
+        }
+        .back-home-btn:active {
+            transform: translateY(0);
+        }
+        @media (max-width: 600px) {
+            .container { padding: 20px; }
+            h1 { font-size: 30px; }
+            h2 { font-size: 24px; }
+            p { font-size: 18px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🛩️ 战斗机大阅兵</h1>
+            <p class="subtitle">从木头翅膀到隐形杀手 —— 战斗机的百年进化史</p>
+        </div>
+
+        <h2>🛩️ 第一章：最早的战斗机——天上打起了仗</h2>
+        <p>如果让你画一架战斗机，你脑子里浮现的可能是流线型的银色机身、尖尖的机头、屁股后面喷着火。但一百多年前，世界上最早的战斗机长什么样？</p>
+        <p>答案是——<strong>看起来就像一只木头和帆布做的大风筝！</strong></p>
+        <p>第一次世界大战期间（1914-1918年），人们发现飞机可以用来侦察敌情。但敌人也有飞机呀，于是两个飞行员在空中相遇时，就开始用手枪对射！后来有人在飞机上装了机枪，真正的「战斗机」诞生了。</p>
+        <p>那时的战斗机叫「双翼机」，有两层翅膀，布蒙的机身，木头骨架。最快也就飞 200 公里/小时——比今天的高铁还慢！最有名的是英国的「骆驼」战斗机和德国的「福克三翼机」。红男爵——历史上最著名的王牌飞行员，就驾驶着一架血红色的福克三翼机，击落了 80 架敌机！</p>
+
+        <div class="fun-fact green-bg">
+            <div class="fun-fact-title">🤯 冷知识</div>
+            最早的飞行员没有降落伞！指挥官怕他们一遇到危险就跳伞逃跑，所以不给他们配备。直到战争后期才给飞行员发了降落伞。你觉得这对飞行员公平吗？
+        </div>
+
+        <div class="image-container">
+            <img class="dino-image" src="scene_01.webp" alt="双翼机蓝天">
+        </div>
+        <p class="image-caption">🛩️ 图1：一战时期的双翼机——战斗机界的「老爷爷」</p>
+
+        <div class="divider">✈️ ✈️ ✈️</div>
+
+        <h2 class="ch2">⚡ 第二章：喷气时代——比声音还快！</h2>
+        <p>二战（1939-1945年）彻底改变了战斗机。螺旋桨被<strong>喷气发动机</strong>取代——飞机不再靠螺旋桨「拉」着飞，而是像火箭一样靠喷出高温气体「推」着飞！</p>
+        <p>第一架实用的喷气式战斗机是德国的 Me 262，它快得像魔鬼——比盟军的螺旋桨飞机快 160 公里/小时。可惜它出现得太晚，没能改变战争的结局。</p>
+        <p>战后，喷气式战斗机飞速发展。到了 1950 年代的朝鲜战争，出现了历史上第一次喷气机对喷气机的空战——美国的 F-86「佩刀」对战苏联的米格-15「柴捆」。它们在空中缠斗，像两只燕子互相追逐。</p>
+        <p>但真正划时代的突破发生在<strong>1947年10月14日</strong>——美国试飞员查克·耶格尔驾驶 X-1 试验机，成为人类历史上<strong>第一个突破音速的人</strong>！从此，战斗机能飞得比声音还快，「音爆」这个词诞生了。</p>
+
+        <div class="fun-fact blue-bg">
+            <div class="fun-fact-title">💥 音爆是什么？</div>
+            当飞机飞得比声音还快时，它前面的声波被压缩成一道锥形冲击波——「砰」的一声巨响，地面上的玻璃都会震碎！这就是为什么超音速飞机不能在居民区上空超音速飞行。协和客机退役后，目前全世界没有任何商业航班能超音速飞行。
+        </div>
+
+        <div class="image-container">
+            <img class="dino-image" src="scene_02.webp" alt="喷气战斗机">
+        </div>
+        <p class="image-caption">⚡ 图2：现代喷气式战斗机——后掠翼、尾部喷火、比声音还快</p>
+
+        <div class="divider">✈️ ✈️ ✈️</div>
+
+        <h2 class="ch3">🔍 第三章：三大类型——各有绝活</h2>
+        <p>今天的战斗机五花八门，但可以大致分成三类，各有各的本事：</p>
+
+        <div class="jet-card">
+            <h3>🥊 空优战斗机 —— 天空的拳击手</h3>
+            <p>专门在空中和敌方战斗机格斗。它们轻巧灵活、速度快、机动性极强。代表作是美国的 F-16「战隼」和俄罗斯的苏-35。F-16 外形像一只凶猛的猎鹰，能做出 9G 的高过载机动——也就是说飞行员承受的重力是自身的 9 倍！</p>
+            <p><strong>F-16 有多强？</strong>全球有 25 个国家装备，生产超过 4600 架，是历史上产量最大的第四代战斗机。它的座舱视野极佳，飞行员甚至能看到自己机翼下面的地面。</p>
+        </div>
+
+        <div class="jet-card f22">
+            <h3>💣 多用途战斗机 —— 全能选手</h3>
+            <p>既能空战，又能对地轰炸。就像全能运动员，十项全能！代表是美国的 F-22「猛禽」（第五代隐身战斗机）和欧洲的「台风」战斗机。F-22 是世界上最先进的战斗机之一，能超音速巡航——不开加力就能长时间超音速飞行，这项能力连大多数四代机都没有。</p>
+            <p><strong>有趣的是：</strong>F-22 的造价高达 1.5 亿美元一架，加上研发成本，平摊后每架超过 3 亿美元！因为太贵，美国只生产了 187 架就停产了。</p>
+        </div>
+
+        <div class="jet-card stealth">
+            <h3>👻 隐形战斗机 —— 雷达看不见的幽灵</h3>
+            <p>它们的外形奇奇怪怪——全是棱角和平面，不像「正常」的飞机。这可不是设计师在乱画，而是故意让雷达波反射到别处去，让敌人的雷达「看不见」自己！</p>
+            <p>美国的 F-117「夜鹰」（世界上第一款隐形战斗机）造得像一颗切割过的黑钻石，雷达反射面积据说只有一只鸟那么大。B-2「幽灵」隐形轰炸机更夸张——翼展 52 米（比波音 737 还宽），但在雷达上看起来像一只老鹰！</p>
+            <p><strong>中国的歼-20「威龙」</strong>也是隐形战斗机，2017 年正式服役，标志着中国成为世界上第二个装备第五代隐形战斗机的国家。</p>
+        </div>
+
+        <div class="image-container">
+            <img class="dino-image" src="scene_03.webp" alt="三型对比">
+        </div>
+        <p class="image-caption">🔍 图3：三个类型排排站——螺旋桨老爷爷、喷气小帅哥、隐身幽灵三兄弟</p>
+
+        <div class="divider">✈️ ✈️ ✈️</div>
+
+        <h2 class="ch4">👻 第四章：隐形技术——飞机怎么藏起来？</h2>
+        <p>你可能觉得隐形飞机就像哈利·波特的隐身斗篷——「呼」的一下就看不见了。但其实，隐形战斗机的「隐形」是指<strong>让雷达看不见它</strong>，用肉眼还是能看到一个怪模怪样的黑影划过天空。</p>
+        <p>雷达工作原理：发射电波 → 电波碰到飞机弹回来 → 雷达接收回波 → 屏幕上显示一个亮点。要让飞机变「隐身」，就得让电波不弹回来：</p>
+        <p>🔺 <strong>形状设计：</strong>把机身做成多面体，电波碰到后会像乒乓球碰到斜角一样弹到别处去，不弹回雷达站。</p>
+        <p>🎨 <strong>隐身涂料：</strong>飞机表面涂了一层特殊的「吸波材料」，就像海绵吸水一样把雷达电波吸收掉。</p>
+        <p>🔥 <strong>隐藏热源：</strong>喷气发动机的尾焰很热，红外探测器能捕捉到。隐形战斗机会把发动机藏在机身深处，喷口做成特殊形状来降低温度。</p>
+
+        <div class="fun-fact purple-bg">
+            <div class="fun-fact-title">🔮 未来的战斗机</div>
+            科学家正在研究第六代战斗机——它可能是无人驾驶的！AI 飞行员没有身体限制，能做出人类飞行员承受不了的超强机动。未来的空战可能是两群无人机在空中打架，而人类飞行员坐在地面指挥中心遥控。
+        </div>
+
+        <div class="image-container">
+            <img class="dino-image" src="scene_04.webp" alt="隐形战斗机">
+        </div>
+        <p class="image-caption">👻 图4：夜空中幽灵般的隐身轰炸机——雷达上的大小就像一只鸟</p>
+
+        <div class="divider">✈️ ✈️ ✈️</div>
+
+        <h2 class="ch5">🛡️ 第五章：飞行员的酷装备</h2>
+        <p>开战斗机和开汽车完全不是一回事。战斗机飞行员穿的装备，其实是一套高科技的生命维持系统！</p>
+        <p>🪖 <strong>飞行头盔：</strong>看着像个摩托车头盔，但里面装了瞄准系统——飞行员看哪，导弹就打哪！最新的头盔还能在面罩上投影飞行数据，像科幻电影里的 HUD。</p>
+        <p>👕 <strong>抗荷服：</strong>高速转弯时重力会把血液压到脚底，飞行员会「黑视」——眼前一黑失去知觉。抗荷服在 G 力上升时自动充气，把腿和腹部的血液挤回大脑。</p>
+        <p>🚀 <strong>弹射座椅：</strong>危急时刻，拉动把手，座椅会用火箭把飞行员弹射出座舱。整个过程不到 1 秒！但代价也很大——每弹射一次，脊柱会被压缩 2-3 厘米。</p>
+        <p>💺 <strong>氧气面罩：</strong>高空中空气稀薄，不戴面罩飞行员会缺氧昏迷。军用面罩还内置了麦克风用于无线电通话。</p>
+
+        <div class="fun-fact">
+            <div class="fun-fact-title">🇨🇳 中国空军的骄傲</div>
+            歼-20「威龙」是中国第一款第五代隐形战斗机，2011年首飞，2017年正式服役。它采用了鸭式气动布局（前面有小翅膀）、DSI 进气道等独门技术。中国是世界上第二个装备自研第五代战斗机的国家，这是无数航空科学家和工程师几十年努力的成果！
+        </div>
+
+        <div class="image-container">
+            <img class="dino-image" src="scene_05.webp" alt="飞行员装备">
+        </div>
+        <p class="image-caption">🛡️ 图5：戴上飞行头盔，坐上敞篷螺旋桨飞机，也许你就是未来的飞行员！</p>
+
+        <div class="divider">✨ ✨ ✨</div>
+
+        <div class="quiz-section">
+            <div class="quiz-title">🎯 考考你！</div>
+            <div class="quiz-question">
+                <strong>1. 世界上最早的战斗机出现在哪个时期？</strong><br>
+                A. 19世纪 &nbsp; B. 第一次世界大战 &nbsp; C. 第二次世界大战 &nbsp; D. 冷战
+            </div>
+            <div class="quiz-question">
+                <strong>2. 「喷气发动机」取代了什么？</strong><br>
+                A. 机枪 &nbsp; B. 降落伞 &nbsp; C. 螺旋桨 &nbsp; D. 燃料
+            </div>
+            <div class="quiz-question">
+                <strong>3. 隐形战斗机「隐形」的真正意思是？</strong><br>
+                A. 人眼看不见 &nbsp; B. 雷达看不见 &nbsp; C. 能钻地下 &nbsp; D. 只有晚上飞
+            </div>
+            <div class="quiz-question">
+                <strong>4. 人类第一次突破音速是在哪一年？</strong><br>
+                A. 1939年 &nbsp; B. 1947年 &nbsp; C. 1955年 &nbsp; D. 1969年
+            </div>
+            <div class="quiz-question">
+                <strong>5. 中国第一款第五代隐形战斗机叫什么名字？</strong><br>
+                A. 歼-10 &nbsp; B. 歼-16 &nbsp; C. 歼-20 &nbsp; D. 枭龙
+            </div>
+        </div>
+
+        <div class="ending">
+            <h3>—— 完 ——</h3>
+            <p>也许未来的某一天，你就是设计下一代战斗机的那个人！</p>
+            <p style="margin-top: 10px; font-size: 14px; color: #999;">本故事由 AI 助手小龙为小朋友精心制作 🐉</p>
+            <div style="text-align: left; margin-top: 15px;">
+                <a href="../index.html" class="back-home-btn">🏠 返回首页</a>
+            </div>
+        </div>
+    </div>
+
+<!-- rourou-home-btn:start -->
+<style>
+#rourou-home-btn{position:fixed;left:14px;bottom:calc(14px + env(safe-area-inset-bottom,0px));z-index:9999;
+display:inline-flex;align-items:center;gap:6px;padding:10px 18px;border-radius:999px;
+background:rgba(255,255,255,0.92);color:#2d3436;font-size:15px;font-weight:600;
+text-decoration:none;box-shadow:0 4px 14px rgba(0,0,0,0.18);border:1px solid rgba(0,0,0,0.08);
+-webkit-backdrop-filter:blur(4px);backdrop-filter:blur(4px);transition:transform .15s,background .15s;}
+#rourou-home-btn:hover{background:#fff;transform:translateY(-2px);}
+@media (max-width:600px){#rourou-home-btn{padding:9px 14px;font-size:13px;left:10px;bottom:calc(10px + env(safe-area-inset-bottom,0px));}}
+</style>
+<a id="rourou-home-btn" href="../index.html">🏠 首页</a>
+<!-- rourou-home-btn:end -->
+</body>
+</html>

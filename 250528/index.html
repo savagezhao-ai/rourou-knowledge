@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🚁 无人机：天空中的小飞侠</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: "Microsoft YaHei", "PingFang SC", sans-serif;
+            background: linear-gradient(180deg, #74b9ff 0%, #a29bfe 30%, #fd79a8 60%, #ffeaa7 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        .container {
+            max-width: 850px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 30px;
+            padding: 40px;
+            box-shadow: 0 25px 80px rgba(0,0,0,0.15);
+        }
+        .header {
+            text-align: center;
+            padding: 30px 0;
+            background: linear-gradient(135deg, #0984e3 0%, #6c5ce7 50%, #00cec9 100%);
+            border-radius: 20px;
+            margin-bottom: 30px;
+        }
+        .header h1 { font-size: 48px; color: white; text-shadow: 3px 3px 6px rgba(0,0,0,0.2); }
+        .subtitle { font-size: 20px; color: rgba(255,255,255,0.95); }
+        h2 {
+            font-size: 32px; color: white; margin: 40px 0 20px;
+            padding: 15px 25px;
+            background: linear-gradient(90deg, #0984e3 0%, #6c5ce7 100%);
+            border-radius: 15px; display: inline-block;
+        }
+        p { font-size: 20px; line-height: 2; color: #2d3436; margin-bottom: 20px; text-align: justify; }
+        .image-container { width: 100%; margin: 30px 0; text-align: center; }
+        .dino-image { width: 100%; border-radius: 20px; box-shadow: 0 15px 40px rgba(0,0,0,0.2); }
+        .image-caption {
+            color: #636e72; font-size: 16px; margin-top: 15px; font-style: italic;
+            background: #dfe6e9; display: inline-block; padding: 8px 20px; border-radius: 20px;
+        }
+        .fun-fact {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white; padding: 25px; border-radius: 20px; margin: 25px 0;
+            font-size: 18px; line-height: 1.8;
+        }
+        .fun-fact.pink { background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%); }
+        .fun-fact.green { background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%); }
+        .fun-fact.orange { background: linear-gradient(135deg, #fa709a 0%, #fee140 100%); }
+        .fun-fact.blue { background: linear-gradient(135deg, #0984e3 0%, #00cec9 100%); }
+        .fun-fact-title { font-size: 22px; font-weight: bold; margin-bottom: 10px; }
+        .divider { text-align: center; font-size: 30px; color: #ddd; margin: 30px 0; }
+        .drone-parts {
+            display: grid; grid-template-columns: repeat(3, 1fr); gap: 15px; margin: 25px 0;
+        }
+        .drone-part {
+            background: linear-gradient(135deg, #74b9ff 0%, #a29bfe 100%);
+            color: white; padding: 20px; border-radius: 15px; text-align: center;
+        }
+        .drone-part .icon { font-size: 36px; margin-bottom: 8px; }
+        .drone-part .name { font-size: 18px; font-weight: bold; }
+        .drone-part .desc { font-size: 14px; margin-top: 5px; opacity: 0.9; }
+        .drone-type-table {
+            width: 100%; border-collapse: separate; border-spacing: 0;
+            border-radius: 15px; overflow: hidden; margin: 25px 0;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        .drone-type-table th {
+            background: linear-gradient(90deg, #0984e3, #6c5ce7);
+            color: white; padding: 15px; font-size: 18px;
+        }
+        .drone-type-table td {
+            padding: 12px 15px; font-size: 16px; border-bottom: 1px solid #dfe6e9;
+        }
+        .drone-type-table tr:nth-child(even) td { background: #f8f9fa; }
+        .drone-type-table tr:hover td { background: #e8f4fd; }
+        .timeline {
+            position: relative; padding-left: 40px; margin: 25px 0;
+        }
+        .timeline::before {
+            content: ''; position: absolute; left: 15px; top: 0; bottom: 0;
+            width: 4px; background: linear-gradient(180deg, #0984e3, #6c5ce7);
+            border-radius: 2px;
+        }
+        .timeline-item {
+            position: relative; margin-bottom: 25px; padding: 15px 20px;
+            background: #f8f9fa; border-radius: 12px;
+        }
+        .timeline-item::before {
+            content: ''; position: absolute; left: -33px; top: 20px;
+            width: 14px; height: 14px; background: #6c5ce7;
+            border-radius: 50%; border: 3px solid white;
+        }
+        .timeline-item .year {
+            font-size: 20px; font-weight: bold; color: #6c5ce7;
+        }
+        .timeline-item .event { font-size: 16px; color: #2d3436; margin-top: 5px; }
+        .quiz-section {
+            background: linear-gradient(135deg, #dfe6e9 0%, #b2bec3 100%);
+            padding: 30px; border-radius: 20px; margin: 30px 0;
+        }
+        .quiz-title { font-size: 28px; color: #2d3436; text-align: center; margin-bottom: 20px; }
+        .quiz-question {
+            background: white; padding: 20px; border-radius: 15px;
+            margin: 15px 0; font-size: 18px; box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        .ending {
+            text-align: center; padding: 40px 0; margin-top: 40px;
+            background: linear-gradient(135deg, #74b9ff 0%, #a29bfe 100%);
+            border-radius: 20px;
+        }
+        .ending h3 { font-size: 32px; color: white; }
+        .ending p { text-align: center; font-size: 18px; color: rgba(255,255,255,0.9); }
+        .back-home-btn {
+            display: inline-block; margin-top: 20px; padding: 14px 30px;
+            background: rgba(255,255,255,0.2); color: white; text-decoration: none;
+            border-radius: 25px; font-size: 18px;
+            border: 2px solid rgba(255,255,255,0.5);
+            transition: background 0.3s, transform 0.2s;
+        }
+        .back-home-btn:hover { background: rgba(255,255,255,0.35); transform: translateY(-2px); }
+        .back-home-btn:active { transform: translateY(0); }
+        @media (max-width: 600px) {
+            .container { padding: 20px; }
+            h1 { font-size: 32px; }
+            h2 { font-size: 24px; }
+            p { font-size: 18px; }
+            .drone-parts { grid-template-columns: 1fr 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🚁 无人机：天空中的小飞侠</h1>
+            <p class="subtitle">会飞的机器人，正在改变我们的世界！</p>
+        </div>
+
+        <!-- 第一章：飞上天的小精灵 -->
+        <h2>🌀 第一章：飞上天的小精灵</h2>
+        <p>你有没有在天空中看到过一个小小的东西，嗡嗡嗡地飞来飞去，像一只会发光的蜻蜓？那就是无人机！它不需要飞行员坐在里面，一个人站在地面上拿着遥控器，就能让它飞上蓝天！</p>
+        <p>无人机的英文名叫 <strong>Drone</strong>，意思是"雄蜂"。你看它飞起来嗡嗡嗡的声音，是不是就像一只勤劳的小蜜蜂？🐝 不过，它可比蜜蜂厉害多了——它能飞到人类去不了的地方，看到人类看不到的风景！</p>
+
+        <div class="image-container">
+            <img class="dino-image" src="scene_01.webp" alt="无人机在蓝天中飞翔">
+            <p class="image-caption">🚁 看它飞得多高！无人机就像天空中的小精灵</p>
+        </div>
+
+        <div class="fun-fact blue">
+            <div class="fun-fact-title">💡 趣味知识</div>
+            世界上最小的无人机只有2.8厘米，比一枚硬币还小！它叫"昆虫无人机"，翅膀像真正的昆虫一样拍动飞行。科学家想用它来帮助花朵传粉呢！
+        </div>
+
+        <div class="divider">✨ ✨ ✨</div>
+
+        <!-- 第二章：身体里藏着什么秘密 -->
+        <h2>🔧 第二章：身体里藏着什么秘密</h2>
+        <p>无人机虽然小，但它的身体里藏着很多厉害的"器官"！让我们像拆盲盒一样，看看里面都有什么：</p>
+
+        <div class="drone-parts">
+            <div class="drone-part">
+                <div class="icon">🔄</div>
+                <div class="name">螺旋桨</div>
+                <div class="desc">4个旋翼高速旋转，把无人机"推"上天空</div>
+            </div>
+            <div class="drone-part">
+                <div class="icon">⚡</div>
+                <div class="name">电池</div>
+                <div class="desc">锂电池供电，像手机一样需要充电</div>
+            </div>
+            <div class="drone-part">
+                <div class="icon">📷</div>
+                <div class="name">摄像头</div>
+                <div class="desc">高清相机，能拍出超美的照片和视频</div>
+            </div>
+            <div class="drone-part">
+                <div class="icon">🧭</div>
+                <div class="name">陀螺仪</div>
+                <div class="desc">感知平衡，让无人机不会东倒西歪</div>
+            </div>
+            <div class="drone-part">
+                <div class="icon">📡</div>
+                <div class="name">接收器</div>
+                <div class="desc">接收遥控器的信号，听指挥飞行</div>
+            </div>
+            <div class="drone-part">
+                <div class="icon">🧠</div>
+                <div class="name">飞控芯片</div>
+                <div class="desc">无人机的大脑，控制所有飞行动作</div>
+            </div>
+        </div>
+
+        <div class="image-container">
+            <img class="dino-image" src="scene_02.webp" alt="无人机内部结构">
+            <p class="image-caption">🔬 无人机内部大揭秘！每个零件都有大用处</p>
+        </div>
+
+        <p>最神奇的是，这些零件加在一起，让无人机能够做出很多不可思议的动作：悬停在空中不动、翻跟头、甚至自动避开障碍物！就像一个聪明的小飞行员住在里面一样！</p>
+
+        <div class="fun-fact pink">
+            <div class="fun-fact-title">💡 趣味知识</div>
+            无人机的4个螺旋桨不是都朝一个方向转的！2个顺时针转，2个逆时针转，这样互相抵消，无人机才不会像陀螺一样原地打转。这个原理和竹蜻蜓一模一样！
+        </div>
+
+        <div class="divider">✨ ✨ ✨</div>
+
+        <!-- 第三章：无人机的超级家族 -->
+        <h2>🦸 第三章：无人机的超级家族</h2>
+        <p>无人机可不只是一个样子，它有一个超级大的家族！每种无人机都有自己的"超能力"：</p>
+
+        <table class="drone-type-table">
+            <thead>
+                <tr>
+                    <th>无人机类型</th>
+                    <th>超能力</th>
+                    <th>用途</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>🎮 玩具无人机</td>
+                    <td>小巧灵活</td>
+                    <td>小朋友的快乐玩伴</td>
+                </tr>
+                <tr>
+                    <td>📸 航拍无人机</td>
+                    <td>高清摄像</td>
+                    <td>拍摄电影和美景</td>
+                </tr>
+                <tr>
+                    <td>📦 快递无人机</td>
+                    <td>载重飞行</td>
+                    <td>送货上门</td>
+                </tr>
+                <tr>
+                    <td>🌾 农业无人机</td>
+                    <td>大范围喷洒</td>
+                    <td>帮农民伯伯种地</td>
+                </tr>
+                <tr>
+                    <td>🚒 救援无人机</td>
+                    <td>红外探测</td>
+                    <td>寻找失踪的人</td>
+                </tr>
+                <tr>
+                    <td>🔬 科研无人机</td>
+                    <td>极端环境飞行</td>
+                    <td>探索火山和极地</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <div class="image-container">
+            <img class="dino-image" src="scene_03.webp" alt="各种类型的无人机">
+            <p class="image-caption">🌈 无人机家族大合影！每架都有独特的超能力</p>
+        </div>
+
+        <div class="fun-fact green">
+            <div class="fun-fact-title">💡 趣味知识</div>
+            中国的大疆（DJI）公司是世界上最大的无人机制造商！全球每卖出10架民用无人机，大约有7架是大疆制造的。中国制造，世界领先！🇨🇳
+        </div>
+
+        <div class="divider">✨ ✨ ✨</div>
+
+        <!-- 第四章：改变世界的飞行 -->
+        <h2>🌍 第四章：改变世界的飞行</h2>
+        <p>无人机已经不再是遥控玩具了，它正在悄悄改变我们的世界！看看这些了不起的事情：</p>
+
+        <div class="timeline">
+            <div class="timeline-item">
+                <div class="year">🏔️ 高山救援</div>
+                <div class="event">在雪山上，无人机能带着急救药品飞到登山者身边，比人爬山快10倍！瑞士的山区已经开始用无人机运送救援物资了。</div>
+            </div>
+            <div class="timeline-item">
+                <div class="year">🌾 智慧农业</div>
+                <div class="event">一架农业无人机1小时可以喷洒40亩农田，相当于30个人干一整天！还能用红外镜头发现哪块地生病了。</div>
+            </div>
+            <div class="timeline-item">
+                <div class="year">📦 空中快递</div>
+                <div class="event">在一些偏远山区和海岛，无人机正在送快递！15分钟就能把包裹送到以前需要2小时车程的地方。</div>
+            </div>
+            <div class="timeline-item">
+                <div class="year">🌊 海洋保护</div>
+                <div class="event">科学家用无人机追踪鲸鱼的行踪，观察珊瑚礁的健康，还能发现海洋里的塑料垃圾，保护蓝色星球！</div>
+            </div>
+            <div class="timeline-item">
+                <div class="year">🎬 电影拍摄</div>
+                <div class="event">以前拍空中镜头需要租直升机，花费几十万！现在用无人机几千块就能拍出同样震撼的画面。</div>
+            </div>
+        </div>
+
+        <div class="image-container">
+            <img class="dino-image" src="scene_04.webp" alt="无人机快递送货">
+            <p class="image-caption">📦 空中快递来啦！你的包裹正在天上飞过来</p>
+        </div>
+
+        <div class="fun-fact orange">
+            <div class="fun-fact-title">💡 趣味知识</div>
+            亚马逊和阿里巴巴都在试验"无人机蜂群快递"——几十架无人机同时出发，像蜜蜂采蜜一样高效！未来可能下单后30分钟，无人机就降落在你家阳台上！
+        </div>
+
+        <div class="divider">✨ ✨ ✨</div>
+
+        <!-- 第五章：未来的天空之城 -->
+        <h2>🚀 第五章：未来的天空之城</h2>
+        <p>想象一下未来的城市：天空中到处都是忙碌的无人机，就像一个巨大的空中交通网！</p>
+        <p>🚁 <strong>空中出租车</strong>——不再堵车！大型无人机载人飞行，5分钟穿越整个城市。已经有多家公司在测试了！</p>
+        <p>🌱 <strong>种树无人机</strong>——每天能种10万棵树！无人机飞过荒地，精准投下种子包，让沙漠变绿洲。</p>
+        <p>🏠 <strong>飞行建筑工</strong>——无人机群像搭积木一样建造房屋，不需要脚手架，安全又快速！</p>
+        <p>🔭 <strong>太空无人机</strong>——NASA正在研发能在火星飞行的无人机！火星上的空气很稀薄，但"机智号"已经成功在火星起飞了！</p>
+
+        <div class="image-container">
+            <img class="dino-image" src="scene_05.webp" alt="未来城市中的无人机">
+            <p class="image-caption">🏙️ 未来城市的空中交通——无人机无处不在！</p>
+        </div>
+
+        <div class="fun-fact blue">
+            <div class="fun-fact-title">💡 趣味知识</div>
+            2021年，NASA的"机智号"无人机在火星上完成了人类历史上第一次在其他星球的动力飞行！火星的大气只有地球的1%那么稠密，相当于在地球30公里高空飞行——这比地球上的飞机飞得还高！
+        </div>
+
+        <div class="divider">🎯 🎯 🎯</div>
+
+        <!-- 互动测试 -->
+        <div class="quiz-section">
+            <div class="quiz-title">🧠 知识大挑战</div>
+
+            <div class="quiz-question">
+                <strong>1. 无人机的英文名"Drone"是什么意思？</strong><br>
+                A. 小鸟 &nbsp; B. 雄蜂 &nbsp; C. 飞机 &nbsp; D. 蝴蝶
+            </div>
+            <div class="quiz-question">
+                <strong>2. 无人机的4个螺旋桨为什么2个顺时针、2个逆时针转？</strong><br>
+                A. 省电 &nbsp; B. 飞得更快 &nbsp; C. 防止原地打转 &nbsp; D. 看起来更酷
+            </div>
+            <div class="quiz-question">
+                <strong>3. 全球最大的民用无人机制造商来自哪个国家？</strong><br>
+                A. 美国 &nbsp; B. 日本 &nbsp; C. 中国 &nbsp; D. 德国
+            </div>
+            <div class="quiz-question">
+                <strong>4. 农业无人机1小时能喷洒多少亩农田？</strong><br>
+                A. 5亩 &nbsp; B. 15亩 &nbsp; C. 40亩 &nbsp; D. 100亩
+            </div>
+            <div class="quiz-question">
+                <strong>5. NASA的"机智号"无人机在哪里完成了人类首次外星球飞行？</strong><br>
+                A. 月球 &nbsp; B. 金星 &nbsp; C. 火星 &nbsp; D. 木星
+            </div>
+
+            <p style="text-align:center; margin-top:15px; color:#636e72; font-size:16px;">（答案：1-B &nbsp; 2-C &nbsp; 3-C &nbsp; 4-C &nbsp; 5-C）</p>
+        </div>
+
+        <div class="ending">
+            <h3>—— 完 ——</h3>
+            <p>谢谢阅读！希望你对无人机有了新的认识！🚁✨</p>
+            <p style="margin-top: 10px; font-size: 14px; color: rgba(255,255,255,0.7);">本文章由 AI 助手小龙为小朋友精心制作 🐉</p>
+            <div style="text-align: left; margin-top: 15px;">
+                <a href="../index.html" class="back-home-btn">🏠 返回首页</a>
+            </div>
+        </div>
+    </div>
+
+<!-- rourou-home-btn:start -->
+<style>
+#rourou-home-btn{position:fixed;left:14px;bottom:calc(14px + env(safe-area-inset-bottom,0px));z-index:9999;
+display:inline-flex;align-items:center;gap:6px;padding:10px 18px;border-radius:999px;
+background:rgba(255,255,255,0.92);color:#2d3436;font-size:15px;font-weight:600;
+text-decoration:none;box-shadow:0 4px 14px rgba(0,0,0,0.18);border:1px solid rgba(0,0,0,0.08);
+-webkit-backdrop-filter:blur(4px);backdrop-filter:blur(4px);transition:transform .15s,background .15s;}
+#rourou-home-btn:hover{background:#fff;transform:translateY(-2px);}
+@media (max-width:600px){#rourou-home-btn{padding:9px 14px;font-size:13px;left:10px;bottom:calc(10px + env(safe-area-inset-bottom,0px));}}
+</style>
+<a id="rourou-home-btn" href="../index.html">🏠 首页</a>
+<!-- rourou-home-btn:end -->
+</body>
+</html>

@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>⛽ 汽油、柴油、煤油：三兄弟为什么各烧各的？</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: "Microsoft YaHei", "PingFang SC", sans-serif;
+            background: linear-gradient(180deg, #f6d365 0%, #fda085 30%, #f76b1c 60%, #fad961 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        .container {
+            max-width: 850px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 30px;
+            padding: 40px;
+            box-shadow: 0 25px 80px rgba(0,0,0,0.15);
+        }
+        .header {
+            text-align: center;
+            padding: 30px 0;
+            background: linear-gradient(135deg, #f76b1c 0%, #fad961 100%);
+            border-radius: 20px;
+            margin-bottom: 30px;
+        }
+        .header h1 {
+            font-size: 42px;
+            color: white;
+            text-shadow: 3px 3px 6px rgba(0,0,0,0.25);
+            line-height: 1.3;
+        }
+        .subtitle {
+            font-size: 20px;
+            color: rgba(255,255,255,0.95);
+            margin-top: 12px;
+        }
+        h2 {
+            font-size: 30px;
+            color: #2d3436;
+            margin: 40px 0 20px;
+            padding: 15px 25px;
+            background: linear-gradient(90deg, #f6d365 0%, #fda085 100%);
+            border-radius: 15px;
+            display: inline-block;
+        }
+        p {
+            font-size: 20px;
+            line-height: 2;
+            color: #2d3436;
+            margin-bottom: 20px;
+            text-align: justify;
+        }
+        .image-container {
+            width: 100%;
+            margin: 30px 0;
+            text-align: center;
+        }
+        .dino-image {
+            width: 100%;
+            border-radius: 20px;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.2);
+        }
+        .image-caption {
+            color: #636e72;
+            font-size: 16px;
+            margin-top: 15px;
+            font-style: italic;
+            background: #ffeaa7;
+            display: inline-block;
+            padding: 8px 20px;
+            border-radius: 20px;
+        }
+        .fun-fact {
+            background: linear-gradient(135deg, #f76b1c 0%, #fad961 100%);
+            color: white;
+            padding: 25px;
+            border-radius: 20px;
+            margin: 25px 0;
+            font-size: 18px;
+            line-height: 1.8;
+        }
+        .fun-fact.pink {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+        }
+        .fun-fact.green {
+            background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);
+        }
+        .fun-fact.blue {
+            background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+        }
+        .fun-fact.orange {
+            background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);
+        }
+        .fun-fact-title {
+            font-size: 22px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        .divider {
+            text-align: center;
+            font-size: 30px;
+            color: #ddd;
+            margin: 30px 0;
+        }
+        .quiz-section {
+            background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);
+            padding: 30px;
+            border-radius: 20px;
+            margin: 30px 0;
+        }
+        .quiz-title {
+            font-size: 28px;
+            color: #e17055;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .quiz-question {
+            background: white;
+            padding: 20px;
+            border-radius: 15px;
+            margin: 15px 0;
+            font-size: 18px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        .ending {
+            text-align: center;
+            padding: 40px 0;
+            margin-top: 40px;
+            background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);
+            border-radius: 20px;
+        }
+        .ending h3 { font-size: 32px; color: #2d3436; }
+        .ending p { text-align: center; font-size: 18px; color: #636e72; }
+        .back-home-btn {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 14px 30px;
+            background: rgba(0,0,0,0.08);
+            color: #2d3436;
+            text-decoration: none;
+            border-radius: 25px;
+            font-size: 18px;
+            border: 2px solid rgba(0,0,0,0.15);
+            transition: background 0.3s, transform 0.2s;
+        }
+        .back-home-btn:hover {
+            background: rgba(0,0,0,0.15);
+            transform: translateY(-2px);
+        }
+        .back-home-btn:active {
+            transform: translateY(0);
+        }
+        @media (max-width: 600px) {
+            .container { padding: 20px; }
+            h1 { font-size: 30px; }
+            h2 { font-size: 24px; }
+            p { font-size: 18px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>⛽ 汽油 · 柴油 · 煤油</h1>
+            <p class="subtitle">三兄弟为什么各烧各的？一个关于「点着火」的故事</p>
+        </div>
+
+        <h2>第一章：同一桶黑汤，怎么分出三兄弟？</h2>
+        <p>汽车烧汽油，卡车烧柴油，飞机烧煤油。可是你知道吗？这三种油，<strong>全都来自同一桶黑乎乎的原油</strong>。那它们到底是怎么被分开的？</p>
+        <p>原油里混着一大堆"碳链"长短不一的分子。碳链就是一串碳原子手拉手连成的小链条，有的只有几个碳，有的十几二十个。科学家发现一个规律：<strong>链越短，分子越轻、越容易变成气体、沸点越低；链越长，分子越重、越黏、沸点越高。</strong>为什么？因为长链分子之间"抱"得更紧，要更大的力气（更高的温度）才能把它们拉开变成气体。</p>
+        <p>炼油厂就是利用这一点，把原油慢慢加热，<strong>按沸点从低到高，一层层"接"出来</strong>：最先跑出来的是最轻的<strong>汽油</strong>，中间是<strong>煤油</strong>，再往后是更重更黏的<strong>柴油</strong>。三兄弟就这样被分开了。</p>
+        <div class="image-container">
+            <img src="scene_01.webp" alt="炼油塔分离三种燃料" class="dino-image">
+            <div class="image-caption">🏭 高高的分馏塔旁，三个储罐装着三种不同颜色的燃料</div>
+        </div>
+        <div class="fun-fact">
+            <div class="fun-fact-title">💡 趣味知识框</div>
+            煤油最早是用来<strong>点灯</strong>的——"煤油灯"。在电灯普及之前，它取代了昂贵的鲸鱼油，让无数家庭用上了便宜的照明，也间接救了很多鲸鱼。
+        </div>
+
+        <h2>第二章：汽油——为什么非得"点火"才肯烧？</h2>
+        <p>先想一个最根本的问题：<strong>燃烧到底需要什么？</strong>答案是三样东西：燃料的蒸气 + 氧气 + 达到着火的温度。少一样都不行——所以是<em>气体</em>在烧，不是液体在烧。</p>
+        <p>汽油最大的优点是<strong>特别容易挥发</strong>，一进气缸就和空气混得匀匀的，一点就着。可奇怪的是，汽油机明明可以把混合气压缩，却<em>偏不让它自己着</em>，非要用火花塞在某一瞬间"啪"地打一个电火花。为什么？</p>
+        <p>因为汽油有个脾气：<strong>自燃温度很高</strong>。也就是说，你得压得很狠、温度很高它才肯自己着火——而这恰恰是我们想要的。如果混合气在火花塞点火<em>之前</em>就自己炸了，这种不受控制的爆炸叫<strong>爆震</strong>，会"哐哐"地震坏发动机。所以汽油机的做法是：压好混合气，然后在<strong>最恰当的一瞬间</strong>点火，让火焰从火花处均匀向外推进——这是一场被精确控制的燃烧。</p>
+        <p>衡量汽油"抗爆震"能力的尺子叫<strong>辛烷值</strong>，也就是加油站的 92、95、98。数字越高，越不容易提前自爆，发动机就能把压缩比做得更高、效率更高、更有劲。那是不是标号越高越好？<strong>不是。</strong>发动机的压缩比是出厂定好的，按说明书加就行；给一台只需要 92 的车硬加 98，它也不会凭空多出力。</p>
+        <div class="image-container">
+            <img src="scene_02.webp" alt="汽油机火花塞点火" class="dino-image">
+            <div class="image-caption">⚡ 活塞压好混合气，火花塞在最准的一刻打出电火花</div>
+        </div>
+        <div class="fun-fact pink">
+            <div class="fun-fact-title">💡 趣味知识框</div>
+            辛烷值的"尺子"是这样定出来的：科学家把极抗爆的一种燃料定为 <strong>100</strong>，把一点就爆的定为 <strong>0</strong>，其他汽油跟它们比，得出自己的数字。
+        </div>
+
+        <h2>第三章：柴油——为什么压一下就自己着？</h2>
+        <p>柴油机很特别：<strong>它没有火花塞</strong>。它点着火靠的是"用力压"。</p>
+        <p>追问一句：<strong>为什么用力压空气，空气就会变热？</strong>因为你压缩气体，等于对气体<em>做功</em>，你花的力气变成了气体的内能，温度就蹭蹭往上涨。柴油机的压缩比大约是 20:1（汽油机只有 10:1 左右），这么一压，气缸里的空气温度能飙到 <strong>500～700℃</strong>，比柴油自己着起来的温度还高。</p>
+        <p>这时候把柴油喷成细雾喷进去，它<strong>立刻就自己烧起来了</strong>。为什么柴油行、汽油不行？因为柴油的<strong>自燃点低</strong>——它的分子链条长，在高温下比汽油容易自己着火。衡量这一点的尺子叫<strong>十六烷值</strong>，意思正好和辛烷值<em>相反</em>：数字越高，越容易自己着。</p>
+        <p>那压燃有什么好处？第一，<strong>压缩比高 = 效率更高</strong>，同样一箱油跑得更远；第二，柴油更"稠"，同样一升装的<strong>能量更多</strong>；第三，它不怕爆震，发动机可以做得很粗壮，力气（扭矩）特别大。所以卡车、公交车、轮船、拖拉机都爱用它。代价是：更重、更吵、冷天更难启动（要靠"预热塞"先把气缸烤热），燃烧不好时还容易冒黑烟。</p>
+        <div class="image-container">
+            <img src="scene_03.webp" alt="柴油机压燃" class="dino-image">
+            <div class="image-caption">🔥 空气被压得发烫，柴油一喷进去就自己燃烧</div>
+        </div>
+        <div class="fun-fact green">
+            <div class="fun-fact-title">💡 趣味知识框</div>
+            柴油机的发明者叫<strong>狄塞尔</strong>（Diesel），他当年设计这台发动机，就是希望它能烧很多种燃料——他甚至演示过用<strong>花生油</strong>来驱动它。今天的"生物柴油"，正是这个思路的延续。
+        </div>
+
+        <h2>第四章：煤油——为什么飞机偏偏选中它？</h2>
+        <p>飞机烧的是<strong>航空煤油</strong>。为什么不用劲儿更大的汽油，或者更有劲的柴油？因为飞机的工作环境，是全世界最苛刻的。</p>
+        <p>把条件列出来，答案就自己浮出来了：<br>
+        <strong>① 高空冷到零下 50℃</strong>——燃料不能冻住、不能变稠结蜡。柴油到这个温度早就"冻成糊"了，直接出局。<br>
+        <strong>② 飞机最怕重</strong>——它要的是"每一公斤"里装的能量多。煤油的能量密度正好合适。<br>
+        <strong>③ 安全</strong>——煤油不像汽油那么容易挥发，在地面上不容易一点就着，装卸时更安全。<br>
+        <strong>④ 喷气发动机是"一直烧"</strong>——它不像活塞发动机那样一次次爆炸，而是持续稳定地燃烧，所以燃料必须烧得稳、又不能在喷嘴上结焦积碳。柴油太重会结焦，汽油太轻太猛。</p>
+        <p>所以煤油赢在"<strong>刚刚好</strong>"：够重，安全又有能量；够轻，高空不冻、还能雾化得很好。中间的这一个，恰恰是最合适的那一个。</p>
+        <p>你可能会问：<strong>那飞机为什么不用电池？</strong>因为现在最好的电池，每公斤装的能量还不到航空煤油的几十分之一。电池太重，飞机根本驮不动。这就是为什么在所有交通工具里，<strong>飞机是最难电气化的</strong>。</p>
+        <div class="image-container">
+            <img src="scene_04.webp" alt="飞机高空飞行" class="dino-image">
+            <div class="image-caption">✈️ 万米高空零下五十度，飞机还在稳稳地烧煤油</div>
+        </div>
+        <div class="fun-fact blue">
+            <div class="fun-fact-title">💡 趣味知识框</div>
+            航空煤油有非常严格的"体检标准"：必须在极低温下依然流动、不能含水结冰（高空的燃油管路一旦结冰堵住，后果不堪设想）。
+        </div>
+
+        <h2>第五章：加错油会怎样？——为什么不能混着用</h2>
+        <p>既然三兄弟是亲戚，能不能混着烧？<strong>绝对不行，而且后果很严重。</strong>我们还是追到底层原因。</p>
+        <p><strong>汽油加进柴油车：</strong>汽油自燃点高，在高压缩的柴油机里，要么迟迟点不着，要么某一刻突然暴力爆震，把活塞和连杆震坏。更隐蔽的问题是——柴油本身还负责给高压油泵<em>润滑</em>，汽油太"干"，油泵会迅速磨损，掉落的金属屑会顺着管路毁掉整套喷油系统。</p>
+        <p><strong>柴油加进汽油车：</strong>柴油不容易挥发，火花塞点不着"液体"，只会把火花塞淹掉、积碳、冒黑烟，最后熄火趴窝。</p>
+        <p>根本原因其实一句话：<strong>每一台发动机，都是围绕燃料的"点火脾气 + 挥发性 + 润滑性"整体设计出来的。</strong>换掉燃料，整条链子从第一环就错了。</p>
+        <p>最后回看三兄弟：它们没有谁更高级，只有"<strong>谁更适合这台发动机</strong>"。未来，地面的汽车会越来越多地交给电机（电机效率高得多，还不受热机的效率天花板限制）；但飞机因为"每公斤能量"这个硬约束，还会烧很久很久的煤油。</p>
+        <div class="image-container">
+            <img src="scene_05.webp" alt="三种燃料并排对比" class="dino-image">
+            <div class="image-caption">🧪 三个玻璃罐并排：浅黄、琥珀、深琥珀，就是三兄弟</div>
+        </div>
+        <div class="fun-fact orange">
+            <div class="fun-fact-title">💡 趣味知识框</div>
+            万一加错油，记住一条：<strong>千万别点火启动！</strong>只要发动机没转起来，通常清洗油箱和管路就能解决；一旦启动，损伤就会迅速扩大。
+        </div>
+
+        <div class="quiz-section">
+            <div class="quiz-title">🧩 互动小测验：你分得清三兄弟了吗？</div>
+            <div class="quiz-question">1. 炼油厂把三种油分开，靠的是什么？<br>A. 颜色不同　B. 沸点（碳链长短）不同　C. 味道不同　D. 重量一样</div>
+            <div class="quiz-question">2. 汽油机为什么必须用火花塞点火？<br>A. 汽油不会挥发　B. 汽油自燃温度高，怕它提前自爆（爆震）　C. 火花塞好看　D. 汽油太重</div>
+            <div class="quiz-question">3. 柴油机是怎么点着火的？<br>A. 用火花塞　B. 用力压缩空气让它变热，喷进柴油自燃　C. 用打火机　D. 晒太阳</div>
+            <div class="quiz-question">4. 飞机为什么选煤油，而不是汽油或柴油？<br>A. 煤油最便宜　B. 煤油"刚刚好"：高空不冻、安全、能量足　C. 煤油最好闻　D. 柴油会爆炸</div>
+            <div class="quiz-question">5. 汽油误加进柴油车，最根本的问题是？<br>A. 颜色不对　B. 汽油自燃点高会爆震，且缺少润滑会毁掉油泵　C. 汽油太多　D. 加油站不赔</div>
+        </div>
+
+        <div class="ending">
+            <h3>—— 完 ——</h3>
+            <p>谢谢阅读！希望你学到了很多知识！</p>
+            <p style="margin-top: 10px; font-size: 14px; color: #b2bec3;">本故事由 AI 助手小龙为小朋友精心制作 🐉</p>
+            <div style="text-align: left; margin-top: 15px;">
+                <a href="../index.html" class="back-home-btn">🏠 返回首页</a>
+            </div>
+        </div>
+    </div>
+
+<!-- rourou-home-btn:start -->
+<style>
+#rourou-home-btn{position:fixed;left:14px;bottom:calc(14px + env(safe-area-inset-bottom,0px));z-index:9999;
+display:inline-flex;align-items:center;gap:6px;padding:10px 18px;border-radius:999px;
+background:rgba(255,255,255,0.92);color:#2d3436;font-size:15px;font-weight:600;
+text-decoration:none;box-shadow:0 4px 14px rgba(0,0,0,0.18);border:1px solid rgba(0,0,0,0.08);
+-webkit-backdrop-filter:blur(4px);backdrop-filter:blur(4px);transition:transform .15s,background .15s;}
+#rourou-home-btn:hover{background:#fff;transform:translateY(-2px);}
+@media (max-width:600px){#rourou-home-btn{padding:9px 14px;font-size:13px;left:10px;bottom:calc(10px + env(safe-area-inset-bottom,0px));}}
+</style>
+<a id="rourou-home-btn" href="../index.html">🏠 首页</a>
+<!-- rourou-home-btn:end -->
+</body>
+</html>

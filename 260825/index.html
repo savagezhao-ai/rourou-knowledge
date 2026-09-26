@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>长白山为何有那么多水</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: "Microsoft YaHei", "PingFang SC", sans-serif;
+            background: linear-gradient(180deg, #a8e6ff 0%, #74b9ff 30%, #0984e3 60%, #0652DD 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        .container {
+            max-width: 850px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 30px;
+            padding: 40px;
+            box-shadow: 0 25px 80px rgba(0,0,0,0.15);
+        }
+        .header {
+            text-align: center;
+            padding: 30px 0;
+            background: linear-gradient(135deg, #00cec9 0%, #74b9ff 50%, #a29bfe 100%);
+            border-radius: 20px;
+            margin-bottom: 30px;
+        }
+        .header h1 {
+            font-size: 42px;
+            color: white;
+            text-shadow: 3px 3px 6px rgba(0,0,0,0.2);
+        }
+        .subtitle {
+            font-size: 20px;
+            color: rgba(255,255,255,0.95);
+        }
+        h2 {
+            font-size: 30px;
+            color: #2d3436;
+            margin: 40px 0 20px;
+            padding: 15px 25px;
+            background: linear-gradient(90deg, #81ecec 0%, #74b9ff 100%);
+            border-radius: 15px;
+            display: inline-block;
+        }
+        p {
+            font-size: 20px;
+            line-height: 2;
+            color: #2d3436;
+            margin-bottom: 20px;
+            text-align: justify;
+        }
+        .image-container {
+            width: 100%;
+            margin: 30px 0;
+            text-align: center;
+        }
+        .dino-image {
+            width: 100%;
+            border-radius: 20px;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.2);
+        }
+        .image-caption {
+            color: #636e72;
+            font-size: 16px;
+            margin-top: 15px;
+            font-style: italic;
+            background: #dff9fb;
+            display: inline-block;
+            padding: 8px 20px;
+            border-radius: 20px;
+        }
+        .fun-fact {
+            background: linear-gradient(135deg, #00b894 0%, #00cec9 100%);
+            color: white;
+            padding: 25px;
+            border-radius: 20px;
+            margin: 25px 0;
+            font-size: 18px;
+            line-height: 1.8;
+        }
+        .fun-fact.pink {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+        }
+        .fun-fact.green {
+            background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);
+        }
+        .fun-fact.orange {
+            background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);
+        }
+        .fun-fact-title {
+            font-size: 22px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        .divider {
+            text-align: center;
+            font-size: 30px;
+            color: #ddd;
+            margin: 30px 0;
+        }
+        .quiz-section {
+            background: linear-gradient(135deg, #dff9fb 0%, #c7ecee 100%);
+            padding: 30px;
+            border-radius: 20px;
+            margin: 30px 0;
+        }
+        .quiz-title {
+            font-size: 28px;
+            color: #0984e3;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .quiz-question {
+            background: white;
+            padding: 20px;
+            border-radius: 15px;
+            margin: 15px 0;
+            font-size: 18px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        .ending {
+            text-align: center;
+            padding: 40px 0;
+            margin-top: 40px;
+            background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);
+            border-radius: 20px;
+        }
+        .ending h3 { font-size: 32px; color: #2d3436; }
+        .ending p { text-align: center; font-size: 18px; color: #636e72; }
+        .back-home-btn {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 14px 30px;
+            background: rgba(0,0,0,0.08);
+            color: #2d3436;
+            text-decoration: none;
+            border-radius: 25px;
+            font-size: 18px;
+            border: 2px solid rgba(0,0,0,0.15);
+            transition: background 0.3s, transform 0.2s;
+        }
+        .back-home-btn:hover {
+            background: rgba(0,0,0,0.15);
+            transform: translateY(-2px);
+        }
+        .back-home-btn:active {
+            transform: translateY(0);
+        }
+        @media (max-width: 600px) {
+            .container { padding: 20px; }
+            h1 { font-size: 30px; }
+            h2 { font-size: 24px; }
+            p { font-size: 18px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🏔️ 长白山为何有那么多水</h1>
+            <p class="subtitle">一座会「造水」的神奇火山</p>
+        </div>
+        
+        <div class="image-container">
+            <img src="scene_01.webp" alt="长白山天池全景" class="dino-image">
+            <div class="image-caption">云雾缭绕的长白山天池，像一颗蓝色宝石</div>
+        </div>
+
+        <h2>第一章 山顶上的一汪「天池」</h2>
+        <p>在吉林省和朝鲜的交界处，有一座高高的山，山顶上躺着一汪巨大的水，它叫「天池」。天池有多大？它像 9 个西湖加起来那么大！最深处超过 370 米，比 100 层楼还高。更神奇的是，天池悬在 2000 多米高的山顶上，四周都是火山岩壁，没有河流流进来，却永远满满的。</p>
+        <p>小朋友，如果让你在山顶放一个脸盆，下雨能接满，但天不下雨的时候，脸盆很快就会干。可天池为什么一年到头都是满的？它的水到底从哪儿来？让我们一起去寻找答案！</p>
+        
+        <div class="fun-fact">
+            <div class="fun-fact-title">💡 趣味知识</div>
+            天池是火山喷发后留下的「火山口湖」。很久很久以前，长白山是一座巨大的火山，喷发后山顶塌陷成一个碗状的大坑，雨水和地下水慢慢把坑填满，就变成了天池。
+        </div>
+
+        <h2>第二章 天池的水会「隐身」</h2>
+        <p>科学家们发现了一个大秘密：天池没有河流进来，却有一条瀑布流出去！在长白山的北坡，天池的水从缺口冲出，形成了长白瀑布，落差 68 米，是松花江的源头。水一直流，天池却不干，这怎么可能呢？</p>
+        <p>原来，天池的水量一直在悄悄变化。丰水年的时候，水会涨高；枯水年的时候，水会变浅。这说明天池底下藏着秘密通道——地下水像隐形的管子，把山体里储存的水源源不断地送进天池。火山岩里到处都是裂缝和孔洞，就像一个巨大的「天然海绵」。</p>
+
+        <div class="image-container">
+            <img src="scene_02.webp" alt="长白瀑布" class="dino-image">
+            <div class="image-caption">长白瀑布：天池之水从这里奔涌而出</div>
+        </div>
+
+        <div class="fun-fact pink">
+            <div class="fun-fact-title">💡 趣味知识</div>
+            天池在夏天是碧蓝色的，到了冬天，湖面会结起厚厚的冰，像一面巨大的镜子。天池水温常年很低，即使在夏天也只有几度，但神奇的是，天池里竟然有一种小鱼叫「天池鳞鱼」，它们早已适应了寒冷的水。
+        </div>
+
+        <h2>第三章 天上掉下来的「水仓库」</h2>
+        <p>长白山为什么能存住这么多水？第一个原因是：这里特别爱下雨、爱下雪！长白山靠近日本海，湿润的海洋空气爬上山坡，被高高的山体挡住，不得不冷却成云、变成雨雪落下来。每年长白山山顶的降水量高达 1400 毫米左右，是周围平原的好几倍。</p>
+        <p>再加上长白山海拔高、气温低，很多水以雪和冰的形式保存下来。冬天的大雪积成厚厚的雪被，春天融化时，雪水慢慢渗进山体，一点一点补充天池和地下水库。这就好比你家楼顶有一个大水箱，天上不停往里面加水，水箱自然总是满的。</p>
+
+        <div class="image-container">
+            <img src="scene_03.webp" alt="长白山降雪" class="dino-image">
+            <div class="image-caption">冬季的长白山白雪皑皑，是天然的储水库</div>
+        </div>
+
+        <div class="fun-fact green">
+            <div class="fun-fact-title">💡 趣味知识</div>
+            长白山还是「东北水塔」！松花江、图们江、鸭绿江三条大江的源头都在长白山。也就是说，东北平原上千万人喝的水、灌溉庄稼的水，很多都是从这座山出发的。
+        </div>
+
+        <h2>第四章 火山岩：会吸水的「海绵山」</h2>
+        <p>长白山是一座火山，火山喷发时流出的岩浆冷却后，形成了密密麻麻的气孔和裂缝，这种岩石叫火山岩（玄武岩）。火山岩像海绵一样能吸水，水能顺着裂缝钻到山体深处，把整座山变成一座巨大的地下水库。</p>
+        <p>科学家测量发现，长白山的地下水系统非常庞大，地下水会沿着岩层慢慢流动，有的地方甚至能形成地下河。天池和地下水库就像连通器：地下水库的水位高时，会通过裂缝把水「挤」进天池；天池水位高时，水又从瀑布流出去。这套系统就这样自动平衡，让天池永远不干。</p>
+
+        <div class="image-container">
+            <img src="scene_04.webp" alt="火山岩内部结构" class="dino-image">
+            <div class="image-caption">火山岩布满气孔，像一块巨大的天然海绵</div>
+        </div>
+
+        <div class="fun-fact orange">
+            <div class="fun-fact-title">💡 趣味知识</div>
+            天池还有神秘的「水怪」传说！有人说看到天池里有巨大的黑影游过，还有人拍到了照片。不过科学家大多认为，那可能是水獭、大鱼，或者是风吹起的波浪在光线下的错觉。
+        </div>
+
+        <h2>第五章 如果长白山不再下雨</h2>
+        <p>小朋友，想象一下：如果长白山连续十年不下雨不下雪，天池会干涸吗？答案是：不会立刻干。因为山体里的地下水库太大了，地下水会继续慢慢补给天池好几年。但如果干旱持续太久，天池的水位还是会下降，瀑布也会变小。</p>
+        <p>所以，长白山的「水」其实是一套完整的循环系统：海洋蒸发 → 变成云 → 被高山拦住降雨雪 → 积雪融化渗进火山岩 → 地下水补给天池 → 天池通过瀑布流向三条大江 → 江水最终流回大海。周而复始，永不停歇。保护长白山的森林和地下水，就是保护东北千万人的「水龙头」。</p>
+        <p>下次你看到一汪水，不妨想一想：它从哪里来，又要到哪里去？每一滴水，都走过一段奇妙的旅程。</p>
+
+        <div class="divider">🦋 🐟 🦅</div>
+
+        <div class="quiz-section">
+            <div class="quiz-title">🧠 知识小测试</div>
+            <div class="quiz-question"><b>1. 长白山天池是怎么形成的？</b><br>A. 人工挖的大湖　B. 火山喷发后留下的火山口积水　C. 陨石砸出的坑　D. 冰川融化形成</div>
+            <div class="quiz-question"><b>2. 天池没有河流流进来，为什么水不会干？</b><br>A. 有人天天往里面倒水　B. 地下水通过火山岩裂缝不断补给　C. 天池的水不会蒸发　D. 其实天池早就干了</div>
+            <div class="quiz-question"><b>3. 从长白山流出、落差68米的瀑布叫什么？</b><br>A. 黄果树瀑布　B. 壶口瀑布　C. 长白瀑布　D. 庐山瀑布</div>
+            <div class="quiz-question"><b>4. 长白山被称为「东北水塔」，是因为它？</b><br>A. 山上有座高塔　B. 是松花江、图们江、鸭绿江的源头　C. 山顶有储水塔　D. 山体是空心的</div>
+            <div class="quiz-question"><b>5. 火山岩为什么能存水？</b><br>A. 因为它很软　B. 因为它有密密麻麻的气孔和裂缝　C. 因为它是黑色的　D. 因为火山岩不吸水</div>
+        </div>
+        
+        <div class="ending">
+            <h3>—— 完 ——</h3>
+            <p>谢谢阅读！希望你学到了很多知识！</p>
+            <p style="margin-top: 10px; font-size: 14px; color: #b2bec3;">本故事由 AI 助手小龙为小朋友精心制作 🐉</p>
+            <div style="text-align: left; margin-top: 15px;">
+                <a href="../index.html" class="back-home-btn">🏠 返回首页</a>
+            </div>
+        </div>
+    </div>
+
+<!-- rourou-home-btn:start -->
+<style>
+#rourou-home-btn{position:fixed;left:14px;bottom:calc(14px + env(safe-area-inset-bottom,0px));z-index:9999;
+display:inline-flex;align-items:center;gap:6px;padding:10px 18px;border-radius:999px;
+background:rgba(255,255,255,0.92);color:#2d3436;font-size:15px;font-weight:600;
+text-decoration:none;box-shadow:0 4px 14px rgba(0,0,0,0.18);border:1px solid rgba(0,0,0,0.08);
+-webkit-backdrop-filter:blur(4px);backdrop-filter:blur(4px);transition:transform .15s,background .15s;}
+#rourou-home-btn:hover{background:#fff;transform:translateY(-2px);}
+@media (max-width:600px){#rourou-home-btn{padding:9px 14px;font-size:13px;left:10px;bottom:calc(10px + env(safe-area-inset-bottom,0px));}}
+</style>
+<a id="rourou-home-btn" href="../index.html">🏠 首页</a>
+<!-- rourou-home-btn:end -->
+</body>
+</html>

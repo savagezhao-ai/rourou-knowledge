@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🚀 马斯克的太空梦想：SpaceX的故事</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: "PingFang SC", "Microsoft YaHei", sans-serif;
+            background: linear-gradient(180deg, #0c0c2e 0%, #1a1a4e 30%, #2d1b69 60%, #4a1942 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        .container {
+            max-width: 850px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 30px;
+            padding: 40px;
+            box-shadow: 0 25px 80px rgba(0,0,0,0.3);
+        }
+        .header {
+            text-align: center;
+            padding: 40px 20px;
+            background: linear-gradient(135deg, #0f0c29 0%, #302b63 50%, #24243e 100%);
+            border-radius: 20px;
+            margin-bottom: 30px;
+            position: relative;
+            overflow: hidden;
+        }
+        .header::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: radial-gradient(circle at 20% 30%, rgba(255,255,255,0.1) 0%, transparent 50%),
+                        radial-gradient(circle at 80% 70%, rgba(255,255,255,0.08) 0%, transparent 40%);
+        }
+        .header h1 {
+            font-size: 44px;
+            color: white;
+            text-shadow: 3px 3px 6px rgba(0,0,0,0.3);
+            position: relative;
+        }
+        .header .subtitle {
+            font-size: 20px;
+            color: rgba(255,255,255,0.85);
+            margin-top: 10px;
+            position: relative;
+        }
+        .stars {
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            pointer-events: none;
+        }
+        h2 {
+            font-size: 30px;
+            color: #2d3436;
+            margin: 40px 0 20px;
+            padding: 15px 25px;
+            background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
+            border-radius: 15px;
+            display: inline-block;
+            color: white;
+        }
+        p {
+            font-size: 20px;
+            line-height: 2;
+            color: #2d3436;
+            margin-bottom: 20px;
+            text-align: justify;
+        }
+        .image-container {
+            width: 100%;
+            margin: 30px 0;
+            text-align: center;
+        }
+        .scene-image {
+            width: 100%;
+            max-width: 500px;
+            border-radius: 20px;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+        }
+        .image-caption {
+            color: #636e72;
+            font-size: 16px;
+            margin-top: 15px;
+            font-style: italic;
+            background: linear-gradient(90deg, #e8daef, #d6eaf8);
+            display: inline-block;
+            padding: 8px 20px;
+            border-radius: 20px;
+        }
+        .fun-fact {
+            padding: 25px;
+            border-radius: 20px;
+            margin: 25px 0;
+            font-size: 18px;
+            line-height: 1.8;
+            color: white;
+        }
+        .fun-fact.purple { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); }
+        .fun-fact.pink { background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%); }
+        .fun-fact.green { background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%); color: #1a1a2e; }
+        .fun-fact.orange { background: linear-gradient(135deg, #fa709a 0%, #fee140 100%); color: #1a1a2e; }
+        .fun-fact.blue { background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%); color: #1a1a2e; }
+        .fun-fact-title {
+            font-size: 22px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        .timeline {
+            position: relative;
+            padding-left: 30px;
+            margin: 20px 0;
+        }
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 4px;
+            background: linear-gradient(180deg, #667eea, #764ba2, #f5576c);
+            border-radius: 2px;
+        }
+        .timeline-item {
+            position: relative;
+            padding: 10px 0 10px 20px;
+        }
+        .timeline-item::before {
+            content: '🚀';
+            position: absolute;
+            left: -18px;
+            top: 10px;
+            font-size: 16px;
+        }
+        .timeline-year {
+            font-weight: bold;
+            color: #764ba2;
+            font-size: 20px;
+        }
+        .timeline-desc {
+            font-size: 18px;
+            color: #2d3436;
+            line-height: 1.6;
+        }
+        .divider {
+            text-align: center;
+            font-size: 30px;
+            margin: 30px 0;
+        }
+        .quiz-section {
+            background: linear-gradient(135deg, #0f0c29 0%, #302b63 50%, #24243e 100%);
+            padding: 30px;
+            border-radius: 20px;
+            margin: 30px 0;
+        }
+        .quiz-title {
+            font-size: 28px;
+            color: #feca57;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .quiz-question {
+            background: rgba(255,255,255,0.1);
+            padding: 20px;
+            border-radius: 15px;
+            margin: 15px 0;
+            font-size: 18px;
+            color: white;
+            line-height: 1.6;
+            border: 1px solid rgba(255,255,255,0.15);
+        }
+        .quiz-question strong {
+            color: #feca57;
+        }
+        .ending {
+            text-align: center;
+            padding: 40px 20px;
+            margin-top: 40px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f5576c 100%);
+            border-radius: 20px;
+        }
+        .ending h3 { font-size: 32px; color: white; }
+        .ending p { text-align: center; font-size: 18px; color: rgba(255,255,255,0.9); }
+        .back-home-btn {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 14px 30px;
+            background: rgba(255,255,255,0.2);
+            color: white;
+            text-decoration: none;
+            border-radius: 25px;
+            font-size: 18px;
+            border: 2px solid rgba(255,255,255,0.5);
+            transition: background 0.3s, transform 0.2s;
+        }
+        .back-home-btn:hover {
+            background: rgba(255,255,255,0.35);
+            transform: translateY(-2px);
+        }
+        .back-home-btn:active {
+            transform: translateY(0);
+        }
+        @media (max-width: 600px) {
+            .container { padding: 20px; }
+            .header h1 { font-size: 28px; }
+            h2 { font-size: 22px; }
+            p { font-size: 17px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🚀 马斯克的太空梦想<br>SpaceX的故事</h1>
+            <p class="subtitle">从一个人疯狂的想法，到改变世界的火箭公司</p>
+        </div>
+
+        <!-- 第一章 -->
+        <h2>🌟 一个看起来疯狂的梦想</h2>
+        <p>
+            你有没有想过，有一天人类可以像坐飞机一样坐火箭去太空旅行？这件事听起来像是科幻电影里的情节，但有一个人真的在努力把它变成现实——他就是埃隆·马斯克（Elon Musk）。
+        </p>
+        <p>
+            2002年，马斯克卖掉了他创办的PayPal公司，赚了很多钱。但他没有用这些钱买豪宅跑车，而是做了一个让所有人都觉得"疯了"的决定——他要自己造火箭！要知道，当时全世界只有国家才能造火箭，一个普通人想造火箭？简直是天方夜谭！
+        </p>
+
+        <div class="image-container">
+            <img class="scene-image" src="scene_01.webp" alt="火箭发射">
+            <div class="image-caption">🚀 火箭冲向星空，一切伟大的旅程都从梦想开始</div>
+        </div>
+
+        <div class="fun-fact purple">
+            <div class="fun-fact-title">💡 你知道吗？</div>
+            马斯克最初想买俄罗斯的旧火箭来送实验植物去火星，但俄罗斯人要价太高，还嘲笑他。马斯克一气之下用Excel算了一下，发现火箭的原材料成本只有售价的2%！于是他决定：我自己造！
+        </div>
+
+        <!-- 第二章 -->
+        <h2>🔥 三次失败，差点破产</h2>
+        <p>
+            SpaceX成立后，马斯克团队设计了一枚叫"猎鹰1号"的小型火箭。2006年3月，猎鹰1号第一次发射——结果刚飞了33秒就爆炸了💥。
+        </p>
+        <p>
+            2007年3月，第二次发射——火箭飞到了高空，但开始打转，再次失败。2008年8月，第三次发射——火箭分离时出问题，又炸了。
+        </p>
+        <p>
+            三次失败！马斯克的钱已经快花光了，公司只剩最后一次发射的资金。如果第四次再失败，SpaceX就彻底完了。这是2008年最惊心动魄的时刻。
+        </p>
+
+        <div class="fun-fact pink">
+            <div class="fun-fact-title">💫 转机来了！</div>
+            2008年9月28日，猎鹰1号第四次发射——成功了！🎉 这是世界上第一枚由私人公司制造的液体燃料火箭成功进入地球轨道！就在圣诞节前，NASA给了SpaceX一份16亿美元的合同，公司终于活了下来！
+        </div>
+
+        <!-- 第三章 -->
+        <h2>🚀 会"倒着飞"的火箭</h2>
+        <p>
+            SpaceX最酷的发明是什么？一定是"火箭回收"！以前的火箭都是一次性的——发射完就扔掉，就像坐出租车到站后把车扔了一样，太浪费了！
+        </p>
+        <p>
+            马斯克的想法是：火箭能不能像飞机一样，用完之后飞回来，下次再用？2015年12月21日，猎鹰9号火箭的第一级在发射后成功返回地面，稳稳地着陆了！想象一下，一栋20层楼高的火箭，从天上飞回来，然后像一根铅笔一样笔直地站在地面上——这简直太酷了！
+        </p>
+
+        <div class="image-container">
+            <img class="scene-image" src="scene_02.webp" alt="火箭回收着陆">
+            <div class="image-caption">🎯 猎鹰9号火箭垂直着陆在大洋中的无人船上</div>
+        </div>
+
+        <p>
+            更厉害的是，火箭不仅能回到陆地上，还能降落在海上的无人船上！SpaceX把这艘船叫"无人驾驶航天港船"（无人船），只有足球场大小，在波涛汹涌的大海中，火箭要精准地落在甲板上——比投篮还难100倍！
+        </p>
+
+        <div class="fun-fact green">
+            <div class="fun-fact-title">🤯 惊人数据</div>
+            2023年，SpaceX一共发射了96次火箭！其中猎鹰9号火箭的某个第一级助推器，被重复使用了整整19次！每次回收可以省下约4400万美元，这可是能买好几栋大楼的钱啊！
+        </div>
+
+        <!-- 第四章 -->
+        <h2>🛰️ 星链：从太空给地球上网</h2>
+        <p>
+            你知道吗？地球上还有大约27亿人上不了互联网！住在偏远山区和海洋上的人们，拉网线太难了。马斯克的解决办法是——从太空发WiFi！
+        </p>
+        <p>
+            这个计划叫"星链"（Starlink）。SpaceX把成千上万颗小卫星发射到地球轨道上，这些卫星就像一个巨大的"太空WiFi路由器网络"，覆盖整个地球。截至2025年，星链已经有超过7000颗卫星在轨道上运行，为全球100多个国家的400多万用户提供互联网服务！
+        </p>
+
+        <div class="image-container">
+            <img class="scene-image" src="scene_03.webp" alt="空间站与地球">
+            <div class="image-caption">🌍 太空中的卫星网络，让全世界都能上网</div>
+        </div>
+
+        <div class="fun-fact orange">
+            <div class="fun-fact-title">🌟 星链的神奇用途</div>
+            星链在很多地方帮了大忙：在遭受台风的地区提供紧急通讯、帮助远洋船员和家人视频通话、让极地科考队也能上网查资料。甚至在乌克兰，星链成了重要的通讯保障！
+        </div>
+
+        <!-- 第五章 -->
+        <h2>🔴 目标：火星！</h2>
+        <p>
+            SpaceX的终极目标是什么？让人类成为"多星球物种"——也就是说，人类不光住在地球上，还要住在火星上！
+        </p>
+        <p>
+            马斯克为什么要去火星？因为他担心如果地球发生大灾难（比如小行星撞击），人类就可能像恐龙一样灭绝。如果人类能在火星上建立城市，就有了"备份"，人类文明就能延续下去。
+        </p>
+        <p>
+            为了实现这个目标，SpaceX正在建造一种叫"星舰"（Starship）的超级火箭。星舰是有史以来最大、最强的火箭——高121米，比自由女神像还高！它能一次运送100多人去火星。星舰由不锈钢制造，闪亮亮的外表看起来就像科幻电影里的飞船！
+        </p>
+
+        <div class="image-container">
+            <img class="scene-image" src="scene_04.webp" alt="星舰在火星">
+            <div class="image-caption">🔴 星舰从火星表面发射，人类的新家园</div>
+        </div>
+
+        <div class="fun-fact blue">
+            <div class="fun-fact-title">⏰ 马斯克的时间表</div>
+            马斯克计划在2020年代末发射无人星舰去火星，2030年代送人类登上火星。火星距离地球最近时约5500万公里，坐星舰大约需要6个月！不过在火星上，一天也是24小时多一点，所以不会有时差困扰哦 😄
+        </div>
+
+        <div class="image-container">
+            <img class="scene-image" src="scene_05.webp" alt="火星上的未来">
+            <div class="image-caption">🧑‍🚀 也许有一天，你也能站在火星上向地球挥手！</div>
+        </div>
+
+        <!-- SpaceX 大事记 -->
+        <h2>📅 SpaceX 大事记</h2>
+        <div class="timeline">
+            <div class="timeline-item">
+                <div class="timeline-year">2002年</div>
+                <div class="timeline-desc">马斯克创立SpaceX，目标：让人类成为多星球物种</div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-year">2008年</div>
+                <div class="timeline-desc">猎鹰1号第四次发射成功，全球首个私人轨道火箭！</div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-year">2012年</div>
+                <div class="timeline-desc">龙飞船成为首个对接国际空间站的商业飞船</div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-year">2015年</div>
+                <div class="timeline-desc">猎鹰9号首次成功回收，创造历史！</div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-year">2020年</div>
+                <div class="timeline-desc">载人龙飞船送NASA宇航员上空间站，9年来首次从美国本土载人发射</div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-year">2023年</div>
+                <div class="timeline-desc">星舰首次完整飞行测试；全年发射96次；星链用户破200万</div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-year">2025年</div>
+                <div class="timeline-desc">星舰成功实现"筷子夹火箭"——用发射塔的机械臂在空中接住返回的火箭！</div>
+            </div>
+        </div>
+
+        <div class="divider">🚀 ✨ 🌍 ✨ 🔴</div>
+
+        <!-- 互动测试 -->
+        <div class="quiz-section">
+            <div class="quiz-title">🧠 来测试一下你学到了什么！</div>
+            
+            <div class="quiz-question">
+                <strong>第1题：</strong>SpaceX是哪一年成立的？<br>
+                A. 1999年 &nbsp; B. 2002年 &nbsp; C. 2008年 &nbsp; D. 2015年
+            </div>
+            
+            <div class="quiz-question">
+                <strong>第2题：</strong>猎鹰1号在第几次发射时才成功？<br>
+                A. 第二次 &nbsp; B. 第三次 &nbsp; C. 第四次 &nbsp; D. 第五次
+            </div>
+            
+            <div class="quiz-question">
+                <strong>第3题：</strong>SpaceX最酷的发明是什么？<br>
+                A. 太阳能电池板 &nbsp; B. 火箭回收技术 &nbsp; C. 3D打印 &nbsp; D. 人工智能
+            </div>
+            
+            <div class="quiz-question">
+                <strong>第4题：</strong>星链（Starlink）是做什么的？<br>
+                A. 太空旅游 &nbsp; B. 从太空给地球提供互联网 &nbsp; C. 拍太空照片 &nbsp; D. 运送快递
+            </div>
+            
+            <div class="quiz-question">
+                <strong>第5题：</strong>SpaceX的终极目标是什么？<br>
+                A. 赚很多钱 &nbsp; B. 建造最大的飞机 &nbsp; C. 让人类成为多星球物种 &nbsp; D. 发明新手机
+            </div>
+
+            <p style="color: rgba(255,255,255,0.6); font-size: 14px; text-align: center; margin-top: 15px;">
+                答案：1-B &nbsp; 2-C &nbsp; 3-B &nbsp; 4-B &nbsp; 5-C
+            </p>
+        </div>
+
+        <div class="ending">
+            <h3>🌌 梦想没有边界！</h3>
+            <p>SpaceX的故事告诉我们：即使全世界都说你"疯了"，只要坚持梦想，奇迹就可能发生！</p>
+            <p>也许有一天，你也能坐着星舰去火星旅行呢！🚀</p>
+            <p style="margin-top: 15px; font-size: 14px; color: rgba(255,255,255,0.6);">本文章由 AI 助手小龙为小朋友精心制作 🐉</p>
+            <div style="text-align: left; margin-top: 15px;">
+                <a href="../index.html" class="back-home-btn">🏠 返回首页</a>
+            </div>
+        </div>
+    </div>
+
+<!-- rourou-home-btn:start -->
+<style>
+#rourou-home-btn{position:fixed;left:14px;bottom:calc(14px + env(safe-area-inset-bottom,0px));z-index:9999;
+display:inline-flex;align-items:center;gap:6px;padding:10px 18px;border-radius:999px;
+background:rgba(255,255,255,0.92);color:#2d3436;font-size:15px;font-weight:600;
+text-decoration:none;box-shadow:0 4px 14px rgba(0,0,0,0.18);border:1px solid rgba(0,0,0,0.08);
+-webkit-backdrop-filter:blur(4px);backdrop-filter:blur(4px);transition:transform .15s,background .15s;}
+#rourou-home-btn:hover{background:#fff;transform:translateY(-2px);}
+@media (max-width:600px){#rourou-home-btn{padding:9px 14px;font-size:13px;left:10px;bottom:calc(10px + env(safe-area-inset-bottom,0px));}}
+</style>
+<a id="rourou-home-btn" href="../index.html">🏠 首页</a>
+<!-- rourou-home-btn:end -->
+</body>
+</html>

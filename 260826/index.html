@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>人参的秘密</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: "Microsoft YaHei", "PingFang SC", sans-serif;
+            background: linear-gradient(180deg, #ffeaa7 0%, #fab1a0 30%, #ff7675 60%, #fd79a8 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        .container {
+            max-width: 850px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 30px;
+            padding: 40px;
+            box-shadow: 0 25px 80px rgba(0,0,0,0.15);
+        }
+        .header {
+            text-align: center;
+            padding: 30px 0;
+            background: linear-gradient(135deg, #ff6b6b 0%, #feca57 50%, #48dbfb 100%);
+            border-radius: 20px;
+            margin-bottom: 30px;
+        }
+        .header h1 {
+            font-size: 48px;
+            color: white;
+            text-shadow: 3px 3px 6px rgba(0,0,0,0.2);
+        }
+        .subtitle {
+            font-size: 20px;
+            color: rgba(255,255,255,0.95);
+        }
+        h2 {
+            font-size: 32px;
+            color: #2d3436;
+            margin: 40px 0 20px;
+            padding: 15px 25px;
+            background: linear-gradient(90deg, #ff9ff3 0%, #feca57 100%);
+            border-radius: 15px;
+            display: inline-block;
+        }
+        p {
+            font-size: 20px;
+            line-height: 2;
+            color: #2d3436;
+            margin-bottom: 20px;
+            text-align: justify;
+        }
+        .image-container {
+            width: 100%;
+            margin: 30px 0;
+            text-align: center;
+        }
+        .dino-image {
+            width: 100%;
+            border-radius: 20px;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.2);
+        }
+        .image-caption {
+            color: #636e72;
+            font-size: 16px;
+            margin-top: 15px;
+            font-style: italic;
+            background: #ffeaa7;
+            display: inline-block;
+            padding: 8px 20px;
+            border-radius: 20px;
+        }
+        .fun-fact {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 25px;
+            border-radius: 20px;
+            margin: 25px 0;
+            font-size: 18px;
+            line-height: 1.8;
+        }
+        .fun-fact.pink {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+        }
+        .fun-fact.green {
+            background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);
+        }
+        .fun-fact.orange {
+            background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);
+        }
+        .fun-fact-title {
+            font-size: 22px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        .divider {
+            text-align: center;
+            font-size: 30px;
+            color: #ddd;
+            margin: 30px 0;
+        }
+        .quiz-section {
+            background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);
+            padding: 30px;
+            border-radius: 20px;
+            margin: 30px 0;
+        }
+        .quiz-title {
+            font-size: 28px;
+            color: #e17055;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .quiz-question {
+            background: white;
+            padding: 20px;
+            border-radius: 15px;
+            margin: 15px 0;
+            font-size: 18px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        .ending {
+            text-align: center;
+            padding: 40px 0;
+            margin-top: 40px;
+            background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);
+            border-radius: 20px;
+        }
+        .ending h3 { font-size: 32px; color: #2d3436; }
+        .ending p { text-align: center; font-size: 18px; color: #636e72; }
+        .back-home-btn {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 14px 30px;
+            background: rgba(0,0,0,0.08);
+            color: #2d3436;
+            text-decoration: none;
+            border-radius: 25px;
+            font-size: 18px;
+            border: 2px solid rgba(0,0,0,0.15);
+            transition: background 0.3s, transform 0.2s;
+        }
+        .back-home-btn:hover {
+            background: rgba(0,0,0,0.15);
+            transform: translateY(-2px);
+        }
+        .back-home-btn:active {
+            transform: translateY(0);
+        }
+        @media (max-width: 600px) {
+            .container { padding: 20px; }
+            h1 { font-size: 32px; }
+            h2 { font-size: 24px; }
+            p { font-size: 18px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>人参的秘密</h1>
+            <p class="subtitle">土里长出的「百草之王」</p>
+        </div>
+
+        <h2>第一章：一颗会「装人」的草根</h2>
+        <p>如果让你在森林里找一种会「变身」的植物，你可能会想到会捕虫的猪笼草，或者会「害羞」的含羞草。但有一种植物更厉害——它的根会慢慢长成一个小人的形状，有头、有身子，甚至还有「手」和「脚」。</p>
+        <p>这种植物就是<strong>人参</strong>。它的名字就藏着秘密：「参」在这里读作 shēn，意思是像人一样。古人发现，它的根长得特别像一个小人，于是就叫它「人参」——像人一样的参。</p>
+        <p>人参在中国东北的大森林里生长，已经有几千年的历史。古人把它当成最珍贵的药，称它为「百草之王」，意思是在成千上万种草药里，它是当之无愧的「王」。</p>
+        <div class="image-container">
+            <img class="dino-image" src="scene_01.webp" alt="人参">
+            <div class="image-caption">森林里的人参，根须像个小人</div>
+        </div>
+        <div class="fun-fact pink">
+            <div class="fun-fact-title">🌟 趣味知识</div>
+            人参的「参」字，其实和「大海参」那个「参」是同一个字！海参软软地躺在海底，人参直直地长在土里，一个在水下，一个在土中，却因为名字里都有个「参」字，成了有趣的「同名远亲」。
+        </div>
+
+        <h2>第二章：人参为什么能「补身体」？</h2>
+        <p>大人们常说人参能「补身体」，这是真的吗？要回答这个问题，我们先要搞清楚：身体到底是怎么「累」的。</p>
+        <p>我们的身体里，有无数个小小的「能量工厂」，它们叫<strong>细胞</strong>。细胞要不停地工作——心脏要跳、肺要呼吸、大脑要思考——这些都需要「能量」。能量从哪来？来自我们吃进去的饭，还有吸进来的氧气。细胞把食物和氧气「烧」掉，就产生了能量。</p>
+        <p>但就像烧火会冒烟一样，细胞「烧」能量的过程，也会产生一些「废气」。这些废气会捣乱，让细胞变慢、变累。身体里的废气越多，你就越觉得没力气、想睡觉。</p>
+        <p>人参的秘密武器，就是它身体里的一类小分子，叫<strong>人参皂苷</strong>（zào gān）。这些皂苷分子就像一群勤劳的小清洁工，它们钻进细胞里，帮忙把「废气」清走，还让能量工厂转得更快。细胞不累了，人自然就精神了。</p>
+        <div class="image-container">
+            <img class="dino-image" src="scene_02.webp" alt="细胞能量工厂">
+            <div class="image-caption">细胞里的「能量工厂」正在工作</div>
+        </div>
+        <div class="fun-fact green">
+            <div class="fun-fact-title">🔬 趣味知识</div>
+            「皂苷」这个名字里的「皂」，就是肥皂的皂！因为科学家发现，把这种物质加水摇晃，会像肥皂一样起泡泡。所以它虽然不脏，名字里却带了个「皂」字。
+        </div>
+
+        <h2>第三章：人参为什么长得像人？</h2>
+        <p>人参的根，为什么会变成小人的形状呢？这可不是它故意「表演」，而是它生长环境造成的。</p>
+        <p>人参住在大森林里，最爱住在又高又陡的山坡上，因为那里的土壤松软、排水好。人参的根往下钻的时候，会遇到石头、树根等各种障碍。它的主根往下长，碰到障碍就拐个弯；而旁边的侧根和须根，就朝四面八方伸出去找养分。久而久之，主根膨大变成「身子」，上面的芽变成「头」，两侧的须根就成了「手」和「脚」。</p>
+        <p>更有趣的是，人参长得极慢。它不像萝卜，几个月就能长很大。人参每年只长一点点，要长成像样的「小人」，往往要等上十几年，甚至几十年。所以越老的人参，形状越像人，也越珍贵。</p>
+        <div class="image-container">
+            <img class="dino-image" src="scene_03.webp" alt="人参根须">
+            <div class="image-caption">人参的根须伸向四面八方</div>
+        </div>
+        <div class="fun-fact orange">
+            <div class="fun-fact-title">🌱 趣味知识</div>
+            人参头顶上有个像「小盖子」的东西，叫「芦头」，上面一圈一圈的痕迹，就像树桩的年轮。数一数这些圈，就能大概猜出这棵人参活了几年！野山参常常有几十圈呢。
+        </div>
+
+        <h2>第四章：人参为什么那么贵？</h2>
+        <p>你可能听说过，一根好的人参，能卖到几万甚至几十万元！它凭什么这么贵？秘密就在「慢」和「难」两个字里。</p>
+        <p>先说说「慢」。我们种萝卜，撒下种子几个月就能拔出来吃。可是人参呢？从一粒种子长成一棵能用的参，至少要五六年，好的要十几年。农民伯伯要天天守着它，除草、遮阴、防虫，一年又一年，非常辛苦。时间，就是人参最值钱的「成本」。</p>
+        <p>再说说「难」。人参特别「娇气」——它怕晒，阳光太强会把叶子晒焦；它怕涝，水一多根就会烂掉；它还特别「挑食」，一块地种过一次人参，要「休息」好多年才能再种。更别说真正的野山参了，那是在深山老林里，靠自己慢慢长出来的，数量极少，采挖又危险，所以珍贵得不得了。</p>
+        <div class="image-container">
+            <img class="dino-image" src="scene_04.webp" alt="参农照顾人参">
+            <div class="image-caption">参农伯伯在细心照顾人参</div>
+        </div>
+        <div class="fun-fact">
+            <div class="fun-fact-title">💰 趣味知识</div>
+            历史上有一棵著名的野山参，据说在清朝皇宫里被保存了好多年，重达几百克，被称为「参王」。现在很多博物馆里都能看到上百年的「老参」，它们已经像宝贝一样被珍藏起来了。
+        </div>
+
+        <h2>第五章：人参的今天和未来</h2>
+        <p>今天的人参，早就不是只有国王和大官才能享用的宝贝了。科学家和农民伯伯一起努力，把野山参变成了可以大规模种植的「园参」，让普通人家也能买到人参。</p>
+        <p>而且，人参已经不只是拿来熬汤、泡水。它被做成了药片、口服液、糖果、饮料，甚至化妆品！科学家们正在研究人参皂苷，想搞清楚它到底是怎么帮助身体工作的，说不定以后还能用它做出新的药，治好更多的病。</p>
+        <p>不过要记住，人参虽然是好东西，但也不是吃得越多越好。它就像一位「有脾气的朋友」——身体虚弱时它能帮忙，但身体强壮、或者正在发烧感冒的人吃了，反而会不舒服。所以一定要听医生的话，不能自己乱吃哦！</p>
+        <div class="image-container">
+            <img class="dino-image" src="scene_05.webp" alt="人参的未来">
+            <div class="image-caption">未来的人参产品，越来越丰富</div>
+        </div>
+        <div class="fun-fact green">
+            <div class="fun-fact-title">🚀 趣味知识</div>
+            人参不只有中国东北才有哦！远在大洋彼岸的美国和加拿大，也生长着一种「西洋参」，它们是人参的「远方亲戚」。一个生长在东方，一个生长在西方，隔着整个太平洋，却长得有几分相像，真是神奇！
+        </div>
+
+        <div class="divider">✿ ✿ ✿</div>
+
+        <div class="quiz-section">
+            <div class="quiz-title">🎯 考考你（互动小测试）</div>
+            <div class="quiz-question">
+                <strong>第1题：</strong>人参名字里的「参」是什么意思？<br>
+                A. 海参　B. 像人一样　C. 参加　D. 一种药
+            </div>
+            <div class="quiz-question">
+                <strong>第2题：</strong>人参能帮人「补身体」，主要靠的是什么物质？<br>
+                A. 人参皂苷　B. 维生素C　C. 蛋白质　D. 叶绿素
+            </div>
+            <div class="quiz-question">
+                <strong>第3题：</strong>人参的根为什么会长得像小人？<br>
+                A. 它故意表演　B. 根遇到障碍拐弯，主根膨大、须根伸向四方　C. 有人把它捏成人形　D. 天生就是人形
+            </div>
+            <div class="quiz-question">
+                <strong>第4题：</strong>判断人参活了多少年，可以数什么？<br>
+                A. 叶子　B. 芦头上的圈　C. 须根数量　D. 花的颜色
+            </div>
+            <div class="quiz-question">
+                <strong>第5题：</strong>关于吃人参，下面哪种说法是对的？<br>
+                A. 吃得越多越好　B. 发烧感冒也能随便吃　C. 要听医生的，不能乱吃　D. 小孩一定要多吃
+            </div>
+            <p style="text-align:center; font-size:16px; color:#e17055; margin-top:10px;">（答案：B、A、B、B、C。你都答对了吗？）</p>
+        </div>
+
+        <div class="ending">
+            <h3>—— 完 ——</h3>
+            <p>谢谢阅读！希望你学到了很多知识！</p>
+            <p style="margin-top: 10px; font-size: 14px; color: #b2bec3;">本故事由 AI 助手小龙为小朋友精心制作 🐉</p>
+            <div style="text-align: left; margin-top: 15px;">
+                <a href="../index.html" class="back-home-btn">🏠 返回首页</a>
+            </div>
+        </div>
+    </div>
+
+<!-- rourou-home-btn:start -->
+<style>
+#rourou-home-btn{position:fixed;left:14px;bottom:calc(14px + env(safe-area-inset-bottom,0px));z-index:9999;
+display:inline-flex;align-items:center;gap:6px;padding:10px 18px;border-radius:999px;
+background:rgba(255,255,255,0.92);color:#2d3436;font-size:15px;font-weight:600;
+text-decoration:none;box-shadow:0 4px 14px rgba(0,0,0,0.18);border:1px solid rgba(0,0,0,0.08);
+-webkit-backdrop-filter:blur(4px);backdrop-filter:blur(4px);transition:transform .15s,background .15s;}
+#rourou-home-btn:hover{background:#fff;transform:translateY(-2px);}
+@media (max-width:600px){#rourou-home-btn{padding:9px 14px;font-size:13px;left:10px;bottom:calc(10px + env(safe-area-inset-bottom,0px));}}
+</style>
+<a id="rourou-home-btn" href="../index.html">🏠 首页</a>
+<!-- rourou-home-btn:end -->
+</body>
+</html>

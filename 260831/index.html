@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>火力发电 水力发电</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: "Microsoft YaHei", "PingFang SC", sans-serif;
+            background: linear-gradient(180deg, #ffeaa7 0%, #fab1a0 30%, #ff7675 60%, #fd79a8 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        .container {
+            max-width: 850px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 30px;
+            padding: 40px;
+            box-shadow: 0 25px 80px rgba(0,0,0,0.15);
+        }
+        .header {
+            text-align: center;
+            padding: 30px 0;
+            background: linear-gradient(135deg, #ff6b6b 0%, #feca57 50%, #48dbfb 100%);
+            border-radius: 20px;
+            margin-bottom: 30px;
+        }
+        .header h1 {
+            font-size: 48px;
+            color: white;
+            text-shadow: 3px 3px 6px rgba(0,0,0,0.2);
+        }
+        .subtitle {
+            font-size: 20px;
+            color: rgba(255,255,255,0.95);
+        }
+        h2 {
+            font-size: 32px;
+            color: #2d3436;
+            margin: 40px 0 20px;
+            padding: 15px 25px;
+            background: linear-gradient(90deg, #ff9ff3 0%, #feca57 100%);
+            border-radius: 15px;
+            display: inline-block;
+        }
+        p {
+            font-size: 20px;
+            line-height: 2;
+            color: #2d3436;
+            margin-bottom: 20px;
+            text-align: justify;
+        }
+        .image-container {
+            width: 100%;
+            margin: 30px 0;
+            text-align: center;
+        }
+        .dino-image {
+            width: 100%;
+            border-radius: 20px;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.2);
+        }
+        .image-caption {
+            color: #636e72;
+            font-size: 16px;
+            margin-top: 15px;
+            font-style: italic;
+            background: #ffeaa7;
+            display: inline-block;
+            padding: 8px 20px;
+            border-radius: 20px;
+        }
+        .fun-fact {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 25px;
+            border-radius: 20px;
+            margin: 25px 0;
+            font-size: 18px;
+            line-height: 1.8;
+        }
+        .fun-fact.pink {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+        }
+        .fun-fact.green {
+            background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);
+        }
+        .fun-fact.orange {
+            background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);
+        }
+        .fun-fact-title {
+            font-size: 22px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        .divider {
+            text-align: center;
+            font-size: 30px;
+            color: #ddd;
+            margin: 30px 0;
+        }
+        .quiz-section {
+            background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);
+            padding: 30px;
+            border-radius: 20px;
+            margin: 30px 0;
+        }
+        .quiz-title {
+            font-size: 28px;
+            color: #e17055;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .quiz-question {
+            background: white;
+            padding: 20px;
+            border-radius: 15px;
+            margin: 15px 0;
+            font-size: 18px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        .ending {
+            text-align: center;
+            padding: 40px 0;
+            margin-top: 40px;
+            background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);
+            border-radius: 20px;
+        }
+        .ending h3 { font-size: 32px; color: #2d3436; }
+        .ending p { text-align: center; font-size: 18px; color: #636e72; }
+        .back-home-btn {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 14px 30px;
+            background: rgba(0,0,0,0.08);
+            color: #2d3436;
+            text-decoration: none;
+            border-radius: 25px;
+            font-size: 18px;
+            border: 2px solid rgba(0,0,0,0.15);
+            transition: background 0.3s, transform 0.2s;
+        }
+        .back-home-btn:hover {
+            background: rgba(0,0,0,0.15);
+            transform: translateY(-2px);
+        }
+        .back-home-btn:active {
+            transform: translateY(0);
+        }
+        @media (max-width: 600px) {
+            .container { padding: 20px; }
+            h1 { font-size: 32px; }
+            h2 { font-size: 24px; }
+            p { font-size: 18px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>火力发电 水力发电</h1>
+            <p class="subtitle">电，是从哪里「变」出来的？</p>
+        </div>
+
+        <h2>第一章：按一下开关，电就来了</h2>
+        <p>晚上你「啪」地按一下开关，灯就亮了；电视、冰箱、空调，全都需要电。可是你有没有想过，这些电是从哪里来的？又是怎么跑进你家的？</p>
+        <p>电不会自己凭空冒出来，它是人们用各种办法「造」出来的。造电的地方，叫做<strong>发电厂</strong>。发电厂就像一个个巨大的「电工厂」，每天都在不停地生产电。</p>
+        <p>造电的办法有很多种，其中最最常见、最重要的两种，就是<strong>火力发电</strong>和<strong>水力发电</strong>。今天，我们就走进这两座「电工厂」，看看电到底是怎么被「变」出来的。</p>
+        <div class="image-container">
+            <img class="dino-image" src="scene_01.webp" alt="发电厂">
+            <div class="image-caption">电从发电厂出发，一路跑进千家万户</div>
+        </div>
+        <div class="fun-fact pink">
+            <div class="fun-fact-title">🌟 趣味知识</div>
+            不管是火力发电还是水力发电，最后都有一个共同的「关键一步」：让一个叫「发电机」的机器转起来。发电机一转，电就出来了。所以，发电的秘密，说穿了就是「想办法让大机器转起来」。
+        </div>
+
+        <h2>第二章：火力发电——用「烧」来发电</h2>
+        <p>火力发电，靠的是「烧」。烧什么呢？主要是<strong>煤</strong>，还有天然气、石油这些燃料。</p>
+        <p>它的做法是这样的：把煤放进一个大锅炉里烧，烧出大量的热。这些热把水煮开，变成温度很高、压力很大的<strong>水蒸气</strong>。这股「气」特别有劲，像吹气球一样，猛地冲向一个大大的「风扇」——<strong>汽轮机</strong>，把它的叶片吹得飞快地转起来。</p>
+        <p>汽轮机一转，就带动连在一起的<strong>发电机</strong>一起转。发电机一转，电就发出来了！你看，火力发电就像是「烧煤 → 烧水 → 蒸汽推机器 → 机器转出发电」这样一条流水线。</p>
+        <div class="image-container">
+            <img class="dino-image" src="scene_02.webp" alt="火力发电">
+            <div class="image-caption">烧煤 → 烧水 → 蒸汽推汽轮机 → 发电</div>
+        </div>
+        <div class="fun-fact green">
+            <div class="fun-fact-title">🔬 趣味知识</div>
+            火力发电厂里，常常能看到一个又高又粗的大烟囱，还有一个「胖胖的」冷却塔，往外冒着白气。别担心，那白气主要是水蒸气，不是有毒的烟。冷却塔的作用，是把用过的热水降温，好循环再用。
+        </div>
+
+        <h2>第三章：水力发电——用「流水」来发电</h2>
+        <p>水力发电不用烧煤，它请来了大自然的帮手——<strong>水</strong>。</p>
+        <p>人们在大河上修起一座高高的<strong>大坝</strong>，把河水拦住，让水越积越多，形成一个大水库。水越积越高，就像憋足了劲的运动员。然后，让这些水从高处「哗」地冲下来。</p>
+        <p>高高冲下的水流，力气大得惊人。它冲过一个叫<strong>水轮机</strong>的「大水车」，把水轮机的叶片冲得呼呼直转。水轮机一转，又带动发电机转起来，电就发出来了。</p>
+        <p>所以，水力发电靠的是「水往低处流」的力量。而且它不用烧煤，不会冒黑烟，是一种非常<strong>干净</strong>的发电方式。</p>
+        <div class="image-container">
+            <img class="dino-image" src="scene_03.webp" alt="水力发电">
+            <div class="image-caption">大坝拦住水，水流冲转水轮机发电</div>
+        </div>
+        <div class="fun-fact orange">
+            <div class="fun-fact-title">🌱 趣味知识</div>
+            我国有一座超级厉害的水电站，叫三峡大坝，是世界最大的水电站之一。它发的电，能点亮好多好多个城市！高大的水流从大坝冲下来，场面特别壮观，就像一条条白色的瀑布。
+        </div>
+
+        <h2>第四章：火电和水电，有什么不一样？</h2>
+        <p>火力发电和水力发电，都能发电，但它们各有各的「脾气」。</p>
+        <p><strong>火力发电</strong>的好处是：不管白天黑夜、刮风下雨，只要有煤，就能一直发，非常「靠得住」。但它有个大缺点：烧煤会冒出废气，比如二氧化碳，会让地球「发烧」（变暖），还会产生烟尘，污染空气。</p>
+        <p><strong>水力发电</strong>的好处是：干净、不烧煤、不冒烟，而且水是能循环再用的，几乎不花钱买「燃料」。但它也有缺点：得先修大坝、建水库，要花很多钱；而且如果碰上大旱、水少了，发的电就会变少。</p>
+        <p>所以，两种发电方式各有利弊。聪明的做法是，把各种发电方式都用起来，互相补充。</p>
+        <div class="image-container">
+            <img class="dino-image" src="scene_04.webp" alt="火电水电对比">
+            <div class="image-caption">火电烧煤会冒烟，水电干净但得修大坝</div>
+        </div>
+        <div class="fun-fact">
+            <div class="fun-fact-title">💰 趣味知识</div>
+            除了火电和水电，还有很多发电方式：风力发电（靠风车转）、太阳能发电（靠太阳晒）、核能发电等等。它们就像一支「发电大军」，各显神通，一起保证我们的灯一直亮着。
+        </div>
+
+        <h2>第五章：电是怎么跑到你家的？</h2>
+        <p>电在发电厂里「造」出来之后，还要经过一场长途旅行，才能到你家。</p>
+        <p>首先，电要先「升压」，变成高压电。为什么要升压呢？因为电压高了，电在长长的电线上跑，就不容易在半路「漏」掉、浪费掉。你会看到野外立着一排排高大的<strong>铁塔</strong>，上面架着一根根高压电线，那就是电的「高速公路」。</p>
+        <p>电跑啊跑，来到你家附近，再经过变电站「降压」，变成安全电压，最后沿着电线，钻进你家的插座。你按下开关，灯就亮了。</p>
+        <p>所以，别小看那一盏小小的灯，它背后可有一整条「发电 → 输电 → 变电 → 用电」的大工程呢。每一度电，都来之不易，我们要好好珍惜。</p>
+        <div class="image-container">
+            <img class="dino-image" src="scene_05.webp" alt="电的旅程">
+            <div class="image-caption">电经过铁塔、变电站，一路来到你家</div>
+        </div>
+        <div class="fun-fact green">
+            <div class="fun-fact-title">🚀 趣味知识</div>
+            你知道「一度电」能做多少事吗？一度电能让一盏小台灯亮上十几个小时，能让电风扇转好久，还能让手机充满好几次电。随手关灯、少开一会儿空调，都是珍惜电的好习惯哦！
+        </div>
+
+        <div class="divider">✿ ✿ ✿</div>
+
+        <div class="quiz-section">
+            <div class="quiz-title">🎯 考考你（互动小测试）</div>
+            <div class="quiz-question">
+                <strong>第1题：</strong>火力发电主要烧什么？<br>
+                A. 水　B. 煤　C. 木头　D. 沙子
+            </div>
+            <div class="quiz-question">
+                <strong>第2题：</strong>水力发电靠的是什么力量？<br>
+                A. 火烧水　B. 水流从高处冲下来　C. 风吹　D. 太阳晒
+            </div>
+            <div class="quiz-question">
+                <strong>第3题：</strong>火力发电和水力发电，最后都要让哪个机器转起来？<br>
+                A. 洗衣机　B. 发电机　C. 电风扇　D. 水泵
+            </div>
+            <div class="quiz-question">
+                <strong>第4题：</strong>下面哪个是水力发电的优点？<br>
+                A. 干净不冒烟　B. 要烧很多煤　C. 会污染空气　D. 要冒黑烟
+            </div>
+            <div class="quiz-question">
+                <strong>第5题：</strong>电要跑很远到你家，为什么要先「升压」变成高压电？<br>
+                A. 为了更好玩　B. 为了在半路少浪费　C. 为了让电变慢　D. 为了照亮铁塔
+            </div>
+            <p style="text-align:center; font-size:16px; color:#e17055; margin-top:10px;">（答案：B、B、B、A、B。你都答对了吗？）</p>
+        </div>
+
+        <div class="ending">
+            <h3>—— 完 ——</h3>
+            <p>谢谢阅读！希望你学到了很多知识！</p>
+            <p style="margin-top: 10px; font-size: 14px; color: #b2bec3;">本故事由 AI 助手小龙为小朋友精心制作 🐉</p>
+            <div style="text-align: left; margin-top: 15px;">
+                <a href="../index.html" class="back-home-btn">🏠 返回首页</a>
+            </div>
+        </div>
+    </div>
+
+<!-- rourou-home-btn:start -->
+<style>
+#rourou-home-btn{position:fixed;left:14px;bottom:calc(14px + env(safe-area-inset-bottom,0px));z-index:9999;
+display:inline-flex;align-items:center;gap:6px;padding:10px 18px;border-radius:999px;
+background:rgba(255,255,255,0.92);color:#2d3436;font-size:15px;font-weight:600;
+text-decoration:none;box-shadow:0 4px 14px rgba(0,0,0,0.18);border:1px solid rgba(0,0,0,0.08);
+-webkit-backdrop-filter:blur(4px);backdrop-filter:blur(4px);transition:transform .15s,background .15s;}
+#rourou-home-btn:hover{background:#fff;transform:translateY(-2px);}
+@media (max-width:600px){#rourou-home-btn{padding:9px 14px;font-size:13px;left:10px;bottom:calc(10px + env(safe-area-inset-bottom,0px));}}
+</style>
+<a id="rourou-home-btn" href="../index.html">🏠 首页</a>
+<!-- rourou-home-btn:end -->
+</body>
+</html>

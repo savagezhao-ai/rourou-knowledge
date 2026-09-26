@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>😷 看不见的杀手：粉尘污染与尘肺病</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: "Microsoft YaHei", "PingFang SC", sans-serif;
+            background: linear-gradient(180deg, #dfe6e9 0%, #b2bec3 30%, #636e72 60%, #2d3436 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        .container {
+            max-width: 850px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 30px;
+            padding: 40px;
+            box-shadow: 0 25px 80px rgba(0,0,0,0.15);
+        }
+        .header {
+            text-align: center;
+            padding: 30px 0;
+            background: linear-gradient(135deg, #636e72 0%, #fab1a0 50%, #ffeaa7 100%);
+            border-radius: 20px;
+            margin-bottom: 30px;
+        }
+        .header h1 {
+            font-size: 42px;
+            color: white;
+            text-shadow: 3px 3px 6px rgba(0,0,0,0.3);
+        }
+        .subtitle {
+            font-size: 20px;
+            color: rgba(255,255,255,0.95);
+        }
+        h2 {
+            font-size: 32px;
+            color: #2d3436;
+            margin: 40px 0 20px;
+            padding: 15px 25px;
+            background: linear-gradient(90deg, #a29bfe 0%, #74b9ff 100%);
+            border-radius: 15px;
+            display: inline-block;
+        }
+        p {
+            font-size: 20px;
+            line-height: 2;
+            color: #2d3436;
+            margin-bottom: 20px;
+            text-align: justify;
+        }
+        .image-container {
+            width: 100%;
+            margin: 30px 0;
+            text-align: center;
+        }
+        .scene-image {
+            width: 100%;
+            border-radius: 20px;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.2);
+        }
+        .image-caption {
+            color: #636e72;
+            font-size: 16px;
+            margin-top: 15px;
+            font-style: italic;
+            background: #ffeaa7;
+            display: inline-block;
+            padding: 8px 20px;
+            border-radius: 20px;
+        }
+        .fun-fact {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 25px;
+            border-radius: 20px;
+            margin: 25px 0;
+            font-size: 18px;
+            line-height: 1.8;
+        }
+        .fun-fact.pink {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+        }
+        .fun-fact.green {
+            background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);
+        }
+        .fun-fact.orange {
+            background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);
+        }
+        .fun-fact.gray {
+            background: linear-gradient(135deg, #636e72 0%, #b2bec3 100%);
+        }
+        .fun-fact-title {
+            font-size: 22px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        .divider {
+            text-align: center;
+            font-size: 30px;
+            color: #ddd;
+            margin: 30px 0;
+        }
+        .quiz-section {
+            background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);
+            padding: 30px;
+            border-radius: 20px;
+            margin: 30px 0;
+        }
+        .quiz-title {
+            font-size: 28px;
+            color: #e17055;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .quiz-question {
+            background: white;
+            padding: 20px;
+            border-radius: 15px;
+            margin: 15px 0;
+            font-size: 18px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        .quiz-question .options { margin-top: 10px; }
+        .quiz-question .option { display: block; padding: 8px 15px; margin: 5px 0; background: #f5f5f5; border-radius: 10px; cursor: pointer; }
+        .quiz-question .option:hover { background: #e8e8e8; }
+        .ending {
+            text-align: center;
+            padding: 40px 0;
+            margin-top: 40px;
+            background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);
+            border-radius: 20px;
+        }
+        .ending h3 { font-size: 32px; color: #2d3436; }
+        .ending p { text-align: center; font-size: 18px; color: #636e72; }
+        .back-home-btn {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 14px 30px;
+            background: rgba(0,0,0,0.08);
+            color: #2d3436;
+            text-decoration: none;
+            border-radius: 25px;
+            font-size: 18px;
+            border: 2px solid rgba(0,0,0,0.15);
+            transition: background 0.3s, transform 0.2s;
+        }
+        .back-home-btn:hover {
+            background: rgba(0,0,0,0.15);
+            transform: translateY(-2px);
+        }
+        .back-home-btn:active { transform: translateY(0); }
+        @media (max-width: 600px) {
+            .container { padding: 20px; }
+            h1 { font-size: 32px; }
+            h2 { font-size: 24px; }
+            p { font-size: 18px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>😷 看不见的杀手：粉尘污染与尘肺病</h1>
+            <p class="subtitle">那些漂浮在空气中的小颗粒，如何悄悄伤害我们的肺？</p>
+        </div>
+
+        <div class="image-container">
+            <img src="scene_01.webp" alt="粉尘颗粒角色" class="scene-image">
+            <div class="image-caption">🔬 空气中无处不在的粉尘颗粒</div>
+        </div>
+
+        <h2>第一章：空气里的「隐形居民」</h2>
+        <p>你有没有注意过，阳光照进房间的时候，光柱里有很多很多小颗粒在飞来飞去？那些就是<strong>粉尘</strong>！它们小到肉眼几乎看不见，却无处不在——教室里、马路上、工厂旁，甚至你家的书架上都有它们的身影。</p>
+        <p>粉尘不是一种东西，而是一个「大家族」。有的成员个头比较大，比如花粉、灰尘、皮屑；有的成员特别特别小，小到只有头发丝的三十分之一，它们叫<strong>PM2.5</strong>（直径小于2.5微米的颗粒物）。个头越小的粉尘，越能深入我们的身体，造成的伤害也越大。</p>
+
+        <div class="fun-fact">
+            <div class="fun-fact-title">💡 趣味知识：PM2.5 有多小？</div>
+            一根头发丝的直径大约是70微米，而PM2.5的直径不到2.5微米——也就是说，<strong>28个PM2.5排成一排，才有一根头发那么粗！</strong>这么小的东西，你的眼睛根本看不见，但你的肺能「感受」到它们。
+        </div>
+
+        <div class="divider">✦ ✦ ✦</div>
+
+        <div class="image-container">
+            <img src="scene_02.webp" alt="不同大小的粉尘颗粒" class="scene-image">
+            <div class="image-caption">📏 大颗粒、小颗粒、微小颗粒——大小决定危害</div>
+        </div>
+
+        <h2>第二章：粉尘的「三大门派」</h2>
+        <p>粉尘按来源可以分为三大「门派」：</p>
+        <p>🏭 <strong>工业粉尘</strong>：矿山开采、隧道施工、金属打磨、水泥制造……这些工厂和工地会产生大量粉尘。工人们每天和粉尘打交道，如果不好好保护，粉尘就会悄悄进入他们的肺。</p>
+        <p>🌾 <strong>农业粉尘</strong>：收割庄稼时飞扬的谷壳、稻草粉末，还有养殖场的饲料粉尘。农民伯伯秋收时扬起的那些「金色粉末」，看起来很美，其实藏着风险。</p>
+        <p>🏙️ <strong>城市粉尘</strong>：汽车尾气、建筑工地的扬尘、道路上的灰尘。即使你住在城市里，每天也会吸进不少粉尘。</p>
+
+        <div class="fun-fact pink">
+            <div class="fun-fact-title">💡 趣味知识：粉尘也会「长大」！</div>
+            粉尘在空气中飘啊飘，会和其他粉尘撞在一起，「粘」成更大的颗粒。这个过程叫<strong>凝聚</strong>。大颗粒比较重，会慢慢落下来变成灰尘；而小颗粒太轻了，可以在空气中飘好几天！
+        </div>
+
+        <div class="divider">✦ ✦ ✦</div>
+
+        <div class="image-container">
+            <img src="scene_03.webp" alt="粉尘进入肺部的过程" class="scene-image">
+            <div class="image-caption">🫁 粉尘的「肺部之旅」：从鼻子到肺泡</div>
+        </div>
+
+        <h2>第三章：粉尘的「肺部之旅」</h2>
+        <p>当你吸一口气，空气从鼻子进去，经过喉咙、气管、支气管，最后到达肺泡。肺泡就像一串串小葡萄，是肺里交换氧气的地方。粉尘也跟着空气一路深入，但身体的「防御系统」会努力拦住它们：</p>
+        <p>🛡️ <strong>第一关：鼻毛和鼻涕</strong>——大颗粒会被鼻毛挡住，黏在鼻涕里。你挖鼻屎的时候，那些灰灰的东西就是被拦住的粉尘！</p>
+        <p>🛡️ <strong>第二关：气管的「小扫把」</strong>——气管和支气管壁上有无数根<strong>纤毛</strong>，它们像小扫把一样不停往上扫，把黏住粉尘的黏液推到喉咙，你就把它咳出来或咽下去了。</p>
+        <p>🛡️ <strong>第三关：肺泡的「吞噬兵」</strong>——如果有特别小的粉尘（比如PM2.5）闯到了肺泡，一种叫<strong>巨噬细胞</strong>的免疫细胞会冲上去把它们「吃掉」。</p>
+        <p>但是！如果粉尘太多太多，这些防御系统就会累垮。纤毛被压坏了不扫了，巨噬细胞吃太多「撑死」了，粉尘就开始在肺里<strong>安家落户</strong>。</p>
+
+        <div class="fun-fact green">
+            <div class="fun-fact-title">💡 趣味知识：你的肺有多努力？</div>
+            一个成年人每天呼吸约<strong>2万次</strong>，吸入约1万升空气。如果空气里有粉尘，你的肺每天都在默默「打扫卫生」。一个健康人的肺里的纤毛每秒钟摆动<strong>10-15次</strong>，比扫地机器人还勤快！
+        </div>
+
+        <div class="divider">✦ ✦ ✦</div>
+
+        <div class="image-container">
+            <img src="scene_04.webp" alt="健康的肺 vs 尘肺" class="scene-image">
+            <div class="image-caption">⚖️ 健康的肺（粉色）vs 被粉尘伤害的肺（灰色）</div>
+        </div>
+
+        <h2>第四章：什么是尘肺病？</h2>
+        <p>当粉尘长期在肺里堆积，肺就会「生病」，这就是<strong>尘肺病</strong>。它是世界上最古老的职业病之一，至今仍在伤害着无数工人。</p>
+        <p>尘肺病是这样发生的：粉尘进入肺泡后，巨噬细胞吞掉粉尘，但消化不了，反而自己死掉了。死掉的细胞释放出有害物质，刺激肺组织产生<strong>纤维化</strong>——就是正常的、软软的肺组织变成了硬硬的疤痕组织。</p>
+        <p>打个比方：健康的肺像一块软软的海绵，可以轻松地膨胀收缩；而尘肺病人的肺像一块被胶水泡过的海绵，又硬又脆，怎么捏都捏不动。这就导致他们<strong>呼吸困难</strong>，稍微动一动就喘得厉害。</p>
+        <p>尘肺病有不同的类型，取决于吸入什么粉尘：</p>
+        <p>⛏️ <strong>矽肺</strong>：吸入石英粉尘（采矿、石匠）——最常见也最严重<br>
+        🪨 <strong>煤工尘肺</strong>：吸入煤粉（煤矿工人）——「黑肺病」<br>
+      ⚙️ <strong>电焊工尘肺</strong>：吸入金属烟尘（电焊工人）<br>
+      🏗️ <strong>石棉肺</strong>：吸入石棉纤维（上期讲过的石棉杀手！）</p>
+
+        <div class="fun-fact orange">
+            <div class="fun-fact-title">💡 趣味知识：尘肺病是「慢性杀手」</div>
+            尘肺病发病很慢，通常接触粉尘<strong>5-10年</strong>甚至更久才会出现症状。有的人退休好几年后才被诊断出来。这就是为什么工人在年轻时觉得「没事」，等发现问题已经很严重了。全球约<strong>4亿人</strong>接触有害粉尘，每年数十万人因此丧生。
+        </div>
+
+        <div class="divider">✦ ✦ ✦</div>
+
+        <div class="image-container">
+            <img src="scene_05.webp" alt="防护与清洁生产" class="scene-image">
+            <div class="image-caption">🛡️ 戴口罩、装除尘器——保护每一个人的肺</div>
+        </div>
+
+        <h2>第五章：保护肺，我们能做什么？</h2>
+        <p>尘肺病目前<strong>无法治愈</strong>——一旦肺组织纤维化了，就再也变不回去了。所以，最重要的就是<strong>预防</strong>！</p>
+        <p>👷 <strong>对于工人和工厂：</strong></p>
+        <p>• 戴专业的<strong>防尘口罩</strong>（普通棉口罩挡不住PM2.5！要戴N95或更高标准的）<br>
+        • 工厂安装<strong>通风除尘设备</strong>，把粉尘抽走<br>
+        • 定期给工人做<strong>体检</strong>，早发现早干预<br>
+        • 用<strong>湿式作业</strong>（喷水让粉尘落地），减少扬尘<br>
+        • 粉尘多的区域<strong>密闭</strong>，不让粉尘跑到外面</p>
+        <p>🏠 <strong>对于我们在家的你：</strong></p>
+        <p>• 雾霾天减少出门，出门戴好口罩<br>
+        • 家里定期打扫，减少积灰<br>
+        • 关注空气质量指数（AQI），空气差时关窗开空气净化器<br>
+        • 多吃蔬菜水果，锻炼身体，让肺更强壮</p>
+        <p>记住：肺是我们身体的「氧气工厂」，一辈子只有这一对。保护好了，它能为你工作100年；保护不好，它可能提前「罢工」。每一个工人的肺都值得被守护，每一次正确的防护都在拯救一条生命！</p>
+
+        <div class="fun-fact gray">
+            <div class="fun-fact-title">💡 趣味知识：世界尘肺病日</div>
+            每年4月25日是<strong>世界尘肺病日</strong>。这个日子提醒全世界：还有千千万万工人在粉尘环境中工作，他们的健康需要被看见、被保护。如果你认识在粉尘环境工作的叔叔阿姨，提醒他们一定要戴好口罩！
+        </div>
+
+        <div class="quiz-section">
+            <div class="quiz-title">🎯 来挑战吧！5道选择题</div>
+
+            <div class="quiz-question">
+                <strong>1. PM2.5 是指直径小于多少微米的颗粒物？</strong>
+                <div class="options">
+                    <span class="option">A. 10微米</span>
+                    <span class="option">B. 2.5微米 ✓</span>
+                    <span class="option">C. 25微米</span>
+                    <span class="option">D. 0.25微米</span>
+                </div>
+            </div>
+
+            <div class="quiz-question">
+                <strong>2. 肺里的「小扫把」叫什么？</strong>
+                <div class="options">
+                    <span class="option">A. 纤毛 ✓</span>
+                    <span class="option">B. 触角</span>
+                    <span class="option">C. 鞭毛</span>
+                    <span class="option">D. 肺毛</span>
+                </div>
+            </div>
+
+            <div class="quiz-question">
+                <strong>3. 尘肺病患者的肺像什么？</strong>
+                <div class="options">
+                    <span class="option">A. 像一块软海绵</span>
+                    <span class="option">B. 像一块被胶水泡过的海绵 ✓</span>
+                    <span class="option">C. 像一个气球</span>
+                    <span class="option">D. 像一块豆腐</span>
+                </div>
+            </div>
+
+            <div class="quiz-question">
+                <strong>4. 矽肺是由吸入什么粉尘引起的？</strong>
+                <div class="options">
+                    <span class="option">A. 煤粉</span>
+                    <span class="option">B. 石棉纤维</span>
+                    <span class="option">C. 石英粉尘 ✓</span>
+                    <span class="option">D. 花粉</span>
+                </div>
+            </div>
+
+            <div class="quiz-question">
+                <strong>5. 以下哪种口罩能有效阻挡PM2.5？</strong>
+                <div class="options">
+                    <span class="option">A. 普通棉口罩</span>
+                    <span class="option">B. 纸口罩</span>
+                    <span class="option">C. N95口罩 ✓</span>
+                    <span class="option">D. 海绵口罩</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="ending">
+            <h3>—— 完 ——</h3>
+            <p>谢谢阅读！希望你学会了如何保护自己的肺！</p>
+            <p style="margin-top: 10px; font-size: 14px; color: #b2bec3;">本故事由 AI 助手小龙为小朋友精心制作 🐉</p>
+            <div style="text-align: left; margin-top: 15px;">
+                <a href="../index.html" class="back-home-btn">🏠 返回首页</a>
+            </div>
+        </div>
+    </div>
+
+<!-- rourou-home-btn:start -->
+<style>
+#rourou-home-btn{position:fixed;left:14px;bottom:calc(14px + env(safe-area-inset-bottom,0px));z-index:9999;
+display:inline-flex;align-items:center;gap:6px;padding:10px 18px;border-radius:999px;
+background:rgba(255,255,255,0.92);color:#2d3436;font-size:15px;font-weight:600;
+text-decoration:none;box-shadow:0 4px 14px rgba(0,0,0,0.18);border:1px solid rgba(0,0,0,0.08);
+-webkit-backdrop-filter:blur(4px);backdrop-filter:blur(4px);transition:transform .15s,background .15s;}
+#rourou-home-btn:hover{background:#fff;transform:translateY(-2px);}
+@media (max-width:600px){#rourou-home-btn{padding:9px 14px;font-size:13px;left:10px;bottom:calc(10px + env(safe-area-inset-bottom,0px));}}
+</style>
+<a id="rourou-home-btn" href="../index.html">🏠 首页</a>
+<!-- rourou-home-btn:end -->
+</body>
+</html>

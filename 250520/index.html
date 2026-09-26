@@ -1,0 +1,520 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🦕 恐龙王国大冒险</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: "Microsoft YaHei", "PingFang SC", "Hiragino Sans GB", sans-serif;
+            background: linear-gradient(180deg, #ffeaa7 0%, #fab1a0 30%, #ff7675 60%, #fd79a8 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 850px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 30px;
+            padding: 40px;
+            box-shadow: 0 25px 80px rgba(0,0,0,0.15);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .container::before {
+            content: "";
+            position: absolute;
+            top: -50px;
+            right: -50px;
+            width: 150px;
+            height: 150px;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><text y=".9em" font-size="90">🦕</text></svg>') no-repeat center;
+            opacity: 0.1;
+            transform: rotate(15deg);
+        }
+        
+        /* 标题区域 */
+        .header {
+            text-align: center;
+            padding: 30px 0;
+            background: linear-gradient(135deg, #ff6b6b 0%, #feca57 50%, #48dbfb 100%);
+            border-radius: 20px;
+            margin-bottom: 30px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .header::before,
+        .header::after {
+            content: "🦕";
+            position: absolute;
+            font-size: 60px;
+            opacity: 0.2;
+            animation: float 3s ease-in-out infinite;
+        }
+        
+        .header::before {
+            left: 20px;
+            top: 10px;
+        }
+        
+        .header::after {
+            right: 20px;
+            bottom: 10px;
+            animation-delay: 1.5s;
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-10px) rotate(5deg); }
+        }
+        
+        h1 {
+            font-size: 48px;
+            color: white;
+            text-shadow: 3px 3px 6px rgba(0,0,0,0.2);
+            margin-bottom: 10px;
+            letter-spacing: 5px;
+        }
+        
+        .subtitle {
+            font-size: 20px;
+            color: rgba(255,255,255,0.95);
+            font-weight: 300;
+        }
+        
+        /* 章节标题 */
+        h2 {
+            font-size: 32px;
+            color: #2d3436;
+            margin: 40px 0 20px 0;
+            padding: 15px 25px;
+            background: linear-gradient(90deg, #ff9ff3 0%, #feca57 100%);
+            border-radius: 15px;
+            display: inline-block;
+            box-shadow: 0 5px 15px rgba(255,159,243,0.3);
+            position: relative;
+        }
+        
+        h2::before {
+            content: "✨";
+            margin-right: 10px;
+        }
+        
+        /* 段落 */
+        p {
+            font-size: 20px;
+            line-height: 2;
+            color: #2d3436;
+            margin-bottom: 20px;
+            text-align: justify;
+            padding: 0 10px;
+        }
+        
+        /* 图片容器 */
+        .image-container {
+            width: 100%;
+            margin: 30px 0;
+            text-align: center;
+            position: relative;
+        }
+        
+        .dino-image {
+            width: 100%;
+            max-width: 100%;
+            border-radius: 20px;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.2);
+            transition: transform 0.3s ease;
+        }
+        
+        .dino-image:hover {
+            transform: scale(1.02);
+        }
+        
+        .image-caption {
+            color: #636e72;
+            font-size: 16px;
+            margin-top: 15px;
+            font-style: italic;
+            background: #ffeaa7;
+            display: inline-block;
+            padding: 8px 20px;
+            border-radius: 20px;
+        }
+        
+        /* 趣味知识框 */
+        .fun-fact {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 25px;
+            border-radius: 20px;
+            margin: 25px 0;
+            font-size: 18px;
+            line-height: 1.8;
+            position: relative;
+            box-shadow: 0 10px 30px rgba(102,126,234,0.3);
+        }
+        
+        .fun-fact::before {
+            content: "💡";
+            font-size: 40px;
+            position: absolute;
+            top: -15px;
+            left: 20px;
+            background: white;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+        
+        .fun-fact.pink {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            box-shadow: 0 10px 30px rgba(240,147,251,0.3);
+        }
+        
+        .fun-fact.green {
+            background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);
+            box-shadow: 0 10px 30px rgba(67,233,123,0.3);
+        }
+        
+        .fun-fact.orange {
+            background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);
+            box-shadow: 0 10px 30px rgba(250,112,154,0.3);
+        }
+        
+        .fun-fact-title {
+            font-size: 22px;
+            font-weight: bold;
+            margin-bottom: 10px;
+            padding-left: 40px;
+        }
+        
+        /* 分隔线 */
+        .divider {
+            text-align: center;
+            font-size: 30px;
+            color: #ddd;
+            margin: 30px 0;
+            letter-spacing: 10px;
+        }
+        
+        /* 小测试 */
+        .quiz-section {
+            background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);
+            padding: 30px;
+            border-radius: 20px;
+            margin: 30px 0;
+        }
+        
+        .quiz-title {
+            font-size: 28px;
+            color: #e17055;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        
+        .quiz-question {
+            background: white;
+            padding: 20px;
+            border-radius: 15px;
+            margin: 15px 0;
+            font-size: 18px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            border-left: 5px solid #fdcb6e;
+        }
+        
+        .quiz-question::before {
+            content: "❓";
+            margin-right: 10px;
+            font-size: 24px;
+        }
+        
+        /* 结尾 */
+        .ending {
+            text-align: center;
+            padding: 40px 0;
+            margin-top: 40px;
+            background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);
+            border-radius: 20px;
+        }
+        
+        .ending h3 {
+            font-size: 32px;
+            color: #2d3436;
+            margin-bottom: 15px;
+        }
+        
+        .ending p {
+            text-align: center;
+            font-size: 18px;
+            color: #636e72;
+        }
+        .back-home-btn {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 14px 30px;
+            background: rgba(0,0,0,0.08);
+            color: #2d3436;
+            text-decoration: none;
+            border-radius: 25px;
+            font-size: 18px;
+            border: 2px solid rgba(0,0,0,0.15);
+            transition: background 0.3s, transform 0.2s;
+        }
+        .back-home-btn:hover {
+            background: rgba(0,0,0,0.15);
+            transform: translateY(-2px);
+        }
+        .back-home-btn:active {
+            transform: translateY(0);
+        }
+        
+        .dino-parade {
+            font-size: 50px;
+            margin: 20px 0;
+            animation: march 2s ease-in-out infinite;
+        }
+        
+        @keyframes march {
+            0%, 100% { transform: translateX(0); }
+            50% { transform: translateX(20px); }
+        }
+        
+        /* 响应式 */
+        @media (max-width: 600px) {
+            .container {
+                padding: 20px;
+                border-radius: 20px;
+            }
+            
+            h1 {
+                font-size: 32px;
+            }
+            
+            h2 {
+                font-size: 24px;
+            }
+            
+            p {
+                font-size: 18px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- 标题区域 -->
+        <div class="header">
+            <h1>🦕 恐龙王国大冒险</h1>
+            <p class="subtitle">—— 写给小小恐龙迷的科普故事</p>
+        </div>
+        
+        <div class="divider">✦ ✦ ✦</div>
+        
+        <!-- 第一章 -->
+        <h2>恐龙时代的地球</h2>
+        
+        <div class="image-container">
+            <img src="dinosaur_scene_01.webp" alt="恐龙时代场景" class="dino-image">
+            <p class="image-caption">🌿 恐龙们在茂密的原始森林中快乐生活</p>
+        </div>
+        
+        <p>
+            很久很久以前，大约在<strong>2亿3000万年前</strong>到<strong>6600万年前</strong>，地球上生活着一群神奇的动物——恐龙！
+        </p>
+        
+        <p>
+            那时候的地球和今天很不一样。大陆还连在一起，形成一块巨大的陆地，叫做"盘古大陆"。气候温暖湿润，到处都是茂密的蕨类植物和高大的裸子植物，比如银杏和松柏。
+        </p>
+        
+        <p>
+            在这个绿色的世界里，恐龙们快乐地生活着。有的恐龙像<strong>霸王龙</strong>一样凶猛，是肉食动物；有的像<strong>三角龙</strong>一样温顺，只吃植物。它们有的会飞，有的会游泳，有的跑得飞快！
+        </p>
+        
+        <div class="fun-fact">
+            <div class="fun-fact-title">趣味小知识</div>
+            <p>恐龙不是"一种"动物哦，它们是一个超级大的家族，里面有超过<strong>1000种</strong>不同的成员！最小的恐龙只有蜂鸟那么大，最大的恐龙比波音飞机还长！</p>
+        </div>
+        
+        <div class="divider">✦ ✦ ✦</div>
+        
+        <!-- 第二章 -->
+        <h2>恐龙为什么会消失？</h2>
+        
+        <div class="image-container">
+            <img src="dinosaur_meteor_02.png" alt="陨石撞击地球" class="dino-image">
+            <p class="image-caption">☄️ 一颗巨大的陨石从天而降，改变了地球的命运</p>
+        </div>
+        
+        <p>
+            恐龙在地球上生活了整整<strong>1亿6000万年</strong>！但是大约在6600万年前，它们突然全部消失了。发生了什么呢？
+        </p>
+        
+        <p>
+            科学家们发现，那时候有一颗<strong>比珠穆朗玛峰还大</strong>的陨石（就是太空中的大石头）撞上了地球！撞击产生了巨大的爆炸，灰尘遮住了太阳，地球变得又冷又暗。
+        </p>
+        
+        <p>
+            植物因为没有阳光而死亡，食草恐龙没有食物饿死，食肉恐龙也因为缺少猎物而灭绝。只有一些小型的动物，比如哺乳动物的祖先，躲过了这场灾难。
+        </p>
+        
+        <div class="fun-fact pink">
+            <div class="fun-fact-title">趣味小知识</div>
+            <p>陨石撞击的地点在现在的<strong>墨西哥湾</strong>，那里有一个巨大的陨石坑，直径有<strong>180公里</strong>呢！这个坑大到可以装下整个北京城！</p>
+        </div>
+        
+        <div class="divider">✦ ✦ ✦</div>
+        
+        <!-- 第三章 -->
+        <h2>我们怎么知道恐龙存在？</h2>
+        
+        <div class="image-container">
+            <img src="dinosaur_fossil_03.png" alt="化石发掘现场" class="dino-image">
+            <p class="image-caption">🔍 科学家们在沙漠中发现巨大的恐龙骨骼</p>
+        </div>
+        
+        <p>
+            恐龙已经灭绝了6600万年，我们从来没见过活的恐龙，那怎么知道它们长什么样呢？
+        </p>
+        
+        <p>
+            答案是：<strong>化石</strong>！当恐龙死去后，它们的骨头、牙齿、脚印，甚至粪便，有时候会被泥土和沙子盖住。经过漫长的时间，这些遗骸变成了石头，就是化石。
+        </p>
+        
+        <p>
+            科学家们在世界各地的沙漠、山脉和悬崖上发现了大量的恐龙化石。通过研究这些化石，他们可以知道恐龙有多大、吃什么、怎么走路，甚至它们生病了会怎样！
+        </p>
+        
+        <div class="fun-fact green">
+            <div class="fun-fact-title">趣味小知识</div>
+            <p>中国最大的恐龙化石发现在<strong>辽宁省</strong>，那里出土了<strong>带羽毛的恐龙化石</strong>，证明有些恐龙其实是有羽毛的！所以鸟类其实是恐龙的后代哦！</p>
+        </div>
+        
+        <div class="divider">✦ ✦ ✦</div>
+        
+        <!-- 第四章 -->
+        <h2>为什么恐龙没有进化出智慧？</h2>
+        
+        <p>
+            小朋友们可能会问：恐龙统治地球1亿6000万年，人类只出现了几十万年，为什么恐龙没有变得像人一样聪明呢？
+        </p>
+        
+        <p>
+            其实，"智慧"不是生存的必需品。恐龙的身体已经非常完美了：<strong>霸王龙</strong>有锋利的牙齿，<strong>三角龙</strong>有坚固的角，<strong>剑龙</strong>有危险的尾刺。它们不需要智慧就能很好地生存。
+        </p>
+        
+        <p>
+            而人类的祖先——早期哺乳动物，在恐龙时代只能晚上偷偷出来活动。为了躲避危险，它们需要记住洞穴的位置、识别有毒的植物、和同伴合作。这些需求促进了大脑的发展。
+        </p>
+        
+        <p>
+            所以，不是恐龙"笨"，而是它们<strong>太成功了</strong>，不需要改变！这就像如果你已经考了100分，可能也不会想再努力学习了吧？
+        </p>
+        
+        <div class="fun-fact orange">
+            <div class="fun-fact-title">趣味小知识</div>
+            <p>脑容量不是决定智慧的唯一因素。<strong>大象</strong>的脑比人类大，但人类的大脑皮层更发达，这是思考和学习的关键区域。而且，人类会<strong>使用工具</strong>和<strong>传承知识</strong>，这才是智慧的真正体现！</p>
+        </div>
+        
+        <div class="divider">✦ ✦ ✦</div>
+        
+        <!-- 第五章 -->
+        <h2>如果恐龙没有灭绝？</h2>
+        
+        <div class="image-container">
+            <img src="dinosaur_imagine_04.png" alt="恐龙与现代城市" class="dino-image">
+            <p class="image-caption">🏙️ 如果恐龙没灭绝，也许它们会和我们一起上学！</p>
+        </div>
+        
+        <p>
+            想象一下，如果那颗陨石没有撞上地球，恐龙们活到了今天，会是什么样子呢？
+        </p>
+        
+        <p>
+            也许<strong>霸王龙</strong>会在动物园里展出，小朋友们可以坐着观光车去看它。也许<strong>三角龙</strong>会成为人类的"宠物"，帮人们搬运东西。也许<strong>翼龙</strong>会成为"空中出租车"，载着人们飞来飞去！
+        </p>
+        
+        <p>
+            不过，如果恐龙没有灭绝，哺乳动物可能就没有机会发展壮大，人类也许就不会出现了。所以，虽然恐龙消失了很可惜，但也给了我们存在的机会。
+        </p>
+        
+        <div class="fun-fact">
+            <div class="fun-fact-title">趣味小知识</div>
+            <p>鸟类其实是恐龙的后代！科学家发现，<strong>鸡就是霸王龙的远房亲戚</strong>。所以下次吃炸鸡的时候，你其实在吃"恐龙"哦！🍗</p>
+        </div>
+        
+        <div class="divider">✦ ✦ ✦</div>
+        
+        <!-- 小测试 -->
+        <div class="quiz-section">
+            <h3 class="quiz-title">🎯 恐龙知识小测试</h3>
+            <p style="text-align: center; font-size: 18px; margin-bottom: 20px;">来测测你记住了多少恐龙知识吧！</p>
+            
+            <div class="quiz-question">
+                恐龙生活在什么时代？<br>
+                <small style="color: #b2bec3;">（提示：距今大约2亿3000万年前到6600万年前）</small>
+            </div>
+            
+            <div class="quiz-question">
+                恐龙为什么会灭绝？<br>
+                <small style="color: #b2bec3;">（提示：和一颗大石头有关）</small>
+            </div>
+            
+            <div class="quiz-question">
+                我们怎么知道恐龙长什么样？<br>
+                <small style="color: #b2bec3;">（提示：埋在土里的"宝贝"）</small>
+            </div>
+            
+            <div class="quiz-question">
+                为什么恐龙没有进化出智慧？<br>
+                <small style="color: #b2bec3;">（提示：它们已经很厉害了）</small>
+            </div>
+            
+            <div class="quiz-question">
+                鸟类和恐龙有什么关系？<br>
+                <small style="color: #b2bec3;">（提示：亲戚！）</small>
+            </div>
+            
+            <p style="text-align: center; font-size: 20px; color: #e17055; margin-top: 20px; font-weight: bold;">
+                🎉 如果你答对了3题以上，恭喜你，你已经是一个小小恐龙专家啦！
+            </p>
+        </div>
+        
+        <!-- 结尾 -->
+        <div class="ending">
+            <div class="dino-parade">🦕 🦖 🦕 🦖 🦕</div>
+            <h3>—— 完 ——</h3>
+            <p>谢谢阅读！希望你学到了很多关于恐龙的知识！</p>
+            <p style="margin-top: 10px; font-size: 14px; color: #b2bec3;">本故事由 AI 助手小龙为小朋友精心制作 🐉</p>
+            <div style="text-align: left; margin-top: 15px;">
+                <a href="../index.html" class="back-home-btn">🏠 返回首页</a>
+            </div>
+        </div>
+    </div>
+
+<!-- rourou-home-btn:start -->
+<style>
+#rourou-home-btn{position:fixed;left:14px;bottom:calc(14px + env(safe-area-inset-bottom,0px));z-index:9999;
+display:inline-flex;align-items:center;gap:6px;padding:10px 18px;border-radius:999px;
+background:rgba(255,255,255,0.92);color:#2d3436;font-size:15px;font-weight:600;
+text-decoration:none;box-shadow:0 4px 14px rgba(0,0,0,0.18);border:1px solid rgba(0,0,0,0.08);
+-webkit-backdrop-filter:blur(4px);backdrop-filter:blur(4px);transition:transform .15s,background .15s;}
+#rourou-home-btn:hover{background:#fff;transform:translateY(-2px);}
+@media (max-width:600px){#rourou-home-btn{padding:9px 14px;font-size:13px;left:10px;bottom:calc(10px + env(safe-area-inset-bottom,0px));}}
+</style>
+<a id="rourou-home-btn" href="../index.html">🏠 首页</a>
+<!-- rourou-home-btn:end -->
+</body>
+</html>

@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>💧 物质三态：水的魔法变身</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: "Microsoft YaHei", "PingFang SC", sans-serif;
+            background: linear-gradient(180deg, #74b9ff 0%, #a29bfe 30%, #6c5ce7 60%, #0984e3 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        .container {
+            max-width: 850px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 30px;
+            padding: 40px;
+            box-shadow: 0 25px 80px rgba(0,0,0,0.15);
+        }
+        .header {
+            text-align: center;
+            padding: 30px 0;
+            background: linear-gradient(135deg, #0984e3 0%, #74b9ff 50%, #00cec9 100%);
+            border-radius: 20px;
+            margin-bottom: 30px;
+        }
+        .header h1 { font-size: 48px; color: white; text-shadow: 3px 3px 6px rgba(0,0,0,0.2); }
+        .subtitle { font-size: 20px; color: rgba(255,255,255,0.95); }
+        h2 {
+            font-size: 32px; color: #2d3436; margin: 40px 0 20px;
+            padding: 15px 25px;
+            background: linear-gradient(90deg, #0984e3 0%, #74b9ff 100%);
+            border-radius: 15px; display: inline-block;
+        }
+        p { font-size: 20px; line-height: 2; color: #2d3436; margin-bottom: 20px; text-align: justify; }
+        .image-container { width: 100%; margin: 30px 0; text-align: center; }
+        .dino-image { width: 100%; border-radius: 20px; box-shadow: 0 15px 40px rgba(0,0,0,0.2); }
+        .image-caption { color: #636e72; font-size: 16px; margin-top: 15px; font-style: italic; background: #dfe6e9; display: inline-block; padding: 8px 20px; border-radius: 20px; }
+        .fun-fact {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white; padding: 25px; border-radius: 20px; margin: 25px 0; font-size: 18px; line-height: 1.8;
+        }
+        .fun-fact.pink { background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%); }
+        .fun-fact.green { background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%); }
+        .fun-fact.orange { background: linear-gradient(135deg, #fa709a 0%, #fee140 100%); }
+        .fun-fact.blue { background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%); }
+        .fun-fact.teal { background: linear-gradient(135deg, #00b09b 0%, #96c93d 100%); }
+        .fun-fact-title { font-size: 22px; font-weight: bold; margin-bottom: 10px; }
+        .divider { text-align: center; font-size: 30px; color: #ddd; margin: 30px 0; }
+        .state-card {
+            display: inline-block; width: 30%; margin: 1.5%; vertical-align: top;
+            background: #f0f3ff; border-radius: 20px; padding: 20px; text-align: center;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+        }
+        .state-card .emoji { font-size: 60px; }
+        .state-card .name { font-size: 24px; font-weight: bold; margin: 10px 0 5px; }
+        .state-card .desc { font-size: 16px; color: #636e72; line-height: 1.6; }
+        .states-row { text-align: center; margin: 25px 0; }
+        .arrow-diagram {
+            text-align: center; margin: 25px 0; padding: 20px;
+            background: #f0f3ff; border-radius: 20px;
+        }
+        .arrow-diagram .row { font-size: 20px; margin: 10px 0; color: #2d3436; }
+        .arrow-diagram .arrow { color: #0984e3; font-weight: bold; font-size: 22px; }
+        .arrow-diagram .temp { color: #e17055; font-weight: bold; }
+        .timeline { position: relative; padding-left: 40px; margin: 20px 0; }
+        .timeline::before {
+            content: ''; position: absolute; left: 15px; top: 0; bottom: 0; width: 4px;
+            background: linear-gradient(180deg, #0984e3, #6c5ce7); border-radius: 2px;
+        }
+        .timeline-item {
+            position: relative; margin-bottom: 25px; padding: 15px 20px;
+            background: #f0f3ff; border-radius: 15px; border-left: 4px solid #0984e3;
+        }
+        .timeline-item .year { font-size: 22px; font-weight: bold; color: #0984e3; }
+        .timeline-item .desc { font-size: 17px; color: #2d3436; margin-top: 5px; line-height: 1.6; }
+        .comparison-table {
+            width: 100%; border-collapse: separate; border-spacing: 0; border-radius: 15px;
+            overflow: hidden; margin: 20px 0; box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        .comparison-table th {
+            background: linear-gradient(135deg, #0984e3, #00cec9); color: white;
+            padding: 15px; font-size: 18px;
+        }
+        .comparison-table td { padding: 12px 15px; font-size: 16px; text-align: center; border-bottom: 1px solid #eee; }
+        .comparison-table tr:nth-child(even) td { background: #f0f3ff; }
+        .comparison-table tr:hover td { background: #dfe6e9; }
+        .quiz-section {
+            background: linear-gradient(135deg, #dfe6e9 0%, #74b9ff 100%);
+            padding: 30px; border-radius: 20px; margin: 30px 0;
+        }
+        .quiz-title { font-size: 28px; color: #0984e3; text-align: center; margin-bottom: 20px; }
+        .quiz-question {
+            background: white; padding: 20px; border-radius: 15px; margin: 15px 0;
+            font-size: 18px; box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        .quiz-question .q-num {
+            display: inline-block; background: linear-gradient(135deg, #0984e3, #6c5ce7);
+            color: white; width: 32px; height: 32px; border-radius: 50%;
+            text-align: center; line-height: 32px; font-weight: bold; margin-right: 10px;
+        }
+        .ending {
+            text-align: center; padding: 40px 0; margin-top: 40px;
+            background: linear-gradient(135deg, #0984e3 0%, #74b9ff 50%, #00cec9 100%);
+            border-radius: 20px;
+        }
+        .ending h3 { font-size: 32px; color: white; text-shadow: 1px 1px 3px rgba(0,0,0,0.2); }
+        .ending p { text-align: center; font-size: 18px; color: rgba(255,255,255,0.95); }
+        .back-home-btn {
+            display: inline-block; margin-top: 20px; padding: 14px 30px;
+            background: rgba(255,255,255,0.3); color: white; text-decoration: none;
+            border-radius: 25px; font-size: 18px; border: 2px solid rgba(255,255,255,0.5);
+            transition: background 0.3s, transform 0.2s;
+        }
+        .back-home-btn:hover { background: rgba(255,255,255,0.5); transform: translateY(-2px); }
+        @media (max-width: 600px) {
+            .container { padding: 20px; }
+            h1 { font-size: 32px; } h2 { font-size: 24px; } p { font-size: 18px; }
+            .state-card { width: 100%; display: block; margin: 10px 0; }
+            .comparison-table td, .comparison-table th { padding: 8px; font-size: 14px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>💧 物质三态：水的魔法变身</h1>
+            <p class="subtitle">冰、水、汽——同一种东西的三个面孔</p>
+        </div>
+
+        <!-- 第一章：三种模样 -->
+        <h2>🧊 第一章：三种模样</h2>
+        <p>你有没有想过，冰箱里的冰块、杯子里的水、壶里冒出的蒸汽——它们其实是同一种东西？没错，都是水！只是水分子在不同条件下"站队"的方式不同，就变出了三种完全不同的样子。这三种样子，科学家叫<strong>物质三态</strong>：固态、液态和气态。</p>
+
+        <div class="states-row">
+            <div class="state-card">
+                <div class="emoji">🧊</div>
+                <div class="name">固态</div>
+                <div class="desc">分子手拉手<br>整整齐齐排队<br>形状固定，体积固定</div>
+            </div>
+            <div class="state-card">
+                <div class="emoji">💧</div>
+                <div class="name">液态</div>
+                <div class="desc">分子到处跑<br>但还挤在一起<br>形状随容器，体积固定</div>
+            </div>
+            <div class="state-card">
+                <div class="emoji">💨</div>
+                <div class="name">气态</div>
+                <div class="desc">分子自由飞<br>互相远离<br>形状随容器，体积随容器</div>
+            </div>
+        </div>
+
+        <div class="image-container">
+            <img class="dino-image" src="scene_01.webp" alt="物质三态对比">
+            <p class="image-caption">🧊💧💨 水的三种状态——同一种分子的三种"队形"</p>
+        </div>
+
+        <p>想象一下：水分子就像一群小朋友。在<strong>固态（冰）</strong>里，小朋友们手拉手站成整齐的方阵，谁也不能乱动；在<strong>液态（水）</strong>里，小朋友们松开了手，互相挤来挤去，但还是聚在一起不肯散开；在<strong>气态（水蒸气）</strong>里，小朋友们撒欢了！到处乱跑，跑得老远，谁也管不住谁。</p>
+
+        <p>是什么让小朋友们从"乖乖站好"变成"到处乱跑"呢？答案是——<strong>热量</strong>！热量就像是给小朋友们的"能量饮料"，喝得越多，越兴奋，动得越快。</p>
+
+        <div class="fun-fact">
+            <div class="fun-fact-title">🔬 水分子的秘密</div>
+            每个水分子由1个氧原子和2个氢原子组成，写成H₂O。一滴水里大约有1,670,000,000,000,000,000,000个水分子！念出来是167万亿亿个！如果把一滴水里的水分子排成一行，能从地球排到太阳再回来……85次！
+        </div>
+
+        <!-- 第二章：冰→水 融化的秘密 -->
+        <h2>🔥 第二章：冰→水——融化的秘密</h2>
+        <p>冬天，河面结了厚厚的冰，春天来了，冰又慢慢变成了水。这个从固态变成液态的过程叫<strong>熔化</strong>（也叫融化）。</p>
+
+        <div class="image-container">
+            <img class="dino-image" src="scene_02.webp" alt="冰融化成水">
+            <p class="image-caption">🔥 冰在温暖阳光下慢慢融化成水</p>
+        </div>
+
+        <p>冰要融化，必须达到一个"门槛温度"——<strong>0°C（零摄氏度）</strong>。这就是水的<strong>熔点</strong>。但有个有趣的细节：冰到了0°C并不会立刻全部变成水！它需要继续吸收热量，在0°C这个温度上"停留"一段时间，一边吸热一边慢慢融化，直到全部变成水为止。这段时间吸收的热量叫<strong>熔化热</strong>。</p>
+
+        <p>为什么需要额外吸热呢？因为要把手拉手的水分子"掰开"需要能量！就像你用力掰开两个紧紧握手的小朋友，得花力气一样。熔化热就是用来"掰手"的能量。</p>
+
+        <div class="arrow-diagram">
+            <div class="row">
+                <span style="font-size:36px;">🧊</span> 冰（固态）
+                <span class="arrow"> ──吸热──▶ </span>
+                <span style="font-size:36px;">💧</span> 水（液态）
+            </div>
+            <div class="row">
+                条件：温度达到 <span class="temp">0°C</span> + 继续吸热（熔化热）
+            </div>
+            <div class="row" style="margin-top: 10px;">
+                <span style="font-size:36px;">💧</span> 水（液态）
+                <span class="arrow"> ──放热──▶ </span>
+                <span style="font-size:36px;">🧊</span> 冰（固态）
+            </div>
+            <div class="row">
+                条件：温度降到 <span class="temp">0°C</span> + 继续放热（凝固热）= <strong>凝固</strong>
+            </div>
+        </div>
+
+        <div class="fun-fact pink">
+            <div class="fun-fact-title">❄️ 冰为什么比同体积的水轻？</div>
+            绝大多数物质固态比液态密度大，但水是个"反常"的例外！水在4°C时密度最大，结冰时反而体积膨胀了约9%，所以冰能浮在水面上。这个"反常"非常重要——如果冰比水重，冬天的湖会从底往上冻，鱼就没法活了！地球上的水生生物能活到现在，全靠水的这个"怪脾气"。
+        </div>
+
+        <!-- 第三章：水→汽 蒸发的魔法 -->
+        <h2>💨 第三章：水→汽——蒸发的魔法</h2>
+        <p>洗完的衣服挂在外面，过几个小时就干了——水去哪儿了？变成水蒸气飞走了！水从液态变成气态的过程叫<strong>汽化</strong>。</p>
+
+        <div class="image-container">
+            <img class="dino-image" src="scene_03.webp" alt="水沸腾变成蒸汽">
+            <p class="image-caption">💨 水沸腾——液态水变成气态蒸汽</p>
+        </div>
+
+        <p>汽化有两种方式：</p>
+        <p><strong>🌤️ 蒸发</strong>——在任何温度下都能发生，只在液体表面进行。湿衣服晾干、水坑变干都是蒸发。温度越高、面积越大、风越大、空气越干燥，蒸发越快。</p>
+        <p><strong>🔥 沸腾</strong>——只在达到特定温度时发生，液体内部和表面同时进行。水沸腾时的温度叫<strong>沸点</strong>，标准大气压下是<strong>100°C</strong>。沸腾时你会看到水底冒出大量气泡，咕嘟咕嘟——那些气泡就是水蒸气！</p>
+
+        <p>和熔化一样，水到了100°C也不会立刻全部变成蒸汽，需要继续吸热，这叫<strong>汽化热</strong>。而且汽化热比熔化热大多了！把1克0°C的冰融化成0°C的水需要334焦耳，但把1克100°C的水变成100°C的蒸汽需要2260焦耳——是熔化热的近7倍！因为让分子完全"自由飞翔"比"松开手"需要多得多得多的能量。</p>
+
+        <div class="arrow-diagram">
+            <div class="row">
+                <span style="font-size:36px;">💧</span> 水（液态）
+                <span class="arrow"> ──吸热──▶ </span>
+                <span style="font-size:36px;">💨</span> 水蒸气（气态）
+            </div>
+            <div class="row">
+                蒸发（任何温度）/ 沸腾（<span class="temp">100°C</span>）+ 继续吸热（汽化热）
+            </div>
+            <div class="row" style="margin-top: 10px;">
+                <span style="font-size:36px;">💨</span> 水蒸气（气态）
+                <span class="arrow"> ──放热──▶ </span>
+                <span style="font-size:36px;">💧</span> 水（液态）
+            </div>
+            <div class="row">
+                条件：遇冷放热 = <strong>液化</strong>（如清晨露珠、眼镜起雾）
+            </div>
+        </div>
+
+        <div class="fun-fact green">
+            <div class="fun-fact-title">🥵 为什么出汗会凉快？</div>
+            因为蒸发吸热！汗水从皮肤上蒸发时，会带走大量热量（汽化热很大嘛）。每蒸发1克汗水，大约带走2400焦耳热量。所以夏天出汗是身体的"天然空调"！狗没有汗腺，只能伸舌头喘气蒸发口水来散热——看来长汗腺还是挺有用的！
+        </div>
+
+        <!-- 第四章：大自然的水循环 -->
+        <h2>🌍 第四章：大自然的水循环</h2>
+        <p>物质三态的转变不只是实验室里的现象，它时时刻刻都在我们身边发生，而且驱动着整个地球的<strong>水循环</strong>！</p>
+
+        <div class="image-container">
+            <img class="dino-image" src="scene_04.webp" alt="水循环示意图">
+            <p class="image-caption">🌍 地球上的水循环——三态变化的超级大循环</p>
+        </div>
+
+        <p>太阳照射海洋和湖泊，水<strong>蒸发</strong>变成水蒸气上升→水蒸气在高空遇冷<strong>液化</strong>成小水滴，聚集形成云→小水滴越聚越大，变成雨滴落下来（<strong>液化</strong>）→如果是冬天高空的极冷空气，水蒸气直接<strong>凝华</strong>成小冰晶，变成雪花飘落→雨水和融化的雪水汇入河流，最终流回大海→循环重新开始！</p>
+
+        <p>看到了吗？这个大循环里包含了所有三态变化：蒸发（液→气）、液化（气→液）、凝固（液→固）、熔化（固→液）、还有凝华（气→固）。大自然就是最厉害的"三态变化实验室"！</p>
+
+        <table class="comparison-table">
+            <tr>
+                <th>变化过程</th>
+                <th>状态变化</th>
+                <th>吸热/放热</th>
+                <th>生活例子</th>
+            </tr>
+            <tr>
+                <td>🔥 熔化</td>
+                <td>固→液</td>
+                <td>吸热</td>
+                <td>冰化水、巧克力融化</td>
+            </tr>
+            <tr>
+                <td>❄️ 凝固</td>
+                <td>液→固</td>
+                <td>放热</td>
+                <td>水结冰、铁水铸件</td>
+            </tr>
+            <tr>
+                <td>☀️ 汽化</td>
+                <td>液→气</td>
+                <td>吸热</td>
+                <td>烧水沸腾、湿衣晾干</td>
+            </tr>
+            <tr>
+                <td>💨 液化</td>
+                <td>气→液</td>
+                <td>放热</td>
+                <td>露珠、眼镜起雾</td>
+            </tr>
+            <tr>
+                <td>✨ 升华</td>
+                <td>固→气</td>
+                <td>吸热</td>
+                <td>干冰消失、樟脑丸变小</td>
+            </tr>
+            <tr>
+                <td>❄️ 凝华</td>
+                <td>气→固</td>
+                <td>放热</td>
+                <td>霜的形成、雪花</td>
+            </tr>
+        </table>
+
+        <div class="fun-fact orange">
+            <div class="fun-fact-title">🌲 不只是6种变化！</div>
+            等等，前面说的"物质三态"只有3种，变化应该只有6种。但我们加上了<strong>升华</strong>（固→气，跳过液态）和<strong>凝华</strong>（气→固，跳过液态），这才完整！比如<strong>干冰</strong>（固态CO₂）在常温下直接变成气体，根本不会先变成液体——这就是升华。冬天窗户上的<strong>霜</strong>，是水蒸气直接变成冰晶——这就是凝华。
+        </div>
+
+        <!-- 第五章：更多奇妙的物质状态 -->
+        <h2>🌟 第五章：超越三态——更多奇妙状态</h2>
+        <p>三态就是全部了吗？当然不是！科学家发现物质还有更神奇的状态：</p>
+
+        <div class="image-container">
+            <img class="dino-image" src="scene_05.webp" alt="更多物质状态">
+            <p class="image-caption">🔬 超越三态——物质的更多奇妙面孔</p>
+        </div>
+
+        <p><strong>⚡ 等离子体（第四态）</strong>——给气体加热到极高温度（几千到几万度），气体原子中的电子会被"撕"出来，变成带正电的离子和带负电的电子混合物。这叫等离子体。太阳就是一个巨大的等离子体球！日光灯、霓虹灯里面也是等离子体在发光。宇宙中99%以上的可见物质都是等离子体——所以等离子体才是宇宙的"常态"，我们熟悉的固液气反倒是少数派！</p>
+
+        <p><strong>🧊 超冷水</strong>——把纯净的水慢慢冷却到0°C以下（可以到-48°C！），如果非常安静、没有扰动，水居然可以不结冰！这叫"过冷水"。但只要轻轻一敲或者投入一粒冰晶，整杯水瞬间结冰——就像按了暂停键突然恢复播放！超冷水在云层中很常见，飞机飞过时可能引发突然结冰，这也是飞机要除冰的原因之一。</p>
+
+        <p><strong>🌀 超流体</strong>——把液氦冷却到-271°C附近，它会变成一种零黏度的液体，能沿着杯壁往上"爬"出来！没有摩擦力，永远不会停止流动。这叫超流体，是量子力学在宏观世界的神奇表现。</p>
+
+        <p><strong>💎 玻色-爱因斯坦凝聚态（第五态）</strong>——把原子冷却到接近绝对零度（-273.15°C），所有原子会"合并"成一个超级原子，表现得像同一个粒子。这是爱因斯坦在1925年预言的，直到1995年才在实验室实现！</p>
+
+        <table class="comparison-table">
+            <tr>
+                <th>物质状态</th>
+                <th>存在条件</th>
+                <th>有趣特点</th>
+            </tr>
+            <tr>
+                <td>🧊 固态</td>
+                <td>常温常压</td>
+                <td>形状和体积都固定</td>
+            </tr>
+            <tr>
+                <td>💧 液态</td>
+                <td>常温常压</td>
+                <td>体积固定，形状随容器</td>
+            </tr>
+            <tr>
+                <td>💨 气态</td>
+                <td>常温常压</td>
+                <td>体积和形状都随容器</td>
+            </tr>
+            <tr>
+                <td>⚡ 等离子体</td>
+                <td>数千度以上</td>
+                <td>导电、发光、受磁场控制</td>
+            </tr>
+            <tr>
+                <td>🌀 超流体</td>
+                <td>接近绝对零度</td>
+                <td>零黏度，能"爬"出容器</td>
+            </tr>
+            <tr>
+                <td>💎 玻色凝聚态</td>
+                <td>接近绝对零度</td>
+                <td>所有原子"合为一体"</td>
+            </tr>
+        </table>
+
+        <div class="fun-fact blue">
+            <div class="fun-fact-title">🌡️ 温度与物态的关系</div>
+            <p>核心规律：温度越高 → 分子运动越剧烈 → 物质从固→液→气→等离子体</p>
+            <p>以水为例：</p>
+            <p>🧊 0°C以下 → 冰（固态）</p>
+            <p>💧 0°C~100°C → 水（液态）</p>
+            <p>💨 100°C以上 → 水蒸气（气态）</p>
+            <p>⚡ 几千度以上 → 等离子体</p>
+            <p>但压力也很重要！高压锅能到120°C水还不沸腾——因为压力越高，沸点越高。珠穆朗玛峰顶气压只有海平面的1/3，水71°C就开了——所以登山者煮面都煮不熟！</p>
+        </div>
+
+        <p>从一滴水到整个宇宙，物质的状态变化无处不在。下次当你看到冰块融化、水壶冒汽、草叶上的露珠时，你就知道——这些都是分子们在玩"变身游戏"！而驱动这场游戏的，就是宇宙中最基本的力量之一——热。💧🧊💨✨</p>
+
+        <div class="divider">🧊 💧 💨 ⚡ 💎</div>
+
+        <!-- 互动测试 -->
+        <div class="quiz-section">
+            <div class="quiz-title">🧠 知识小测验</div>
+
+            <div class="quiz-question">
+                <span class="q-num">1</span> 水的熔点（冰变成水的温度）是多少？<br>
+                A. -100°C<br>
+                B. 0°C<br>
+                C. 50°C<br>
+                D. 100°C
+            </div>
+
+            <div class="quiz-question">
+                <span class="q-num">2</span> 下列哪个过程是吸热的？<br>
+                A. 水结冰<br>
+                B. 水蒸气变成露珠<br>
+                C. 冰融化成水<br>
+                D. 水蒸气变成霜
+            </div>
+
+            <div class="quiz-question">
+                <span class="q-num">3</span> 干冰（固态CO₂）在常温下直接变成气体，这个过程叫什么？<br>
+                A. 蒸发<br>
+                B. 升华<br>
+                C. 沸腾<br>
+                D. 凝华
+            </div>
+
+            <div class="quiz-question">
+                <span class="q-num">4</span> 宇宙中99%以上的可见物质处于什么状态？<br>
+                A. 固态<br>
+                B. 液态<br>
+                C. 气态<br>
+                D. 等离子体
+            </div>
+
+            <div class="quiz-question">
+                <span class="q-num">5</span> 为什么冰能浮在水面上？<br>
+                A. 冰比水轻（密度更小）<br>
+                B. 冰有气泡<br>
+                C. 水推着冰走<br>
+                D. 冰的分子比水多
+            </div>
+
+            <p style="text-align:center; margin-top:20px; font-size:16px; color:#636e72;">💡 答案：1-B 2-C 3-B 4-D 5-A</p>
+        </div>
+
+        <div class="ending">
+            <h3>—— 完 ——</h3>
+            <p>谢谢阅读！希望你发现了物质变化的奇妙之处！</p>
+            <p style="margin-top: 10px; font-size: 14px; color: rgba(255,255,255,0.8);">本故事由 AI 助手小龙为小朋友精心制作 🐉</p>
+            <div style="text-align: left; margin-top: 15px;">
+                <a href="../index.html" class="back-home-btn">🏠 返回首页</a>
+            </div>
+        </div>
+    </div>
+
+<!-- rourou-home-btn:start -->
+<style>
+#rourou-home-btn{position:fixed;left:14px;bottom:calc(14px + env(safe-area-inset-bottom,0px));z-index:9999;
+display:inline-flex;align-items:center;gap:6px;padding:10px 18px;border-radius:999px;
+background:rgba(255,255,255,0.92);color:#2d3436;font-size:15px;font-weight:600;
+text-decoration:none;box-shadow:0 4px 14px rgba(0,0,0,0.18);border:1px solid rgba(0,0,0,0.08);
+-webkit-backdrop-filter:blur(4px);backdrop-filter:blur(4px);transition:transform .15s,background .15s;}
+#rourou-home-btn:hover{background:#fff;transform:translateY(-2px);}
+@media (max-width:600px){#rourou-home-btn{padding:9px 14px;font-size:13px;left:10px;bottom:calc(10px + env(safe-area-inset-bottom,0px));}}
+</style>
+<a id="rourou-home-btn" href="../index.html">🏠 首页</a>
+<!-- rourou-home-btn:end -->
+</body>
+</html>

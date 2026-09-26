@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>石油的魔法之旅：从地下到车轮</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: "Microsoft YaHei", "PingFang SC", sans-serif;
+            background: linear-gradient(180deg, #2d3436 0%, #636e72 20%, #dfe6e9 50%, #ffeaa7 80%, #00b894 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        .container {
+            max-width: 850px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 30px;
+            padding: 40px;
+            box-shadow: 0 25px 80px rgba(0,0,0,0.15);
+        }
+        .header {
+            text-align: center;
+            padding: 35px 0;
+            background: linear-gradient(135deg, #2d3436 0%, #636e72 30%, #e17055 70%, #fdcb6e 100%);
+            border-radius: 20px;
+            margin-bottom: 30px;
+        }
+        .header h1 {
+            font-size: 40px;
+            color: white;
+            text-shadow: 3px 3px 6px rgba(0,0,0,0.3);
+        }
+        .subtitle {
+            font-size: 20px;
+            color: rgba(255,255,255,0.9);
+            margin-top: 8px;
+        }
+        h2 {
+            font-size: 30px;
+            color: #2d3436;
+            margin: 40px 0 20px;
+            padding: 15px 25px;
+            border-radius: 15px;
+            display: inline-block;
+        }
+        h2:nth-of-type(1) { background: linear-gradient(90deg, #ffeaa7 0%, #fdcb6e 100%); }
+        h2:nth-of-type(2) { background: linear-gradient(90deg, #fdcb6e 0%, #e17055 100%); color: white; }
+        h2:nth-of-type(3) { background: linear-gradient(90deg, #e17055 0%, #d63031 100%); color: white; }
+        h2:nth-of-type(4) { background: linear-gradient(90deg, #636e72 0%, #2d3436 100%); color: white; }
+        h2:nth-of-type(5) { background: linear-gradient(90deg, #00b894 0%, #00cec9 100%); }
+        p {
+            font-size: 20px;
+            line-height: 2;
+            color: #2d3436;
+            margin-bottom: 20px;
+            text-align: justify;
+        }
+        .image-container {
+            width: 100%;
+            margin: 30px 0;
+            text-align: center;
+        }
+        .dino-image {
+            width: 100%;
+            border-radius: 20px;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.2);
+        }
+        .image-caption {
+            color: #636e72;
+            font-size: 16px;
+            margin-top: 15px;
+            font-style: italic;
+            background: #dfe6e9;
+            display: inline-block;
+            padding: 8px 20px;
+            border-radius: 20px;
+        }
+        .fun-fact {
+            padding: 25px;
+            border-radius: 20px;
+            margin: 25px 0;
+            font-size: 18px;
+            line-height: 1.8;
+            color: white;
+        }
+        .fun-fact.dark { background: linear-gradient(135deg, #2d3436 0%, #636e72 100%); }
+        .fun-fact.red { background: linear-gradient(135deg, #d63031 0%, #e17055 100%); }
+        .fun-fact.gold { background: linear-gradient(135deg, #fdcb6e 0%, #e17055 100%); }
+        .fun-fact.green { background: linear-gradient(135deg, #00b894 0%, #00cec9 100%); }
+        .fun-fact.blue { background: linear-gradient(135deg, #74b9ff 0%, #0984e3 100%); }
+        .fun-fact-title {
+            font-size: 22px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        .divider {
+            text-align: center;
+            font-size: 30px;
+            margin: 30px 0;
+        }
+        .quiz-section {
+            background: linear-gradient(135deg, #dfe6e9 0%, #b2bec3 100%);
+            padding: 30px;
+            border-radius: 20px;
+            margin: 30px 0;
+        }
+        .quiz-title {
+            font-size: 28px;
+            color: #2d3436;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .quiz-question {
+            background: white;
+            padding: 20px;
+            border-radius: 15px;
+            margin: 15px 0;
+            font-size: 18px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        .quiz-answer {
+            color: #d63031;
+            margin-top: 10px;
+        }
+        .ending {
+            text-align: center;
+            padding: 40px 0;
+            margin-top: 40px;
+            background: linear-gradient(135deg, #2d3436 0%, #00b894 100%);
+            border-radius: 20px;
+            color: white;
+        }
+        .ending h3 { font-size: 32px; }
+        .ending p { text-align: center; font-size: 18px; color: rgba(255,255,255,0.85); }
+        .back-home-btn {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 14px 30px;
+            background: rgba(255,255,255,0.15);
+            color: white;
+            text-decoration: none;
+            border-radius: 25px;
+            font-size: 18px;
+            border: 2px solid rgba(255,255,255,0.3);
+            transition: background 0.3s, transform 0.2s;
+        }
+        .back-home-btn:hover {
+            background: rgba(255,255,255,0.25);
+            transform: translateY(-2px);
+        }
+        .back-home-btn:active {
+            transform: translateY(0);
+        }
+        @media (max-width: 600px) {
+            .container { padding: 20px; }
+            h1 { font-size: 30px; }
+            h2 { font-size: 22px; }
+            p { font-size: 18px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>石油的魔法之旅</h1>
+            <p class="subtitle">从地下到车轮：石油、汽油和汽车的奇妙故事</p>
+        </div>
+
+        <p>🚗 每天，爸爸妈妈开车送你上学，坐公交车去公园，或者一家人自驾游……你有没有想过：汽车为什么能跑？让车轮转起来的"能量"从哪里来？</p>
+
+        <p>答案藏在地底深处——一种叫做<strong>「石油」</strong>的黑色液体里！今天，我们就来揭开石油的秘密，看看它是怎么从遥远的地下，变成推动汽车前进的"魔法药水"——汽油！</p>
+
+        <div class="divider">⛽ 🚗 ⛽</div>
+
+        <h2>第一章：石油是什么？——来自远古的「时间胶囊」</h2>
+
+        <p>如果你以为石油就是"石头里的油"，那你就只猜对了一半！石油其实是一份<strong>来自远古的礼物</strong>——它是几千万甚至几亿年前死去的生物变成的！</p>
+
+        <p>在恐龙时代之前，地球上覆盖着广阔的海洋。海洋里有数不清的<strong>浮游生物、藻类和小鱼</strong>。它们死后，尸体沉到海底，被泥沙一层层埋了起来。</p>
+
+        <p>在巨大的压力和地底的高温下，经过<strong>几百万年到几千万年</strong>的"慢炖"，这些生物遗骸慢慢变成了黑色的液体——<strong>石油</strong>！所以每一滴汽油里，都装着一份远古生命的"遗产"！</p>
+
+        <div class="fun-fact dark">
+            <div class="fun-fact-title">🦕 趣味知识：石油和恐龙有关系吗？</div>
+            <p>很多人以为石油是恐龙变的——其实不对哦！石油主要来自更小的生物：海洋浮游生物和藻类。恐龙的贡献几乎可以忽略不计。不过，"化石燃料"这个名字倒是很形象：烧石油，就像在烧化石！</p>
+        </div>
+
+        <div class="image-container">
+            <img src="scene_01.webp" alt="石油的形成" class="dino-image">
+            <p class="image-caption">🦠 远古海洋里的小生物，经过亿万年变成了今天的石油！</p>
+        </div>
+
+        <p>石油通常藏在<strong>地下几百米到几千米</strong>的岩层缝隙里，就像海绵吸水一样。人们用巨大的钻头钻到地底，把石油"抽"上来——这就是我们常说的<strong>"油田"</strong>和<strong>"钻井平台"</strong>！</p>
+
+        <p>全世界每天要消耗大约<strong>1亿桶</strong>石油！如果把这些石油装进标准油桶排成一排，可以绕地球<strong>整整两圈</strong>！</p>
+
+        <div class="divider">⛽ 🚗 ⛽</div>
+
+        <h2>第二章：从石油到汽油——炼油厂的「分身术」</h2>
+
+        <p>从地底抽上来的石油叫<strong>"原油"</strong>，黑乎乎的、黏黏的，可不能直接加到汽车里哦！要想让石油变成汽油，它需要去一个神奇的地方——<strong>炼油厂</strong>。</p>
+
+        <p>炼油厂的秘密武器是一个叫做<strong>"分馏塔"</strong>的巨型铁塔。分馏塔的原理特别简单：<strong>加热原油，让它蒸发，然后不同成分在不同温度下凝结出来</strong>——就像煮一锅汤，水蒸气先飘出来，油花后飘出来！</p>
+
+        <div class="fun-fact red">
+            <div class="fun-fact-title">🔬 炼油就像剥洋葱！</div>
+            <p>分馏塔从上到下温度依次升高，不同的"馏分"就像洋葱的层：最顶层（30°C）出<strong>液化气</strong>（你家煤气灶用的）；往下（70°C）出<strong>汽油</strong>；再往下（200°C）出<strong>柴油</strong>（给大卡车用的）；最底层出<strong>沥青</strong>（铺马路的！）。</p>
+        </div>
+
+        <div class="image-container">
+            <img src="scene_02.webp" alt="炼油厂" class="dino-image">
+            <p class="image-caption">🏭 神奇的"分馏塔"把黑原油变成汽油、柴油、塑料……</p>
+        </div>
+
+        <p>除了汽油和柴油，石油还能变出好多东西：<strong>塑料、尼龙衣服、化妆品、药片的外壳、蜡笔、泡泡糖的胶基</strong>……甚至你正在看的手机屏幕，里面也有石油的成分！所以石油不仅是"汽车的粮食"，也是现代生活的<strong>"万金油"</strong>。</p>
+
+        <p>一桶原油（约159升）大概能炼出：<strong>72升汽油 + 34升柴油 + 15升航空煤油 + 其他产品</strong>，几乎一点都不会浪费！</p>
+
+        <div class="divider">⛽ 🚗 ⛽</div>
+
+        <h2>第三章：汽车为什么会跑？——四冲程的「微型爆炸」</h2>
+
+        <p>现在我们有了汽油，但汽油本身不会让汽车动起来。它需要一个"舞台"来释放能量——这个舞台就是<strong>发动机</strong>！</p>
+
+        <p>汽车的发动机里，藏着一个个叫做<strong>"气缸"</strong>的小房间。大多数家用车有<strong>4个</strong>气缸，跑车可能有8个甚至12个！每个气缸里面，都在反复上演一场<strong>「四步舞」</strong>：</p>
+
+        <p><strong>第一步·吸气：</strong>活塞往下走，把汽油雾和空气的混合物吸进来<br>
+        <strong>第二步·压缩：</strong>活塞往上走，把混合气狠狠压紧<br>
+        <strong>第三步·爆炸：</strong>火花塞"啪"地打出电火花，混合气瞬间爆炸燃烧！温度可达<strong>2000°C</strong>！</p>
+
+        <p>爆炸产生的巨大力量把活塞狠狠推下去——这一"推"，通过曲轴和连杆，变成了车轮的转动。这就是<strong>「内燃机」</strong>的秘密：用微小的爆炸来驱动汽车！</p>
+
+        <div class="fun-fact gold">
+            <div class="fun-fact-title">🔥 发动机里每分钟有多少次爆炸？</div>
+            <p>当你开车时，发动机每分钟要发生<strong>上千次</strong>微型爆炸！如果发动机转速是3000转/分钟，4缸发动机每秒就有<strong>100次</strong>爆炸——比鞭炮还热闹！这就是为什么发动机会那么烫、那么响。</p>
+        </div>
+
+        <div class="image-container">
+            <img src="scene_03.webp" alt="发动机的秘密" class="dino-image">
+            <p class="image-caption">⚡ 微型爆炸推着活塞上下运动，这就是汽车的力量来源！</p>
+        </div>
+
+        <p>有意思的是，汽油发动机的能量利用效率其实<strong>不太高</strong>——只有大约<strong>25%-30%</strong>的汽油能量真正用在了推动汽车上。剩下的70%去哪了？<strong>变成了热能</strong>——这就是为什么发动机盖摸起来总是烫烫的！</p>
+
+        <div class="divider">⛽ 🚗 ⛽</div>
+
+        <h2>第四章：石油的烦恼——黑色黄金也有代价</h2>
+
+        <p>石油给人类带来了巨大的便利，但它也带来了三个大麻烦：</p>
+
+        <p><strong>🌫️ 空气污染：</strong>汽油燃烧产生的尾气里，含有二氧化碳（CO₂）、一氧化碳（CO）、氮氧化物等有害物质。这些气体会让天空变灰（雾霾），还会让小朋友更容易咳嗽、过敏。</p>
+
+        <p><strong>🌡️ 温室效应：</strong>二氧化碳是"温室气体"的大哥大——它像一层越来越厚的棉被，把地球裹起来，让热量散不出去。地球变暖导致冰盖融化、海平面上升、极端天气越来越多。</p>
+
+        <p><strong>⏳ 资源有限：</strong>石油是<strong>"不可再生"</strong>资源——地球几亿年才攒下的"家底"，人类只用了一两百年就快用完啦！科学家预测，按照目前的消耗速度，已探明的石油储量大约还能用<strong>50年左右</strong>。</p>
+
+        <div class="fun-fact green">
+            <div class="fun-fact-title">📊 一个惊人的数字</div>
+            <p>一辆普通家用车每年排放约<strong>4.6吨</strong>二氧化碳！一棵大树一年只能吸收约<strong>20公斤</strong>二氧化碳——也就是说，一辆车一年的排放，需要<strong>230棵树</strong>才能"消化"掉！</p>
+        </div>
+
+        <div class="image-container">
+            <img src="scene_04.webp" alt="石油的代价" class="dino-image">
+            <p class="image-caption">🌍 不清洁的能源让地球"发烧"，我们需要更好的选择！</p>
+        </div>
+
+        <p>还不止这些——海上石油泄漏会让海洋生物遭殃，石油开采可能破坏自然环境，甚至引发"石油战争"……所以，石油虽然好，但我们真的需要<strong>找更好的替代品</strong>！</p>
+
+        <div class="divider">⛽ 🚗 ⛽</div>
+
+        <h2>第五章：未来的汽车——告别「黑色黄金」</h2>
+
+        <p>好消息是，人类已经在努力寻找新能源，让汽车变得更清洁！未来的马路上，这些"绿色选手"会越来越多：</p>
+
+        <p><strong>⚡ 纯电动汽车：</strong>这是目前最主流的方案！电动车不烧汽油，靠电池驱动电机。中国的比亚迪、美国的特斯拉，已经卖出了<strong>上千万辆</strong>电动车。而且，如果充电的电力来自太阳能、风能——那整个过程就是<strong>零排放</strong>！</p>
+
+        <p><strong>💧 氢能源汽车：</strong>终极环保方案！氢气燃烧后产生的"尾气"是什么？<strong>纯水</strong>！喝一口都没问题（虽然不建议）。日本的丰田Mirai就是氢能源汽车，加一次氢气只需3分钟，能跑<strong>650公里</strong>。</p>
+
+        <p><strong>🌿 生物燃料：</strong>用玉米、甘蔗、藻类制造的燃料。虽然也排放二氧化碳，但植物生长时会吸收同样多的二氧化碳——相当于<strong>"碳中和"</strong>，不额外增加温室气体！</p>
+
+        <div class="fun-fact blue">
+            <div class="fun-fact-title">🚀 你知道吗？中国是全球电动车第一大国！</div>
+            <p>截至2026年，中国的电动车保有量已经超过<strong>3000万辆</strong>，占全球的<strong>一半以上</strong>！很多城市已经开始把公交车、出租车全部换成电动的。北京、深圳的公交车已经是100%纯电动了！</p>
+        </div>
+
+        <div class="image-container">
+            <img src="scene_05.webp" alt="未来汽车" class="dino-image">
+            <p class="image-caption">🔋 电动、氢能、太阳能……未来的马路会更干净、更安静！</p>
+        </div>
+
+        <p><strong>💡 小朋友能做什么？</strong>虽然你还不能开车，但你可以：出门多走路或骑自行车、提醒爸爸少开车多坐地铁、随手关灯节约能源、跟朋友分享今天学到的知识！每一个小小的举动，都是在给地球"降温"。</p>
+
+        <div class="divider">⛽ 🚗 ⛽</div>
+
+        <div class="quiz-section">
+            <div class="quiz-title">🎯 互动测试：你是石油小专家吗？</div>
+
+            <div class="quiz-question">
+                <p><strong>题目一：</strong>石油主要是什么变成的？</p>
+                <p>A. 恐龙的骨头<br>
+                B. 远古海洋里的浮游生物和藻类<br>
+                C. 地上的树木被埋<br>
+                D. 火山喷出来的岩浆</p>
+                <p class="quiz-answer">答案：B. 海洋浮游生物和藻类！虽然恐龙的说法更酷，但石油主要来自更小的海洋生物～</p>
+            </div>
+
+            <div class="quiz-question">
+                <p><strong>题目二：</strong>炼油厂用什么方法把原油变成汽油？</p>
+                <p>A. 用锤子敲<br>
+                B. 加热蒸发，不同温度凝结出不同产品<br>
+                C. 放在冰箱里冻<br>
+                D. 用磁铁吸</p>
+                <p class="quiz-answer">答案：B. 分馏！加热原油，汽油在约70°C先蒸发出来——就像煮汤时不同料在不同温度下出味！</p>
+            </div>
+
+            <div class="quiz-question">
+                <p><strong>题目三：</strong>汽油在发动机里怎么产生动力？</p>
+                <p>A. 慢慢燃烧加热<br>
+                B. 微型爆炸推动活塞<br>
+                C. 直接用汽油浸泡车轮<br>
+                D. 用风扇吹</p>
+                <p class="quiz-answer">答案：B. 火花塞点燃汽油雾，微型爆炸推动活塞，变成车轮的旋转！</p>
+            </div>
+
+            <div class="quiz-question">
+                <p><strong>题目四：</strong>汽车尾气里哪种气体导致地球变暖？</p>
+                <p>A. 氧气 &nbsp; B. 氮气 &nbsp; C. 二氧化碳（CO₂） &nbsp; D. 水蒸气</p>
+                <p class="quiz-answer">答案：C. 二氧化碳！它像"棉被"一样裹住地球，让热量散不出去——这就是温室效应。</p>
+            </div>
+
+            <div class="quiz-question">
+                <p><strong>题目五：</strong>氢能源汽车最大的优点是什么？</p>
+                <p>A. 跑得比飞机快<br>
+                B. 燃烧后只排放纯水，零污染<br>
+                C. 不用加油也不用充电<br>
+                D. 会飞</p>
+                <p class="quiz-answer">答案：B. 氢气+氧气=水！唯一的"尾气"是纯水，真正的零污染能源！</p>
+            </div>
+
+            <div style="text-align: center; margin-top: 20px; padding: 15px; background: white; border-radius: 15px;">
+                <p style="font-size: 20px; color: #e17055; font-weight: bold;">🏆 测试评分</p>
+                <p>答对5题：⛽⛽⛽⛽⛽ 你是石油知识小博士！</p>
+                <p>答对4题：⛽⛽⛽⛽ 很棒，离博士就差一题！</p>
+                <p>答对3题：⛽⛽⛽ 还不错，再复习一遍吧！</p>
+                <p>答对2题及以下：⛽⛽ 没关系，多看两遍就能记住啦！</p>
+            </div>
+        </div>
+
+        <div class="ending">
+            <h3>—— 完 ——</h3>
+            <p>谢谢阅读！下次坐车时，记得跟爸爸妈妈讲讲石油的魔法故事哦～</p>
+            <p style="margin-top: 10px; font-size: 14px; color: rgba(255,255,255,0.6);">本故事由 AI 助手小龙为小朋友精心制作 🐉</p>
+            <div style="text-align: left; margin-top: 15px;">
+                <a href="../index.html" class="back-home-btn">🏠 返回首页</a>
+            </div>
+        </div>
+    </div>
+
+<!-- rourou-home-btn:start -->
+<style>
+#rourou-home-btn{position:fixed;left:14px;bottom:calc(14px + env(safe-area-inset-bottom,0px));z-index:9999;
+display:inline-flex;align-items:center;gap:6px;padding:10px 18px;border-radius:999px;
+background:rgba(255,255,255,0.92);color:#2d3436;font-size:15px;font-weight:600;
+text-decoration:none;box-shadow:0 4px 14px rgba(0,0,0,0.18);border:1px solid rgba(0,0,0,0.08);
+-webkit-backdrop-filter:blur(4px);backdrop-filter:blur(4px);transition:transform .15s,background .15s;}
+#rourou-home-btn:hover{background:#fff;transform:translateY(-2px);}
+@media (max-width:600px){#rourou-home-btn{padding:9px 14px;font-size:13px;left:10px;bottom:calc(10px + env(safe-area-inset-bottom,0px));}}
+</style>
+<a id="rourou-home-btn" href="../index.html">🏠 首页</a>
+<!-- rourou-home-btn:end -->
+</body>
+</html>

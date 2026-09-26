@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🦐 螃蟹和虾，为什么一煮就变红？</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: "Microsoft YaHei", "PingFang SC", sans-serif;
+            background: linear-gradient(180deg, #ffd3a5 0%, #fd6585 45%, #e8455f 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        .container {
+            max-width: 850px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 30px;
+            padding: 40px;
+            box-shadow: 0 25px 80px rgba(0,0,0,0.2);
+        }
+        .header {
+            text-align: center;
+            padding: 30px 0;
+            background: linear-gradient(135deg, #3d7ea6 0%, #2a9d8f 40%, #e76f51 100%);
+            border-radius: 20px;
+            margin-bottom: 30px;
+        }
+        .header h1 {
+            font-size: 40px;
+            color: #fff;
+            text-shadow: 3px 3px 6px rgba(0,0,0,0.25);
+        }
+        .subtitle {
+            font-size: 20px;
+            color: rgba(255,255,255,0.95);
+            margin-top: 10px;
+        }
+        h2 {
+            font-size: 32px;
+            color: #2d3436;
+            margin: 40px 0 20px;
+            padding: 15px 25px;
+            background: linear-gradient(90deg, #ffb88c 0%, #ff7b54 100%);
+            border-radius: 15px;
+            display: inline-block;
+        }
+        p {
+            font-size: 20px;
+            line-height: 2;
+            color: #2d3436;
+            margin-bottom: 20px;
+            text-align: justify;
+        }
+        .image-container {
+            width: 100%;
+            margin: 30px 0;
+            text-align: center;
+        }
+        .dino-image {
+            width: 100%;
+            border-radius: 20px;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.2);
+        }
+        .image-caption {
+            color: #636e72;
+            font-size: 16px;
+            margin-top: 15px;
+            font-style: italic;
+            background: #ffeaa7;
+            display: inline-block;
+            padding: 8px 20px;
+            border-radius: 20px;
+        }
+        .fun-fact {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 25px;
+            border-radius: 20px;
+            margin: 25px 0;
+            font-size: 18px;
+            line-height: 1.8;
+        }
+        .fun-fact.pink {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+        }
+        .fun-fact.green {
+            background: linear-gradient(135deg, #11998e 0%, #38ef7d 100%);
+        }
+        .fun-fact.orange {
+            background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);
+        }
+        .fun-fact-title {
+            font-size: 22px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        .divider {
+            text-align: center;
+            font-size: 30px;
+            color: #ddd;
+            margin: 30px 0;
+        }
+        .quiz-section {
+            background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);
+            padding: 30px;
+            border-radius: 20px;
+            margin: 30px 0;
+        }
+        .quiz-title {
+            font-size: 28px;
+            color: #e17055;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .quiz-question {
+            background: white;
+            padding: 20px;
+            border-radius: 15px;
+            margin: 15px 0;
+            font-size: 18px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        .ending {
+            text-align: center;
+            padding: 40px 0;
+            margin-top: 40px;
+            background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);
+            border-radius: 20px;
+        }
+        .ending h3 { font-size: 32px; color: #2d3436; }
+        .ending p { text-align: center; font-size: 18px; color: #636e72; }
+        .back-home-btn {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 14px 30px;
+            background: rgba(0,0,0,0.08);
+            color: #2d3436;
+            text-decoration: none;
+            border-radius: 25px;
+            font-size: 18px;
+            border: 2px solid rgba(0,0,0,0.15);
+            transition: background 0.3s, transform 0.2s;
+        }
+        .back-home-btn:hover {
+            background: rgba(0,0,0,0.15);
+            transform: translateY(-2px);
+        }
+        .back-home-btn:active { transform: translateY(0); }
+        @media (max-width: 600px) {
+            .container { padding: 20px; }
+            .header h1 { font-size: 26px; }
+            h2 { font-size: 24px; }
+            p { font-size: 18px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🦐 螃蟹和虾，为什么一煮就变红？</h1>
+            <p class="subtitle">答案可能跟你想的不一样：红色一直就在壳里，只是被"藏"起来了</p>
+        </div>
+
+        <p>活着的虾是青灰色的，螃蟹是青褐色、墨绿色的。扔进锅里煮几分钟，捞出来全变成鲜艳的橙红色。</p>
+
+        <p>很多小朋友会猜：是不是火把壳"烤"红了？或者虾壳里发生了什么化学反应，<strong>造出了</strong>红色？</p>
+
+        <p>都不是。真相更有意思——<strong>那个红色一直在壳里，只是被藏起来了。加热做的不是"染色"，而是"松手"。</strong></p>
+
+        <p>我们一层一层看。</p>
+
+        <div class="image-container">
+            <img src="scene_01.webp" alt="生虾与熟虾颜色对比" class="dino-image">
+            <div class="image-caption">同一只虾：左边生的青灰色，右边熟的橙红色</div>
+        </div>
+
+        <h2>第一层：颜色不是"有"，而是"剩"</h2>
+
+        <p>要弄懂变色，得先弄懂颜色到底是什么。</p>
+
+        <p>白色的阳光里其实<strong>混着所有颜色</strong>（彩虹的颜色全在里面）。当一个东西看上去是红色时，不是因为它"发出了红光"，而是因为它<strong>把别的光都吃掉了，只剩下红光弹回你眼睛</strong>。</p>
+
+        <p>所以：<strong>你看到的颜色，是"没被吸收掉"的那部分光。</strong></p>
+
+        <p>那什么东西负责"吃掉"光？是分子。而一个分子会吃掉哪些光，取决于它<strong>长什么样</strong>——尤其是里面电子能"跳"到多高的台阶上。</p>
+
+        <p>记住这句话，它是整篇文章的钥匙：<strong>分子的形状一变，它吃掉的光就变，我们看到的颜色就跟着变。</strong></p>
+
+        <div class="fun-fact">
+            <div class="fun-fact-title">💡 一个小实验（在脑子里做）</div>
+            拿一张红纸去黑暗的房间，用<strong>蓝光</strong>照它，它会变成接近黑色——因为红纸只反射红光，而蓝光里没有红光可反射，全被吃掉了。颜色不是纸"自带"的，是<strong>光和分子商量出来的结果</strong>。
+        </div>
+
+        <div class="divider">✦ ✦ ✦</div>
+
+        <h2>第二层：主角登场——虾青素</h2>
+
+        <p>虾蟹壳里的红色素有个名字，叫<strong>虾青素</strong>（astaxanthin）。别被"青"字骗了，它本来的颜色是<strong>橙红色</strong>。</p>
+
+        <p>虾青素属于一个大名鼎鼎的家族，叫<strong>类胡萝卜素</strong>。这个家族你餐桌上天天见：</p>
+
+        <p style="text-align:center; font-size:20px; line-height:2; background:#f1f2f6; padding:20px; border-radius:15px; margin:20px 0;">
+            🥕 胡萝卜的橙 → β-胡萝卜素<br>
+            🍅 番茄的红 → 番茄红素<br>
+            🎃 南瓜的黄 → 叶黄素类<br>
+            🦐 虾蟹的橙红 → 虾青素
+        </p>
+
+        <p>它们长得都很像：一条长长的碳链，上面交替着单键和双键（化学家叫"共轭双键"）。这种结构特别擅长<strong>吃掉蓝光和绿光</strong>，剩下的红橙光就弹出来了——于是我们看到橙红。</p>
+
+        <p>到这里问题来了：<strong>既然虾青素本来就是橙红的，那活虾为什么是青灰色的？</strong></p>
+
+        <div class="image-container">
+            <img src="scene_02.webp" alt="虾青素分子" class="dino-image">
+            <div class="image-caption">虾青素的长链结构：吃掉蓝绿光，把红橙光弹出来</div>
+        </div>
+
+        <div class="divider">✦ ✦ ✦</div>
+
+        <h2>第三层：活的时候，它被蛋白质"攥"住了</h2>
+
+        <p>这是最关键的一层。</p>
+
+        <p>在活虾活蟹的壳里，虾青素不是自由自在地飘着，而是被一种<strong>蛋白质</strong>紧紧抱住，形成一种叫 <strong>甲壳蓝蛋白</strong> 的复合体。</p>
+
+        <p>蛋白质是个"大手"。它一把抓住虾青素，会把它<strong>掰弯、扭成另一个形状</strong>。还记得第一层的钥匙吗——形状一变，吃掉的光就变。</p>
+
+        <p>被掰弯之后，这个组合开始<strong>吃掉红光和黄光</strong>，于是弹回来的光偏向<strong>蓝绿和青灰</strong>。这就是为什么活虾看起来是青灰色的。</p>
+
+        <p>打个比方：虾青素是一根红色的彩带。蛋白质攥紧它、把它拧成麻花，从远处看就是灰扑扑的一团；把麻花松开摊平，红色才露出来。</p>
+
+        <p><strong>所以活虾的青灰色，不是"没有红色"，而是"红色被藏起来了"。</strong></p>
+
+        <div class="image-container">
+            <img src="scene_03.webp" alt="蛋白质抓住虾青素" class="dino-image">
+            <div class="image-caption">蛋白质像一只手，把虾青素攥成另一个形状，颜色就变了</div>
+        </div>
+
+        <div class="divider">✦ ✦ ✦</div>
+
+        <h2>第四层：加热 = 让蛋白质"松手"</h2>
+
+        <p>现在轮到锅登场了。</p>
+
+        <p>蛋白质有个大弱点：<strong>怕热</strong>。温度升高到一定程度（大约 <strong>60℃ 以上</strong>），蛋白质就开始<strong>变性</strong>——它的结构散架、松开，再也抓不住虾青素了。</p>
+
+        <p>这件事你肯定见过：鸡蛋清本来是透明的液体，一煮就变成白色的固体——那也是蛋白质遇热散架、重新粘在一起的结果。<strong>煮虾和煮蛋，在你眼睛看不见的地方，是同一类变化。</strong></p>
+
+        <p>蛋白质一松手，虾青素恢复了自由，回到自己本来的形状，重新开始吃掉蓝绿光、反射红橙光。</p>
+
+        <p><strong>红色就"冒"出来了。</strong></p>
+
+        <p>顺序也很合理：<strong>壳先变红，里面慢慢熟</strong>——因为色素就在壳里，热量先传到壳。</p>
+
+        <div class="fun-fact orange">
+            <div class="fun-fact-title">💡 顺带解释两个现象</div>
+            <strong>① 虾蟹死了放久了也会慢慢发红</strong>——不一定是煮过，蛋白质自己降解了，一样会松手。<br>
+            <strong>② 煮久了不会再变得更红</strong>——蛋白质一旦松手，红色就全出来了，颜色基本到顶。再煮下去只是肉变老。
+        </div>
+
+        <div class="image-container">
+            <img src="scene_04.webp" alt="加热让蛋白质松手" class="dino-image">
+            <div class="image-caption">热 → 蛋白质散架松手 → 虾青素恢复自由 → 红色露出</div>
+        </div>
+
+        <div class="divider">✦ ✦ ✦</div>
+
+        <h2>第五层：这个红色，是"吃"出来的</h2>
+
+        <p>最后一层，把视野拉开一点。</p>
+
+        <p>虾蟹自己<strong>造不出</strong>虾青素。动物基本都没这个本事。它们得从食物里<strong>吃</strong>进来。</p>
+
+        <p>链条是这样的：</p>
+
+        <p style="text-align:center; font-size:20px; line-height:2; background:#f1f2f6; padding:20px; border-radius:15px; margin:20px 0;">
+            🌿 藻类自己造出虾青素<br>
+            ↓<br>
+            🦐 小虾吃藻类 → 色素进了小虾身体<br>
+            ↓<br>
+            🦀 螃蟹、大鱼吃小虾 → 色素继续往上传递<br>
+            ↓<br>
+            🦩 火烈鸟吃虾 → 羽毛变成粉红色<br>
+            🐟 三文鱼吃虾 → 肉变成橙红色
+        </p>
+
+        <p>没错，<strong>火烈鸟的粉红、三文鱼肉的橙红、虾蟹煮熟的红，背后是同一个分子。</strong>你在餐桌上看到的那只红虾，和动物园里那只粉红火烈鸟，共享同一份"颜色食谱"。</p>
+
+        <p>如果没有藻类在最底下造这个分子，火烈鸟会是白色的，三文鱼肉会是灰白的，煮熟的虾也不会变红。</p>
+
+        <div class="image-container">
+            <img src="scene_05.webp" alt="食物链传递虾青素" class="dino-image">
+            <div class="image-caption">同一个橙色分子，沿着食物链一路传上来</div>
+        </div>
+
+        <div class="fun-fact green">
+            <div class="fun-fact-title">💡 反过来玩：深海里的虾本来就是红的</div>
+            有些深海虾活着的时候<strong>就是鲜红的</strong>，不用煮。为什么？<br>
+            因为水会吃光，而且<strong>红光最先被吃掉</strong>。到 200 米深，阳光里的红光早就没了。在一片蓝幽幽的深海里，红色的东西等于<strong>没有颜色</strong>——看起来就是黑的。<br>
+            所以红色在深海是<strong>隐身衣</strong>。同一个分子，在餐桌上代表"熟了"，在深海里代表"看不见"。
+        </div>
+
+        <div class="divider">✦ ✦ ✦</div>
+
+        <h2>给你三件可以带走的东西</h2>
+
+        <p><strong>1. 颜色不是东西自带的，是"剩下的光"。</strong>红的东西不是发红光，是把别的光都吃了，只剩红光弹回来。分子形状一变，吃掉的光就变，颜色就变。</p>
+
+        <p><strong>2. 加热做的常常不是"创造"，而是"破坏"。</strong>煮虾没有造出红色素，只是把抓住色素的蛋白质弄散了。<strong>看见一个新现象，先问"是多了什么，还是少了什么"</strong>——这次是少了一只手。</p>
+
+        <p><strong>3. 同一个分子，可以出现在完全不相干的地方。</strong>虾壳、火烈鸟羽毛、三文鱼肉、深海虾的隐身衣——都是虾青素。学会认"同一个原因"，比记住一百个孤立的知识点有用得多。</p>
+
+        <div class="quiz-section">
+            <div class="quiz-title">🎯 互动小测试</div>
+            <div class="quiz-question"><strong>1.</strong> 虾蟹煮熟变红，最主要的原因是？（&nbsp;&nbsp;）<br>
+            A. 火把壳烤出了一层红色物质　B. 虾壳里本来就有橙红色素，加热只是让它露出来<br>
+            C. 热水把壳染色了　D. 虾的血跑到了壳上</div>
+            <div class="quiz-question"><strong>2.</strong> 活虾为什么是青灰色的？（&nbsp;&nbsp;）<br>
+            A. 活虾壳里没有色素　B. 虾壳会反射所有光<br>
+            C. 虾青素被蛋白质抓住、改变了形状，于是吃掉的光变了　D. 因为水把红色洗掉了</div>
+            <div class="quiz-question"><strong>3.</strong> 加热在这个过程里扮演的角色是？（&nbsp;&nbsp;）<br>
+            A. 制造新的红色素　B. 让蛋白质变性、松开，放出虾青素<br>
+            C. 把蓝色光烧掉了　D. 让虾壳变硬</div>
+            <div class="quiz-question"><strong>4.</strong> 下列哪一项<strong>不</strong>是虾青素（类胡萝卜素家族）造成的？（&nbsp;&nbsp;）<br>
+            A. 火烈鸟的粉红羽毛　B. 三文鱼肉的橙红色<br>
+            C. 胡萝卜的橙色　D. 青蛙的绿色皮肤</div>
+            <div class="quiz-question"><strong>5.</strong> 有些深海虾活着的时候就是红色的，原因是？（&nbsp;&nbsp;）<br>
+            A. 深海很热，等于被煮过　B. 红色在深海等于隐形，因为红光早被水吸收了<br>
+            C. 它们吃了太多辣椒　D. 红色能让同伴更容易找到它们</div>
+            <p style="text-align:center; font-size:16px; color:#636e72; margin-top:15px;">（答案：1-B　2-C　3-B　4-D　5-B）</p>
+        </div>
+
+        <div class="ending">
+            <h3>—— 完 ——</h3>
+            <p>谢谢阅读！希望你学到了很多知识！</p>
+            <p style="margin-top: 10px; font-size: 14px; color: #b2bec3;">本故事由 AI 助手小巴为小朋友精心制作 🚌</p>
+            <div style="text-align: left; margin-top: 15px;">
+                <a href="../index.html" class="back-home-btn">🏠 返回首页</a>
+            </div>
+        </div>
+    </div>
+
+<!-- rourou-home-btn:start -->
+<style>
+#rourou-home-btn{position:fixed;left:14px;bottom:calc(14px + env(safe-area-inset-bottom,0px));z-index:9999;
+display:inline-flex;align-items:center;gap:6px;padding:10px 18px;border-radius:999px;
+background:rgba(255,255,255,0.92);color:#2d3436;font-size:15px;font-weight:600;
+text-decoration:none;box-shadow:0 4px 14px rgba(0,0,0,0.18);border:1px solid rgba(0,0,0,0.08);
+-webkit-backdrop-filter:blur(4px);backdrop-filter:blur(4px);transition:transform .15s,background .15s;}
+#rourou-home-btn:hover{background:#fff;transform:translateY(-2px);}
+@media (max-width:600px){#rourou-home-btn{padding:9px 14px;font-size:13px;left:10px;bottom:calc(10px + env(safe-area-inset-bottom,0px));}}
+</style>
+<a id="rourou-home-btn" href="../index.html">🏠 首页</a>
+<!-- rourou-home-btn:end -->
+</body>
+</html>

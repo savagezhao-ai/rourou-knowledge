@@ -1,0 +1,489 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>加减乘除里的秘密</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: "Microsoft YaHei", "PingFang SC", sans-serif;
+            background: linear-gradient(180deg, #fff3e0 0%, #ffe0b2 15%, #ffcc80 30%, #ffb74d 50%, #ff8a65 75%, #f4511e 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        .container {
+            max-width: 850px;
+            margin: 0 auto;
+            background: #fffef9;
+            border-radius: 30px;
+            padding: 40px;
+            box-shadow: 0 25px 80px rgba(0,0,0,0.15);
+        }
+        .header {
+            text-align: center;
+            padding: 45px 0;
+            background: linear-gradient(135deg, #f4511e 0%, #fb8c00 25%, #fdd835 50%, #66bb6a 75%, #29b6f6 100%);
+            border-radius: 20px;
+            margin-bottom: 30px;
+            position: relative;
+            overflow: hidden;
+        }
+        .header::before {
+            content: "1+2×3÷4−5 6 7 8 9 0 +−×÷ 123";
+            position: absolute;
+            top: 15px;
+            left: -100px;
+            font-size: 24px;
+            opacity: 0.12;
+            white-space: nowrap;
+            font-family: monospace;
+            animation: floatNums 15s linear infinite;
+        }
+        @keyframes floatNums {
+            from { transform: translateX(-300px); }
+            to { transform: translateX(1200px); }
+        }
+        .header h1 {
+            font-size: 44px;
+            color: white;
+            text-shadow: 4px 4px 10px rgba(0,0,0,0.25);
+            position: relative;
+            z-index: 1;
+        }
+        .subtitle {
+            font-size: 20px;
+            color: rgba(255,255,255,0.95);
+            margin-top: 10px;
+            position: relative;
+            z-index: 1;
+        }
+
+        h2 {
+            font-size: 30px;
+            color: white;
+            margin: 40px 0 20px;
+            padding: 14px 24px;
+            border-radius: 15px;
+            display: inline-block;
+        }
+        h2.ch1 { background: linear-gradient(90deg, #f4511e 0%, #ff7043 100%); }
+        h2.ch2 { background: linear-gradient(90deg, #7b1fa2 0%, #ab47bc 100%); }
+        h2.ch3 { background: linear-gradient(90deg, #00838f 0%, #00acc1 100%); }
+        h2.ch4 { background: linear-gradient(90deg, #2e7d32 0%, #43a047 100%); }
+        h2.ch5 { background: linear-gradient(90deg, #1565c0 0%, #42a5f5 100%); }
+
+        p {
+            font-size: 20px;
+            line-height: 2;
+            color: #2d3436;
+            margin-bottom: 20px;
+            text-align: justify;
+        }
+
+        .image-container {
+            width: 100%;
+            margin: 30px 0;
+            text-align: center;
+        }
+        .dino-image {
+            width: 100%;
+            border-radius: 20px;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.18);
+        }
+        .image-caption {
+            color: #636e72;
+            font-size: 16px;
+            margin-top: 15px;
+            font-style: italic;
+            background: #dfe6e9;
+            display: inline-block;
+            padding: 8px 20px;
+            border-radius: 20px;
+        }
+
+        .fun-fact {
+            color: white;
+            padding: 25px;
+            border-radius: 20px;
+            margin: 25px 0;
+            font-size: 18px;
+            line-height: 1.8;
+        }
+        .fact-orange { background: linear-gradient(135deg, #e65100 0%, #ff8f00 100%); }
+        .fact-purple { background: linear-gradient(135deg, #6a1b9a 0%, #ab47bc 100%); }
+        .fact-teal   { background: linear-gradient(135deg, #004d40 0%, #00897b 100%); }
+        .fact-green  { background: linear-gradient(135deg, #1b5e20 0%, #388e3c 100%); }
+        .fact-blue   { background: linear-gradient(135deg, #0d47a1 0%, #1e88e5 100%); }
+        .fun-fact-title {
+            font-size: 22px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .trick-box {
+            background: linear-gradient(135deg, #fff9c4 0%, #fff176 100%);
+            padding: 20px 25px;
+            border-radius: 18px;
+            margin: 20px 0;
+            border-left: 6px solid #f9a825;
+            font-size: 19px;
+            line-height: 1.9;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.06);
+        }
+        .trick-box .tag {
+            background: #f9a825;
+            color: white;
+            padding: 3px 12px;
+            border-radius: 12px;
+            font-size: 14px;
+            font-weight: bold;
+            margin-right: 8px;
+        }
+
+        .game-box {
+            background: linear-gradient(135deg, #e8f5e9 0%, #c8e6c9 100%);
+            border: 3px dashed #4caf50;
+            padding: 25px;
+            border-radius: 20px;
+            margin: 25px 0;
+            text-align: center;
+        }
+        .game-box h3 {
+            font-size: 26px;
+            color: #2e7d32;
+            margin-bottom: 15px;
+        }
+        .game-box input {
+            font-size: 22px;
+            padding: 10px 16px;
+            border: 3px solid #4caf50;
+            border-radius: 12px;
+            width: 120px;
+            text-align: center;
+            margin: 0 8px;
+        }
+        .game-box .check-btn {
+            font-size: 20px;
+            padding: 10px 24px;
+            background: #4caf50;
+            color: white;
+            border: none;
+            border-radius: 12px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+        .game-box .result {
+            margin-top: 15px;
+            font-size: 22px;
+            font-weight: bold;
+            min-height: 30px;
+        }
+
+        .table-box {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.1);
+        }
+        .table-box th {
+            background: linear-gradient(90deg, #ff7043 0%, #f4511e 100%);
+            color: white;
+            padding: 14px;
+            font-size: 19px;
+        }
+        .table-box td {
+            padding: 12px 16px;
+            text-align: center;
+            font-size: 18px;
+            background: #fff;
+            border-bottom: 1px solid #eee;
+        }
+        .table-box tr:hover td {
+            background: #fff3e0;
+        }
+
+        .divider {
+            text-align: center;
+            font-size: 30px;
+            color: #ddd;
+            margin: 30px 0;
+        }
+
+        .quiz-section {
+            background: linear-gradient(135deg, #eceff1 0%, #cfd8dc 100%);
+            padding: 30px;
+            border-radius: 20px;
+            margin: 30px 0;
+        }
+        .quiz-title {
+            font-size: 28px;
+            color: #2d3436;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .quiz-question {
+            background: white;
+            padding: 20px;
+            border-radius: 15px;
+            margin: 15px 0;
+            font-size: 18px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+        }
+
+        .ending {
+            text-align: center;
+            padding: 40px 0;
+            margin-top: 40px;
+            background: linear-gradient(135deg, #dfe6e9 0%, #b2bec3 100%);
+            border-radius: 20px;
+        }
+        .ending h3 { font-size: 32px; color: #2d3436; }
+        .ending p { text-align: center; font-size: 18px; color: #636e72; }
+        .back-home-btn {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 14px 30px;
+            background: rgba(0,0,0,0.06);
+            color: #2d3436;
+            text-decoration: none;
+            border-radius: 25px;
+            font-size: 18px;
+            border: 2px solid rgba(0,0,0,0.12);
+            transition: background 0.3s, transform 0.2s;
+        }
+        .back-home-btn:hover { background: rgba(0,0,0,0.12); transform: translateY(-2px); }
+        .back-home-btn:active { transform: translateY(0); }
+
+        @media (max-width: 600px) {
+            .container { padding: 20px; }
+            h1 { font-size: 30px; }
+            h2 { font-size: 24px; }
+            p { font-size: 18px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🔢 加减乘除里的秘密</h1>
+            <p class="subtitle">❝ 数学可不是死记硬背 —— 它藏着一大堆好玩的小把戏！❞</p>
+        </div>
+
+        <h2 class="ch1">🧮 第一章：加法的魔法 —— 换个顺序更快！</h2>
+        <p>你的爸爸妈妈可能教过你这样算加法：</p>
+        <p style="text-align:center;font-size:28px;font-weight:bold;color:#f4511e;"> 7 + 8 + 3 = ？</p>
+        <p>按顺序算：7+8=15，15+3=18。完全正确！但其实有一个<strong>更聪明</strong>的办法。</p>
+        <p>仔细看看这三个数——有没有发现 <strong>7 和 3</strong> 是一对好朋友？7+3 正好等于 10。那我们换个顺序：</p>
+        <p style="text-align:center;font-size:28px;font-weight:bold;color:#43a047;">7 + 3 + 8 = 10 + 8 = 18 ⚡</p>
+        <p>一步就算出来了！这就是加法的「<strong>交换律</strong>」——加法的顺序随便换，结果不变。数学家管这叫<strong>加法交换律</strong>。</p>
+
+        <div class="trick-box">
+            <span class="tag">🎮 小练习</span>
+            心算以下题目，试试找「凑10」的好朋友：<br>
+            ① 9 + 5 + 1 = ？ &nbsp;&nbsp; ② 6 + 4 + 8 = ？ &nbsp;&nbsp; ③ 25 + 17 + 75 = ？<br>
+            <small style="color:#999;">答案见文末 ⬇️</small>
+        </div>
+
+        <div class="fun-fact fact-orange">
+            <div class="fun-fact-title">🧠 数学家高斯的神操作</div>
+            高斯 10 岁时，老师让全班算 1+2+3+…+100。其他小朋友开始埋头苦算，高斯不到一分钟就举手：5050！他是怎么算的？原来他发现：1+100=101，2+99=101，3+98=101……一共有 50 对，50×101=5050！这方法后来被称为「等差数列求和公式」。
+        </div>
+
+        <div class="image-container">
+            <img class="dino-image" src="scene_01.webp" alt="加法魔法">
+        </div>
+        <p class="image-caption">🧮 图1：数字们在教室里飞舞，1+1=2——数学的世界从此打开！</p>
+
+        <div class="divider">➕ ➖ ✖️ ➗</div>
+
+        <h2 class="ch2">🎯 第二章：乘法口诀的隐藏规律</h2>
+        <p>你背过九九乘法表吗？很多小朋友觉得背口诀很枯燥。但其实，乘法表里藏着<strong>好几条秘密规律</strong>，掌握之后根本不用硬背！</p>
+
+        <p><strong>🔍 规律一：9 的乘法有超酷的手指魔术</strong></p>
+        <p>伸出你的两只手掌，手心朝上。算 9×4：从左数，把第 4 根手指弯下去。弯手指左边有 3 根，右边有 6 根 → 答案就是 <strong>36</strong>！</p>
+        <p>试试看：9×7 → 弯第 7 根 → 左边 6 右边 3 → <strong>63</strong>！每次都对，像变魔术一样。</p>
+
+        <p><strong>🔍 规律二：乘法表是对称的！</strong></p>
+        <p>你只需要记住一半的口诀——因为 3×7 = 7×3，这两个答案是同一个！数学家管这叫「<strong>乘法交换律</strong>」。这下工作量一下子减半了！</p>
+
+        <p><strong>🔍 规律三：5 的乘法 = 钟表读数</strong></p>
+        <p>5×1=5、5×2=10、5×3=15……所有 5 的倍数的个位不是 5 就是 0。这其实是在钟表的分钟刻度上走路——5 分、10 分、15 分……一个都不差！</p>
+
+        <div class="fun-fact fact-purple">
+            <div class="fun-fact-title">🌍 不同国家背乘法表的方法</div>
+            中国的九九乘法表从「一一得一」到「九九八十一」共 45 句（因为交换律省了一半）。印度的乘法表背到 20×20，整整 400 句！日本用「九々」表，和中国的几乎一样。不管用哪种方法，全世界的小朋友都得学乘法——这说明数学是全世界的通用语言！
+        </div>
+
+        <div class="image-container">
+            <img class="dino-image" src="scene_02.webp" alt="大脑举数字哑铃">
+        </div>
+        <p class="image-caption">🎯 图2：大脑举着数字哑铃做运动——数学是最好的脑力体操！</p>
+
+        <div class="divider">➕ ➖ ✖️ ➗</div>
+
+        <h2 class="ch3">🗺️ 第三章：发现数字规律——像侦探破案</h2>
+        <p>如果你面前有一串数字：</p>
+        <p style="text-align:center;font-size:26px;font-weight:bold;color:#00838f;">2, 4, 6, 8, __, __, __</p>
+        <p>横线上应该填什么？对，10, 12, 14！为什么？因为每个数比前一个<strong>多 2</strong>。</p>
+        <p>这种「规律」在数学里叫<strong>数列</strong>。找出数列的规律，就像侦探破案一样有趣。</p>
+
+        <table class="table-box">
+            <tr><th>数列例子</th><th>规律</th><th>下一个数</th></tr>
+            <tr><td>1, 3, 5, 7, 9, …</td><td>每次 +2</td><td>11 ✓</td></tr>
+            <tr><td>1, 2, 4, 8, 16, …</td><td>每次 ×2</td><td>32 ✓</td></tr>
+            <tr><td>100, 90, 80, 70, …</td><td>每次 −10</td><td>60 ✓</td></tr>
+            <tr><td>3, 6, 12, 24, …</td><td>每次 ×2</td><td>48 ✓</td></tr>
+            <tr><td>1, 4, 9, 16, 25, …</td><td>平方数(1²,2²,3²…)</td><td>36 ✓</td></tr>
+        </table>
+
+        <p>最后一行的规律特别有意思——1×1=1, 2×2=4, 3×3=9……这些叫<strong>平方数</strong>。如果你把同样数量的小石子排成正方形，每边的个数和总数就是这种关系。难怪古人给它们起名叫「平方」！</p>
+
+        <div class="trick-box">
+            <span class="tag">🔍 你来当小侦探</span>
+            下面这串数少了两个，你能找到规律补上吗？<br>
+            <strong>5, 10, 15, __, 25, 30, __, 40</strong>
+        </div>
+
+        <div class="image-container">
+            <img class="dino-image" src="scene_03.webp" alt="规律藏宝图">
+        </div>
+        <p class="image-caption">🗺️ 图3：数字藏宝图——找到 3, 6, 9 的规律，宝藏就在 X 标记处！</p>
+
+        <div class="divider">➕ ➖ ✖️ ➗</div>
+
+        <h2 class="ch4">⚖️ 第四章：比大小 —— 不等式里的秘密</h2>
+        <p>你认识这两个符号吗：<strong>&gt;</strong> 和 <strong>&lt;</strong></p>
+        <p>很多人小时候都记混这两个符号。教你一个超级简单的方法：</p>
+
+        <p style="text-align:center;font-size:24px;background:#e8f5e9;padding:18px;border-radius:15px;">
+        🐊 把符号想象成<strong>一只饥饿的鳄鱼嘴</strong>！<br>
+        鳄鱼总是想吃<strong>更大的</strong>那个数，<br>
+        所以嘴巴永远朝向大数张开：<br>
+        5 <span style="color:#2e7d32;font-size:36px;">&lt;</span> 8 → 鳄鱼想吃 8<br>
+        9 <span style="color:#2e7d32;font-size:36px;">&gt;</span> 2 → 鳄鱼想吃 9
+        </p>
+
+        <p>这个方法永远不会错。记住：<strong>尖头永远戳小数，大开口永远对大数</strong>。</p>
+
+        <div class="game-box">
+            <h3>⚖️ 天平游戏：哪边更重？</h3>
+            <p>左边：3 个苹果 🍎 + 5 个苹果 🍎<br>
+            右边：一个神秘数字 ❓<br>
+            <strong>左边一共有多少个苹果？右边的 ❓ 应该是几，天平才能平衡？</strong></p>
+            <p style="font-size:24px;color:#2e7d32;margin-top:10px;">
+            3 + 5 = ❓ &nbsp;&nbsp; → &nbsp;&nbsp; ❓ = <strong>8</strong> 🎉
+            </p>
+            <p style="color:#999;">这个游戏其实在教你「方程」—— 等号两边的值必须相等，就像天平的两端！</p>
+        </div>
+
+        <div class="fun-fact fact-green">
+            <div class="fun-fact-title">📏 等于号是谁发明的？</div>
+            1557 年，一个叫雷科德的英国人发明了「=」符号。他说「没有哪两个东西比两条平行线更相等了」。从此全世界都用这个符号表示相等。是不是很酷？
+        </div>
+
+        <div class="image-container">
+            <img class="dino-image" src="scene_04.webp" alt="天平比大小">
+        </div>
+        <p class="image-caption">⚖️ 图4：天平左边放苹果，右边是问号——你能找到这个神秘数字吗？</p>
+
+        <div class="divider">➕ ➖ ✖️ ➗</div>
+
+        <h2 class="ch5">🏆 第五章：混合运算 —— 先算什么？</h2>
+        <p>看这道题：</p>
+        <p style="text-align:center;font-size:28px;font-weight:bold;color:#1565c0;">3 + 2 × 4 = ？</p>
+        <p>如果从左往右算：3+2=5，5×4=20。但这是错的！正确答案是 <strong>11</strong></p>
+        <p>为什么？因为数学世界有一条铁规矩：</p>
+
+        <p style="text-align:center;font-size:22px;background:#e3f2fd;padding:20px;border-radius:15px;line-height:2.2;">
+        🥇 先算 <strong>乘法和除法</strong>（× 和 ÷）<br>
+        🥈 再算 <strong>加法和减法</strong>（+ 和 −）<br>
+        🏅 如果有<strong>括号</strong>，括号里的最优先！
+        </p>
+
+        <p>所以 3 + 2 × 4 = 3 + 8 = 11 ✓</p>
+
+        <p>全世界的小朋友都用一个口诀记住这个顺序。中文口诀是「<strong>先乘除，后加减</strong>」。更复杂的情况用：「<strong>先括号，后乘除，再加减</strong>」。</p>
+
+        <div class="trick-box">
+            <span class="tag">✏️ 挑战一下</span>
+            ① 10 − 3 × 2 = ？ &nbsp;&nbsp; ② (8 − 3) × 2 = ？ &nbsp;&nbsp; ③ 24 ÷ 6 + 5 = ？<br>
+            <small style="color:#999;">答案见文末 ⬇️</small>
+        </div>
+
+        <div class="fun-fact fact-blue">
+            <div class="fun-fact-title">🧙 心算魔术：乘以 11</div>
+            任意一个两位数乘以 11，比如 23 × 11：<br>
+            把 2 和 3 分开 → 2__3，中间填上 2+3=5 → <strong>253</strong>！<br>
+            再试 54 × 11：5__4，中间填 5+4=9 → <strong>594</strong>！<br>
+            如果中间和超过 10，比如 67 × 11：6__7，填 6+7=13 → 6(13)7 → 进一位 → <strong>737</strong><br>
+            神奇吧？下次在全班同学面前露一手！
+        </div>
+
+        <div class="image-container">
+            <img class="dino-image" src="scene_05.webp" alt="数学小达人">
+        </div>
+        <p class="image-caption">🏆 图5：恭喜你！你已经拿到了数学小达人的奖杯！</p>
+
+        <div class="divider">✨ ✨ ✨</div>
+
+        <div class="quiz-section">
+            <div class="quiz-title">🎯 考考你！</div>
+            <div class="quiz-question">
+                <strong>1. 7 + 8 + 3 最快怎么算？</strong><br>
+                A. 从左到右一个个加 &nbsp; B. 先算 7+3=10 再加 8<br>
+                C. 用计算器 &nbsp; D. 不做了
+            </div>
+            <div class="quiz-question">
+                <strong>2. 9 的乘法手指魔术中，9×4 等于多少？</strong><br>
+                A. 27 &nbsp; B. 36 &nbsp; C. 45 &nbsp; D. 48
+            </div>
+            <div class="quiz-question">
+                <strong>3. 数列 2, 4, 6, 8, __ 的规律是什么？</strong><br>
+                A. 每次 ×2 &nbsp; B. 每次 +2 &nbsp; C. 每次 −2 &nbsp; D. 找不到规律
+            </div>
+            <div class="quiz-question">
+                <strong>4. 鳄鱼嘴 15 __ 9 应该填什么符号？</strong><br>
+                A. &gt; &nbsp; B. &lt; &nbsp; C. = &nbsp; D. 以上都不是
+            </div>
+            <div class="quiz-question">
+                <strong>5. 3 + 2 × 5 = ？</strong><br>
+                A. 25 &nbsp; B. 13 &nbsp; C. 10 &nbsp; D. 16
+            </div>
+        </div>
+
+        <div class="ending">
+            <h3>—— 完 ——</h3>
+            <p>掌握了这些秘密，你已经是半个数学侦探了！</p>
+            <p style="margin-top: 10px; font-size: 14px; color: #999;">本故事由 AI 助手小龙为小朋友精心制作 🐉</p>
+            <div style="text-align: left; margin-top: 15px;">
+                <a href="../index.html" class="back-home-btn">🏠 返回首页</a>
+            </div>
+        </div>
+
+        <div style="text-align:center;margin-top:40px;padding:20px;background:#fff9c4;border-radius:15px;">
+            <p style="font-size:17px;color:#795548;text-align:center;line-height:2;">
+                📝 <strong>答案公布：</strong><br>
+                凑10练习：① 9+1+5=15 &nbsp; ② 6+4+8=18 &nbsp; ③ 25+75+17=117<br>
+                数列侦探：5, 10, 15, <strong>20</strong>, 25, 30, <strong>35</strong>, 40（每次+5）<br>
+                混合运算：① 10−3×2=10−6=<strong>4</strong> &nbsp; ② (8−3)×2=<strong>10</strong> &nbsp; ③ 24÷6+5=4+5=<strong>9</strong>
+            </p>
+        </div>
+    </div>
+
+<!-- rourou-home-btn:start -->
+<style>
+#rourou-home-btn{position:fixed;left:14px;bottom:calc(14px + env(safe-area-inset-bottom,0px));z-index:9999;
+display:inline-flex;align-items:center;gap:6px;padding:10px 18px;border-radius:999px;
+background:rgba(255,255,255,0.92);color:#2d3436;font-size:15px;font-weight:600;
+text-decoration:none;box-shadow:0 4px 14px rgba(0,0,0,0.18);border:1px solid rgba(0,0,0,0.08);
+-webkit-backdrop-filter:blur(4px);backdrop-filter:blur(4px);transition:transform .15s,background .15s;}
+#rourou-home-btn:hover{background:#fff;transform:translateY(-2px);}
+@media (max-width:600px){#rourou-home-btn{padding:9px 14px;font-size:13px;left:10px;bottom:calc(10px + env(safe-area-inset-bottom,0px));}}
+</style>
+<a id="rourou-home-btn" href="../index.html">🏠 首页</a>
+<!-- rourou-home-btn:end -->
+</body>
+</html>

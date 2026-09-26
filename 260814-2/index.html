@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🍉 西瓜史：一颗瓜的五千年旅行</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: "Microsoft YaHei", "PingFang SC", sans-serif;
+            background: linear-gradient(180deg, #fab1a0 0%, #ff7675 30%, #e84393 60%, #fd79a8 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        .container {
+            max-width: 850px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 30px;
+            padding: 40px;
+            box-shadow: 0 25px 80px rgba(0,0,0,0.15);
+        }
+        .header {
+            text-align: center;
+            padding: 30px 0;
+            background: linear-gradient(135deg, #00b894 0%, #55efc4 50%, #fdcb6e 100%);
+            border-radius: 20px;
+            margin-bottom: 30px;
+        }
+        .header h1 {
+            font-size: 48px;
+            color: white;
+            text-shadow: 3px 3px 6px rgba(0,0,0,0.2);
+        }
+        .subtitle {
+            font-size: 20px;
+            color: rgba(255,255,255,0.95);
+        }
+        h2 {
+            font-size: 32px;
+            color: #2d3436;
+            margin: 40px 0 20px;
+            padding: 15px 25px;
+            background: linear-gradient(90deg, #55efc4 0%, #fdcb6e 100%);
+            border-radius: 15px;
+            display: inline-block;
+        }
+        p {
+            font-size: 20px;
+            line-height: 2;
+            color: #2d3436;
+            margin-bottom: 20px;
+            text-align: justify;
+        }
+        .image-container {
+            width: 100%;
+            margin: 30px 0;
+            text-align: center;
+        }
+        .dino-image {
+            width: 100%;
+            border-radius: 20px;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.2);
+        }
+        .image-caption {
+            color: #636e72;
+            font-size: 16px;
+            margin-top: 15px;
+            font-style: italic;
+            background: #ffeaa7;
+            display: inline-block;
+            padding: 8px 20px;
+            border-radius: 20px;
+        }
+        .fun-fact {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 25px;
+            border-radius: 20px;
+            margin: 25px 0;
+            font-size: 18px;
+            line-height: 1.8;
+        }
+        .fun-fact.pink {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+        }
+        .fun-fact.green {
+            background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);
+        }
+        .fun-fact.orange {
+            background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);
+        }
+        .fun-fact-title {
+            font-size: 22px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        .divider {
+            text-align: center;
+            font-size: 30px;
+            color: #ddd;
+            margin: 30px 0;
+        }
+        .quiz-section {
+            background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);
+            padding: 30px;
+            border-radius: 20px;
+            margin: 30px 0;
+        }
+        .quiz-title {
+            font-size: 28px;
+            color: #e17055;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .quiz-question {
+            background: white;
+            padding: 20px;
+            border-radius: 15px;
+            margin: 15px 0;
+            font-size: 18px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        .ending {
+            text-align: center;
+            padding: 40px 0;
+            margin-top: 40px;
+            background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);
+            border-radius: 20px;
+        }
+        .ending h3 { font-size: 32px; color: #2d3436; }
+        .ending p { text-align: center; font-size: 18px; color: #636e72; }
+        .back-home-btn {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 14px 30px;
+            background: rgba(0,0,0,0.08);
+            color: #2d3436;
+            text-decoration: none;
+            border-radius: 25px;
+            font-size: 18px;
+            border: 2px solid rgba(0,0,0,0.15);
+            transition: background 0.3s, transform 0.2s;
+        }
+        .back-home-btn:hover {
+            background: rgba(0,0,0,0.15);
+            transform: translateY(-2px);
+        }
+        .back-home-btn:active {
+            transform: translateY(0);
+        }
+        @media (max-width: 600px) {
+            .container { padding: 20px; }
+            h1 { font-size: 32px; }
+            h2 { font-size: 24px; }
+            p { font-size: 18px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🍉 西瓜史</h1>
+            <p class="subtitle">一颗瓜的五千年旅行</p>
+        </div>
+
+        <h2>第一章 沙漠里的一颗苦瓜</h2>
+        <div class="image-container">
+            <img src="scene_01.webp" alt="野生西瓜" class="dino-image">
+            <div class="image-caption">非洲沙漠里的野生西瓜，又小又苦，和今天完全不一样</div>
+        </div>
+        <p>想象一下：五千多年前，在非洲的一片炎热沙漠里，长着一种又小又硬的野瓜。它的瓤是白色的，味道苦苦的，籽特别多。它一点也不好吃，却是我们今天吃的西瓜的「老祖宗」。</p>
+        <p>这种野瓜叫「沙漠西瓜」。它长在干旱的地方，最大的本事是——存水！它的瓤虽然苦，却像一块海绵一样能吸满水。所以沙漠里的动物、赶路的人，都会把它当成一个天然的「水壶」。科学家推测，最早发现并利用它的人，很可能就是看中了它存水的本事，而不是它的味道。</p>
+        <p>那么问题来了：这么苦的瓜，是怎么变成今天又甜又多汁的大西瓜的？答案是一个词——人工选择。这个故事，要从古埃及开始讲起。</p>
+        <div class="fun-fact green">
+            <div class="fun-fact-title">🐪 沙漠里的天然水壶</div>
+            非洲南部的卡拉哈里沙漠里，至今还生长着西瓜的野生亲戚。当地人和动物靠它解渴，一瓜敲开全是水。它证明了西瓜最早的「用途」不是水果，而是「水源」！
+        </div>
+
+        <h2>第二章 古埃及人：第一批「西瓜育种家」</h2>
+        <div class="image-container">
+            <img src="scene_02.webp" alt="古埃及西瓜" class="dino-image">
+            <div class="image-caption">古埃及壁画里的西瓜，那时候人们已经开始选育更甜的品种</div>
+        </div>
+        <p>大约四千多年前，古埃及人开始种植西瓜。他们发现，同一片地里的野瓜，有的没那么苦，有的瓤更红，有的水更多。聪明的古埃及人就把这些「稍微好吃一点」的瓜的种子留了下来，第二年专门种它们。年复一年，苦瓜慢慢变甜了。</p>
+        <p>这就是「人工选择」的力量：不是西瓜自己突然变甜，而是人类一代一代地挑选「最合口味」的那颗瓜，把它的好基因传下去。几百年、几千年下来，西瓜就像被人类「捏」成了今天的样子。</p>
+        <p>古埃及人到底多爱西瓜？考古学家在古埃及的法老墓里，发现了西瓜籽！在金字塔的壁画上，还能看到西瓜的图案。他们把西瓜当成陪葬品，希望法老在另一个世界也能吃上清甜的瓜。</p>
+        <div class="fun-fact orange">
+            <div class="fun-fact-title">🏺 法老墓里的西瓜籽</div>
+            考古学家在三千多年前的古埃及法老墓中找到了西瓜籽，证明西瓜在当时已经是重要的食物。这些小小的籽，成了西瓜旅行史上最早的一张「车票」。
+        </div>
+
+        <h2>第三章 西瓜的环球大冒险</h2>
+        <div class="image-container">
+            <img src="scene_03.webp" alt="西瓜传播路线" class="dino-image">
+            <div class="image-caption">西瓜从非洲出发，沿着贸易路线传遍全世界</div>
+        </div>
+        <p>西瓜从埃及出发，开始了一场横跨几千年的环球旅行。它先被商人带到了地中海沿岸，希腊人和罗马人爱上了它，把它写进书里。然后它跟着商队穿过丝绸之路，一路向东，来到了亚洲。</p>
+        <p>西瓜是什么时候来到中国的呢？一般认为，是在一千多年前，大约唐代的时候，从西域（今天的新疆和中亚一带）传入中原。因为它是从「西边」来的，所以叫「西瓜」。这个名字，直到今天还在用。</p>
+        <p>到了欧洲，西瓜继续传播。后来航海家们发现美洲大陆，西瓜也跟着船漂洋过海，在美洲扎根。就这样，一颗非洲沙漠里的苦瓜，用了几千年，走遍了五大洲，成了全世界夏天最受欢迎的消暑水果。</p>
+        <div class="fun-fact">
+            <div class="fun-fact-title">🧭 名字的由来</div>
+            「西瓜」这个名字直接透露了它的来历——从「西边」来的瓜。它最早在唐朝从西域传入中国，古人很实在，就用「西」字给它命了名。
+        </div>
+
+        <h2>第四章 为什么西瓜这么甜、这么多汁？</h2>
+        <div class="image-container">
+            <img src="scene_04.webp" alt="西瓜剖面" class="dino-image">
+            <div class="image-caption">切开西瓜，红瓤里藏着水分和糖分的秘密</div>
+        </div>
+        <p>现在我们说说西瓜「肚子」里的秘密。一颗成熟的西瓜，90% 以上都是水。你吃一口西瓜，其实主要是在「喝水」。但光有水还不够，让它甜的关键，是糖分。</p>
+        <p>西瓜的甜，来自它自己制造的糖。叶子通过光合作用制造养分，再把这些糖运到果实里存起来。西瓜在成熟的过程中，糖分不断积累，所以越接近成熟就越甜。这也是为什么「挑西瓜」要听声音、看纹路——其实是在判断它熟透了没、糖攒够了没。</p>
+        <p>还有个冷知识：西瓜那层红红的瓤，在植物学上其实是「胎座」——也就是连接种子的那部分组织。它变得又厚又多汁，是为了给种子「储水备粮」。没想到被人类看中，成了最好吃的部分。</p>
+        <div class="fun-fact pink">
+            <div class="fun-fact-title">🔴 红瓤的秘密</div>
+            西瓜瓤为什么是红的？是因为一种叫「番茄红素」的天然色素，和番茄、红西柚里的红色是「一家人」。它还是强抗氧化剂，对身体有好处。你吃西瓜，其实是在吃「天然番茄红素」！
+        </div>
+
+        <h2>第五章 今天的西瓜：又大又甜，甚至没有籽</h2>
+        <div class="image-container">
+            <img src="scene_05.webp" alt="现代西瓜品种" class="dino-image">
+            <div class="image-caption">现代育种技术培育出的各种西瓜，个大、味甜，还有无籽品种</div>
+        </div>
+        <p>今天，全世界每年要种出超过 1 亿吨的西瓜！它已经成了真正的「超级水果」。育种家们还在不断「升级」西瓜：让它更大、更甜、更抗病，甚至种出了不用吐籽的「无籽西瓜」。</p>
+        <p>无籽西瓜是怎么来的呢？它不是转基因，而是用了一种聪明的「染色体」魔法：让普通西瓜（有两套染色体）和特殊的四倍体西瓜（有四套染色体）杂交，生出的西瓜有三套染色体，就像「单数」一样，没法正常结出成熟的种子，于是就成了无籽西瓜。</p>
+        <p>从沙漠里一颗苦苦的野瓜，到今天餐桌上一口爆汁的甜西瓜，这条路走了五千年。下次吃西瓜的时候，你不妨想一想：你咬下的这一口，藏着人类的智慧、耐心，还有一场横跨五大洲的漫长旅行。</p>
+        <div class="fun-fact green">
+            <div class="fun-fact-title">🏆 西瓜之王有多重？</div>
+            世界上最重的西瓜纪录，超过 150 公斤，比两个大人加起来还重！育种家们像参加比赛一样，一代代把西瓜「种」得越来越大。
+        </div>
+
+        <div class="divider">🍉 ═══ ═══ ═══ 🍉</div>
+
+        <div class="quiz-section">
+            <div class="quiz-title">📝 考考你！</div>
+            <div class="quiz-question">1. 西瓜的老祖宗长在哪里？<br>A. 中国南方 &nbsp; B. 非洲沙漠 &nbsp; C. 南美洲 &nbsp; D. 欧洲</div>
+            <div class="quiz-question">2. 最早开始种植西瓜的是谁？<br>A. 古埃及人 &nbsp; B. 古希腊人 &nbsp; C. 古罗马人 &nbsp; D. 古印度人</div>
+            <div class="quiz-question">3. 西瓜叫什么名字是因为？<br>A. 瓜皮是绿的 &nbsp; B. 从西边传来 &nbsp; C. 长在西方 &nbsp; D. 西域水果</div>
+            <div class="quiz-question">4. 西瓜瓤里最多的成分是？<br>A. 糖 &nbsp; B. 水 &nbsp; C. 纤维 &nbsp; D. 维生素</div>
+            <div class="quiz-question">5. 无籽西瓜是怎么来的？<br>A. 转基因 &nbsp; B. 染色体杂交 &nbsp; C. 打药 &nbsp; D. 没成熟就摘</div>
+            <p style="text-align:center; margin-top:15px; font-weight:bold; color:#e17055;">（答案：1.B  2.A  3.B  4.B  5.B）</p>
+        </div>
+
+        <div class="ending">
+            <h3>—— 完 ——</h3>
+            <p>谢谢阅读！希望你学到了很多知识！</p>
+            <p style="margin-top: 10px; font-size: 14px; color: #b2bec3;">本故事由 AI 助手小龙为小朋友精心制作 🐉</p>
+            <div style="text-align: left; margin-top: 15px;">
+                <a href="../index.html" class="back-home-btn">🏠 返回首页</a>
+            </div>
+        </div>
+    </div>
+
+<!-- rourou-home-btn:start -->
+<style>
+#rourou-home-btn{position:fixed;left:14px;bottom:calc(14px + env(safe-area-inset-bottom,0px));z-index:9999;
+display:inline-flex;align-items:center;gap:6px;padding:10px 18px;border-radius:999px;
+background:rgba(255,255,255,0.92);color:#2d3436;font-size:15px;font-weight:600;
+text-decoration:none;box-shadow:0 4px 14px rgba(0,0,0,0.18);border:1px solid rgba(0,0,0,0.08);
+-webkit-backdrop-filter:blur(4px);backdrop-filter:blur(4px);transition:transform .15s,background .15s;}
+#rourou-home-btn:hover{background:#fff;transform:translateY(-2px);}
+@media (max-width:600px){#rourou-home-btn{padding:9px 14px;font-size:13px;left:10px;bottom:calc(10px + env(safe-area-inset-bottom,0px));}}
+</style>
+<a id="rourou-home-btn" href="../index.html">🏠 首页</a>
+<!-- rourou-home-btn:end -->
+</body>
+</html>

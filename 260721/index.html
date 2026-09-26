@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>什么是「平均数」？ — 肉肉的知识宝库</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: "Microsoft YaHei", "PingFang SC", sans-serif;
+            background: linear-gradient(180deg, #a29bfe 0%, #6c5ce7 30%, #fd79a8 60%, #ffeaa7 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        .container {
+            max-width: 850px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 30px;
+            padding: 40px;
+            box-shadow: 0 25px 80px rgba(0,0,0,0.15);
+        }
+        .header {
+            text-align: center;
+            padding: 30px 0;
+            background: linear-gradient(135deg, #6c5ce7 0%, #a29bfe 50%, #fd79a8 100%);
+            border-radius: 20px;
+            margin-bottom: 30px;
+        }
+        .header h1 {
+            font-size: 42px;
+            color: white;
+            text-shadow: 3px 3px 6px rgba(0,0,0,0.2);
+        }
+        .subtitle {
+            font-size: 20px;
+            color: rgba(255,255,255,0.95);
+        }
+        h2 {
+            font-size: 30px;
+            color: #2d3436;
+            margin: 40px 0 20px;
+            padding: 15px 25px;
+            background: linear-gradient(90deg, #a29bfe 0%, #fd79a8 100%);
+            border-radius: 15px;
+            display: inline-block;
+        }
+        p {
+            font-size: 20px;
+            line-height: 2;
+            color: #2d3436;
+            margin-bottom: 20px;
+            text-align: justify;
+        }
+        .image-container {
+            width: 100%;
+            margin: 30px 0;
+            text-align: center;
+        }
+        .article-image {
+            width: 100%;
+            border-radius: 20px;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.2);
+        }
+        .image-caption {
+            color: #636e72;
+            font-size: 16px;
+            margin-top: 15px;
+            font-style: italic;
+            background: #ffeaa7;
+            display: inline-block;
+            padding: 8px 20px;
+            border-radius: 20px;
+        }
+        .fun-fact {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 25px;
+            border-radius: 20px;
+            margin: 25px 0;
+            font-size: 18px;
+            line-height: 1.8;
+        }
+        .fun-fact.pink {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+        }
+        .fun-fact.green {
+            background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);
+        }
+        .fun-fact.orange {
+            background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);
+        }
+        .fun-fact-title {
+            font-size: 22px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        .divider {
+            text-align: center;
+            font-size: 30px;
+            color: #ddd;
+            margin: 30px 0;
+        }
+        .quiz-section {
+            background: linear-gradient(135deg, #e8daef 0%, #d5f5e3 100%);
+            padding: 30px;
+            border-radius: 20px;
+            margin: 30px 0;
+        }
+        .quiz-title {
+            font-size: 28px;
+            color: #6c5ce7;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .quiz-question {
+            background: white;
+            padding: 20px;
+            border-radius: 15px;
+            margin: 15px 0;
+            font-size: 18px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        .ending {
+            text-align: center;
+            padding: 40px 0;
+            margin-top: 40px;
+            background: linear-gradient(135deg, #a29bfe 0%, #fd79a8 100%);
+            border-radius: 20px;
+        }
+        .ending h3 { font-size: 32px; color: #2d3436; }
+        .ending p { text-align: center; font-size: 18px; color: #636e72; }
+        .back-home-btn {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 14px 30px;
+            background: rgba(0,0,0,0.08);
+            color: #2d3436;
+            text-decoration: none;
+            border-radius: 25px;
+            font-size: 18px;
+            border: 2px solid rgba(0,0,0,0.15);
+            transition: background 0.3s, transform 0.2s;
+        }
+        .back-home-btn:hover {
+            background: rgba(0,0,0,0.15);
+            transform: translateY(-2px);
+        }
+        .back-home-btn:active {
+            transform: translateY(0);
+        }
+        .formula-box {
+            background: linear-gradient(135deg, #ffeaa7 0%, #fdcb6e 100%);
+            padding: 20px 30px;
+            border-radius: 15px;
+            text-align: center;
+            font-size: 28px;
+            font-weight: bold;
+            color: #6c5ce7;
+            margin: 20px 0;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+        }
+        @media (max-width: 600px) {
+            .container { padding: 20px; }
+            .header h1 { font-size: 28px; }
+            h2 { font-size: 22px; }
+            p { font-size: 17px; }
+            .formula-box { font-size: 22px; padding: 15px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>📐 什么是「平均数」？</h1>
+            <p class="subtitle">一个让数字说出故事的超级魔法！</p>
+        </div>
+
+        <h2>🧮 第一章：全班同学谁最高？</h2>
+        <p>小明班上有 30 个同学，体育老师说：「我们全班平均身高是 140 厘米。」小明看了看自己——正好 140 厘米！可他的好朋友小刚却有 152 厘米，旁边的小红只有 128 厘米……小明纳闷了：明明没有几个人刚好是 140 厘米，为什么老师说「平均」140 厘米呢？</p>
+        <p><strong>平均数不是「大多数人的值」，而是一个用来代表整体水平的数字！</strong>它就像一个公平的代表，把所有人的身高加起来，再平分给每个人。虽然真实的同学们有高有矮，但 140 厘米等于告诉大家：「这批小朋友整体上大概有这么高！」</p>
+
+        <div class="image-container">
+            <img class="article-image" src="scene_01.webp" alt="全班同学身高比较">
+            <p class="image-caption">🎨 图1：班上的同学有高有矮，虚线那条就是「平均身高」！</p>
+        </div>
+
+        <div class="fun-fact">
+            <div class="fun-fact-title">💡 趣味知识</div>
+            平均数这个词在中文里还有个意思——「不好不坏」！比如「这次考试他考得比较平均」，意思是既不算很好、也不算很差。你看，同一个词能用在完全不同的地方呢！
+        </div>
+
+        <div class="divider">✦ ✦ ✦</div>
+
+        <h2>🔢 第二章：神奇公式的秘密</h2>
+        <p>怎么算出平均数？非常简单！记住这个口诀：</p>
+
+        <div class="formula-box">
+            📏 平均数 = 所有数加起来 ÷ 个数
+        </div>
+
+        <p>举个例子吧！小明本周 5 天吃了西瓜片数分别是：3、5、4、6、2。他一共吃了多少片？</p>
+        <p>3 + 5 + 4 + 6 + 2 = 20 片</p>
+        <p>再除以 5 天：20 ÷ 5 = 4 片</p>
+        <p>所以小明平均每天吃 4 片西瓜 🍉——虽然他实际不是每天都吃 4 片，但 4 是我们对五天情况的「平均描述」。</p>
+        <p><strong>平均数把零散的数字浓缩成了一个数，让我们能一眼看出整体趋势！</strong></p>
+
+        <div class="image-container">
+            <img class="article-image" src="scene_02.webp" alt="平均数计算过程可视化">
+            <p class="image-caption">🎨 图2：5 天的西瓜数加起来，再平分——这就是平均数！</p>
+        </div>
+
+        <div class="fun-fact pink">
+            <div class="fun-fact-title">🧊 趣味知识</div>
+            假如全班 30 个同学换座位重新分组，要保证每组人数差不多——其实你就在用平均数！30 ÷ 5 组 = 每组平均 6 人。平均数就藏在我们身边每一个「均匀分配」的动作里。
+        </div>
+
+        <div class="divider">✦ ✦ ✦</div>
+
+        <h2>🌍 第三章：生活中的平均数大搜查</h2>
+        <p>你听过这些说法吗？</p>
+        <p>📊 「中国人平均每天看手机 3 小时」<br>
+        📊 「杭州市民平均每人拥有 1.3 辆自行车」<br>
+        📊 「小明班数学平均分 88 分」<br>
+        📊 「本月的平均气温是 25°C」</p>
+        <p>这些全都是平均数在工作！科学家把它称为<strong>集中趋势</strong>——找到了那个最能代表一整群数据的数字。我们可以用它来：</p>
+        <p>✅ 比较两个班的学习成绩<br>
+        ✅ 比较不同城市的消费水平<br>
+        ✅ 判断一个人是高于还是低于平均水平<br>
+        ✅ 把庞大数据缩到一句话里就能讲清楚</p>
+
+        <div class="image-container">
+            <img class="article-image" src="scene_03.webp" alt="生活中各种平均数统计">
+            <p class="image-caption">🎨 图3：分数、气温、身高——生活中到处都是平均数！</p>
+        </div>
+
+        <div class="fun-fact orange">
+            <div class="fun-fact-title">📺 趣味知识</div>
+            有些电台会在播音乐前计算所有歌曲的平均时长，来决定每首歌之间放多长的广告——你每听到的一段广告，背后可能有成千上万首歌被「平均」了一遍！
+        </div>
+
+        <div class="divider">✦ ✦ ✦</div>
+
+        <h2>⚠️ 第四章：平均数也会「撒谎」？</h2>
+        <p>平均数很棒，但如果数据里有个怪兽级的极端值，它就有麻烦了！</p>
+        <p>来玩个游戏：5 个小朋友的零花钱分别是 5元、6元、7元、8元和 500元。平均一下是多少？</p>
+        <p>(5 + 6 + 7 + 8 + 500) ÷ 5 = 526 ÷ 5 = <strong>105.2 元</strong></p>
+        <p>哇！105.2 元！可 5 个人里只有一个人的零花钱超过 9 元，剩下 4 个人都不到 9 元！说「他们平均有 105.2 元」简直在开玩笑——好像大家都很有钱似的。这就是<strong>极端值扭曲平均数</strong>的经典案例。</p>
+        <p>当数据里有一个超级大或超级小的数字时，光看平均数可能会被骗！聪明的你应该学会：</p>
+        <p>🔍 先看数据里有不有特别离谱的数<br>
+        🔍 如果数据差异很大，可以用「中位数」（中间那个数）配合判断<br>
+        🔍 不要把平均数当成唯一真理！</p>
+
+        <div class="image-container">
+            <img class="article-image" src="scene_04.webp" alt="极端值如何扭曲平均数">
+            <p class="image-caption">🎨 图4：一个有钱的小伙伴把平均数拉到天上去了！</p>
+        </div>
+
+        <div class="fun-fact green">
+            <div class="fun-fact-title">💼 趣味知识</div>
+            求职网站上经常写「本行业平均月薪 15000 元」，但如果最高工资是老板年薪 1000 万，这个 15000 可能被拉高了很多！下次看到「平均工资」时，记得问自己：极端值藏在里面了吗？
+        </div>
+
+        <div class="divider">✦ ✦ ✦</div>
+
+        <h2>🎯 第五章：用平均数解决真实问题</h2>
+        <p>恭喜你已经掌握了平均数的魔法！现在来挑战两个真实问题：</p>
+
+        <p><strong>问题1：</strong>你和 4 个朋友去吃自助餐，总账单是 350 元。如果AA制，每人应付多少？</p>
+        <p>💡 350 ÷ 5 = 70 元 —— 你刚用平均数算了 AA 制！</p>
+
+        <p><strong>问题2：</strong>妈妈记录了最近一周的水杯饮水次数：6、7、5、8、7、9、7。她「一般每天喝几杯」？</p>
+        <p>💡 (6+7+5+8+7+9+7) ÷ 7 = 49 ÷ 7 = 7 杯 —— 你帮妈妈找到了饮水习惯！</p>
+
+        <p><strong>平均数不是什么魔法——它就是把一堆积木堆起来，然后均匀分配给每个人，看看每个人能得多少。掌握这个思维，你就能用数字读世界！</strong></p>
+
+        <div class="image-container">
+            <img class="article-image" src="scene_05.webp" alt="小朋友用平均数解决生活问题">
+            <p class="image-caption">🎨 图5：学会了平均数，你也能像超级大脑一样思考！</p>
+        </div>
+
+        <div class="divider">✦ ✦ ✦</div>
+
+        <div class="quiz-section">
+            <div class="quiz-title">📝 学完了，来测一测！</div>
+
+            <div class="quiz-question">
+                <strong>第1题：</strong>4个小朋友体重分别是30kg、28kg、35kg、27kg，平均体重是多少？<br>
+                A. 28kg &nbsp; B. 29kg &nbsp; C. 30kg &nbsp; D. 25kg
+            </div>
+            <div class="quiz-question">
+                <strong>第2题：</strong>小刚3次数学考试分别是88分、92分、90分，平均分是？<br>
+                A. 88分 &nbsp; B. 90分 &nbsp; C. 92分 &nbsp; D. 89分
+            </div>
+            <div class="quiz-question">
+                <strong>第3题：</strong>平均数等于什么？<br>
+                A. 所有数乘起来 &nbsp; B. 最大和最小的差 &nbsp; C. 总和÷个数 &nbsp; D. 出现最多的数
+            </div>
+            <div class="quiz-question">
+                <strong>第4题：</strong>6个同学的零花钱分别是6、7、8、9、10、100元，平均数是多少？这个平均数能真实反映大多数人的零花钱吗？<br>
+                A. 23.3元，能 &nbsp; B. 20元，不能 &nbsp; C. 23.3元，不能 &nbsp; D. 20元，能
+            </div>
+            <div class="quiz-question">
+                <strong>第5题：</strong>以下哪个说法是正确的？<br>
+                A. 平均数一定等于数据中的某个数<br>
+                B. 平均数绝对不会被极端值影响<br>
+                C. 平均数可以用来比较两个群体的整体水平<br>
+                D. 平均数只能用在考试成绩中
+            </div>
+        </div>
+
+        <div class="ending">
+            <h3>—— 完 ——</h3>
+            <p>谢谢阅读！希望你学到了很多知识！</p>
+            <p style="margin-top: 10px; font-size: 14px; color: #b2bec3;">本故事由 AI 助手小龙为小朋友精心制作 🐉</p>
+            <div style="text-align: left; margin-top: 15px;">
+                <a href="../index.html" class="back-home-btn">🏠 返回首页</a>
+            </div>
+        </div>
+    </div>
+
+<!-- rourou-home-btn:start -->
+<style>
+#rourou-home-btn{position:fixed;left:14px;bottom:calc(14px + env(safe-area-inset-bottom,0px));z-index:9999;
+display:inline-flex;align-items:center;gap:6px;padding:10px 18px;border-radius:999px;
+background:rgba(255,255,255,0.92);color:#2d3436;font-size:15px;font-weight:600;
+text-decoration:none;box-shadow:0 4px 14px rgba(0,0,0,0.18);border:1px solid rgba(0,0,0,0.08);
+-webkit-backdrop-filter:blur(4px);backdrop-filter:blur(4px);transition:transform .15s,background .15s;}
+#rourou-home-btn:hover{background:#fff;transform:translateY(-2px);}
+@media (max-width:600px){#rourou-home-btn{padding:9px 14px;font-size:13px;left:10px;bottom:calc(10px + env(safe-area-inset-bottom,0px));}}
+</style>
+<a id="rourou-home-btn" href="../index.html">🏠 首页</a>
+<!-- rourou-home-btn:end -->
+</body>
+</html>

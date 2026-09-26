@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🦠 阿米巴原虫：会走路的单细胞小怪兽</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: "Microsoft YaHei", "PingFang SC", sans-serif;
+            background: linear-gradient(180deg, #a8edea 0%, #74b9ff 30%, #6c5ce7 60%, #00b894 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        .container {
+            max-width: 850px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 30px;
+            padding: 40px;
+            box-shadow: 0 25px 80px rgba(0,0,0,0.15);
+        }
+        .header {
+            text-align: center;
+            padding: 30px 0;
+            background: linear-gradient(135deg, #00b894 0%, #55efc4 50%, #81ecec 100%);
+            border-radius: 20px;
+            margin-bottom: 30px;
+        }
+        .header h1 {
+            font-size: 48px;
+            color: white;
+            text-shadow: 3px 3px 6px rgba(0,0,0,0.2);
+        }
+        .subtitle {
+            font-size: 20px;
+            color: rgba(255,255,255,0.95);
+        }
+        h2 {
+            font-size: 32px;
+            color: #2d3436;
+            margin: 40px 0 20px;
+            padding: 15px 25px;
+            background: linear-gradient(90deg, #81ecec 0%, #55efc4 100%);
+            border-radius: 15px;
+            display: inline-block;
+        }
+        p {
+            font-size: 20px;
+            line-height: 2;
+            color: #2d3436;
+            margin-bottom: 20px;
+            text-align: justify;
+        }
+        .image-container {
+            width: 100%;
+            margin: 30px 0;
+            text-align: center;
+        }
+        .dino-image {
+            width: 100%;
+            border-radius: 20px;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.2);
+        }
+        .image-caption {
+            color: #636e72;
+            font-size: 16px;
+            margin-top: 15px;
+            font-style: italic;
+            background: #ffeaa7;
+            display: inline-block;
+            padding: 8px 20px;
+            border-radius: 20px;
+        }
+        .fun-fact {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 25px;
+            border-radius: 20px;
+            margin: 25px 0;
+            font-size: 18px;
+            line-height: 1.8;
+        }
+        .fun-fact.pink {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+        }
+        .fun-fact.green {
+            background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);
+        }
+        .fun-fact.orange {
+            background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);
+        }
+        .fun-fact-title {
+            font-size: 22px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        .divider {
+            text-align: center;
+            font-size: 30px;
+            color: #ddd;
+            margin: 30px 0;
+        }
+        .quiz-section {
+            background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);
+            padding: 30px;
+            border-radius: 20px;
+            margin: 30px 0;
+        }
+        .quiz-title {
+            font-size: 28px;
+            color: #e17055;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .quiz-question {
+            background: white;
+            padding: 20px;
+            border-radius: 15px;
+            margin: 15px 0;
+            font-size: 18px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        .ending {
+            text-align: center;
+            padding: 40px 0;
+            margin-top: 40px;
+            background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);
+            border-radius: 20px;
+        }
+        .ending h3 { font-size: 32px; color: #2d3436; }
+        .ending p { text-align: center; font-size: 18px; color: #636e72; }
+        .back-home-btn {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 14px 30px;
+            background: rgba(0,0,0,0.08);
+            color: #2d3436;
+            text-decoration: none;
+            border-radius: 25px;
+            font-size: 18px;
+            border: 2px solid rgba(0,0,0,0.15);
+            transition: background 0.3s, transform 0.2s;
+        }
+        .back-home-btn:hover {
+            background: rgba(0,0,0,0.15);
+            transform: translateY(-2px);
+        }
+        .back-home-btn:active {
+            transform: translateY(0);
+        }
+        @media (max-width: 600px) {
+            .container { padding: 20px; }
+            h1 { font-size: 32px; }
+            h2 { font-size: 24px; }
+            p { font-size: 18px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🦠 阿米巴原虫</h1>
+            <p class="subtitle">会走路的单细胞小怪兽</p>
+        </div>
+
+        <h2>第一章 池塘里的一团「果冻」</h2>
+        <div class="image-container">
+            <img src="scene_01.webp" alt="阿米巴原虫" class="dino-image">
+            <div class="image-caption">显微镜下的阿米巴原虫，正伸出伪足爬行</div>
+        </div>
+        <p>如果你舀起一滴池塘水，放到显微镜下看，可能会发现一个奇怪的家伙：它没有固定的形状，一会儿圆圆的，一会儿伸出几条「胳膊」，慢慢往前挪。它就是阿米巴原虫——地球上最古老、也最简单的生物之一。</p>
+        <p>「阿米巴」这个名字来自古希腊语，意思是「变化」。因为它最大的本事就是变身。你可能会问：一个没有手脚、没有骨头的小东西，到底是怎么走路的？答案藏在它身体里——它会把自己的一部分身体「挤」出去，变成一只临时的脚。</p>
+        <div class="fun-fact green">
+            <div class="fun-fact-title">🤯 最古老的「变形金刚」</div>
+            阿米巴在地球上已经生活了超过 10 亿年！那时候恐龙还没出现，甚至连多细胞动物都还不存在。它可以说是所有会「动」的生物的老前辈。
+        </div>
+
+        <h2>第二章 伪足：身体就是脚</h2>
+        <div class="image-container">
+            <img src="scene_02.webp" alt="伪足" class="dino-image">
+            <div class="image-caption">阿米巴伸出伪足，一步步爬向食物</div>
+        </div>
+        <p>阿米巴走路的方式，叫「伪足运动」。伪足就是「假脚」的意思。它的身体像一个装满了流动「果冻」的袋子——这团果冻叫细胞质。当它想往前走，就把细胞质往一个方向挤，身体鼓出一个凸起，这个凸起就变成了临时的脚；后面的身体再跟着收回来。就这样一鼓一收，它慢慢地「流」过去了。</p>
+        <p>这个过程其实靠的是细胞质里的两种状态：一种像稀一点的液体，一种像稠一点的胶。当胶状部分变稀、液体往前冲，就推着身体鼓起来。你可以把它想象成：你用手指慢慢推一个装水的气球，气球会朝一个方向鼓起，阿米巴的运动原理就有点像这样。</p>
+        <p>最关键的是，伪足不只是用来走路，它还能「抓」东西！当阿米巴碰到一颗细菌，它会伸出伪足，像两条胳膊一样把食物环抱起来，然后整个吞进身体里。</p>
+        <div class="fun-fact pink">
+            <div class="fun-fact-title">🦶 一秒能「走」多远？</div>
+            阿米巴的爬行速度很慢，一分钟大概只能移动 0.5 到 1 毫米。听起来很慢，但如果你把它的身体长度换算一下，它其实是一位「长跑健将」——比你走路的速度（相对身体比例）快多了！
+        </div>
+
+        <h2>第三章 把食物「包」进肚子里</h2>
+        <div class="image-container">
+            <img src="scene_03.webp" alt="吞噬作用" class="dino-image">
+            <div class="image-caption">阿米巴伸出伪足，把一颗细菌整个包进体内</div>
+        </div>
+        <p>阿米巴吃东西的方式，是科学史上一个很酷的发现，叫「吞噬作用」，也就是「用身体把食物包起来」。它没有嘴巴，所以它的办法是：用伪足把食物围住，围成一个密闭的小泡泡，然后这个泡泡掉进身体里面，变成一个「食物小房间」。</p>
+        <p>在这个小房间里，阿米巴会分泌消化液，把食物分解成养分。消化完之后，有用的部分被吸收，没用的残渣再被运到身体边缘，重新「吐」出来。整个过程就像你用一个保鲜袋装食物，吃完再把袋子扔掉一样。</p>
+        <p>那阿米巴怎么「呼吸」呢？它没有肺，靠的是整张「皮肤」——也就是细胞膜。氧气和二氧化碳直接从身体表面进进出出。因为它只有小小一粒，全身离表面都很近，所以根本不需要专门的呼吸器官。</p>
+        <div class="fun-fact">
+            <div class="fun-fact-title">🧠 没有大脑，它怎么「知道」要吃东西？</div>
+            阿米巴没有大脑，也没有神经。它吃东西靠的是「化学感知」——能感觉到附近食物释放的化学物质，然后朝那个方向爬过去。这就像你闻到厨房飘来的香味，不由自主往厨房走，只不过阿米巴连「想」都不用想，全自动完成。
+        </div>
+
+        <h2>第四章 一分为二：最古老的繁殖方式</h2>
+        <div class="image-container">
+            <img src="scene_04.webp" alt="二分裂" class="dino-image">
+            <div class="image-caption">一个阿米巴正在分裂成两个一模一样的自己</div>
+        </div>
+        <p>阿米巴生小宝宝的方式，简单到不可思议——它把自己「掰」成两半。这个过程叫「二分裂」。当一个阿米巴长得足够大，它身体里的「指挥中心」细胞核会先一分为二，然后整个身体从中间裂开，变成两个一模一样的阿米巴。</p>
+        <p>因为这两个新阿米巴的遗传信息完全一样，所以它们其实是「克隆」。一个阿米巴一天可以分裂好几次，如果食物充足、温度合适，理论上一个阿米巴能在一个月里变出天文数字的后代——当然，现实中会被其他生物吃掉很多，不会真的无限增长。</p>
+        <p>当环境变糟糕的时候，比如池塘干涸了、太冷了，阿米巴还有一个保命绝招：它会缩成一团，吐出一层硬壳，变成一颗「包囊」。包囊能抵抗干燥和寒冷，像冬眠一样睡上很久，等环境好了再醒过来。</p>
+        <div class="fun-fact orange">
+            <div class="fun-fact-title">🛡️ 会「冬眠」的细胞</div>
+            阿米巴的包囊可以存活好几年！这颗小小的「休眠蛋」能扛过干旱、冰冻，甚至能随风飘到很远的地方，等到掉进一片新的水塘，再重新「复活」。这也是它在地球上活了几十亿年的秘密。
+        </div>
+
+        <h2>第五章 阿米巴：朋友还是敌人？</h2>
+        <div class="image-container">
+            <img src="scene_05.webp" alt="阿米巴与人类" class="dino-image">
+            <div class="image-caption">显微镜下，科学家正在观察阿米巴的一举一动</div>
+        </div>
+        <p>大多数阿米巴都很温和，它们生活在池塘、泥土、甚至你自己的肠道里，帮忙分解垃圾，是生态系统里重要的「清洁工」。但有一个坏家伙要小心——痢疾阿米巴（溶组织内阿米巴）。它会钻到人的肠道里搞破坏，让人拉肚子、肚子疼。</p>
+        <p>这种坏阿米巴是怎么钻进人体的呢？通常是通过被污染的水或食物。如果一个人上完厕所没洗干净手，就去碰食物，阿米巴的包囊就可能混进食物里，被下一个人吃下去。所以，饭前便后认真洗手，喝干净的水，就是对付它最好的武器。</p>
+        <p>科学家还特别喜欢研究阿米巴，因为它又简单又古老，就像一个「活化石」。研究它怎么运动、怎么吃东西，能帮我们理解细胞是怎么工作的，甚至帮我们理解更复杂的动物——包括我们人类自己，最初是怎么从单细胞一步步演化来的。</p>
+        <div class="fun-fact green">
+            <div class="fun-fact-title">🔬 科学家的「宠物」</div>
+            有一种叫「盘基网柄菌」的阿米巴，是实验室里的明星。科学家靠它研究细胞是怎么「互相交流」、怎么「合作」的，甚至用它研究癌症细胞为什么会乱跑。一个小小的阿米巴，帮人类解决了很多大问题。
+        </div>
+
+        <div class="divider">🦠 ═══ ═══ ═══ 🦠</div>
+
+        <div class="quiz-section">
+            <div class="quiz-title">📝 考考你！</div>
+            <div class="quiz-question">1. 阿米巴原虫靠什么「走路」？<br>A. 纤毛 &nbsp; B. 伪足 &nbsp; C. 尾巴 &nbsp; D. 弹跳</div>
+            <div class="quiz-question">2. 阿米巴吃东西的方式叫什么？<br>A. 咀嚼 &nbsp; B. 吸食 &nbsp; C. 吞噬作用 &nbsp; D. 过滤</div>
+            <div class="quiz-question">3. 阿米巴繁殖的方式是？<br>A. 生蛋 &nbsp; B. 发芽 &nbsp; C. 二分裂 &nbsp; D. 开花</div>
+            <div class="quiz-question">4. 环境变差时，阿米巴会变成什么来保命？<br>A. 飞走 &nbsp; B. 包囊 &nbsp; C. 变大 &nbsp; D. 变色</div>
+            <div class="quiz-question">5. 下列哪种阿米巴会让人生病？<br>A. 池塘阿米巴 &nbsp; B. 痢疾阿米巴 &nbsp; C. 泥土阿米巴 &nbsp; D. 肠道好阿米巴</div>
+            <p style="text-align:center; margin-top:15px; font-weight:bold; color:#e17055;">（答案：1.B  2.C  3.C  4.B  5.B）</p>
+        </div>
+
+        <div class="ending">
+            <h3>—— 完 ——</h3>
+            <p>谢谢阅读！希望你学到了很多知识！</p>
+            <p style="margin-top: 10px; font-size: 14px; color: #b2bec3;">本故事由 AI 助手小龙为小朋友精心制作 🐉</p>
+            <div style="text-align: left; margin-top: 15px;">
+                <a href="../index.html" class="back-home-btn">🏠 返回首页</a>
+            </div>
+        </div>
+    </div>
+
+<!-- rourou-home-btn:start -->
+<style>
+#rourou-home-btn{position:fixed;left:14px;bottom:calc(14px + env(safe-area-inset-bottom,0px));z-index:9999;
+display:inline-flex;align-items:center;gap:6px;padding:10px 18px;border-radius:999px;
+background:rgba(255,255,255,0.92);color:#2d3436;font-size:15px;font-weight:600;
+text-decoration:none;box-shadow:0 4px 14px rgba(0,0,0,0.18);border:1px solid rgba(0,0,0,0.08);
+-webkit-backdrop-filter:blur(4px);backdrop-filter:blur(4px);transition:transform .15s,background .15s;}
+#rourou-home-btn:hover{background:#fff;transform:translateY(-2px);}
+@media (max-width:600px){#rourou-home-btn{padding:9px 14px;font-size:13px;left:10px;bottom:calc(10px + env(safe-area-inset-bottom,0px));}}
+</style>
+<a id="rourou-home-btn" href="../index.html">🏠 首页</a>
+<!-- rourou-home-btn:end -->
+</body>
+</html>

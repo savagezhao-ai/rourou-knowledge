@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>什么是人工智能？—— 小朋友的AI第一课</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: "Microsoft YaHei", "PingFang SC", sans-serif;
+            background: linear-gradient(180deg, #a29bfe 0%, #74b9ff 40%, #0984e3 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        .container {
+            max-width: 850px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 30px;
+            padding: 40px;
+            box-shadow: 0 25px 80px rgba(0,0,0,0.15);
+        }
+        .header {
+            text-align: center;
+            padding: 30px 0;
+            background: linear-gradient(135deg, #6c5ce7 0%, #a29bfe 50%, #74b9ff 100%);
+            border-radius: 20px;
+            margin-bottom: 30px;
+        }
+        .header h1 {
+            font-size: 48px;
+            color: white;
+            text-shadow: 3px 3px 6px rgba(0,0,0,0.2);
+        }
+        .subtitle {
+            font-size: 20px;
+            color: rgba(255,255,255,0.95);
+            margin-top: 8px;
+        }
+        .chapter-label {
+            display: inline-block;
+            background: linear-gradient(135deg, #6c5ce7, #a29bfe);
+            color: white;
+            font-size: 14px;
+            font-weight: bold;
+            padding: 4px 14px;
+            border-radius: 20px;
+            margin-bottom: 10px;
+        }
+        h2 {
+            font-size: 32px;
+            color: #2d3436;
+            margin: 35px 0 18px;
+            padding: 12px 25px;
+            background: linear-gradient(90deg, #dfe6e9 0%, #b2bec3 100%);
+            border-radius: 15px;
+            display: inline-block;
+        }
+        p {
+            font-size: 20px;
+            line-height: 2;
+            color: #2d3436;
+            margin-bottom: 18px;
+            text-align: justify;
+        }
+        .image-container {
+            width: 100%;
+            margin: 28px 0;
+            text-align: center;
+        }
+        .article-image {
+            width: 100%;
+            max-width: 540px;
+            border-radius: 20px;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.18);
+            display: inline-block;
+        }
+        .image-caption {
+            color: #636e72;
+            font-size: 16px;
+            margin-top: 12px;
+            font-style: italic;
+            background: #dfe6e9;
+            display: inline-block;
+            padding: 8px 20px;
+            border-radius: 20px;
+        }
+        .fun-fact {
+            background: linear-gradient(135deg, #0984e3 0%, #74b9ff 100%);
+            color: white;
+            padding: 22px 25px;
+            border-radius: 18px;
+            margin: 22px 0;
+            font-size: 18px;
+            line-height: 1.8;
+        }
+        .fun-fact.purple { background: linear-gradient(135deg, #6c5ce7 0%, #a29bfe 100%); }
+        .fun-fact.green  { background: linear-gradient(135deg, #00b894 0%, #55efc4 100%); }
+        .fun-fact.orange { background: linear-gradient(135deg, #e17055 0%, #fdcb6e 100%); }
+        .fun-fact.pink   { background: linear-gradient(135deg, #fd79a8 0%, #e84393 100%); }
+        .fun-fact-title {
+            font-size: 22px;
+            font-weight: bold;
+            margin-bottom: 8px;
+        }
+        .timeline {
+            background: #f0f3f7;
+            border-left: 5px solid #0984e3;
+            padding: 20px 25px;
+            border-radius: 0 15px 15px 0;
+            margin: 25px 0;
+        }
+        .timeline-title {
+            font-size: 24px;
+            font-weight: bold;
+            color: #0984e3;
+            margin-bottom: 15px;
+        }
+        .timeline-item {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 12px;
+            font-size: 18px;
+        }
+        .timeline-year {
+            font-weight: bold;
+            color: #6c5ce7;
+            min-width: 80px;
+        }
+        .quiz-section {
+            background: linear-gradient(135deg, #dfe6e9 0%, #b2bec3 100%);
+            padding: 30px;
+            border-radius: 20px;
+            margin: 30px 0;
+        }
+        .quiz-title {
+            font-size: 28px;
+            color: #2d3436;
+            text-align: center;
+            margin-bottom: 20px;
+            font-weight: bold;
+        }
+        .quiz-question {
+            background: white;
+            padding: 18px 22px;
+            border-radius: 15px;
+            margin: 14px 0;
+            font-size: 18px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+        }
+        .quiz-question strong { color: #6c5ce7; }
+        .ending {
+            text-align: center;
+            padding: 40px 0;
+            margin-top: 40px;
+            background: linear-gradient(135deg, #a29bfe 0%, #74b9ff 100%);
+            border-radius: 20px;
+        }
+        .ending h3 { font-size: 32px; color: white; }
+        .ending p { text-align: center; font-size: 18px; color: rgba(255,255,255,0.9); }
+        .back-home-btn {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 14px 30px;
+            background: rgba(255,255,255,0.2);
+            color: white;
+            text-decoration: none;
+            border-radius: 25px;
+            font-size: 18px;
+            border: 2px solid rgba(255,255,255,0.5);
+            transition: background 0.3s, transform 0.2s;
+        }
+        .back-home-btn:hover {
+            background: rgba(255,255,255,0.35);
+            transform: translateY(-2px);
+        }
+        .back-home-btn:active {
+            transform: translateY(0);
+        }
+        @media (max-width: 600px) {
+            .container { padding: 20px; }
+            .header h1 { font-size: 32px; }
+            h2 { font-size: 24px; }
+            p { font-size: 18px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>什么是人工智能？🤖</h1>
+            <p class="subtitle">—— 小朋友的第一堂 AI 课</p>
+        </div>
+
+        <div class="image-container">
+            <img class="article-image" src="scene_01.webp" alt="可爱的机器人朋友">
+            <p class="image-caption">📷 图1：AI世界里的可爱机器人朋友 🤖</p>
+        </div>
+
+        <h2>📖 第一章：什么是人工智能？</h2>
+        <p>小朋友们，你们有没有想过，电脑和机器人也可以像人一样"思考"和学习呢？这就是<strong>人工智能</strong>，也叫 <strong>AI</strong>（Artificial Intelligence）！</p>
+        <p>人工智能就像给计算机装上了一个"聪明的大脑"。它可以看图片、听声音、说对话，甚至还能帮你找到喜欢的动画片！</p>
+
+        <div class="fun-fact purple">
+            <div class="fun-fact-title">🧠 趣味小知识</div>
+            "人工智能"这个词最早是在1956年被科学家们提出来的，比你爷爷奶奶出生还要早很多年呢！
+        </div>
+
+        <h2>📖 第二章：AI是怎么学习的？</h2>
+        <p>小朋友们学知识要上课看书，AI 也有自己的"学习方式"！科学家们给 AI 看了成千上万张猫的图片，AI 就会慢慢认识猫长什么样子了。这个过程叫做<strong>机器学习</strong>。</p>
+
+        <div class="image-container">
+            <img class="article-image" src="scene_02.webp" alt="AI大脑">
+            <p class="image-caption">📷 图2：AI的"大脑"是由无数个小灯泡组成的神经网络 💡</p>
+        </div>
+
+        <p>想象一下，AI 的大脑里有很多很多"小灯泡"（叫做神经元），它们连在一起，形成了神经网络。当 AI 看到新东西时，这些小灯泡就会一起"想办法"，告诉 AI 这到底是什么！</p>
+
+        <div class="fun-fact green">
+            <div class="fun-fact-title">💡 趣味小知识</div>
+            训练一个能认出猫的 AI，需要给它看超过100万张图片！相当于你看一整面墙那么高的猫照片！
+        </div>
+
+        <h2>📖 第三章：AI在我们身边</h2>
+        <p>其实 AI 早就悄悄出现在我们生活里了！当你对手机说"嘿，Siri"或"小爱同学"的时候，就是 AI 在听你说话哦！</p>
+
+        <div class="image-container">
+            <img class="article-image" src="scene_03.webp" alt="AI识别物体">
+            <p class="image-caption">📷 图3：AI能认出图片里的猫、狗、花和苹果 🔍</p>
+        </div>
+
+        <p>还有很多地方都有 AI 的身影：拍照时 AI 会自动识别人脸、翻译软件帮你把中文变成英文、推荐你喜欢的动画片……是不是很神奇？</p>
+
+        <div class="fun-fact orange">
+            <div class="fun-fact-title">🎮 趣味小知识</div>
+            你玩的手游里，敌人的机器人对手其实也是 AI 哦！它们会根据你的动作做出反应，这就是 AI 在"思考"！
+        </div>
+
+        <h2>📖 第四章：AI能像人一样思考吗？</h2>
+        <p>现在的 AI 已经很聪明了，但它和真正的人类大脑还有很大区别。AI 擅长做特定的任务，比如下棋、认图片，但它没有真正的"感觉"和"情绪"。</p>
+
+        <div class="image-container">
+            <img class="article-image" src="scene_04.webp" alt="AI帮助学习">
+            <p class="image-caption">📷 图4：AI小助手和人类一起学习做作业 ✏️</p>
+        </div>
+
+        <p>AI 不知道什么是开心、什么是难过，也没有真正的想象力。所以小朋友们不用担心，AI 是工具，就像铅笔和橡皮一样，是用来帮助我们的！</p>
+
+        <div class="fun-fact pink">
+            <div class="fun-fact-title">🌟 趣味小知识</div>
+            AI 下棋可以打败世界冠军，但它完全不知道"赢棋"是什么感觉——它只是在计算！
+        </div>
+
+        <h2>📖 第五章：AI的未来</h2>
+        <p>未来的 AI 会变得更厉害！它可能会帮医生更快发现疾病、帮科学家探索火星、帮我们保护环境……</p>
+
+        <div class="image-container">
+            <img class="article-image" src="scene_05.webp" alt="AI未来城市">
+            <p class="image-caption">📷 图5：人类和机器人一起生活的未来城市 🚀</p>
+        </div>
+
+        <p>说不定将来最厉害的 AI 科学家，就是正在看这篇文章的你呢！从今天开始，多学习、多思考，说不定未来的 AI 就由你来发明！</p>
+
+        <div class="timeline">
+            <div class="timeline-title">📅 AI发展大事记</div>
+            <div class="timeline-item"><span class="timeline-year">1956年</span><span>科学家提出"人工智能"概念</span></div>
+            <div class="timeline-item"><span class="timeline-year">1997年</span><span>AI"深蓝"战胜国际象棋冠军</span></div>
+            <div class="timeline-item"><span class="timeline-year">2011年</span><span>AI在智力问答中打败两位人类冠军</span></div>
+            <div class="timeline-item"><span class="timeline-year">2016年</span><span>AI"阿尔法狗"战胜围棋世界冠军</span></div>
+            <div class="timeline-item"><span class="timeline-year">2020年代</span><span>AI开始帮助医生诊病、自动驾驶汽车上路</span></div>
+            <div class="timeline-item"><span class="timeline-year">现在</span><span>AI可以画图、写文章、和人类对话</span></div>
+        </div>
+
+        <div class="fun-fact purple">
+            <div class="fun-fact-title">🚀 趣味小知识</div>
+            埃隆·马斯克创办的公司 Neuralink 正在研究一种特别的技术：把AI"装进"人的大脑里！未来人类可以和AI一起思考，那将会是什么样的世界呢？
+        </div>
+
+        <div class="quiz-section">
+            <div class="quiz-title">🧠 互动小测验</div>
+            <div class="quiz-question"><strong>第1题：</strong>AI的全称是什么？</div>
+            <div class="quiz-question" style="color:#636e72;">答案：A. 人工智能 (Artificial Intelligence)</div>
+            <div class="quiz-question"><strong>第2题：</strong>AI的大脑是由什么组成的？</div>
+            <div class="quiz-question" style="color:#636e72;">答案：C. 神经网络（很多连接的小灯泡/神经元）</div>
+            <div class="quiz-question"><strong>第3题：</strong>下面哪个不是 AI 的应用？</div>
+            <div class="quiz-question" style="color:#636e72;">答案：B. 吃冰淇淋（这是人类行为，AI不会饿也不会吃东西 😄）</div>
+            <div class="quiz-question"><strong>第4题：</strong>AI在1956年被提出时，比现在早了多久？</div>
+            <div class="quiz-question" style="color:#636e72;">答案：大约70年</div>
+            <div class="quiz-question"><strong>第5题：</strong>现在的AI能真正感受开心或难过吗？</div>
+            <div class="quiz-question" style="color:#636e72;">答案：不能，AI没有真正的情绪和感觉</div>
+        </div>
+
+        <div class="ending">
+            <h3>—— 完 ——</h3>
+            <p>今天我们认识了人工智能 AI！它是不是很神奇？</p>
+            <p>从今天起，你也成为了小小的 AI 专家啦！</p>
+            <p style="margin-top: 12px; font-size: 14px; color: rgba(255,255,255,0.75);">本故事由 AI 助手小龙为小朋友精心制作 🐉</p>
+            <div style="text-align: left; margin-top: 15px;">
+                <a href="../index.html" class="back-home-btn">🏠 返回首页</a>
+            </div>
+        </div>
+    </div>
+
+<!-- rourou-home-btn:start -->
+<style>
+#rourou-home-btn{position:fixed;left:14px;bottom:calc(14px + env(safe-area-inset-bottom,0px));z-index:9999;
+display:inline-flex;align-items:center;gap:6px;padding:10px 18px;border-radius:999px;
+background:rgba(255,255,255,0.92);color:#2d3436;font-size:15px;font-weight:600;
+text-decoration:none;box-shadow:0 4px 14px rgba(0,0,0,0.18);border:1px solid rgba(0,0,0,0.08);
+-webkit-backdrop-filter:blur(4px);backdrop-filter:blur(4px);transition:transform .15s,background .15s;}
+#rourou-home-btn:hover{background:#fff;transform:translateY(-2px);}
+@media (max-width:600px){#rourou-home-btn{padding:9px 14px;font-size:13px;left:10px;bottom:calc(10px + env(safe-area-inset-bottom,0px));}}
+</style>
+<a id="rourou-home-btn" href="../index.html">🏠 首页</a>
+<!-- rourou-home-btn:end -->
+</body>
+</html>

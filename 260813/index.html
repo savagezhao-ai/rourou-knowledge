@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🌊 什么是漩涡：水里的旋转小怪兽</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: "Microsoft YaHei", "PingFang SC", sans-serif;
+            background: linear-gradient(180deg, #a8edea 0%, #74b9ff 40%, #0984e3 70%, #0652DD 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        .container {
+            max-width: 850px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 30px;
+            padding: 40px;
+            box-shadow: 0 25px 80px rgba(0,0,0,0.15);
+        }
+        .header {
+            text-align: center;
+            padding: 30px 0;
+            background: linear-gradient(135deg, #00b894 0%, #0984e3 50%, #6c5ce7 100%);
+            border-radius: 20px;
+            margin-bottom: 30px;
+        }
+        .header h1 {
+            font-size: 42px;
+            color: white;
+            text-shadow: 3px 3px 6px rgba(0,0,0,0.3);
+        }
+        .subtitle {
+            font-size: 20px;
+            color: rgba(255,255,255,0.95);
+        }
+        h2 {
+            font-size: 32px;
+            color: #2d3436;
+            margin: 40px 0 20px;
+            padding: 15px 25px;
+            background: linear-gradient(90deg, #81ecec 0%, #74b9ff 100%);
+            border-radius: 15px;
+            display: inline-block;
+        }
+        p {
+            font-size: 20px;
+            line-height: 2;
+            color: #2d3436;
+            margin-bottom: 20px;
+            text-align: justify;
+        }
+        .image-container {
+            width: 100%;
+            margin: 30px 0;
+            text-align: center;
+        }
+        .scene-image {
+            width: 100%;
+            border-radius: 20px;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.2);
+        }
+        .image-caption {
+            color: #636e72;
+            font-size: 16px;
+            margin-top: 15px;
+            font-style: italic;
+            background: #dfe6e9;
+            display: inline-block;
+            padding: 8px 20px;
+            border-radius: 20px;
+        }
+        .fun-fact {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 25px;
+            border-radius: 20px;
+            margin: 25px 0;
+            font-size: 18px;
+            line-height: 1.8;
+        }
+        .fun-fact.pink {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+        }
+        .fun-fact.green {
+            background: linear-gradient(135deg, #00b894 0%, #00cec9 100%);
+        }
+        .fun-fact.orange {
+            background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);
+        }
+        .fun-fact.gray {
+            background: linear-gradient(135deg, #636e72 0%, #b2bec3 100%);
+        }
+        .fun-fact-title {
+            font-size: 22px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        .divider {
+            text-align: center;
+            font-size: 30px;
+            color: #ddd;
+            margin: 30px 0;
+        }
+        .quiz-section {
+            background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);
+            padding: 30px;
+            border-radius: 20px;
+            margin: 30px 0;
+        }
+        .quiz-title {
+            font-size: 28px;
+            color: #e17055;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .quiz-question {
+            background: white;
+            padding: 20px;
+            border-radius: 15px;
+            margin: 15px 0;
+            font-size: 18px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        .quiz-question .options { margin-top: 10px; }
+        .quiz-question .option { display: block; padding: 8px 15px; margin: 5px 0; background: #f5f5f5; border-radius: 10px; cursor: pointer; }
+        .quiz-question .option:hover { background: #e8e8e8; }
+        .ending {
+            text-align: center;
+            padding: 40px 0;
+            margin-top: 40px;
+            background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);
+            border-radius: 20px;
+        }
+        .ending h3 { font-size: 32px; color: #2d3436; }
+        .ending p { text-align: center; font-size: 18px; color: #636e72; }
+        .back-home-btn {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 14px 30px;
+            background: rgba(0,0,0,0.08);
+            color: #2d3436;
+            text-decoration: none;
+            border-radius: 25px;
+            font-size: 18px;
+            border: 2px solid rgba(0,0,0,0.15);
+            transition: background 0.3s, transform 0.2s;
+        }
+        .back-home-btn:hover {
+            background: rgba(0,0,0,0.15);
+            transform: translateY(-2px);
+        }
+        .back-home-btn:active { transform: translateY(0); }
+        @media (max-width: 600px) {
+            .container { padding: 20px; }
+            h1 { font-size: 32px; }
+            h2 { font-size: 24px; }
+            p { font-size: 18px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🌊 什么是漩涡：水里的旋转小怪兽</h1>
+            <p class="subtitle">拔掉浴缸塞子的那一刻，水下发生了什么神奇的事？</p>
+        </div>
+
+        <div class="image-container">
+            <img src="scene_01.webp" alt="漩涡卡通角色" class="scene-image">
+            <div class="image-caption">🌀 嗨！我就是漩涡，一个爱转圈圈的水精灵</div>
+        </div>
+
+        <h2>第一章：拔掉塞子，魔法开始了</h2>
+        <p>洗澡的时候，你有没有盯着浴缸里的水发呆？当你<strong>拔掉底部的塞子</strong>，水并不会乖乖地「直直往下掉」，而是会<strong>转着圈圈</strong>往下流，最后在水面上形成一个越来越小的、凹进去的洞——这个不停旋转的水洞，就是<strong>漩涡</strong>！</p>
+        <p>漩涡其实一点都不神秘。它是一种<strong>旋转流动</strong>的水（或者空气、其他液体）。你可以把它想象成水里的「旋转木马」：所有的水分子手拉手，围着一个中心点不停地转啊转，越转越快，越转越往中心靠近，就像一群小朋友围着旗杆转圈，越转圈子越小。</p>
+
+        <div class="fun-fact">
+            <div class="fun-fact-title">💡 趣味知识：漩涡有个「肚脐眼」！</div>
+            漩涡最中心那个凹下去的点，科学家给它起了个可爱的名字，叫<strong>「涡心」</strong>。水越靠近涡心转得越快、凹得越深。你可以在洗手池里试试：放半池水，拔掉塞子，用手指轻轻搅一下水，马上就能看到一个漂亮的涡心！
+        </div>
+
+        <div class="divider">✦ ✦ ✦</div>
+
+        <div class="image-container">
+            <img src="scene_02.webp" alt="浴缸漩涡形成图解" class="scene-image">
+            <div class="image-caption">🛁 水转着圈圈往下流，这就是漩涡的形成</div>
+        </div>
+
+        <h2>第二章：水为什么会转圈圈？</h2>
+        <p>水好端端的，为什么一拔塞子就转起来了？这里面藏着两个「幕后推手」：</p>
+        <p>💨 <strong>推手一：水流从四面八方涌过来</strong>——当塞子被拔掉，底部出现了一个「出口」，周围的水都想赶紧挤过去。但出口就那么大，水从四面八方一起冲，难免会「撞车」。为了不堵车，水就自动排成了<strong>转圈的队形</strong>，绕着一个中心往出口流，这样大家都能顺利通过。</p>
+        <p>🌍 <strong>推手二：地球在偷偷「帮忙」</strong>——地球自己一直在自转，这种转动会让运动的物体产生一种微小的「偏转力」，科学家叫它<strong>科里奥利力</strong>（简称科氏力）。它就像一个「隐形的推手」，让北半球的漩涡更倾向于<strong>逆时针</strong>转，南半球更倾向于<strong>顺时针</strong>转。</p>
+
+        <div class="fun-fact green">
+            <div class="fun-fact-title">💡 趣味知识：浴缸漩涡真是地球转出来的吗？</div>
+            这是一个流传很广的「小误会」！其实科氏力非常非常小，只能影响<strong>巨大的漩涡</strong>（比如台风、海洋大漩涡）。你家浴缸和洗手池里的漩涡，<strong>方向主要由水流本身、水池形状和你的手怎么搅决定</strong>，跟地球自转没多大关系。所以别信「北半球的水一定逆时针流」这种说法哦！
+        </div>
+
+        <div class="divider">✦ ✦ ✦</div>
+
+        <div class="image-container">
+            <img src="scene_03.webp" alt="海洋大漩涡" class="scene-image">
+            <div class="image-caption">🌊 海洋里的巨大漩涡，连船都要绕着它走</div>
+        </div>
+
+        <h2>第三章：海洋里的「大怪兽」</h2>
+        <p>如果说浴缸里的是「小漩涡」，那海洋里就有真正的「<strong>大怪兽</strong>」了！</p>
+        <p>海洋里有一种叫<strong>大漩涡（迈尔斯特伦漩涡）</strong>的奇观。当潮水涨落、海流相遇、或者海底地形特殊时，海水会卷成一个个巨大的旋转水洞，直径能达到几十米甚至上百米！几百年前，水手们一听到「大漩涡」就害怕，传说它会吞噬整艘船。</p>
+        <p>其实，真正危险的大漩涡很少见。挪威海岸外的<strong>萨尔特流（Saltstraumen）</strong>是世界上最强的大漩涡之一，每天潮涨潮落时，这里会形成一个个快速旋转的巨大漩涡，游客可以坐船在附近观看这壮观的自然奇景。</p>
+        <p>还有一种更大的「海洋漩涡」——<strong>中尺度涡旋</strong>，它们的直径有几百公里，比一座城市还大，但转得非常慢，慢到卫星要花好几天才能拍到它转一圈。它们像海洋里的「巨型陀螺」，默默搬运着热量和营养。</p>
+
+        <div class="fun-fact pink">
+            <div class="fun-fact-title">💡 趣味知识：百慕大三角的传说</div>
+            传说百慕大三角地区船只神秘失踪，有人说是被大漩涡吞掉了。其实科学家调查发现，那里的「漩涡」并没有传说中那么可怕，船只失踪更多是天气恶劣、洋流复杂等原因。不过，这些传说倒是让「海洋漩涡」蒙上了一层神秘的面纱，成了无数故事和电影的好素材！
+        </div>
+
+        <div class="divider">✦ ✦ ✦</div>
+
+        <div class="image-container">
+            <img src="scene_04.webp" alt="龙卷风与漩涡对比" class="scene-image">
+            <div class="image-caption">🌪️ 龙卷风——空气版的超级大漩涡</div>
+        </div>
+
+        <h2>第四章：空气中的漩涡——龙卷风</h2>
+        <p>漩涡不只在水中，空气里也有！而且空气里的漩涡往往更「暴躁」——它就是可怕的<strong>龙卷风</strong>。</p>
+        <p>龙卷风是空气版的「超级漩涡」：当暖湿空气和干冷空气激烈相遇，空气会剧烈旋转，形成一根从云层垂到地面的<strong>旋转气柱</strong>。这根气柱转得飞快，中心风速能达到每秒100多米，比高铁还快好几倍！所到之处，能把屋顶掀翻、把大树连根拔起。</p>
+        <p>有意思的是，龙卷风、浴缸漩涡、海洋大漩涡，它们的「旋转原理」其实是相通的——都是流体（水或空气）围绕一个中心轴旋转。只不过龙卷风是<strong>空气</strong>在转，浴缸漩涡是<strong>水</strong>在转，海洋大漩涡是<strong>海水</strong>在转。</p>
+        <p>还有一种更大更温柔的「空气漩涡」你每天都能看到——那就是<strong>台风</strong>（还记得我们之前讲过的台风吗？）。从太空看，台风就是一个直径几百公里的巨大旋转云团，中心有一个清晰的「台风眼」，那其实就是超大号漩涡的「涡心」！</p>
+
+        <div class="fun-fact orange">
+            <div class="fun-fact-title">💡 趣味知识：漩涡的「亲戚」遍布宇宙！</div>
+            漩涡可不只是地球的专利。木星上有一个持续旋转了几百年的<strong>大红斑</strong>，它其实就是一个超级巨大的空气漩涡，比整个地球还大！银河系本身也在旋转，是一个由几千亿颗恒星组成的「星系大漩涡」。从浴缸到银河，旋转无处不在！
+        </div>
+
+        <div class="divider">✦ ✦ ✦</div>
+
+        <div class="image-container">
+            <img src="scene_05.webp" alt="小朋友观察洗手池漩涡" class="scene-image">
+            <div class="image-caption">🔬 你也可以在厨房里，亲手制造一个小漩涡</div>
+        </div>
+
+        <h2>第五章：和漩涡交个朋友</h2>
+        <p>漩涡虽然看起来有点神秘，但它其实是科学家和工程师的「好朋友」，人类早就学会了利用它：</p>
+        <p>🌀 <strong>搅匀东西</strong>：妈妈打鸡蛋、搅拌果汁时，勺子转出来的就是一个漩涡，它能把东西快速搅匀。</p>
+        <p>🌀 <strong>分离物质</strong>：科学家用一种叫「离心机」的机器，让液体高速旋转，利用漩涡把重的和轻的东西分开——医院验血时就用它把血液里的红细胞分离出来。</p>
+        <p>🌀 <strong>水力发电</strong>：水电站里，水流冲过涡轮机时形成的旋转，能把水的能量变成电，点亮千家万户。</p>
+        <p>🌀 <strong>保护安全</strong>：工程师在设计下水道、排水口时，会利用漩涡的原理让水排得更快，防止城市内涝。</p>
+        <p>现在，你也可以当一回「小科学家」，在家做个漩涡实验：找一个透明的瓶子装上水，用力摇晃让水转起来，你会看到瓶子里出现一个漂亮的漩涡，甚至还能看到气泡从涡心冒出来。观察它、感受它——原来科学就藏在生活的每一个小细节里！</p>
+
+        <div class="fun-fact gray">
+            <div class="fun-fact-title">💡 趣味知识：漩涡还能「唱歌」！</div>
+            你有没有发现，拔掉浴缸塞子时，水流会发出「咕噜咕噜」的声音？那是空气被吸进涡心、和水泡一起冒出来的声音。不同大小、不同形状的漩涡，「歌声」也不同。下次洗澡时，竖起耳朵听听你的漩涡在唱什么吧！
+        </div>
+
+        <div class="quiz-section">
+            <div class="quiz-title">🎯 来挑战吧！5道选择题</div>
+
+            <div class="quiz-question">
+                <strong>1. 漩涡最中心那个凹下去的点叫什么？</strong>
+                <div class="options">
+                    <span class="option">A. 涡心 ✓</span>
+                    <span class="option">B. 圆心</span>
+                    <span class="option">C. 水心</span>
+                    <span class="option">D. 旋心</span>
+                </div>
+            </div>
+
+            <div class="quiz-question">
+                <strong>2. 让巨大漩涡（如台风）方向发生偏转的「隐形推手」是什么力？</strong>
+                <div class="options">
+                    <span class="option">A. 重力</span>
+                    <span class="option">B. 科里奥利力 ✓</span>
+                    <span class="option">C. 摩擦力</span>
+                    <span class="option">D. 磁力</span>
+                </div>
+            </div>
+
+            <div class="quiz-question">
+                <strong>3. 关于浴缸漩涡的方向，下面哪句话是对的？</strong>
+                <div class="options">
+                    <span class="option">A. 北半球一定逆时针转</span>
+                    <span class="option">B. 南半球一定顺时针转</span>
+                    <span class="option">C. 方向主要受水流和水池形状影响 ✓</span>
+                    <span class="option">D. 完全由地球自转决定</span>
+                </div>
+            </div>
+
+            <div class="quiz-question">
+                <strong>4. 龙卷风是哪种物质的漩涡？</strong>
+                <div class="options">
+                    <span class="option">A. 水</span>
+                    <span class="option">B. 海水</span>
+                    <span class="option">C. 空气 ✓</span>
+                    <span class="option">D. 岩浆</span>
+                </div>
+            </div>
+
+            <div class="quiz-question">
+                <strong>5. 医院验血时，用什么机器利用旋转把血液里的细胞分离出来？</strong>
+                <div class="options">
+                    <span class="option">A. 搅拌机</span>
+                    <span class="option">B. 离心机 ✓</span>
+                    <span class="option">C. 洗衣机</span>
+                    <span class="option">D. 涡轮机</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="ending">
+            <h3>—— 完 ——</h3>
+            <p>谢谢阅读！下次拔掉浴缸塞子时，记得和小漩涡打个招呼哦！</p>
+            <p style="margin-top: 10px; font-size: 14px; color: #b2bec3;">本故事由 AI 助手小龙为小朋友精心制作 🐉</p>
+            <div style="text-align: left; margin-top: 15px;">
+                <a href="../index.html" class="back-home-btn">🏠 返回首页</a>
+            </div>
+        </div>
+    </div>
+
+<!-- rourou-home-btn:start -->
+<style>
+#rourou-home-btn{position:fixed;left:14px;bottom:calc(14px + env(safe-area-inset-bottom,0px));z-index:9999;
+display:inline-flex;align-items:center;gap:6px;padding:10px 18px;border-radius:999px;
+background:rgba(255,255,255,0.92);color:#2d3436;font-size:15px;font-weight:600;
+text-decoration:none;box-shadow:0 4px 14px rgba(0,0,0,0.18);border:1px solid rgba(0,0,0,0.08);
+-webkit-backdrop-filter:blur(4px);backdrop-filter:blur(4px);transition:transform .15s,background .15s;}
+#rourou-home-btn:hover{background:#fff;transform:translateY(-2px);}
+@media (max-width:600px){#rourou-home-btn{padding:9px 14px;font-size:13px;left:10px;bottom:calc(10px + env(safe-area-inset-bottom,0px));}}
+</style>
+<a id="rourou-home-btn" href="../index.html">🏠 首页</a>
+<!-- rourou-home-btn:end -->
+</body>
+</html>

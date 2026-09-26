@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>日食与月食</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: "Microsoft YaHei", "PingFang SC", sans-serif;
+            background: linear-gradient(180deg, #0c0f1c 0%, #1a1a3e 30%, #2d1b69 60%, #1b0a3a 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        .container {
+            max-width: 850px;
+            margin: 0 auto;
+            background: #fefefe;
+            border-radius: 30px;
+            padding: 40px;
+            box-shadow: 0 25px 80px rgba(0,0,0,0.4);
+        }
+        .header {
+            text-align: center;
+            padding: 30px 0;
+            background: linear-gradient(135deg, #0f0c29 0%, #302b63 50%, #24243e 100%);
+            border-radius: 20px;
+            margin-bottom: 30px;
+        }
+        .header h1 {
+            font-size: 48px;
+            color: #ffd700;
+            text-shadow: 3px 3px 6px rgba(0,0,0,0.5);
+        }
+        .subtitle {
+            font-size: 20px;
+            color: rgba(255,255,255,0.9);
+        }
+        h2 {
+            font-size: 32px;
+            color: #2d3436;
+            margin: 40px 0 20px;
+            padding: 15px 25px;
+            background: linear-gradient(90deg, #ff9ff3 0%, #feca57 100%);
+            border-radius: 15px;
+            display: inline-block;
+        }
+        p {
+            font-size: 20px;
+            line-height: 2;
+            color: #2d3436;
+            margin-bottom: 20px;
+            text-align: justify;
+        }
+        .image-container {
+            width: 100%;
+            margin: 30px 0;
+            text-align: center;
+        }
+        .dino-image {
+            width: 100%;
+            border-radius: 20px;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.2);
+        }
+        .image-caption {
+            color: #636e72;
+            font-size: 16px;
+            margin-top: 15px;
+            font-style: italic;
+            background: #ffeaa7;
+            display: inline-block;
+            padding: 8px 20px;
+            border-radius: 20px;
+        }
+        .fun-fact {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 25px;
+            border-radius: 20px;
+            margin: 25px 0;
+            font-size: 18px;
+            line-height: 1.8;
+        }
+        .fun-fact.pink {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+        }
+        .fun-fact.green {
+            background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);
+        }
+        .fun-fact.orange {
+            background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);
+        }
+        .fun-fact-title {
+            font-size: 22px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        .table-wrap {
+            overflow-x: auto;
+            margin: 20px 0;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 17px;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+        }
+        th {
+            background: linear-gradient(135deg, #a29bfe, #6c5ce7);
+            color: white;
+            padding: 14px;
+            font-size: 18px;
+        }
+        td {
+            padding: 12px 16px;
+            background: #f8f9fa;
+            border-bottom: 1px solid #e9ecef;
+        }
+        tr:last-child td { border-bottom: none; }
+        .quiz-section {
+            background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);
+            padding: 30px;
+            border-radius: 20px;
+            margin: 30px 0;
+        }
+        .quiz-title {
+            font-size: 28px;
+            color: #e17055;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .quiz-question {
+            background: white;
+            padding: 20px;
+            border-radius: 15px;
+            margin: 15px 0;
+            font-size: 18px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        .ending {
+            text-align: center;
+            padding: 40px 0;
+            margin-top: 40px;
+            background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);
+            border-radius: 20px;
+        }
+        .ending h3 { font-size: 32px; color: #2d3436; }
+        .ending p { text-align: center; font-size: 18px; color: #636e72; }
+        .back-home-btn {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 14px 30px;
+            background: rgba(0,0,0,0.08);
+            color: #2d3436;
+            text-decoration: none;
+            border-radius: 25px;
+            font-size: 18px;
+            border: 2px solid rgba(0,0,0,0.15);
+            transition: background 0.3s, transform 0.2s;
+        }
+        .back-home-btn:hover {
+            background: rgba(0,0,0,0.15);
+            transform: translateY(-2px);
+        }
+        .back-home-btn:active {
+            transform: translateY(0);
+        }
+        @media (max-width: 600px) {
+            .container { padding: 20px; }
+            h1 { font-size: 32px; }
+            h2 { font-size: 24px; }
+            p { font-size: 18px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🌞 日食与月食 🌚</h1>
+            <p class="subtitle">宇宙里的「影子游戏」</p>
+        </div>
+        
+        <h2>第一章：天空中突然熄灯！🕶️🌟</h2>
+        
+        <p>想象一下：大白天，太阳明晃晃地挂在天上，突然——天慢慢地暗了下来。星星出来了，鸟儿急急忙忙飞回巢穴，气温骤降。好像有人把太阳「关掉」了。</p>
+        <p>这就是<b>日食</b>。古人对它的反应是恐惧——他们认为天狗在吞吃太阳！中国的《尚书》记载了公元前 2134 年的一次日食，当时的人们敲锣打鼓、放弓箭，试图吓跑「天狗」。</p>
+        <p>而月食呢？你有没有见过满月突然变成暗红色？古人说那是「天狗吃月亮」，也是不祥之兆。</p>
+        <p>但现在的我们知道：日食和月食其实只是<b>一场精确的三维影子游戏</b>。参与游戏的只有三个角色：太阳🌞、地球🌍、和月亮🌙。</p>
+        
+        <div class="fun-fact">
+            <div class="fun-fact-title">💡 趣味知识</div>
+            一位古希腊哲学家——泰勒斯（Thales），在公元前 585 年<b>成功预测了一次日食</b>。他用了什么高科技？没有！他只是观察到日食发生的时间间隔有一定规律。这场日食刚好发生在两国交战时，天突然黑下来，双方都吓坏了，当场停战——一次日食阻止了一场战争！
+        </div>
+        
+        <div class="image-container">
+            <img src="scene_01.webp" alt="日食天空暗下来的壮观景象" class="dino-image">
+            <div class="image-caption">🌑 白昼变黑夜——大自然最壮观的免费演出</div>
+        </div>
+        
+        <h2>第二章：光走直线——影子的秘密🔦👤</h2>
+        
+        <p>要理解日食和月食，先要理解一个最简单的物理规律：<b>光沿直线传播</b>。</p>
+        <p>你玩过手影游戏吗？把手放在手电筒和墙壁之间，墙上就出现了手的影子。为什么会这样？因为光没办法「拐弯」绕过去。</p>
+        <p>日食和月食的原理，跟手影游戏<b>一模一样</b>——只是光源是太阳、影子制造者是月亮（或地球）。</p>
+        
+        <p><b>日食怎么发生的？</b></p>
+        <p>月亮恰好走到太阳和地球之间，三个天体排成一条直线（或近似直线）。太阳光照向地球，但被月亮挡住了。月亮的影子落在地球上，处在影子区域的人就看不到太阳了——这就是日食。</p>
+        
+        <p><b>月食怎么发生的？</b></p>
+        <p>反过来：地球恰好走到太阳和月亮之间。太阳光被地球挡住，地球的影子投射到月亮上。月亮原本是靠反射太阳光才亮起来的，现在它跑进了地球的影子里，就变暗了——这就是月食。</p>
+        
+        <div class="fun-fact green">
+            <div class="fun-fact-title">🧪 深入探究：本影和半影</div>
+            任何一个不透明物体挡住光时，会投下两种影子：<br>
+            ① <b>本影（umbra）</b>：完全黑暗的中心区域，光被 100% 挡住<br>
+            ② <b>半影（penumbra）</b>：部分黑暗的边缘区域，光只被挡住一部分<br>
+            地球直径约 12,742 km，月球直径仅 3,474 km——地球的直径是月球的 <b>3.67 倍</b>。所以月食时地球的影子完全可以「吞掉」整个月球；而日食时月球的影子只能在地球表面画出一个小小的「暗斑」，宽度最多只有 <b>270 公里</b>左右。
+        </div>
+        
+        <div class="image-container">
+            <img src="scene_02.webp" alt="太阳地球月亮排成直线的示意图" class="dino-image">
+            <div class="image-caption">🔦 光走直线——月亮挡住太阳就是日食，地球挡住太阳就是月食</div>
+        </div>
+        
+        <h2>第三章：为什么不是每个月都有？——倾斜的轨道🪐↗️</h2>
+        
+        <p>如果太阳、地球、月亮总是在一条直线上，那每个月都应该有一次日食和一次月食（月亮绕地球一圈约 29.5 天）。可实际上，日食每年大约只有 <b>2~5 次</b>，月食每年约 2~3 次。为什么这么少？</p>
+        
+        <p>答案：<b>月球的公转轨道平面是倾斜的</b>。</p>
+        <p>想象一下：地球绕太阳在一个平面上转（这叫「黄道面」）。但月球绕地球的轨道平面，跟黄道面之间有一个大约 <b>5 度</b>的夹角。</p>
+        <p>5 度听起来很小？在宇宙尺度上可不小。因为太阳离我们太远，从地球看过去太阳只有约 <b>0.5 度</b>宽（刚好是你伸出一根手指挡住太阳的视角）。5 度的倾斜意味着大部分时间月亮从上或下「错过」了太阳的位置。</p>
+        
+        <p>那什么时候才能对齐呢？只有当月球恰好经过两个平面的<b>交点</b>（称为「升交点」和「降交点」），并且太阳也恰好在这个交点的方向时，三个天体才真正排成一线。这个时机被称为「食季」（eclipse season），大约每 <b>173 天</b>出现一次，每次持续约 34 天。</p>
+        
+        <div class="fun-fact pink">
+            <div class="fun-fact-title">💡 趣味知识</div>
+            月球的轨道倾斜角——大约 5 度——如果它恰好是 0 度（完全平行于黄道面），那么<b>每个月都会发生一次日食和一次月食</b>！反过来，如果倾斜角更大（比如 10 度），日食和月食会变得极其罕见。5 度这个「恰到好处」的数字，让我们偶尔能看到宇宙中最壮观的表演——它不会频繁到让人审美疲劳，也不会少到一代人都看不到一次。
+        </div>
+        
+        <div class="image-container">
+            <img src="scene_03.webp" alt="月球轨道倾斜示意图" class="dino-image">
+            <div class="image-caption">↗️ 5 度的倾斜——决定了日食月食不是每月一次，而是一年几次</div>
+        </div>
+        
+        <h2>第四章：同一场戏，不同版本——日食月食的类型☀️🌑</h2>
+        
+        <p>不是所有日食都一样壮观。根据「挡光程度」，日食分为三种：</p>
+        
+        <p><b>① 日全食（Total Solar Eclipse）——最壮观</b><br>
+        月球完全遮住太阳光球层。白天变成「黄昏」，天空中出现日冕（太阳最外层大气，平时被阳光淹没看不到），星星在中午出现。持续时间：最多约 <b>7.5 分钟</b>（通常在 2-3 分钟）。在地球上任意一个固定地点，平均 <b>375 年</b>才发生一次日全食。</p>
+        
+        <p><b>② 日偏食（Partial Solar Eclipse）</b><br>
+        月球只遮住太阳的一部分。看起来像太阳被「咬了一口」。这是最常见的日食类型。</p>
+        
+        <p><b>③ 日环食（Annular Solar Eclipse）——「金戒指」</b><br>
+        月球轨道不是正圆形的，而是椭圆形。当月球恰好运行到离地球较远的位置时，它的「视觉大小」就不够完全遮住太阳。结果：月球周围露出一圈明亮的太阳边缘，像一个金色的戒指。被称为「火环」（Ring of Fire）。</p>
+        
+        <p>月食也分两种：</p>
+        
+        <p><b>① 月全食——「血月」</b><br>
+        月球完全进入地球的本影。但月球并不会完全消失——它会变成暗红色。为什么？因为太阳光穿过地球大气层时，蓝光被大气散射掉了（这就是为什么天空是蓝色的），只剩下波长最长的红光「拐弯」照射到月球上。所以月全食时的月亮看起来是暗红色的，被称为「血月」（Blood Moon）。</p>
+        
+        <div class="table-wrap">
+            <table>
+                <tr><th>类型</th><th>怎么发生</th><th>看什么</th><th>多久一次（全球）</th></tr>
+                <tr><td>☀️ 日全食</td><td>月球完全遮住太阳</td><td>日冕、星星白天出现</td><td>~1.5 年一次</td></tr>
+                <tr><td>☀️ 日环食</td><td>月球离太远遮不全</td><td>「金戒指」火环</td><td>~1 年一次</td></tr>
+                <tr><td>☀️ 日偏食</td><td>月球只遮一部分</td><td>太阳被咬了一口</td><td>最频繁</td></tr>
+                <tr><td>🌙 月全食</td><td>月球完全进地球本影</td><td>暗红色「血月」</td><td>~1.5 年一次</td></tr>
+                <tr><td>🌙 月偏食</td><td>月球部分进地球本影</td><td>月亮一部分变暗</td><td>>2 次/年</td></tr>
+            </table>
+        </div>
+        
+        <div class="image-container">
+            <img src="scene_04.webp" alt="日环食金戒指和血月对比" class="dino-image">
+            <div class="image-caption">💍 日环食的「火环」 vs 月全食的「血月」——大自然的奇观轮番上演</div>
+        </div>
+        
+        <h2>第五章：从恐惧到预测——人类的百年追食之旅🔭🧮</h2>
+        
+        <p>古人看到太阳被「吃掉」，只会恐惧地祈祷。但到了近代，科学家开始<b>精确计算和预测日食月食的时间</b>。</p>
+        <p>预测日食需要什么？需要知道：太阳、地球、月球的精确位置和运动轨迹——三者之间的相对运动涉及大量的天体力学计算。但规律是存在的：日食和月食以大约 <b>6585 天（约 18 年 11 天）</b>的周期大致重复，这个周期被称为「沙罗周期」（Saros Cycle），古巴比伦人最早发现了它。</p>
+        <p>日食还有一个令人惊叹的事实：<b>它之所以完美，纯属巧合</b>。太阳的直径约是月球的 400 倍——恰好，太阳离我们的距离也是月球离我们距离的约 400 倍。所以在地球上看，太阳和月球的「视觉大小」几乎一模一样。这个比例在太阳系所有行星-卫星组合中是<b>独一无二</b>的。如果月球小一点、或远一点、或太阳大一点——我们就永远看不到日全食了。</p>
+        
+        <div class="fun-fact orange">
+            <div class="fun-fact-title">💡 趣味知识</div>
+            日全食还有一个隐藏的科学价值：<b>它帮助验证了广义相对论</b>。1919 年，爱因斯坦提出引力会弯曲光线。但平时太阳太亮了，没法验证。1919 年 5 月 29 日发生日全食时，英国天文学家爱丁顿（Eddington）在非洲拍摄了日食期间太阳附近星星的位置，发现星星的「位置」确实发生了微小的偏移——因为太阳的引力弯曲了星光！这次观测让爱因斯坦一夜成名。没有日全食，广义相对论的验证可能要晚很多年。
+        </div>
+        
+        <div class="image-container">
+            <img src="scene_05.webp" alt="未来日食预测和人类观测日食" class="dino-image">
+            <div class="image-caption">🔭 从恐惧到科学——人类用计算和观察驯服了「天狗」</div>
+        </div>
+        
+        <div class="quiz-section">
+            <div class="quiz-title">🎮 互动测试：测测你学到了多少！</div>
+            
+            <div class="quiz-question">
+                <b>Q1：日食发生时，三个天体的排列顺序是？</b><br>
+                A) 太阳—地球—月球&nbsp;&nbsp;&nbsp;B) 太阳—月球—地球&nbsp;&nbsp;&nbsp;C) 月球—太阳—地球&nbsp;&nbsp;&nbsp;D) 地球—月球—太阳
+            </div>
+            <div class="quiz-question">
+                <b>Q2：为什么不是每个月都有日食和月食？</b><br>
+                A) 因为月亮有时候不发光&nbsp;&nbsp;&nbsp;B) 因为月球轨道平面相对于地球公转平面倾斜了约 5 度<br>
+                C) 因为地球自转太快&nbsp;&nbsp;&nbsp;D) 因为太阳太大
+            </div>
+            <div class="quiz-question">
+                <b>Q3：月全食时月亮为什么是暗红色的（「血月」）？</b><br>
+                A) 因为月亮着火了&nbsp;&nbsp;&nbsp;B) 因为地球大气散射掉蓝光，只剩红光折射到月球上<br>
+                C) 因为月球表面的岩石是红色的&nbsp;&nbsp;&nbsp;D) 因为太阳光变红了
+            </div>
+            <div class="quiz-question">
+                <b>Q4：日食之所以完美（太阳和月亮在地球上看一样大），是因为？</b><br>
+                A) 人为设计的&nbsp;&nbsp;&nbsp;B) 太阳直径是月球的 400 倍，距离也恰好是 400 倍——纯属巧合<br>
+                C) 月亮正在变大&nbsp;&nbsp;&nbsp;D) 太阳正在缩小
+            </div>
+            <div class="quiz-question">
+                <b>Q5：1919 年日全食帮助科学家验证了什么理论？</b><br>
+                A) 牛顿的万有引力定律&nbsp;&nbsp;&nbsp;B) 爱因斯坦的广义相对论（引力弯曲光线）<br>
+                C) 哥白尼的日心说&nbsp;&nbsp;&nbsp;D) 开普勒的行星运动定律
+            </div>
+        </div>
+        
+        <div class="ending">
+            <h3>—— 完 ——</h3>
+            <p>谢谢阅读！希望你学到了很多知识！</p>
+            <p style="margin-top: 10px; font-size: 14px; color: #b2bec3;">本故事由 AI 助手小龙为小朋友精心制作 🐉</p>
+            <div style="text-align: left; margin-top: 15px;">
+                <a href="../index.html" class="back-home-btn">🏠 返回首页</a>
+            </div>
+        </div>
+    </div>
+
+<!-- rourou-home-btn:start -->
+<style>
+#rourou-home-btn{position:fixed;left:14px;bottom:calc(14px + env(safe-area-inset-bottom,0px));z-index:9999;
+display:inline-flex;align-items:center;gap:6px;padding:10px 18px;border-radius:999px;
+background:rgba(255,255,255,0.92);color:#2d3436;font-size:15px;font-weight:600;
+text-decoration:none;box-shadow:0 4px 14px rgba(0,0,0,0.18);border:1px solid rgba(0,0,0,0.08);
+-webkit-backdrop-filter:blur(4px);backdrop-filter:blur(4px);transition:transform .15s,background .15s;}
+#rourou-home-btn:hover{background:#fff;transform:translateY(-2px);}
+@media (max-width:600px){#rourou-home-btn{padding:9px 14px;font-size:13px;left:10px;bottom:calc(10px + env(safe-area-inset-bottom,0px));}}
+</style>
+<a id="rourou-home-btn" href="../index.html">🏠 首页</a>
+<!-- rourou-home-btn:end -->
+</body>
+</html>

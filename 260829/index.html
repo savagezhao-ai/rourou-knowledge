@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>鱼是怎么呼吸的</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: "Microsoft YaHei", "PingFang SC", sans-serif;
+            background: linear-gradient(180deg, #ffeaa7 0%, #fab1a0 30%, #ff7675 60%, #fd79a8 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        .container {
+            max-width: 850px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 30px;
+            padding: 40px;
+            box-shadow: 0 25px 80px rgba(0,0,0,0.15);
+        }
+        .header {
+            text-align: center;
+            padding: 30px 0;
+            background: linear-gradient(135deg, #ff6b6b 0%, #feca57 50%, #48dbfb 100%);
+            border-radius: 20px;
+            margin-bottom: 30px;
+        }
+        .header h1 {
+            font-size: 48px;
+            color: white;
+            text-shadow: 3px 3px 6px rgba(0,0,0,0.2);
+        }
+        .subtitle {
+            font-size: 20px;
+            color: rgba(255,255,255,0.95);
+        }
+        h2 {
+            font-size: 32px;
+            color: #2d3436;
+            margin: 40px 0 20px;
+            padding: 15px 25px;
+            background: linear-gradient(90deg, #ff9ff3 0%, #feca57 100%);
+            border-radius: 15px;
+            display: inline-block;
+        }
+        p {
+            font-size: 20px;
+            line-height: 2;
+            color: #2d3436;
+            margin-bottom: 20px;
+            text-align: justify;
+        }
+        .image-container {
+            width: 100%;
+            margin: 30px 0;
+            text-align: center;
+        }
+        .dino-image {
+            width: 100%;
+            border-radius: 20px;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.2);
+        }
+        .image-caption {
+            color: #636e72;
+            font-size: 16px;
+            margin-top: 15px;
+            font-style: italic;
+            background: #ffeaa7;
+            display: inline-block;
+            padding: 8px 20px;
+            border-radius: 20px;
+        }
+        .fun-fact {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 25px;
+            border-radius: 20px;
+            margin: 25px 0;
+            font-size: 18px;
+            line-height: 1.8;
+        }
+        .fun-fact.pink {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+        }
+        .fun-fact.green {
+            background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);
+        }
+        .fun-fact.orange {
+            background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);
+        }
+        .fun-fact-title {
+            font-size: 22px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        .divider {
+            text-align: center;
+            font-size: 30px;
+            color: #ddd;
+            margin: 30px 0;
+        }
+        .quiz-section {
+            background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);
+            padding: 30px;
+            border-radius: 20px;
+            margin: 30px 0;
+        }
+        .quiz-title {
+            font-size: 28px;
+            color: #e17055;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .quiz-question {
+            background: white;
+            padding: 20px;
+            border-radius: 15px;
+            margin: 15px 0;
+            font-size: 18px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        .ending {
+            text-align: center;
+            padding: 40px 0;
+            margin-top: 40px;
+            background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);
+            border-radius: 20px;
+        }
+        .ending h3 { font-size: 32px; color: #2d3436; }
+        .ending p { text-align: center; font-size: 18px; color: #636e72; }
+        .back-home-btn {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 14px 30px;
+            background: rgba(0,0,0,0.08);
+            color: #2d3436;
+            text-decoration: none;
+            border-radius: 25px;
+            font-size: 18px;
+            border: 2px solid rgba(0,0,0,0.15);
+            transition: background 0.3s, transform 0.2s;
+        }
+        .back-home-btn:hover {
+            background: rgba(0,0,0,0.15);
+            transform: translateY(-2px);
+        }
+        .back-home-btn:active {
+            transform: translateY(0);
+        }
+        @media (max-width: 600px) {
+            .container { padding: 20px; }
+            h1 { font-size: 32px; }
+            h2 { font-size: 24px; }
+            p { font-size: 18px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>鱼是怎么呼吸的</h1>
+            <p class="subtitle">水下世界的「氧气工厂」</p>
+        </div>
+
+        <h2>第一章：鱼在水里不会「憋气」吗？</h2>
+        <p>我们人类要是把头埋进水里，过不了一分钟就会憋得难受，必须赶紧浮上来吸气。可是鱼呢？它们整天待在水里，从来不用浮出水面，却活得自由自在。鱼是怎么在水里呼吸的呢？</p>
+        <p>你可能会想：鱼是不是不用呼吸？当然不是！鱼和我们一样，也需要<strong>氧气</strong>才能活下去。只不过，鱼呼吸的地方和方式，和我们完全不一样。</p>
+        <p>秘密就藏在鱼身体两侧那个一开一合的「小盖子」下面。你仔细观察水里的鱼，会发现它的腮帮子总在不停地动——那其实就是鱼在「呼吸」。今天，我们就钻进水里，去看看鱼到底是怎么把氧气吸进身体的。</p>
+        <div class="image-container">
+            <img class="dino-image" src="scene_01.webp" alt="鱼呼吸">
+            <div class="image-caption">鱼的腮帮子一开一合，其实是在呼吸</div>
+        </div>
+        <div class="fun-fact pink">
+            <div class="fun-fact-title">🌟 趣味知识</div>
+            水里其实藏着氧气！只不过它不是一个个气泡，而是「溶解」在水里的。就像糖溶在水里看不见一样，空气里的氧气也会悄悄溶进水里。鱼要的，就是这些溶在水里的氧气。
+        </div>
+
+        <h2>第二章：鱼用什么呼吸？——鳃的秘密</h2>
+        <p>我们人类用<strong>肺</strong>呼吸空气，鱼则用<strong>鳃</strong>（sāi）来呼吸水。鳃长在鱼头的两侧，藏在鳃盖下面。</p>
+        <p>如果你掀开鳃盖往里看，会看到一排排像梳子一样的东西，那就是鳃丝。鳃丝是红色的，因为里面布满了密密麻麻的<strong>毛细血管</strong>——血就是从这些细小的管子里流过的。鳃丝又细又软，一层层叠起来，总面积特别大，像一床叠起来的毛巾。</p>
+        <p>为什么鳃要弄得这么大面积呢？因为面积越大，鱼接触水的「窗口」就越大，能吸到的氧气就越多。这就像洗衣服时，把衣服摊开晾，比揉成一团干得快——接触空气的面积大，效率就高。</p>
+        <div class="image-container">
+            <img class="dino-image" src="scene_02.webp" alt="鳃的结构">
+            <div class="image-caption">鳃丝又细又红，里面全是毛细血管</div>
+        </div>
+        <div class="fun-fact green">
+            <div class="fun-fact-title">🔬 趣味知识</div>
+            鳃丝是鲜红色的，因为里面装满了血。如果一条鱼死了、鳃发白了，就说明血不流了。所以，新鲜的鱼鳃是鲜红的，这也是判断鱼新不新鲜的一个小窍门哦！
+        </div>
+
+        <h2>第三章：氧气是怎么「跑」进鱼身体的？</h2>
+        <p>现在关键的问题来了：溶在水里的氧气，是怎么跑到鱼身体里去的呢？这靠的是一个神奇的规律——<strong>扩散</strong>。</p>
+        <p>扩散就是：东西会从「多的地方」，自己跑到「少的地方」去。就像你在房间一角喷了香水，香味会慢慢飘满整个房间——因为香味从「多的地方」（喷的地方）向「少的地方」（没香味的地方）跑。</p>
+        <p>鱼呼吸时，先张大嘴巴，把水「喝」进来；然后闭上嘴，把水挤过鳃丝。这时候，水里的氧气多，而鱼血里的氧气少（因为血里的氧气已经被身体用掉了）。于是，氧气就顺着「从多到少」的方向，穿过薄薄的鳃丝，钻进了鱼的血液里。</p>
+        <p>同时，鱼身体里产生的废气——二氧化碳，也会从血里跑到水里，被水带走。这一进一出，鱼就完成了呼吸。你看，根本不用浮出水面！</p>
+        <div class="image-container">
+            <img class="dino-image" src="scene_03.webp" alt="气体交换">
+            <div class="image-caption">氧气从水里钻进血里，二氧化碳从血里跑出来</div>
+        </div>
+        <div class="fun-fact orange">
+            <div class="fun-fact-title">🌱 趣味知识</div>
+            鱼呼吸的动作可勤快了。一条鱼每分钟要「喝」进、又排出好多好多水。而且鱼是「逆流交换」的高手——水从鳃丝流过时，水流方向和血流方向正好相反，这样氧气吸收得特别彻底，几乎不浪费。
+        </div>
+
+        <h2>第四章：所有的鱼都用鳃呼吸吗？</h2>
+        <p>大部分鱼都用鳃呼吸，但水里还有一群「特别分子」，它们另有高招。</p>
+        <p>比如<strong>鲸鱼和海豚</strong>，它们虽然生活在水里，却不是鱼，而是哺乳动物。它们和我们一样用肺呼吸，所以必须时不时浮出水面，用头顶的「气孔」换气。鲸鱼喷出的那根「水柱」，其实就是它呼吸时喷出的气和水汽。</p>
+        <p>还有一些鱼，除了鳃，还有「备用的肺」。比如<strong>肺鱼</strong>，它们在旱季水快干涸时，能钻进泥里，用像肺一样的鱼鳔（biào）来呼吸空气，睡上一整个旱季。</p>
+        <p>还有<strong>弹涂鱼</strong>，它们能爬上泥滩，靠湿润的皮肤和鳃腔里储存的水来呼吸。所以，虽然「用鳃」是鱼的标配，但水里的呼吸方式，其实多种多样。</p>
+        <div class="image-container">
+            <img class="dino-image" src="scene_04.webp" alt="鲸鱼和肺鱼">
+            <div class="image-caption">鲸鱼用肺呼吸，肺鱼有备用「肺」</div>
+        </div>
+        <div class="fun-fact">
+            <div class="fun-fact-title">💰 趣味知识</div>
+            鲸鱼不是鱼！它和我们一样，是喝奶长大的哺乳动物。鲸鱼一口气能憋很久，比如抹香鲸能潜入海底超过一个小时不换气。它们的水下憋气能力，可比我们人类强太多啦！
+        </div>
+
+        <h2>第五章：如果鱼离开了水</h2>
+        <p>你可能听过一句俗话：「鱼儿离不开水」。这是为什么呢？现在你应该明白了——因为鱼靠鳃呼吸，而鳃必须在水里才能工作。</p>
+        <p>鳃丝又薄又软，靠水的浮力才能舒展开。一旦鱼离开水，鳃丝就会粘在一起，瘪成一团，接触空气的面积一下子变小，而且很快就会变干，没法再从水里「捞」氧气了。所以鱼上岸后，很快就会因为「吸不到氧」而死掉。</p>
+        <p>这也提醒我们：水对鱼来说，不只是「住的地方」，更是它「呼吸的地方」。所以养鱼的时候，要经常给水打氧、换水，保证水里有足够的溶解氧，鱼才能健康地游来游去。</p>
+        <p>认识了鱼的呼吸，你是不是更佩服大自然的设计了？一条小小的鱼，靠着精巧的鳃，就能在水下自由自在地呼吸，真是太神奇了。</p>
+        <div class="image-container">
+            <img class="dino-image" src="scene_05.webp" alt="鱼离不开水">
+            <div class="image-caption">鳃离了水就粘在一起，鱼就吸不到氧了</div>
+        </div>
+        <div class="fun-fact green">
+            <div class="fun-fact-title">🚀 趣味知识</div>
+            鱼缸里的增氧泵，会往水里不停地「吹」气泡，让更多的氧气溶进水里。这样，鱼缸里的鱼就有充足的氧气啦。下次看到鱼缸里咕嘟咕嘟冒泡，你就知道：那是鱼在「大口呼吸新鲜空气」呢！
+        </div>
+
+        <div class="divider">✿ ✿ ✿</div>
+
+        <div class="quiz-section">
+            <div class="quiz-title">🎯 考考你（互动小测试）</div>
+            <div class="quiz-question">
+                <strong>第1题：</strong>鱼用什么器官呼吸？<br>
+                A. 肺　B. 鳃　C. 皮肤　D. 鼻子
+            </div>
+            <div class="quiz-question">
+                <strong>第2题：</strong>鱼鳃为什么是红色的？<br>
+                A. 因为涂了颜料　B. 因为里面布满毛细血管　C. 因为很热　D. 因为喝了红水
+            </div>
+            <div class="quiz-question">
+                <strong>第3题：</strong>水里的氧气是怎么进到鱼身体里的？<br>
+                A. 鱼用嘴巴吸气泡　B. 靠扩散，氧气从多的水里跑到少的血里　C. 鱼浮出水面吸　D. 鱼不吃氧
+            </div>
+            <div class="quiz-question">
+                <strong>第4题：</strong>下面哪个动物不是用鳃呼吸？<br>
+                A. 鲸鱼　B. 鲫鱼　C. 鲤鱼　D. 金鱼
+            </div>
+            <div class="quiz-question">
+                <strong>第5题：</strong>鱼离开水为什么会死？<br>
+                A. 因为太冷　B. 因为鳃丝粘在一起变干，吸不到氧　C. 因为不会走路　D. 因为想念水里的朋友
+            </div>
+            <p style="text-align:center; font-size:16px; color:#e17055; margin-top:10px;">（答案：B、B、B、A、B。你都答对了吗？）</p>
+        </div>
+
+        <div class="ending">
+            <h3>—— 完 ——</h3>
+            <p>谢谢阅读！希望你学到了很多知识！</p>
+            <p style="margin-top: 10px; font-size: 14px; color: #b2bec3;">本故事由 AI 助手小龙为小朋友精心制作 🐉</p>
+            <div style="text-align: left; margin-top: 15px;">
+                <a href="../index.html" class="back-home-btn">🏠 返回首页</a>
+            </div>
+        </div>
+    </div>
+
+<!-- rourou-home-btn:start -->
+<style>
+#rourou-home-btn{position:fixed;left:14px;bottom:calc(14px + env(safe-area-inset-bottom,0px));z-index:9999;
+display:inline-flex;align-items:center;gap:6px;padding:10px 18px;border-radius:999px;
+background:rgba(255,255,255,0.92);color:#2d3436;font-size:15px;font-weight:600;
+text-decoration:none;box-shadow:0 4px 14px rgba(0,0,0,0.18);border:1px solid rgba(0,0,0,0.08);
+-webkit-backdrop-filter:blur(4px);backdrop-filter:blur(4px);transition:transform .15s,background .15s;}
+#rourou-home-btn:hover{background:#fff;transform:translateY(-2px);}
+@media (max-width:600px){#rourou-home-btn{padding:9px 14px;font-size:13px;left:10px;bottom:calc(10px + env(safe-area-inset-bottom,0px));}}
+</style>
+<a id="rourou-home-btn" href="../index.html">🏠 首页</a>
+<!-- rourou-home-btn:end -->
+</body>
+</html>

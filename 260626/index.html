@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>沙滩上的隐形陷阱 — 挖沙坑的安全风险与防护</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: -apple-system, "PingFang SC", "Microsoft YaHei", sans-serif; background: linear-gradient(135deg, #fdf6e3 0%, #e8d5b7 40%, #d4a76a 100%); color: #4a3728; line-height: 1.8; min-height: 100vh; }
+  .container { max-width: 800px; margin: 0 auto; padding: 20px; }
+  header { text-align: center; padding: 50px 20px 30px; background: linear-gradient(180deg, rgba(253,246,227,0) 0%, rgba(253,246,227,0.9) 30%); border-radius: 0 0 40px 40px; }
+  header h1 { font-size: 2.4em; color: #8b5e3c; text-shadow: 2px 2px 4px rgba(139,94,60,0.2); margin-bottom: 10px; }
+  header .subtitle { font-size: 1.1em; color: #a67c52; }
+  .article-meta { text-align: center; color: #a67c52; font-size: 0.9em; margin-bottom: 30px; }
+  .chapter { background: rgba(255,255,255,0.85); border-radius: 20px; padding: 30px; margin: 25px 0; box-shadow: 0 4px 15px rgba(139,94,60,0.1); backdrop-filter: blur(10px); }
+  .chapter h2 { font-size: 1.6em; color: #8b5e3c; border-left: 5px solid #f4a460; padding-left: 15px; margin-bottom: 15px; }
+  .chapter h2 .emoji { margin-right: 8px; }
+  .chapter p { margin: 12px 0; text-indent: 2em; }
+  .chapter img { width: 100%; border-radius: 12px; margin: 15px 0; box-shadow: 0 4px 12px rgba(0,0,0,0.1); }
+  .funfact { background: linear-gradient(135deg, #fff8e1, #ffecb3); border-left: 4px solid #ffb300; border-radius: 0 12px 12px 0; padding: 15px 20px; margin: 20px 0; }
+  .funfact .label { font-weight: bold; color: #e65100; }
+  .danger-box { background: linear-gradient(135deg, #ffebee, #ffcdd2); border-left: 4px solid #e53935; border-radius: 0 12px 12px 0; padding: 15px 20px; margin: 20px 0; }
+  .danger-box .label { font-weight: bold; color: #c62828; }
+  .safe-box { background: linear-gradient(135deg, #e8f5e9, #c8e6c9); border-left: 4px solid #43a047; border-radius: 0 12px 12px 0; padding: 15px 20px; margin: 20px 0; }
+  .safe-box .label { font-weight: bold; color: #2e7d32; }
+  .quiz { background: linear-gradient(135deg, #ede7f6, #d1c4e9); border-radius: 20px; padding: 30px; margin: 30px 0; }
+  .quiz h2 { text-align: center; color: #5e35b1; margin-bottom: 20px; }
+  .quiz .q { background: rgba(255,255,255,0.7); border-radius: 12px; padding: 18px; margin: 12px 0; }
+  .quiz .q p { font-weight: bold; color: #4a148c; margin-bottom: 10px; }
+  .quiz .q label { display: block; padding: 6px 0; cursor: pointer; }
+  .quiz button { display: block; margin: 20px auto; padding: 12px 40px; font-size: 1.1em; background: linear-gradient(135deg, #7c4dff, #651fff); color: white; border: none; border-radius: 25px; cursor: pointer; }
+  .quiz .result { text-align: center; font-size: 1.2em; font-weight: bold; margin-top: 15px; }
+  footer { text-align: center; padding: 40px 20px; color: #8b5e3c; }
+  footer a { color: #8b5e3c; text-decoration: none; padding: 10px 20px; background: rgba(255,255,255,0.6); border-radius: 25px; transition: 0.3s; }
+  footer a:hover { background: rgba(255,255,255,0.9); }
+  .stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 15px; margin: 20px 0; }
+  .stat-card { background: rgba(255,255,255,0.6); border-radius: 12px; padding: 15px; text-align: center; }
+  .stat-card .num { font-size: 2em; font-weight: bold; color: #e65100; }
+  .stat-card .desc { font-size: 0.85em; color: #8b5e3c; }
+  @media (max-width: 600px) {
+    header h1 { font-size: 1.6em; }
+    .chapter { padding: 20px; }
+  }
+</style>
+</head>
+<body>
+<div class="container">
+
+<header>
+  <h1>🏖️ 沙滩上的隐形陷阱</h1>
+  <p class="subtitle">挖沙坑的安全风险与防护</p>
+  <div class="article-meta">2026年6月26日 · 肉肉的知识宝库</div>
+</header>
+
+<!-- 第1章 -->
+<div class="chapter">
+  <h2><span class="emoji">🌊</span>第一章 沙滩上的快乐时光</h2>
+  <img src="scene_01.webp" alt="沙滩快乐玩耍">
+  <p>夏天的海滩，是孩子们的天堂！堆沙堡、挖沙坑、踩浪花……每一个来到沙滩的小朋友，都忍不住拿起小铲子，在沙滩上挖呀挖呀挖。</p>
+  <p>你知道吗？挖沙坑看起来简单又安全——沙子那么松软，踩上去都不会疼，能有什么危险呢？</p>
+  <p>可是，正是这个看似无害的游戏，隐藏着很多人不知道的安全风险。每年夏天，全世界都有小朋友因为在沙滩上挖沙坑而受伤，甚至发生更严重的意外。</p>
+  <p>今天，我们就来揭开"挖沙坑"的秘密——它为什么危险？怎么玩才安全？读完这篇文章，你就是沙滩上的安全小卫士！</p>
+
+  <div class="funfact">
+    <span class="label">💡 趣味知识：</span> 
+    全世界每年有超过 <strong>100万人</strong> 去海滩游玩。其中大约有 <strong>3%-5%</strong> 的海滩意外和沙子有关——包括沙坑坍塌、沙埋等。这些事故的发生地点，很多就在离大人只有几步远的地方！
+  </div>
+</div>
+
+<!-- 第2章 -->
+<div class="chapter">
+  <h2><span class="emoji">🔬</span>第二章 沙坑为什么会坍塌？</h2>
+  <img src="scene_02.webp" alt="沙坑坍塌原理">
+  <p>要理解沙坑的危险，我们先来做一个小实验：抓一把干沙子，用力握紧——然后松开手。沙子立刻就散开了，对不对？</p>
+  <p>这就是沙子的特性：<strong>松散、不稳定</strong>。沙子不像泥土那样有粘性，一粒一粒的沙子之间没有"胶水"把它们粘在一起。</p>
+  <p>当你挖沙坑的时候，沙坑的"墙壁"是由一粒粒沙子堆起来的。只要有一点点震动——比如有人从旁边跑过、或者海浪拍过来，沙坑的墙壁就会瞬间"哗啦"一下倒塌！</p>
+  <p>更可怕的是：<strong>湿沙比干沙更危险</strong>！你可能觉得湿沙更结实、更好塑形——确实，湿沙能做成漂亮的沙堡。但这恰恰是陷阱所在：湿沙干燥后会变得极其松软，之前看着很牢固的沙坑墙壁，几分钟后可能就完全不牢靠了。</p>
+
+  <div class="funfact">
+    <span class="label">🔍 科学小实验：</span>
+    试试在家做一个"沙堆稳定性测试"：拿一个杯子，装满干沙，倒扣在地上，慢慢提起——沙子会形成一个锥形堆。这个锥形的角度就是沙子的 <strong>"休止角"</strong>。沙子的休止角大约是 34°，意味着超过这个角度的沙壁就一定会崩塌！
+  </div>
+
+  <div class="danger-box">
+    <span class="label">⚠️ 关键数字：</span>
+    一个 1 米深的沙坑坍塌时，压在底部的沙子重量可以超过 <strong>200 公斤</strong>！这相当于两个成年人的重量。如果人被埋在下面，光靠自己是根本爬不出来的。
+  </div>
+</div>
+
+<!-- 第3章 -->
+<div class="chapter">
+  <h2><span class="emoji">⚠️</span>第三章 挖沙坑的四大危险</h2>
+  <img src="scene_03.webp" alt="沙坑危险警示">
+  <p>沙坑的危险主要有四种，每一种都不能忽视：</p>
+
+  <p><strong>第一，坍塌掩埋 🏚️</strong>——这是最危险的！沙坑的墙壁突然崩塌，把人埋在沙子下面。沙子会紧紧压住胸口，让人无法呼吸。而且越挣扎，陷得越深！</p>
+  <p><strong>第二，沙坑陷阱 🕳️</strong>——在沙滩上走路的其他人，可能没注意到沙坑的存在，一脚踩空，扭伤脚踝甚至摔断骨头。这就像在沙滩上设置了一个"隐形陷阱"。</p>
+  <p><strong>第三，潮水倒灌 🌊</strong>——很多小朋友喜欢在靠近海水的湿沙上挖坑。可涨潮的时候，海水会迅速灌满沙坑。如果人在坑里，可能被突然涌来的海水卷走！</p>
+  <p><strong>第四，高温中暑 ☀️</strong>——沙滩上没有遮挡，太阳直射下，沙子的温度可以高达 60°C 以上！长时间蹲在沙坑里挖沙，非常容易中暑和脱水。</p>
+
+  <div class="danger-box">
+    <span class="label">🚨 真实教训：</span>
+    2022年，美国佛罗里达州一个海滩上，一名7岁小女孩在哥哥挖的沙坑里玩耍时，沙坑突然坍塌，她被埋在约1.5米深的沙下。幸好救生员和路人及时赶来，花了近20分钟才把她挖出来——如果再晚几分钟，后果不堪设想！
+  </div>
+</div>
+
+<!-- 第4章 -->
+<div class="chapter">
+  <h2><span class="emoji">🛡️</span>第四章 安全挖沙六大守则</h2>
+  <img src="scene_04.webp" alt="安全挖沙守则">
+  <p>不是说不能挖沙坑——挖沙本来就是沙滩上最好玩的游戏之一！关键是<strong>怎么安全地玩</strong>。记住下面这六条安全守则：</p>
+
+  <p><strong>守则一：深度不过膝 📏</strong><br>
+  沙坑最深不能超过你自己的膝盖高度。如果带着弟弟妹妹，就以他们的小腿高度为准。浅坑一样好玩，而且绝对安全！</p>
+
+  <p><strong>守则二：要大人陪在身边 👨‍👩‍👧</strong><br>
+  挖沙坑的时候，必须有大人在旁边看着。如果大人暂时走开，你就先停下，等大人回来再继续。</p>
+
+  <p><strong>守则三：远离海水 🌊</strong><br>
+  不要在高潮线以下的湿沙上挖深坑。潮水涨起来的速度比你想象得快得多——有时候每分钟能涨几十厘米！</p>
+
+  <p><strong>守则四：不挖隧道 🚫</strong><br>
+  绝对不要在沙子下面挖隧道或者掏洞！沙子的顶部一旦失去支撑，会瞬间塌下来。</p>
+
+  <p><strong>守则五：玩完要填平 🔙</strong><br>
+  离开海滩之前，一定要用铲子把你挖的坑填平、踩实。这样后面来的人就不会踩到陷阱受伤。</p>
+
+  <p><strong>守则六：多喝水、注意防晒 💧🧴</strong><br>
+  在沙滩上每隔 20-30 分钟就要喝一次水，戴好遮阳帽，涂好防晒霜。千万不要因为玩得太开心忘了保护自己！</p>
+
+  <div class="safe-box">
+    <span class="label">✅ 安全口诀：</span>
+    膝盖为尺不过深，<br>
+    大人陪伴不离身。<br>
+    远离潮水不挖洞，<br>
+    玩完填平小沙坑。<br>
+    多喝水来勤防晒，<br>
+    安全快乐沙滩行！
+  </div>
+</div>
+
+<!-- 第5章 -->
+<div class="chapter">
+  <h2><span class="emoji">🦸</span>第五章 做沙滩上的安全小卫士</h2>
+  <img src="scene_05.webp" alt="沙滩安全小卫士">
+  <p>你学会了这么多关于挖沙坑安全的知识，现在你就是——<strong>沙滩安全小卫士</strong>！</p>
+  <p>下一次去海边的时候，你不仅自己会安全地挖沙、开心地玩耍，还能提醒身边的小伙伴和家长注意这些安全事项。</p>
+  <p>如果看到一个没人填平的深沙坑，你可以告诉大人，让他们帮忙填上——这个小小的举动，可能就保护了一个小朋友的安全。</p>
+  <p>记住：<strong>快乐的前提是安全</strong>。沙滩的魅力不会因为挖得浅一点就减少，堆一个精致的沙堡、做一条长长的小沙渠，一样能带来无限的创造力与快乐！</p>
+  <p>夏天、海浪、沙滩、阳光——还有你这个聪明又负责的安全小卫士。祝你下一次的海滩之旅，既开心又安全！🏖️✨</p>
+
+  <div class="funfact">
+    <span class="label">🌍 全球视角：</span>
+    澳大利亚的海滩救生员有一个口号：<strong>"If in doubt, fill it out!"</strong>——如果你不确定一个沙坑是否安全，那就把它填平！很多国家的海滩甚至规定：游客离开时必须填平自己挖的沙坑，以减少安全隐患。
+  </div>
+</div>
+
+<!-- 互动测试 -->
+<div class="quiz">
+  <h2>🧠 安全知识小测试</h2>
+  <form id="quizForm">
+    <div class="q">
+      <p>1. 沙坑最深不能超过自己的什么高度？</p>
+      <label><input type="radio" name="q1" value="a"> A. 脖子</label>
+      <label><input type="radio" name="q1" value="b"> B. 膝盖</label>
+      <label><input type="radio" name="q1" value="c"> C. 腰部</label>
+      <label><input type="radio" name="q1" value="d"> D. 脚踝</label>
+    </div>
+    <div class="q">
+      <p>2. 为什么湿沙比干沙更危险？</p>
+      <label><input type="radio" name="q2" value="a"> A. 湿沙里面有小虫子</label>
+      <label><input type="radio" name="q2" value="b"> B. 湿沙太重搬不动</label>
+      <label><input type="radio" name="q2" value="c"> C. 湿沙干燥后变得松软，沙壁会突然崩塌</label>
+      <label><input type="radio" name="q2" value="d"> D. 湿沙容易弄脏衣服</label>
+    </div>
+    <div class="q">
+      <p>3. 挖沙坑时下面哪个行为是绝对禁止的？</p>
+      <label><input type="radio" name="q3" value="a"> A. 用铲子挖沙</label>
+      <label><input type="radio" name="q3" value="b"> B. 和朋友一起挖</label>
+      <label><input type="radio" name="q3" value="c"> C. 在沙子下面掏隧道</label>
+      <label><input type="radio" name="q3" value="d"> D. 用桶装沙子</label>
+    </div>
+    <div class="q">
+      <p>4. 离开沙滩前，应该对你挖的沙坑做什么？</p>
+      <label><input type="radio" name="q4" value="a"> A. 不管它，让它自己变平</label>
+      <label><input type="radio" name="q4" value="b"> B. 用铲子把它填平、踩实</label>
+      <label><input type="radio" name="q4" value="c"> C. 放一个标志在沙坑旁边</label>
+      <label><input type="radio" name="q4" value="d"> D. 用水把它冲平</label>
+    </div>
+    <div class="q">
+      <p>5. 如果你看到沙滩上有一个没人管的深沙坑，应该怎么做？</p>
+      <label><input type="radio" name="q5" value="a"> A. 跳进去看看有多深</label>
+      <label><input type="radio" name="q5" value="b"> B. 当作没看见</label>
+      <label><input type="radio" name="q5" value="c"> C. 告诉身边的大人，帮忙填平</label>
+      <label><input type="radio" name="q5" value="d"> D. 拍张照片发朋友圈</label>
+    </div>
+    <button type="button" onclick="checkQuiz()">📝 交卷，看看你得了多少分！</button>
+    <div class="result" id="quizResult"></div>
+  </form>
+</div>
+
+<footer>
+  <p style="margin-bottom:15px;">本篇为AI助手🐉小龙为小朋友制作 · 肉肉的知识宝库</p>
+  <a href="../index.html">🏠 返回首页</a>
+</footer>
+
+</div>
+
+<script>
+function checkQuiz() {
+  const answers = { q1: 'b', q2: 'c', q3: 'c', q4: 'b', q5: 'c' };
+  let score = 0;
+  for (let [q, a] of Object.entries(answers)) {
+    const selected = document.querySelector(`input[name="${q}"]:checked`);
+    if (selected && selected.value === a) score++;
+  }
+  const msg = score === 5 ? '🎉 满分！你是真正的沙滩安全小卫士！' :
+              score >= 3 ? `👍 答对了 ${score} 题！还不错，再复习一下就更棒了！` :
+              `📖 答对了 ${score} 题。别灰心，再看一遍文章学习一下吧！`;
+  document.getElementById('quizResult').innerText = msg;
+}
+</script>
+
+
+<!-- rourou-home-btn:start -->
+<style>
+#rourou-home-btn{position:fixed;left:14px;bottom:calc(14px + env(safe-area-inset-bottom,0px));z-index:9999;
+display:inline-flex;align-items:center;gap:6px;padding:10px 18px;border-radius:999px;
+background:rgba(255,255,255,0.92);color:#2d3436;font-size:15px;font-weight:600;
+text-decoration:none;box-shadow:0 4px 14px rgba(0,0,0,0.18);border:1px solid rgba(0,0,0,0.08);
+-webkit-backdrop-filter:blur(4px);backdrop-filter:blur(4px);transition:transform .15s,background .15s;}
+#rourou-home-btn:hover{background:#fff;transform:translateY(-2px);}
+@media (max-width:600px){#rourou-home-btn{padding:9px 14px;font-size:13px;left:10px;bottom:calc(10px + env(safe-area-inset-bottom,0px));}}
+</style>
+<a id="rourou-home-btn" href="../index.html">🏠 首页</a>
+<!-- rourou-home-btn:end -->
+</body>
+</html>

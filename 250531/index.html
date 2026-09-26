@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>✈️ 飞机：人类插上翅膀的故事</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: "Microsoft YaHei", "PingFang SC", sans-serif;
+            background: linear-gradient(180deg, #74b9ff 0%, #a29bfe 30%, #6c5ce7 60%, #0984e3 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        .container {
+            max-width: 850px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 30px;
+            padding: 40px;
+            box-shadow: 0 25px 80px rgba(0,0,0,0.15);
+        }
+        .header {
+            text-align: center;
+            padding: 30px 0;
+            background: linear-gradient(135deg, #0984e3 0%, #74b9ff 50%, #6c5ce7 100%);
+            border-radius: 20px;
+            margin-bottom: 30px;
+        }
+        .header h1 {
+            font-size: 48px;
+            color: white;
+            text-shadow: 3px 3px 6px rgba(0,0,0,0.2);
+        }
+        .subtitle {
+            font-size: 20px;
+            color: rgba(255,255,255,0.95);
+        }
+        h2 {
+            font-size: 32px;
+            color: #2d3436;
+            margin: 40px 0 20px;
+            padding: 15px 25px;
+            background: linear-gradient(90deg, #0984e3 0%, #74b9ff 100%);
+            border-radius: 15px;
+            display: inline-block;
+        }
+        p {
+            font-size: 20px;
+            line-height: 2;
+            color: #2d3436;
+            margin-bottom: 20px;
+            text-align: justify;
+        }
+        .image-container {
+            width: 100%;
+            margin: 30px 0;
+            text-align: center;
+        }
+        .dino-image {
+            width: 100%;
+            border-radius: 20px;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.2);
+        }
+        .image-caption {
+            color: #636e72;
+            font-size: 16px;
+            margin-top: 15px;
+            font-style: italic;
+            background: #dfe6e9;
+            display: inline-block;
+            padding: 8px 20px;
+            border-radius: 20px;
+        }
+        .fun-fact {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 25px;
+            border-radius: 20px;
+            margin: 25px 0;
+            font-size: 18px;
+            line-height: 1.8;
+        }
+        .fun-fact.pink {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+        }
+        .fun-fact.green {
+            background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);
+        }
+        .fun-fact.orange {
+            background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);
+        }
+        .fun-fact.blue {
+            background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+        }
+        .fun-fact-title {
+            font-size: 22px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        .divider {
+            text-align: center;
+            font-size: 30px;
+            color: #ddd;
+            margin: 30px 0;
+        }
+        .timeline {
+            position: relative;
+            padding-left: 40px;
+            margin: 20px 0;
+        }
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 15px;
+            top: 0;
+            bottom: 0;
+            width: 4px;
+            background: linear-gradient(180deg, #0984e3, #6c5ce7);
+            border-radius: 2px;
+        }
+        .timeline-item {
+            position: relative;
+            margin-bottom: 25px;
+            padding: 15px 20px;
+            background: #f0f3ff;
+            border-radius: 15px;
+            border-left: 4px solid #0984e3;
+        }
+        .timeline-item .year {
+            font-size: 22px;
+            font-weight: bold;
+            color: #0984e3;
+        }
+        .timeline-item .desc {
+            font-size: 17px;
+            color: #2d3436;
+            margin-top: 5px;
+            line-height: 1.6;
+        }
+        .comparison-table {
+            width: 100%;
+            border-collapse: separate;
+            border-spacing: 0;
+            border-radius: 15px;
+            overflow: hidden;
+            margin: 20px 0;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        .comparison-table th {
+            background: linear-gradient(135deg, #0984e3, #6c5ce7);
+            color: white;
+            padding: 15px;
+            font-size: 18px;
+        }
+        .comparison-table td {
+            padding: 12px 15px;
+            font-size: 16px;
+            text-align: center;
+            border-bottom: 1px solid #eee;
+        }
+        .comparison-table tr:nth-child(even) td {
+            background: #f0f3ff;
+        }
+        .comparison-table tr:hover td {
+            background: #dfe6e9;
+        }
+        .quiz-section {
+            background: linear-gradient(135deg, #dfe6e9 0%, #74b9ff 100%);
+            padding: 30px;
+            border-radius: 20px;
+            margin: 30px 0;
+        }
+        .quiz-title {
+            font-size: 28px;
+            color: #0984e3;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .quiz-question {
+            background: white;
+            padding: 20px;
+            border-radius: 15px;
+            margin: 15px 0;
+            font-size: 18px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        .quiz-question .q-num {
+            display: inline-block;
+            background: linear-gradient(135deg, #0984e3, #6c5ce7);
+            color: white;
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 32px;
+            font-weight: bold;
+            margin-right: 10px;
+        }
+        .ending {
+            text-align: center;
+            padding: 40px 0;
+            margin-top: 40px;
+            background: linear-gradient(135deg, #0984e3 0%, #74b9ff 50%, #6c5ce7 100%);
+            border-radius: 20px;
+        }
+        .ending h3 { font-size: 32px; color: white; text-shadow: 1px 1px 3px rgba(0,0,0,0.2); }
+        .ending p { text-align: center; font-size: 18px; color: rgba(255,255,255,0.95); }
+        .back-home-btn {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 14px 30px;
+            background: rgba(255,255,255,0.3);
+            color: white;
+            text-decoration: none;
+            border-radius: 25px;
+            font-size: 18px;
+            border: 2px solid rgba(255,255,255,0.5);
+            transition: background 0.3s, transform 0.2s;
+        }
+        .back-home-btn:hover {
+            background: rgba(255,255,255,0.5);
+            transform: translateY(-2px);
+        }
+        @media (max-width: 600px) {
+            .container { padding: 20px; }
+            h1 { font-size: 32px; }
+            h2 { font-size: 24px; }
+            p { font-size: 18px; }
+            .comparison-table td, .comparison-table th { padding: 8px; font-size: 14px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>✈️ 飞机：人类插上翅膀的故事</h1>
+            <p class="subtitle">从梦想飞行到征服蓝天的120年奇迹</p>
+        </div>
+
+        <!-- 第一章：飞翔的梦想 -->
+        <h2>🕊️ 第一章：飞翔的梦想</h2>
+        <p>人类想飞上天的梦想，比有文字记载的历史还要古老！古希腊神话中，伊卡洛斯用蜡和羽毛做翅膀飞上天空，可惜飞得太靠近太阳，翅膀融化了，他掉进了大海。中国古代也有"万户飞天"的传说——一个叫万户的人把47支烟花绑在椅子上，想飞上天，结果……你猜到了，轰隆一声！虽然这些尝试都失败了，但人类从来没有放弃飞行的梦想。</p>
+
+        <p>真正让飞行从梦想变成现实的，是美国的莱特兄弟——奥维尔·莱特和威尔伯·莱特。他们不是科学家，而是俄亥俄州代顿市的自行车修理工！但正是修理自行车的经验，让他们理解了"平衡"和"控制"的重要性，这成了发明飞机的关键。</p>
+
+        <div class="image-container">
+            <img class="dino-image" src="scene_01.webp" alt="莱特兄弟首次飞行">
+            <p class="image-caption">✈️ 1903年12月17日——人类第一次动力飞行！</p>
+        </div>
+
+        <p>1903年12月17日，在北卡罗来纳州基蒂霍克的沙滩上，奥维尔驾驶"飞行者一号"飞了12秒，距离36米——还不如一架大型客机的翅膀那么长！但这12秒，永远改变了人类的历史。那天他们一共飞了4次，最长的一次飞了59秒，距离260米。</p>
+
+        <div class="fun-fact">
+            <div class="fun-fact-title">🤔 为什么飞机能飞起来？</div>
+            秘密在于机翼的形状！机翼上面是弧形的，下面是平的。空气从上面流过时速度更快，压力变小；从下面流过时速度慢，压力变大。下面的高压把机翼"托"起来，这就是"升力"！这叫伯努利原理。简单说：空气在玩拔河，下面的力气大，就把飞机推上去了！
+        </div>
+
+        <!-- 第二章：双翼机的时代 -->
+        <h2>🛩️ 第二章：双翼机的时代</h2>
+        <p>莱特兄弟的飞机是"双翼机"——上下两层翅膀。早期飞机大多是这种设计，因为那时候的发动机不够强劲，需要更大的翅膀面积来产生足够的升力。两层翅膀之间用支柱和钢丝连接，看起来像一个大大的风筝框。</p>
+
+        <div class="image-container">
+            <img class="dino-image" src="scene_02.webp" alt="双翼机编队飞行">
+            <p class="image-caption">🛩️ 双翼机时代——上下两层翅膀的经典造型</p>
+        </div>
+
+        <p>第一次世界大战（1914-1918）是飞机发展的"加速器"。各国争相研发更快的战斗机和更大的轰炸机。战争结束时，飞机的速度已经从每小时70公里提高到了200公里！战后，大量退役飞行员和廉价飞机催生了"飞行热潮"，人们开始尝试用飞机运送邮件、乘客，甚至进行飞行表演。</p>
+
+        <div class="timeline">
+            <div class="timeline-item">
+                <div class="year">1903年</div>
+                <div class="desc">莱特兄弟首次动力飞行，12秒，36米</div>
+            </div>
+            <div class="timeline-item">
+                <div class="year">1909年</div>
+                <div class="desc">路易·布莱里奥驾驶单翼机首次飞越英吉利海峡，37分钟</div>
+            </div>
+            <div class="timeline-item">
+                <div class="year">1914年</div>
+                <div class="desc">一战爆发，飞机首次大规模用于战争，从侦察到空战</div>
+            </div>
+            <div class="timeline-item">
+                <div class="year">1919年</div>
+                <div class="desc">世界第一架定期国际航班开通：伦敦—巴黎</div>
+            </div>
+            <div class="timeline-item">
+                <div class="year">1927年</div>
+                <div class="desc">查尔斯·林德伯格独自驾驶"圣路易斯精神号"从纽约直飞巴黎，33.5小时，5800公里</div>
+            </div>
+            <div class="timeline-item">
+                <div class="year">1930年</div>
+                <div class="desc">世界上第一位空姐埃伦·丘奇上岗，当时护士才能当空姐！</div>
+            </div>
+        </div>
+
+        <div class="fun-fact pink">
+            <div class="fun-fact-title">🇨🇳 中国航空先驱</div>
+            1909年，旅美华侨冯如在美国自己设计并制造了一架飞机，试飞成功！比莱特兄弟晚了仅6年。1911年他带着两架自制飞机回到中国，想发展中国航空事业，可惜1912年在广州一次飞行表演中因飞机故障不幸牺牲，年仅29岁。他被尊为"中国航空之父"。
+        </div>
+
+        <!-- 第三章：喷气时代到来 -->
+        <h2>🚀 第三章：喷气时代到来</h2>
+        <p>二战后的飞机世界发生了一个巨大的变化——喷气式发动机取代了螺旋桨！喷气发动机的原理其实很简单：把空气吸进来，压缩后和燃料混合燃烧，然后从后面高速喷出去，强大的反推力让飞机向前飞。就像你吹气球然后松手，气球会飞走一样！</p>
+
+        <div class="image-container">
+            <img class="dino-image" src="scene_03.webp" alt="黄金时代客机">
+            <p class="image-caption">✈️ 喷气客机——让全世界变得更小了</p>
+        </div>
+
+        <p>1952年，英国de Havilland公司推出了世界第一架喷气式客机"彗星号"。但真正让喷气旅行普及的是1958年服役的波音707，它的速度达到每小时900公里，比螺旋桨飞机快了一倍！从此，坐飞机出国不再是少数人的奢侈。</p>
+
+        <p>1969年，更大的奇迹出现了——波音747"巨无霸"首飞！它可以载400多名乘客，双层客舱，有个标志性的"驼峰"机头。747让飞机票变得更便宜，普通人也能坐飞机出国旅行了。人们叫它"天空女王"。</p>
+
+        <p>2005年，空客A380诞生——世界上最大的客机！双层客舱从头到尾，最多能载853人，简直是一栋会飞的楼！但它太大了，很多机场装不下，运营成本也高，2021年就停产了。看来不是越大越好啊！</p>
+
+        <table class="comparison-table">
+            <tr>
+                <th>飞机</th>
+                <th>首飞年份</th>
+                <th>载客量</th>
+                <th>最高时速</th>
+            </tr>
+            <tr>
+                <td>✈️ 莱特飞行者号</td>
+                <td>1903</td>
+                <td>1人</td>
+                <td>48 km/h</td>
+            </tr>
+            <tr>
+                <td>🛩️ 彗星号</td>
+                <td>1949</td>
+                <td>36人</td>
+                <td>800 km/h</td>
+            </tr>
+            <tr>
+                <td>✈️ 波音707</td>
+                <td>1957</td>
+                <td>189人</td>
+                <td>972 km/h</td>
+            </tr>
+            <tr>
+                <td>✈️ 波音747</td>
+                <td>1969</td>
+                <td>416人</td>
+                <td>988 km/h</td>
+            </tr>
+            <tr>
+                <td>✈️ 空客A380</td>
+                <td>2005</td>
+                <td>853人</td>
+                <td>1020 km/h</td>
+            </tr>
+            <tr>
+                <td>✈️ 协和号</td>
+                <td>1969</td>
+                <td>128人</td>
+                <td>2179 km/h</td>
+            </tr>
+        </table>
+
+        <div class="fun-fact green">
+            <div class="fun-fact-title">💥 超音速的协和号</div>
+            协和号（Concorde）是唯一投入商业运营的超音速客机！它飞得比声音还快，从伦敦到纽约只要3.5小时——普通飞机要8小时！协和号的机头可以"弯下来"，这样飞行员在起飞降落时能看到跑道。可惜因为太费油、票太贵（一张票要1万美元！），加上2000年一次严重事故，2003年就退役了。人类至今没有第二个超音速客机。
+        </div>
+
+        <!-- 第四章：飞机肚子里有什么 -->
+        <h2>🔧 第四章：飞机肚子里有什么</h2>
+        <p>一架现代客机看起来很大很复杂，但其实它的每个部分都有明确的功能。让我们拆开看看！</p>
+
+        <div class="image-container">
+            <img class="dino-image" src="scene_04.webp" alt="飞机内部剖面图">
+            <p class="image-caption">🔬 飞机的身体构造——一架会飞的精密机器！</p>
+        </div>
+
+        <p><strong>🪽 机翼</strong>——飞机最重要的部分！不仅能产生升力，里面还藏着燃油箱（飞机的油箱不在机身里，而在翅膀里！）。机翼后缘有襟翼和副翼，可以上下摆动来控制方向，就像鸟儿调整羽毛一样。</p>
+
+        <p><strong>🔥 喷气发动机</strong>——挂在机翼下方，是飞机的"心脏"。一台现代喷气发动机的推力相当于把15辆小汽车同时抛上天！进气口直径比一个人的身高还大，每秒吸入超过1吨的空气。</p>
+
+        <p><strong>🧭 驾驶舱</strong>——以前需要3个人（机长、副驾驶、飞行工程师），现在只需要2个人。现代驾驶舱全是电子屏幕和电脑，飞行员更像"系统管理员"而不是"驾驶员"。</p>
+
+        <p><strong>🛬 起落架</strong>——飞机的"腿"，起飞后收进机身减少阻力。一架波音777的主起落架有12个轮子！降落时轮胎瞬间加速到300公里/小时，会冒烟！</p>
+
+        <p><strong>📦 货舱</strong>——在你脚下还有一层！行李、邮件、甚至活的小动物都在这里。有些货舱可以调节温度，这样小猫小狗们在旅途中也不会冷。</p>
+
+        <div class="fun-fact orange">
+            <div class="fun-fact-title">🌡️ 飞机上的冷知识</div>
+            巡航高度10000米时，外面温度大约-55°C，气压只有地面的1/4！所以客舱必须加压加温。飞机上的空气并不是"循环的旧空气"——它每2-3分钟就全部换一遍新鲜空气，来自发动机压缩后的外部空气。你呼吸的其实是万米高空的新鲜空气！
+        </div>
+
+        <!-- 第五章：未来的飞机 -->
+        <h2>🌟 第五章：未来的飞机</h2>
+        <p>飞机已经走过120年，但飞行的进化还在继续！未来的飞机会是什么样子？</p>
+
+        <div class="image-container">
+            <img class="dino-image" src="scene_05.webp" alt="未来电动飞机">
+            <p class="image-caption">🚀 未来的飞机——绿色、安静、更酷！</p>
+        </div>
+
+        <p><strong>⚡ 电动飞机</strong>——像电动汽车一样，飞机也在走向"电动化"！电动飞机用电池驱动电机，零排放、超安静。目前已经有小型电动飞机试飞成功，但电池太重，大客机还需要很多年。空客计划2035年推出混合动力客机。</p>
+
+        <p><strong>🛸 翼身融合</strong>——现在的飞机都是"筒体+翅膀"的形状，但未来可能变成一个扁扁的"飞翼"——整个飞机就是一个大翅膀！这种设计能减少20%以上的空气阻力，省油又安静，乘客坐在"翅膀里面"看窗外风景，想想就很酷！</p>
+
+        <p><strong>🚀 超音速回归</strong>——协和号退役20年了，但多家公司正在研发"协和2.0"！美国Boom公司设计的Overture超音速客机，速度1.7马赫（约2100km/h），用可持续燃料， quieter（更安静），计划2029年首飞。从东京到旧金山只要6小时！</p>
+
+        <p><strong>🤖 无人驾驶飞机</strong>——军用无人机已经很常见了，未来的客机也可能不需要飞行员！AI可以全程自动飞行、起降。当然，初期肯定还是有飞行员坐在那里"盯着"，但也许你长大的时候，坐的飞机就是AI开的了！</p>
+
+        <div class="fun-fact blue">
+            <div class="fun-fact-title">🏆 飞行速度世界纪录</div>
+            <p>🛩️ 螺旋桨飞机纪录：837 km/h（图-114，1960年）</p>
+            <p>✈️ 喷气客机纪录：1020 km/h（空客A380巡航速度）</p>
+            <p>💥 超音速客机纪录：2179 km/h（协和号，1976-2003年）</p>
+            <p>🚀 有人驾驶最快：7274 km/h（X-15火箭飞机，1967年）</p>
+            <p>从48 km/h到7274 km/h——人类只用了64年！</p>
+        </div>
+
+        <p>从莱特兄弟12秒的蹦跶，到如今每天有超过10万架航班在天上飞——人类飞行的故事告诉我们：只要有梦想和坚持，就没有到不了的远方。下一个120年，也许我们会飞得更快、更远，甚至飞出地球！那一天，别忘了这一切都从两个修自行车的兄弟开始……🚲✈️✨</p>
+
+        <div class="divider">🕊️ 🛩️ ✈️ 🚀 🛸</div>
+
+        <!-- 互动测试 -->
+        <div class="quiz-section">
+            <div class="quiz-title">🧠 知识小测验</div>
+
+            <div class="quiz-question">
+                <span class="q-num">1</span> 人类第一次动力飞行是在哪一年？<br>
+                A. 1899年<br>
+                B. 1903年<br>
+                C. 1910年<br>
+                D. 1920年
+            </div>
+
+            <div class="quiz-question">
+                <span class="q-num">2</span> 飞机能飞起来的基本原理叫什么？<br>
+                A. 牛顿定律<br>
+                B. 伯努利原理<br>
+                C. 相对论<br>
+                D. 万有引力
+            </div>
+
+            <div class="quiz-question">
+                <span class="q-num">3</span> "中国航空之父"是谁？<br>
+                A. 冯如<br>
+                B. 詹天佑<br>
+                C. 钱学森<br>
+                D. 孙中山
+            </div>
+
+            <div class="quiz-question">
+                <span class="q-num">4</span> 世界最大的客机空客A380最多能载多少人？<br>
+                A. 250人<br>
+                B. 416人<br>
+                C. 600人<br>
+                D. 853人
+            </div>
+
+            <div class="quiz-question">
+                <span class="q-num">5</span> 协和号超音速客机从伦敦飞纽约需要多长时间？<br>
+                A. 8小时<br>
+                B. 6小时<br>
+                C. 3.5小时<br>
+                D. 1小时
+            </div>
+
+            <p style="text-align:center; margin-top:20px; font-size:16px; color:#636e72;">💡 答案：1-B 2-B 3-A 4-D 5-C</p>
+        </div>
+
+        <div class="ending">
+            <h3>—— 完 ——</h3>
+            <p>谢谢阅读！希望你享受了这段飞翔的旅程！</p>
+            <p style="margin-top: 10px; font-size: 14px; color: rgba(255,255,255,0.8);">本故事由 AI 助手小龙为小朋友精心制作 🐉</p>
+            <div style="text-align: left; margin-top: 15px;">
+                <a href="../index.html" class="back-home-btn">🏠 返回首页</a>
+            </div>
+        </div>
+    </div>
+
+<!-- rourou-home-btn:start -->
+<style>
+#rourou-home-btn{position:fixed;left:14px;bottom:calc(14px + env(safe-area-inset-bottom,0px));z-index:9999;
+display:inline-flex;align-items:center;gap:6px;padding:10px 18px;border-radius:999px;
+background:rgba(255,255,255,0.92);color:#2d3436;font-size:15px;font-weight:600;
+text-decoration:none;box-shadow:0 4px 14px rgba(0,0,0,0.18);border:1px solid rgba(0,0,0,0.08);
+-webkit-backdrop-filter:blur(4px);backdrop-filter:blur(4px);transition:transform .15s,background .15s;}
+#rourou-home-btn:hover{background:#fff;transform:translateY(-2px);}
+@media (max-width:600px){#rourou-home-btn{padding:9px 14px;font-size:13px;left:10px;bottom:calc(10px + env(safe-area-inset-bottom,0px));}}
+</style>
+<a id="rourou-home-btn" href="../index.html">🏠 首页</a>
+<!-- rourou-home-btn:end -->
+</body>
+</html>

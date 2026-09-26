@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>新加坡的故事</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: "Microsoft YaHei", "PingFang SC", sans-serif;
+            background: linear-gradient(180deg, #ffeaa7 0%, #fab1a0 30%, #ff7675 60%, #fd79a8 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        .container {
+            max-width: 850px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 30px;
+            padding: 40px;
+            box-shadow: 0 25px 80px rgba(0,0,0,0.15);
+        }
+        .header {
+            text-align: center;
+            padding: 30px 0;
+            background: linear-gradient(135deg, #ff6b6b 0%, #feca57 50%, #48dbfb 100%);
+            border-radius: 20px;
+            margin-bottom: 30px;
+        }
+        .header h1 {
+            font-size: 48px;
+            color: white;
+            text-shadow: 3px 3px 6px rgba(0,0,0,0.2);
+        }
+        .subtitle {
+            font-size: 20px;
+            color: rgba(255,255,255,0.95);
+        }
+        h2 {
+            font-size: 32px;
+            color: #2d3436;
+            margin: 40px 0 20px;
+            padding: 15px 25px;
+            background: linear-gradient(90deg, #ff9ff3 0%, #feca57 100%);
+            border-radius: 15px;
+            display: inline-block;
+        }
+        p {
+            font-size: 20px;
+            line-height: 2;
+            color: #2d3436;
+            margin-bottom: 20px;
+            text-align: justify;
+        }
+        .image-container {
+            width: 100%;
+            margin: 30px 0;
+            text-align: center;
+        }
+        .dino-image {
+            width: 100%;
+            border-radius: 20px;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.2);
+        }
+        .image-caption {
+            color: #636e72;
+            font-size: 16px;
+            margin-top: 15px;
+            font-style: italic;
+            background: #ffeaa7;
+            display: inline-block;
+            padding: 8px 20px;
+            border-radius: 20px;
+        }
+        .fun-fact {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 25px;
+            border-radius: 20px;
+            margin: 25px 0;
+            font-size: 18px;
+            line-height: 1.8;
+        }
+        .fun-fact.pink {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+        }
+        .fun-fact.green {
+            background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);
+        }
+        .fun-fact.orange {
+            background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);
+        }
+        .fun-fact-title {
+            font-size: 22px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        .divider {
+            text-align: center;
+            font-size: 30px;
+            color: #ddd;
+            margin: 30px 0;
+        }
+        .quiz-section {
+            background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);
+            padding: 30px;
+            border-radius: 20px;
+            margin: 30px 0;
+        }
+        .quiz-title {
+            font-size: 28px;
+            color: #e17055;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .quiz-question {
+            background: white;
+            padding: 20px;
+            border-radius: 15px;
+            margin: 15px 0;
+            font-size: 18px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        .ending {
+            text-align: center;
+            padding: 40px 0;
+            margin-top: 40px;
+            background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);
+            border-radius: 20px;
+        }
+        .ending h3 { font-size: 32px; color: #2d3436; }
+        .ending p { text-align: center; font-size: 18px; color: #636e72; }
+        .back-home-btn {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 14px 30px;
+            background: rgba(0,0,0,0.08);
+            color: #2d3436;
+            text-decoration: none;
+            border-radius: 25px;
+            font-size: 18px;
+            border: 2px solid rgba(0,0,0,0.15);
+            transition: background 0.3s, transform 0.2s;
+        }
+        .back-home-btn:hover {
+            background: rgba(0,0,0,0.15);
+            transform: translateY(-2px);
+        }
+        .back-home-btn:active {
+            transform: translateY(0);
+        }
+        @media (max-width: 600px) {
+            .container { padding: 20px; }
+            h1 { font-size: 32px; }
+            h2 { font-size: 24px; }
+            p { font-size: 18px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>新加坡的故事</h1>
+            <p class="subtitle">一个「城市」变成的国家</p>
+        </div>
+
+        <h2>第一章：小到地图上找不到的国家</h2>
+        <p>如果让你在世界地图上找新加坡，你可能要睁大眼睛，拿上放大镜，才能找到它——因为它实在太小了，只有一个小红点那么大。</p>
+        <p>新加坡是一个很特别的地方：它既是一个<strong>国家</strong>，也是一座<strong>城市</strong>。也就是说，整个国家就是一座城市，城市有多大，国家就有多大。它的面积只有大约 700 多平方公里，还没有我们国家的一个普通城市大，甚至比很多县还要小。</p>
+        <p>更神奇的是，新加坡的旁边就是马来西亚，中间只隔着一道很窄的海峡。它就在马六甲海峡的入口处——那里是亚洲和欧洲之间船只往来的「大门口」，地理位置特别重要。所以别看它小，它可是世界闻名的「咽喉要道」。</p>
+        <div class="image-container">
+            <img class="dino-image" src="scene_01.webp" alt="新加坡">
+            <div class="image-caption">新加坡是一个小小的城市国家</div>
+        </div>
+        <div class="fun-fact pink">
+            <div class="fun-fact-title">🌟 趣味知识</div>
+            新加坡的别名叫「狮城」。传说很久以前，一位王子来到这座小岛，看到一只像狮子一样的动物，就给它起名「Singapura」，意思是「狮子的城市」。后来，这个名字就变成了「新加坡」。所以新加坡的国徽和很多标志上，都有一只威风凛凛的狮子头。
+        </div>
+
+        <h2>第二章：从一个小渔村讲起</h2>
+        <p>几百年前，新加坡还只是一个小小的渔村，住着一些打鱼的人。那时候，谁也没想到，这个小渔村后来会变成今天这么发达的国家。</p>
+        <p>转折发生在 1819 年。那一年，一位叫<strong>莱佛士</strong>的英国人来到了这里。他一眼就看中了这个地方——因为新加坡正好卡在马六甲海峡的入口，是来往船只的必经之地。于是他在这里建起了港口，让新加坡变成了一个「自由港」，各国的商船都可以自由地停靠、做买卖。</p>
+        <p>慢慢地，越来越多的人从世界各地来到这里：有华人、马来人、印度人，还有欧洲人。他们一起做生意、盖房子、开店铺，小小的渔村一天天热闹起来，变成了一座繁华的城市。</p>
+        <div class="image-container">
+            <img class="dino-image" src="scene_02.webp" alt="新加坡港口">
+            <div class="image-caption">新加坡的港口停满了来自世界的商船</div>
+        </div>
+        <div class="fun-fact green">
+            <div class="fun-fact-title">🔬 趣味知识</div>
+            新加坡的港口是世界上最繁忙的港口之一！每天都有数不清的大货船进进出出，平均每几分钟就有一艘船抵达或离开。全世界的货物，有很多都要经过这里，再运到各个国家去。
+        </div>
+
+        <h2>第三章：一座长在花园里的城市</h2>
+        <p>如果你坐飞机降落在新加坡，从窗户往下看，一定会惊讶：这座城市怎么到处都是绿色的？街道边、屋顶上、高楼里，到处都种满了树和花草。</p>
+        <p>这是因为新加坡有个响亮的外号，叫「<strong>花园城市</strong>」。政府花了很多心思，让城市和自然长在一起：路两边种满大树，高楼的天台上建起花园，连机场里都有一座巨大的室内森林和瀑布。</p>
+        <p>为什么要这么做呢？因为新加坡天气炎热，多一片树荫，就多一份清凉；更重要的是，绿色植物能让空气更干净，让人们生活得更舒服。所以新加坡人常说：我们要把整座城市，都变成一座大花园。</p>
+        <div class="image-container">
+            <img class="dino-image" src="scene_03.webp" alt="花园城市">
+            <div class="image-caption">新加坡到处都是绿树和花园</div>
+        </div>
+        <div class="fun-fact orange">
+            <div class="fun-fact-title">🌱 趣味知识</div>
+            新加坡有一片著名的「超级树」，它们不是真的树，而是一座座十几层楼高的人造大树，树干上爬满了真的植物，晚上还会发光！它们坐落在滨海湾花园里，成了新加坡最有名的风景之一。
+        </div>
+
+        <h2>第四章：大家一起生活的「大拼盘」</h2>
+        <p>走进新加坡的大街小巷，你会发现一个特别有意思的现象：这里的人说着不同的语言，吃着不同的美食，却相处得特别融洽。</p>
+        <p>新加坡是一个多民族的国家，主要有华人、马来人、印度人，还有其他各族群。大家有不同的节日：华人过春节、马来人过开斋节、印度人过屠妖节，这些节日都是全国放假的公共假期，大家一起庆祝。</p>
+        <p>为了让大家都懂彼此，新加坡有四种官方语言，分别是英语、华语、马来语和泰米尔语。走在路上，你会看到招牌上同时写着好几种文字。不同民族的美食也在这里「开会」——海南鸡饭、印度煎饼、马来沙爹串，都在同一条美食街上飘香。所以新加坡就像一个「文化大拼盘」，多姿多彩。</p>
+        <div class="image-container">
+            <img class="dino-image" src="scene_04.webp" alt="多元文化">
+            <div class="image-caption">不同民族的美食和节日，在新加坡交汇</div>
+        </div>
+        <div class="fun-fact">
+            <div class="fun-fact-title">💰 趣味知识</div>
+            新加坡有一种很特别的语言叫「Singlish」，意思是「新加坡式英语」。它把英语、华语、马来语混在一起说，非常有趣。比如新加坡人说「shiok」，就是「太爽啦」的意思，是他们最爱说的口头禅之一。
+        </div>
+
+        <h2>第五章：从「小红点」走向世界</h2>
+        <p>今天的新加坡，早就不是当年那个小渔村了。它没有很多土地，也没有很多自然资源，却靠着自己的聪明才智，变成了亚洲最富裕、最发达的国家之一。</p>
+        <p>新加坡人的「秘诀」是：既然地方小、资源少，那就靠「人」和「智慧」。他们大力发展教育，让每个人都学到本领；他们建起了世界一流的港口、机场和金融中心，把全世界的人和生意都吸引过来。他们还特别守规矩、爱干净，让整座城市井井有条。</p>
+        <p>新加坡的故事告诉我们：一个地方大不大、有没有资源，并不是决定未来的唯一因素。只要肯努力、动脑筋、团结一心，一个小小的「红点」，也能在世界上闪闪发光。</p>
+        <div class="image-container">
+            <img class="dino-image" src="scene_05.webp" alt="新加坡的未来">
+            <div class="image-caption">小小的「红点」，在世界地图上闪闪发光</div>
+        </div>
+        <div class="fun-fact green">
+            <div class="fun-fact-title">🚀 趣味知识</div>
+            因为国家太小，新加坡的军队、机场、甚至自来水，都要「想尽办法省地方」。新加坡还从邻国马来西亚买水，并且发明了把海水变淡、把雨水收集起来的技术，努力做到「水」也能自给自足。是不是很厉害？
+        </div>
+
+        <div class="divider">✿ ✿ ✿</div>
+
+        <div class="quiz-section">
+            <div class="quiz-title">🎯 考考你（互动小测试）</div>
+            <div class="quiz-question">
+                <strong>第1题：</strong>新加坡是一个什么样的地方？<br>
+                A. 只有城市没有国家　B. 既是国家也是城市　C. 只是一个港口　D. 只是一座岛
+            </div>
+            <div class="quiz-question">
+                <strong>第2题：</strong>新加坡的别名「狮城」是怎么来的？<br>
+                A. 那里狮子很多　B. 王子看到像狮子的动物，起名「狮子的城市」　C. 有一座狮子山　D. 人们喜欢狮子玩具
+            </div>
+            <div class="quiz-question">
+                <strong>第3题：</strong>新加坡为什么叫「花园城市」？<br>
+                A. 因为种了很多花卖　B. 因为城市里到处都是绿树和花园　C. 因为只有一座花园　D. 因为它很潮湿
+            </div>
+            <div class="quiz-question">
+                <strong>第4题：</strong>新加坡有几种官方语言？<br>
+                A. 一种　B. 两种　C. 三种　D. 四种
+            </div>
+            <div class="quiz-question">
+                <strong>第5题：</strong>新加坡地方小、资源少，却变得很发达，靠的主要是什么？<br>
+                A. 挖金子　B. 靠教育和智慧、团结努力　C. 靠别人送　D. 靠运气
+            </div>
+            <p style="text-align:center; font-size:16px; color:#e17055; margin-top:10px;">（答案：B、B、B、D、B。你都答对了吗？）</p>
+        </div>
+
+        <div class="ending">
+            <h3>—— 完 ——</h3>
+            <p>谢谢阅读！希望你学到了很多知识！</p>
+            <p style="margin-top: 10px; font-size: 14px; color: #b2bec3;">本故事由 AI 助手小龙为小朋友精心制作 🐉</p>
+            <div style="text-align: left; margin-top: 15px;">
+                <a href="../index.html" class="back-home-btn">🏠 返回首页</a>
+            </div>
+        </div>
+    </div>
+
+<!-- rourou-home-btn:start -->
+<style>
+#rourou-home-btn{position:fixed;left:14px;bottom:calc(14px + env(safe-area-inset-bottom,0px));z-index:9999;
+display:inline-flex;align-items:center;gap:6px;padding:10px 18px;border-radius:999px;
+background:rgba(255,255,255,0.92);color:#2d3436;font-size:15px;font-weight:600;
+text-decoration:none;box-shadow:0 4px 14px rgba(0,0,0,0.18);border:1px solid rgba(0,0,0,0.08);
+-webkit-backdrop-filter:blur(4px);backdrop-filter:blur(4px);transition:transform .15s,background .15s;}
+#rourou-home-btn:hover{background:#fff;transform:translateY(-2px);}
+@media (max-width:600px){#rourou-home-btn{padding:9px 14px;font-size:13px;left:10px;bottom:calc(10px + env(safe-area-inset-bottom,0px));}}
+</style>
+<a id="rourou-home-btn" href="../index.html">🏠 首页</a>
+<!-- rourou-home-btn:end -->
+</body>
+</html>

@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>弯曲冰发电？</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: "Microsoft YaHei", "PingFang SC", sans-serif;
+            background: linear-gradient(180deg, #ffeaa7 0%, #fab1a0 30%, #ff7675 60%, #fd79a8 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        .container {
+            max-width: 850px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 30px;
+            padding: 40px;
+            box-shadow: 0 25px 80px rgba(0,0,0,0.15);
+        }
+        .header {
+            text-align: center;
+            padding: 30px 0;
+            background: linear-gradient(135deg, #ff6b6b 0%, #feca57 50%, #48dbfb 100%);
+            border-radius: 20px;
+            margin-bottom: 30px;
+        }
+        .header h1 {
+            font-size: 48px;
+            color: white;
+            text-shadow: 3px 3px 6px rgba(0,0,0,0.2);
+        }
+        .subtitle {
+            font-size: 20px;
+            color: rgba(255,255,255,0.95);
+        }
+        h2 {
+            font-size: 32px;
+            color: #2d3436;
+            margin: 40px 0 20px;
+            padding: 15px 25px;
+            background: linear-gradient(90deg, #ff9ff3 0%, #feca57 100%);
+            border-radius: 15px;
+            display: inline-block;
+        }
+        p {
+            font-size: 20px;
+            line-height: 2;
+            color: #2d3436;
+            margin-bottom: 20px;
+            text-align: justify;
+        }
+        .image-container {
+            width: 100%;
+            margin: 30px 0;
+            text-align: center;
+        }
+        .dino-image {
+            width: 100%;
+            border-radius: 20px;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.2);
+        }
+        .image-caption {
+            color: #636e72;
+            font-size: 16px;
+            margin-top: 15px;
+            font-style: italic;
+            background: #ffeaa7;
+            display: inline-block;
+            padding: 8px 20px;
+            border-radius: 20px;
+        }
+        .fun-fact {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 25px;
+            border-radius: 20px;
+            margin: 25px 0;
+            font-size: 18px;
+            line-height: 1.8;
+        }
+        .fun-fact.pink {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+        }
+        .fun-fact.green {
+            background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);
+        }
+        .fun-fact.orange {
+            background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);
+        }
+        .fun-fact-title {
+            font-size: 22px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        .divider {
+            text-align: center;
+            font-size: 30px;
+            color: #ddd;
+            margin: 30px 0;
+        }
+        .quiz-section {
+            background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);
+            padding: 30px;
+            border-radius: 20px;
+            margin: 30px 0;
+        }
+        .quiz-title {
+            font-size: 28px;
+            color: #e17055;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .quiz-question {
+            background: white;
+            padding: 20px;
+            border-radius: 15px;
+            margin: 15px 0;
+            font-size: 18px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        .ending {
+            text-align: center;
+            padding: 40px 0;
+            margin-top: 40px;
+            background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);
+            border-radius: 20px;
+        }
+        .ending h3 { font-size: 32px; color: #2d3436; }
+        .ending p { text-align: center; font-size: 18px; color: #636e72; }
+        .back-home-btn {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 14px 30px;
+            background: rgba(0,0,0,0.08);
+            color: #2d3436;
+            text-decoration: none;
+            border-radius: 25px;
+            font-size: 18px;
+            border: 2px solid rgba(0,0,0,0.15);
+            transition: background 0.3s, transform 0.2s;
+        }
+        .back-home-btn:hover {
+            background: rgba(0,0,0,0.15);
+            transform: translateY(-2px);
+        }
+        .back-home-btn:active {
+            transform: translateY(0);
+        }
+        @media (max-width: 600px) {
+            .container { padding: 20px; }
+            h1 { font-size: 32px; }
+            h2 { font-size: 24px; }
+            p { font-size: 18px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>弯曲冰发电？</h1>
+            <p class="subtitle">弯一弯冰块，竟然能冒出电</p>
+        </div>
+
+        <h2>第一章：冰块能发电吗？</h2>
+        <p>冰，你一定很熟悉。夏天吃冰棍、喝冰水，冬天屋檐下挂着一串串冰凌。可是你想过吗——把一块冰<strong>弯一弯</strong>，它竟然能发电！</p>
+        <p>这听起来像不像魔法？其实，这是科学家最近发现的真事。科学家发现，冰这种看起来普普通通、硬邦邦的东西，当你把它轻轻<strong>弯曲</strong>的时候，它的表面会冒出一点点电来。</p>
+        <p>当然，这个电非常非常微弱，微弱到要用特别精密的仪器才能测出来。但它却是真的存在的！这就说明，冰不只是「冷冰冰的一块」，它身体里还藏着发电的小秘密。今天，我们就来揭开这个神奇的秘密。</p>
+        <div class="image-container">
+            <img class="dino-image" src="scene_01.webp" alt="弯曲冰块发电">
+            <div class="image-caption">弯曲的冰块，表面冒出了微弱的电</div>
+        </div>
+        <div class="fun-fact pink">
+            <div class="fun-fact-title">🌟 趣味知识</div>
+            这个现象有个特别的名字，叫「挠曲电效应」。挠（náo）就是「弯曲」的意思。简单说就是：某些东西被弯一弯、变一变形，就会生出电来。冰就是这样的「神奇材料」。
+        </div>
+
+        <h2>第二章：压一压、弯一弯，电就出来了</h2>
+        <p>其实，「用力气换来电」这件事，早就不是什么新鲜事了。你见过打火机吗？就是那种「咔哒」一按就冒出火星的打火机。它里面没有电池，却能打出电火花，靠的就是「压电效应」。</p>
+        <p>打火机里藏着一块小小的<strong>压电陶瓷</strong>。你一按，它就受到挤压，被压得变了形，于是它内部就产生了电。这股电「啪」地一下放出来，就点着了火。</p>
+        <p>「压电」是<strong>挤压</strong>出电；而「挠曲电」是<strong>弯曲</strong>出电。它们是一对「亲戚」，道理很像：都是让材料变一变形，电就跟着跑出来了。只不过压电需要特定形状的晶体，而挠曲电，几乎<strong>所有</strong>的材料都有那么一点点。</p>
+        <div class="image-container">
+            <img class="dino-image" src="scene_02.webp" alt="压电打火机">
+            <div class="image-caption">打火机里的压电陶瓷，一按就出电火花</div>
+        </div>
+        <div class="fun-fact green">
+            <div class="fun-fact-title">🔬 趣味知识</div>
+            石英手表也是靠「压电」工作的！石英晶体被通电后会稳定地振动，反过来，压一压石英也能产生电。你的手表能走得那么准，全靠这块会「发电」的小晶体。
+        </div>
+
+        <h2>第三章：冰为什么弯一弯就能发电？</h2>
+        <p>那冰为什么也能发电呢？秘密藏在冰的「身体结构」里。</p>
+        <p>冰是水冻成的。在冰里，数不清的<strong>水分子</strong>手拉手，排成了一个整整齐齐的「队伍」，就像小朋友们排成的方阵。每个水分子都有正电和负电的两头，平时正负电互相抵消，安安静静的。</p>
+        <p>可是，当你把冰<strong>弯曲</strong>的时候，这个整齐的队伍就被「挤歪」了——弯过来的这一边被压紧，另一边被拉长。水分子们被挤得东倒西歪，正电和负电的排列就乱了套，不再能互相抵消。</p>
+        <p>这样一来，冰的一边就多出了正电，另一边多出了负电，电就这样「冒」出来了。所以，弯一弯冰，其实就是把冰内部的水分子「排排队」给打乱了，电就显现出来啦。</p>
+        <div class="image-container">
+            <img class="dino-image" src="scene_03.webp" alt="冰的分子结构">
+            <div class="image-caption">冰里的水分子排成整齐的队伍</div>
+        </div>
+        <div class="fun-fact orange">
+            <div class="fun-fact-title">🌱 趣味知识</div>
+            冰的挠曲电效应其实挺强的，甚至比很多常见的晶体还强。科学家觉得很惊讶：谁能想到，天上飘下来的雪花、冰箱里冻的冰块，竟然个个都是「隐藏的发电小能手」呢！
+        </div>
+
+        <h2>第四章：冰发电能干什么用？</h2>
+        <p>你可能会问：这点微弱到几乎看不见的电，有什么用呢？别小看它，用处可大着呢！</p>
+        <p>科学家正在想：能不能利用冰的挠曲电，做出一种<strong>特殊的传感器</strong>？比如，在寒冷的南极、北极，或者在高高的雪山上，放一块冰做的「小探子」。当冰川在缓缓移动、开裂、变形时，冰就会弯曲，冒出电来。仪器一测到这个电，就能知道冰川的动静，提前发出预警。</p>
+        <p>再比如，未来也许能用「会变形发电」的材料，给小小的设备供电。走在路上，鞋子一弯一弯就发电；衣服一动一动就发电。这样就不用老换电池啦。</p>
+        <p>虽然冰发电现在还在研究的早期，但它打开了一扇新的大门：原来，<strong>电和「变形」是好朋友</strong>，抓住这个规律，未来就有无限可能。</p>
+        <div class="image-container">
+            <img class="dino-image" src="scene_04.webp" alt="冰川传感器">
+            <div class="image-caption">冰川上的小传感器，测到冰弯曲就报警</div>
+        </div>
+        <div class="fun-fact">
+            <div class="fun-fact-title">💰 趣味知识</div>
+            科学家设想，未来也许能把「会发电的材料」放进鞋底。你每走一步，鞋底就弯一下、压一下，电就产生一点，攒起来就能给手机充电！走路发电，是不是特别酷？
+        </div>
+
+        <h2>第五章：力和电，原来是一家人</h2>
+        <p>认识了「弯曲冰发电」，你有没有发现一个大道理？那就是——<strong>力和电，原来是可以互相转化的</strong>。</p>
+        <p>用力去压、去弯一个东西，东西变形了，就可能产生电（这叫压电、挠曲电）；反过来，给某些东西通电，它还会变形、会振动（比如手机里的振动马达、会唱歌的蜂鸣器）。</p>
+        <p>这个「力与电互相变来变去」的本领，让我们的世界变得非常方便。从打火机到手表，从传感器到未来的发电鞋，到处都有它的身影。</p>
+        <p>所以，下次你再看到一块冰，别只想着它冷冰冰的。试着想一想：这块小小的冰里，藏着多少科学的秘密呀！也许有一天，你也能发现一个别人都没发现的「神奇现象」呢。</p>
+        <div class="image-container">
+            <img class="dino-image" src="scene_05.webp" alt="力与电">
+            <div class="image-caption">力与电，原来可以互相变来变去</div>
+        </div>
+        <div class="fun-fact green">
+            <div class="fun-fact-title">🚀 趣味知识</div>
+            你也可以做个「力变电」的小实验：找一块石英手表里的电池仓，或者干脆观察打火机。按下打火机按钮，听到「咔哒」一声、看到火花，那就是「力气变成电」的魔法，正在你指尖上演！
+        </div>
+
+        <div class="divider">✿ ✿ ✿</div>
+
+        <div class="quiz-section">
+            <div class="quiz-title">🎯 考考你（互动小测试）</div>
+            <div class="quiz-question">
+                <strong>第1题：</strong>把冰弯一弯，会发生什么？<br>
+                A. 冰会着火　B. 冰表面会冒出微弱的电　C. 冰会变成水　D. 冰会飞起来
+            </div>
+            <div class="quiz-question">
+                <strong>第2题：</strong>「弯曲出电」的现象叫什么？<br>
+                A. 挠曲电效应　B. 光电效应　C. 磁铁效应　D. 声音效应
+            </div>
+            <div class="quiz-question">
+                <strong>第3题：</strong>打火机里的电火花，是靠什么产生的？<br>
+                A. 电池　B. 压电陶瓷被挤压　C. 太阳能　D. 摩擦生热
+            </div>
+            <div class="quiz-question">
+                <strong>第4题：</strong>冰弯一弯能发电，秘密藏在冰的哪里？<br>
+                A. 冰的颜色里　B. 冰里的水分子排列被挤乱　C. 冰的温度里　D. 冰的硬度里
+            </div>
+            <div class="quiz-question">
+                <strong>第5题：</strong>下面哪句话是对的？<br>
+                A. 只有冰能发电　B. 力和电可以互相转化　C. 电和力毫无关系　D. 冰不能弯曲
+            </div>
+            <p style="text-align:center; font-size:16px; color:#e17055; margin-top:10px;">（答案：B、A、B、B、B。你都答对了吗？）</p>
+        </div>
+
+        <div class="ending">
+            <h3>—— 完 ——</h3>
+            <p>谢谢阅读！希望你学到了很多知识！</p>
+            <p style="margin-top: 10px; font-size: 14px; color: #b2bec3;">本故事由 AI 助手小龙为小朋友精心制作 🐉</p>
+            <div style="text-align: left; margin-top: 15px;">
+                <a href="../index.html" class="back-home-btn">🏠 返回首页</a>
+            </div>
+        </div>
+    </div>
+
+<!-- rourou-home-btn:start -->
+<style>
+#rourou-home-btn{position:fixed;left:14px;bottom:calc(14px + env(safe-area-inset-bottom,0px));z-index:9999;
+display:inline-flex;align-items:center;gap:6px;padding:10px 18px;border-radius:999px;
+background:rgba(255,255,255,0.92);color:#2d3436;font-size:15px;font-weight:600;
+text-decoration:none;box-shadow:0 4px 14px rgba(0,0,0,0.18);border:1px solid rgba(0,0,0,0.08);
+-webkit-backdrop-filter:blur(4px);backdrop-filter:blur(4px);transition:transform .15s,background .15s;}
+#rourou-home-btn:hover{background:#fff;transform:translateY(-2px);}
+@media (max-width:600px){#rourou-home-btn{padding:9px 14px;font-size:13px;left:10px;bottom:calc(10px + env(safe-area-inset-bottom,0px));}}
+</style>
+<a id="rourou-home-btn" href="../index.html">🏠 首页</a>
+<!-- rourou-home-btn:end -->
+</body>
+</html>

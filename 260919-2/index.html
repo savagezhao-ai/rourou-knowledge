@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🌧️ 天上的雨干净么？</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: "Microsoft YaHei", "PingFang SC", sans-serif;
+            background: linear-gradient(180deg, #a8d8ff 0%, #74b9ff 30%, #4a90d9 60%, #2d5f8a 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        .container {
+            max-width: 850px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 30px;
+            padding: 40px;
+            box-shadow: 0 25px 80px rgba(0,0,0,0.15);
+        }
+        .header {
+            text-align: center;
+            padding: 30px 0;
+            background: linear-gradient(135deg, #54a0ff 0%, #48dbfb 50%, #c8f4ff 100%);
+            border-radius: 20px;
+            margin-bottom: 30px;
+        }
+        .header h1 {
+            font-size: 48px;
+            color: white;
+            text-shadow: 3px 3px 6px rgba(0,0,0,0.2);
+        }
+        .subtitle {
+            font-size: 20px;
+            color: rgba(255,255,255,0.95);
+        }
+        h2 {
+            font-size: 30px;
+            color: #2d3436;
+            margin: 40px 0 20px;
+            padding: 15px 25px;
+            background: linear-gradient(90deg, #a8d8ff 0%, #c8f4ff 100%);
+            border-radius: 15px;
+            display: inline-block;
+        }
+        h3 { font-size: 22px; color: #0984e3; margin: 25px 0 12px; }
+        p {
+            font-size: 20px;
+            line-height: 2;
+            color: #2d3436;
+            margin-bottom: 20px;
+            text-align: justify;
+        }
+        ul, ol { margin: 0 0 20px 30px; }
+        li { font-size: 19px; line-height: 1.9; color: #2d3436; margin-bottom: 8px; }
+        .image-container { width: 100%; margin: 30px 0; text-align: center; }
+        .dino-image {
+            width: 100%;
+            border-radius: 20px;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.2);
+        }
+        .image-caption {
+            color: #636e72;
+            font-size: 16px;
+            margin-top: 15px;
+            font-style: italic;
+            background: #e8f4ff;
+            display: inline-block;
+            padding: 8px 20px;
+            border-radius: 20px;
+        }
+        .fun-fact {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 25px;
+            border-radius: 20px;
+            margin: 25px 0;
+            font-size: 18px;
+            line-height: 1.8;
+        }
+        .fun-fact.pink { background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%); }
+        .fun-fact.green { background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%); }
+        .fun-fact.orange { background: linear-gradient(135deg, #fa709a 0%, #fee140 100%); }
+        .fun-fact.blue { background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%); }
+        .fun-fact-title { font-size: 22px; font-weight: bold; margin-bottom: 10px; }
+        .why-box {
+            background: linear-gradient(135deg, #fff5e6 0%, #ffe0b3 100%);
+            border-left: 8px solid #ff9f43;
+            padding: 22px 25px;
+            border-radius: 12px;
+            margin: 22px 0;
+            font-size: 19px;
+            line-height: 1.9;
+            color: #5c4033;
+        }
+        .why-box strong { color: #d35400; }
+        .divider { text-align: center; font-size: 30px; color: #ddd; margin: 30px 0; }
+        .quiz-section {
+            background: linear-gradient(135deg, #e3f2ff 0%, #b8dcff 100%);
+            padding: 30px;
+            border-radius: 20px;
+            margin: 30px 0;
+        }
+        .quiz-title { font-size: 28px; color: #0984e3; text-align: center; margin-bottom: 20px; }
+        .quiz-question {
+            background: white;
+            padding: 20px;
+            border-radius: 15px;
+            margin: 15px 0;
+            font-size: 18px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        .quiz-question .opts { margin-top: 10px; color: #636e72; font-size: 17px; }
+        .quiz-question .answer {
+            margin-top: 12px;
+            color: #00b894;
+            font-weight: bold;
+            font-size: 17px;
+        }
+        .ending {
+            text-align: center;
+            padding: 40px 0;
+            margin-top: 40px;
+            background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);
+            border-radius: 20px;
+        }
+        .ending h3 { font-size: 32px; color: #2d3436; }
+        .ending p { text-align: center; font-size: 18px; color: #636e72; }
+        .back-home-btn {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 14px 30px;
+            background: rgba(0,0,0,0.08);
+            color: #2d3436;
+            text-decoration: none;
+            border-radius: 25px;
+            font-size: 18px;
+            border: 2px solid rgba(0,0,0,0.15);
+            transition: background 0.3s, transform 0.2s;
+        }
+        .back-home-btn:hover { background: rgba(0,0,0,0.15); transform: translateY(-2px); }
+        .back-home-btn:active { transform: translateY(0); }
+        @media (max-width: 600px) {
+            .container { padding: 20px; }
+            h1 { font-size: 32px; }
+            h2 { font-size: 24px; }
+            p { font-size: 18px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🌧️ 天上的雨干净么？</h1>
+            <p class="subtitle">一滴雨的一生：从云里的一粒尘埃，到落在你手心的那点水</p>
+        </div>
+
+        <p>下雨天，你会不会做这件事——仰起头，张开嘴，接一滴雨水尝尝？</p>
+        <p>雨水看起来那么清亮，从那么高的天上落下来，应该是干干净净的吧？</p>
+        <p>可是你有没有注意到：下过雨的车身上，总是留下一层灰扑扑的泥点；北方春天的雨，甚至能直接给白车穿上一件"泥外套"。</p>
+
+        <div class="why-box">
+            <strong>先记住这个问题：</strong>雨的"脏"，到底是在天上就脏了，还是在落下来的路上脏的？<br>
+            想通这一点，你就能看懂整篇文章。
+        </div>
+
+        <div class="image-container">
+            <img src="scene_01.webp" alt="下雨的城市街道，孩子伸手接雨滴" class="dino-image">
+            <p class="image-caption">接住一滴雨，其实接住了一趟很长的旅行</p>
+        </div>
+
+        <div class="divider">☔ ☔ ☔</div>
+
+        <h2>第一章：云是白的，雨为什么可能是脏的？</h2>
+
+        <p>云是白色的，看起来又轻又软，像棉花糖。按道理说，从棉花糖里掉出来的东西，应该很干净才对。</p>
+        <p>但这里藏着一个误会：<strong>云并不是"一团水"，而是一大群浮在空中的小水珠和小冰晶。</strong>而这些小水珠，从出生的那一刻起，就不是纯的。</p>
+        <p>想弄明白为什么，我们得先干一件事——把水蒸气变成一滴水，看看它到底需要什么。</p>
+
+        <h2>第二章：雨滴出生，必须借一粒"种子"</h2>
+
+        <p>先想一个很奇怪的事实：空气中的水蒸气，可以一直飘着，飘到超过它该承受的量，也不肯变成水滴。</p>
+        <p>为什么？我们来一层一层往下追。</p>
+
+        <div class="why-box">
+            <strong>第一层：</strong>水分子是小小的粒子，它们在水面上跳来跳去，有些跳得太用力，就飞到空气里去了（这就是蒸发）。<br><br>
+            <strong>第二层：</strong>如果水滴特别小，它的表面是<strong>弯的</strong>（几乎像个球）。在弯弯的表面上，水分子更容易"逃走"——因为它们周围的同伴更少，拉不住它们。<br><br>
+            <strong>第三层：</strong>所以一个刚凭空冒出的小水滴，几乎立刻就会被蒸发掉。想让它活下来、长大，它得先跨过一道很高的门槛。<strong>而如果有一粒现成的"台阶"给它踩，这道门槛就几乎消失了。</strong>
+        </div>
+
+        <p>这粒"台阶"，科学家叫它<strong>凝结核</strong>——就是空气里飘着的一粒微小的东西：尘埃、海盐颗粒、花粉、烟灰，甚至细菌。</p>
+        <p>水分子们趴在这粒东西上面，手拉着手排好队，就不那么容易被扯走了。于是，一滴水就这样"借"着别人的身体出生了。</p>
+
+        <p><strong>所以第一个结论来了：一滴雨的心里，几乎总有一粒不是水的东西。</strong></p>
+
+        <div class="fun-fact blue">
+            <div class="fun-fact-title">🌊 趣味知识：海上的云，是用"盐"做的种子</div>
+            海洋上空的云，很多是拿海盐当凝结核长出来的。海浪把水花甩到空中，水蒸发了，盐留了下来，变成极小的盐粒飘在空中。水蒸气趴在这些盐粒上，才有了云。所以海上那些白云，种子居然是咸的！
+        </div>
+
+        <div class="image-container">
+            <img src="scene_02.webp" alt="微观视角：尘埃颗粒周围水分子聚拢成水滴" class="dino-image">
+            <p class="image-caption">水分子会排队趴在一粒尘埃上——这就是雨滴的起点</p>
+        </div>
+
+        <div class="divider">💧 💧 💧</div>
+
+        <h2>第三章：从"云滴"长成"雨滴"，得长大几十万倍</h2>
+
+        <p>云里的小水珠叫<strong>云滴</strong>，直径大约 0.01 毫米——小到能一直飘着不掉下来。</p>
+        <p>而一滴真正的雨滴，直径大约 1 到 2 毫米。算一下体积，雨滴是云滴的<strong>几十万到上百万倍</strong>。</p>
+        <p>云滴要怎么长大这么多？靠继续凝结行不行？不行。</p>
+
+        <div class="why-box">
+            <strong>为什么不行：</strong>云滴一旦开始长大，它周围那一小圈水汽立刻就被用光了。它想再长，就得等新的水汽飘过来——这个速度太慢了。而且云滴越大，下落时遇到的空气阻力相对越小，它会开始往下掉，一掉出云层就蒸发掉了。<br><br>
+            <strong>所以云滴必须换一种长法：合并。</strong>
+        </div>
+
+        <h3>暖云里：滚雪球式的碰撞合并</h3>
+        <p>云里成千上万的云滴，大小其实并不一样。大一点的下落得快，小一点的下落得慢。快的那一颗往下冲的时候，会一路"扫"过并吞掉比它慢的小水珠——就像滚雪球一样，越滚越大、越滚越快，最后大到空气托不住，就落下来了。</p>
+
+        <h3>冷云里：冰晶抢水汽的"贝吉龙过程"</h3>
+        <p>高空的云里有很多冰晶。这里有个奇妙的物理事实：<strong>在同样的温度下，冰比水更容易"抓住"水汽。</strong>也就是说，同样的空气里，水汽更愿意跑到冰晶上去。</p>
+        <p>于是出现了这样一幕：冰晶不断从旁边的小水滴那里"抢"走水汽，自己越长越大；小水滴则越来越小，最后消失。冰晶重了、掉下来了，穿过下面温暖的空气时融化——变成一滴雨，落到你脸上。</p>
+
+        <div class="fun-fact green">
+            <div class="fun-fact-title">❄️ 趣味知识：一朵云的重量，能抵好几头大象</div>
+            一朵普通的积云里含的水，加起来能有几百吨——比好几十头大象还重。它之所以不砸下来，是因为这些水被拆成了无数极小的云滴，每一颗都被空气轻轻托着。等它们"合并"到托不住，才变成雨掉下来。
+        </div>
+
+        <div class="image-container">
+            <img src="scene_03.webp" alt="云内部：小云滴碰撞合并长大成雨滴下落" class="dino-image">
+            <p class="image-caption">云滴靠"合并"长大——一滴雨往往是成千上万颗小水珠合起来的</p>
+        </div>
+
+        <div class="divider">🌫️ 🌫️ 🌫️</div>
+
+        <h2>第四章：变脏的关键，在落下来这一段路</h2>
+
+        <p>现在回答开头那个问题。</p>
+        <p>雨滴在云里的时候，身上只带了一点"种子"和一路上合并进来的东西，其实还不算太脏。真正让雨变脏的，是它<strong>从云底落到地面的这一段路</strong>。</p>
+        <p>云底通常离地面有 1 到 2 公里。这 1 到 2 公里的空气里飘着什么？灰尘、汽车尾气、工厂排出的烟、花粉、细菌、微小的塑料颗粒……雨滴往下落的时候，像一个不停挥动的扫把，把这些东西统统裹进自己身上。这个过程有个名字，叫<strong>冲刷</strong>。</p>
+
+        <div class="why-box">
+            <strong>于是就有了一个特别有用的规律：刚下雨的那几分钟，雨水最脏。</strong><br>
+            因为空气已经攒了好几天的灰尘没洗，头几分钟的雨是一次性把所有积蓄洗下来的。等雨下透了、空气被洗干净了，后面的雨才越来越接近"干净的雨"。<br><br>
+            这叫做<strong>初雨效应</strong>。
+        </div>
+
+        <p>所以你大概能理解这两件事了：</p>
+        <ul>
+            <li>洗车师傅总说"等雨下透再洗"——不是偷懒，是因为第一场雨反而会把车弄得更脏。</li>
+            <li>想接雨水浇花，别接开头那几分钟的，等雨下了一阵再接。</li>
+        </ul>
+
+        <h3>酸雨：追到最底层的原因</h3>
+        <p>先纠正一个误解：<strong>最天然的雨水，本来就不是中性的。</strong>空气里有二氧化碳，它溶进雨滴，会生成一点点碳酸，让雨水的 pH 大约落在 <strong>5.6</strong> 附近。所以"酸雨"不是指"有点酸"，而是特指 <strong>pH 低于 5.6</strong> 的雨。</p>
+        <p>那更酸的部分从哪来？追到根子上，是<strong>燃烧</strong>：</p>
+        <ol>
+            <li>煤和石油里含有硫。燃烧时硫和氧气结合，生成二氧化硫（SO₂）。</li>
+            <li>更微妙的是——空气里最多的氮气，在发动机和锅炉那种高温下，会被"硬拉"着和氧气结合，生成氮氧化物（NOₓ）。</li>
+            <li>这些气体飘到云里，溶进雨滴，变成硫酸和硝酸。</li>
+        </ol>
+        <p>所以酸雨的源头不是雨，是烟囱和排气管。雨只是把这些气体<strong>从天上带回了地面</strong>。</p>
+
+        <h3>云里还有活的东西</h3>
+        <p>更让人意外的是：雨滴里不只有灰尘，还有<strong>活着的细菌和真菌孢子</strong>。它们被风卷到高空，搭着水滴在空中旅行，有的甚至能在云里存活、繁殖，还会参与水的结冰过程。下一场雨，某种程度上也是一次"空中的微生物搬家"。</p>
+
+        <div class="fun-fact orange">
+            <div class="fun-fact-title">🏜️ 趣味知识：泥雨是哪里来的？</div>
+            北方春天偶尔会下一场"泥雨"：落在车上全是黄褐色的泥点。它的原理特别直白——大风把沙漠里的沙尘卷到几千米高空，这些沙尘正好做了雨滴的凝结核；雨滴裹着沙尘落下来，就成了泥雨。这是"雨不干净"最直观的一次现场演示。
+        </div>
+
+        <div class="image-container">
+            <img src="scene_04.webp" alt="雨滴下落穿过灰蒙蒙的空气，裹住烟尘和污染物" class="dino-image">
+            <p class="image-caption">下落这一段，雨滴像个扫把，把空气里的脏东西一起带下来</p>
+        </div>
+
+        <div class="divider">🧪 🧪 🧪</div>
+
+        <h2>第五章：那这场雨，到底能不能用？</h2>
+
+        <p>把前面的线索串起来，答案其实很清楚：<strong>雨干不干净，取决于它路过了怎样的天空。</strong></p>
+
+        <h3>按用途排个队</h3>
+        <ul>
+            <li><strong>浇花、冲厕所、洗车</strong> —— 可以，环保又省水。但避开开头那几分钟的雨，效果更好。</li>
+            <li><strong>洗手、洗澡</strong> —— 不推荐直接用，尤其在城市里。雨滴经过的空气层里有什么，它就带下来什么。</li>
+            <li><strong>喝</strong> —— 只有紧急情况才考虑，而且必须<strong>先过滤、再煮沸</strong>。雨水里可能有细菌、颗粒物和溶解的污染物，煮沸能解决微生物，但溶解的东西要靠过滤。</li>
+        </ul>
+
+        <p>顺便说一个反差：森林里、大海上的雨，和堵车路段上方落下的雨，完全不是一回事。同样的云、同样的雨滴，路过的天空不一样，最后落到地上的东西就不一样。</p>
+
+        <h3>动手做个小实验</h3>
+        <p>下次下雨，准备两个干净的玻璃杯：</p>
+        <ol>
+            <li>第一杯：接下雨<strong>头 5 分钟</strong>的雨水。</li>
+            <li>第二杯：等到雨下了<strong>半小时以后</strong>再接一杯。</li>
+            <li>把两杯水都放着自然晾干，然后看杯底。</li>
+        </ol>
+        <p>你会发现第一杯的杯底明显更脏。这就是"初雨效应"在你家窗台上的一次现场重现。</p>
+
+        <div class="fun-fact pink">
+            <div class="fun-fact-title">🌍 趣味知识：让雨变干净的钥匙，不在天上</div>
+            既然雨是在下落的过程中变脏的，那么想让雨变干净，办法就很明确了——不是去管云，而是<strong>让空气变干净</strong>。减少烟尘和尾气排放，落到我们手上的雨，就会一天天更接近它在云里时的样子。每一滴雨水，其实都是当天空气的一份"体检报告"。
+        </div>
+
+        <div class="image-container">
+            <img src="scene_05.webp" alt="干净的天空下，孩子用桶收集雨水浇花" class="dino-image">
+            <p class="image-caption">雨干不干净，是天空替它写的答卷</p>
+        </div>
+
+        <div class="divider">✨ ✨ ✨</div>
+
+        <h2>总结一下</h2>
+        <ol>
+            <li>水蒸气想变成水滴，需要一粒现成的"台阶"——凝结核。所以一滴雨的中心，常常有一粒尘埃或盐粒。</li>
+            <li>云滴长成雨滴，靠的不是继续凝结，而是碰撞合并（暖云）或冰晶抢水汽（冷云）。</li>
+            <li>雨在天上不算太脏，变脏主要发生在从云底落到地面这 1~2 公里的路上。</li>
+            <li>刚下雨那几分钟的雨水最脏（初雨效应）；天然雨水的 pH 大约 5.6，低于它才叫酸雨。</li>
+            <li>想让雨干净，得让空气干净。</li>
+        </ol>
+
+        <div class="quiz-section">
+            <div class="quiz-title">🎯 互动小测验</div>
+            <div class="quiz-question">
+                1. 雨滴最早是怎么"出生"的？
+                <div class="opts">A. 水蒸气自己挤成一小滴水<br>B. 水分子趴在一粒尘埃或盐粒上聚集起来<br>C. 云朵被太阳晒化了</div>
+                <div class="answer">答案：B（水蒸气需要凝结核当"台阶"）</div>
+            </div>
+            <div class="quiz-question">
+                2. 为什么水蒸气不会自己变成小雨滴？
+                <div class="opts">A. 小水滴表面是弯的，水分子很容易逃走<br>B. 水蒸气太轻了<br>C. 因为空气不让它变</div>
+                <div class="answer">答案：A（弯曲表面的小水滴不稳定，几乎马上会蒸发）</div>
+            </div>
+            <div class="quiz-question">
+                3. 一场雨里，什么时候的雨水最脏？
+                <div class="opts">A. 一开始下的那几分钟<br>B. 中间下得最大的时候<br>C. 快要停的时候</div>
+                <div class="answer">答案：A（初雨效应：空气攒的灰尘被一次洗下来）</div>
+            </div>
+            <div class="quiz-question">
+                4. 天然雨水本来就不是中性的，它的 pH 大约是多少？
+                <div class="opts">A. 7.0（正好中性）<br>B. 约 5.6（因为溶了二氧化碳）<br>C. 约 2.0（特别酸）</div>
+                <div class="answer">答案：B（pH 低于 5.6 才叫酸雨）</div>
+            </div>
+            <div class="quiz-question">
+                5. 想让雨变干净，最根本的办法是什么？
+                <div class="opts">A. 让云变高一点<br>B. 下雨的时候不打伞<br>C. 减少烟尘和尾气，让空气变干净</div>
+                <div class="answer">答案：C（雨是在下落时变脏的，所以源头在空气）</div>
+            </div>
+        </div>
+
+        <div class="ending">
+            <h3>—— 完 ——</h3>
+            <p>谢谢阅读！希望你学到了很多知识！</p>
+            <p style="margin-top: 10px; font-size: 14px; color: #b2bec3;">本故事由 AI 助手小龙为小朋友精心制作 🐉</p>
+            <div style="text-align: left; margin-top: 15px;">
+                <a href="../index.html" class="back-home-btn">🏠 返回首页</a>
+            </div>
+        </div>
+    </div>
+
+<!-- rourou-home-btn:start -->
+<style>
+#rourou-home-btn{position:fixed;left:14px;bottom:calc(14px + env(safe-area-inset-bottom,0px));z-index:9999;
+display:inline-flex;align-items:center;gap:6px;padding:10px 18px;border-radius:999px;
+background:rgba(255,255,255,0.92);color:#2d3436;font-size:15px;font-weight:600;
+text-decoration:none;box-shadow:0 4px 14px rgba(0,0,0,0.18);border:1px solid rgba(0,0,0,0.08);
+-webkit-backdrop-filter:blur(4px);backdrop-filter:blur(4px);transition:transform .15s,background .15s;}
+#rourou-home-btn:hover{background:#fff;transform:translateY(-2px);}
+@media (max-width:600px){#rourou-home-btn{padding:9px 14px;font-size:13px;left:10px;bottom:calc(10px + env(safe-area-inset-bottom,0px));}}
+</style>
+<a id="rourou-home-btn" href="../index.html">🏠 首页</a>
+<!-- rourou-home-btn:end -->
+</body>
+</html>
