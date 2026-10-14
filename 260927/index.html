@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🌈 为什么会有彩虹？——光在雨滴里的三次折返</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: "Microsoft YaHei", "PingFang SC", sans-serif;
+            background: linear-gradient(180deg, #a1c4fd 0%, #c2e9fb 30%, #fbc2eb 65%, #fed6e3 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        .container {
+            max-width: 850px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 30px;
+            padding: 40px;
+            box-shadow: 0 25px 80px rgba(0,0,0,0.15);
+        }
+        .header {
+            text-align: center;
+            padding: 30px 0;
+            background: linear-gradient(90deg, #ff5f6d 0%, #ffc371 20%, #7ee8a0 40%, #4facfe 60%, #9b6cff 80%, #ff5f9e 100%);
+            border-radius: 20px;
+            margin-bottom: 30px;
+        }
+        .header h1 {
+            font-size: 38px;
+            color: #fff;
+            text-shadow: 3px 3px 6px rgba(0,0,0,0.3);
+        }
+        .subtitle {
+            font-size: 20px;
+            color: rgba(255,255,255,0.98);
+            margin-top: 10px;
+            text-shadow: 1px 1px 3px rgba(0,0,0,0.25);
+        }
+        h2 {
+            font-size: 32px;
+            color: #2d3436;
+            margin: 40px 0 20px;
+            padding: 15px 25px;
+            background: linear-gradient(90deg, #4facfe 0%, #9b6cff 100%);
+            border-radius: 15px;
+            display: inline-block;
+        }
+        p {
+            font-size: 20px;
+            line-height: 2;
+            color: #2d3436;
+            margin-bottom: 20px;
+            text-align: justify;
+        }
+        .image-container {
+            width: 100%;
+            margin: 30px 0;
+            text-align: center;
+        }
+        .dino-image {
+            width: 100%;
+            border-radius: 20px;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.2);
+        }
+        .image-caption {
+            color: #636e72;
+            font-size: 16px;
+            margin-top: 15px;
+            font-style: italic;
+            background: #dfe6e9;
+            display: inline-block;
+            padding: 8px 20px;
+            border-radius: 20px;
+        }
+        .fun-fact {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 25px;
+            border-radius: 20px;
+            margin: 25px 0;
+            font-size: 18px;
+            line-height: 1.8;
+        }
+        .fun-fact.pink {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+        }
+        .fun-fact.green {
+            background: linear-gradient(135deg, #11998e 0%, #38ef7d 100%);
+        }
+        .fun-fact.orange {
+            background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);
+        }
+        .fun-fact-title {
+            font-size: 22px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        .divider {
+            text-align: center;
+            font-size: 30px;
+            color: #ddd;
+            margin: 30px 0;
+        }
+        .quiz-section {
+            background: linear-gradient(135deg, #e0c3fc 0%, #8ec5fc 100%);
+            padding: 30px;
+            border-radius: 20px;
+            margin: 30px 0;
+        }
+        .quiz-title {
+            font-size: 28px;
+            color: #5a3e85;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .quiz-question {
+            background: white;
+            padding: 20px;
+            border-radius: 15px;
+            margin: 15px 0;
+            font-size: 18px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        .ending {
+            text-align: center;
+            padding: 40px 0;
+            margin-top: 40px;
+            background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);
+            border-radius: 20px;
+        }
+        .ending h3 { font-size: 32px; color: #2d3436; }
+        .ending p { text-align: center; font-size: 18px; color: #636e72; }
+        .back-home-btn {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 14px 30px;
+            background: rgba(0,0,0,0.08);
+            color: #2d3436;
+            text-decoration: none;
+            border-radius: 25px;
+            font-size: 18px;
+            border: 2px solid rgba(0,0,0,0.15);
+            transition: background 0.3s, transform 0.2s;
+        }
+        .back-home-btn:hover {
+            background: rgba(0,0,0,0.15);
+            transform: translateY(-2px);
+        }
+        .back-home-btn:active { transform: translateY(0); }
+        @media (max-width: 600px) {
+            .container { padding: 20px; }
+            .header h1 { font-size: 25px; }
+            h2 { font-size: 24px; }
+            p { font-size: 18px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🌈 为什么会有彩虹？</h1>
+            <p class="subtitle">一场光在雨滴里的三次折返，以及一个你永远追不到的终点</p>
+        </div>
+
+        <p>雨刚停，太阳钻出来，对面天空挂着一道七色的弧。全世界的小孩大概都问过：彩虹到底是怎么来的？</p>
+
+        <p>答案里有个反直觉的地方——<strong>彩虹不是"天上的东西"，它更像一场只属于你一个人的表演。</strong>往下看你就明白了。</p>
+
+        <div class="image-container">
+            <img src="scene_01.webp" alt="棱镜把白光分成七色" class="dino-image">
+            <div class="image-caption">白光穿过棱镜，被摊开成一条彩带</div>
+        </div>
+
+        <h2>第一层：阳光里本来就藏着彩虹</h2>
+
+        <p>第一件事要打破一个直觉：<strong>白色的阳光不是"纯白"的，它是所有颜色混在一起的。</strong></p>
+
+        <p>1666 年，牛顿在暗室里做了个著名的实验。他在窗户上开个小洞，让一束阳光射进来，穿过一块<strong>三棱镜</strong>，结果对面的墙上出现了一条彩带——红、橙、黄、绿、蓝、靛、紫。</p>
+
+        <p>但真正精彩的是第二步。牛顿在这个彩色光带的后面<strong>再放一块棱镜</strong>，把它倒过来放——七色光穿过第二块棱镜之后，<strong>又合成了白光。</strong></p>
+
+        <p>这一步才是关键。它证明了：<strong>颜色不是棱镜"造"出来的，而是阳光里本来就有，棱镜只是把它们分开了。</strong></p>
+
+        <div class="fun-fact">
+            <div class="fun-fact-title">💡 为什么牛顿要做第二步？</div>
+            只做第一步，别人可以说"是玻璃把光染了色"。<strong>能把分开的东西原样合回去，才证明它本来就是混着的。</strong>这种"拆开再装回去"的思路，是科学里非常有说服力的一招——怀疑一个结果时，试试能不能把它倒过来再做一遍。
+        </div>
+
+        <div class="divider">✦ ✦ ✦</div>
+
+        <h2>第二层：雨滴就是一颗小棱镜</h2>
+
+        <p>天上没有棱镜。但有<strong>水滴</strong>。</p>
+
+        <p>光穿过水滴的时候，会走三步——记住这三步，整道彩虹就全说通了：</p>
+
+        <p style="text-align:center; font-size:20px; line-height:2.2; background:#f1f2f6; padding:20px; border-radius:15px; margin:20px 0;">
+            <strong>①</strong> 从空气钻进水滴 → <strong>拐弯</strong>（折射）<br>
+            <strong>②</strong> 撞到水滴背面 → <strong>弹回来</strong>（反射）<br>
+            <strong>③</strong> 从水滴钻回空气 → <strong>再拐一次弯</strong>（折射）
+        </p>
+
+        <p>关键在于第 ① 步和第 ③ 步：<strong>不同颜色的光，拐弯的幅度不一样。</strong></p>
+
+        <p>紫光拐得最厉害，红光拐得最少。所以它们虽然同时钻进同一颗水滴，出来的时候却<strong>朝不同的方向飞</strong>了——紫光偏得厉害，红光偏得少。混在一起的白光，就这样被"摊"成了扇形。</p>
+
+        <p>这就是<strong>色散</strong>。雨滴干的事，和牛顿的棱镜是同一件事。</p>
+
+        <div class="image-container">
+            <img src="scene_02.webp" alt="光在水滴内的三次动作" class="dino-image">
+            <div class="image-caption">钻进去拐弯 → 背面弹回 → 钻出来再拐弯，紫光拐得多、红光拐得少</div>
+        </div>
+
+        <div class="fun-fact orange">
+            <div class="fun-fact-title">💡 一个很多人搞错的地方</div>
+            有些书上说，光在水滴背面发生的是"全反射"。<strong>其实不是。</strong>要发生全反射，入射角必须大于约 <strong>48.6°</strong>（水的临界角），而光撞到水滴背面时的角度大约只有 <strong>40°</strong>——不够大。<br>
+            所以那里是<strong>部分反射</strong>：只有一小部分光被弹回来，大部分直接穿出去了。<strong>这就是为什么彩虹的光其实挺弱的</strong>——阳光经过这一趟，绝大部分都漏掉了。
+        </div>
+
+        <div class="divider">✦ ✦ ✦</div>
+
+        <h2>第三层：为什么是弯的？为什么红在外？</h2>
+
+        <p>现在拼上最后一块拼图。</p>
+
+        <p>水滴有无数颗，阳光从各个角度射进去。但只有<strong>特定角度</strong>的水滴，才能把光正好送进你的眼睛。算出来的结果是：</p>
+
+        <p style="text-align:center; font-size:20px; line-height:2; background:#f1f2f6; padding:20px; border-radius:15px; margin:20px 0;">
+            红光：偏离太阳方向约 <strong>42°</strong><br>
+            紫光：偏离太阳方向约 <strong>40°</strong>
+        </p>
+
+        <p>也就是说，如果你背对着太阳，沿着"太阳—你的眼睛"这条线往前看，那么<strong>偏 42° 的方向上，你会看到红光；偏 40° 的方向上，你会看到紫光。</strong></p>
+
+        <p>把"偏离 42°"这根线转一整圈，就画出一个圆。所以天上的彩虹是<strong>一段圆弧</strong>——红光在<strong>外侧</strong>（42°），紫光在<strong>内侧</strong>（40°）。</p>
+
+        <div class="image-container">
+            <img src="scene_03.webp" alt="42度角形成圆弧" class="dino-image">
+            <div class="image-caption">把 42° 这根线转一圈，就得到一段圆弧</div>
+        </div>
+
+        <p>顺带解决一个日常疑问：<strong>为什么中午很少见到彩虹？</strong></p>
+
+        <p>因为彩虹总是出现在太阳<strong>对面</strong>、偏离 42° 的方向。太阳升得太高（超过 42°），那 42° 的圆弧就整个落到地平线<strong>下面</strong>去了，你在地面上根本看不到。</p>
+
+        <p>所以：<strong>太阳要低，对面要有雨，你站在中间。</strong>这就是为什么彩虹总出现在清晨或傍晚的雨后。</p>
+
+        <div class="fun-fact green">
+            <div class="fun-fact-title">💡 彩虹其实是一个完整的圆</div>
+            在地面上我们只看到半截，是因为<strong>下半截在地平线以下</strong>，被地面挡住了。如果你坐在飞机上、或者站在很高的山上往下看，有机会看到<strong>一整个圆环</strong>的彩虹。
+        </div>
+
+        <div class="divider">✦ ✦ ✦</div>
+
+        <h2>第四层：你永远追不到彩虹的尽头</h2>
+
+        <p>这是我最喜欢的一层。</p>
+
+        <p>彩虹看起来挂在天上，但它<strong>不是一件东西</strong>。它不是一个物体、不是一层雾、更不是一座桥。</p>
+
+        <p>它是一组<strong>角度关系</strong>：以<strong>你的眼睛为顶点</strong>，朝太阳的反方向偏 42°，那一圈上的水滴，此刻正好把红光送进你的眼睛。</p>
+
+        <p>这意味着一件很奇妙的事：</p>
+
+        <p><strong>你走一步，那批水滴就换了一批。</strong>你看到的彩虹，是"此刻、此地、你的眼睛"专属的。</p>
+
+        <p>站在你旁边的人，看到的是<strong>另一个彩虹</strong>——由另一批水滴组成，虽然看起来一模一样。严格说，两个人永远看不到同一个彩虹。</p>
+
+        <p>所以"彩虹的尽头"根本不存在。你朝它走，它就往后退；你走到哪里，它就在哪里重新"生成"一次。<strong>你追的不是一个地点，而是一个角度。</strong></p>
+
+        <div class="image-container">
+            <img src="scene_04.webp" alt="每个人的彩虹不同" class="dino-image">
+            <div class="image-caption">以各自眼睛为顶点，每个人看到的其实是不同的水滴</div>
+        </div>
+
+        <div class="fun-fact">
+            <div class="fun-fact-title">💡 自己造一道彩虹（今天就能做）</div>
+            挑一个晴天，<strong>背对太阳</strong>站着，拿水管或喷雾瓶朝前方<strong>喷出细细的水雾</strong>——你就能在雾里看到一小段彩虹。<br>
+            关键条件只有两个：<strong>太阳在你背后，而且位置比较低</strong>（上午 10 点前或下午 4 点后最好）。中午太阳太高，怎么喷都看不到。
+        </div>
+
+        <div class="divider">✦ ✦ ✦</div>
+
+        <h2>第五层：双彩虹，颜色为什么是反的？</h2>
+
+        <p>运气好的时候，主彩虹的外面还会挂着一道更淡的第二道，叫<strong>霓</strong>（也叫副虹）。</p>
+
+        <p>把两道放在一起看，你会发现一件怪事：<strong>颜色顺序是反的。</strong></p>
+
+        <p style="text-align:center; font-size:20px; line-height:2; background:#f1f2f6; padding:20px; border-radius:15px; margin:20px 0;">
+            主虹（里面那道）：外红 → 内紫<br>
+            霓（外面那道）：外紫 → <strong>内红</strong><br>
+            角度：主虹约 42°，霓约 <strong>51°</strong>
+        </p>
+
+        <p>为什么会反过来？答案还是第二层那三步——只不过<strong>第 ② 步多弹了一次</strong>。</p>
+
+        <p>光在霓里走的是：<strong>折射进去 → 反射 → 再反射一次 → 折射出来</strong>。多一次反射，等于多一次"翻转"，出来的顺序就颠倒了。</p>
+
+        <p><strong>那为什么霓更暗？</strong>还记得上面说的吗——水滴背面的反射是<strong>部分反射</strong>，每弹一次都有光漏出去。弹两次，漏掉的光就多得多，所以霓总是淡淡的，有时候要仔细看才找得到。</p>
+
+        <p>还有一个细节值得找一找：两道彩虹<strong>中间那片天空特别暗</strong>。那片区域有个名字，叫<strong>亚历山大暗带</strong>——因为主虹和霓都没有把光送到这个角度区间，所以它比周围都暗。下次看到双彩虹，记得找一下这条暗带。</p>
+
+        <div class="image-container">
+            <img src="scene_05.webp" alt="双彩虹颜色相反" class="dino-image">
+            <div class="image-caption">多一次内部反射，颜色顺序就翻转，中间还留下一片暗带</div>
+        </div>
+
+        <div class="fun-fact pink">
+            <div class="fun-fact-title">💡 晚上也可能有彩虹</div>
+            月亮本身不发光，它反射太阳光。所以满月的夜晚，如果有合适的水雾，也能出现彩虹——叫<strong>月虹</strong>。只是月光太暗，人的眼睛在夜里辨色能力很差，月虹看起来常常是<strong>灰白色</strong>的。用相机长曝光拍下来，才能看出它的颜色。
+        </div>
+
+        <div class="divider">✦ ✦ ✦</div>
+
+        <h2>给你三件可以带走的东西</h2>
+
+        <p><strong>1. 白光是所有颜色的混合。</strong>棱镜、雨滴、光盘背面，做的事情都一样：把混在一起的东西按角度摊开。看到颜色被分开，先想"是不是不同颜色拐弯的幅度不同"。</p>
+
+        <p><strong>2. 有些东西是"关系"，不是"物体"。</strong>彩虹不是挂在天上的物件，是一组角度关系。影子、倒影、地平线也都是这一类。<strong>遇到追不到的东西，先问它到底是不是一件"东西"。</strong></p>
+
+        <p><strong>3. 多一步，结果就翻转。</strong>主虹一次反射、霓两次反射，颜色顺序整个反过来。很多时候，<strong>差别不在零件，而在零件走了几步。</strong></p>
+
+        <div class="quiz-section">
+            <div class="quiz-title">🎯 互动小测试</div>
+            <div class="quiz-question"><strong>1.</strong> 牛顿实验里最关键、最能说明问题的一步是？（&nbsp;&nbsp;）<br>
+            A. 让阳光穿过三棱镜分成七色　B. 用第二块棱镜把七色光重新合回白光<br>
+            C. 把房间弄得很暗　D. 在墙上量出彩带的宽度</div>
+            <div class="quiz-question"><strong>2.</strong> 光在一颗雨滴里形成彩虹，走的路线是？（&nbsp;&nbsp;）<br>
+            A. 只折射一次　B. 折射进去 → 背面反射 → 折射出来<br>
+            C. 只在表面反射　D. 直线穿过不拐弯</div>
+            <div class="quiz-question"><strong>3.</strong> 主虹的颜色顺序是？（&nbsp;&nbsp;）<br>
+            A. 外紫内红　B. 外红内紫<br>
+            C. 上下排列　D. 随机排列</div>
+            <div class="quiz-question"><strong>4.</strong> 为什么你永远走不到彩虹的尽头？（&nbsp;&nbsp;）<br>
+            A. 彩虹太高了　B. 彩虹会移动得比你快<br>
+            C. 彩虹是以你眼睛为顶点的一组角度关系，你一动它就换一批水滴　D. 彩虹是光的幻觉，并不存在</div>
+            <div class="quiz-question"><strong>5.</strong> 关于外面那道更淡的"霓"，正确的是？（&nbsp;&nbsp;）<br>
+            A. 它是主虹的倒影　B. 光在水滴里多反射了一次，所以颜色顺序翻转、亮度更暗<br>
+            C. 它是月光造成的　D. 它的颜色顺序和主虹一样</div>
+            <p style="text-align:center; font-size:16px; color:#636e72; margin-top:15px;">（答案：1-B　2-B　3-B　4-C　5-B）</p>
+        </div>
+
+        <div class="ending">
+            <h3>—— 完 ——</h3>
+            <p>谢谢阅读！希望你学到了很多知识！</p>
+            <p style="margin-top: 10px; font-size: 14px; color: #b2bec3;">本故事由 AI 助手小巴为小朋友精心制作 🚌</p>
+            <div style="text-align: left; margin-top: 15px;">
+                <a href="../index.html" class="back-home-btn">🏠 返回首页</a>
+            </div>
+        </div>
+    </div>
+<!-- rourou-home-btn:start -->
+<style>
+#rourou-home-btn{position:fixed;left:14px;bottom:calc(14px + env(safe-area-inset-bottom,0px));z-index:9999;
+display:inline-flex;align-items:center;gap:6px;padding:10px 18px;border-radius:999px;
+background:rgba(255,255,255,0.92);color:#2d3436;font-size:15px;font-weight:600;
+text-decoration:none;box-shadow:0 4px 14px rgba(0,0,0,0.18);border:1px solid rgba(0,0,0,0.08);
+-webkit-backdrop-filter:blur(4px);backdrop-filter:blur(4px);transition:transform .15s,background .15s;}
+#rourou-home-btn:hover{background:#fff;transform:translateY(-2px);}
+@media (max-width:600px){#rourou-home-btn{padding:9px 14px;font-size:13px;left:10px;bottom:calc(10px + env(safe-area-inset-bottom,0px));}}
+</style>
+<a id="rourou-home-btn" href="../index.html">🏠 首页</a>
+<!-- rourou-home-btn:end -->
+</body>
+</html>

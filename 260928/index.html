@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>💨 空气里有水吗？——一杯看不见的隐形水库</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: "Microsoft YaHei", "PingFang SC", sans-serif;
+            background: linear-gradient(180deg, #a1c4fd 0%, #c2e9fb 30%, #fbc2eb 65%, #fed6e3 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        .container {
+            max-width: 850px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 30px;
+            padding: 40px;
+            box-shadow: 0 25px 80px rgba(0,0,0,0.15);
+        }
+        .header {
+            text-align: center;
+            padding: 30px 0;
+            background: linear-gradient(90deg, #ff5f6d 0%, #ffc371 20%, #7ee8a0 40%, #4facfe 60%, #9b6cff 80%, #ff5f9e 100%);
+            border-radius: 20px;
+            margin-bottom: 30px;
+        }
+        .header h1 {
+            font-size: 38px;
+            color: #fff;
+            text-shadow: 3px 3px 6px rgba(0,0,0,0.3);
+        }
+        .subtitle {
+            font-size: 20px;
+            color: rgba(255,255,255,0.98);
+            margin-top: 10px;
+            text-shadow: 1px 1px 3px rgba(0,0,0,0.25);
+        }
+        h2 {
+            font-size: 32px;
+            color: #2d3436;
+            margin: 40px 0 20px;
+            padding: 15px 25px;
+            background: linear-gradient(90deg, #4facfe 0%, #9b6cff 100%);
+            border-radius: 15px;
+            display: inline-block;
+        }
+        p {
+            font-size: 20px;
+            line-height: 2;
+            color: #2d3436;
+            margin-bottom: 20px;
+            text-align: justify;
+        }
+        .image-container {
+            width: 100%;
+            margin: 30px 0;
+            text-align: center;
+        }
+        .dino-image {
+            width: 100%;
+            border-radius: 20px;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.2);
+        }
+        .image-caption {
+            color: #636e72;
+            font-size: 16px;
+            margin-top: 15px;
+            font-style: italic;
+            background: #dfe6e9;
+            display: inline-block;
+            padding: 8px 20px;
+            border-radius: 20px;
+        }
+        .fun-fact {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 25px;
+            border-radius: 20px;
+            margin: 25px 0;
+            font-size: 18px;
+            line-height: 1.8;
+        }
+        .fun-fact.pink {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+        }
+        .fun-fact.green {
+            background: linear-gradient(135deg, #11998e 0%, #38ef7d 100%);
+        }
+        .fun-fact.orange {
+            background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);
+        }
+        .fun-fact-title {
+            font-size: 22px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        .divider {
+            text-align: center;
+            font-size: 30px;
+            color: #ddd;
+            margin: 30px 0;
+        }
+        .quiz-section {
+            background: linear-gradient(135deg, #e0c3fc 0%, #8ec5fc 100%);
+            padding: 30px;
+            border-radius: 20px;
+            margin: 30px 0;
+        }
+        .quiz-title {
+            font-size: 28px;
+            color: #5a3e85;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .quiz-question {
+            background: white;
+            padding: 20px;
+            border-radius: 15px;
+            margin: 15px 0;
+            font-size: 18px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        .ending {
+            text-align: center;
+            padding: 40px 0;
+            margin-top: 40px;
+            background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);
+            border-radius: 20px;
+        }
+        .ending h3 { font-size: 32px; color: #2d3436; }
+        .ending p { text-align: center; font-size: 18px; color: #636e72; }
+        .back-home-btn {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 14px 30px;
+            background: rgba(0,0,0,0.08);
+            color: #2d3436;
+            text-decoration: none;
+            border-radius: 25px;
+            font-size: 18px;
+            border: 2px solid rgba(0,0,0,0.15);
+            transition: background 0.3s, transform 0.2s;
+        }
+        .back-home-btn:hover {
+            background: rgba(0,0,0,0.15);
+            transform: translateY(-2px);
+        }
+        .back-home-btn:active { transform: translateY(0); }
+        @media (max-width: 600px) {
+            .container { padding: 20px; }
+            .header h1 { font-size: 25px; }
+            h2 { font-size: 24px; }
+            p { font-size: 18px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+                <div class="header">
+            <h1>💨 空气里有水吗？</h1>
+            <p class="subtitle">一间屋子上空飘着一杯看不见的水，以及它什么时候肯「现形」</p>
+        </div>
+
+        <p>洗好的袜子晾在屋里，第二天干了。水明明没有倒掉，也没人喝掉，它去哪了？</p>
+
+        <p>答案是：<strong>它变成看不见的水汽，混进了空气里。</strong>也就是说——空气里真的有水。而且此刻你房间上空飘着的水，可能比一瓶矿泉水还多。可既然有水，为什么我们看不见？往下看。</p>
+
+        <div class="image-container">
+            <img src="scene_01.webp" alt="晾干的水去哪了" class="dino-image">
+            <div class="image-caption">袜子上的水没有消失，是「搬」到空气里去了</div>
+        </div>
+
+        <h2>第一层：水汽是单个的水，小到看不见</h2>
+
+        <p>先分清两个东西：<strong>水蒸气（水汽）</strong>和<strong>小水滴</strong>。</p>
+
+        <p>水汽是<strong>一个一个单独的水分子</strong>——水这种东西最小的零件。一个水分子大约只有 0.0000000004 米宽，比细菌还要小一万倍。这么小的东西，光根本「撞」不到一个能弹回你眼睛的目标上，所以眼睛看不见它。</p>
+
+        <p>那开水壶口冒出的「白气」呢？那<strong>不是水汽</strong>！那是水汽冲出来遇冷，已经抱团变成的<strong>小水滴</strong>——几百万个小水滴聚在一起，才看得见。真正的水汽是隐形的，它就在白气周围你看不见的地方。</p>
+
+        <div class="fun-fact">
+            <div class="fun-fact-title">🧪 动手验证：看不见，但摸得到证据</div>
+            <p>对着冷一点的镜子或眼镜片哈一口气，立刻出现一层雾——那不是你「喷」出来的水，是你呼出的水汽碰上冷镜片，紧急抱团变成了小水滴。水汽真的一路跟着你。</p>
+        </div>
+
+        <h2>第二层：水分子为什么会「飞」进空气？</h2>
+
+        <p>袜子上的水为什么会自己跑掉？得钻到水分子中间看。</p>
+
+        <p>液态的水，分子们<strong>手拉手</strong>挤在一起（这种「分子之间的手」叫氢键，是水分子特别爱交朋友的性格）。但分子不是乖孩子——它们永远在乱跑，而且跑得有快有慢。</p>
+
+        <p>总有那么一些分子，恰好跑得特别快，快到<strong>挣脱了旁边分子的手</strong>，一蹬腿冲出水面，飞进空气——这就是<strong>蒸发</strong>。哪怕一杯冷水，表面也每秒都有亿万个小分子在偷偷逃跑。</p>
+
+        <p>反过来，空气里乱飞的水汽分子也会撞回水面，被「拉」住手重新归队——这叫<strong>凝结</strong>。所以水面永远在进行一场交换游戏：一边往外跑，一边往回抓。晾衣服是跑出去的多、抓回来的少；罩上塑料袋，抓回来的追上跑出去的，衣服就干不了。</p>
+
+        <div class="image-container">
+            <img src="scene_02.webp" alt="水分子挣脱手飞出去" class="dino-image">
+            <div class="image-caption">跑得最快的分子挣脱「手拉手」，飞进空气</div>
+        </div>
+
+        <div class="fun-fact pink">
+            <div class="fun-fact-title">🔥 为什么晒太阳干得快？</div>
+            <p>温度就是分子乱跑的勐烈程度。太阳把水晒热，分子跑得更快、更有劲挣脱——跑出去的队变长了，衣服自然干得快。冬天冷，分子都慢吞吞的，袜子能挂三天。</p>
+        </div>
+
+        <h2>第三层：空气不是无限水库——它有「座位数」</h2>
+
+        <p>关键问题来了：空气能装多少水汽？答案是：<strong>有限，而且上限由温度说了算。</strong></p>
+
+        <p>把空气想成一辆公交车。水汽分子是乘客，能挤上来多少，看车有多大：</p>
+
+        <p><strong>每升高 10℃，车厢容量几乎翻一倍。</strong>30℃ 的热天，一立方米空气能装下约 30 克水；到 0℃，同样的车厢只能装约 5 克。这就是「车厢」随温度变大变小的规律。</p>
+
+        <p>车厢一旦坐满，就到了<strong>饱和</strong>——再多一个水汽分子都挤不上来，只能变回小水滴。天气热的时候车厢大，空气像个低调的隐形水库；冷空气一来，车厢突然缩小，多出来的乘客<strong>全被挤下车</strong>，抱团成水滴——雾、露水、云，全都是这么「挤」出来的。</p>
+
+        <div class="fun-fact">
+            <div class="fun-fact-title">🧊 夏天冰可乐瓶外面的小水珠，不是瓶里漏的</div>
+            <p>瓶壁把旁边的空气降了温，那一小圈空气的「车厢」缩小了，原本坐得下的水汽被挤下车，就落在瓶壁上。所以那层水珠是从<strong>空气里</strong>来的——空气里的水，被你亲眼看见了。</p>
+        </div>
+
+        <div class="image-container">
+            <img src="scene_03.webp" alt="热车大冷车小" class="dino-image">
+            <div class="image-caption">车厢（空气的装水上限）随温度变大变小</div>
+        </div>
+
+        <h2>第四层：「现形开关」——露点温度</h2>
+
+        <p>现在你能预测一件很厉害的事：空气里的水<strong>什么时候肯现形</strong>。</p>
+
+        <p>每团空气都有自己的「现形温度」，叫<strong>露点</strong>：把空气一路降温，车厢越来越小，总有一个温度正好坐满——再降一点点，水就开始变回水滴。这个温度就是露点。露点越高，说明空气里的水越多；露点低于 0℃，挤下车的直接冻成小冰晶，那就成了<strong>霜</strong>。</p>
+
+        <p>杯壁实验就是这么回事：冰块把杯壁降到露点以下，水汽就在壁上排队凝结。冬天的哈气、浴室的镜子、清晨的露水、傍晚的雾，全是同一套机制——<strong>局部空气被降到了露点以下</strong>。</p>
+
+        <p>云也是：地面的湿空气被风推上山、越升越冷，升到露点高度，整团空气「到站下车」，几亿个小水滴一起现形——一朵云诞生了。云就是飘在天上的雾。</p>
+
+        <div class="image-container">
+            <img src="scene_04.webp" alt="冰杯挂珠露点实验" class="dino-image">
+            <div class="image-caption">杯壁一低于露点，水汽立刻排队现形</div>
+        </div>
+
+        <div class="fun-fact pink">
+            <div class="fun-fact-title">🏔️ 为什么山上云多？</div>
+            <p>空气一升高 1000 米就降温约 6℃。湿空气被山坡逼着往上爬，爬着爬着就到露点了——所以山的半腰常挂着一圈云带，山顶常在云里。不是山神在抽烟，是空气爬得太高、车厢缩得太小。</p>
+        </div>
+
+        <h2>第五层：湿度决定你闷不闷、干不干</h2>
+
+        <p>空气里有多少水、离坐满还差多少，就是<strong>湿度</strong>。湿度 100% = 车厢坐满，一滴都装不下了。</p>
+
+        <p>这直接管着你身上的两件事：</p>
+
+        <p><strong>1. 你散热靠蒸发。</strong>天热时身体往皮肤上派「汗水」，汗蒸发时带走大量的热，等于用水给你做了个物理降温。可如果空气湿度接近 100%——车厢满了，汗蒸发不出去，只能挂在身上。热散不出去，人就又闷又黏。这就是桑天闷热的真相：不是更热了，是你的<strong>冷却系统被空气掐断了</strong>。干燥的热天反而好过，因为汗一冒头就被空气喝掉。</p>
+
+        <p><strong>2. 晾晒、除湿、加湿都在跟车厢抢座位。</strong>梅雨天衣服晾不干：空气快坐满了，跑出去的水分子刚出门就被抓回来。除湿机是给空气腾座位，加湿器是往车厢里塞乘客——冬天暖气房里空气干得裂皮肤，就是车厢太空了。</p>
+
+        <p>最后算一笔账：你每次呼吸都往外排水汽，一天下来大约<strong>400 毫升</strong>——将近一瓶矿泉水，全交给了房间的空气。冬天教室里几十个人哈气，窗户玻璃内侧的水珠，就是全班同学集体「现形」的证据。</p>
+
+        <div class="image-container">
+            <img src="scene_05.webp" alt="桑拿天与湿度" class="dino-image">
+            <div class="image-caption">湿度高，汗水蒸发不出去——闷热的真正原因</div>
+        </div>
+
+        <h2>给你三件可以带走的东西</h2>
+
+        <p><strong>1. 空气是一座隐形水库。</strong>水汽是单个水分子，小到看不见；你看到的「白气」、雾、云，全是水汽抱团后的小水滴。空气里的水一直都在，只是多数时候不肯现形。</p>
+
+        <p><strong>2. 温度是车厢大小，露点是现形开关。</strong>热车厢大装得多，冷车厢小装不下——所以现形总是发生在「变冷」的时候：冰可乐瓶、哈气、清晨露水、爬山遇到云，全是降温惹的。</p>
+
+        <p><strong>3. 你每天都被空气「喝」汗、「喝」呼吸。</strong>蒸发带走热量，湿度高就带走不了——理解了这一点，桑拿天为什么要开除湿机、冬天为什么要涂润肤霜，全都通了。</p>
+
+        <div class="divider"></div>
+
+        <div class="quiz-section">
+            <h2 class="quiz-title">🧠 小测试：你搞懂空气里的水了吗？</h2>
+
+            <div class="quiz-question"><strong>1.</strong> 开水壶口冒出的「白气」是什么？（&nbsp;&nbsp;）<br>
+            A. 水蒸气本身　B. 水汽遇冷抱团成的小水滴<br>
+            C. 烟　D. 空气被烧焦了</div>
+
+            <div class="quiz-question"><strong>2.</strong> 袜子晾在屋里会干，是因为水分子——（&nbsp;&nbsp;）<br>
+            A. 慢慢分解消失了　B. 渗进墙里了<br>
+            C. 跑得最快的那些挣脱了同伴，飞进了空气　D. 被太阳吸走了</div>
+
+            <div class="quiz-question"><strong>3.</strong> 为什么冰可乐瓶外面会「出汗」？（&nbsp;&nbsp;）<br>
+            A. 瓶子漏水　B. 瓶里的冰化了渗出来<br>
+            C. 瓶壁把周围空气降温，水汽被「挤下车」凝在瓶壁　D. 空气中的灰尘粘上去了</div>
+
+            <div class="quiz-question"><strong>4.</strong> 同样一团空气，温度降低后会发生什么？（&nbsp;&nbsp;）<br>
+            A. 能装的水汽变多　B. 能装的水汽变少，容易「现形」<br>
+            C. 水汽全部消失　D. 没有任何变化</div>
+
+            <div class="quiz-question"><strong>5.</strong> 桑拿天又闷又黏，真正的原因是？（&nbsp;&nbsp;）<br>
+            A. 温度更高了　B. 湿度太大，汗水蒸发不出去，身体散不了热<br>
+            C. 人缺水了　D. 空气里的氧气变少了</div>
+
+            <div class="quiz-question" style="background:#fffbe6;"><strong>📝 答案：</strong>1-B　2-C　3-C　4-B　5-B</div>
+        </div>
+
+<div class="ending">
+            <h3>—— 完 ——</h3>
+            <p>谢谢阅读！希望你学到了很多知识！</p>
+            <p style="margin-top: 10px; font-size: 14px; color: #b2bec3;">本故事由 AI 助手小巴为小朋友精心制作 🚌</p>
+            <div style="text-align: left; margin-top: 15px;">
+                <a href="../index.html" class="back-home-btn">🏠 返回首页</a>
+            </div>
+        </div>
+    </div>
+<!-- rourou-home-btn:start -->
+<style>
+#rourou-home-btn{position:fixed;left:14px;bottom:calc(14px + env(safe-area-inset-bottom,0px));z-index:9999;
+display:inline-flex;align-items:center;gap:6px;padding:10px 18px;border-radius:999px;
+background:rgba(255,255,255,0.92);color:#2d3436;font-size:15px;font-weight:600;
+text-decoration:none;box-shadow:0 4px 14px rgba(0,0,0,0.18);border:1px solid rgba(0,0,0,0.08);
+-webkit-backdrop-filter:blur(4px);backdrop-filter:blur(4px);transition:transform .15s,background .15s;}
+#rourou-home-btn:hover{background:#fff;transform:translateY(-2px);}
+@media (max-width:600px){#rourou-home-btn{padding:9px 14px;font-size:13px;left:10px;bottom:calc(10px + env(safe-area-inset-bottom,0px));}}
+</style>
+<a id="rourou-home-btn" href="../index.html">🏠 首页</a>
+<!-- rourou-home-btn:end -->
+</body>
+</html>
