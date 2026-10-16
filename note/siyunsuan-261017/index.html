@@ -1,0 +1,1215 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>四则运算到底在干什么 · 小学数学讲义 第一册</title>
+<style>
+:root{
+  --ink:#22303f; --ink2:#4a5b6b; --paper:#fffdf6; --line:#e3e7ec;
+  --blue:#2b7fd4; --red:#d9483f; --green:#2f9e6e; --orange:#e8913a; --purple:#8a5cd1; --gray:#9aa7b3;
+  --bluebg:#eaf3fc; --redbg:#fdeceb; --greenbg:#e8f6ef; --orangebg:#fdf1e3; --purplebg:#f2ecfb; --graybg:#f5f7f9;
+}
+*{box-sizing:border-box}
+body{
+  margin:0; background:#eceff3; color:var(--ink);
+  font-family:"PingFang SC","Hiragino Sans GB","Microsoft YaHei",system-ui,sans-serif;
+  font-size:16.5px; line-height:1.95;
+}
+.page{
+  max-width:800px; margin:0 auto; background:var(--paper);
+  padding:56px 52px 80px; box-shadow:0 2px 24px rgba(0,0,0,.08);
+}
+h1{font-size:31px; line-height:1.4; margin:0 0 6px; letter-spacing:.5px}
+.sub{color:var(--ink2); font-size:15px; margin:0 0 30px}
+h2{
+  font-size:24px; margin:52px 0 6px; padding:14px 18px; border-radius:10px;
+  background:linear-gradient(90deg,#22303f,#3d536b); color:#fff; letter-spacing:.5px;
+}
+h2 .num{font-size:14px; opacity:.65; display:block; font-weight:400; letter-spacing:2px}
+h3{font-size:19px; margin:34px 0 10px; color:#1c3247; border-left:5px solid var(--blue); padding-left:11px}
+h4{font-size:17px; margin:22px 0 6px; color:#2b4359}
+p{margin:10px 0}
+b{color:#12314f}
+.hl{background:linear-gradient(transparent 62%, #ffe9a8 62%); font-weight:600}
+.hl2{background:linear-gradient(transparent 62%, #b8e6cf 62%); font-weight:600}
+.eq{
+  font-family:"SF Mono",Menlo,Consolas,monospace; font-size:19px; letter-spacing:1px;
+  background:#fff; border:1px solid var(--line); border-radius:8px;
+  padding:8px 14px; display:inline-block; margin:6px 4px;
+}
+.center{text-align:center}
+.fig{background:#fff; border:1px solid var(--line); border-radius:12px; padding:14px 10px 8px; margin:16px 0; text-align:center; overflow-x:auto}
+.cap{font-size:13px; color:var(--ink2); display:block; margin-top:6px}
+.card{border-radius:12px; padding:16px 20px; margin:16px 0; border:1px solid; }
+.card p:first-child{margin-top:0}.card p:last-child{margin-bottom:0}
+.c-blue{background:var(--bluebg); border-color:#c3ddf5}
+.c-red{background:var(--redbg); border-color:#f5ccc8}
+.c-green{background:var(--greenbg); border-color:#c4e6d5}
+.c-orange{background:var(--orangebg); border-color:#f5d9b8}
+.c-purple{background:var(--purplebg); border-color:#ddcff5}
+.c-gray{background:var(--graybg); border-color:#e0e5ea}
+.rule{background:#fff8e6; border:2px solid var(--orange); border-radius:12px; padding:14px 20px; margin:16px 0}
+.rule .t{font-weight:700; color:#b35c00; margin-bottom:4px}
+table{border-collapse:collapse; width:100%; margin:14px 0; font-size:15.5px; background:#fff}
+th,td{border:1px solid var(--line); padding:9px 12px; text-align:left}
+th{background:#eef2f6; font-weight:600}
+td code{font-family:"SF Mono",Menlo,monospace; font-size:16px}
+.ex{border-left:4px solid var(--green); background:#fff; padding:12px 18px; margin:14px 0; border-radius:0 8px 8px 0}
+.ex .q{font-weight:600}
+.try{border-left:4px solid var(--blue); background:#fbfdff; padding:10px 18px; margin:12px 0; border-radius:0 8px 8px 0}
+.try ol{margin:6px 0; padding-left:22px}
+.try li{margin:4px 0}
+details{margin:10px 0; background:#f7f9fb; border:1px dashed var(--line); border-radius:8px; padding:8px 16px}
+summary{cursor:pointer; font-weight:600; color:var(--blue); font-size:15px}
+details[open]{background:#fff}
+.ans{font-family:"SF Mono",Menlo,monospace; font-size:15px; color:#2f6d4f}
+.trap{border-left:4px solid var(--red); background:#fffafa; padding:12px 18px; margin:14px 0; border-radius:0 8px 8px 0}
+.trap .t{font-weight:700; color:var(--red)}
+.box2{display:flex; gap:14px; flex-wrap:wrap}
+.box2>div{flex:1 1 300px}
+.toc{background:#fff; border:1px solid var(--line); border-radius:12px; padding:18px 26px; margin:20px 0}
+.toc ol{margin:6px 0; padding-left:22px}
+.toc a{color:var(--ink); text-decoration:none}
+.toc a:hover{color:var(--blue)}
+.kid{background:#f4fbff; border:2px dashed #a9d4f0; border-radius:14px; padding:18px 22px; margin:20px 0}
+.kid:before{content:"🧒 "; font-size:20px}
+.par{background:#fffaf2; border:2px dashed #f0cfa0; border-radius:14px; padding:18px 22px; margin:20px 0}
+.par:before{content:"👨‍👩‍👦 "; font-size:20px}
+ul{padding-left:22px}li{margin:5px 0}
+.mono{font-family:"SF Mono",Menlo,monospace}
+.big{font-size:18px}
+hr{border:0; border-top:1px dashed var(--line); margin:36px 0}
+.tag{display:inline-block; font-size:12px; padding:2px 9px; border-radius:20px; background:var(--bluebg); color:#1c5b96; margin-right:6px; vertical-align:middle}
+.tag.red{background:var(--redbg); color:#a5342c}
+.tag.grn{background:var(--greenbg); color:#237754}
+.tag.org{background:var(--orangebg); color:#a86a15}
+.foot{text-align:center; color:var(--ink2); font-size:13px; margin-top:50px}
+
+/* 学习目标条 */
+.goal{background:#eef7ff; border:1px solid #c3ddf5; border-left:5px solid var(--blue); border-radius:10px; padding:12px 18px; margin:14px 0 18px}
+.goal .t{font-weight:700; color:#1c5b96; font-size:15px; display:block; margin-bottom:2px}
+.goal ul{margin:4px 0 0; padding-left:20px}
+.goal li{margin:3px 0; font-size:15.5px}
+/* 难度分层标签 */
+.lv{display:inline-block; font-size:11.5px; padding:1px 8px; border-radius:20px; margin-left:6px; font-weight:600; vertical-align:middle}
+.lv1{background:#e8f6ef; color:#237754; border:1px solid #c4e6d5}
+.lv2{background:#eaf3fc; color:#1c5b96; border:1px solid #c3ddf5}
+.lv3{background:#fdeceb; color:#a5342c; border:1px solid #f5ccc8}
+/* 讲给爸爸妈妈听 */
+.tell{background:#f6fff9; border:2px dashed #9fd9bb; border-radius:12px; padding:14px 20px; margin:18px 0}
+.tell:before{content:"🎤 "; font-size:18px}
+.tell .t{font-weight:700; color:#237754}
+/* 想一想（暂停点） */
+.think{background:#fffdf3; border:1px dashed #e8c98a; border-radius:10px; padding:10px 16px; margin:12px 0; font-size:15px}
+.think:before{content:"⏸ "; }
+.think .t{font-weight:700; color:#8a6d00}
+/* 左下角悬浮返回目录 */
+.fab{
+  position:fixed; left:16px; bottom:20px; z-index:99;
+  display:none; align-items:center; gap:6px;
+  background:#fff; color:#1c5b96; border:1px solid #c3ddf5;
+  border-radius:24px; padding:9px 16px; font-size:14px; font-weight:600;
+  text-decoration:none; box-shadow:0 4px 16px rgba(30,60,100,.18);
+  cursor:pointer; transition:transform .15s, box-shadow .15s;
+}
+.fab:hover{transform:translateY(-2px); box-shadow:0 6px 20px rgba(30,60,100,.26); background:#f4faff}
+.fab.show{display:inline-flex}
+@media(min-width:920px){ .fab{left:calc(50% - 462px)} }
+/* 窄屏：收成小圆钮，只留箭头，不压正文 */
+@media(max-width:919px){
+  .fab{left:8px; bottom:14px; width:40px; height:40px; padding:0;
+       justify-content:center; border-radius:50%; gap:0}
+  .fab .lbl{display:none}
+  .fab .ar{font-size:19px; line-height:1}
+  .page{padding-left:44px; padding-right:44px}
+}
+
+@media print{
+  .fab{display:none !important}
+  body{background:#fff; font-size:11.5pt}
+  .page{box-shadow:none; max-width:none; padding:14mm 12mm}
+  h2{page-break-before:always; page-break-after:avoid; -webkit-print-color-adjust:exact; print-color-adjust:exact}
+  h2:first-of-type{page-break-before:auto}
+  h3,h4{page-break-after:avoid}
+  .fig,.card,.rule,table{page-break-inside:avoid}
+  .ex,.try,.trap{page-break-inside:auto}
+  details{page-break-inside:avoid}
+  *{-webkit-print-color-adjust:exact; print-color-adjust:exact}
+}
+</style>
+</head>
+<body>
+<div class="page">
+
+<h1 id="top">四则运算到底在干什么</h1>
+<p class="sub">小学数学讲义 · 第一册 · 加减乘除与运算律 · 数形结合版</p>
+
+<div class="kid">
+<b>写给小朋友</b><br>
+这本书不打算让你背公式。数学里所有"规律"都不是谁规定出来的，而是你<span class="hl">自己能看出来</span>的。
+你只要记住一件事：<b>算式就是一串脚步，等号就是说"两条路走到同一个地方"</b>。
+剩下所有的定律，都是这句话长出来的。
+</div>
+
+<div class="par">
+<b>写给爸爸妈妈</b><br>
+本册对应校内三年级～四年级上册的"四则运算 / 运算律 / 括号"考点，但顺序完全不同：
+先建立<b>数轴位移模型</b>，让"交换律、结合律、去括号变号"全部成为同一个原理的三个推论，而不是三条要背的规则。
+孩子一旦理解 <span class="mono">a − (b − c) = a − b + c</span> 为什么成立，就不会再靠"减号后面变号"这句口诀瞎猜。
+<br><br>
+<b>建议用法：</b>每章先只看图和讲解，口头说出理由，再做"练一练"。答案默认折叠，<b>打印时会自动展开</b>。
+每周一章，别赶。
+</div>
+
+<div class="toc">
+<b>目录</b>
+<ol>
+<li><a href="#ch0">第 0 章　一切从一条线开始：数是什么</a></li>
+<li><a href="#ch1">第 1 章　加法：把两堆合成一堆（交换律·结合律）</a></li>
+<li><a href="#ch2">第 2 章　减法：一个动作，三种问法</a></li>
+<li><a href="#ch3">第 3 章　括号：把动作打包（本章是全书核心）</a></li>
+<li><a href="#ch4">第 4 章　乘法：一排一排地数（含分配律）</a></li>
+<li><a href="#ch5">第 5 章　除法：分东西的两种分法</a></li>
+<li><a href="#ch6">第 6 章　四则大合唱：谁先算，为什么</a></li>
+<li><a href="#ch7">彩蛋　0 的左边是什么（负号的第一性原理）</a></li>
+<li><a href="#ch8">附录　运算律总表 + 考点自查</a></li>
+</ol>
+</div>
+
+<!-- ===================== 第 0 章 ===================== -->
+<h2 id="ch0"><span class="num">CHAPTER 0</span>一切从一条线开始：数是什么</h2>
+<div class="goal"><span class="t">学完这一章，你能做到：</span><ul><li>说出"数"可以表示尺子上的一个位置</li><li>把 <span class="mono">3+5</span>、<span class="mono">9−4</span> 这样的算式翻译成"往哪走、走几步"</li><li>说清楚等号是什么意思（不是"算出答案"，是"两条路终点一样"）</li></ul></div>
+
+<h3>0.1 数的两张面孔："有几个"和"站在哪"</h3>
+<p>先忘掉所有公式。<b>3</b> 可以表示"3 颗糖"，也可以表示"尺子上的第 3 格"。<b>两种说法都对</b>，只是用处不一样。</p>
+<p>这本书讲<b>运算</b>的时候，主要用第二种：<b>尺子上的位置</b>。因为位置有一个了不起的好处——它能让我们<b>看见动作</b>。</p>
+<p>我们把这条线画出来，叫它<b>数轴</b>。0 是家，往右越走越大。</p>
+
+<div class="fig" data-fig='{"t":"nl","max":12,"allLabels":true,"marks":[]}'></div>
+<p class="center" style="margin-top:-6px"><span class="cap">👀 看一看：5 在 3 的哪一边？11 和 9 谁更大？你是怎么看出来的？</span></p>
+
+<p>数轴有两个好处，这本书全程都要用：</p>
+<ul>
+<li><b>能看见大小</b>：7 在 5 的右边，所以 7 &gt; 5，一眼看出。</li>
+<li><b>能看见动作</b>：从一个数走到另一个数，就是"运算"。这是关键。</li>
+</ul>
+
+<h3>0.2 运算 = 走路</h3>
+<p>记住这本书唯一的主角台词：</p>
+
+<div class="rule">
+<div class="t">第一原理（全书就这一条）</div>
+<b>加一个数 = 向右走；减一个数 = 向左走。</b><br>
+一个算式就是一串脚步，等号 = 两条不同的走法，<span class="hl">终点一样</span>。
+</div>
+
+<p>比如 <span class="mono">3 + 5 = 8</span>，翻译成人话就是：从 3 出发，向右走 5 步，到 8。</p>
+
+<div class="fig" data-fig='{"t":"nl","max":12,"jumps":[{"from":3,"to":8,"color":"blue","label":"向右 5"}]}'></div>
+
+<p>再比如 <span class="mono">9 − 4 = 5</span>：从 9 出发，向左走 4 步，到 5。</p>
+
+<div class="fig" data-fig='{"t":"nl","max":12,"jumps":[{"from":9,"to":5,"color":"red","label":"向左 4"}]}'></div>
+
+<div class="card c-gray">
+<b>为什么要用"走路"来想？</b><br>
+因为背规则会忘，但走路不会忘。你只要能想象自己在数轴上走，
+后面所有运算律——交换律、结合律、去括号——你都能<span class="hl">自己推导</span>出来，不用背。
+</div>
+
+<h3>0.3 单位：每一步有多大</h3>
+<p>走路之前要先定一件事：<b>一步走多远</b>。在数轴上，我们规定相邻两个刻度之间是"1 步"。</p>
+<p>这一步走多大，是可以自己定的。走 1 格也可以，一次走 10 格也可以——这就是后面"凑整"的秘密。</p>
+<div class="fig" data-fig='{"t":"nl","max":20,"jumps":[{"from":0,"to":10,"color":"orange","label":"一次走 10","lift":70}]}'></div>
+<p class="center"><span class="cap">一步能走多远，你说了算</span></p>
+
+<!-- ===================== 第 1 章 ===================== -->
+<h2 id="ch1"><span class="num">CHAPTER 1</span>加法：把两堆合成一堆</h2>
+<div class="goal"><span class="t">学完这一章，你能做到：</span><ul><li>用<b>两种</b>画面解释加法：合起来 / 往前走</li><li>讲出交换律、结合律<b>为什么</b>成立（不许只说"因为有这个律"）</li><li>用拆数、凑整快速口算，并说出每一步用了什么律</li></ul></div>
+
+<h3>1.1 加法到底在干什么</h3>
+<p>加法只有两种画面，它们说的是同一件事。</p>
+
+<div class="box2">
+<div class="card c-blue">
+<b>画面 A：合并</b><br>
+你有 3 颗糖，我有 5 颗糖，倒进同一个袋子，袋子里有 8 颗。
+<br><span class="mono">3 + 5 = 8</span>
+</div>
+<div class="card c-green">
+<b>画面 B：往前走</b><br>
+从 3 出发，再向右走 5 步，到 8。
+<br><span class="mono">3 + 5 = 8</span>
+</div>
+</div>
+
+<div class="fig" data-fig='{"t":"dots","rows":1,"cols":8,"splitAt":3}'></div>
+<p class="center"><span class="cap">👀 先数蓝的，再数绿的；换个顺序再数一遍 —— 总数变了吗？</span></p>
+
+<h3>1.2 加法交换律：换顺序，终点不变</h3>
+<p>现在问一个看似很傻的问题：<b>3 + 5 和 5 + 3，一样吗？</b></p>
+
+<div class="fig" data-fig='{"t":"twojump","max":12,"a":[{"from":0,"to":3,"color":"blue","label":"先走 3"},{"from":3,"to":8,"color":"green","label":"再走 5"}],"b":[{"from":0,"to":5,"color":"green","label":"先走 5"},{"from":5,"to":8,"color":"blue","label":"再走 3"}],"t1":"3 + 5 = 8","t2":"5 + 3 = 8"}'></div>
+
+<p>两条路不一样，<b>终点一模一样</b>。这就是加法交换律。</p>
+
+<div class="rule">
+<div class="t">加法交换律</div>
+<span class="mono">a + b = b + a</span><br>
+<b>为什么？</b>因为"走 3 步再走 5 步"和"走 5 步再走 3 步"，你走的总长度都是 8 步。
+先迈哪只脚，不影响你最后站在哪。
+</div>
+
+<div class="ex">
+<div class="q">例：137 + 58 + 63，怎么算最快？</div>
+用交换律把 137 和 63 拉到一起（它们能凑出 200）：<br>
+<span class="mono">137 + 58 + 63 = 137 + 63 + 58 = 200 + 58 = 258</span><br>
+<span style="color:var(--ink2)">关键：把数字连同它前面的符号一起搬。这一条后面会救你的命。</span>
+</div>
+
+<h3>1.3 加法结合律：括号往哪放都行</h3>
+<p>三个数相加，比如 <span class="mono">2 + 3 + 4</span>，你要先算哪两个？</p>
+<ul>
+<li>先算前两个：<span class="mono">(2 + 3) + 4 = 5 + 4 = 9</span></li>
+<li>先算后两个：<span class="mono">2 + (3 + 4) = 2 + 7 = 9</span></li>
+</ul>
+<p>结果一样。用走路来看就更清楚了：三段路，先接哪两段，拼出来的总路长都是一样的。</p>
+
+<div class="fig" data-fig='{"t":"nl","max":12,"jumps":[{"from":0,"to":2,"color":"blue","label":"2","lift":44},{"from":2,"to":5,"color":"green","label":"3","lift":74},{"from":5,"to":9,"color":"orange","label":"4","lift":104}]}'></div>
+<p class="center"><span class="cap">2 + 3 + 4：三段路首尾相接，先接哪两段都一样长</span></p>
+
+<div class="rule">
+<div class="t">加法结合律</div>
+<span class="mono">(a + b) + c = a + (b + c)</span><br>
+<b>为什么？</b>三段路拼成一条路，跟分段的方式无关。<br>
+<b>记号：</b>既然结果一样，干脆就不写括号了：<span class="mono">a + b + c</span>。
+</div>
+
+<h3>1.4 拆数：凑整的真正原理</h3>
+<p>交换律和结合律不是用来背的，是用来<b>偷懒</b>的。核心技巧叫<b>凑整</b>。</p>
+
+<div class="card c-orange">
+<b>凑整第一招：拆小数给大数补</b><br>
+<span class="mono">8 + 7 = ?</span><br>
+8 想凑成 10，还差 2。把 7 拆成 <span class="mono">2 + 5</span>：<br>
+<span class="mono">8 + 7 = 8 + (2 + 5) = (8 + 2) + 5 = 10 + 5 = 15</span><br>
+用到的：拆数（7 = 2+5）+ 结合律。
+</div>
+
+<div class="card c-orange">
+<b>凑整第二招：多个数一起凑</b><br>
+<span class="mono">25 + 46 + 75 = ?</span><br>
+25 和 75 凑 100，用交换律把它们拉到一起：<br>
+<span class="mono">= 25 + 75 + 46 = 100 + 46 = 146</span>
+</div>
+
+<h4>练一练</h4>
+<div class="try">
+<b>🟢 基础<span class="lv lv1">必做</span></b>
+<ol>
+<li><span class="mono">9 + 6</span>（用凑 10 法，把过程写出来）</li>
+<li><span class="mono">38 + 46 + 62</span>（先找能凑成整百的两个数）</li>
+</ol>
+<b>🔵 进阶<span class="lv lv2">想一想</span></b>
+<ol start="3">
+<li><span class="mono">199 + 87</span>（提示：199 看成 200 − 1）</li>
+</ol>
+<b>🔴 挑战<span class="lv lv3">选做</span></b>
+<ol start="4">
+<li><span class="mono">125 + 67 + 75 + 33</span>（四个数，能凑两对）</li>
+</ol>
+<details><summary>看答案（含思路）</summary>
+<p class="ans">
+1. 9 差 1 就到 10 → 把 6 拆成 1 + 5：9 + 1 + 5 = 10 + 5 = <b>15</b><br>
+2. 38 和 62 凑 100 → 交换位置：38 + 62 + 46 = 100 + 46 = <b>146</b>（用了交换律）<br>
+3. 199 = 200 − 1 → 200 + 87 − 1 = 287 − 1 = <b>286</b><br>
+4. 两两凑整：(125 + 75) + (67 + 33) = 200 + 100 = <b>300</b>
+</p></details>
+</div>
+
+<div class="tell"><span class="t">讲给爸爸妈妈听</span><br>
+请爸爸妈妈随便报三个数相加（比如 <span class="mono">47 + 38 + 53</span>）。你一边算一边说出声：<br>
+<b>"我先把 47 和 53 凑成 100 —— 因为交换律允许我换位置；再加 38。"</b><br>
+讲得出来 = 真懂了；讲不出来 = 回去再看 1.2。</div>
+
+<!-- ===================== 第 2 章 ===================== -->
+<h2 id="ch2"><span class="num">CHAPTER 2</span>减法：一个动作，三种问法</h2>
+<div class="goal"><span class="t">学完这一章，你能做到：</span><ul><li>把减法应用题分成"拿走 / 比较 / 补上"三类</li><li>熟练用 <span class="mono">大数 = 小数 + 差</span>，三个量知道两个就能求第三个</li><li>用 <span class="mono">a−b−c = a−(b+c)</span> 做巧算</li></ul></div>
+
+<h3>2.1 减法也是一种"走路"</h3>
+<div class="rule">
+<div class="t">减法的定义</div>
+<span class="mono">a − b</span>：从 a 出发，<b>向左</b>走 b 步。<br>
+所以它和加法是同一个东西，只是<b>方向相反</b>。
+</div>
+
+<h3>2.2 同一个减法，三种问法</h3>
+<p>最容易搞混的地方：为什么 <span class="mono">12 − 5</span> 一会儿是"还剩多少"，一会儿是"多多少"，一会儿又是"原来有多少"？<br>
+因为它们本来就是<b>同一条数轴上的同一段路</b>，只是问的角度不同。</p>
+
+<div class="box2">
+<div class="card c-blue">
+<b>问法 1：拿走</b><br>
+有 12 颗糖，吃掉 5 颗，还剩几颗？<br>
+<span class="mono">12 − 5 = 7</span>
+</div>
+<div class="card c-green">
+<b>问法 2：比较</b><br>
+小明 12 颗，小红 5 颗，小明比小红多几颗？<br>
+<span class="mono">12 − 5 = 7</span>
+</div>
+<div class="card c-orange">
+<b>问法 3：补上</b><br>
+小明 5 颗，再给他几颗就有 12 颗了？<br>
+<span class="mono">12 − 5 = 7</span>
+</div>
+</div>
+
+<div class="fig" data-fig='{"t":"cmp","a":12,"b":5,"la":"小明","lb":"小红"}'></div>
+<p class="center"><span class="cap">👀 蓝条和下面那条绿条，长度一样吗？橙色那一截代表的是哪一部分？</span></p>
+
+<div class="card c-gray">
+<b>最重要的关系（一定要背下来，因为后面全靠它）</b><br>
+<span class="mono">大的 = 小的 + 差</span>　　<span class="mono">小的 = 大的 − 差</span>　　<span class="mono">差 = 大的 − 小的</span><br>
+这是同一个事实的三种说法。看到应用题先问自己：<b>谁是大的，谁是小的，谁是要找的差？</b>
+</div>
+
+<h3>2.3 减法<span style="color:var(--red)">没有</span>交换律</h3>
+<p><span class="mono">5 − 3 = 2</span>，但 <span class="mono">3 − 5 = ?</span>　从 3 向左走 5 步……走出 0 了，走到线的左边去了。</p>
+
+<div class="fig" data-fig='{"t":"nl","min":-6,"max":8,"jumps":[{"from":3,"to":-2,"color":"red","label":"向左 5，走出 0 了"}]}'></div>
+
+<p>所以在我们还没认识 0 左边的世界以前，记住：</p>
+<div class="trap">
+<div class="t">⚠ 陷阱</div>
+<b>减法不能随便换顺序。</b> <span class="mono">a − b</span> 和 <span class="mono">b − a</span> 不是一回事。<br>
+（0 左边是什么？第 7 章彩蛋会告诉你，很有意思。）
+</div>
+
+<h3>2.4 减法是加法的"倒带"</h3>
+<p>向右走 5 步，再向左走 5 步，回到原处。所以：</p>
+<p class="center"><span class="mono eq">a + b − b = a</span>　　<span class="mono eq">a − b + b = a</span></p>
+
+<div class="fig" data-fig='{"t":"nl","max":14,"jumps":[{"from":4,"to":9,"color":"blue","label":"+5","lift":46},{"from":9,"to":4,"color":"red","label":"−5","lift":82}]}'></div>
+<p class="center"><span class="cap">走过去，再原路走回来 —— 回到原地</span></p>
+
+<p>这个"倒带"性质有两个超实用的用途：</p>
+<ul>
+<li><b>验算</b>：算完 <span class="mono">83 − 27 = 56</span>，用 <span class="mono">56 + 27 = 83</span> 反过来检查。</li>
+<li><b>求括号里的数</b>：见下面的练习。</li>
+</ul>
+
+<h3>2.5 第一条"加括号"规则（减法版）</h3>
+<p>小明有 20 元，先买笔花了 4 元，又买本子花了 6 元，剩多少？</p>
+<ul>
+<li>算法一：<span class="mono">20 − 4 − 6 = 16 − 6 = 10</span></li>
+<li>算法二：<span class="mono">20 − (4 + 6) = 20 − 10 = 10</span></li>
+</ul>
+
+<div class="fig" data-fig='{"t":"twojump","max":22,"a":[{"from":20,"to":16,"color":"red","label":"−4"},{"from":16,"to":10,"color":"red","label":"−6"}],"b":[{"from":20,"to":10,"color":"orange","label":"−(4+6)=−10","lift":78}],"t1":"20 − 4 − 6 = 10（分两次向左）","t2":"20 − (4+6) = 10（一次向左 10）"}'></div>
+
+<div class="rule">
+<div class="t">连续减 → 一次减掉总和</div>
+<span class="mono">a − b − c = a − (b + c)</span><br>
+<b>为什么？</b>向左走 4 步再向左走 6 步，和一次向左走 10 步，终点完全一样。
+</div>
+
+<div class="ex">
+<div class="q">例：<span class="mono">156 − 38 − 62</span></div>
+38 和 62 能凑成 100，那就把它们合成一次减：<br>
+<span class="mono">156 − 38 − 62 = 156 − (38 + 62) = 156 − 100 = 56</span>
+</div>
+
+<h4>练一练</h4>
+<div class="try">
+<b>🟢 基础<span class="lv lv1">必做</span></b>
+<ol>
+<li><span class="mono">88 − 17 − 23</span>（先把两个减数加起来）</li>
+<li><span class="mono">200 − 45 − 55 − 30</span></li>
+</ol>
+<b>🔵 进阶<span class="lv lv2">想一想</span></b>
+<ol start="3">
+<li>括号里填几：<span class="mono">72 − ( &nbsp; ) = 35</span>（求<b>减数</b>）</li>
+<li>括号里填几：<span class="mono">( &nbsp; ) − 28 = 46</span>（求<b>被减数</b>）</li>
+</ol>
+<b>🔴 挑战<span class="lv lv3">选做</span></b>
+<ol start="5">
+<li>小明比小红多 13 张卡，小明有 40 张，小红有几张？<br><span style="font-size:13px;color:var(--ink2)">先说出：谁是大数、谁是小数、差是几 —— 再列式</span></li>
+</ol>
+<details><summary>看答案（含思路）</summary>
+<p class="ans">
+1. 17 + 23 = 40，合成一次减：88 − 40 = <b>48</b><br>
+2. 45 + 55 = 100 → 200 − 100 − 30 = <b>70</b><br>
+3. 求减数：减数 = 被减数 − 差 = 72 − 35 = <b>37</b><br>
+4. 求被减数：被减数 = 差 + 减数 = 46 + 28 = <b>74</b><br>
+5. 大数 = 小明 40，差 = 13，小数 = 小红 = 40 − 13 = <b>27</b>（张）
+</p></details>
+</div>
+
+<div class="tell"><span class="t">讲给爸爸妈妈听</span><br>
+请爸爸妈妈出一道"比多少"的应用题。你<b>先说出谁是大数、谁是小数、差是几</b>，再列式。<br>
+如果能画出两条对齐的条（像 2.2 那张图），并且指得出橙色那一截是什么 —— 你是真懂了。</div>
+
+<!-- ===================== 第 3 章 ===================== -->
+<h2 id="ch3"><span class="num">CHAPTER 3 · 全书核心</span>括号：把动作打包</h2>
+<div class="goal"><span class="t">学完这一章，你能做到：</span><ul><li>说出括号是什么（一个<b>先算完的包裹</b>）</li><li>四种去括号 <b>全对</b>，并讲清"为什么要变号"</li><li>搬家时把数字<b>连同前面的符号</b>一起搬</li></ul></div>
+
+<div class="kid">
+这一章是整本书最重要的。学校的教材讲不清楚，是因为它只给了口诀"减号后面去括号要变号"。
+我们不背口诀——我们<span class="hl">看图</span>。
+</div>
+
+<h3>3.1 括号是什么</h3>
+<p>括号是一个<b>包裹</b>：里面的东西要<b>先算完</b>，算完的这个结果，再拿去参与外面的运算。</p>
+<p class="center"><span class="mono eq">20 − (4 + 6)</span>　读作：20 减去"4+6 这个包裹"，包裹里是 10，所以是 20 − 10。</p>
+
+<p>把括号拆掉，叫<b>去括号</b>；把算式塞进括号，叫<b>加括号</b>。它们是同一个动作的两种方向。</p>
+
+<h3>3.2 关键：括号前面是减号时，里面每一项的"方向"都要掉头</h3>
+<div class="think"><span class="t">先猜，再看答案</span><br>
+<span class="mono">100 − (30 − 8)</span> 的结果，会比 <span class="mono">100 − 30 = 70</span> 更<b>大</b>还是更<b>小</b>？<br>
+把你的理由说出来（哪怕说错），然后再往下看。</div>
+<p>这是全章的灵魂。看这两条路：</p>
+
+<h4>情况 A：括号前面是加号 —— 照着走</h4>
+<div class="fig" data-fig='{"t":"twojump","max":16,"a":[{"from":4,"to":7,"color":"blue","label":"+3"},{"from":7,"to":5,"color":"red","label":"−2"}],"b":[{"from":4,"to":5,"color":"orange","label":"+(3−2) = +1","lift":80}],"t1":"4 + 3 − 2 = 5（先右 3 再左 2）","t2":"4 + (3 − 2) = 5（一次向右 1）"}'></div>
+<p><b>括号前面是 +：括号里的方向原封不动。</b></p>
+<p class="center"><span class="mono eq">a + (b − c) = a + b − c</span></p>
+
+<h4>情况 B：括号前面是减号 —— 全部掉头</h4>
+<div class="fig" data-fig='{"t":"twojump","max":16,"a":[{"from":10,"to":7,"color":"red","label":"−3"},{"from":7,"to":8,"color":"blue","label":"+1"}],"b":[{"from":10,"to":8,"color":"orange","label":"−(3−1) = −2","lift":80}],"t1":"10 − 3 + 1 = 8（左 3 再右 1）","t2":"10 − (3 − 1) = 8（一次向左 2）"}'></div>
+<p>看清楚了吗？<span class="mono">10 − (3 − 1)</span> 意思是"把 <b>3−1 这整段路</b> <span class="hl">掉个头</span>再走"。
+里面本来是"右 3 左 1"，掉头之后变成"<span class="hl2">左 3 右 1</span>"。</p>
+<p class="center"><span class="mono eq">10 − (3 − 1) = 10 − 3 + 1 = 8</span></p>
+
+<h3>3.3 四条规则（一张表全记住）</h3>
+<table>
+<tr><th style="width:35%">原式</th><th style="width:32%">去括号后</th><th>用走路怎么想</th></tr>
+<tr><td><code>a + (b + c)</code></td><td><code>a + b + c</code></td><td>+ 号后面：都朝右走，不变</td></tr>
+<tr><td><code>a + (b − c)</code></td><td><code>a + b − c</code></td><td>+ 号后面：右、左照搬</td></tr>
+<tr><td><code>a − (b + c)</code></td><td><code>a − b − c</code></td><td>− 号后面：两个都掉头 → 都变左</td></tr>
+<tr><td><code>a − (b − c)</code></td><td><code>a − b + c</code></td><td>− 号后面：右变左、左变右</td></tr>
+</table>
+
+<div class="rule">
+<div class="t">去括号一句口诀（理解之后再用）</div>
+<b>加号后面，原样照搬；减号后面，全部变号。</b><br>
+<span style="color:var(--ink2)">注意是"全部"——括号里<b>每一项</b>都要变，不是只变第一个。</span>
+</div>
+
+<div class="trap">
+<div class="t">⚠ 最常见的错</div>
+<span class="mono">100 − (30 − 8)</span>　错解：<span class="mono">100 − 30 − 8 = 62</span> ✗<br>
+正确：<span class="mono">100 − 30 + 8 = 78</span> ✓<br>
+<b>检查办法：</b>先算括号里 <span class="mono">30 − 8 = 22</span>，那么 <span class="mono">100 − 22</span> 应该是 78。
+你看，把 80 减掉却变成 62，比原来少的比 30 还多，肯定错了。
+</div>
+
+<h3>3.4 秒懂模型：零花钱账本</h3>
+<p>如果数轴还不够直观，用钱来想，一秒就通：</p>
+<div class="card c-orange">
+妈妈给了 100 元零花钱。
+<ul>
+<li><b>减去一个包裹</b> <span class="mono">−(30 + 20)</span>：你花了两笔钱，一笔 30 一笔 20 → <span class="mono">−30 −20</span>。</li>
+<li><b>减去一个包裹</b> <span class="mono">−(30 − 20)</span>：你花了 30，但其中 20 块<b>退回来了</b> → 实际只花了 10 → <span class="mono">−30 + 20</span>。</li>
+</ul>
+"减号"是一个<span class="hl">动作指令</span>：把包裹里的<b>每一笔账都反过来</b>。花钱变退钱，退钱变花钱。
+</div>
+
+<h3>3.5 带着符号搬家（超好用）</h3>
+<p>既然加减法都是"走路"，那么脚步的<b>顺序</b>可以随便换——终点不变（这就是第 1 章的交换律，现在推广到减法了）。</p>
+<div class="fig" data-fig='{"t":"twojump","max":14,"a":[{"from":6,"to":2,"color":"red","label":"−4"},{"from":2,"to":5,"color":"blue","label":"+3"}],"b":[{"from":6,"to":9,"color":"blue","label":"+3"},{"from":9,"to":5,"color":"red","label":"−4"}],"t1":"6 − 4 + 3 = 5","t2":"6 + 3 − 4 = 5"}'></div>
+
+<div class="rule">
+<div class="t">带着符号搬家</div>
+<b>每个数字前面的符号，是它的随身行李。搬家时数字和符号一起走。</b><br>
+<span class="mono">a − b + c = a + c − b</span>　　<span class="mono">a − b − c = a − c − b</span>
+</div>
+
+<div class="ex">
+<div class="q">例：<span class="mono">265 − 88 + 35</span></div>
+265 和 35 凑 300，把 +35（连同前面的 + 号）搬到前面：<br>
+<span class="mono">= 265 + 35 − 88 = 300 − 88 = 212</span>
+</div>
+<div class="ex">
+<div class="q">例：<span class="mono">437 − (137 + 68)</span></div>
+<span class="mono">= 437 − 137 − 68 = 300 − 68 = 232</span><br>
+<span style="color:var(--ink2)">先去括号（减号后面全变号），再凑整。</span>
+</div>
+<div class="ex">
+<div class="q">例：<span class="mono">524 − (224 − 97)</span></div>
+<span class="mono">= 524 − 224 + 97 = 300 + 97 = 397</span>
+</div>
+
+<h3>3.6 反向操作：加括号</h3>
+<p>去括号会了，反过来就是加括号。记住同一句话：<b>加号后面原样搬进去，减号后面搬进去要变号</b>。</p>
+<ul>
+<li><span class="mono">a + b − c = a + (b − c)</span></li>
+<li><span class="mono">a − b − c = a − (b + c)</span>　← 第 2 章已经用过</li>
+<li><span class="mono">a − b + c = a − (b − c)</span></li>
+</ul>
+
+<div class="ex">
+<div class="q">例：用加括号巧算 <span class="mono">389 − 92 − 8</span></div>
+<span class="mono">= 389 − (92 + 8) = 389 − 100 = 289</span>
+</div>
+
+<h4>本章大练习（16 题）</h4>
+<div class="try">
+<b>🟢 A 组 · 去括号<span class="lv lv1">基础</span></b>
+<ol>
+<li><span class="mono">85 − (25 + 17)</span></li>
+<li><span class="mono">85 − (25 − 17)</span></li>
+<li><span class="mono">160 + (40 − 18)</span></li>
+<li><span class="mono">500 − (123 + 77)</span></li>
+<li><span class="mono">312 − (112 − 46)</span></li>
+<li><span class="mono">276 + (124 + 59)</span></li>
+</ol>
+<b>🔵 B 组 · 加括号巧算<span class="lv lv2">进阶</span></b>
+<ol start="7">
+<li><span class="mono">145 − 36 − 64</span></li>
+<li><span class="mono">234 − 78 + 66</span></li>
+<li><span class="mono">88 + 56 − 48 + 44</span></li>
+<li><span class="mono">670 − 143 − 57</span></li>
+</ol>
+<b>🔴 C 组 · 混合挑战<span class="lv lv3">挑战</span></b>
+<ol start="11">
+<li><span class="mono">1000 − 246 − 154 − 200</span></li>
+<li><span class="mono">398 − (198 + 76)</span></li>
+<li><span class="mono">576 − (276 − 135) − 35</span></li>
+<li><span class="mono">999 + 99 + 9 + 3</span>（提示：3 = 1+1+1）</li>
+<li><span class="mono">1 + 2 + 3 + … + 10</span>（提示：首尾配对）</li>
+<li><span class="mono">2 + 4 + 6 + … + 20</span></li>
+</ol>
+<details><summary>看答案</summary>
+<p class="ans">
+A: 1) 43　2) 77　3) 182　4) 300　5) 246　6) 459<br>
+B: 7) 145 − 100 = 45　8) 234 + 66 − 78 = 300 − 78 = 222　9) (88+56) → 88 − 48 + 56 + 44 = 40 + 100 = 140　10) 670 − 200 = 470<br>
+C: 11) 1000 − 400 − 200 = 400　12) 398 − 198 − 76 = 200 − 76 = 124　13) 576 − 276 + 135 − 35 = 300 + 100 = 400　14) (999+1)+(99+1)+(9+1) = 1110　15) (1+10)×5 = 55　16) (2+20)×5 = 110
+</p></details>
+</div>
+
+<div class="tell"><span class="t">讲给爸爸妈妈听</span><br>
+出题：<span class="mono">100 − (30 − 8)</span>。讲清楚为什么答案是 <b>78</b> 而不是 62。<br>
+<span class="hl">不许说"因为减号后面要变号"</span>，要说："减去一个包裹，等于把包裹里的每一步都<b>掉头</b>——
+里面是'右 30 左 8'，掉头后变成'左 30 右 8'。"</div>
+
+<!-- ===================== 第 4 章 ===================== -->
+<h2 id="ch4"><span class="num">CHAPTER 4</span>乘法：一排一排地数</h2>
+<div class="goal"><span class="t">学完这一章，你能做到：</span><ul><li>用点阵图解释乘法是什么</li><li>讲出乘法三个运算律<b>为什么</b>成立（其中一个要靠"转 90 度"）</li><li>用分配律和"好朋友对"（25×4、125×8）做巧算</li></ul></div>
+
+<h3>4.1 乘法是被逼出来的</h3>
+<p>如果有 4 个盘子，每盘 3 颗糖，一共几颗？你会这么算：<span class="mono">3 + 3 + 3 + 3 = 12</span>。</p>
+<p>那如果是 100 个盘子呢？你还要写 100 个 3 相加吗？太麻烦了。所以人类发明了一个记号：</p>
+<p class="center"><span class="mono eq">3 + 3 + 3 + 3 = 3 × 4 = 12</span></p>
+<div class="rule">
+<div class="t">乘法的定义（第一性原理）</div>
+<b>乘法就是"相同加数相加"的简写。</b><br>
+<span class="mono">a × b</span> = b 个 a 相加 = a 个 b 相加（为什么两种都行？看下一节）。
+</div>
+
+<h3>4.2 阵列模型：把乘法画出来</h3>
+<p>乘法最好的图是<b>方阵</b>：4 行 3 列，一共 12 个点。</p>
+<div class="fig" data-fig='{"t":"dots","rows":4,"cols":3,"r":10}'></div>
+<p class="center"><span class="cap">👀 横着一行一行数：3+3+3+3；竖着一列一列数：4+4+4。两次数的总数一样吗？</span></p>
+
+<h3>4.3 乘法交换律：把纸转 90 度</h3>
+<div class="fig" data-fig='{"t":"pair","caps":["3 行 4 列 = 12","4 行 3 列 = 12"],"items":[{"t":"dots","rows":3,"cols":4,"r":10},{"t":"dots","rows":4,"cols":3,"r":10}]}'></div>
+<div class="rule">
+<div class="t">乘法交换律</div>
+<span class="mono">a × b = b × a</span><br>
+<b>为什么？</b>把同一张方阵图<b>转 90 度</b>，行数变列数，点数一个没多一个没少。<br>
+所以 <span class="mono">3 × 4</span> 和 <span class="mono">4 × 3</span> 是<b>同一张图</b>，只是你站的位置不同。
+</div>
+<div class="card c-gray">
+这也是为什么 <span class="mono">a × b</span> 既可以读"b 个 a"，也可以读"a 个 b"——两种说法都对，因为图是同一张。
+</div>
+
+<h3>4.4 乘法结合律：分层打包</h3>
+<p>三个数相乘，比如 <span class="mono">2 × 3 × 4</span>：</p>
+<ul>
+<li><span class="mono">(2 × 3) × 4 = 6 × 4 = 24</span></li>
+<li><span class="mono">2 × (3 × 4) = 2 × 12 = 24</span></li>
+</ul>
+<p>用图来看：一个长方体，你可以先按"片"切，也可以先按"条"切，块数一样。</p>
+<div class="rule">
+<div class="t">乘法结合律</div>
+<span class="mono">(a × b) × c = a × (b × c)</span><br>
+<b>为什么？</b>一堆东西，不管你怎么<b>分层装箱</b>，总数不变。
+</div>
+<div class="ex">
+<div class="q">例：巧算 <span class="mono">25 × 7 × 4</span></div>
+25 和 4 是好朋友（25 × 4 = 100），用交换律把它们放一起，再用结合律先算：<br>
+<span class="mono">25 × 7 × 4 = 25 × 4 × 7 = (25 × 4) × 7 = 100 × 7 = 700</span>
+</div>
+<div class="card c-orange">
+<b>必须记住的好朋友对</b><br>
+<span class="mono">25 × 4 = 100</span>　　<span class="mono">125 × 8 = 1000</span>　　<span class="mono">5 × 2 = 10</span>　　<span class="mono">50 × 2 = 100</span><br>
+看到其中一半，就要条件反射去找另一半。
+</div>
+
+<h3>4.5 乘法分配律（本章最重要的一个）</h3>
+<div class="think"><span class="t">先自己判断</span><br>
+<span class="mono">5 × (3 + 4)</span> 能不能写成 <span class="mono">5 × 3 + 4</span>？<br>
+先说出你的判断（对 / 错），再往下看。</div>
+<p>上面几个律都是"同一种运算内部"的规律。<b>分配律不一样——它是加法和乘法之间的桥</b>，也是最容易错的。</p>
+<p>看图：一个长方形，宽是 <span class="mono">3 + 4</span>，高是 5。它的面积怎么算？</p>
+<div class="fig" data-fig='{"t":"area","w1":3,"w2":4,"h":5}'></div>
+<div class="rule">
+<div class="t">乘法分配律</div>
+<span class="mono">(a + b) × c = a × c + b × c</span>　也可以写成　<span class="mono">a × (b + c) = a × b + a × c</span><br>
+<b>为什么？</b>整个大长方形的面积，等于左边一块加右边一块。就这么简单，它就是"整体 = 部分之和"。
+</div>
+
+<div class="ex">
+<div class="q">例：<span class="mono">25 × (4 + 8)</span></div>
+<span class="mono">= 25 × 4 + 25 × 8 = 100 + 200 = 300</span>
+</div>
+<div class="ex">
+<div class="q">例：反过来用（提取公因数）<span class="mono">36 × 7 + 64 × 7</span></div>
+两边都有 ×7，把它提出来：<br>
+<span class="mono">= (36 + 64) × 7 = 100 × 7 = 700</span>
+</div>
+<div class="ex">
+<div class="q">例：括号里是减法也一样<span class="mono">8 × (125 − 25)</span></div>
+<span class="mono">= 8 × 125 − 8 × 25 = 1000 − 200 = 800</span><br>
+<span style="color:var(--ink2)">（或者先算括号：8 × 100 = 800，这次先算括号更快。两种方法都要会。）</span>
+</div>
+
+<div class="trap">
+<div class="t">⚠ 分配律最常见的三种错</div>
+<b>错 1：只乘了第一项。</b> <span class="mono">5 × (3 + 4) = 5 × 3 + 4 = 19</span> ✗（正确是 35）<br>
+　　想面积图：右边的 4 那一块被你吃掉了。<br>
+<b>错 2：把分配律和结合律搞混。</b><br>
+　　结合律：符号<b>都一样</b>，只是括号挪位置 → <span class="mono">(a×b)×c = a×(b×c)</span><br>
+　　分配律：括号<b>内外符号不一样</b>（一边加一边乘）→ <span class="mono">a×(b+c)</span><br>
+<b>错 3：除法后面用分配律用反了。</b><br>
+　　<span class="mono">(a + b) ÷ c = a ÷ c + b ÷ c</span> ✓ 成立<br>
+　　<span class="mono">a ÷ (b + c) = a ÷ b + a ÷ c</span> ✗ 大错！见第 5 章。
+</div>
+
+<h3>4.6 乘法为什么"比加法高级"</h3>
+<p>这句话决定了后面"先乘除后加减"的规则，先在这里埋个伏笔：</p>
+<div class="card c-purple">
+<b>加法是把"散的"合起来；乘法是把"一样的"打包数。</b><br>
+3 + 3 + 3 + 3 是 4 个 3；3 × 4 是同一个东西的<b>压缩写法</b>。<br>
+既然 <span class="mono">3 × 4</span> 本来就是一个整体（4 个 3 打包），那就<b>必须先算完这个包</b>，才能跟外面的东西相加减。
+这就是"先乘除后加减"的真正理由（第 6 章详细讲）。
+</div>
+
+<h4>练一练</h4>
+<div class="try">
+<b>🟢 基础<span class="lv lv1">必做</span></b>
+<ol>
+<li><span class="mono">125 × 9 × 8</span>（先找好朋友 125×8）</li>
+<li><span class="mono">25 × (40 + 4)</span>（用分配律拆开）</li>
+<li><span class="mono">63 × 8 + 37 × 8</span>（反过来用：提取公因数）</li>
+</ol>
+<b>🔵 进阶<span class="lv lv2">想一想</span></b>
+<ol start="4">
+<li><span class="mono">99 × 36 + 36</span>（提示：36 = 36 × 1）</li>
+<li><span class="mono">101 × 45</span>（提示：101 = 100 + 1）</li>
+</ol>
+<b>🔴 挑战<span class="lv lv3">选做</span></b>
+<ol start="6">
+<li><span class="mono">32 × 25</span>（提示：把 32 拆成 8 × 4）</li>
+</ol>
+<details><summary>看答案（含理由）</summary>
+<p class="ans">
+1. 125×8 = 1000 → (125×8)×9 = 1000×9 = <b>9000</b>（交换律 + 结合律）<br>
+2. 分配律：25×40 + 25×4 = 1000 + 100 = <b>1100</b><br>
+3. 两边都有 ×8 → 提出来：(63+37)×8 = 100×8 = <b>800</b><br>
+4. 36 = 36×1 → (99+1)×36 = 100×36 = <b>3600</b><br>
+5. (100+1)×45 = 4500 + 45 = <b>4545</b><br>
+6. 32 = 8×4 → 8×(4×25) = 8×100 = <b>800</b>
+</p></details>
+</div>
+
+<div class="tell"><span class="t">讲给爸爸妈妈听</span><br>
+在纸上画出 <span class="mono">3 × 4</span> 的点阵，然后把纸<b>转 90 度</b>，告诉爸爸妈妈：<br>
+"这就是 <span class="mono">4 × 3</span>，点数一个都没变，所以它们相等。"<br>
+再讲一道分配律：<span class="mono">25 × (4 + 8)</span>，边算边说"大长方形被切成两块，25×4 和 25×8"。</div>
+
+<!-- ===================== 第 5 章 ===================== -->
+<h2 id="ch5"><span class="num">CHAPTER 5</span>除法：分东西的两种分法</h2>
+<div class="goal"><span class="t">学完这一章，你能做到：</span><ul><li>分清除法的<b>两种分法</b>，看单位就能判断</li><li>用乘法反过来验算每一道除法</li><li>判断余数合不合法，并能求"被除数 / 除数 / 商"中缺的那一个</li></ul></div>
+
+<h3>5.1 除法也有两张脸</h3>
+<p>最容易搞混的地方就在这里：<span class="mono">12 ÷ 3</span> 到底是什么意思？答案是——<b>两种意思，都对</b>。</p>
+
+<div class="box2">
+<div class="card c-blue">
+<b>分法 1：平均分成几份（分享）</b><br>
+12 颗糖平均分给 3 个人，每人几颗？<br>
+<span class="mono">12 ÷ 3 = 4</span>（颗/人）<br>
+<span style="color:var(--ink2)">动作：一颗一颗轮流发</span>
+</div>
+<div class="card c-green">
+<b>分法 2：每几个装一袋（包含）</b><br>
+12 颗糖，每 3 颗装一袋，能装几袋？<br>
+<span class="mono">12 ÷ 3 = 4</span>（袋）<br>
+<span style="color:var(--ink2)">动作：3 个 3 个地往外拿</span>
+</div>
+</div>
+
+<div class="fig" data-fig='{"t":"pair","caps":["12 ÷ 3 = 4　平均分成 3 份，每份 4 个","12 ÷ 3 = 4　每 3 个装一袋，装了 4 袋"],"items":[{"t":"grp","total":12,"per":4,"label":"份"},{"t":"grp","total":12,"per":3,"label":"袋"}]}'></div>
+<p class="center"><span class="cap">👀 左边：几个盘子？每盘几个？右边：几袋？每袋几个？两种圈法，圈的都是 12 个</span></p>
+
+<div class="card c-gray">
+<b>怎么判断题目是哪一种？看问的单位。</b><br>
+• "每人几个" → 平均分成几份<br>
+• "能装几袋 / 几次运完 / 几个星期" → 每几个一份<br>
+实在分不清，就用乘法倒过来验算：份数 × 每份个数 = 总数。
+</div>
+
+<h3>5.2 除法是乘法的倒带</h3>
+<p>乘法是"3 个 4 是多少"，除法是"几个 4 是 12"。它们互为倒带。</p>
+<p class="center"><span class="mono eq">3 × 4 = 12　⟺　12 ÷ 4 = 3　⟺　12 ÷ 3 = 4</span></p>
+<div class="rule">
+<div class="t">乘除三兄弟（必须滚瓜烂熟）</div>
+<span class="mono">每份 × 份数 = 总数</span>　→　<span class="mono">总数 ÷ 每份 = 份数</span>　→　<span class="mono">总数 ÷ 份数 = 每份</span><br>
+<b>除法题做不出来时，一律改成乘法来想。</b>
+</div>
+
+<h3>5.3 有余数的除法</h3>
+<p>13 颗糖平均分给 4 个人，每人 3 颗，还剩 1 颗。剩下的 1 颗<b>不能再分了</b>（因为我们只学整数）。</p>
+<p class="center"><span class="mono eq">13 ÷ 4 = 3 …… 1</span>　　验算：<span class="mono">3 × 4 + 1 = 13</span></p>
+<div class="trap">
+<div class="t">⚠ 两条铁律</div>
+<b>① 余数必须比除数小。</b>余数 ≥ 除数，说明你还能再分一份，商小了。<br>
+<b>② 验算口诀：商 × 除数 + 余数 = 被除数。</b>每次都用这个检查。
+</div>
+
+<h3>5.4 除法与括号（难点，但有了前面的底子就很简单）</h3>
+<p>先用走路想一想：除法能不能交换？<span class="mono">12 ÷ 3 = 4</span>，<span class="mono">3 ÷ 12</span> 呢？明显不是 4。<b>除法没有交换律。</b></p>
+<p>但除法有两条"括号规则"，四年级考试常考：</p>
+
+<div class="rule">
+<div class="t">除法的两条括号规则</div>
+<b>① 连续除 = 一次除以乘积</b>：<span class="mono">a ÷ b ÷ c = a ÷ (b × c)</span><br>
+　为什么？100 块糖先平均分给 2 组，每组再平均分给 5 个人 = 一次平均分给 10 个人。<br>
+　<span class="mono">100 ÷ 2 ÷ 5 = 100 ÷ (2 × 5) = 10</span><br><br>
+<b>② 除以一个"差"要小心</b>：<span class="mono">a ÷ (b ÷ c) = a ÷ b × c</span><br>
+　<span class="mono">24 ÷ (8 ÷ 2) = 24 ÷ 4 = 6</span>，而 <span class="mono">24 ÷ 8 × 2 = 3 × 2 = 6</span> ✓
+</div>
+
+<div class="trap">
+<div class="t">⚠ 除以"和"不能拆</div>
+<span class="mono">24 ÷ (4 + 2) = 24 ÷ 6 = 4</span><br>
+如果拆成 <span class="mono">24 ÷ 4 + 24 ÷ 2 = 6 + 12 = 18</span> ✗ 完全错了。<br>
+<b>记住：</b>除号在<b>括号外面</b>（<span class="mono">(a+b) ÷ c</span>）可以分配；<br>
+除号在<b>括号里面</b>（<span class="mono">a ÷ (b+c)</span>）<b>绝对不能分配</b>。
+</div>
+
+<h4>练一练</h4>
+<div class="try">
+<b>🟢 基础<span class="lv lv1">必做</span></b>
+<ol>
+<li><span class="mono">360 ÷ 8 ÷ 5</span>（连续除 → 除以乘积）</li>
+<li><span class="mono">720 ÷ (9 × 8)</span></li>
+</ol>
+<b>🔵 进阶<span class="lv lv2">想一想</span></b>
+<ol start="3">
+<li><span class="mono">48 ÷ (12 ÷ 3)</span>（先算括号里）</li>
+<li><span class="mono">(72 + 48) ÷ 12</span>（除号在外面，可以分配）</li>
+</ol>
+<b>🔴 挑战<span class="lv lv3">选做</span></b>
+<ol start="5">
+<li>有 50 个苹果，每 6 个装一袋，最多装几袋？还剩几个？<br><span style="font-size:13px;color:var(--ink2)">做完检查：余数比除数小吗？</span></li>
+<li>一个数除以 7，商是 8，余数是 5，这个数是几？</li>
+</ol>
+<details><summary>看答案（含理由）</summary>
+<p class="ans">
+1. 8×5 = 40 → 360 ÷ 40 = <b>9</b><br>
+2. 720 ÷ 72 = <b>10</b>（也可以 720÷9÷8 = 80÷8 = 10）<br>
+3. 括号里 12÷3 = 4 → 48 ÷ 4 = <b>12</b><br>
+4. 72÷12 + 48÷12 = 6 + 4 = <b>10</b><br>
+5. 50 ÷ 6 = <b>8</b>（袋）……<b>2</b>（个）；检查：余数 2 &lt; 除数 6 ✓<br>
+6. 被除数 = 商 × 除数 + 余数 = 8 × 7 + 5 = <b>61</b>
+</p></details>
+</div>
+
+<div class="tell"><span class="t">讲给爸爸妈妈听</span><br>
+拿 12 颗糖（或 12 个棋子、12 枚硬币），用<b>两种方式</b>分给爸爸妈妈看：<br>
+① 平均分成 3 份（一份一份轮流发）　② 每 3 个装一袋（三个三个往外拿）<br>
+边分边说：<b>"这两个动作不一样，但算式都是 12 ÷ 3。"</b></div>
+
+<!-- ===================== 第 6 章 ===================== -->
+<h2 id="ch6"><span class="num">CHAPTER 6</span>四则大合唱：谁先算，为什么</h2>
+<div class="goal"><span class="t">学完这一章，你能做到：</span><ul><li>讲出"先乘除后加减"的<b>理由</b>（不许说"老师说的"）</li><li>按顺序正确计算三步混合算式</li><li>不踩"同级运算必须从左到右"这个坑</li></ul></div>
+
+<h3>6.1 "先乘除后加减"不是规定，是道理</h3>
+<div class="think"><span class="t">先用两种顺序各算一遍</span><br>
+小明买了 3 个本子，每个 4 元，又买了 1 支 2 元的笔。一共多少钱？<br>
+① 先算 <span class="mono">4 + 2 = 6</span>，再 <span class="mono">3 × 6 = 18</span> 元<br>
+② 先算 <span class="mono">3 × 4 = 12</span>，再 <span class="mono">12 + 2 = 14</span> 元<br>
+<b>哪个才对？为什么另一个是错的？</b>想清楚再往下看。</div>
+<p>被要求背"先乘除后加减"，却没人告诉过你为什么。理由其实非常实在：</p>
+
+<div class="card c-purple">
+<b>理由：乘除是"打包"，加减是"散装"，打包的东西必须先算完。</b><br>
+看这道题：小明买了 3 个本子，每个 4 元，又买了一支 2 元的笔，一共多少钱？<br><br>
+写成算式：<span class="mono">3 × 4 + 2</span><br>
+如果你先算 <span class="mono">4 + 2 = 6</span>，再 <span class="mono">3 × 6 = 18</span> 元 —— 错！<br>
+因为 <span class="mono">3 × 4</span> 是"3 个本子"这个<b>整体包</b>，笔的价格不能塞进本子的包里。<br><br>
+正确：<span class="mono">3 × 4 + 2 = 12 + 2 = 14</span> 元。<br>
+<span style="color:var(--ink2)">想加进去也行，但要加括号：<span class="mono">3 × (4 + 2)</span>，意思就变成了"每个本子和笔各 4+2 元，买 3 套"——那是另一道题了。</span>
+</div>
+
+<div class="fig" data-fig='{"t":"pair","caps":["3 个本子 × 4 元 = 12 元（一个完整的包）","1 支笔 = 2 元（散装的，只能单独加）"],"items":[{"t":"dots","rows":3,"cols":4,"r":11},{"t":"dots","rows":1,"cols":2,"r":11}]}'></div>
+<p class="center"><span class="cap">先算完"3 个本子"这个包，才能把这个包跟"笔"相加</span></p>
+
+<h3>6.2 运算顺序三条规则</h3>
+<table>
+<tr><th style="width:60px">顺序</th><th>规则</th><th>例子</th></tr>
+<tr><td>①</td><td><b>先算括号里的</b>（小括号 → 中括号）</td><td><span class="mono">(3+2)×4 = 5×4 = 20</span></td></tr>
+<tr><td>②</td><td><b>再算乘除</b>（从左到右）</td><td><span class="mono">12÷3×2 = 4×2 = 8</span></td></tr>
+<tr><td>③</td><td><b>最后算加减</b>（从左到右）</td><td><span class="mono">10−4+3 = 9</span></td></tr>
+</table>
+
+<div class="trap">
+<div class="t">⚠ 同级运算必须从左到右</div>
+<span class="mono">12 ÷ 3 × 2</span>：先除后乘 = 8。如果先算 <span class="mono">3 × 2 = 6</span> 得 2，就错了。<br>
+<span class="mono">10 − 4 + 3</span>：从左到右 = 9。如果先算 <span class="mono">4 + 3 = 7</span> 得 3，就错了。<br>
+<b>只有"带着符号搬家"才能换顺序</b>（第 3 章）：<span class="mono">10 − 4 + 3 = 10 + 3 − 4</span>，符号跟着数字一起走。
+</div>
+
+<h3>6.3 括号的三件事</h3>
+<ul>
+<li><b>改变顺序</b>：<span class="mono">3 + 2 × 4 = 11</span>，<span class="mono">(3 + 2) × 4 = 20</span>，结果完全不同。</li>
+<li><b>表示"整体"</b>：应用题里"每人 (4+2) 元"，括号表示这是一个整体量。</li>
+<li><b>用来巧算</b>：加括号、去括号（第 3 章）。</li>
+</ul>
+
+<h3>6.4 综合演练（20 题）</h3>
+<div class="try">
+<b>🟢 A 组 · 运算顺序<span class="lv lv1">基础</span></b>
+<ol>
+<li><span class="mono">7 + 3 × 5</span></li>
+<li><span class="mono">(7 + 3) × 5</span></li>
+<li><span class="mono">48 ÷ 6 ÷ 2</span></li>
+<li><span class="mono">100 − 20 × 4</span></li>
+<li><span class="mono">36 ÷ (12 − 3)</span></li>
+<li><span class="mono">25 × 4 ÷ 25 × 4</span>（小心！）</li>
+</ol>
+<b>🔵 B 组 · 括号与巧算<span class="lv lv2">进阶</span></b>
+<ol start="7">
+<li><span class="mono">137 + 58 + 63 + 42</span></li>
+<li><span class="mono">486 − (186 + 79)</span></li>
+<li><span class="mono">25 × 32 × 125</span></li>
+<li><span class="mono">45 × 99</span></li>
+<li><span class="mono">360 ÷ 24</span>（提示：24 = 6 × 4）</li>
+<li><span class="mono">8 × (125 + 25)</span></li>
+</ol>
+<b>🔴 C 组 · 应用题<span class="lv lv3">挑战</span></b><br><span style="font-size:13px;color:var(--ink2)">先画图，或先说清"谁大谁小"，再列式</span>
+<ol start="13">
+<li>一本书 96 页，小明每天看 12 页，几天看完？</li>
+<li>商店里有 4 盒铅笔，每盒 12 支，卖出 25 支，还剩几支？</li>
+<li>哥哥有 45 元，弟弟有 17 元。哥哥给弟弟几元后两人一样多？<br><span style="font-size:13px;color:var(--ink2)">（提示：先算总数，再算一样多时每人多少）</span></li>
+<li>一根绳子对折再对折后长 5 米，原来长几米？</li>
+<li><span class="mono">199 + 199×99</span>（提示：提取公因数）</li>
+<li><span class="mono">1 + 3 + 5 + 7 + 9 + 11 + 13 + 15 + 17 + 19</span></li>
+<li><span class="mono">5000 − 1 − 2 − 3 − 4 − 5 − 6</span></li>
+<li><span class="mono">25 × 16 × 5 × 4</span></li>
+</ol>
+<details><summary>看答案</summary>
+<p class="ans">
+A: 1) 22　2) 50　3) 4　4) 20　5) 4　6) 16（= (25×4÷25)×4 = 4×4，别写成 100÷100=1）<br>
+B: 7) 300　8) 221　9) 25×4×8×125 = (25×4)×(8×125) = 100×1000 = 100000　10) 45×100 − 45 = 4455　11) 360÷6÷4 = 60÷4 = 15　12) 1000 + 200 = 1200<br>
+C: 13) 96÷12 = 8 天　14) 4×12 − 25 = 48 − 25 = 23 支　15) 总数 62，一样多每人 31，45 − 31 = 14 元　16) 对折两次 = 分成 4 段，5×4 = 20 米　17) 199×(1+99) = 19900　18) (1+19)×5 = 100　19) 5000 − 21 = 4979　20) (25×4)×(16×5) = 100×80 = 8000
+</p></details>
+</div>
+
+<div class="tell"><span class="t">讲给爸爸妈妈听</span><br>
+讲清楚：<b>为什么 <span class="mono">3 + 2 × 4</span> 不能先算 3 + 2？</b><br>
+提示：把 3 × 4 想成"3 个本子"这一个完整的包，笔的 2 元不能塞进本子的包里去。</div>
+
+<!-- ===================== 彩蛋 ===================== -->
+<h2 id="ch7"><span class="num">BONUS</span>彩蛋：0 的左边是什么</h2>
+<div class="goal"><span class="t">学完这一章，你能做到：</span><ul><li>说出负数是怎么来的（往左走，走过 0 之后）</li><li>把任意减法改写成加法的样子</li></ul></div>
+<div class="kid">
+这一章学校要到六年级才教。但你其实<b>早就会了</b>——只要你相信第 0 章那句话。
+</div>
+<p>第 2 章我们说 <span class="mono">3 − 5</span> "走不通"。真的走不通吗？数轴往左是无限的，走出 0 就是了。</p>
+<div class="fig" data-fig='{"t":"nl","min":-6,"max":6,"allLabels":true,"jumps":[{"from":3,"to":-2,"color":"red","label":"向左 5"}]}'></div>
+<p>走到 0 左边第 2 格，我们给这个地方起名叫<b>负 2</b>，写作 <span class="mono">−2</span>。</p>
+<div class="rule">
+<div class="t">负数的第一性原理</div>
+<b>负数不是"很少的数"，它是"往左走"这个动作留下来的位置。</b><br>
+<span class="mono">−5</span> 的意思就是：从 0 出发，向左走 5 步。
+</div>
+<p>于是所有的减法，都可以改写成加法：</p>
+<p class="center"><span class="mono eq">a − b = a + (−b)</span></p>
+<p>这就是为什么第 3 章的"减号后面全部变号"一定成立——因为 <span class="mono">a − (b − c)</span> 其实就是 <span class="mono">a + (−1) × (b − c)</span>，
+那个 <span class="mono">−1</span> 乘进去，每一项都<b>掉了个头</b>。</p>
+<div class="card c-green">
+你现在已经站在初中代数的门口了。等你上初中，老师会写：<br>
+<span class="mono">−(b − c) = −b + c</span><br>
+你只要笑一笑，想起三年级时那张数轴图就行。
+</div>
+
+<!-- ===================== 附录 ===================== -->
+<h2 id="ch8"><span class="num">APPENDIX</span>附录：运算律总表 + 考点自查</h2>
+
+<h3>一、五条运算律（全部）</h3>
+<table>
+<tr><th style="width:22%">名称</th><th style="width:34%">公式</th><th>一句话理解</th></tr>
+<tr><td>加法交换律</td><td><code>a + b = b + a</code></td><td>先迈哪只脚都行</td></tr>
+<tr><td>加法结合律</td><td><code>(a+b)+c = a+(b+c)</code></td><td>三段路先接哪两段都一样</td></tr>
+<tr><td>乘法交换律</td><td><code>a × b = b × a</code></td><td>方阵转 90 度</td></tr>
+<tr><td>乘法结合律</td><td><code>(a×b)×c = a×(b×c)</code></td><td>分层装箱，怎么装总数不变</td></tr>
+<tr><td>乘法分配律</td><td><code>(a+b)×c = a×c + b×c</code></td><td>大长方形 = 两个小长方形</td></tr>
+</table>
+<div class="card c-red">
+<b>没有的律（别乱用）：</b>减法交换律 ✗　除法交换律 ✗　减法结合律 ✗　除法结合律 ✗
+</div>
+
+<h3>二、括号规则表</h3>
+<table>
+<tr><th style="width:30%">去括号</th><th style="width:30%">加括号</th><th>口诀</th></tr>
+<tr><td><code>a + (b + c) = a + b + c</code></td><td><code>a + b + c = a + (b + c)</code></td><td rowspan="2">加号后面，原样照搬</td></tr>
+<tr><td><code>a + (b − c) = a + b − c</code></td><td><code>a + b − c = a + (b − c)</code></td></tr>
+<tr><td><code>a − (b + c) = a − b − c</code></td><td><code>a − b − c = a − (b + c)</code></td><td rowspan="2">减号后面，全部变号</td></tr>
+<tr><td><code>a − (b − c) = a − b + c</code></td><td><code>a − b + c = a − (b − c)</code></td></tr>
+</table>
+
+<h3>三、错题归因表（错了先查这张表）</h3>
+<table>
+<tr><th style="width:24%">错成什么样</th><th style="width:28%">真正的错因</th><th>怎么改</th></tr>
+<tr><td><code>100 − (30 − 8)</code> 算成 62</td><td>只给第一个数变了号，忘了第二个数</td><td>把括号想成"包裹"：里面<b>每一项</b>都要掉头，不是一个</td></tr>
+<tr><td><code>265 − 88 + 35</code> 找不到巧法</td><td>搬家时把 +35 前面的符号丢了</td><td>符号是数字的<b>随身行李</b>，搬家必须一起走</td></tr>
+<tr><td><code>5 × (3 + 4)</code> 算成 19</td><td>只乘了括号里第一项</td><td>想面积图：右边那一块被你"吃掉了"</td></tr>
+<tr><td><code>25 × 4 ÷ 25 × 4</code> 算成 1</td><td>同级运算没有从左到右</td><td>乘除同级，严格从左往右；要换顺序就得"带着符号搬家"</td></tr>
+<tr><td><code>48 ÷ (12 ÷ 3)</code> 拆成 48÷12÷3</td><td>把除法的括号按加减法的规矩处理了</td><td>先算括号里；<code>a ÷ (b ÷ c) = a ÷ b × c</code></td></tr>
+<tr><td>应用题不知道该加还是该减</td><td>没弄清楚谁大谁小</td><td>先回答三个问题：谁是大数？谁是小数？要找的是哪个？</td></tr>
+<tr><td>巧算题算对了，但说不出用了什么律</td><td>只是模仿了步骤，没理解</td><td>每做一步说一遍："我在用交换律把这两个数凑到一起"</td></tr>
+</table>
+
+<h3>四、孩子自查清单（会打勾才算真的懂）</h3>
+<div class="try">
+<ul style="list-style:none;padding-left:4px">
+<li>☐ 能画出数轴，并说出 <span class="mono">7 − 3</span> 是"从 7 向左走 3"</li>
+<li>☐ 能用自己的话解释为什么 <span class="mono">3 + 5 = 5 + 3</span>（不许说"因为交换律"）</li>
+<li>☐ 能不用笔算说出 <span class="mono">100 − (30 − 8)</span> 的结果是 78，并讲清为什么</li>
+<li>☐ 看到 <span class="mono">25 × 7 × 4</span> 能立刻想到先算 25 × 4</li>
+<li>☐ 能说出"先乘除后加减"的理由（不许说"因为老师说的"）</li>
+<li>☐ 能分清 <span class="mono">(a+b)÷c</span> 可以拆、<span class="mono">a÷(b+c)</span> 不能拆</li>
+<li>☐ 知道 <span class="mono">a − b + c = a + c − b</span>，并知道搬家时符号要跟着走</li>
+</ul>
+</div>
+
+<div class="card c-gray">
+<b>五、给家长的三个提醒</b><br>
+1. <b>不要让孩子背口诀代替理解。</b>每次做题前先问"为什么"，答不上来就回到数轴图。<br>
+2. <b>错题只看一个地方：符号有没有跟着数字走。</b>80% 的计算错误都是搬家时把符号丢了。<br>
+3. <b>每天 10 题，别刷 100 题。</b>这套内容的关键是"看懂"，不是"练熟"。看懂之后，速度会自己长出来。
+</div>
+
+<p class="foot">第一册完 · 后续可选方向：小数与分数、方程入门、图形与面积、应用题建模（线段图）</p>
+
+</div>
+
+<a href="#top" class="fab" id="fab" aria-label="返回目录"><span class="ar">↑</span><span class="lbl">返回目录</span></a>
+
+<script>
+(function(){
+const NS='http://www.w3.org/2000/svg';
+const C={blue:'#2b7fd4',red:'#d9483f',green:'#2f9e6e',orange:'#e8913a',purple:'#8a5cd1',gray:'#9aa7b3'};
+function E(t,a){const e=document.createElementNS(NS,t);for(const k in a)e.setAttribute(k,a[k]);return e;}
+function T(txt,a){const e=E('text',a);e.textContent=txt;return e;}
+function col(c){return C[c]||c;}
+function H(tag,style){const e=document.createElement(tag);if(style)e.style.cssText=style;return e;}
+
+/* ---------- 数轴 ---------- */
+function numline(o){
+  o=o||{};
+  const min=o.min??0, max=o.max??10, unit=o.unit??26, pad=o.pad??40;
+  const jl=o.jumps||[];
+  const maxLift=jl.reduce((m,j,i)=>Math.max(m, j.lift??(46+i*30)), 0);
+  const W=pad*2+(max-min)*unit, H=Math.max(o.height??150, maxLift+124), ay=H-62;
+  const s=E('svg',{viewBox:'0 0 '+W+' '+H,width:W,height:H,style:'max-width:100%'});
+  const defs=E('defs',{});
+  Object.keys(C).forEach(k=>{
+    const m=E('marker',{id:'ar-'+k,markerWidth:9,markerHeight:9,refX:7,refY:4.5,orient:'auto'});
+    m.appendChild(E('path',{d:'M0,0 L9,4.5 L0,9 z',fill:C[k]}));
+    defs.appendChild(m);
+  });
+  s.appendChild(defs);
+  const X=v=>pad+(v-min)*unit;
+  s.appendChild(E('line',{x1:pad-14,y1:ay,x2:W-pad+22,y2:ay,stroke:'#8a97a4','stroke-width':2}));
+  s.appendChild(E('path',{d:'M'+(W-pad+22)+','+ay+' l-9,-4.5 l0,9 z',fill:'#8a97a4'}));
+  for(let v=min;v<=max;v++){
+    const big=(v%5===0)||o.allLabels;
+    s.appendChild(E('line',{x1:X(v),y1:ay,x2:X(v),y2:ay-(big?10:5.5),stroke:'#8a97a4','stroke-width':2}));
+    if(v%5===0||o.allLabels) s.appendChild(T(v,{x:X(v),y:ay+22,'text-anchor':'middle','font-size':12.5,fill:'#5b6b7a'}));
+  }
+  (o.jumps||[]).forEach((j,ji)=>{
+    const c=col(j.color||'blue'), x1=X(j.from), x2=X(j.to), lift=j.lift??(46+ji*30);
+    const up=j.down?-1:1, peak=ay-up*lift;
+    const p=E('path',{
+      d:'M'+x1+','+(ay-3)+' Q'+((x1+x2)/2)+','+peak+' '+x2+','+(ay-3),
+      fill:'none',stroke:c,'stroke-width':2.6,'marker-end':'url(#ar-'+Object.keys(C).find(k=>C[k]===c)+')'
+    });
+    s.appendChild(p);
+    s.appendChild(E('circle',{cx:x1,cy:ay,r:4,fill:c}));
+    if(j.label) s.appendChild(T(j.label,{x:(x1+x2)/2,y:peak-8,'text-anchor':'middle','font-size':13,fill:c,'font-weight':'600'}));
+  });
+  if(o.title) s.appendChild(T(o.title,{x:pad,y:20,'font-size':13,fill:'#5b6b7a'}));
+  return s;
+}
+
+/* ---------- 双数轴对比 ---------- */
+function twojump(o){
+  const box=H('div','');
+  [[o.a,o.t1],[o.b,o.t2]].forEach(pair=>{
+    const d=H('div','text-align:center;margin:2px 0 10px');
+    const cfg={max:o.max,min:o.min,unit:o.unit,height:150,jumps:pair[0]};
+    if(pair[1]) cfg.title=pair[1];
+    d.appendChild(numline(cfg));
+    box.appendChild(d);
+  });
+  return box;
+}
+
+/* ---------- 点阵 ---------- */
+function dots(o){
+  const rows=o.rows??1, cols=o.cols??5, r=o.r??11, g=o.gap??9;
+  const step=r*2+g, W=cols*step+20, H=rows*step+20;
+  const s=E('svg',{viewBox:'0 0 '+W+' '+H,width:W,height:H,style:'max-width:100%'});
+  for(let i=0;i<rows;i++)for(let j=0;j<cols;j++){
+    const c=(o.splitAt!=null&&(i*cols+j)<o.splitAt)?C.blue:C.green;
+    s.appendChild(E('circle',{cx:10+r+j*step,cy:10+r+i*step,r:r,fill:c}));
+  }
+  return s;
+}
+
+/* ---------- 比较条形图 ---------- */
+function cmp(o){
+  const a=o.a,b=o.b,u=o.unit??30,pad=76;
+  const W=pad+a*u+90, H=118;
+  const s=E('svg',{viewBox:'0 0 '+W+' '+H,width:W,height:H,style:'max-width:100%'});
+  const y1=34,y2=80;
+  s.appendChild(T(o.la||'大数',{x:pad-12,y:y1+5,'text-anchor':'end','font-size':14,fill:'#334'}));
+  s.appendChild(E('rect',{x:pad,y:y1-14,width:b*u,height:22,fill:C.blue,rx:3}));
+  s.appendChild(E('rect',{x:pad+b*u,y:y1-14,width:(a-b)*u,height:22,fill:C.orange,rx:3}));
+  s.appendChild(T(b,{x:pad+b*u/2,y:y1+1,'text-anchor':'middle','font-size':12,fill:'#fff'}));
+  s.appendChild(T('一共 = '+a,{x:pad+a*u+10,y:y1+5,'font-size':13,fill:'#4a5b6b'}));
+  s.appendChild(T(o.lb||'小数',{x:pad-12,y:y2+5,'text-anchor':'end','font-size':14,fill:'#334'}));
+  s.appendChild(E('rect',{x:pad,y:y2-14,width:b*u,height:22,fill:C.green,rx:3}));
+  s.appendChild(T(b,{x:pad+b*u/2,y:y2+1,'text-anchor':'middle','font-size':12,fill:'#fff'}));
+  const xd=pad+b*u, xw=(a-b)*u;
+  s.appendChild(E('line',{x1:xd,y1:y1+12,x2:xd,y2:y2-12,stroke:C.orange,'stroke-width':1.5,'stroke-dasharray':'4 3'}));
+  s.appendChild(E('line',{x1:xd+xw,y1:y1+12,x2:xd+xw,y2:y2-12,stroke:C.orange,'stroke-width':1.5,'stroke-dasharray':'4 3'}));
+  s.appendChild(E('line',{x1:xd,y1:y1+18,x2:xd+xw,y2:y1+18,stroke:C.orange,'stroke-width':1.5}));
+  s.appendChild(T('差 = '+(a-b),{x:xd+xw/2,y:y1+34,'text-anchor':'middle','font-size':13,fill:C.orange,'font-weight':'600'}));
+  return s;
+}
+
+/* ---------- 面积模型（分配律） ---------- */
+function area(o){
+  const h=o.h??4, w1=o.w1??3, w2=o.w2??4, u=o.unit??46, x0=o.x0??96, y0=42;
+  const W=x0+(w1+w2)*u+80, H=y0+h*u+86;
+  const s=E('svg',{viewBox:'0 0 '+W+' '+H,width:W,height:H,style:'max-width:100%'});
+  s.appendChild(E('rect',{x:x0,y:y0,width:w1*u,height:h*u,fill:'#d6e8f8',stroke:C.blue,'stroke-width':2}));
+  s.appendChild(E('rect',{x:x0+w1*u,y:y0,width:w2*u,height:h*u,fill:'#d5f0e2',stroke:C.green,'stroke-width':2}));
+  const cy=y0+h*u/2;
+  const t1=o.lab1||(w1+' × '+h+' = '+(w1*h));
+  const t2=o.lab2||(w2+' × '+h+' = '+(w2*h));
+  s.appendChild(T(t1,{x:x0+w1*u/2,y:cy+5,'text-anchor':'middle','font-size':15,fill:'#1c5b96','font-weight':'600'}));
+  s.appendChild(T(t2,{x:x0+w1*u+w2*u/2,y:cy+5,'text-anchor':'middle','font-size':15,fill:'#237754','font-weight':'600'}));
+  // 顶部宽度标注
+  const ty=y0-14;
+  s.appendChild(E('line',{x1:x0,y1:ty,x2:x0+w1*u,y2:ty,stroke:C.gray,'stroke-width':1.5}));
+  s.appendChild(E('line',{x1:x0+w1*u,y1:ty,x2:x0+(w1+w2)*u,y2:ty,stroke:C.gray,'stroke-width':1.5}));
+  s.appendChild(T(o.top||(w1+' + '+w2),{x:x0+(w1+w2)*u/2,y:ty-8,'text-anchor':'middle','font-size':14,fill:'#4a5b6b'}));
+  // 左侧高度标注
+  const lx=x0-16;
+  s.appendChild(E('line',{x1:lx,y1:y0,x2:lx,y2:y0+h*u,stroke:C.gray,'stroke-width':1.5}));
+  s.appendChild(T(h,{x:lx-8,y:cy+5,'text-anchor':'end','font-size':14,fill:'#4a5b6b'}));
+  // 结论
+  const cc=o.concl||((w1+w2)+' × '+h+' = '+(w1*h)+' + '+(w2*h)+' = '+((w1+w2)*h));
+  s.appendChild(T(cc,{x:x0+(w1+w2)*u/2,y:y0+h*u+40,'text-anchor':'middle','font-size':16,fill:'#b35c00','font-weight':'700'}));
+  return s;
+}
+
+/* ---------- 分组图（除法） ---------- */
+function grp(o){
+  const total=o.total??12, per=o.per??3, groups=Math.ceil(total/per);
+  const r=o.r??11, gap=8, step=r*2+gap, inner=10;
+  const gw=per*step+inner*2, gh=step+inner*2, gapg=14;
+  const W=groups*gw+(groups-1)*gapg+20, H=gh+30;
+  const s=E('svg',{viewBox:'0 0 '+W+' '+H,width:W,height:H,style:'max-width:100%'});
+  const colors=[C.blue,C.green,C.orange,C.purple];
+  for(let g=0;g<groups;g++){
+    const gx=10+g*(gw+gapg);
+    s.appendChild(E('rect',{x:gx,y:14,width:gw,height:gh,rx:10,fill:'none',stroke:colors[g%4],'stroke-width':2,'stroke-dasharray':'6 4'}));
+    for(let i=0;i<per;i++){
+      const idx=g*per+i;
+      if(idx>=total) break;
+      s.appendChild(E('circle',{cx:gx+inner+r+i*step,cy:14+inner+r,r:r,fill:idx<total?colors[g%4]:'#fff'}));
+    }
+    s.appendChild(T('第'+(g+1)+(o.label||'份'),{x:gx+gw/2,y:14+gh+18,'text-anchor':'middle','font-size':12.5,fill:colors[g%4]}));
+  }
+  return s;
+}
+
+/* ---------- 并排两图 ---------- */
+function pair(o){
+  const box=H('div','display:flex;gap:24px;flex-wrap:wrap;justify-content:center;align-items:flex-end');
+  o.items.forEach((it,i)=>{
+    const d=H('div','text-align:center');
+    d.appendChild(R[it.t](it));
+    if(o.caps&&o.caps[i]){const p=H('div','font-size:13px;color:#4a5b6b;margin-top:6px');p.textContent=o.caps[i];d.appendChild(p);}
+    box.appendChild(d);
+  });
+  return box;
+}
+
+const R={nl:numline,twojump:twojump,dots:dots,cmp:cmp,area:area,grp:grp,pair:pair};
+document.querySelectorAll('.fig').forEach(d=>{
+  let o=null; try{o=JSON.parse(d.getAttribute('data-fig'));}catch(e){o=null;}
+  if(!o||!o.t) return;
+  const f=R[o.t]; if(!f) return;
+  d.appendChild(f(o));
+});
+
+
+/* 返回目录按钮：滚动超过一屏才出现 */
+(function(){
+  var fab=document.getElementById('fab');
+  if(!fab) return;
+  var tick=false;
+  function upd(){
+    fab.classList.toggle('show', window.scrollY>window.innerHeight*0.6);
+    tick=false;
+  }
+  window.addEventListener('scroll',function(){ if(!tick){tick=true; requestAnimationFrame(upd);} },{passive:true});
+  fab.addEventListener('click',function(e){
+    e.preventDefault();
+    window.scrollTo({top:0,behavior:'smooth'});
+  });
+  upd();
+})();
+
+window.addEventListener('beforeprint',()=>{document.querySelectorAll('details').forEach(x=>x.open=true)});
+})();
+</script>
+
+<!-- rourou-home-btn:start -->
+<style>
+#rourou-home-btn{position:fixed;left:14px;bottom:calc(14px + env(safe-area-inset-bottom,0px));z-index:9999;
+display:inline-flex;align-items:center;gap:6px;padding:10px 18px;border-radius:999px;
+background:rgba(255,255,255,0.92);color:#2d3436;font-size:15px;font-weight:600;
+text-decoration:none;box-shadow:0 4px 14px rgba(0,0,0,0.18);border:1px solid rgba(0,0,0,0.08);
+-webkit-backdrop-filter:blur(4px);backdrop-filter:blur(4px);transition:transform .15s,background .15s;}
+#rourou-home-btn:hover{background:#fff;transform:translateY(-2px);}
+@media (max-width:600px){#rourou-home-btn{padding:9px 14px;font-size:13px;left:10px;bottom:calc(10px + env(safe-area-inset-bottom,0px));}}
+/* 页面自带左下角悬浮按钮（如讲义的「↑ 返回目录」）时上移让位，避免两个按钮叠在一起 */
+.fab{bottom:calc(66px + env(safe-area-inset-bottom,0px)) !important;}
+@media (max-width:919px){.fab{bottom:calc(58px + env(safe-area-inset-bottom,0px)) !important;}}
+</style>
+<a id="rourou-home-btn" href="../../index.html">🏠 首页</a>
+<!-- rourou-home-btn:end -->
+</body>
+</html>
