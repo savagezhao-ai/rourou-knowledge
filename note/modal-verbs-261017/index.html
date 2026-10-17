@@ -1,0 +1,1714 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>英语里那些没说完的话 · 肉肉自学手册</title>
+<style>
+:root{
+  --bg:#0c1320; --bg2:#111a29; --card:#16202f; --card2:#1c2839;
+  --line:#25334a; --line2:#33455f;
+  --tx:#eaf0f9; --tx2:#a8b9d0; --tx3:#7387a3;
+  --green:#34d399; --blue:#60a5fa; --red:#fb7185; --amber:#fbbf24;
+  --purple:#a78bfa; --cyan:#22d3ee;
+  --l1:#34d399; --l2:#60a5fa; --l3:#a78bfa;
+  --r:14px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  background:var(--bg); color:var(--tx);
+  font-family:"PingFang SC","Hiragino Sans GB","Microsoft YaHei",system-ui,-apple-system,sans-serif;
+  font-size:17px; line-height:1.9; -webkit-font-smoothing:antialiased;
+}
+.en{font-family:"SF Mono",Menlo,Consolas,Georgia,serif;letter-spacing:.02em}
+
+/* ---------- 布局 ---------- */
+.layout{display:flex;min-height:100vh}
+.sidebar{
+  width:250px;flex:0 0 250px;background:var(--bg2);border-right:1px solid var(--line);
+  position:sticky;top:0;height:100vh;overflow-y:auto;padding:20px 0 60px;
+}
+.sidebar::-webkit-scrollbar{width:8px}
+.sidebar::-webkit-scrollbar-thumb{background:#2b3b52;border-radius:8px}
+.brand{padding:0 18px 14px;border-bottom:1px solid var(--line);margin-bottom:10px}
+.brand h1{font-size:16px;font-weight:800;line-height:1.5}
+.brand p{font-size:12px;color:var(--tx3);margin-top:3px}
+.mybar{margin:10px 18px 4px;padding:10px 12px;border-radius:10px;background:#182338;border:1px solid var(--line2);font-size:12.5px;color:var(--tx2)}
+.mybar b{color:var(--green);font-size:14px}
+.nav a{
+  display:block;padding:7px 18px;color:var(--tx2);text-decoration:none;
+  font-size:13.5px;line-height:1.5;border-left:3px solid transparent;transition:.15s;
+}
+.nav a:hover{background:#1a2536;color:var(--tx)}
+.nav a.sub{padding-left:32px;font-size:13px;color:var(--tx3)}
+.nav a.active{color:#fff;background:#182338;border-left-color:var(--cyan);font-weight:600}
+.nav .ck{float:right;color:var(--green);font-weight:800}
+.nav .grp{padding:14px 18px 6px;font-size:11px;letter-spacing:.1em;color:var(--tx3)}
+
+.content{flex:1;min-width:0;padding:0 0 120px}
+.wrap{max-width:880px;margin:0 auto;padding:0 30px}
+.progress{position:fixed;top:0;left:250px;right:0;height:3px;background:#1b2739;z-index:50}
+.progress i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--cyan),var(--purple));transition:width .1s}
+
+/* ---------- 站点 ---------- */
+section{padding:56px 0 8px;scroll-margin-top:20px}
+.st-no{
+  display:inline-flex;align-items:center;gap:8px;font-size:12.5px;letter-spacing:.1em;
+  color:var(--cyan);font-weight:800;margin-bottom:10px;background:rgba(34,211,238,.1);
+  border:1px solid rgba(34,211,238,.3);border-radius:20px;padding:3px 12px;
+}
+h2{font-size:28px;font-weight:900;line-height:1.35;letter-spacing:-.01em}
+h2 small{display:block;font-size:15px;color:var(--tx2);font-weight:500;margin-top:8px;letter-spacing:0}
+h3{font-size:19px;font-weight:800;margin:34px 0 12px;display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+h3::before{content:"";width:4px;height:17px;background:var(--cyan);border-radius:2px;flex:none}
+h4{font-size:16.5px;font-weight:800;margin:22px 0 8px;color:var(--tx)}
+p{margin:11px 0;color:var(--tx2)}
+p strong,li strong{color:var(--tx);font-weight:800}
+.lead{font-size:18px;color:var(--tx);line-height:1.9}
+ul,ol{margin:11px 0 11px 22px;color:var(--tx2)}
+li{margin:6px 0}
+.divider{height:1px;background:var(--line);margin:40px 0}
+
+.card{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:18px 20px;margin:16px 0;position:relative}
+.card.tight{padding:15px 17px}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+@media(max-width:760px){.grid2,.grid3{grid-template-columns:1fr}}
+
+/* 你会学到 */
+.goal{background:linear-gradient(90deg,rgba(34,211,238,.09),transparent);border-left:3px solid var(--cyan);border-radius:0 10px 10px 0;padding:12px 16px;margin:16px 0;font-size:15.5px;color:var(--tx)}
+.goal b{color:var(--cyan)}
+
+/* 想一想 */
+.think{border:1px dashed var(--line2);border-radius:12px;padding:14px 18px;margin:16px 0;background:#141d2c;cursor:pointer;transition:.2s}
+.think:hover{border-color:var(--tx3)}
+.think .q{font-size:16px;color:#fff;font-weight:700}
+.think .hint{font-size:12px;color:var(--tx3);display:block;margin-top:4px}
+.think .a{margin-top:10px;padding-top:10px;border-top:1px solid var(--line);font-size:15px;color:var(--green);line-height:1.8;display:none}
+.think.open .a{display:block}
+.think.open .hint{color:var(--green)}
+.think.open{background:rgba(52,211,153,.06);border-style:solid;border-color:rgba(52,211,153,.4)}
+
+/* 学会了按钮 */
+.donebtn{margin:20px 0 4px;background:none;border:1px solid var(--line2);color:var(--tx2);border-radius:22px;padding:9px 20px;font-size:14.5px;cursor:pointer;font-family:inherit;transition:.15s}
+.donebtn:hover{border-color:var(--tx3);color:var(--tx)}
+.donebtn.on{background:rgba(52,211,153,.14);border-color:var(--green);color:var(--green);font-weight:700}
+
+/* 等级 */
+.lvbadge{position:absolute;top:12px;right:12px;font-size:10.5px;font-weight:800;padding:2px 8px;border-radius:20px}
+.b1{background:rgba(52,211,153,.16);color:var(--l1);border:1px solid rgba(52,211,153,.4)}
+.b2{background:rgba(96,165,250,.16);color:var(--l2);border:1px solid rgba(96,165,250,.4)}
+.b3{background:rgba(167,139,250,.16);color:var(--l3);border:1px solid rgba(167,139,250,.4)}
+.tag{display:inline-block;font-size:11.5px;font-weight:800;padding:2px 9px;border-radius:20px;line-height:1.7;white-space:nowrap}
+.t-l1{background:rgba(52,211,153,.14);color:var(--l1);border:1px solid rgba(52,211,153,.35)}
+.t-l2{background:rgba(96,165,250,.14);color:var(--l2);border:1px solid rgba(96,165,250,.35)}
+.t-l3{background:rgba(167,139,250,.14);color:var(--l3);border:1px solid rgba(167,139,250,.35)}
+.t-red{background:rgba(251,113,133,.14);color:var(--red);border:1px solid rgba(251,113,133,.35)}
+.t-amber{background:rgba(251,191,36,.14);color:var(--amber);border:1px solid rgba(251,191,36,.35)}
+.t-gray{background:rgba(160,175,200,.12);color:var(--tx2);border:1px solid var(--line2)}
+
+.legend{display:flex;flex-wrap:wrap;gap:10px;margin:16px 0}
+.legend div{flex:1;min-width:200px;border-radius:12px;padding:13px 16px;border:1px solid}
+.legend .l1{background:rgba(52,211,153,.07);border-color:rgba(52,211,153,.35)}
+.legend .l2{background:rgba(96,165,250,.07);border-color:rgba(96,165,250,.35)}
+.legend .l3{background:rgba(167,139,250,.07);border-color:rgba(167,139,250,.35)}
+.legend h5{font-size:14.5px;margin-bottom:4px}
+.legend .l1 h5{color:var(--l1)} .legend .l2 h5{color:var(--l2)} .legend .l3 h5{color:var(--l3)}
+.legend p{font-size:12.5px;margin:0;line-height:1.7}
+
+/* 半句话卡 */
+.half{border:1px solid var(--line2);border-radius:var(--r);overflow:hidden;margin:16px 0;background:var(--card2);cursor:pointer}
+.half .said{padding:13px 17px;background:var(--card);font-size:16px}
+.half .said b{color:var(--cyan)}
+.half .mid{padding:6px 17px;font-size:12px;color:var(--tx3);background:#141d2c;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.half .mid span{float:right;color:var(--green)}
+.half .unsaid{padding:13px 17px;font-size:16px;color:#fff;background:linear-gradient(90deg,rgba(52,211,153,.1),transparent);filter:blur(5px);opacity:.45;transition:.3s;user-select:none}
+.half.opened .unsaid{filter:none;opacity:1;user-select:auto}
+.half.opened .mid span{color:var(--tx3)}
+.half .unsaid b{color:var(--green)}
+
+/* 门 + 路况 */
+.lab{background:linear-gradient(180deg,#16202f,#131c2a);border:1px solid var(--line2);border-radius:18px;padding:20px;margin:18px 0}
+.lab-btns{display:flex;flex-wrap:wrap;gap:9px;margin-bottom:18px}
+.lab-btns button{background:#1d2839;border:1px solid var(--line2);color:var(--tx2);border-radius:10px;padding:8px 15px;font-size:14.5px;cursor:pointer;font-family:inherit;transition:.15s;font-weight:700}
+.lab-btns button:hover{border-color:var(--tx3);color:var(--tx)}
+.lab-btns button.on{background:var(--cyan);color:#06202a;border-color:var(--cyan)}
+.doors{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+@media(max-width:600px){.doors{grid-template-columns:1fr}}
+.door{border-radius:14px;padding:16px 14px;text-align:center;border:2px solid var(--line2);background:#131c2b;transition:.3s;position:relative;min-height:190px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px}
+.door .dlabel{font-size:13px;color:var(--tx2);font-weight:700}
+.door .dstate{font-size:20px;font-weight:900;letter-spacing:.05em}
+.door .dhint{font-size:12.5px;color:var(--tx3)}
+.door.open{border-color:var(--green);background:rgba(52,211,153,.08)}
+.door.open .dstate{color:var(--green)}
+.door.lock{border-color:var(--red);background:rgba(251,113,133,.07)}
+.door.lock .dstate{color:var(--red)}
+.door.rec{border-color:var(--amber);background:rgba(251,191,36,.08)}
+.door.rec .dstate{color:var(--amber)}
+.flow{width:100%;display:flex;align-items:center;gap:8px;margin-top:3px}
+.flow .bar{flex:1;height:7px;border-radius:5px;background:#1e2b3f;overflow:hidden}
+.flow .bar i{display:block;height:100%;width:0;border-radius:5px;transition:.45s;background:var(--green)}
+.flow .lv{font-size:11px;color:var(--tx3);min-width:78px;text-align:left;font-weight:700}
+.readout{margin-top:16px;padding:13px 17px;border-radius:12px;background:#101927;border:1px solid var(--line);font-size:15.5px;line-height:1.85}
+.readout .big{font-size:17px;font-weight:800;color:#fff}
+.readout .halfline{color:var(--green);font-weight:700}
+
+.road{border:1px solid var(--line);border-radius:14px;padding:15px;background:var(--card);margin:12px 0}
+.road .rh{display:flex;justify-content:space-between;align-items:baseline;gap:10px;flex-wrap:wrap}
+.road .rh b{font-size:17px}
+.road .rh .st{font-size:12.5px;color:var(--tx3)}
+.road .track{height:14px;border-radius:8px;background:#1a2536;margin:11px 0 7px;overflow:hidden}
+.road .track i{display:block;height:100%;border-radius:8px}
+.road .fx{font-size:14px;color:var(--tx2);margin:0}
+
+/* 尺子 */
+.axiswrap{overflow-x:auto;padding:6px 8px 10px;margin:10px 0}
+.axis{position:relative;height:224px;min-width:800px;margin:0 6px}
+/* 三段纯色：左黄（不许）· 中绿（随你）· 右蓝（必须） */
+.axis .line{
+  position:absolute;left:0;right:0;top:100px;height:14px;border-radius:7px;
+  background:linear-gradient(90deg,
+    #fbbf24 0%, #fbbf24 34%,
+    #34d399 44%, #34d399 56%,
+    #60a5fa 66%, #60a5fa 100%);
+  box-shadow:0 3px 14px rgba(0,0,0,.45), inset 0 0 0 1px rgba(255,255,255,.12);
+}
+.axis .cap{position:absolute;top:124px;font-size:12.5px;font-weight:800;letter-spacing:.02em}
+.axis .cap.l{left:2px;color:var(--amber)}
+.axis .cap.r{right:2px;color:var(--blue)}
+.apt{position:absolute;width:106px;height:72px;transform:translateX(-50%);text-align:center;display:flex;flex-direction:column}
+.apt.up{top:10px;justify-content:flex-end;padding-bottom:8px}
+.apt.dn{top:136px;justify-content:flex-start;padding-top:8px}
+.apt b{font-size:13.5px;display:block;line-height:1.35;color:#fff;font-weight:800}
+.apt i{font-style:normal;font-size:11.5px;color:var(--tx3);display:block;line-height:1.45;margin-top:2px}
+.apt .dot{width:13px;height:13px;border-radius:50%;position:absolute;left:50%;transform:translateX(-50%);border:3px solid var(--bg);box-shadow:0 0 0 2px rgba(255,255,255,.18)}
+.apt.up .dot{bottom:-6px}
+.apt.dn .dot{top:-6px}
+.apt.up::after{content:"";position:absolute;left:50%;bottom:-2px;width:2px;height:20px;background:var(--line2)}
+.apt.dn::after{content:"";position:absolute;left:50%;top:-2px;width:2px;height:20px;background:var(--line2)}
+.apt.zero b{color:var(--green)}
+.seglegend{display:flex;gap:9px;flex-wrap:wrap;margin:8px 0 2px;font-size:12.5px;font-weight:800}
+.seglegend span{padding:4px 12px;border-radius:20px;border:1px solid}
+.seglegend .a{color:var(--amber);border-color:rgba(251,191,36,.45);background:rgba(251,191,36,.09)}
+.seglegend .g{color:var(--green);border-color:rgba(52,211,153,.45);background:rgba(52,211,153,.09)}
+.seglegend .b{color:var(--blue);border-color:rgba(96,165,250,.45);background:rgba(96,165,250,.09)}
+
+
+/* 表格 */
+.tw{overflow-x:auto;margin:14px 0;border:1px solid var(--line);border-radius:var(--r)}
+table{width:100%;border-collapse:collapse;font-size:14.5px;min-width:540px}
+th{background:#182338;color:var(--tx2);font-weight:800;text-align:left;padding:10px 13px;font-size:12.5px;border-bottom:1px solid var(--line);white-space:nowrap}
+td{padding:10px 13px;border-bottom:1px solid #1c2739;color:var(--tx2);vertical-align:top}
+tr:last-child td{border-bottom:none}
+tbody tr:hover{background:#1a2436}
+td.w{color:#fff;font-weight:800;white-space:nowrap}
+
+.vs{display:grid;grid-template-columns:1fr 1fr;gap:0;border:1px solid var(--line);border-radius:var(--r);overflow:hidden;margin:14px 0}
+@media(max-width:700px){.vs{grid-template-columns:1fr}}
+.vs>div{padding:15px 17px}
+.vs .a{background:rgba(96,165,250,.07);border-right:1px solid var(--line)}
+.vs .b{background:rgba(251,113,133,.07)}
+.vs .ttl{font-size:15px;font-weight:800;margin-bottom:6px}
+.vs .a .ttl{color:var(--blue)}
+.vs .b .ttl{color:var(--red)}
+.vs p{font-size:14px;margin:5px 0}
+.vs .enline{font-size:15px;color:#fff;margin:7px 0}
+
+.ex{background:var(--card2);border-left:3px solid var(--cyan);border-radius:0 10px 10px 0;padding:11px 15px;margin:9px 0}
+.ex .e{font-size:17px;color:#fff;font-weight:700}
+.ex .c{font-size:14px;color:var(--tx3);margin-top:3px}
+.ex .c em{font-style:normal;color:var(--green)}
+.ex.must{border-left-color:var(--blue)} .ex.no{border-left-color:var(--red)}
+.ex.shd{border-left-color:var(--amber)} .ex.may{border-left-color:var(--green)}
+.ex.will{border-left-color:var(--purple)} .ex.gray{border-left-color:var(--tx3)}
+
+.note{border-radius:12px;padding:13px 17px;margin:14px 0;font-size:15px;line-height:1.9;border:1px solid}
+.note.warn{background:rgba(251,113,133,.08);border-color:rgba(251,113,133,.35);color:#ffd9df}
+.note.warn b{color:var(--red)}
+.note.tip{background:rgba(52,211,153,.07);border-color:rgba(52,211,153,.3);color:#cdf7e6}
+.note.tip b{color:var(--green)}
+.note.ask{background:rgba(251,191,36,.07);border-color:rgba(251,191,36,.3);color:#fdeec6}
+.note.ask b{color:var(--amber)}
+.note.blue{background:rgba(96,165,250,.08);border-color:rgba(96,165,250,.32);color:#d6e6ff}
+.note.blue b{color:var(--blue)}
+.note p{margin:4px 0;color:inherit}
+
+/* 封面 */
+.cover{padding:90px 0 50px}
+.cover .kicker{font-size:13px;letter-spacing:.2em;color:var(--cyan);font-weight:800}
+.cover h1{font-size:42px;line-height:1.28;font-weight:900;margin:16px 0 0;letter-spacing:-.02em}
+.cover h1 span{background:linear-gradient(92deg,var(--cyan),var(--purple));-webkit-background-clip:text;background-clip:text;color:transparent}
+.cover .sub{font-size:18px;color:var(--tx2);margin-top:18px;line-height:1.95;max-width:640px}
+.howto{background:var(--card);border:1px solid var(--line2);border-radius:16px;padding:22px 24px;margin:26px 0}
+.howto h4{margin:0 0 12px;font-size:17px}
+.howto ol{margin:0 0 0 20px}
+.howto li{margin:9px 0;font-size:15.5px;color:var(--tx2)}
+.startbtn{display:inline-block;margin-top:8px;background:var(--cyan);color:#06202a;border:none;border-radius:24px;padding:11px 26px;font-size:16px;font-weight:800;cursor:pointer;font-family:inherit;text-decoration:none}
+.startbtn:hover{filter:brightness(1.08)}
+
+/* 练习 */
+.scorebar{position:sticky;top:0;z-index:40;background:rgba(17,26,41,.95);backdrop-filter:blur(8px);border-bottom:1px solid var(--line);padding:10px 30px;display:flex;gap:18px;align-items:center;font-size:13.5px;color:var(--tx2);margin-bottom:10px;flex-wrap:wrap}
+.scorebar b{color:var(--cyan);font-size:15px}
+.q{border:1px solid var(--line);border-radius:var(--r);padding:17px 19px;margin:13px 0;background:var(--card)}
+.q .qh{font-size:12px;color:var(--tx3);letter-spacing:.1em;font-weight:800;margin-bottom:7px}
+.q .qt{font-size:16.5px;color:#fff;line-height:1.85;margin-bottom:4px}
+.q .qt .blank{display:inline-block;min-width:74px;border-bottom:2px solid var(--cyan);text-align:center;color:var(--cyan);font-weight:800}
+.q .opts{display:flex;flex-wrap:wrap;gap:9px;margin-top:11px}
+.q .opts button{background:#1d2839;border:1px solid var(--line2);color:var(--tx);border-radius:9px;padding:8px 16px;font-size:15px;cursor:pointer;font-family:inherit;transition:.15s;font-weight:700}
+.q .opts button:hover{border-color:var(--tx3);background:#243144}
+.q .opts button.right{background:rgba(52,211,153,.16);border-color:var(--green);color:#8ff0c8}
+.q .opts button.wrong{background:rgba(251,113,133,.14);border-color:var(--red);color:#ffb3bd;text-decoration:line-through}
+.exp{display:none;margin-top:11px;padding:11px 14px;background:#101927;border-left:3px solid var(--amber);border-radius:0 8px 8px 0;font-size:14px;color:var(--tx2);line-height:1.9}
+.exp.show{display:block}
+.exp b{color:var(--amber)}
+
+.flash{border:1px solid var(--line2);border-radius:var(--r);overflow:hidden;margin:11px 0;background:var(--card)}
+.flash .a1{padding:0 17px;max-height:0;overflow:hidden;transition:max-height .4s ease;background:rgba(52,211,153,.08)}
+.flash.open .a1{max-height:260px;padding:13px 17px}
+.flash .a1 div{font-size:15.5px;color:#bff5e0;line-height:1.9}
+.flash .a1 em{font-style:normal;color:var(--green);font-weight:800}
+.flashbtn{width:100%;text-align:left;background:none;border:none;color:inherit;font-family:inherit;font-size:16px;cursor:pointer;padding:13px 17px;display:flex;justify-content:space-between;align-items:center;gap:12px}
+.flashbtn:hover{background:#1c2839}
+.flashbtn .ar{color:var(--tx3);font-size:12px;white-space:nowrap}
+.flash.open .flashbtn .ar{color:var(--green)}
+.resetbtn{background:none;border:1px solid var(--line2);color:var(--tx3);border-radius:9px;padding:6px 14px;font-size:12.5px;cursor:pointer;font-family:inherit}
+.resetbtn:hover{color:var(--tx);border-color:var(--tx3)}
+
+.cheat{columns:2;column-gap:14px}
+@media(max-width:700px){.cheat{columns:1}}
+.cheat .c{break-inside:avoid;margin-bottom:11px;border:1px solid var(--line);border-radius:12px;padding:13px 15px;background:var(--card)}
+.cheat .c h5{font-size:15px;color:#fff;margin-bottom:5px;display:flex;align-items:center;gap:7px;flex-wrap:wrap}
+.cheat .c p{font-size:13.5px;margin:2px 0;line-height:1.75}
+
+/* 家长小抄（折叠） */
+.parentfold{border:1px solid var(--line2);border-radius:14px;overflow:hidden;margin:18px 0}
+.parentfold summary{padding:14px 18px;background:#182338;cursor:pointer;font-size:15.5px;font-weight:800;color:var(--tx2);list-style:none}
+.parentfold summary::-webkit-details-marker{display:none}
+.parentfold summary::after{content:"（点开）";float:right;font-size:12px;color:var(--tx3);font-weight:500}
+.parentfold[open] summary::after{content:"（收起）"}
+.parentfold .inner{padding:16px 18px}
+
+footer{padding:50px 0 0;color:var(--tx3);font-size:13px;text-align:center}
+
+@media(max-width:900px){
+  .sidebar{position:fixed;left:0;top:0;z-index:60;transform:translateX(-100%);transition:.25s;box-shadow:0 0 40px #000}
+  .sidebar.show{transform:none}
+  .progress{left:0}
+  .wrap{padding:0 18px}
+  .cover h1{font-size:31px}
+  .navtoggle{display:flex}
+}
+.navtoggle{display:none;position:fixed;left:14px;bottom:18px;z-index:70;background:var(--cyan);color:#06202a;border:none;border-radius:30px;padding:11px 18px;font-size:14px;font-weight:800;cursor:pointer;font-family:inherit}
+@media print{
+  .sidebar,.progress,.navtoggle,.lab-btns,.donebtn{display:none}
+  body{background:#fff;color:#000}
+  .half .unsaid{filter:none;opacity:1}
+  .think .a,.flash .a1{display:block;max-height:none;padding:13px 17px}
+  .exp{display:block}
+  section{page-break-inside:avoid}
+}
+</style>
+</head>
+<body>
+
+<div class="progress"><i id="pbar"></i></div>
+
+<div class="layout">
+<aside class="sidebar" id="sb">
+  <div class="brand">
+    <h1>英语里那些没说完的话</h1>
+    <p>肉肉的自学手册</p>
+  </div>
+  <div class="mybar">我学会了 <b id="cnt">0</b> / 20 站</div>
+  <nav class="nav" id="nav">
+    <div class="grp">先弄明白两件事</div>
+    <a href="#ch1">第 1 站 · 门：准不准</a>
+    <a href="#ch2">第 2 站 · 路：好不好走</a>
+    <div class="grp">看全局</div>
+    <a href="#ch3">第 3 站 · 力度尺</a>
+    <a href="#ch4">第 4 站 · 四条铁律</a>
+    <div class="grp">绿色：现在就要会</div>
+    <a href="#s51" class="sub">第 5 站 · can 和 can't</a>
+    <a href="#s52" class="sub">第 6 站 · must 和 mustn't</a>
+    <a href="#s53" class="sub">第 7 站 · may</a>
+    <a href="#s54" class="sub">第 8 站 · should</a>
+    <a href="#s55" class="sub">第 9 站 · will</a>
+    <div class="grp">蓝色：以后就会</div>
+    <a href="#s61" class="sub">第 10 站 · could 和 would</a>
+    <a href="#s62" class="sub">第 11 站 · have to 和不必</a>
+    <a href="#s63" class="sub">第 12 站 · might 和 shall</a>
+    <div class="grp">别搞错</div>
+    <a href="#ch7">第 13 站 · 三个生死之差</a>
+    <a href="#ch8">第 14 站 · 猜一猜</a>
+    <a href="#ch9">第 15 站 · 六组大 PK</a>
+    <a href="#ch10">第 16 站 · 变否定会拐弯</a>
+    <div class="grp">练一练</div>
+    <a href="#ch11">第 17 站 · 练习场</a>
+    <a href="#ch12">第 18 站 · 小抄</a>
+    <div class="grp">以后再学</div>
+    <a href="#ch13">第 19 站 · 冷门词</a>
+    <a href="#ch14">最后一站 · 和爸妈玩</a>
+  </nav>
+</aside>
+
+<main class="content">
+<div class="wrap">
+
+<!-- ============ 封面 ============ -->
+<section class="cover" id="ch0">
+  <div class="kicker">HELLO</div>
+  <h1>英语里那些<br><span>没说完的话</span></h1>
+  <p class="sub">
+    你有没有发现，大人说话经常只说一半？<br>
+    另一半没说出口，可它一直藏在那儿。<br>
+    这本小书教你把<strong>没说的那半句</strong>听出来。
+  </p>
+
+  <div class="howto">
+    <h4>怎么用这本小书</h4>
+    <ol>
+      <li><strong>从第 1 站开始</strong>，一站一站往下看，别跳。</li>
+      <li>看到<strong>虚线框"想一想"</strong>，先自己想，想完再点开看答案。</li>
+      <li>看到<strong>模糊的那行字</strong>，点一下，它会变清楚。</li>
+      <li>每站看完，点一下<strong>"这一站我学会了"</strong>，左边目录会打勾。</li>
+      <li>最后去<strong>第 17 站</strong>做练习，看看自己真的会了没。</li>
+    </ol>
+    <a class="startbtn" href="#ch1">开始第 1 站</a>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ============ 1 门 ============ -->
+<section id="ch1">
+  <div class="st-no">第 1 站</div>
+  <h2>门：这句话准不准<small>学会之后，你能听出一句话到底"给不给你走"</small></h2>
+
+  <div class="goal">这一站你会学到：<b>每一句话，其实都在说两扇门的事。</b></div>
+
+  <p class="lead">先听一句话——</p>
+  <div class="card">
+    <p style="margin-top:0;font-size:18px;color:#fff">妈妈说：「你可以吃一颗糖。」</p>
+    <p>那——我可以不吃吗？</p>
+    <p>妈妈没说。可是这句话里<strong>已经藏着答案了</strong>：可以。</p>
+    <p style="margin-bottom:0">因为"可以"这两个字一出口，就把"吃"和"不吃"两扇门<strong>都打开了</strong>。</p>
+  </div>
+
+  <p>任何一件事，面前都站着<strong>两扇门</strong>：</p>
+
+  <div class="grid2">
+    <div class="card tight">
+      <div class="tag t-l1">门 ①</div>
+      <div style="font-size:21px;font-weight:900;margin-top:7px">做这件事</div>
+      <p style="font-size:14.5px;margin-top:5px">出门玩 / 写作业 / 睡觉</p>
+    </div>
+    <div class="card tight">
+      <div class="tag t-red">门 ②</div>
+      <div style="font-size:21px;font-weight:900;margin-top:7px">不做这件事</div>
+      <p style="font-size:14.5px;margin-top:5px">留在家 / 不写 / 不睡</p>
+    </div>
+  </div>
+
+  <p>一句话真正的意思，就是<strong>哪扇门开着、哪扇门锁着</strong>。</p>
+
+  <div class="note tip">
+    <p><b>口诀：听到一句话，就问自己——「那另一扇门呢？」</b></p>
+    <p>能答出另一扇门的样子，你才是真的听懂了。</p>
+  </div>
+
+  <h3>自己动手：门控制器</h3>
+  <p>点下面的按钮，看看门怎么变。别忘了看门下面的<strong>力度条</strong>——门开得一样，路可不一定一样哦。</p>
+
+  <div class="lab">
+    <div class="lab-btns" id="doorbtns">
+      <button data-m="can" class="on">你可以去</button>
+      <button data-m="must">你必须去</button>
+      <button data-m="mustnt">你不可以去</button>
+      <button data-m="neednt">你不必去</button>
+      <button data-m="should">你应该去</button>
+      <button data-m="might">你也许可以去</button>
+    </div>
+    <div class="doors">
+      <div class="door" id="d1">
+        <div class="dlabel">门 ① · 去</div>
+        <div class="dstate">通行</div>
+        <div class="flow"><div class="bar"><i></i></div><span class="lv">—</span></div>
+        <div class="dhint">做这件事</div>
+      </div>
+      <div class="door" id="d2">
+        <div class="dlabel">门 ② · 不去</div>
+        <div class="dstate">通行</div>
+        <div class="flow"><div class="bar"><i></i></div><span class="lv">—</span></div>
+        <div class="dhint">不做这件事</div>
+      </div>
+    </div>
+    <div class="readout" id="readout"></div>
+  </div>
+
+  <h3>四种样子，记住它</h3>
+  <div class="tw"><table>
+    <thead><tr><th>说法</th><th>门① 做</th><th>门② 不做</th><th>到底什么意思</th></tr></thead>
+    <tbody>
+      <tr><td class="w">你可以</td><td style="color:var(--green)">开</td><td style="color:var(--green)">开</td><td>做也行，不做也行 —— <strong>随你</strong></td></tr>
+      <tr><td class="w">你必须</td><td style="color:var(--green)">开</td><td style="color:var(--red)">锁</td><td>只能做 —— <strong>不做不行</strong></td></tr>
+      <tr><td class="w">你不可以</td><td style="color:var(--red)">锁</td><td style="color:var(--green)">开</td><td>只能不做 —— <strong>绝对不能做</strong></td></tr>
+      <tr><td class="w">你不必</td><td style="color:var(--green)">开</td><td style="color:var(--green)">开</td><td>做也行，不做也行 —— <strong>没人要求你</strong></td></tr>
+      <tr><td class="w">你应该</td><td style="color:var(--amber)">开 ★</td><td style="color:var(--green)">开</td><td>做最好，不做也不算错</td></tr>
+    </tbody>
+  </table></div>
+
+  <div class="note warn">
+    <p><b>咦？"你可以"和"你不必"不是一样吗？</b></p>
+    <p>门开的样子一样，但说话的人<strong>动作不一样</strong>：</p>
+    <p>· <b>你可以</b> —— 他指着开着的门说："看，门开着，进来吧。"（<strong>给你权利</strong>）</p>
+    <p>· <b>你不必</b> —— 他指着没上锁的锁说："锁没上，你随意。"（<strong>把要求拿掉</strong>）</p>
+  </div>
+
+  <div class="think">
+    <div class="tq">想一想：爸爸说"你可以先看动画片"，那另一扇门是开着的吗？<span class="hint">（先自己想，再点这里）</span></div>
+    <div class="a">开着。因为"可以"把两扇门都打开了 —— 你想看就看，不想看也没人逼你。</div>
+  </div>
+
+  <button class="donebtn" data-ch="ch1">这一站我学会了</button>
+</section>
+
+<div class="divider"></div>
+
+<!-- ============ 2 路 ============ -->
+<section id="ch2">
+  <div class="st-no">第 2 站</div>
+  <h2>路：门开着，也不一定好走<small>这就是大人们说的"语气"</small></h2>
+
+  <div class="goal">这一站你会学到：<b>门只有开和锁两种，可路的差别大了去了。</b></div>
+
+  <p class="lead">你一定碰到过这种事——</p>
+  <div class="card">
+    <p style="margin-top:0">妈妈说"你可以吃糖"，笑眯眯的 → 这是<strong>大马路</strong>，她真的想让你吃。</p>
+    <p style="margin-bottom:0">妈妈说"你可以吃糖"，眼睛盯着你，声音拖得老长 → 门<strong>还是开着的</strong>，可你觉得这条路<strong>有点堵</strong>。</p>
+  </div>
+
+  <p>她没说"不许"。可你听得出来：<strong>她其实不太想让你走</strong>。</p>
+  <p><strong>门管"能不能"，路管"说话的人有多想让你走"。</strong></p>
+
+  <div class="note blue">
+    <p><b>路有多好走，我们用一个数字来量，叫「力度」。</b></p>
+    <p>力度 95 = 传送带（推着你走）｜力度 70 = 大马路｜力度 50 = 要绕一圈｜力度 20 = 泥巴路｜力度 0 = 没人管你。</p>
+    <p><strong>这本书从头到尾只用这一套数字</strong>，不管是"让不让你做"还是"猜不猜"，数字都一样。</p>
+  </div>
+
+  <h3>这三个词，门全开着，路差远了</h3>
+
+  <div class="road">
+    <div class="rh"><b class="en">You can go.</b><span class="st">力度 70 · 大马路</span></div>
+    <div class="track"><i style="width:70%;background:var(--green)"></i></div>
+    <p class="fx">笔直的大马路。说话的人很直接："去吧，我支持你。"</p>
+  </div>
+
+  <div class="road">
+    <div class="rh"><b class="en">You could go.</b><span class="st">力度 50 · 绕一圈</span></div>
+    <div class="track"><i style="width:50%;background:var(--cyan)"></i></div>
+    <p class="fx">路还在，就是要绕一下。他不敢直接说，给你留了退路。</p>
+  </div>
+
+  <div class="road">
+    <div class="rh"><b class="en">You might go.</b><span class="st">力度 20 · 泥巴路</span></div>
+    <div class="track"><i style="width:20%;background:var(--amber)"></i></div>
+    <p class="fx">门明明开着，路却像条泥巴小路。<strong>这句几乎就是在说"我看你不会去"。</strong></p>
+  </div>
+
+  <div class="note tip">
+    <p><b>记这三句就够：</b>can = 大马路（70）｜could = 绕一圈（50）｜might = 泥巴路（20）</p>
+    <p>所以 <b>can 比 could 有劲儿</b>，<b>might 几乎是软软的"不行"</b>——门没锁，可没人觉得你会走。</p>
+  </div>
+
+  <div class="think">
+    <div class="tq">想一想：同学说"明天 might 下雨"，他是觉得会下，还是不会下？<span class="hint">（点这里看答案）</span></div>
+    <div class="a">他觉得<strong>不太会下</strong>。might 的力度只有 20，路几乎是堵的。说 might 的人，心里其实已经觉得"大概不会"。</div>
+  </div>
+
+  <button class="donebtn" data-ch="ch2">这一站我学会了</button>
+</section>
+
+<div class="divider"></div>
+
+<!-- ============ 3 力度尺 ============ -->
+<section id="ch3">
+  <div class="st-no">第 3 站</div>
+  <h2>力度尺：一把尺子看清谁强谁弱<small>词太多了记不住？分级，先只管绿色</small></h2>
+
+  <div class="goal">这一站你会学到：<b>把十几个词排成一把尺子，一眼看出谁强谁弱。</b></div>
+
+  <p class="lead">英语里这样的词有十几个，一次全记会乱。所以我们分成三级，<strong>你现在只用管绿色那一级</strong>。</p>
+
+  <div class="legend">
+    <div class="l1">
+      <h5>绿色 · 现在就要会</h5>
+      <p>can / can't / must / mustn't / may / should / will</p>
+    </div>
+    <div class="l2">
+      <h5>蓝色 · 以后就会</h5>
+      <p>could / would / have to / needn't / might / shall<br>绿色练熟了，蓝色自己就懂</p>
+    </div>
+    <div class="l3">
+      <h5>紫色 · 现在当故事听</h5>
+      <p>ought to / had better / dare / need / used to<br>放到第 19 站，以后再说</p>
+    </div>
+  </div>
+
+  <h3>一把尺子看全部</h3>
+  <p>同一个词，在"让不让你做"上是多大力度，在"猜不猜"上就有多大把握。<strong>一套数字，两边通用</strong>。</p>
+
+  <div class="tw"><table>
+    <thead><tr><th>力度</th><th>词</th><th>让不让你做</th><th>猜不猜</th></tr></thead>
+    <tbody>
+      <tr><td class="w" style="color:var(--blue)">95</td><td class="w en">must / have to</td><td>必须做</td><td>一定</td></tr>
+      <tr><td class="w">85</td><td class="w en">had better</td><td>最好做（带警告）</td><td>—</td></tr>
+      <tr><td class="w">75</td><td class="w en">should</td><td>应该做</td><td>应该会</td></tr>
+      <tr><td class="w">70</td><td class="w en">can</td><td>能、可以（大马路）</td><td>—</td></tr>
+      <tr><td class="w">50</td><td class="w en">may / could</td><td>可以（绕一圈）</td><td>可能</td></tr>
+      <tr><td class="w">20</td><td class="w en">might</td><td>也许（软软的"不行"）</td><td>也许</td></tr>
+      <tr><td class="w" style="color:var(--green)">0</td><td class="w en">needn't</td><td>不必（不推不拦）</td><td>—</td></tr>
+      <tr><td class="w" style="color:var(--red)">−100 / 0</td><td class="w en">can't</td><td>不许</td><td>不可能</td></tr>
+      <tr><td class="w" style="color:var(--red)">−75</td><td class="w en">shouldn't</td><td>不应该</td><td>—</td></tr>
+      <tr><td class="w" style="color:var(--red)">−85</td><td class="w en">may not</td><td>我不准（很凶）</td><td>可能不</td></tr>
+      <tr><td class="w" style="color:var(--red)">−100</td><td class="w en">mustn't</td><td>绝对不许</td><td>—</td></tr>
+    </tbody>
+  </table></div>
+  <p style="font-size:14px;color:var(--tx3)">小提醒：<span class="en">will</span> 说的是"将来 / 我愿意"，不在这把尺子上，单独记就好。</p>
+
+  <h3>尺子一 · 该不该做</h3>
+  <p>左边 = <strong>不许做</strong>，中间 = <strong>随你</strong>，右边 = <strong>必须做</strong>。</p>
+
+  <div class="axiswrap">
+    <div class="axis" id="axis1">
+      <div class="line"></div>
+      <div class="apt up" style="left:9%"><b>mustn't / can't</b><i>−100 绝对不许</i><span class="dot" style="background:var(--amber)"></span></div>
+      <div class="apt dn" style="left:20%"><b>may not</b><i>−85 我不准</i><span class="dot" style="background:var(--amber)"></span></div>
+      <div class="apt up" style="left:31%"><b>shouldn't</b><i>−75 不推荐</i><span class="dot" style="background:var(--amber)"></span></div>
+      <div class="apt dn zero" style="left:50%"><b>needn't</b><i>0 不推不拦</i><span class="dot" style="background:var(--green)"></span></div>
+      <div class="apt up" style="left:69%"><b>should</b><i>+75 建议你做</i><span class="dot" style="background:var(--blue)"></span></div>
+      <div class="apt dn" style="left:80%"><b>had better</b><i>+85 最好做</i><span class="dot" style="background:var(--blue)"></span></div>
+      <div class="apt up" style="left:91%"><b>must / have to</b><i>+95 必须做</i><span class="dot" style="background:var(--blue)"></span></div>
+    </div>
+  </div>
+
+  <div class="seglegend">
+    <span class="a">黄 · 不许做 / 不可能</span>
+    <span class="g">绿 · 随你 / 不一定</span>
+    <span class="b">蓝 · 必须做 / 一定</span>
+  </div>
+
+  <div class="note ask">
+    <p><b>为什么"不许"不单独画一把尺子？</b></p>
+    <p>因为 <span class="en">must</span>（必须做）和 <span class="en">mustn't</span>（必须不做）是一根绳子的<strong>两头</strong>。
+      放在同一把尺子上，一个在最右一个在最左，一眼就看出它们是对着干的。</p>
+    <p>要是分开画，你会以为"不许"是另一类东西，反而更容易搞混。</p>
+  </div>
+
+  <div class="note blue">
+    <p><b>为什么 can / may / could / might 不在这把尺子上？</b></p>
+    <p>因为它们回答的不是"该不该"，而是"<strong>允不允许、可能性多大</strong>"——那是第 14 站的另一把尺子。</p>
+    <p>两把尺子<strong>用同一套数字</strong>（20 / 50 / 75 / 95），记一次就够。</p>
+  </div>
+
+  <div class="think">
+    <div class="tq">想一想：尺子正中间那个 0 是谁？为什么只有它站在中间？<span class="hint">（点这里）</span></div>
+    <div class="a">是 <span class="en">needn't</span>（不必）。它<strong>不推你也不拦你</strong>，两扇门都开着。
+      整把尺子上只有它站在 0 —— 而最左边的 mustn't 是 −100，门直接焊死了。两个词差一点点，隔着整整一把尺子。</div>
+  </div>
+
+  <button class="donebtn" data-ch="ch3">这一站我学会了</button>
+</section>
+
+<div class="divider"></div>
+
+<!-- ============ 4 四条铁律 ============ -->
+<section id="ch4">
+  <div class="st-no">第 4 站</div>
+  <h2>四条铁律<small>这四条错了，整句话就散架了</small></h2>
+
+  <div class="goal">这一站你会学到：<b>这些词很霸道，它一出现，别的词都得让路。</b></div>
+
+  <p class="lead">把一句话想成一辆车：<strong>动词</strong>是去哪儿，<strong>这些小词</strong>是路牌——它不管你去哪，它管这条路怎么走。</p>
+
+  <div class="card">
+    <div class="ex"><div class="e en">He <span style="color:var(--cyan)">swims</span>.</div><div class="c">他游泳。（在说一件事）</div></div>
+    <div class="ex"><div class="e en">He <span style="color:var(--cyan)">can</span> swim.</div><div class="c">他会游泳。<em>→ 但他也可以不游</em></div></div>
+    <div class="ex"><div class="e en">He <span style="color:var(--cyan)">must</span> swim.</div><div class="c">他必须游泳。<em>→ 不游不行</em></div></div>
+    <p style="margin-top:11px;font-size:14.5px">后面的 <span class="en">swim</span> 一个字母都没变，变的是<strong>门和路</strong>。</p>
+  </div>
+
+  <div class="grid2">
+    <div class="card tight">
+      <div class="tag t-l1">铁律 1</div>
+      <p style="margin-top:7px"><strong>后面永远是动词原形</strong></p>
+      <div class="ex" style="margin-top:7px"><div class="e en">He can <span style="color:var(--green)">swim</span>.</div><div class="c">不是 swims，不是 to swim</div></div>
+    </div>
+    <div class="card tight">
+      <div class="tag t-red">铁律 2</div>
+      <p style="margin-top:7px"><strong>他 / 她 后面也不加 s</strong></p>
+      <div class="ex no" style="margin-top:7px"><div class="e en">He <span style="color:var(--green)">can</span> swim.</div><div class="c">不能说 He cans swim</div></div>
+    </div>
+    <div class="card tight">
+      <div class="tag t-l2">铁律 3</div>
+      <p style="margin-top:7px"><strong>问句把它提到最前面</strong></p>
+      <div class="ex must" style="margin-top:7px"><div class="e en"><span style="color:var(--blue)">Can</span> you swim?</div><div class="c">不用 do / does</div></div>
+    </div>
+    <div class="card tight">
+      <div class="tag t-amber">铁律 4</div>
+      <p style="margin-top:7px"><strong>变否定直接加 not</strong></p>
+      <div class="ex shd" style="margin-top:7px"><div class="e en">You <span style="color:var(--amber)">can't</span> go.</div><div class="c">不用 don't</div></div>
+    </div>
+  </div>
+
+  <div class="note tip">
+    <p><b>记法：</b>这些小词像个保镖——它把所有的变化都自己扛了（问句、否定、加不加 s），
+      后面的动词<strong>永远保持最原始的样子</strong>。</p>
+  </div>
+
+  <button class="donebtn" data-ch="ch4">这一站我学会了</button>
+</section>
+
+<div class="divider"></div>
+
+<!-- ============ 5 can ============ -->
+<section id="s51">
+  <div class="st-no">第 5 站 · 绿色</div>
+  <h2>can 和 can't：我做得到，不等于我会去做<small>这一站最容易想歪，慢慢看</small></h2>
+
+  <div class="goal">这一站你会学到：<b>"做得到"和"必须做"，完全是两回事。</b></div>
+
+  <div class="half">
+    <div class="said">说出来的：<b>I can swim.</b> 我会游泳。</div>
+    <div class="mid">↓ 这句话还悄悄说了 <span>点一下看看</span></div>
+    <div class="unsaid">没说出来的：<b>我也可以今天不去游。</b></div>
+  </div>
+
+  <ul>
+    <li>I <strong>can</strong> swim. 我会游泳 → 但我不一定去游。</li>
+    <li>I <strong>swim</strong> every day. 我每天游泳 → 这才是真的在游。</li>
+    <li>I <strong>can't</strong> swim. 我不会游泳 → <strong>不是我不想游，是我做不到。</strong></li>
+  </ul>
+
+  <div class="note warn">
+    <p><b>can't 和 don't 差得可远了</b></p>
+    <p><span class="en">I can't swim.</span> 我不会游泳（<strong>门被焊死了</strong>）</p>
+    <p><span class="en">I don't swim.</span> 我不游泳（<strong>门开着，是我自己不走</strong>）</p>
+  </div>
+
+  <h4>can 还有个本事：表示"可能"</h4>
+  <div class="ex"><div class="e en">It <span style="color:var(--cyan)">can't</span> be true.</div><div class="c">这不可能是真的。<em>→ 不是"不能是真的"</em></div></div>
+  <p style="font-size:14.5px">小规律：can 在<strong>肯定句</strong>里讲"能力"，在<strong>否定和问句</strong>里讲"可能性"——中文的"能"也是这样。</p>
+
+  <div class="think">
+    <div class="tq">想一想：老师说 "I can help you." ，他是"能帮助"还是"一定会帮"？<span class="hint">（点这里）</span></div>
+    <div class="a">是"<strong>我有能力帮你</strong>"。他没说一定会帮 —— 想帮就帮，不想帮也可以。这就是"能力 ≠ 行动"。</div>
+  </div>
+
+  <button class="donebtn" data-ch="s51">这一站我学会了</button>
+</section>
+
+<!-- ============ 6 must ============ -->
+<section id="s52">
+  <div class="st-no">第 6 站 · 绿色</div>
+  <h2>must 和 mustn't：一个只开一扇门，一个焊死</h2>
+
+  <div class="goal">这一站你会学到：<b>mustn't 是"绝对不行"，不是"不必"！</b></div>
+
+  <div class="half">
+    <div class="said">说出来的：<b>You must finish it today.</b> 你今天必须做完。</div>
+    <div class="mid">↓ 这句话还悄悄说了 <span>点一下看看</span></div>
+    <div class="unsaid">没说出来的：<b>你不能不做。</b>（门②被锁死了，没有"算了吧"这个选项）</div>
+  </div>
+
+  <div class="ex must"><div class="e en">You <span style="color:var(--blue)">must</span> wear a seat belt.</div><div class="c">你必须系安全带。<em>→ 力度 95：路上有传送带，你不走也会被推着走</em></div></div>
+
+  <div class="note warn">
+    <p><b>最大的坑来了：mustn't 不是"不必"！</b></p>
+    <p><span class="en">mustn't</span> = <strong>绝对不许</strong> = 门被焊死。</p>
+    <p>"不必"是另外一个词：<span class="en">needn't</span>（第 11 站会讲）。</p>
+    <p>这两个词只差一点点，意思<strong>完全相反</strong>。</p>
+  </div>
+
+  <div class="vs">
+    <div class="a">
+      <div class="ttl en">You mustn't go.</div>
+      <p style="font-size:20px;color:#fff;font-weight:900">你绝对不能走！</p>
+      <p style="font-size:13.5px">门①焊死。外面危险，我不准。</p>
+    </div>
+    <div class="b">
+      <div class="ttl en">You needn't go.</div>
+      <p style="font-size:20px;color:#fff;font-weight:900">你不必走。</p>
+      <p style="font-size:13.5px">两扇门都开着。想留就留。</p>
+    </div>
+  </div>
+
+  <div class="ex no"><div class="e en">You <span style="color:var(--red)">mustn't</span> play with fire.</div><div class="c">你绝对不能玩火。</div></div>
+
+  <div class="think">
+    <div class="tq">想一想：告示牌上写 "You mustn't swim here." 是"你可以不在这儿游泳"吗？<span class="hint">（点这里）</span></div>
+    <div class="a">不是！是"<strong>禁止在这里游泳</strong>"。mustn't 永远是"绝对不许"，记住这一点能少错很多。</div>
+  </div>
+
+  <button class="donebtn" data-ch="s52">这一站我学会了</button>
+</section>
+
+<!-- ============ 7 may ============ -->
+<section id="s53">
+  <div class="st-no">第 7 站 · 绿色</div>
+  <h2>may：为什么它好好的，加个 not 就变凶了</h2>
+
+  <div class="goal">这一站你会学到：<b>同一件事，谁说了算，决定了这个词是什么意思。</b></div>
+
+  <h4>先说客气的时候</h4>
+  <div class="ex may"><div class="e en"><span style="color:var(--green)">May</span> I come in?</div><div class="c">我可以进来吗？<em>→ 我在求你，决定权在你手上</em></div></div>
+  <p>说 <span class="en">May I</span> 的时候，我把权力<strong>递给你</strong>，所以我听起来特别客气。</p>
+
+  <h4>再说凶的时候</h4>
+  <div class="ex no"><div class="e en">You <span style="color:var(--red)">may not</span> go out tonight.</div><div class="c">今晚我不准你出去。<em>→ 我按住你，权力在我手上</em></div></div>
+
+  <div class="note blue">
+    <p><b>秘密就在这：同一个 may，方向一翻，权力就反过来了。</b></p>
+    <p><b>May I ...?</b> → 我问你 → 权力在你 → <b>客气</b>（我求你）</p>
+    <p><b>You may not ...</b> → 我对你说 → 权力在我 → <b>很凶</b>（我压你）</p>
+    <p>所以 may 在问句里软软的，到了"不准你"的时候，反而比 mustn't 更<strong>居高临下</strong>——
+      因为它不是"规定不许"，是"<b>我</b>不许"。</p>
+  </div>
+
+  <h4>怎么分清 may 是"允许"还是"猜测"？</h4>
+
+  <div class="note blue">
+    <p><b>只问一句话：这件事，说话的人说了算吗？</b></p>
+    <p>· <b>说了算</b> → <b>允许</b>（我准你 / 你准我）</p>
+    <p>· <b>说了不算，只能猜</b> → <b>可能</b></p>
+    <p>就这么简单：<strong>说了算 = 允许，说了不算 = 猜测。</strong></p>
+  </div>
+
+  <div class="tw"><table>
+    <thead><tr><th>句子</th><th>说了算吗</th><th>意思</th></tr></thead>
+    <tbody>
+      <tr><td class="w en">You may go.</td><td>我说了算</td><td>你可以去（<strong>允许</strong>）</td></tr>
+      <tr><td class="w en">He may come in.</td><td>我说了算</td><td>他可以进来（<strong>允许</strong>）</td></tr>
+      <tr><td class="w en">He may come.</td><td>我说的不算</td><td>他可能会来（<strong>猜测</strong>）</td></tr>
+      <tr><td class="w en">He may be at home.</td><td>我说的不算</td><td>他可能在家（<strong>猜测</strong>）</td></tr>
+      <tr><td class="w en">I may be late.</td><td>我说的不算</td><td>我可能会迟到（<strong>猜测</strong>）</td></tr>
+      <tr><td class="w en">You may be right.</td><td>我说了不算</td><td>你可能是对的（<strong>猜测</strong>）</td></tr>
+      <tr><td class="w en">It may rain.</td><td>谁都说了不算</td><td>可能下雨（<strong>猜测</strong>）</td></tr>
+    </tbody>
+  </table></div>
+
+  <div class="note tip">
+    <p><b>看第二行和第三行，只差一个 <span class="en">in</span>：</b></p>
+    <p><span class="en">He may come <b style="color:var(--green)">in</b>.</span> 能不能进门<strong>我说了算</strong> → 我允许他进来</p>
+    <p><span class="en">He may come.</span> 他来不来<strong>我管不着</strong> → 我猜他可能会来</p>
+    <p>一个 in，把"我准不准"变成了"我猜不猜"。</p>
+  </div>
+
+  <div class="note ask">
+    <p><b>当心：按"我说我 / 我说他"来分，会出错</b></p>
+    <p>你可能想：说我自己 = 允许，说他 = 猜测。可惜不是，看这三句：</p>
+    <p>· <span class="en">I may be late.</span> 我可能迟到 —— <strong>说自己，却是在猜</strong></p>
+    <p>· <span class="en">You may be right.</span> 你可能是对的 —— <strong>说你，却是在猜</strong></p>
+    <p>· <span class="en">He may come in.</span> 他可以进来 —— <strong>说他，却是允许</strong></p>
+    <p>所以能用的只有一条：<strong>说了算 = 允许，说了不算 = 猜测。</strong></p>
+  </div>
+
+  <div class="think">
+    <div class="tq">想一想："It may rain." 是"老天爷准不准下雨"吗？<span class="hint">（点这里）</span></div>
+    <div class="a">不是。下雨这事<strong>谁也说了不算</strong>，所以这是在<strong>猜</strong>：可能会下雨，也可能不下。</div>
+  </div>
+
+  <button class="donebtn" data-ch="s53">这一站我学会了</button>
+</section>
+
+<!-- ============ 8 should ============ -->
+<section id="s54">
+  <div class="st-no">第 8 站 · 绿色</div>
+  <h2>should：两扇门都开，门①上贴了张纸条</h2>
+
+  <div class="goal">这一站你会学到：<b>should 只是建议，不做也不算你错。</b></div>
+
+  <div class="half">
+    <div class="said">说出来的：<b>You should see a doctor.</b> 你应该去看医生。</div>
+    <div class="mid">↓ 这句话还悄悄说了 <span>点一下看看</span></div>
+    <div class="unsaid">没说出来的：<b>不去也不会有人罚你，只是对身体不好。</b></div>
+  </div>
+
+  <div class="ex shd"><div class="e en">You <span style="color:var(--amber)">should</span> go to bed now.</div><div class="c">你该睡觉了。<em>→ 不睡我也不会把你怎样，但明天你会困</em></div></div>
+
+  <div class="note tip">
+    <p><b>should 和 must 差在哪？</b></p>
+    <p>should：两扇门都开，门①上贴了张"推荐"——<strong>不去不算错</strong>。</p>
+    <p>must：门②直接锁死——<strong>不去不行</strong>。</p>
+  </div>
+
+  <button class="donebtn" data-ch="s54">这一站我学会了</button>
+</section>
+
+<!-- ============ 9 will ============ -->
+<section id="s55">
+  <div class="st-no">第 9 站 · 绿色</div>
+  <h2>will：我保证，或者我猜会</h2>
+
+  <div class="goal">这一站你会学到：<b>will 有两副面孔：承诺，和预测。</b></div>
+
+  <div class="grid2">
+    <div class="card tight">
+      <div class="tag t-l1">面孔 A · 承诺</div>
+      <div class="ex will" style="margin-top:7px"><div class="e en">I <span style="color:var(--purple)">will</span> help you.</div><div class="c">我会帮你的。<em>→ 我保证</em></div></div>
+    </div>
+    <div class="card tight">
+      <div class="tag t-l1">面孔 B · 预测</div>
+      <div class="ex will" style="margin-top:7px"><div class="e en">It <span style="color:var(--purple)">will</span> rain.</div><div class="c">要下雨了。<em>→ 我看这情况猜的</em></div></div>
+    </div>
+  </div>
+
+  <div class="note tip">
+    <p><b>好玩的一点：</b><span class="en">won't</span> 用在<strong>东西</strong>身上，意思是"它就是不肯……"</p>
+    <p><span class="en">The door won't open.</span> 这门死活打不开。（门像是在跟你对着干）</p>
+  </div>
+
+  <p style="font-size:14.5px">到这儿，绿色的七个词就学完了：<strong>can / can't / must / mustn't / may / should / will</strong>。往下走之前，回去把第 1、2 站再瞄一眼，会更清楚。</p>
+
+  <button class="donebtn" data-ch="s55">这一站我学会了</button>
+</section>
+
+<div class="divider"></div>
+
+<!-- ============ 10 could/would ============ -->
+<section id="s61">
+  <div class="st-no">第 10 站 · 蓝色</div>
+  <h2>could 和 would：把话绕一圈再说<small>绿色那七个熟了，这一站很轻松</small></h2>
+
+  <div class="goal">这一站你会学到：<b>绕一圈，是为了客气。</b></div>
+
+  <div class="road">
+    <div class="rh"><b class="en">Can you help me?</b><span class="st">力度 70 · 大马路</span></div>
+    <div class="track"><i style="width:70%;background:var(--green)"></i></div>
+    <p class="fx">对同学、对家人，最自然。</p>
+  </div>
+  <div class="road">
+    <div class="rh"><b class="en">Could you help me?</b><span class="st">力度 50 · 绕一圈</span></div>
+    <div class="track"><i style="width:50%;background:var(--cyan)"></i></div>
+    <p class="fx">对老师、对陌生人。多绕这一圈，就是"我不敢直接要求你"。</p>
+  </div>
+
+  <div class="ex"><div class="e en">I <span style="color:var(--cyan)">could</span> swim when I was five.</div><div class="c">我五岁时就会游泳了。（说<strong>过去</strong>的能力）</div></div>
+
+  <div class="note warn">
+    <p><b>这里很多人栽跟头：could 和 was able to</b></p>
+    <p><span class="en">could swim</span> = 那时候<strong>会</strong>游泳（一种本事）</p>
+    <p><span class="en">was able to swim across</span> = 那一次<strong>真的游过去了</strong>（做成了一件事）</p>
+  </div>
+
+  <h4>would 的三个用法</h4>
+  <div class="ex will"><div class="e en"><span style="color:var(--purple)">Would</span> you like some water?</div><div class="c">要不要来点水？（比 Do you want 客气多了）</div></div>
+  <div class="ex will"><div class="e en">When I was little, I <span style="color:var(--purple)">would</span> read every night.</div><div class="c">我小时候每晚都看书。<em>→ 那是以前，现在不一定了</em></div></div>
+  <div class="ex will"><div class="e en">I <span style="color:var(--purple)">would</span> go if I had time.</div><div class="c">有时间我就去了。<em>→ 可我没时间（这是假装的）</em></div></div>
+
+  <button class="donebtn" data-ch="s61">这一站我学会了</button>
+</section>
+
+<!-- ============ 11 have to ============ -->
+<section id="s62">
+  <div class="st-no">第 11 站 · 蓝色</div>
+  <h2>have to 和"不必"：外面的规矩，和拆掉的锁</h2>
+
+  <div class="goal">这一站你会学到：<b>must 是自己要，have to 是别人逼。</b></div>
+
+  <div class="vs">
+    <div class="a">
+      <div class="ttl en">must = 我自己觉得</div>
+      <p>心里的小警察在下命令</p>
+      <div class="enline en">I must go. 我得走了。</div>
+    </div>
+    <div class="b">
+      <div class="ttl en">have to = 外面逼的</div>
+      <p>规定 / 时间 / 别人要求</p>
+      <div class="enline en">I have to go. 我不得不走。</div>
+    </div>
+  </div>
+  <p style="font-size:14.5px">还有个区别：must 没有"过去"的说法，要讲"以前必须"，只能用 <span class="en">had to</span>。</p>
+
+  <h4>needn't / don't have to：把锁拆掉</h4>
+  <div class="half">
+    <div class="said">说出来的：<b>You needn't finish it today.</b> 你不必今天做完。</div>
+    <div class="mid">↓ 这句话还悄悄说了 <span>点一下看看</span></div>
+    <div class="unsaid">没说出来的：<b>今天做完也行，不做完也行 —— 只是今天不做不算你错。</b></div>
+  </div>
+  <p style="font-size:14.5px"><span class="en">needn't</span> 和 <span class="en">don't have to</span> 一个意思。千万记住：它是"不必"，<strong>不是"不许"</strong>。</p>
+
+  <button class="donebtn" data-ch="s62">这一站我学会了</button>
+</section>
+
+<!-- ============ 12 might/shall ============ -->
+<section id="s63">
+  <div class="st-no">第 12 站 · 蓝色</div>
+  <h2>might 和 shall：最小的可能，最客气的邀请</h2>
+
+  <div class="goal">这一站你会学到：<b>might 是"软软的不行"，shall 是"你说好不好"。</b></div>
+
+  <div class="ex"><div class="e en">It <span style="color:var(--cyan)">might</span> rain.</div><div class="c">也许下雨。<em>→ 力度 20：我几乎不觉得会下</em></div></div>
+  <div class="ex"><div class="e en">She <span style="color:var(--cyan)">might</span> be busy.</div><div class="c">她也许在忙。<em>→ 注意：不是"她一定在忙"</em></div></div>
+
+  <div class="ex gray"><div class="e en"><span style="color:var(--tx)">Shall</span> we go to the park?</div><div class="c">我们去公园好吗？<em>→ 等你点头，你说了算</em></div></div>
+  <p style="font-size:14.5px">shall 现在基本只剩 <span class="en">Shall we...?</span> 和 <span class="en">Shall I...?</span>，用在<strong>我 / 我们</strong>身上。</p>
+
+  <button class="donebtn" data-ch="s63">这一站我学会了</button>
+</section>
+
+<div class="divider"></div>
+
+<!-- ============ 13 生死之差 ============ -->
+<section id="ch7">
+  <div class="st-no">第 13 站</div>
+  <h2>三个生死之差<small>这三组错了，意思就是反的</small></h2>
+
+  <div class="goal">这一站你会学到：<b>三组最容易掉进去的坑。</b></div>
+
+  <h3>① mustn't 和 needn't（最要命）</h3>
+  <div class="vs">
+    <div class="a">
+      <div class="ttl en">You mustn't go.</div>
+      <p style="font-size:20px;color:#fff;font-weight:900">绝对不能走</p>
+      <p style="font-size:13.5px">门①焊死。外面有危险。</p>
+    </div>
+    <div class="b">
+      <div class="ttl en">You needn't go.</div>
+      <p style="font-size:20px;color:#fff;font-weight:900">不必走</p>
+      <p style="font-size:13.5px">两扇门都开。想留就留。</p>
+    </div>
+  </div>
+  <div class="note warn">
+    <p><b>记住：must 的否定不是 mustn't，是 needn't。</b></p>
+    <p>先问自己：我要否定的是"<strong>必须</strong>"，还是"<strong>做这件事</strong>"？</p>
+    <p>· 否定"必须" → needn't（不必）</p>
+    <p>· 否定"做这件事" → mustn't（不许做）</p>
+  </div>
+
+  <h3>② can't 和 may not</h3>
+  <div class="vs">
+    <div class="a">
+      <div class="ttl en">He can't be at home.</div>
+      <p style="font-size:18px;color:#fff;font-weight:800">他不可能在家</p>
+      <p style="font-size:13.5px">我<strong>很确定</strong>。</p>
+    </div>
+    <div class="b">
+      <div class="ttl en">He may not be at home.</div>
+      <p style="font-size:18px;color:#fff;font-weight:800">他可能不在家</p>
+      <p style="font-size:13.5px">我<strong>不确定</strong>。</p>
+    </div>
+  </div>
+
+  <h3>③ can / may / must 三个"能"</h3>
+  <div class="tw"><table>
+    <thead><tr><th>词</th><th>问什么</th><th>例子</th></tr></thead>
+    <tbody>
+      <tr><td class="w en">can</td><td>有没有<strong>本事</strong></td><td><span class="en">Can you swim?</span> 你会游泳吗</td></tr>
+      <tr><td class="w en">may</td><td>准不准（<strong>许可</strong>）</td><td><span class="en">May I swim?</span> 我可以游吗</td></tr>
+      <tr><td class="w en">must</td><td>是不是<strong>非做不可</strong></td><td><span class="en">Must I swim?</span> 我非游不可吗</td></tr>
+    </tbody>
+  </table></div>
+
+  <button class="donebtn" data-ch="ch7">这一站我学会了</button>
+</section>
+
+<div class="divider"></div>
+
+<!-- ============ 14 猜一猜 ============ -->
+<section id="ch8">
+  <div class="st-no">第 14 站</div>
+  <h2>猜一猜：第二把尺子<small>这次量的不是"让不让你做"，是"你有多确定"</small></h2>
+
+  <div class="goal">这一站你会学到：<b>用同一套数字，量一量"这事有多真"。</b></div>
+
+  <p class="lead">前面讲的是"做不做"。这一站讲的是<strong>"是不是真的"</strong>。还是门和路，只不过门的另一边是"假的"。</p>
+
+  <div class="axiswrap">
+    <div class="axis" id="axis2">
+      <div class="line"></div>
+      <div class="apt up" style="left:8%"><b>can't</b><i>0 · 不可能</i><span class="dot" style="background:var(--amber)"></span></div>
+      <div class="apt dn" style="left:26%"><b>might</b><i>20 · 也许</i><span class="dot" style="background:var(--green)"></span></div>
+      <div class="apt up" style="left:46%"><b>may / could</b><i>50 · 可能</i><span class="dot" style="background:var(--green)"></span></div>
+      <div class="apt dn" style="left:64%"><b>can</b><i>70 · 最直接</i><span class="dot" style="background:var(--blue)"></span></div>
+      <div class="apt up" style="left:78%"><b>should</b><i>75 · 应该会</i><span class="dot" style="background:var(--blue)"></span></div>
+      <div class="apt dn" style="left:92%"><b>must</b><i>95 · 一定</i><span class="dot" style="background:var(--blue)"></span></div>
+    </div>
+  </div>
+
+  <div class="half">
+    <div class="said">说出来的：<b>He may be at home.</b> 他可能在家。</div>
+    <div class="mid">↓ 这句话还悄悄说了 <span>点一下看看</span></div>
+    <div class="unsaid">没说出来的：<b>他也可能不在家 —— 说"可能"的人，其实在说"我不确定"。</b></div>
+  </div>
+
+  <div class="note ask">
+    <p><b>特别提醒：</b>听到"可能"，千万别当成"是"。</p>
+    <p>"明天可能下雨"不等于"明天会下雨"。它真正的意思是：<strong>下雨和不下雨两扇门都开着</strong>。</p>
+  </div>
+
+  <div class="ex"><div class="e en">He <span style="color:var(--cyan)">must</span> be tired. He worked all night.</div><div class="c">他<strong>一定</strong>很累。他干了一整夜。</div></div>
+  <div class="ex no"><div class="e en">He <span style="color:var(--red)">can't</span> be at home. His bike is gone.</div><div class="c">他<strong>不可能</strong>在家。他自行车不见了。</div></div>
+
+  <div class="note warn">
+    <p><b>猜"不可能"用 can't，绝不用 mustn't。</b></p>
+    <p>"他一定在家"的反面是"他不可能在家" = <span class="en">He can't be at home.</span></p>
+  </div>
+
+  <h4>猜已经过去的事</h4>
+  <p>事情已经发生了，我回头猜，就加 <span class="en">have</span>：</p>
+  <div class="ex"><div class="e en">He <span style="color:var(--cyan)">must have missed</span> the bus.</div><div class="c">他准是没赶上公交。</div></div>
+  <div class="ex"><div class="e en">She <span style="color:var(--cyan)">may have forgotten</span>.</div><div class="c">她可能忘了。</div></div>
+  <div class="ex no"><div class="e en">He <span style="color:var(--red)">can't have seen</span> me.</div><div class="c">他不可能看见过我。</div></div>
+  <div class="ex shd"><div class="e en">I <span style="color:var(--amber)">should have told</span> you.</div><div class="c">我本应该告诉你的。<em>→ 可我没说（后悔了）</em></div></div>
+
+  <button class="donebtn" data-ch="ch8">这一站我学会了</button>
+</section>
+
+<div class="divider"></div>
+
+<!-- ============ 15 六组PK ============ -->
+<section id="ch9">
+  <div class="st-no">第 15 站</div>
+  <h2>六组大 PK<small>最容易搞混的，都在这张表里</small></h2>
+
+  <div class="tw"><table>
+    <thead><tr><th>#</th><th>A</th><th>B</th><th>怎么分</th></tr></thead>
+    <tbody>
+      <tr><td class="w">1</td><td>can 能</td><td>may 可以</td><td><strong>can 问本事</strong>，<strong>may 问准不准</strong>。<span class="en">Can you swim?</span> / <span class="en">May I swim?</span></td></tr>
+      <tr><td class="w">2</td><td>must 必须（自己要）</td><td>have to 不得不（外面逼）</td><td>自己想做 → must；别人逼的 → have to。</td></tr>
+      <tr><td class="w">3</td><td>mustn't 禁止</td><td>needn't 不必</td><td><strong style="color:var(--red)">意思完全相反！</strong></td></tr>
+      <tr><td class="w">4</td><td>should 应该</td><td>must 必须</td><td>should 两扇门都开；must 只开一扇。</td></tr>
+      <tr><td class="w">5</td><td>can't 不可能</td><td>may not 可能不</td><td>can't = 我确定不是；may not = 我不确定。</td></tr>
+      <tr><td class="w">6</td><td>could 以前会</td><td>was able to 那次做到了</td><td><span class="en">could swim</span> 会游泳 / <span class="en">was able to save him</span> 真的救了他。</td></tr>
+    </tbody>
+  </table></div>
+
+  <div class="note tip">
+    <p><b>从最软到最硬，排个队：</b></p>
+    <p><span class="en">might</span> &lt; <span class="en">could</span> &lt; <span class="en">can</span> &lt; <span class="en">should</span> &lt; <span class="en">had better</span> &lt; <span class="en">must</span></p>
+    <p>might 最软（几乎是"不行"），must 最硬（没有商量的余地）。</p>
+  </div>
+
+  <button class="donebtn" data-ch="ch9">这一站我学会了</button>
+</section>
+
+<div class="divider"></div>
+
+<!-- ============ 16 否定翻转 ============ -->
+<section id="ch10">
+  <div class="st-no">第 16 站</div>
+  <h2>变否定会拐弯<small>加个 not，意思不一定是你想的那样</small></h2>
+
+  <div class="tw"><table>
+    <thead><tr><th>肯定</th><th>变成否定</th><th>否定之后的意思</th><th>门的样子</th></tr></thead>
+    <tbody>
+      <tr><td class="w">must 必须</td><td class="en">needn't / don't have to</td><td><strong>不必</strong>（不是"不许"）</td><td>两扇都开</td></tr>
+      <tr><td class="w">must 一定</td><td class="en">can't</td><td><strong>不可能</strong>（不是"不许"）</td><td>确定它是假的</td></tr>
+      <tr><td class="w">may 可以</td><td class="en">may not / mustn't</td><td><strong>不许</strong></td><td>门①焊死</td></tr>
+      <tr><td class="w">may 可能</td><td class="en">may not</td><td><strong>可能不</strong></td><td>不确定还在</td></tr>
+      <tr><td class="w">can 能 / 可以</td><td class="en">can't</td><td><strong>不能 / 不可以 / 不可能</strong></td><td>看情况</td></tr>
+      <tr><td class="w">should 应该</td><td class="en">shouldn't</td><td><strong>不应该</strong>（还是建议）</td><td>两扇都开，只是不推荐</td></tr>
+      <tr><td class="w">will 会</td><td class="en">won't</td><td><strong>不会 / 不肯</strong></td><td>—</td></tr>
+    </tbody>
+  </table></div>
+
+  <div class="note ask">
+    <p><b>整张表的秘密：</b>变否定时先问——<strong>"我要否定的是'做这件事'，还是'必须 / 可能'本身？"</strong></p>
+    <p>· 否定"必须" → needn't（不必）</p>
+    <p>· 否定"做这件事" → mustn't（不许做）</p>
+    <p>这就是为什么 must 有两个"否定儿子"。</p>
+  </div>
+
+  <button class="donebtn" data-ch="ch10">这一站我学会了</button>
+</section>
+
+<div class="divider"></div>
+
+<!-- ============ 17 练习 ============ -->
+<section id="ch11">
+  <div class="st-no">第 17 站</div>
+  <h2>练习场<small>先想门，再想路，最后选词。选错没关系，看讲解最重要</small></h2>
+
+  <div class="scorebar">
+    <span>答对 <b id="sc">0</b></span>
+    <span>已答 <b id="tt">0</b></span>
+    <span id="rate" style="color:var(--tx3)">正确率 —</span>
+    <button class="resetbtn" id="reset">再做一遍</button>
+  </div>
+
+  <h3>第一关 · 没说出来的那半句</h3>
+  <p>看到上面那句话，先在心里说出"它没说的那半句"，然后点开对答案。</p>
+
+  <div class="flash"><button class="flashbtn"><span>1. 「你可以先看动画片。」</span><span class="ar">点开看 ▾</span></button>
+    <div class="a1"><div><em>你也可以不看。</em> —— "可以"把两扇门都打开了。想看就看，不想看也没人逼你。</div></div></div>
+  <div class="flash"><button class="flashbtn"><span>2. 「你必须先写完作业。」</span><span class="ar">点开看 ▾</span></button>
+    <div class="a1"><div><em>不能不写。</em> —— 门②被锁死了，没有"算了吧"这个选项。</div></div></div>
+  <div class="flash"><button class="flashbtn"><span>3. 「你不可以碰插座。」</span><span class="ar">点开看 ▾</span></button>
+    <div class="a1"><div><em>你必须不碰。</em> —— 门①焊死，只剩"不碰"这一条路。</div></div></div>
+  <div class="flash"><button class="flashbtn"><span>4. 「你不必现在就睡。」</span><span class="ar">点开看 ▾</span></button>
+    <div class="a1"><div><em>现在睡也行，不睡也行 —— 只是不算你错。</em> 要求被拿掉了，但门没锁。</div></div></div>
+  <div class="flash"><button class="flashbtn"><span>5. 「明天可能会下雨。」</span><span class="ar">点开看 ▾</span></button>
+    <div class="a1"><div><em>也可能不下。</em> —— 说"可能"的人，其实在说"我不确定"。</div></div></div>
+  <div class="flash"><button class="flashbtn"><span>6. 「他一定是在生病。」</span><span class="ar">点开看 ▾</span></button>
+    <div class="a1"><div><em>不可能是别的原因。</em> —— "一定"把别的门都关上了。</div></div></div>
+  <div class="flash"><button class="flashbtn"><span>7. 「你最好别跑。」</span><span class="ar">点开看 ▾</span></button>
+    <div class="a1"><div><em>不然会摔跤。</em> —— 门是开的，但门口立着警告牌。</div></div></div>
+  <div class="flash"><button class="flashbtn"><span>8. 「我以前养过一只狗。」</span><span class="ar">点开看 ▾</span></button>
+    <div class="a1"><div><em>现在没有了。</em> —— <span class="en">used to</span> 自带"今非昔比"这四个字。</div></div></div>
+
+  <h3>第二关 · 选词填空</h3>
+
+  <div class="q"><div class="qh">第 1 题</div>
+    <div class="qt en">You <span class="blank">______</span> play with fire. It's very dangerous.</div>
+    <div class="opts"><button data-ok="0">needn't</button><button data-ok="1">mustn't</button><button data-ok="0">don't have to</button><button data-ok="0">may not</button></div>
+    <div class="exp"><b>mustn't</b> = 禁止。"很危险"说明这是<strong>绝对不能做</strong>的事，门①焊死。<br>填 needn't 会变成"你不必要玩火"——根本说不通。</div>
+  </div>
+
+  <div class="q"><div class="qh">第 2 题</div>
+    <div class="qt en">You <span class="blank">______</span> come so early tomorrow. Nine o'clock is fine.</div>
+    <div class="opts"><button data-ok="0">mustn't</button><button data-ok="1">needn't</button><button data-ok="0">can't</button><button data-ok="0">shouldn't</button></div>
+    <div class="exp"><b>needn't</b> = 不必。"九点就行"说明早来<strong>不是要求</strong>，两扇门都开着。<br>填 mustn't 会变成"绝对不能早来"——完全反了。</div>
+  </div>
+
+  <div class="q"><div class="qh">第 3 题</div>
+    <div class="qt en">I <span class="blank">______</span> swim when I was five.</div>
+    <div class="opts"><button data-ok="0">can</button><button data-ok="1">could</button><button data-ok="0">may</button><button data-ok="0">must</button></div>
+    <div class="exp">说过去的能力用 <b>could</b>。<br>小补充：如果是"那一次真的游过去了"，要用 <span class="en">was able to</span>。</div>
+  </div>
+
+  <div class="q"><div class="qh">第 4 题</div>
+    <div class="qt en"><span class="blank">______</span> I open the window? It's hot.</div>
+    <div class="opts"><button data-ok="1">May</button><button data-ok="0">Must</button><button data-ok="0">Will</button><button data-ok="0">Should</button></div>
+    <div class="exp"><b>May I...?</b> 是最规矩的"我可以吗"。<br><strong>为什么客气？</strong>因为我在求你，权力在你手上。</div>
+  </div>
+
+  <div class="q"><div class="qh">第 5 题</div>
+    <div class="qt en">The light is on. He <span class="blank">______</span> be at home.</div>
+    <div class="opts"><button data-ok="0">can't</button><button data-ok="0">may</button><button data-ok="1">must</button><button data-ok="0">needn't</button></div>
+    <div class="exp">灯亮着就是证据 → 我很有把握 → <b>must</b>（一定）。<br>注意：这里是"猜测"的 must，不是"必须"的 must。</div>
+  </div>
+
+  <div class="q"><div class="qh">第 6 题</div>
+    <div class="qt en">He <span class="blank">______</span> be at home. His bike is gone and the door is locked.</div>
+    <div class="opts"><button data-ok="0">mustn't</button><button data-ok="0">may not</button><button data-ok="1">can't</button><button data-ok="0">needn't</button></div>
+    <div class="exp">猜"不可能"用 <b>can't</b>，<strong>绝不用 mustn't</strong>。<br>may not 是"可能不在"，可这里证据很足、说话的人很确定，所以选 can't。</div>
+  </div>
+
+  <div class="q"><div class="qh">第 7 题</div>
+    <div class="qt en">You look ill. You <span class="blank">______</span> see a doctor.</div>
+    <div class="opts"><button data-ok="0">must</button><button data-ok="1">should</button><button data-ok="0">can</button><button data-ok="0">will</button></div>
+    <div class="exp">这是<strong>建议</strong>不是命令 → <b>should</b>。<br><strong>没说的半句：</strong>不去也不会有人罚你，只是对身体不好。</div>
+  </div>
+
+  <div class="q"><div class="qh">第 8 题</div>
+    <div class="qt en">We <span class="blank">______</span> wear uniforms at school. It's the rule.</div>
+    <div class="opts"><button data-ok="0">must</button><button data-ok="1">have to</button><button data-ok="0">may</button><button data-ok="0">should</button></div>
+    <div class="exp">"It's the rule" = <strong>外面的规定</strong> → <b>have to</b>。<br>对比：I must study hard.（这是我自己下的决心）</div>
+  </div>
+
+  <div class="q"><div class="qh">第 9 题</div>
+    <div class="qt en"><span class="blank">______</span> we go to the park this afternoon?</div>
+    <div class="opts"><button data-ok="0">Will</button><button data-ok="1">Shall</button><button data-ok="0">Must</button><button data-ok="0">May</button></div>
+    <div class="exp">提建议、问别人意见，主语是 we / I → <b>Shall</b>。<br><strong>没说的半句：</strong>"你说了算，我等你点头。"</div>
+  </div>
+
+  <div class="q"><div class="qh">第 10 题</div>
+    <div class="qt en">I <span class="blank">______</span> have a dog when I was little, but now I have a cat.</div>
+    <div class="opts"><button data-ok="0">would</button><button data-ok="0">should</button><button data-ok="1">used to</button><button data-ok="0">could</button></div>
+    <div class="exp">"以前有，现在没有了" → <b>used to</b>。<br>后半句 "but now I have a cat" 就是把那半句话<strong>说出来了</strong>。</div>
+  </div>
+
+  <h3>第三关 · 谁更凶？谁更客气？</h3>
+
+  <div class="q"><div class="qh">第 11 题</div>
+    <div class="qt">门都开着，哪一句<strong>最想让你去</strong>？</div>
+    <div class="opts"><button data-ok="0">You might go.</button><button data-ok="0">You could go.</button><button data-ok="1">You can go.</button><button data-ok="0">You may go.</button></div>
+    <div class="exp"><b>can</b> 力度最高（70，大马路），说话的人最直接。<br>might（20）几乎等于"我看你不会去"；could（50）绕了一圈，不推你。</div>
+  </div>
+
+  <div class="q"><div class="qh">第 12 题</div>
+    <div class="qt">"You might go." 说话的人大概是什么意思？</div>
+    <div class="opts"><button data-ok="0">你一定得去</button><button data-ok="1">你也许可以去（我看你八成不会去）</button><button data-ok="0">我禁止你去</button></div>
+    <div class="exp">might 是<strong>软软的"不行"</strong>：门没锁，可路几乎是堵的。<br>说 might 的人，心里已经觉得"大概不会"。</div>
+  </div>
+
+  <div class="q"><div class="qh">第 13 题</div>
+    <div class="qt">爸爸说 "You may not go out tonight." 这句话：</div>
+    <div class="opts"><button data-ok="1">很凶（我不准）</button><button data-ok="0">很客气（你可以不去）</button><button data-ok="0">很软（我猜你不去）</button></div>
+    <div class="exp"><b>这是"允许"的否定</b>：权力在爸爸手上，他是在<strong>按住你</strong>，所以很凶。<br>对比：<span class="en">May I go?</span> 是我求你，权力交给你，才客气。</div>
+  </div>
+
+  <div class="q"><div class="qh">第 14 题</div>
+    <div class="qt">"He may not come." 是什么意思？</div>
+    <div class="opts"><button data-ok="0">我不准他来</button><button data-ok="1">他可能不来</button><button data-ok="0">他不可能来</button></div>
+    <div class="exp">他来不来，爸爸/我<strong>说了不算</strong>，只能猜 → "可能不"。<br>判据永远是：<b>说了算 = 允许/禁止，说了不算 = 可能。</b></div>
+  </div>
+
+  <div class="q"><div class="qh">第 15 题</div>
+    <div class="qt">下面两句只差一个 in，哪句是"我猜他会来"？</div>
+    <div class="opts"><button data-ok="0">He may come in.</button><button data-ok="1">He may come.</button><button data-ok="0">两句一样</button></div>
+    <div class="exp"><span class="en">He may come <b>in</b>.</span> 能不能进门<strong>我说了算</strong> → 我允许他进来。<br>
+      <span class="en">He may come.</span> 他来不来<strong>我说了不算</strong> → 我猜他可能会来。</div>
+  </div>
+
+  <div class="q"><div class="qh">第 16 题</div>
+    <div class="qt">"I may be late." 是在请求允许吗？</div>
+    <div class="opts"><button data-ok="0">是，我在问能不能迟到</button><button data-ok="1">不是，我在说我可能会迟到</button></div>
+    <div class="exp">我会不会迟到，<strong>我自己也说了不算</strong>（堵车又不是我管的）→ 这是<strong>猜测</strong>。<br>这就是"说自己也可能是在猜"的例子。</div>
+  </div>
+
+  <div class="q"><div class="qh">第 17 题</div>
+    <div class="qt">"I can swim." 这句话告诉你：</div>
+    <div class="opts"><button data-ok="1">我有这个本事，但可能不去游</button><button data-ok="0">我每天都会去游泳</button><button data-ok="0">我必须去游泳</button></div>
+    <div class="exp"><strong>本事 ≠ 行动。</strong>can 只保证"做得到"，不保证"会去做"。</div>
+  </div>
+
+  <div class="q"><div class="qh">第 18 题 · 最后一题</div>
+    <div class="qt">把 "You must go." 变成"你不必去"，应该是：</div>
+    <div class="opts"><button data-ok="0">You mustn't go.</button><button data-ok="1">You needn't go.</button><button data-ok="0">You can't go.</button></div>
+    <div class="exp"><b>这本书最重要的一题。</b>must（必须）的否定是 needn't（不必）。<br><span class="en">You mustn't go.</span> = 你绝对不能去 —— 意思完全相反。</div>
+  </div>
+
+  <div class="note tip">
+    <p><b>做完了？</b>看看对了多少。答对 15 个以上就很棒了；错的地方，回去把那一站再看一遍。</p>
+  </div>
+
+  <button class="donebtn" data-ch="ch11">这一站我学会了</button>
+</section>
+
+<div class="divider"></div>
+
+<!-- ============ 18 小抄 ============ -->
+<section id="ch12">
+  <div class="st-no">第 18 站</div>
+  <h2>小抄<small>可以打印出来贴在书桌前</small></h2>
+
+  <h3>谁软谁硬，一条就懂</h3>
+  <div class="axiswrap">
+    <div class="axis">
+      <div class="line"></div>
+      <div class="apt up" style="left:8%"><b>might</b><i>20 泥巴路</i><span class="dot" style="background:var(--amber)"></span></div>
+      <div class="apt dn" style="left:26%"><b>may / could</b><i>50 绕一圈</i><span class="dot" style="background:var(--green)"></span></div>
+      <div class="apt up" style="left:44%"><b>can</b><i>70 大马路</i><span class="dot" style="background:var(--green)"></span></div>
+      <div class="apt dn" style="left:62%"><b>should</b><i>75 推荐牌</i><span class="dot" style="background:var(--blue)"></span></div>
+      <div class="apt up" style="left:80%"><b>had better</b><i>85 带警告</i><span class="dot" style="background:var(--blue)"></span></div>
+      <div class="apt dn" style="left:93%"><b>must</b><i>95 传送带</i><span class="dot" style="background:var(--blue)"></span></div>
+    </div>
+  </div>
+
+  <h3>卡片速查</h3>
+  <div class="cheat">
+    <div class="c"><h5><span class="tag t-l1">绿</span>can</h5><p>能 / 可以 → 也可以不做</p><p class="en">I can swim. / Can I go?</p></div>
+    <div class="c"><h5><span class="tag t-l1">绿</span>can't</h5><p>不能 / 不可以 / 不可能</p><p class="en">He can't be at home.</p></div>
+    <div class="c"><h5><span class="tag t-l1">绿</span>must</h5><p>必须（不做不行）/ 一定</p><p class="en">You must go.</p></div>
+    <div class="c"><h5><span class="tag t-l1">绿</span>mustn't</h5><p style="color:var(--red)"><strong>绝对不许，不是"不必"</strong></p><p class="en">You mustn't touch it.</p></div>
+    <div class="c"><h5><span class="tag t-l1">绿</span>may</h5><p>可以（客气）/ 可能</p><p class="en">May I come in?</p><p style="color:var(--red)">may not = 我不准（很凶）</p></div>
+    <div class="c"><h5><span class="tag t-l1">绿</span>should</h5><p>应该：做最好，不做不算错</p><p class="en">You should rest.</p></div>
+    <div class="c"><h5><span class="tag t-l1">绿</span>will</h5><p>将会 / 愿意；won't = 不肯</p><p class="en">I will help.</p></div>
+    <div class="c"><h5><span class="tag t-l2">蓝</span>could</h5><p>以前能 / 更客气</p><p class="en">Could you help me?</p></div>
+    <div class="c"><h5><span class="tag t-l2">蓝</span>would</h5><p>客气 / 以前的习惯</p><p class="en">Would you like...?</p></div>
+    <div class="c"><h5><span class="tag t-l2">蓝</span>have to</h5><p>外面规定逼的；过去是 had to</p><p class="en">I have to wear a uniform.</p></div>
+    <div class="c"><h5><span class="tag t-l2">蓝</span>needn't</h5><p>= don't have to，把要求拿掉</p><p class="en">You needn't wait.</p></div>
+    <div class="c"><h5><span class="tag t-l2">蓝</span>might</h5><p>也许（力度 20，软软的不行）</p><p class="en">It might rain.</p></div>
+    <div class="c"><h5><span class="tag t-l2">蓝</span>shall</h5><p>Shall we...? 问别人意见</p><p class="en">Shall we go?</p></div>
+  </div>
+
+  <button class="donebtn" data-ch="ch12">这一站我学会了</button>
+</section>
+
+<div class="divider"></div>
+
+<!-- ============ 19 冷门 ============ -->
+<section id="ch13">
+  <div class="st-no">第 19 站 · 紫色 · 以后再学</div>
+  <h2>冷门的几个<small>现在当故事看就行，不用背</small></h2>
+
+  <div class="goal">这一站你会学到：<b>还有几个词，藏的"半句话"一个比一个狠。</b></div>
+
+  <h4>used to —— 藏得最深的一个</h4>
+  <div class="half">
+    <div class="said">说出来的：<b>I used to live in Shanghai.</b> 我以前住在上海。</div>
+    <div class="mid">↓ 这句话还悄悄说了 <span>点一下看看</span></div>
+    <div class="unsaid">没说出来的：<b>现在不住了。</b>（要是现在还住着，这句话就错了）</div>
+  </div>
+
+  <h4>had better —— 带警告的"最好"</h4>
+  <div class="ex shd"><div class="e en">You <span style="color:var(--amber)">had better</span> run!</div><div class="c">你最好跑！<em>→ 不跑的话，会有不好的事</em></div></div>
+  <p style="font-size:14.5px">口语里常说成 <span class="en">You'd better</span>。<strong>别对长辈说</strong>，它听起来像在威胁。</p>
+
+  <h4>ought to —— should 的正式版</h4>
+  <div class="ex"><div class="e en">You <span style="color:var(--cyan)">ought to</span> say sorry.</div><div class="c">你理应道歉。<em>→ 跟 should 差不多，但 to 不能省</em></div></div>
+
+  <h4>dare —— 敢</h4>
+  <div class="ex gray"><div class="e en">I <span style="color:var(--tx)">dare not</span> jump.</div><div class="c">我不敢跳。<em>→ 这事有点吓人</em></div></div>
+
+  <h4>be supposed to —— 暗含"其实没做到"</h4>
+  <div class="ex gray"><div class="e en">You <span style="color:var(--tx)">are supposed to</span> be in bed!</div><div class="c">你这会儿应该在床上！<em>→ 可你现在明明不在</em></div></div>
+
+  <h4>would rather —— 宁愿</h4>
+  <div class="ex gray"><div class="e en">I <span style="color:var(--tx)">would rather</span> stay at home.</div><div class="c">我宁愿待在家。<em>→ 另一个选项我没选</em></div></div>
+
+  <h4>把它们插回那把尺子</h4>
+  <div class="axiswrap">
+    <div class="axis">
+      <div class="line"></div>
+      <div class="apt up" style="left:8%"><b>mustn't / can't</b><i>−100 绝对不许</i><span class="dot" style="background:var(--amber)"></span></div>
+      <div class="apt dn" style="left:18%"><b>may not</b><i>−85 我不准</i><span class="dot" style="background:var(--amber)"></span></div>
+      <div class="apt up" style="left:28%"><b>shouldn't</b><i>−75 不推荐</i><span class="dot" style="background:var(--amber)"></span></div>
+      <div class="apt dn zero" style="left:48%"><b>needn't</b><i>0 不推不拦</i><span class="dot" style="background:var(--green)"></span></div>
+      <div class="apt up" style="left:66%"><b>should</b><i>+75 建议</i><span class="dot" style="background:var(--blue)"></span></div>
+      <div class="apt dn" style="left:76%"><b>ought to</b><i>+80 理应</i><span class="dot" style="background:var(--blue)"></span></div>
+      <div class="apt up" style="left:85%"><b>had better</b><i>+85 最好（带警告）</i><span class="dot" style="background:var(--blue)"></span></div>
+      <div class="apt dn" style="left:93%"><b>must</b><i>+95 必须</i><span class="dot" style="background:var(--blue)"></span></div>
+    </div>
+  </div>
+
+  <div class="note tip">
+    <p><b>看出来了吗？</b>紫色不是"另一类东西"，它们只是<strong>尺子上某些位置的另一个名字</strong>：</p>
+    <p>ought to +80 ≈ should +75（正式版）｜had better +85 ≈ must +95 的"带警告版"。</p>
+    <p>dare / used to / would rather 说的是另一回事——"敢不敢 / 以前怎么样 / 宁愿选哪个"，不在尺子上。</p>
+  </div>
+
+  <button class="donebtn" data-ch="ch13">这一站我学会了</button>
+</section>
+
+<div class="divider"></div>
+
+<!-- ============ 最后一站 ============ -->
+<section id="ch14">
+  <div class="st-no">最后一站</div>
+  <h2>和爸爸妈妈一起玩<small>不用坐在书桌前，吃饭的时候就能练</small></h2>
+
+  <div class="goal">这一站你会学到：<b>三个小游戏，把"没说完的话"变成你的超能力。</b></div>
+
+  <h3>游戏一：那另一扇门呢？</h3>
+  <p>家里谁说了一句带"可以 / 必须 / 应该 / 可能"的话，你就问一句：<strong>"那另一扇门呢？"</strong></p>
+  <div class="tw"><table>
+    <thead><tr><th>大人的话</th><th>你问</th><th>答案应该是</th></tr></thead>
+    <tbody>
+      <tr><td>你可以吃一颗糖。</td><td>那我能不吃吗？</td><td>能。两扇门都开着。</td></tr>
+      <tr><td>你必须先写作业。</td><td>那我能不写吗？</td><td>不能。"必须"只开了一扇门。</td></tr>
+      <tr><td>你不可以碰插座。</td><td>那我能碰吗？</td><td>绝对不能。门焊死了。</td></tr>
+      <tr><td>你不必现在就收拾。</td><td>那我现在能收拾吗？</td><td>能。只是不收拾也不算错。</td></tr>
+    </tbody>
+  </table></div>
+
+  <h3>游戏二：这条路好走吗？</h3>
+  <p>专门治"can 和 could 分不清""might 到底啥意思"。</p>
+  <div class="tw"><table>
+    <thead><tr><th>大人的话</th><th>你问</th><th>答案应该是</th></tr></thead>
+    <tbody>
+      <tr><td>你也许可以试试。</td><td>大马路还是小路？</td><td>小路。你其实觉得我不会去。</td></tr>
+      <tr><td>你可以去（说得很干脆）。</td><td>大马路还是小路？</td><td>大马路。你是真的想让我去。</td></tr>
+      <tr><td>你可以去（拖长音看着我）。</td><td>门锁了吗？</td><td>没锁，但路有点堵——你不太想让我去。</td></tr>
+    </tbody>
+  </table></div>
+
+  <h3>游戏三：反过来考他们</h3>
+  <p>你自己造一个"带半句话"的句子，让爸爸妈妈猜。比如你说"你可以玩 iPad"，他们要能答出"那我能不能不玩？——能"。
+    他们答对了，说明你也讲明白了。</p>
+
+  <details class="parentfold">
+    <summary>给爸爸妈妈看这里（小朋友可以跳过）</summary>
+    <div class="inner">
+      <p style="font-size:14.5px">这份手册给孩子自学用。您只需要做三件事：</p>
+      <p style="font-size:14.5px">1. 陪他把第 1、2 站（门与路）读完，这两个比喻是后面全部内容的基础。</p>
+      <p style="font-size:14.5px">2. 日常对话里随时问一句"<strong>那另一扇门呢？</strong>"和"<strong>这条路好走吗？</strong>"，
+        每次只要十秒钟，比做卷子记得牢。</p>
+      <p style="font-size:14.5px">3. 别急着让他背表。等他能对任何一句话脱口而出"另一扇门是开着的"，表他自己就能推出来。</p>
+      <p style="font-size:14.5px">全篇只用一套「力度」数字（20 / 50 / 70 / 75 / 85 / 95），两把尺子通用，不要另外给他第二套。</p>
+      <p style="font-size:14.5px">三个最该盯住的坑：<b>mustn't ≠ needn't</b>；<b>否定猜测用 can't 不用 mustn't</b>；
+        <b>may 看"谁说了算"，不是看第几人称</b>。</p>
+    </div>
+  </details>
+
+  <div class="note tip">
+    <p><b>你走到最后一站啦！</b>回到最上面看看目录，是不是都打上勾了？</p>
+    <p>以后再听到"你可以""你必须""可能会"，你脑子里会自动冒出两扇门和一条路——
+      到那时候，你比很多大人都听得明白。</p>
+  </div>
+
+  <button class="donebtn" data-ch="ch14">这一站我学会了</button>
+</section>
+
+<footer>英语里那些没说完的话 · 肉肉的自学手册</footer>
+
+</div>
+</main>
+</div>
+
+<button class="navtoggle fab" id="navtg">目录</button>
+
+<script>
+(function(){
+  "use strict";
+
+  /* ---------- 门控制器 ---------- */
+  function flowWord(v){
+    if(v >= 70) return '大马路';
+    if(v >= 50) return '绕一圈';
+    if(v >= 30) return '一般';
+    return '泥巴路';
+  }
+  function flowColor(v){
+    if(v >= 70) return 'var(--green)';
+    if(v >= 50) return 'var(--cyan)';
+    return 'var(--amber)';
+  }
+
+  var MODES = {
+    can: {
+      d1:{s:'open', f:70, w:'大马路'}, d2:{s:'open', f:70, w:'大马路'},
+      big:'你可以去 ＝ 去也行，不去也行。',
+      half:'没说出口的半句话：你也可以不去。',
+      extra:'英语：<span class="en">You can go.</span> 两扇门都开着，力度 70 —— 大马路，说话的人很支持。'
+    },
+    must: {
+      d1:{s:'open', f:95, w:'传送带'}, d2:{s:'lock', f:0},
+      big:'你必须去 ＝ 只能去，不去不行。',
+      half:'没说出口的半句话：你不能不去。',
+      extra:'英语：<span class="en">You must / have to go.</span> 门②焊死。力度 95，像传送带——你不走也会被推着走。'
+    },
+    mustnt: {
+      d1:{s:'lock', f:0}, d2:{s:'open', f:95, w:'必须走'},
+      big:'你不可以去 ＝ 绝对不能去。',
+      half:'没说出口的半句话：你必须不去。',
+      extra:'英语：<span class="en">You mustn\'t / can\'t go.</span> 这是<strong style="color:var(--red)">禁止</strong>，不是"不必"！'
+    },
+    neednt: {
+      d1:{s:'open', zero:true}, d2:{s:'open', zero:true},
+      big:'你不必去 ＝ 没人要求你，去不去都行。',
+      half:'没说出口的半句话：想去也欢迎，不想去也没事。',
+      extra:'英语：<span class="en">You needn\'t / don\'t have to go.</span> 力度 0 —— 站在尺子正中间，没人推你也没人拦你。'
+    },
+    should: {
+      d1:{s:'rec', f:75, w:'推荐牌'}, d2:{s:'open', f:50, w:'绕一圈'},
+      big:'你应该去 ＝ 去最好，不去也不算错。',
+      half:'没说出口的半句话：不去没人罚你，只是不是最好的选择。',
+      extra:'英语：<span class="en">You should go.</span> 门①上贴了张"推荐"，力度 75。'
+    },
+    might: {
+      d1:{s:'open', f:20, w:'泥巴路'}, d2:{s:'open', f:20, w:'泥巴路'},
+      big:'你也许可以去 ＝ 门开着，可这条路几乎没人走。',
+      half:'没说出口的半句话：我八成觉得你不会去。',
+      extra:'英语：<span class="en">You might go.</span> 力度只有 20 —— 这是<strong>软软的"不行"</strong>，不是鼓励。'
+    }
+  };
+
+  var btns = document.querySelectorAll('#doorbtns button');
+  var d1 = document.getElementById('d1');
+  var d2 = document.getElementById('d2');
+  var ro = document.getElementById('readout');
+
+  function setDoor(el, cfg){
+    el.className = 'door ' + cfg.s;
+    var st = el.querySelector('.dstate');
+    var bar = el.querySelector('.flow .bar i');
+    var lab = el.querySelector('.flow .lv');
+    if(cfg.s === 'lock'){
+      st.textContent = '锁死';
+      bar.style.width = '0%';
+      lab.textContent = '禁止通行';
+      lab.style.color = 'var(--red)';
+    } else if(cfg.zero){
+      st.textContent = '通行';
+      bar.style.width = '6%';
+      bar.style.background = 'var(--line2)';
+      lab.textContent = '力度 0 · 不推不拦';
+      lab.style.color = 'var(--tx3)';
+    } else {
+      st.textContent = cfg.s === 'rec' ? '通行 ★' : '通行';
+      bar.style.width = cfg.f + '%';
+      bar.style.background = flowColor(cfg.f);
+      lab.textContent = '力度 ' + cfg.f + ' · ' + (cfg.w || flowWord(cfg.f));
+      lab.style.color = flowColor(cfg.f);
+    }
+  }
+
+  function setMode(m){
+    var c = MODES[m];
+    if(!c) return;
+    setDoor(d1, c.d1);
+    setDoor(d2, c.d2);
+    ro.innerHTML = '<div class="big">' + c.big + '</div>' +
+      '<div style="margin-top:6px" class="halfline">' + c.half + '</div>' +
+      '<div style="margin-top:10px;font-size:13.5px;color:var(--tx3)">' + c.extra + '</div>';
+  }
+
+  Array.prototype.forEach.call(btns, function(b){
+    b.addEventListener('click', function(){
+      Array.prototype.forEach.call(btns, function(x){ x.classList.remove('on'); });
+      b.classList.add('on');
+      setMode(b.getAttribute('data-m'));
+    });
+  });
+  if(d1 && d2) setMode('can');
+
+  /* ---------- 半句话卡 ---------- */
+  Array.prototype.forEach.call(document.querySelectorAll('.half'), function(h){
+    h.addEventListener('click', function(){
+      var open = h.classList.toggle('opened');
+      var tip = h.querySelector('.mid span');
+      if(tip) tip.textContent = open ? '再点一下收起' : '点一下看看';
+    });
+  });
+
+  /* ---------- 想一想 ---------- */
+  Array.prototype.forEach.call(document.querySelectorAll('.think'), function(t){
+    t.addEventListener('click', function(){
+      t.classList.toggle('open');
+      var hint = t.querySelector('.hint');
+      if(hint) hint.textContent = t.classList.contains('open') ? '（再点一下收起）' : '（点这里看答案）';
+    });
+  });
+
+  /* ---------- 翻转卡 ---------- */
+  Array.prototype.forEach.call(document.querySelectorAll('.flashbtn'), function(b){
+    b.addEventListener('click', function(){
+      var f = b.parentElement;
+      f.classList.toggle('open');
+      var ar = b.querySelector('.ar');
+      if(ar) ar.textContent = f.classList.contains('open') ? '收起 ▴' : '点开看 ▾';
+    });
+  });
+
+  /* ---------- 练习判分 ---------- */
+  var sc = document.getElementById('sc');
+  var tt = document.getElementById('tt');
+  var rate = document.getElementById('rate');
+  var right = 0, done = 0;
+
+  function refresh(){
+    if(sc) sc.textContent = right;
+    if(tt) tt.textContent = done;
+    if(rate) rate.textContent = done ? '正确率 ' + Math.round(right / done * 100) + '%' : '正确率 —';
+  }
+
+  Array.prototype.forEach.call(document.querySelectorAll('.q'), function(q){
+    var opts = q.querySelectorAll('.opts button');
+    var exp = q.querySelector('.exp');
+    Array.prototype.forEach.call(opts, function(b){
+      b.addEventListener('click', function(){
+        if(q.getAttribute('data-done') === '1') return;
+        q.setAttribute('data-done', '1');
+        var ok = b.getAttribute('data-ok') === '1';
+        b.classList.add(ok ? 'right' : 'wrong');
+        if(!ok){
+          var good = q.querySelector('.opts button[data-ok="1"]');
+          if(good) good.classList.add('right');
+        }
+        if(exp) exp.classList.add('show');
+        done++; if(ok) right++;
+        refresh();
+      });
+    });
+  });
+
+  var rs = document.getElementById('reset');
+  if(rs) rs.addEventListener('click', function(){
+    right = 0; done = 0; refresh();
+    Array.prototype.forEach.call(document.querySelectorAll('.q'), function(q){
+      q.removeAttribute('data-done');
+      Array.prototype.forEach.call(q.querySelectorAll('.opts button'), function(b){
+        b.classList.remove('right', 'wrong');
+      });
+      var e = q.querySelector('.exp');
+      if(e) e.classList.remove('show');
+    });
+  });
+  refresh();
+
+  /* ---------- 学会打卡 ---------- */
+  var KEY = 'modalverbs_selfstudy_v1';
+  var learned = {};
+  try { learned = JSON.parse(localStorage.getItem(KEY) || '{}'); } catch(e){ learned = {}; }
+  function saveLearned(){ try { localStorage.setItem(KEY, JSON.stringify(learned)); } catch(e){} }
+
+  var cnt = document.getElementById('cnt');
+  var total = document.querySelectorAll('.donebtn').length;
+
+  function syncNav(){
+    if(cnt) cnt.textContent = Object.keys(learned).length;
+    Array.prototype.forEach.call(document.querySelectorAll('#nav a'), function(a){
+      var id = a.getAttribute('href').slice(1);
+      var old = a.querySelector('.ck');
+      if(old) old.parentNode.removeChild(old);
+      if(learned[id]){
+        var s = document.createElement('span');
+        s.className = 'ck';
+        s.textContent = '✓';
+        a.appendChild(s);
+      }
+    });
+  }
+
+  Array.prototype.forEach.call(document.querySelectorAll('.donebtn'), function(b){
+    var id = b.getAttribute('data-ch');
+    if(learned[id]) b.classList.add('on');
+    b.addEventListener('click', function(){
+      if(learned[id]){
+        delete learned[id];
+        b.classList.remove('on');
+      } else {
+        learned[id] = 1;
+        b.classList.add('on');
+      }
+      saveLearned();
+      syncNav();
+    });
+  });
+  syncNav();
+
+  /* ---------- 滚动 ---------- */
+  var bar = document.getElementById('pbar');
+  var links = Array.prototype.slice.call(document.querySelectorAll('#nav a'));
+  var secs = links.map(function(a){ return document.querySelector(a.getAttribute('href')); });
+
+  function onScroll(){
+    var h = document.documentElement;
+    var p = h.scrollTop / Math.max(1, (h.scrollHeight - h.clientHeight));
+    if(bar) bar.style.width = (p * 100).toFixed(2) + '%';
+    var best = 0, bestD = Infinity, top = h.scrollTop + 120;
+    for(var i = 0; i < secs.length; i++){
+      var s = secs[i];
+      if(!s) continue;
+      var d = s.offsetTop - top;
+      if(d <= 0 && Math.abs(d) < bestD){ bestD = Math.abs(d); best = i; }
+    }
+    for(var j = 0; j < links.length; j++) links[j].classList.toggle('active', j === best);
+  }
+  window.addEventListener('scroll', onScroll, {passive:true});
+  window.addEventListener('resize', onScroll);
+  onScroll();
+
+  /* ---------- 移动端目录 ---------- */
+  var tg = document.getElementById('navtg');
+  var sb = document.getElementById('sb');
+  if(tg && sb){
+    tg.addEventListener('click', function(){ sb.classList.toggle('show'); });
+    Array.prototype.forEach.call(document.querySelectorAll('#nav a'), function(a){
+      a.addEventListener('click', function(){ sb.classList.remove('show'); });
+    });
+  }
+})();
+</script>
+
+<!-- rourou-home-btn:start -->
+<style>
+#rourou-home-btn{position:fixed;left:14px;bottom:calc(14px + env(safe-area-inset-bottom,0px));z-index:9999;
+display:inline-flex;align-items:center;gap:6px;padding:10px 18px;border-radius:999px;
+background:rgba(255,255,255,0.92);color:#2d3436;font-size:15px;font-weight:600;
+text-decoration:none;box-shadow:0 4px 14px rgba(0,0,0,0.18);border:1px solid rgba(0,0,0,0.08);
+-webkit-backdrop-filter:blur(4px);backdrop-filter:blur(4px);transition:transform .15s,background .15s;}
+#rourou-home-btn:hover{background:#fff;transform:translateY(-2px);}
+@media (max-width:600px){#rourou-home-btn{padding:9px 14px;font-size:13px;left:10px;bottom:calc(10px + env(safe-area-inset-bottom,0px));}}
+/* 页面自带左下角悬浮按钮（如讲义的「↑ 返回目录」）时上移让位，避免两个按钮叠在一起 */
+.fab{bottom:calc(66px + env(safe-area-inset-bottom,0px)) !important;}
+@media (max-width:919px){.fab{bottom:calc(58px + env(safe-area-inset-bottom,0px)) !important;}}
+</style>
+<a id="rourou-home-btn" href="../../index.html">🏠 首页</a>
+<!-- rourou-home-btn:end -->
+</body>
+</html>
