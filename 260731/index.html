@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>地震来了怎么办？🏠💨</title>
+<style>
+:root { --bg: #fffef5; --text: #333; }
+* { margin:0; padding:0; box-sizing:border-box; }
+body {
+  font-family: 'PingFang SC','Hiragino Sans GB','Microsoft YaHei',sans-serif;
+  background: var(--bg); color: var(--text); line-height:1.8;
+  max-width:800px; margin:0 auto; padding:20px 16px;
+}
+h2 { font-size:1.6em; margin:28px 0 12px; color:#c0392b; border-left:5px solid #c0392b; padding-left:12px; }
+h3 { font-size:1.2em; margin:16px 0 8px; color:#2c3e50; }
+p { margin:10px 0; font-size:1.05em; }
+img { max-width:100%; border-radius:16px; margin:12px 0; box-shadow:0 4px 16px rgba(0,0,0,.1); display:block; }
+.fun-box {
+  background:linear-gradient(135deg,#fef9e7,#fdebd0);
+  border:2px solid #e67e22; border-radius:14px; padding:14px 18px; margin:16px 0;
+}
+.fun-box::before { content:'💡 趣味知识：'; font-weight:bold; color:#e67e22; }
+.warn-box {
+  background:linear-gradient(135deg,#ffeaea,#ffd6d6);
+  border:2px solid #e74c3c; border-radius:14px; padding:14px 18px; margin:16px 0;
+}
+.warn-box::before { content:'⚠️ 安全提醒：'; font-weight:bold; color:#e74c3c; }
+.tip-box {
+  background:linear-gradient(135deg,#d5f5e3,#a9dfbf);
+  border:2px solid #27ae60; border-radius:14px; padding:14px 18px; margin:16px 0;
+}
+.tip-box::before { content:'✅ 正确做法：'; font-weight:bold; color:#27ae60; }
+.no-box {
+  background:linear-gradient(135deg,#fadbd8,#f5b7b1);
+  border:2px solid #c0392b; border-radius:14px; padding:14px 18px; margin:16px 0;
+}
+.no-box::before { content:'❌ 千万不要：'; font-weight:bold; color:#c0392b; }
+.test-box {
+  background:linear-gradient(135deg,#e8f8f5,#d5f5e3);
+  border:2px solid #27ae60; border-radius:14px; padding:18px; margin:20px 0;
+}
+.test-box h2 { border-left-color:#27ae60; color:#27ae60; }
+.ans-btn {
+  background:#27ae60; color:white; border:none; padding:8px 20px;
+  border-radius:20px; font-size:1em; cursor:pointer; margin:8px 0;
+}
+.ans-btn:hover { background:#219a52; }
+.answer { display:none; background:#fef9e7; padding:12px; border-radius:10px; margin-top:10px; }
+.chapter-icon { font-size:1.5em; margin-right:8px; }
+.step-box {
+  background:white; border-radius:12px; padding:16px; margin:12px 0;
+  box-shadow:0 2px 8px rgba(0,0,0,.08); border-left:4px solid #e74c3c;
+}
+.step-num {
+  display:inline-block; background:#e74c3c; color:white;
+  width:30px; height:30px; border-radius:50%; text-align:center;
+  line-height:30px; font-weight:bold; margin-right:10px;
+}
+.ending {
+  background:linear-gradient(135deg,#f9e79f,#fadbd8);
+  border-radius:18px; padding:24px; margin:28px 0;
+  text-align:center; font-size:1.1em;
+  display:flex; flex-direction:column; align-items:center; gap:16px;
+}
+.ending a {
+  background:#c0392b; color:white; text-decoration:none;
+  padding:10px 24px; border-radius:25px; font-size:1.1em; transition:0.2s;
+}
+.ending a:hover { background:#a93226; transform:scale(1.05); }
+.drill-table { width:100%; border-collapse:collapse; margin:16px 0; border-radius:12px; overflow:hidden; }
+.drill-table th { background:#e74c3c; color:white; padding:10px; }
+.drill-table td { padding:10px; text-align:center; border:1px solid #eee; }
+.drill-table tr:nth-child(even) { background:#fef9e7; }
+</style>
+</head>
+<body>
+
+<h1>🏠💨 地震来了怎么办？</h1>
+<p>大地在晃动——这不是电影，是真的地震了！别慌，读完这篇文章，你就知道在每一个场景下该怎么保护自己。</p>
+
+<img src="scene_01.webp" alt="地震安全知识">
+
+<!-- 第一章 -->
+<h2><span class="chapter-icon">🌍</span>第一章：地震是怎么发生的？</h2>
+
+<p>我们脚下的地球并不是一整块完整的石头。它像一个<strong>打碎的鸡蛋壳</strong>，分裂成十几块巨大的"板块"。这些板块一直在缓慢地移动——每年移动几厘米，和你的指甲生长速度差不多！</p>
+
+<p>当两块板块互相挤压、碰撞或错开时，巨大的能量在地底累积。当岩石再也承受不住时——<strong>轰！</strong>能量瞬间释放，引发地面震动，这就是地震。</p>
+
+<div class="fun-box">地球上每天发生超过50次能被人感觉到的地震！但绝大多数非常微弱，只有精密仪器才能检测到。全球每年约发生500万次地震，相当于每6秒就震一次。</div>
+
+<h3>🏔️ 地震的"震中"和"震级"</h3>
+<p><strong>震中</strong>就是地震发生时地面上正对着地下震源的那个点。离震中越近，晃动越厉害。<strong>震级</strong>是衡量地震释放能量的数字：每增加1级，能量增加约32倍！5级地震已经能让家具晃动了，8级地震能摧毁整座城市。</p>
+
+<div class="fun-box">1960年智利发生了9.5级地震，是迄今为止人类纪录到的最大地震。它引发了横跨太平洋的巨大海啸，连远在日本的港口都被淹没。</div>
+
+<img src="scene_02.webp" alt="地球板块运动">
+
+<!-- 第二章 -->
+<h2><span class="chapter-icon">🏠</span>第二章：在家里——黄金12秒</h2>
+
+<p>从你感觉到地面开始晃动，到最强烈的震动袭来，大约有<strong>12秒</strong>的预警时间。这12秒就是你的"黄金逃生窗口"！</p>
+
+<h3>如果你在平房或一楼</h3>
+<div class="tip-box">立刻护住头部，用最快的速度跑到室外空旷地带。远离楼房、电线杆、广告牌。不要回头拿东西——没有什么比你的生命更值钱！</div>
+
+<h3>如果你在楼上</h3>
+<div class="warn-box">千万别跑楼梯！地震时楼梯是建筑最薄弱的部分，而且人群踩踏比地震本身更危险。</div>
+
+<div class="step-box">
+<p><span class="step-num">1</span><strong>蹲下（Drop）</strong>——立刻蹲下，降低重心</p>
+<p><span class="step-num">2</span><strong>掩护（Cover）</strong>——钻到结实的桌子下面，双手护住后颈和头</p>
+<p><span class="step-num">3</span><strong>抓牢（Hold On）</strong>——一手抓住桌腿，直到晃动停止</p>
+</div>
+<p style="text-align:center;font-weight:bold;color:#e74c3c;">这就是国际通用的「蹲下·掩护·抓牢」三步骤！</p>
+
+<div class="no-box">不要站在窗边（玻璃碎了会划伤）！不要乘电梯（会卡在里面）！不要躲在门框下方（现代建筑的门框不像电影里那样坚固）！</div>
+
+<img src="scene_03.webp" alt="室内避险姿势">
+
+<!-- 第三章 -->
+<h2><span class="chapter-icon">🏫</span>第三章：在学校和公共场所</h2>
+
+<h3>在教室</h3>
+<div class="tip-box">听到警报或感到晃动，立刻<strong>钻到课桌下面</strong>，背朝窗户，双手抓紧桌腿，头低于桌面。等晃动停止后，听从老师指挥，双手护头、弯腰沿指定路线疏散到操场。</div>
+
+<div class="no-box">不要慌乱推挤！不要从窗户跳出去！和同学们保持秩序，一个接一个走。如果所有人都想第一个冲出去，结果就是卡在门口谁都出不去。</div>
+
+<h3>在商场或电影院</h3>
+<div class="tip-box">蹲在承重柱旁边或结实的柜台下面。远离货架（东西会砸下来）、玻璃橱窗、吊灯、广告牌。不要随人群往电梯口挤——<strong>走楼梯</strong>，不乘电梯。</div>
+
+<div class="fun-box">日本是全球地震最频繁的国家之一，他们的学校和公司每月都进行地震演习。日本小朋友从幼儿园起就学会了「蹲下掩护抓牢」，所以他们在地震中受伤的概率远低于其他国家。</div>
+
+<img src="scene_04.webp" alt="学校地震演习">
+
+<!-- 第四章 -->
+<h2><span class="chapter-icon">🚗</span>第四章：如果在户外或车里</h2>
+
+<h3>在街上</h3>
+<div class="tip-box">立刻跑到开阔地带，远离高楼、电线杆、大树、广告牌、天桥。用包或双手护住头部。蹲下等待震动停止。</div>
+
+<h3>在车里</h3>
+<div class="tip-box">慢慢靠边停车，避开天桥、隧道、电线杆。拉手刹，留在车里直到震动停止。车是一个相对安全的"保护壳"。但千万不要停在高架桥下或广告牌旁！</div>
+
+<div class="no-box">不要在震后立刻开车到处跑——道路上可能有裂缝、塌陷或坠落的电线。等待官方通知安全后再行动。</div>
+
+<h3>在山上或海边</h3>
+<div class="warn-box">「地震+山区」= 滑坡危险！远离陡坡和悬崖边。<br>「地震+海边」= 海啸危险！感觉到强烈地震后，立刻往高处跑，不要等海啸警报发布——有时根本来不及！</div>
+
+<div class="fun-box">2004年印度洋海啸前，一个10岁的英国小女孩蒂莉·史密斯在泰国海滩上看到海水突然退去、冒着气泡，想起地理课上学过的海啸前兆，她大喊着让所有人往高处跑。就因为她，那一整片海滩无一人死亡。她就是"海啸小英雄"！</div>
+
+<!-- 第五章 -->
+<h2><span class="chapter-icon">🎒</span>第五章：震后怎么办 + 你的应急包</h2>
+
+<h3>震动停止后</h3>
+<div class="tip-box">先检查自己有没有受伤。如果被困，不要大声喊叫（浪费体力和氧气），用硬物有节奏地敲击管道或墙壁，让搜救人员听到。<br>远离倒塌的电线杆、漏气的管道。打开收音机听官方消息，不要信谣言。</div>
+
+<h3>你的家庭应急包</h3>
+<p>每个家庭都应该有一个<strong>随手能拿到的应急包</strong>，记住这个清单：</p>
+
+<table class="drill-table">
+<tr><th>类别</th><th>物品</th><th>为什么需要</th></tr>
+<tr><td>💧 饮水</td><td>瓶装水（每人3升/天×3天）</td><td>震后水管可能断裂</td></tr>
+<tr><td>🍞 食物</td><td>压缩饼干、罐头（自加热更好）</td><td>不用开火也能吃</td></tr>
+<tr><td>🔦 照明</td><td>手电筒+备用电池</td><td>震后常断电</td></tr>
+<tr><td>🏥 急救</td><td>创可贴、碘伏、绷带、常用药</td><td>小伤口自己处理</td></tr>
+<tr><td>📻 通讯</td><td>手摇发电收音机</td><td>没网没电也能听消息</td></tr>
+<tr><td>🧥 保暖</td><td>急救毯（轻便反光那种）</td><td>防止失温</td></tr>
+<tr><td>📝 重要</td><td>家人联系方式+血型卡片</td><td>救援人员需要这些</td></tr>
+</table>
+
+<div class="fun-box">应急包应该放在<strong>家门口的柜子里</strong>或床边，发生地震时顺手就能带走。每半年检查一次：换掉过期的水和食物，换上新电池。</div>
+
+<!-- 互动测试 -->
+<div class="test-box">
+<h2>🧩 地震安全小测试</h2>
+<p>答完5题，你就是家庭安全小卫士👇</p>
+
+<p><strong>1. 在家遇到地震，正确的三步是什么？</strong></p>
+<p>A) 跑、喊、跳 &nbsp; B) 蹲下、掩护、抓牢 &nbsp; C) 站直、拍照、发朋友圈 &nbsp; D) 开窗、跳楼、求救</p>
+<button class="ans-btn" onclick="this.nextElementSibling.style.display='block'">查看答案</button>
+<p class="answer">✅ B) 蹲下·掩护·抓牢！国际通用黄金三步骤</p>
+
+<p><strong>2. 地震时在楼上，应该怎么跑？</strong></p>
+<p>A) 冲进电梯 &nbsp; B) 从窗户跳下去 &nbsp; C) 等震动停止后走楼梯 &nbsp; D) 站在阳台上看热闹</p>
+<button class="ans-btn" onclick="this.nextElementSibling.style.display='block'">查看答案</button>
+<p class="answer">✅ C) 等震动停止后走楼梯——千万不要乘电梯！</p>
+
+<p><strong>3. 地震震级每增加1级，能量大约增加多少倍？</strong></p>
+<p>A) 2倍 &nbsp; B) 10倍 &nbsp; C) 32倍 &nbsp; D) 100倍</p>
+<button class="ans-btn" onclick="this.nextElementSibling.style.display='block'">查看答案</button>
+<p class="answer">✅ C) 约32倍！5级和8级之间差了约32000倍能量</p>
+
+<p><strong>4. 在海边感觉强烈地震后，应该怎么办？</strong></p>
+<p>A) 跑海边看海浪 &nbsp; B) 立刻往高处跑 &nbsp; C) 发完朋友圈再说 &nbsp; D) 等手机收到海啸警报</p>
+<button class="ans-btn" onclick="this.nextElementSibling.style.display='block'">查看答案</button>
+<p class="answer">✅ B) 立刻往高处跑！海啸有时几分钟就到，等警报来不及</p>
+
+<p><strong>5. 应急包里最不该放什么？</strong></p>
+<p>A) 瓶装水 &nbsp; B) 手电筒 &nbsp; C) 游戏机 &nbsp; D) 急救毯</p>
+<button class="ans-btn" onclick="this.nextElementSibling.style.display='block'">查看答案</button>
+<p class="answer">✅ C) 游戏机！应急包要放生存必需的物品，不是玩具</p>
+</div>
+
+<div class="ending">
+<p><strong>🏠 安全不是运气，是准备出来的！</strong></p>
+<p>今天就和爸爸妈妈一起：<br>
+🔍 找出家里最安全的角落（结实的桌子下面）<br>
+🎒 动手做一个家庭应急包<br>
+📋 制定一条逃生路线并演练一次</p>
+<p>记住：<strong>蹲下·掩护·抓牢</strong>——这三个字能救命！</p>
+<a href="../index.html">🏠 返回首页</a>
+</div>
+
+
+<!-- rourou-home-btn:start -->
+<style>
+#rourou-home-btn{position:fixed;left:14px;bottom:calc(14px + env(safe-area-inset-bottom,0px));z-index:9999;
+display:inline-flex;align-items:center;gap:6px;padding:10px 18px;border-radius:999px;
+background:rgba(255,255,255,0.92);color:#2d3436;font-size:15px;font-weight:600;
+text-decoration:none;box-shadow:0 4px 14px rgba(0,0,0,0.18);border:1px solid rgba(0,0,0,0.08);
+-webkit-backdrop-filter:blur(4px);backdrop-filter:blur(4px);transition:transform .15s,background .15s;}
+#rourou-home-btn:hover{background:#fff;transform:translateY(-2px);}
+@media (max-width:600px){#rourou-home-btn{padding:9px 14px;font-size:13px;left:10px;bottom:calc(10px + env(safe-area-inset-bottom,0px));}}
+</style>
+<a id="rourou-home-btn" href="../index.html">🏠 首页</a>
+<!-- rourou-home-btn:end -->
+</body>
+</html>

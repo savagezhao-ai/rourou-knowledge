@@ -1,0 +1,33 @@
+🚀 开始为 'Ramanujan mathematician' 生成插图（本次 5/5 张）...
+📐 模板: MFluxKlein API (9B MLX 4bit) | 尺寸: 1080×1280
+📁 直写目录: /Users/zhaojunjie/rourou/260920  （出图即到位，无需复制/改名）
+============================================================
+✅ ComfyUI 在线
+
+🎨 场景1: childrens picture book illustration, vertical. A y...
+   ↗ 直写: /Users/zhaojunjie/rourou/260920/scene_01.png
+✅ 场景1 已提交 (ID: 0722b36c-63ac-440d-90af-27f8a585452a) [13:14:54]
+
+🎨 场景2: childrens science illustration, vertical. A cute c...
+   ↗ 直写: /Users/zhaojunjie/rourou/260920/scene_02.png
+✅ 场景2 已提交 (ID: c1437254-5bd8-4919-9298-b59d6b57779c) [13:14:57]
+
+🎨 场景3: childrens science illustration, vertical. On the l...
+   ↗ 直写: /Users/zhaojunjie/rourou/260920/scene_03.png
+✅ 场景3 已提交 (ID: 5adecc94-c2e9-478d-b442-2ce8e79c1db7) [13:15:00]
+
+🎨 场景4: childrens picture book illustration, vertical. An ...
+   ↗ 直写: /Users/zhaojunjie/rourou/260920/scene_04.png
+✅ 场景4 已提交 (ID: 3ae47fa9-fd8e-4016-a127-b6dac740a559) [13:15:03]
+
+🎨 场景5: childrens picture book illustration, vertical. Two...
+   ↗ 直写: /Users/zhaojunjie/rourou/260920/scene_05.png
+✅ 场景5 已提交 (ID: 4f3470b8-217f-4914-be6d-69abde496034) [13:15:06]
+
+============================================================
+📊 提交完成: 5/5 成功
+📁 目标目录: /Users/zhaojunjie/rourou/260920  ← 图片出图即到位，无需复制
+🗄  归档目录: /Users/zhaojunjie/ComfyUI/ComfyUI/output（ComfyUI 内部留档，可忽略）
+📋 进度文件: /Users/zhaojunjie/rourou/260920/generation_tasks.json
+⏳ 请等待 ComfyUI 完成生成...
+📈 队列: 1 运行中, 4 等待中

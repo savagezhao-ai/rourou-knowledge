@@ -1,0 +1,19 @@
+🚀 开始为 'rainbow optics raindrop' 生成插图（本次 5/5 张）...
+📐 通道: qwen | MFluxQwen API (Qwen-Image-2.1 4bit @ mlx-serve:11234)
+📐 尺寸: 1080×1280 | 步数: 20
+⏳ 预计单张 ≈300s、5 张 ≈25 分钟（CFG-free，别按 10 步的预期等）
+📁 直写目录: /Users/zhaojunjie/rourou/260927  （出图即到位，无需复制/改名）
+============================================================
+✅ ComfyUI 在线
+
+🎨 场景1: childrens science illustration, vertical. A beam o...
+   ↗ 直写: /Users/zhaojunjie/rourou/260927/scene_01.png
+✅ 场景1 已提交 (ID: 418ed482-a9ab-413a-9515-d89d284d7465) [09:29:57]
+
+🎨 场景2: childrens science illustration, vertical. Big clos...
+   ↗ 直写: /Users/zhaojunjie/rourou/260927/scene_02.png
+✅ 场景2 已提交 (ID: 0a5ff9bd-9da8-4e2c-885c-761e560797d8) [09:30:00]
+
+🎨 场景3: childrens science illustration, vertical. A simple...
+   ↗ 直写: /Users/zhaojunjie/rourou/260927/scene_03.png
+✅ 场景3 已提交 (ID: 2e62b249-3640-49fa-a2a6-fc8818380084) [09:30:03]

@@ -1,0 +1,26 @@
+🚀 开始为 'hair whorl on top of head' 生成5张插图...
+📐 模板: MFluxKlein API (9B MLX 4bit) | 尺寸: 1080×1280
+============================================================
+✅ ComfyUI 在线
+
+🎨 场景1: childrens picture book illustration, top view of a...
+✅ 场景1 已提交 (ID: 19e6440f-8724-4ce5-acbb-26d507ceedfd) [09:48:38]
+
+🎨 场景2: childrens science illustration, cross section of h...
+✅ 场景2 已提交 (ID: ed71be58-42b4-4359-9116-adfd0bf4c4c2) [09:48:41]
+
+🎨 场景3: childrens science illustration, a colorful sphere ...
+✅ 场景3 已提交 (ID: 0f26aea0-85f4-44e6-8e57-315a291bb97f) [09:48:44]
+
+🎨 场景4: childrens picture book illustration, three cartoon...
+✅ 场景4 已提交 (ID: e34f8011-4b8e-4777-9683-aabb9b013fd1) [09:48:47]
+
+🎨 场景5: childrens picture book illustration, a cute cartoo...
+✅ 场景5 已提交 (ID: 4fefff21-badc-4b54-a453-ccb3987348d7) [09:48:50]
+
+============================================================
+📊 提交完成: 5/5 成功
+📁 输出目录: /Users/zhaojunjie/ComfyUI/ComfyUI/output
+📋 进度文件: /Users/zhaojunjie/rourou/260916/generation_tasks.json
+⏳ 请等待 ComfyUI 完成生成...
+📈 队列: 1 运行中, 4 等待中

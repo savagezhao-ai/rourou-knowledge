@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🍞 面包为什么有洞？——面粉的魔法变身</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: "Microsoft YaHei", "PingFang SC", sans-serif;
+            background: linear-gradient(180deg, #ffeaa7 0%, #fab1a0 30%, #ff7675 60%, #fd79a8 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        .container {
+            max-width: 850px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 30px;
+            padding: 40px;
+            box-shadow: 0 25px 80px rgba(0,0,0,0.15);
+        }
+        .header {
+            text-align: center;
+            padding: 30px 0;
+            background: linear-gradient(135deg, #ff6b6b 0%, #feca57 50%, #48dbfb 100%);
+            border-radius: 20px;
+            margin-bottom: 30px;
+        }
+        .header h1 {
+            font-size: 48px;
+            color: white;
+            text-shadow: 3px 3px 6px rgba(0,0,0,0.2);
+        }
+        .subtitle {
+            font-size: 20px;
+            color: rgba(255,255,255,0.95);
+        }
+        h2 {
+            font-size: 32px;
+            color: #2d3436;
+            margin: 40px 0 20px;
+            padding: 15px 25px;
+            background: linear-gradient(90deg, #ff9ff3 0%, #feca57 100%);
+            border-radius: 15px;
+            display: inline-block;
+        }
+        p {
+            font-size: 20px;
+            line-height: 2;
+            color: #2d3436;
+            margin-bottom: 20px;
+            text-align: justify;
+        }
+        .image-container {
+            width: 100%;
+            margin: 30px 0;
+            text-align: center;
+        }
+        .dino-image {
+            width: 100%;
+            border-radius: 20px;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.2);
+        }
+        .image-caption {
+            color: #636e72;
+            font-size: 16px;
+            margin-top: 15px;
+            font-style: italic;
+            background: #ffeaa7;
+            display: inline-block;
+            padding: 8px 20px;
+            border-radius: 20px;
+        }
+        .fun-fact {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 25px;
+            border-radius: 20px;
+            margin: 25px 0;
+            font-size: 18px;
+            line-height: 1.8;
+        }
+        .fun-fact.pink {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+        }
+        .fun-fact.green {
+            background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);
+        }
+        .fun-fact.orange {
+            background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);
+        }
+        .fun-fact-title {
+            font-size: 22px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        .divider {
+            text-align: center;
+            font-size: 30px;
+            color: #ddd;
+            margin: 30px 0;
+        }
+        .quiz-section {
+            background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);
+            padding: 30px;
+            border-radius: 20px;
+            margin: 30px 0;
+        }
+        .quiz-title {
+            font-size: 28px;
+            color: #e17055;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .quiz-question {
+            background: white;
+            padding: 20px;
+            border-radius: 15px;
+            margin: 15px 0;
+            font-size: 18px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        .ending {
+            text-align: center;
+            padding: 40px 0;
+            margin-top: 40px;
+            background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);
+            border-radius: 20px;
+        }
+        .ending h3 { font-size: 32px; color: #2d3436; }
+        .ending p { text-align: center; font-size: 18px; color: #636e72; }
+        .back-home-btn {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 14px 30px;
+            background: rgba(0,0,0,0.08);
+            color: #2d3436;
+            text-decoration: none;
+            border-radius: 25px;
+            font-size: 18px;
+            border: 2px solid rgba(0,0,0,0.15);
+            transition: background 0.3s, transform 0.2s;
+        }
+        .back-home-btn:hover {
+            background: rgba(0,0,0,0.15);
+            transform: translateY(-2px);
+        }
+        .back-home-btn:active {
+            transform: translateY(0);
+        }
+        @media (max-width: 600px) {
+            .container { padding: 20px; }
+            h1 { font-size: 32px; }
+            h2 { font-size: 24px; }
+            p { font-size: 18px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🍞 面包为什么有洞？</h1>
+            <p class="subtitle">面粉、水和看不见的小生命，怎么变成香喷喷的面包？</p>
+        </div>
+        
+        <div class="image-container">
+            <img src="scene_01.webp" alt="面包的魔法变身" class="dino-image">
+            <div class="image-caption">🍞 一块面团的神奇旅程</div>
+        </div>
+
+        <h2>第一章：面包里住着看不见的「小厨师」</h2>
+        <p>把面粉、水和一点盐混在一起，揉一揉，你会得到一块又白又硬的面团——这时候它可一点都不好吃。可是，如果把它放在温暖的地方等上几个小时，面团会像吹气球一样慢慢鼓起来，变得又软又大！是谁在帮它「吹气」？</p>
+        <p>答案是一群看不见的小生命——<strong>酵母菌</strong>。它们小到要用显微镜才能看见，一个酵母菌只有一粒灰尘的几百分之一大。但是，几千亿个酵母菌一起工作，力量就大得惊人！它们最喜欢吃的就是面粉里的糖，吃饱之后会「打嗝」——吐出二氧化碳气体。这些气体被面团里的面筋网兜住，跑不出去，就把面团撑得鼓鼓的，像一个个小气球。</p>
+        <div class="fun-fact">
+            <div class="fun-fact-title">🤯 冷知识</div>
+            全世界最早的面包不是用酵母做的，而是用「酸面团」——让空气中的野生酵母和细菌自己掉进面团里发酵。古埃及人无意中发现，放了几天的面团会自己膨胀，烤出来竟然又松又软！从此面包的魔法就传遍了世界。
+        </div>
+
+        <div class="image-container">
+            <img src="scene_02.webp" alt="酵母菌在面团里工作" class="dino-image">
+            <div class="image-caption">🔬 显微镜下的酵母菌正在「吹气球」</div>
+        </div>
+
+        <h2>第二章：面团里的「气球工厂」——面筋</h2>
+        <p>你可能会问：气体吐出来了，为什么面团不会像漏气的气球一样瘪掉？因为面粉里藏着一位秘密英雄——<strong>面筋</strong>（麸质）。</p>
+        <p>当你加水揉面的时候，面粉里的两种蛋白质（麦谷蛋白和麦醇溶蛋白）会手拉手，织成一张超级有弹性的「网」。这张网就像无数个小小的塑料袋，把酵母吐出的二氧化碳气体牢牢兜住。揉面越久，网织得越密越有弹性，面团就越能鼓起来。</p>
+        <p>所以揉面不是随便捏捏——那是在「织网」！这也是为什么做面包要用高筋面粉：它蛋白质多，织出来的网结实，能兜住更多的气，面包就会更蓬松。用低筋面粉做面包，网太松，气都跑光了，面包就变成了「硬石头」。</p>
+        <div class="fun-fact pink">
+            <div class="fun-fact-title">👐 动手试试</div>
+            在家里揉面团，先揉 5 分钟，再揉 15 分钟，你会感觉到面团越来越「听话」——因为它里面的面筋网越织越牢。这就是「手套膜」的秘密：把面团拉开，薄得能透光却不破，说明网织好了！
+        </div>
+
+        <div class="image-container">
+            <img src="scene_03.webp" alt="面筋网兜住气体" class="dino-image">
+            <div class="image-caption">🧤 面筋网像无数个小塑料袋，兜住气体</div>
+        </div>
+
+        <h2>第三章：烤箱里的「大爆发」——为什么面包有洞</h2>
+        <p>面团发好了，放进滚烫的烤箱，奇迹发生了：面包在烤箱里还会再长大一圈！这是因为温度升高，酵母菌更加兴奋，拼命吐气；同时气体受热膨胀（热胀冷缩），小气泡越胀越大。</p>
+        <p>等到面包内部温度超过 60°C，酵母菌就热死了，面筋网也「定型」——像水泥一样凝固住，不再变化。这时候面包就有了固定的形状和松软的内部结构。</p>
+        <p>切开面包，你会看到一个个小洞——<strong>那每个洞都是一个气泡留下的「房子」</strong>！气泡多、大小均匀，面包就松软好吃；气泡少或者大小不一，面包就粗糙。面包师有一句行话：好面包 = 好面团 + 好火候。洞洞就是面包的「身份证」。</p>
+        <div class="fun-fact green">
+            <div class="fun-fact-title">🥖 面包界的「洞洞之王」</div>
+            法棍和夏巴塔面包的洞特别大，因为它们的面团含水量高，面筋网更有弹性，气泡可以胀得很大。而吐司面包的洞小而均匀，因为它被放在模具里烤，气泡被压得整整齐齐。
+        </div>
+
+        <div class="image-container">
+            <img src="scene_04.webp" alt="烤箱里膨胀的面包" class="dino-image">
+            <div class="image-caption">🔥 烤箱里的「大爆发」时刻</div>
+        </div>
+
+        <h2>第四章：面包放久了为什么会变硬？</h2>
+        <p>刚出炉的面包软软的，放一晚上就变硬了，是水分跑光了吗？其实不只是这样。</p>
+        <p>面包里的淀粉分子，在烤的时候像煮熟的粉丝一样舒展开，吸饱了水。但是放凉之后，它们会慢慢「回缩」，重新挤在一起，把水分挤出来——这个过程叫<strong>老化</strong>（回生）。所以面包变硬，主要是淀粉「重新排队」了，不只是水跑了。</p>
+        <p>有趣的是：放进冰箱冷藏，面包老化得更快；而冷冻（零下 18°C）反而能保鲜——因为低温把淀粉分子冻住了，不让它们重新排队。所以想吃软面包，要么当天吃完，要么直接冻起来，吃的时候再烤一烤。</p>
+        <div class="fun-fact orange">
+            <div class="fun-fact-title">💡 生活小妙招</div>
+            面包变硬了别扔！喷点水，放进烤箱烤 3 分钟，淀粉重新吸水舒展，面包又能「起死回生」变得软软的——这就是「回软」魔法。
+        </div>
+
+        <div class="image-container">
+            <img src="scene_05.webp" alt="面包的世界之旅" class="dino-image">
+            <div class="image-caption">🌍 从古埃及到你家餐桌的面包之旅</div>
+        </div>
+
+        <h2>第五章：面包的环球旅行</h2>
+        <p>今天，面包有成千上万种模样：法国的长棍、意大利的夏巴塔、德国的黑麦面包、印度的馕、中东的皮塔饼……它们都是面粉 + 水 + 发酵的「变奏曲」。</p>
+        <p>想一想：一块面包里，藏着看不见的微生物、会织网的蛋白质、热胀冷缩的气体，还有几千年前古埃及人的偶然发现。每一口松软，都是科学和历史的味道。</p>
+        <p>下次吃面包的时候，不妨先掰开看一看那些小洞洞——那里面住着的，可是一群勤劳的「小厨师」和它们吹出的神奇气球哦！</p>
+
+        <div class="quiz-section">
+            <div class="quiz-title">🧠 知识小测验</div>
+            <div class="quiz-question"><strong>1.</strong> 面包里的洞洞是什么留下的？<br> A. 水蒸气跑掉的位置　B. 酵母菌吐出的二氧化碳气泡　C. 揉面时混入的空气</div>
+            <div class="quiz-question"><strong>2.</strong> 面团能鼓起来，靠什么兜住气体？<br> A. 淀粉　B. 面筋网　C. 盐</div>
+            <div class="quiz-question"><strong>3.</strong> 做面包为什么要用高筋面粉？<br> A. 蛋白质多，面筋网结实　B. 颜色白　C. 价格便宜</div>
+            <div class="quiz-question"><strong>4.</strong> 面包放进冰箱冷藏会怎样？<br> A. 一直保鲜　B. 老化更快　C. 变得更软</div>
+            <div class="quiz-question"><strong>5.</strong> 想长期保存面包，最好的办法是？<br> A. 放冷藏　B. 放冷冻　C. 放太阳下晒</div>
+        </div>
+
+        <div class="ending">
+            <h3>—— 完 ——</h3>
+            <p>谢谢阅读！希望你学到了很多知识！</p>
+            <p style="margin-top: 10px; font-size: 14px; color: #b2bec3;">本故事由 AI 助手小龙为小朋友精心制作 🐉</p>
+            <div style="text-align: left; margin-top: 15px;">
+                <a href="../index.html" class="back-home-btn">🏠 返回首页</a>
+            </div>
+        </div>
+    </div>
+
+<!-- rourou-home-btn:start -->
+<style>
+#rourou-home-btn{position:fixed;left:14px;bottom:calc(14px + env(safe-area-inset-bottom,0px));z-index:9999;
+display:inline-flex;align-items:center;gap:6px;padding:10px 18px;border-radius:999px;
+background:rgba(255,255,255,0.92);color:#2d3436;font-size:15px;font-weight:600;
+text-decoration:none;box-shadow:0 4px 14px rgba(0,0,0,0.18);border:1px solid rgba(0,0,0,0.08);
+-webkit-backdrop-filter:blur(4px);backdrop-filter:blur(4px);transition:transform .15s,background .15s;}
+#rourou-home-btn:hover{background:#fff;transform:translateY(-2px);}
+@media (max-width:600px){#rourou-home-btn{padding:9px 14px;font-size:13px;left:10px;bottom:calc(10px + env(safe-area-inset-bottom,0px));}}
+</style>
+<a id="rourou-home-btn" href="../index.html">🏠 首页</a>
+<!-- rourou-home-btn:end -->
+</body>
+</html>

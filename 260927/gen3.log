@@ -1,0 +1,35 @@
+🚀 开始为 'rainbow optics raindrop' 生成插图（本次 5/5 张）...
+📐 通道: qwen | MFluxQwen API (Qwen-Image-2.1 4bit @ mlx-serve:11234)
+📐 尺寸: 1080×1280 | 步数: 20
+⏳ 预计单张 ≈300s、5 张 ≈25 分钟（CFG-free，别按 10 步的预期等）
+📁 直写目录: /Users/zhaojunjie/rourou/260927  （出图即到位，无需复制/改名）
+============================================================
+✅ ComfyUI 在线
+
+🎨 场景1: childrens science illustration, vertical. A beam o...
+   ↗ 直写: /Users/zhaojunjie/rourou/260927/scene_01.png
+✅ 场景1 已提交 (ID: e1cefb2a-2fca-4cce-b6e8-2062ebbac091) [10:18:18]
+
+🎨 场景2: childrens science illustration, vertical. Big clos...
+   ↗ 直写: /Users/zhaojunjie/rourou/260927/scene_02.png
+✅ 场景2 已提交 (ID: 1dd3e46c-82f5-49cd-bb2a-107a7482fbb9) [10:18:21]
+
+🎨 场景3: childrens science illustration, vertical. A simple...
+   ↗ 直写: /Users/zhaojunjie/rourou/260927/scene_03.png
+✅ 场景3 已提交 (ID: 4aff7b71-b445-447a-bee2-caa16b4731f1) [10:18:24]
+
+🎨 场景4: childrens science illustration, vertical. Two chil...
+   ↗ 直写: /Users/zhaojunjie/rourou/260927/scene_04.png
+✅ 场景4 已提交 (ID: 5f4675a6-e167-4610-905f-49cc667e33d5) [10:18:27]
+
+🎨 场景5: childrens science illustration, vertical. A double...
+   ↗ 直写: /Users/zhaojunjie/rourou/260927/scene_05.png
+✅ 场景5 已提交 (ID: a6887896-ed3b-4d68-9940-5746296d204f) [10:18:30]
+
+============================================================
+📊 提交完成: 5/5 成功
+📁 目标目录: /Users/zhaojunjie/rourou/260927  ← 图片出图即到位，无需复制
+🗄  归档目录: /Users/zhaojunjie/ComfyUI/ComfyUI/output（ComfyUI 内部留档，可忽略）
+📋 进度文件: /Users/zhaojunjie/rourou/260927/generation_tasks.json
+⏳ 请等待 ComfyUI 完成生成...
+📈 队列: 1 运行中, 4 等待中

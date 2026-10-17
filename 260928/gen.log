@@ -1,0 +1,35 @@
+🚀 开始为 'water vapor in air' 生成插图（本次 5/5 张）...
+📐 通道: qwen | MFluxQwen API (Qwen-Image-2.1 4bit @ mlx-serve:11234)
+📐 尺寸: 1080×1280 | 步数: 20
+⏳ 预计单张 ≈300s、5 张 ≈25 分钟（CFG-free，别按 10 步的预期等）
+📁 直写目录: /Users/zhaojunjie/rourou/260928  （出图即到位，无需复制/改名）
+============================================================
+✅ ComfyUI 在线
+
+🎨 场景1: childrens science illustration, vertical. A cozy l...
+   ↗ 直写: /Users/zhaojunjie/rourou/260928/scene_01.png
+✅ 场景1 已提交 (ID: ebc83b1d-845a-4ec1-9181-cb2bfc6ccd94) [13:48:15]
+
+🎨 场景2: childrens science illustration, vertical. A crowd ...
+   ↗ 直写: /Users/zhaojunjie/rourou/260928/scene_02.png
+✅ 场景2 已提交 (ID: ca69ad27-9de8-4f0a-8342-14f50aa52c29) [13:48:18]
+
+🎨 场景3: childrens science illustration, vertical. Two buse...
+   ↗ 直写: /Users/zhaojunjie/rourou/260928/scene_03.png
+✅ 场景3 已提交 (ID: d47a2863-f861-4365-b118-363e1046499c) [13:48:21]
+
+🎨 场景4: childrens science illustration, vertical. A close-...
+   ↗ 直写: /Users/zhaojunjie/rourou/260928/scene_04.png
+✅ 场景4 已提交 (ID: 4f516c97-4414-4cd3-8a97-12a0683c34c9) [13:48:24]
+
+🎨 场景5: childrens science illustration, vertical. A humid ...
+   ↗ 直写: /Users/zhaojunjie/rourou/260928/scene_05.png
+✅ 场景5 已提交 (ID: fc5f34f2-8b2d-4b57-b197-b177554913f4) [13:48:27]
+
+============================================================
+📊 提交完成: 5/5 成功
+📁 目标目录: /Users/zhaojunjie/rourou/260928  ← 图片出图即到位，无需复制
+🗄  归档目录: /Users/zhaojunjie/ComfyUI/ComfyUI/output（ComfyUI 内部留档，可忽略）
+📋 进度文件: /Users/zhaojunjie/rourou/260928/generation_tasks.json
+⏳ 请等待 ComfyUI 完成生成...
+📈 队列: 1 运行中, 4 等待中

@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>四季水果大冒险 🍎🍊🍇🍉</title>
+<style>
+:root {
+  --s1: #ffb3ba; --s2: #ffdfba; --s3: #ffffba; --s4: #baffc9; --s5: #bae1ff;
+  --bg: #fffef5; --text: #333; --accent: #ff6b6b;
+}
+* { margin:0; padding:0; box-sizing:border-box; }
+body {
+  font-family: 'PingFang SC','Hiragino Sans GB','Microsoft YaHei',sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.8;
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px 16px;
+}
+h2 { font-size:1.6em; margin:28px 0 12px; color:#e74c3c; border-left:5px solid #e74c3c; padding-left:12px; }
+h3 { font-size:1.2em; margin:16px 0 8px; color:#2c3e50; }
+p { margin:10px 0; font-size:1.05em; }
+img { max-width:100%; border-radius:16px; margin:12px 0; box-shadow:0 4px 16px rgba(0,0,0,.1); display:block; }
+.fun-box {
+  background: linear-gradient(135deg, #fef9e7, #fdebd0);
+  border:2px solid #f39c12;
+  border-radius:14px;
+  padding:14px 18px;
+  margin:16px 0;
+}
+.fun-box::before { content:'💡 趣味知识：'; font-weight:bold; color:#e67e22; }
+.test-box {
+  background: linear-gradient(135deg, #e8f8f5, #d5f5e3);
+  border:2px solid #27ae60;
+  border-radius:14px;
+  padding:18px;
+  margin:20px 0;
+}
+.test-box h2 { border-left-color:#27ae60; color:#27ae60; }
+.ans-btn {
+  background:#27ae60; color:white; border:none; padding:8px 20px;
+  border-radius:20px; font-size:1em; cursor:pointer; margin:8px 0;
+}
+.ans-btn:hover { background:#219a52; }
+.answer { display:none; background:#fef9e7; padding:12px; border-radius:10px; margin-top:10px; }
+.season-tag {
+  display:inline-block; padding:4px 14px; border-radius:20px;
+  font-weight:bold; font-size:.9em; margin-right:8px;
+}
+.spring { background:#ffb3ba; } .summer { background:#ff6961; color:#fff; }
+.autumn { background:#f39c12; color:#fff; } .winter { background:#85c1e9; }
+.ending {
+  background:linear-gradient(135deg, #f9e79f, #fadbd8);
+  border-radius:18px; padding:24px; margin:28px 0;
+  text-align:center; font-size:1.1em;
+  display:flex; flex-direction:column; align-items:center; gap:16px;
+}
+.ending a {
+  background:#e74c3c; color:white; text-decoration:none;
+  padding:10px 24px; border-radius:25px; font-size:1.1em;
+  transition:0.2s;
+}
+.ending a:hover { background:#c0392b; transform:scale(1.05); }
+.chapter-icon { font-size:1.5em; margin-right:8px; }
+.compare-table {
+  width:100%; border-collapse:collapse; margin:16px 0;
+  border-radius:12px; overflow:hidden;
+}
+.compare-table th { background:#f39c12; color:white; padding:10px; }
+.compare-table td { padding:10px; text-align:center; border:1px solid #eee; }
+.compare-table tr:nth-child(even) { background:#fef9e7; }
+</style>
+</head>
+<body>
+
+<h1>🍎🍊🍇🍉 四季水果大冒险！</h1>
+<p>打开你的味蕾雷达——我们要穿越春夏秋冬，寻找每个季节最美味的水果秘密！</p>
+
+<img src="scene_01.webp" alt="四季水果大冒险">
+
+<!-- 第一章 -->
+<h2><span class="chapter-icon">🌸</span>第一章：春天的甜蜜使者</h2>
+<span class="season-tag spring">春天 3-5月</span>
+
+<p>春天来了，大地从冬眠中醒来。最先出来"报到"的水果是谁呢？</p>
+
+<h3>🍓 草莓——春天的第一抹红</h3>
+<p>草莓不是真正的"果实"！你吃的那红色部分是<strong>花托</strong>（花的下半部分）膨胀变来的。草莓表面那些小小的"芝麻粒"才是它真正的果实，每个小粒里面都藏着一颗种子！</p>
+
+<div class="fun-box">一颗草莓表面平均有200颗小种子。如果你数一颗草莓的种子数对得上，那你就是——草莓鉴定师！</div>
+
+<h3>🍒 樱桃——树上挂满的红宝石</h3>
+<p>樱桃树在春天开花，粉白色小花像雪花飘落。花谢后一个月，绿绿的小樱桃就开始变红。樱桃的果柄（那个小把子）越长，说明越新鲜哦！</p>
+
+<div class="fun-box">全世界有超过1000个樱桃品种！中国山东的大樱桃个头能和一元硬币比大小，而欧洲的"车厘子"其实也是樱桃的一种。</div>
+
+<img src="scene_02.webp" alt="春天水果">
+
+<!-- 第二章 -->
+<h2><span class="chapter-icon">☀️</span>第二章：夏天的清凉炸弹</h2>
+<span class="season-tag summer">夏天 6-8月</span>
+
+<p>太阳像个大火球挂在天上，这时候你需要——<strong>夏季水果特工队</strong>！</p>
+
+<h3>🍉 西瓜——92%都是水</h3>
+<p>西瓜是世界上含水量最高的水果之一，比你的身体含水量还高！古人叫它"寒瓜"，因为它能清热解暑。怎么挑甜西瓜？记住口诀：<strong>一看纹路清、二拍声音脆、三看肚脐小</strong>。</p>
+
+<div class="fun-box">世界上最大的西瓜重达159公斤，比一头小猪还重！这个纪录2013年在意大利创造，至今未被打破。</div>
+
+<h3>🥭 芒果——热带水果之王</h3>
+<p>芒果原产印度，有4000多年种植史。一个芒果含有你一天所需维生素C的60%。印度人把芒果视为"圣果"，婚礼上要用芒果叶装饰门楣，象征幸福和繁荣。</p>
+
+<div class="fun-box">芒果皮里含有漆酚（和毒藤一样的东西），有人摸了会过敏。所以剥芒果之前最好用水冲一冲，或者用勺子刮着吃！</div>
+
+<img src="scene_03.webp" alt="夏天水果">
+
+<!-- 第三章 -->
+<h2><span class="chapter-icon">🍂</span>第三章：秋天的丰收派对</h2>
+<span class="season-tag autumn">秋天 9-11月</span>
+
+<p>秋天是水果们的"年度大会"，各种果子挤满了果篮！</p>
+
+<h3>🍎 苹果——每天一个，医生远离我</h3>
+<p>这句西方谚语不是胡说的：苹果富含果胶（一种可溶性纤维），能帮肠道做"大扫除"。苹果皮里的花青素（让皮变红的物质）是天然的抗氧化剂。吃苹果<strong>别削皮</strong>，营养翻倍！</p>
+
+<div class="fun-box">全世界有7500多种苹果！如果你每天吃一种，要花超过20年才能尝遍。中国新疆阿克苏的"冰糖心"苹果切开会看到半透明的糖心，超甜的！</div>
+
+<h3>🍐 梨——会"唱歌"的果子</h3>
+<p>咬一口脆梨，咔嚓咔嚓像在嘴里开演唱会。梨的水分比西瓜少一点点，但甜度更高。中医说梨能润肺止咳，冬天煮一碗冰糖雪梨，嗓子立刻舒服了～</p>
+
+<div class="fun-box">梨的学名叫Pyrus，听起来像不像"派大星"？梨和苹果、桃子、樱桃都是"蔷薇科"大家族的一员，他们是亲戚！</div>
+
+<img src="scene_04.webp" alt="秋天水果">
+
+<!-- 第四章 -->
+<h2><span class="chapter-icon">❄️</span>第四章：冬天的维C宝藏</h2>
+<span class="season-tag winter">冬天 12-2月</span>
+
+<p>北风呼呼吹，冬天的水果虽然种类少，但个个都是<strong>维生素炸弹</strong>！</p>
+
+<h3>🍊 柑橘家族——冬天里的太阳</h3>
+<p>橘子、橙子、柚子、柠檬……它们都是一家人！柑橘家族有一个超能力——<strong>杂交</strong>。柚子和橘子杂交生出了橙子，橙子和柚子回交生出了葡萄柚。它们之间的关系比电视剧还复杂！</p>
+
+<div class="fun-box">一个中等大小的橙子含约70毫克维生素C，刚好够你一天所需。冬天多吃柑橘，感冒离你远远的。橘皮晒干就是中药"陈皮"，越陈越值钱！</div>
+
+<h3>🍈 柿子——树上长出的"蜜罐子"</h3>
+<p>熟透的柿子像一个个小灯笼挂在光秃秃的枝头。柿子含糖量高达18%，是水果界的"甜蜜担当"。但记住——<strong>千万别空腹吃</strong>，也不要和螃蟹一起吃，容易肚子不舒服。</p>
+
+<table class="compare-table">
+<tr><th>季节</th><th>代表水果</th><th>超能力</th></tr>
+<tr><td>🌸 春</td><td>草莓、樱桃</td><td>唤醒身体</td></tr>
+<tr><td>☀️ 夏</td><td>西瓜、芒果</td><td>补水降温</td></tr>
+<tr><td>🍂 秋</td><td>苹果、梨</td><td>润肺养胃</td></tr>
+<tr><td>❄️ 冬</td><td>柑橘、柿子</td><td>维C护盾</td></tr>
+</table>
+
+<img src="scene_05.webp" alt="冬天的维C宝藏">
+
+<!-- 第五章 -->
+<h2><span class="chapter-icon">🌍</span>第五章：你的水果地图</h2>
+
+<p>现在你已经认识了每个季节的"水果明星"。大自然就像一个永远不会关门的<strong>水果自助餐厅</strong>，每个季节都为你准备好了不同的美味。</p>
+
+<h3>🧠 为什么"应季水果"更好吃？</h3>
+<p>应季水果是在自然条件下成熟的，阳光、温度、水分都刚刚好，所以糖分积累得更充分。反季水果往往在大棚里提前摘、靠人工手段催熟——能吃，但味道差远了，还更贵！</p>
+
+<div class="fun-box">一颗从树上自然熟透掉下来的芒果，比冷藏运输两周的芒果甜2-3倍！这就是为什么去果园现摘的水果特别好吃。</div>
+
+<h3>🛒 和爸爸妈妈去逛水果摊！</h3>
+<p>下次去超市或菜场，试试当一回<strong>水果侦探</strong>：<br>
+🔍 看看摊子上最多的是什么？<br>
+🔍 摸一摸、闻一闻，哪个闻着最香？<br>
+🔍 问问老板："这是当季的吗？哪里产的？"<br>
+记住：<strong>当地、当季、自然熟</strong>——这是挑选最棒水果的三大秘诀！</p>
+
+<div class="fun-box">中国是世界第一大水果生产国，每年产出超过2.9亿吨水果！平均每个中国人一年吃掉约200公斤水果。你拖后腿了吗？🍌🍎🍇</div>
+
+<!-- 互动测试 -->
+<div class="test-box">
+<h2>🧩 四季水果大挑战！</h2>
+<p>答完5题，你就是水果小达人👇</p>
+
+<p><strong>1. 草莓我们吃的红色部分是它的什么？</strong></p>
+<p>A) 果实 &nbsp; B) 花托 &nbsp; C) 叶子 &nbsp; D) 根</p>
+<button class="ans-btn" onclick="this.nextSibling.style.display='block'">查看答案</button>
+<p class="answer">✅ B) 花托！表面那些小芝麻粒才是真果实</p>
+
+<p><strong>2. 哪种水果含水量最高？</strong></p>
+<p>A) 苹果 &nbsp; B) 香蕉 &nbsp; C) 西瓜 &nbsp; D) 梨</p>
+<button class="ans-btn" onclick="this.nextSibling.style.display='block'">查看答案</button>
+<p class="answer">✅ C) 西瓜！92%都是水，天然"水壶"</p>
+
+<p><strong>3. 橙子的"父母"是谁？</strong></p>
+<p>A) 苹果+梨 &nbsp; B) 柚子+橘子 &nbsp; C) 柠檬+芒果 &nbsp; D) 西瓜+草莓</p>
+<button class="ans-btn" onclick="this.nextSibling.style.display='block'">查看答案</button>
+<p class="answer">✅ B) 柚子+橘子！柑橘家族的关系比电视剧还复杂</p>
+
+<p><strong>4. 选水果的三大秘诀是什么？</strong></p>
+<p>A) 贵的、进口的、包装好的 &nbsp; B) 当地、当季、自然熟 &nbsp; C) 越大越好、越红越好 &nbsp; D) 随便拿</p>
+<button class="ans-btn" onclick="this.nextSibling.style.display='block'">查看答案</button>
+<p class="answer">✅ B) 当地、当季、自然熟！这是水果三宝</p>
+
+<p><strong>5. 全世界大约有多少种苹果？</strong></p>
+<p>A) 100种 &nbsp; B) 500种 &nbsp; C) 3000种 &nbsp; D) 7500种</p>
+<button class="ans-btn" onclick="this.nextSibling.style.display='block'">查看答案</button>
+<p class="answer">✅ D) 7500多种！每天吃一种要花20年</p>
+</div>
+
+<div class="ending">
+<p><strong>🍎🍊🍇🍉 水果的世界比你想象的更精彩！</strong></p>
+<p>每个季节都有自己独特的味道，大自然从来不重复。</p>
+<p>今天就去尝一种你没吃过的水果吧！</p>
+<a href="../index.html">🏠 返回首页</a>
+</div>
+
+
+<!-- rourou-home-btn:start -->
+<style>
+#rourou-home-btn{position:fixed;left:14px;bottom:calc(14px + env(safe-area-inset-bottom,0px));z-index:9999;
+display:inline-flex;align-items:center;gap:6px;padding:10px 18px;border-radius:999px;
+background:rgba(255,255,255,0.92);color:#2d3436;font-size:15px;font-weight:600;
+text-decoration:none;box-shadow:0 4px 14px rgba(0,0,0,0.18);border:1px solid rgba(0,0,0,0.08);
+-webkit-backdrop-filter:blur(4px);backdrop-filter:blur(4px);transition:transform .15s,background .15s;}
+#rourou-home-btn:hover{background:#fff;transform:translateY(-2px);}
+@media (max-width:600px){#rourou-home-btn{padding:9px 14px;font-size:13px;left:10px;bottom:calc(10px + env(safe-area-inset-bottom,0px));}}
+</style>
+<a id="rourou-home-btn" href="../index.html">🏠 首页</a>
+<!-- rourou-home-btn:end -->
+</body>
+</html>
