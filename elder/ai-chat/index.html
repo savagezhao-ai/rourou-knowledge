@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>和 AI 聊天 · 五堂课</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+  body {
+    font-family: -apple-system, "PingFang SC", "Microsoft YaHei", sans-serif;
+    background: #f4f1ea; color: #1f1c17; min-height: 100vh;
+    display: flex; justify-content: center; font-size: 18px; line-height: 1.7;
+  }
+  .app { width: 100%; max-width: 460px; min-height: 100vh; display: flex; flex-direction: column; }
+
+  .top { padding: 20px 22px 14px; background: #fffdf8; border-bottom: 1px solid #e8e2d5; position: sticky; top: 0; z-index: 10; }
+  .row { display: flex; align-items: center; gap: 12px; }
+  .tag { font-size: 15px; color: #8a8272; }
+  .spk { margin-left: auto; width: 46px; height: 46px; border-radius: 50%; border: 1px solid #e0d9c9; background: #fffdf8; font-size: 21px; cursor: pointer; flex: 0 0 auto; }
+  .spk.on { background: #2f6b4f; border-color: #2f6b4f; }
+  h1 { font-size: 25px; font-weight: 600; margin-top: 6px; }
+
+  .chat { flex: 1; padding: 20px; display: flex; flex-direction: column; gap: 14px; overflow-y: auto; }
+  .b { max-width: 88%; padding: 15px 18px; border-radius: 18px; font-size: 19px; line-height: 1.65; animation: pop .25s ease both; }
+  .b.ai { background: #fffdf8; border: 1px solid #e8e2d5; align-self: flex-start; border-bottom-left-radius: 5px; }
+  .b.me { background: #2f6b4f; color: #fff; align-self: flex-end; border-bottom-right-radius: 5px; }
+  @keyframes pop { from { opacity: 0; transform: translateY(7px); } to { opacity: 1; transform: none; } }
+
+  .bottom { padding: 0 20px 30px; position: sticky; bottom: 0; background: linear-gradient(to top, #f4f1ea 75%, rgba(244,241,234,0)); }
+  .tip {
+    background: #fff8e6; border: 1.5px solid #eed79c; border-radius: 18px;
+    padding: 18px 20px; font-size: 20px; line-height: 1.6; color: #4f3b0b; margin-bottom: 18px;
+  }
+  .tip b { color: #2f6b4f; }
+  .big {
+    display: block; width: 100%; padding: 22px; border: none; border-radius: 20px;
+    background: #2f6b4f; color: #fff; font-size: 23px; font-family: inherit;
+    cursor: pointer; box-shadow: 0 8px 24px rgba(47,107,79,.3); transition: transform .12s;
+  }
+  .big:active { transform: scale(.975); }
+  .big.alt { background: #b5741c; box-shadow: 0 8px 24px rgba(181,116,28,.28); }
+  .big.ghost { background: #fffdf8; color: #6b6459; border: 1.5px solid #ded6c5; box-shadow: none; }
+  .big.pulse { animation: pulse 1.6s infinite; }
+  @keyframes pulse {
+    0% { box-shadow: 0 8px 24px rgba(47,107,79,.3), 0 0 0 0 rgba(47,107,79,.45); }
+    70% { box-shadow: 0 8px 24px rgba(47,107,79,.3), 0 0 0 18px rgba(47,107,79,0); }
+    100% { box-shadow: 0 8px 24px rgba(47,107,79,.3), 0 0 0 0 rgba(47,107,79,0); }
+  }
+
+  .wave { display: flex; gap: 5px; align-items: flex-end; height: 30px; justify-content: center; }
+  .wave i { width: 6px; background: #2f6b4f; border-radius: 3px; animation: w .9s infinite ease-in-out; }
+  .wave i:nth-child(1) { height: 12px; }
+  .wave i:nth-child(2) { height: 26px; animation-delay: .12s; }
+  .wave i:nth-child(3) { height: 30px; animation-delay: .24s; }
+  .wave i:nth-child(4) { height: 20px; animation-delay: .36s; }
+  .wave i:nth-child(5) { height: 14px; animation-delay: .48s; }
+  @keyframes w { 0%,100% { transform: scaleY(.45); } 50% { transform: scaleY(1); } }
+
+  @media (min-width: 520px) {
+    body { padding: 24px 0; align-items: flex-start; }
+    .app { min-height: calc(100vh - 48px); max-height: calc(100vh - 48px); border-radius: 26px; overflow: hidden; box-shadow: 0 20px 60px rgba(60,48,30,.18); background: #f4f1ea; }
+  }
+</style>
+</head>
+<body>
+<div class="app">
+  <div class="top">
+    <div class="row">
+      <span class="tag" id="tag">第 1 课 / 共 5 课</span>
+      <button class="spk" id="spk" onclick="toggleSpeak()" aria-label="朗读">🔊</button>
+    </div>
+    <h1 id="title">叫醒它，说第一句</h1>
+  </div>
+
+  <div class="chat" id="chat"></div>
+
+  <div class="bottom">
+    <div class="tip" id="tip">点一下下面的大按钮。</div>
+    <button class="big" id="btn" onclick="onTap()">🎤 按住说话</button>
+  </div>
+</div>
+
+<script>
+/* ============================================================
+   和 AI 聊天 · 五堂课
+   极简规则：一屏一句话 + 一个按钮。
+   按钮点完变成「继续」，老人永远只需要点同一个位置。
+   ============================================================ */
+
+var LESSONS = [
+  {
+    title: "叫醒它，说第一句",
+    intro: "您好，我是 AI 小助手。慢慢来，我们一步一步练。",
+    steps: [
+      { tip: "点一下大按钮，然后就说话。", btn: "🎤 按住说话", kind: "mic",
+        me: "你好，你能听见我说话吗？",
+        ai: "听见了。您慢慢说，我在这儿。",
+        after: "看到了吗？<b>你一个字都没打</b>，它也听懂了。" },
+      { tip: "就记住一句：<b>按住话筒，说话就行</b>。", btn: "下一课 →", kind: "next" }
+    ]
+  },
+  {
+    title: "问一件真事",
+    intro: "这一课，问一件你真犯愁的事。",
+    steps: [
+      { tip: "这次问一件你真犯愁的事。点按钮。", btn: "🎤 按住说话", kind: "mic",
+        me: "我血压有点高，还能吃咸菜吗？",
+        ai: "咸菜含盐多，血压高的人最好少吃。可以用醋、葱、姜来提味。",
+        after: "答得挺像样吧。" },
+      { tip: "但记住：<b>病和药，最后要问真医生</b>。它只是帮你把问题想清楚。", btn: "下一课 →", kind: "next" }
+    ]
+  },
+  {
+    title: "没听清，就让它再说",
+    intro: "没听清的时候，不用着急，也不用不好意思。",
+    steps: [
+      { tip: "它说快了你没听清，就点这个按钮。", btn: "🔁 再说一遍", kind: "more",
+        me: "你刚才说的我没听清，再说一遍。",
+        ai: "好，我慢慢说。一、咸菜少吃。二、用醋和葱姜代替咸味。三、每天量一次血压。",
+        after: "这次它<b>说慢了，还分成三条</b>。" },
+      { tip: "它<b>不会烦</b>。你问十遍，它答十遍。", btn: "下一课 →", kind: "next" }
+    ]
+  },
+  {
+    title: "看不清，就拍给它",
+    intro: "看不清的东西，可以拍给我看。",
+    steps: [
+      { tip: "药盒上的小字看不清？点按钮拍给它。", btn: "📷 拍照问", kind: "camera",
+        me: "（拍了一张药盒的照片）这个药一天吃几次？",
+        ai: "药盒上写的是：一次 1 片，一日 3 次，饭后服用。服药期间不要喝酒。",
+        after: "小字它也读出来了。" },
+      { tip: "记四个字：<b>拍、问、看、核</b>。拍给它，问一句，看清答案，再跟药盒对一遍。", btn: "下一课 →", kind: "next" }
+    ]
+  },
+  {
+    title: "让它替你说句话",
+    intro: "最后一课，让我帮你写句话。",
+    steps: [
+      { tip: "最后一课，让它帮你写句话。点按钮。", btn: "🎤 按住说话", kind: "mic",
+        me: "帮我给孙子写句生日祝福，他今年 9 岁。",
+        ai: "祝你九岁生日快乐！愿你像小树一样，一年比一年长得高，天天都有新发现。",
+        after: "这句你可以直接发到家人群里。" },
+      { tip: "五课走完了。你不是学会了用 AI，是<b>多了一个肯听你说话的人</b>。", btn: "从头再练", kind: "restart" }
+    ]
+  }
+];
+
+var li = 0, si = 0, waiting = false, speakOn = false, phase = "act";
+
+function esc(s) { return String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;"); }
+
+function bubble(who, text) {
+  var c = document.getElementById("chat");
+  var el = document.createElement("div");
+  el.className = "b " + who;
+  el.textContent = text;
+  c.appendChild(el);
+  c.scrollTop = c.scrollHeight;
+  if (who === "ai" && speakOn) speak(text);
+  return el;
+}
+
+function setTip(html) {
+  document.getElementById("tip").innerHTML = html;
+}
+
+function setBtn(label, cls) {
+  var b = document.getElementById("btn");
+  b.textContent = label;
+  b.className = "big" + (cls ? " " + cls : "");
+}
+
+function startLesson(i) {
+  li = i; si = 0; waiting = false; phase = "act";
+  document.getElementById("chat").innerHTML = "";
+  document.getElementById("tag").textContent = "第 " + (i + 1) + " 课 / 共 " + LESSONS.length + " 课";
+  document.getElementById("title").textContent = LESSONS[i].title;
+  bubble("ai", LESSONS[i].intro);
+  paint();
+}
+
+function paint() {
+  var s = LESSONS[li].steps[si];
+  if (!s) { startLesson(Math.min(li + 1, LESSONS.length - 1)); return; }
+  setTip(s.tip);
+  if (s.kind === "next") setBtn(s.btn, "");
+  else if (s.kind === "restart") setBtn(s.btn, "ghost");
+  else setBtn(s.btn, "pulse");
+  if (speakOn) speak(s.tip.replace(/<[^>]+>/g, ""));
+}
+
+function onTap() {
+  if (waiting) return;
+  var s = LESSONS[li].steps[si];
+  if (!s) return;
+
+  // 上一次动作播完了，现在点的是「继续」
+  if (phase === "cont") { phase = "act"; paint(); return; }
+
+  if (s.kind === "next") { startLesson(li + 1); return; }
+  if (s.kind === "restart") { startLesson(0); return; }
+
+  // 动作步：先出波形，再出对话
+  waiting = true;
+  setBtn("正在听…", "ghost");
+
+  var c = document.getElementById("chat");
+  var w = document.createElement("div");
+  w.className = "b ai";
+  w.innerHTML = '<div class="wave"><i></i><i></i><i></i><i></i><i></i></div>';
+  c.appendChild(w);
+  c.scrollTop = c.scrollHeight;
+  if (speakOn) speak("");
+
+  setTimeout(function () {
+    w.remove();
+    bubble("me", s.me);
+    setTimeout(function () {
+      bubble("ai", s.ai);
+      setTip(s.after + "<br>点下面的按钮继续。");
+      setBtn("继续 →", "");
+      waiting = false;
+      si++;
+      phase = "cont";
+    }, 800);
+  }, 1400);
+}
+
+/* 朗读 */
+var zh = null;
+function pick() {
+  if (!window.speechSynthesis) return;
+  var v = speechSynthesis.getVoices() || [];
+  zh = v.filter(function (x) { return /zh|Chinese|Tingting/i.test(x.lang + x.name); })[0] || null;
+}
+if (window.speechSynthesis) { pick(); speechSynthesis.onvoiceschanged = pick; }
+function speak(t) {
+  if (!window.speechSynthesis || !t) return;
+  speechSynthesis.cancel();
+  var u = new SpeechSynthesisUtterance(t.replace(/\s+/g, " "));
+  u.lang = "zh-CN"; u.rate = 0.82;
+  if (zh) u.voice = zh;
+  speechSynthesis.speak(u);
+}
+function toggleSpeak() {
+  speakOn = !speakOn;
+  document.getElementById("spk").classList.toggle("on", speakOn);
+  document.getElementById("spk").textContent = speakOn ? "🔈" : "🔊";
+  if (speakOn) speak(document.getElementById("tip").textContent);
+  else if (window.speechSynthesis) speechSynthesis.cancel();
+}
+
+startLesson(0);
+</script>
+</body>
+</html>
