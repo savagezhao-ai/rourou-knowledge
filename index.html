@@ -3,19 +3,28 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>🌟 肉肉的知识宝库</title>
+    <title>🏛️ 肉肉的 AI 科研中心</title>
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { font-family: "Microsoft YaHei","PingFang SC","Hiragino Sans GB",sans-serif; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); min-height: 100vh; padding: 20px; }
+        body { font-family: -apple-system, "PingFang SC", "Microsoft YaHei", "Hiragino Sans GB", "Noto Sans SC", sans-serif; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); min-height: 100vh; padding: 20px; }
         .container { max-width: 900px; margin: 0 auto; }
         .header { text-align: center; padding: 40px 20px; background: rgba(255,255,255,0.95); border-radius: 30px; margin-bottom: 25px; box-shadow: 0 20px 60px rgba(0,0,0,0.2); position: relative; overflow: hidden; }
-        .header::before { content: "📚"; position: absolute; font-size: 100px; opacity: 0.1; top: -20px; right: -20px; transform: rotate(-15deg); }
-        .header h1 { font-size: 42px; color: #764ba2; margin-bottom: 10px; text-shadow: 2px 2px 4px rgba(0,0,0,0.1); }
-        .header .subtitle { font-size: 18px; color: #999; margin-bottom: 20px; }
-        .header .stats { display: flex; justify-content: center; gap: 30px; margin-top: 20px; }
-        .stat-item { text-align: center; }
-        .stat-number { font-size: 32px; font-weight: bold; color: #667eea; }
-        .stat-label { font-size: 14px; color: #999; }
+        .header::before { content: "🔬"; position: absolute; font-size: 110px; opacity: 0.08; top: -24px; right: -18px; transform: rotate(-15deg); }
+        .header h1 { font-size: 42px; color: #764ba2; margin-bottom: 12px; text-shadow: 2px 2px 4px rgba(0,0,0,0.1); letter-spacing: 1px; }
+        .header .subtitle { font-size: 17px; color: #8a8a9e; margin-bottom: 0; line-height: 1.7; }
+
+        /* 顶部两个入口 */
+        .header-actions { display: flex; justify-content: center; flex-wrap: wrap; gap: 12px; margin-top: 26px; }
+        .action-btn { display: inline-flex; align-items: center; gap: 8px; padding: 12px 24px; border-radius: 30px; border: 2px solid transparent; font-size: 16px; font-family: inherit; cursor: pointer; transition: all 0.22s ease; }
+        .action-btn.about { background: #f4f1fb; color: #5b3d8f; border-color: #ddd3f5; }
+        .action-btn.about:hover { background: #ebe4fa; transform: translateY(-2px); box-shadow: 0 8px 22px rgba(118,75,162,0.18); }
+        .action-btn.quiz { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: #fff; box-shadow: 0 6px 20px rgba(102,126,234,0.35); }
+        .action-btn.quiz:hover { transform: translateY(-2px); box-shadow: 0 10px 28px rgba(102,126,234,0.45); }
+        .action-btn .badge { font-size: 11px; background: rgba(255,255,255,0.28); padding: 2px 8px; border-radius: 10px; }
+
+        /* 老人分类：暖色，与其它分类区分 */
+        .filter-btn.elder-highlight { border-color: rgba(255,214,180,0.85); background: rgba(255,196,150,0.28); }
+        .filter-btn.elder-highlight.active { background: #ffe8d6; color: #a0522d; border-color: #ffe8d6; }
 
         /* 分类筛选栏 */
         .filter-bar { display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; margin-bottom: 25px; }
@@ -41,6 +50,7 @@
         .tag.cat-health { background: #a29bfe; color: #311b92; }
         .tag.cat-toy { background: #6fe3e1; color: #00494d; }
         .tag.cat-note { background: #ffeaa7; color: #7a5c00; }
+        .tag.cat-elder { background: #ffd6a8; color: #8a4b0f; }
 
         .empty-state { text-align: center; padding: 60px 20px; background: rgba(255,255,255,0.95); border-radius: 20px; box-shadow: 0 10px 40px rgba(0,0,0,0.15); }
         .empty-state .icon { font-size: 80px; margin-bottom: 20px; }
@@ -50,40 +60,83 @@
         .refresh-btn { position: fixed; top: 25px; left: 25px; width: 50px; height: 50px; border-radius: 50%; background: rgba(255,255,255,0.9); border: none; font-size: 24px; cursor: pointer; box-shadow: 0 4px 15px rgba(0,0,0,0.2); z-index: 1000; transition: transform 0.2s, box-shadow 0.2s; display: flex; align-items: center; justify-content: center; }
         .refresh-btn:hover { transform: scale(1.1); box-shadow: 0 6px 20px rgba(0,0,0,0.3); }
         .refresh-btn:active { transform: scale(0.95); }
-        @media (max-width: 600px) { .header h1 { font-size: 28px; } .article-header { flex-direction: column; gap: 10px; } .article-title { font-size: 20px; } .filter-btn { padding: 8px 14px; font-size: 13px; } }
+        /* ===== 关于本站 弹窗 ===== */
+        .modal-mask { position: fixed; inset: 0; background: rgba(38,26,58,0.58); backdrop-filter: blur(5px); display: none; align-items: flex-start; justify-content: center; padding: 40px 20px; z-index: 2000; overflow-y: auto; }
+        .modal-mask.open { display: flex; }
+        .modal { background: #fff; border-radius: 24px; max-width: 720px; width: 100%; position: relative; box-shadow: 0 30px 80px rgba(0,0,0,0.35); overflow: hidden; animation: modalIn 0.26s ease; }
+        @keyframes modalIn { from { opacity: 0; transform: translateY(16px) scale(0.98); } to { opacity: 1; transform: none; } }
+        .modal-head { padding: 32px 34px 22px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: #fff; position: relative; }
+        .modal-head h2 { font-size: 26px; margin-bottom: 8px; }
+        .modal-head p { font-size: 15px; opacity: 0.88; line-height: 1.6; }
+        .modal-close { position: absolute; top: 18px; right: 18px; width: 36px; height: 36px; border-radius: 50%; border: none; background: rgba(255,255,255,0.2); color: #fff; font-size: 20px; cursor: pointer; line-height: 1; transition: background 0.2s; }
+        .modal-close:hover { background: rgba(255,255,255,0.35); }
+        .modal-body { padding: 28px 34px 34px; }
+        .lede { font-size: 17px; line-height: 1.85; color: #2d3436; padding: 18px 20px; background: #f7f5fc; border-left: 4px solid #764ba2; border-radius: 0 14px 14px 0; margin-bottom: 26px; }
+        .m-sec { margin-bottom: 26px; }
+        .m-sec h3 { font-size: 17px; color: #5b3d8f; margin-bottom: 12px; display: flex; align-items: center; gap: 8px; }
+        .m-sec h3::after { content: ""; flex: 1; height: 1px; background: #eceaf3; }
+        .m-sec p { font-size: 15px; color: #4a4a5a; line-height: 1.8; }
+        .split { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+        .split-col { padding: 16px 18px; border-radius: 14px; }
+        .split-col.human { background: #fff4e8; border: 1px solid #ffd9b0; }
+        .split-col.machine { background: #eef2fd; border: 1px solid #ccd8f8; }
+        .split-col h4 { font-size: 14px; margin-bottom: 10px; }
+        .split-col.human h4 { color: #a0522d; }
+        .split-col.machine h4 { color: #3b5bdb; }
+        .split-col ul { list-style: none; }
+        .split-col li { font-size: 14px; color: #4a4a5a; line-height: 1.85; padding-left: 14px; position: relative; }
+        .split-col li::before { content: "·"; position: absolute; left: 4px; }
+        .steps { list-style: none; counter-reset: s; }
+        .steps li { counter-increment: s; position: relative; padding: 0 0 18px 46px; font-size: 15px; color: #4a4a5a; line-height: 1.75; }
+        .steps li::before { content: counter(s); position: absolute; left: 0; top: 0; width: 30px; height: 30px; border-radius: 50%; background: #f0ecfa; color: #764ba2; font-size: 14px; font-weight: bold; display: flex; align-items: center; justify-content: center; }
+        .steps li:last-child { padding-bottom: 0; }
+        .steps li b { color: #2d3436; display: block; margin-bottom: 2px; }
+        .stack { display: flex; flex-wrap: wrap; gap: 8px; }
+        .chip { padding: 7px 14px; border-radius: 20px; font-size: 13px; background: #f2f4f8; color: #4a4a5a; }
+        .chip.hot { background: #eef2fd; color: #3b5bdb; }
+        .modal-foot { margin-top: 26px; padding-top: 20px; border-top: 1px dashed #e6e3ef; font-size: 13px; color: #8a8a9e; line-height: 1.8; }
+
+        /* ===== 轻提示 ===== */
+        .toast { position: fixed; left: 50%; bottom: 40px; transform: translate(-50%, 16px); background: rgba(45,52,54,0.94); color: #fff; padding: 14px 22px; border-radius: 14px; font-size: 14px; line-height: 1.7; max-width: 88vw; text-align: center; opacity: 0; transition: opacity .28s ease, transform .28s ease; z-index: 3000; pointer-events: none; }
+        .toast.show { opacity: 1; transform: translate(-50%, 0); }
+
+        @media (max-width: 600px) {
+            .header h1 { font-size: 28px; }
+            .header .subtitle { font-size: 15px; }
+            .article-header { flex-direction: column; gap: 10px; }
+            .article-title { font-size: 20px; }
+            .filter-btn { padding: 8px 14px; font-size: 13px; }
+            .action-btn { padding: 10px 18px; font-size: 14px; }
+            .modal-mask { padding: 16px 12px; }
+            .modal-head { padding: 26px 22px 18px; }
+            .modal-head h2 { font-size: 21px; }
+            .modal-body { padding: 22px; }
+            .split { grid-template-columns: 1fr; }
+        }
     </style>
 </head>
 <body>
     <button class="refresh-btn" onclick="location.reload()" title="刷新页面">🔄</button>
     <div class="container">
         <div class="header">
-            <h1>🌟 肉肉的知识宝库</h1>
-            <p class="subtitle">每天一篇有趣的科普故事</p>
-            <div class="stats">
-                <div class="stat-item">
-                    <div class="stat-number" id="article-count">75</div>
-                    <div class="stat-label">篇文章</div>
-                </div>
-                <div class="stat-item">
-                    <div class="stat-number">7</div>
-                    <div class="stat-label">大分类</div>
-                </div>
-                <div class="stat-item">
-                    <div class="stat-number">5</div>
-                    <div class="stat-label">章/篇</div>
-                </div>
+            <h1>🏛️ 肉肉的 AI 科研中心</h1>
+            <p class="subtitle">全 AI 制作的社区科技馆 · 写给爷爷奶奶，也写给小朋友</p>
+            <div class="header-actions">
+                <button class="action-btn about" onclick="openAbout()">📖 关于本站</button>
+                <button class="action-btn quiz" onclick="startQuiz()">🧠 科学素养测试 <span class="badge">即将上线</span></button>
             </div>
         </div>
 
         <!-- 分类筛选 -->
         <div class="filter-bar">
             <button class="filter-btn active" data-cat="all" onclick="filterArticles('all')">📚 全部 <span class="count">75</span></button>
+            <button class="filter-btn elder-highlight" data-cat="elder" onclick="filterArticles('elder')">🧓 AI 科学养老 <span class="count">1</span></button>
             <button class="filter-btn" data-cat="earth" onclick="filterArticles('earth')">🌍 自然地球 <span class="count">30</span></button>
             <button class="filter-btn" data-cat="tech" onclick="filterArticles('tech')">🚀 科技探索 <span class="count">13</span></button>
+            <button class="filter-btn" data-cat="health" onclick="filterArticles('health')">🌱 环保健康 <span class="count">12</span></button>
             <button class="filter-btn" data-cat="transport" onclick="filterArticles('transport')">🚂 交通工程 <span class="count">5</span></button>
             <button class="filter-btn" data-cat="math" onclick="filterArticles('math')">🧮 趣味数学 <span class="count">5</span></button>
-            <button class="filter-btn" data-cat="safety" onclick="filterArticles('safety')">🛡️ 安全常识 <span class="count">5</span></button>
-            <button class="filter-btn" data-cat="health" onclick="filterArticles('health')">🌱 环保健康 <span class="count">12</span></button>
+            <button class="filter-btn" data-cat="safety" onclick="filterArticles('safety')">🛡️ 安全常识 <span class="count">4</span></button>
             <button class="filter-btn" data-cat="toy" onclick="filterArticles('toy')">🧸 小玩具 <span class="count">3</span></button>
             <button class="filter-btn" data-cat="note" onclick="filterArticles('note')">📚 学习讲义 <span class="count">2</span></button>
         </div>
@@ -91,11 +144,135 @@
         <div class="article-list" id="article-list"></div>
 
         <div class="footer">
-            <p>🐉 由小龙精心制作 | 每天更新有趣的知识</p>
+            <p>🏛️ 由 AI 工作流自动打理 · 人负责选题方向与内容审核</p>
+        </div>
+    </div>
+
+    <div class="modal-mask" id="aboutModal" onclick="if(event.target===this)closeAbout()">
+        <div class="modal" role="dialog" aria-modal="true" aria-labelledby="aboutTitle">
+            <div class="modal-head">
+                <button class="modal-close" onclick="closeAbout()" aria-label="关闭">×</button>
+                <h2 id="aboutTitle">关于本站</h2>
+                <p>肉肉的 AI 科研中心 · 一个三年级孩子，和一套 AI 工作流</p>
+            </div>
+            <div class="modal-body">
+                <p class="lede">这个网站上没有一个字、一张图、一行代码是人敲出来的。<br>人只做三件事：<b>给方向、做判断、审内容</b>。</p>
+
+                <div class="m-sec">
+                    <h3>谁做了什么</h3>
+                    <div class="split">
+                        <div class="split-col human">
+                            <h4>人 · 一个孩子和一位家长</h4>
+                            <ul>
+                                <li>提供素材与选题方向</li>
+                                <li>判断内容对不对、好不好读</li>
+                                <li>内容审核与事实把关</li>
+                                <li>决定哪些能发、哪些要重做</li>
+                            </ul>
+                        </div>
+                        <div class="split-col machine">
+                            <h4>AI · 写、画、排版、发布</h4>
+                            <ul>
+                                <li>撰写全部文章正文</li>
+                                <li>生成全部插图</li>
+                                <li>编写网站代码与样式</li>
+                                <li>更新目录、构建、上线</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="m-sec">
+                    <h3>一篇内容是怎么做出来的</h3>
+                    <ol class="steps">
+                        <li><b>人给一句话方向</b>比如「写一篇面向老人的 AI 防诈科普，配图要写实风格」。</li>
+                        <li><b>AI 先做去重检查</b>扫描已有全部篇目，确认不重复，才允许动笔。</li>
+                        <li><b>AI 写正文</b>按第一性原理写：先讲清底层的「为什么」，再讲「怎么办」。</li>
+                        <li><b>AI 生成配图</b>提示词先写好，本地生成，逐张检查有没有崩坏，不合格重出。</li>
+                        <li><b>初审</b>AI 先自查事实与逻辑，人再读一遍拍板：有没有讲错、孩子能不能看懂、会不会吓到人。</li>
+                        <li><b>工作流自动收尾</b>套模板成页、更新首页目录、构建发布，全程无需手工操作。</li>
+                    </ol>
+                </div>
+
+                <div class="m-sec">
+                    <h3>技术栈</h3>
+                    <div class="stack">
+                        <span class="chip hot">DeepSeek · 主力模型</span>
+                        <span class="chip">本地 ComfyUI 出图</span>
+                        <span class="chip">本地生成 + 线上 API</span>
+                        <span class="chip">skill 工作流驱动</span>
+                        <span class="chip">纯静态 · 零 CDN 依赖</span>
+                        <span class="chip">断网也能打开</span>
+                    </div>
+                </div>
+
+                <div class="m-sec">
+                    <h3>为什么这本身就是一堂 AI 课</h3>
+                    <p>AI 不是「一键生成」。它可以被要求、被检查、被推翻——这个网站把每一步都摊开写了：哪一步是 AI 做的，哪一步是人拦下来的，哪一步做废重来。</p>
+                </div>
+
+                <div class="modal-foot">
+                    图片、文字、代码的产生方式均按环节标注。若引用他人素材，会在对应页面注明来源。
+                </div>
+            </div>
         </div>
     </div>
 
     <script>
+        /* ================= 关于本站 ================= */
+        function openAbout() {
+            document.getElementById("aboutModal").classList.add("open");
+            document.body.style.overflow = "hidden";
+        }
+        function closeAbout() {
+            document.getElementById("aboutModal").classList.remove("open");
+            document.body.style.overflow = "";
+        }
+        document.addEventListener("keydown", function (e) {
+            if (e.key === "Escape") closeAbout();
+        });
+
+        function toast(msg) {
+            var t = document.createElement("div");
+            t.className = "toast";
+            t.innerHTML = msg;
+            document.body.appendChild(t);
+            requestAnimationFrame(function () { t.classList.add("show"); });
+            setTimeout(function () {
+                t.classList.remove("show");
+                setTimeout(function () { t.remove(); }, 320);
+            }, 2800);
+        }
+
+        /* ================= 科学素养测试（接口占位，暂未实现） =================
+         *
+         * 目标：把全站每篇文章末尾的小测验汇总成一个题库，
+         *      每次随机抽 10 题，答完打分。
+         *
+         * 待实现的两件事：
+         *   1) 题库抽取脚本：扫描每篇文章页面里的 .quiz-question 区块，
+         *      抽出题干、选项、正确答案、解析，汇总成 quiz-bank.json
+         *   2) 本函数：fetch 题库 → 洗牌 → 取 10 题 → 渲染 → 计分
+         *
+         * 题库数据结构（约定）：
+         *   [
+         *     {
+         *       id: "261023-3",        // 来源文章 + 题号
+         *       from: "261023",        // 文章目录
+         *       fromTitle: "科学防 AI 诈骗…",
+         *       q: "题干",
+         *       options: ["A", "B", "C"],
+         *       answer: 1,             // 正确选项下标
+         *       explain: "解析"
+         *     }
+         *   ]
+         *
+         * 计分规则（拟）：每题 10 分，满分 100；60 分以下给"再逛一圈"的推荐篇目。
+         */
+        function startQuiz() {
+            toast("🧠 科学素养测试正在建设中<br>将从全站小测验里随机抽 10 题，答完打分（接口已预留）");
+        }
+
         const articles = [
             { date: "250520", displayDate: "2025年5月20日", title: "🦕 恐龙王国大冒险", desc: "很久很久以前，地球上生活着一群神奇的动物——恐龙！它们有的凶猛，有的温顺，有的会飞，有的会游泳。让我们一起穿越时空，探索神秘的恐龙世界吧！", cat: "earth", path: "./250520/index.html" },
             { date: "250521", displayDate: "2025年5月21日", title: "马斯克的太空梦想：SpaceX的故事", desc: "从一个人疯狂的想法到改变世界的火箭公司", cat: "tech", path: "./250521/index.html" },
@@ -171,8 +348,9 @@
             { date: "261017", displayDate: "2026年10月17日", title: "📚 英语情态动词：把没说完的那半句补齐", desc: "用「门」和「路」两个比喻讲情态动词：门管准不准、路管说话的人有多想让你走。学会听出没说出口的半句话——可以做，也意味着可以不做。含黄绿蓝三段力度尺、20 站打卡、三关练习，可自己学完。", cat: "note", path: "./note/modal-verbs-261017/index.html" },
             { date: "261017", displayDate: "2026年10月17日", title: "🚗 倒着开、还能飞：这辆车用了什么魔法？", desc: "马斯克的新跑车，靠车底风扇抽走空气、让大气压把它按在轨道上倒着爬，又靠冷气推进器喷出的高压空气飞过五辆车。拆开看只有两个物理原理：大气压和牛顿第三定律。", cat: "transport", path: "./261017/index.html" },
             { date: "261019", displayDate: "2026年10月19日", seq: 1792376173, title: "🦠 弓形虫：能操控老鼠大脑的猫味小虫", desc: "一只没有大脑的单细胞小虫，为什么能让老鼠不怕猫？拆解弓形虫的生存策略、大脑操控机制与免疫系统博弈", cat: "health", path: "./261019/index.html" },
-            { date: "261023", displayDate: "2026年10月23日", seq: 1792729089, title: "科学防 AI 诈骗：为什么电话里的「孙子」可能是假的", desc: "从声波到数字、从换脸到情绪劫持，讲透 AI 诈骗为什么骗得过人，以及三条不需要聪明就能做到的铁律。写给爸妈和爷爷奶奶。", cat: "safety", path: "./261023/index.html" }];
+            { date: "261023", displayDate: "2026年10月23日", seq: 1792729089, title: "科学防 AI 诈骗：为什么电话里的「孙子」可能是假的", desc: "从声波到数字、从换脸到情绪劫持，讲透 AI 诈骗为什么骗得过人，以及三条不需要聪明就能做到的铁律。写给爸妈和爷爷奶奶。", cat: "elder", path: "./261023/index.html" }];
         const catLabels = {
+            elder: "🧓 AI 科学养老",
             earth: "🌍 自然地球",
             tech: "🚀 科技探索",
             transport: "🚂 交通工程",
@@ -221,8 +399,7 @@
                 `).join("");
             }
 
-            // 头部统计始终显示总条数，不随分类筛选变化
-            document.getElementById("article-count").textContent = articles.length;
+            // 顶部已不再显示计数（分类按钮各自带数量）
         }
 
         function filterArticles(cat) {
@@ -234,6 +411,9 @@
         }
 
         renderArticles();
+
+        // 支持直接用 #about 打开简介（便于分享链接给评委）
+        if (location.hash === "#about") openAbout();
     </script>
 </body>
 </html>
