@@ -239,6 +239,44 @@
             .comparison-table td, .comparison-table th { padding: 8px; font-size: 14px; }
         }
     </style>
+<!-- sharecode-passthrough:start -->
+<script>
+(function(){
+  var K='rourou_sc';
+  var cur=new URLSearchParams(location.search).get('sharecode');
+  if(cur){ try{ sessionStorage.setItem(K,cur); }catch(e){} }
+  else {
+    var sc=null;
+    try{ sc=sessionStorage.getItem(K); }catch(e){}
+    if(sc){
+      var u=new URL(location.href);
+      u.searchParams.set('sharecode',sc);
+      location.replace(u.toString());
+      return;
+    }
+  }
+  var SC=cur||(function(){ try{return sessionStorage.getItem(K);}catch(e){return null;} })();
+  if(!SC) return;
+  function fix(){
+    var els=document.querySelectorAll('img[src],video[src],source[src],link[rel=stylesheet][href],script[src]');
+    for(var i=0;i<els.length;i++){
+      var el=els[i], attr=el.hasAttribute('src')?'src':'href';
+      var v=el.getAttribute(attr);
+      if(!v||v.indexOf('sharecode=')>-1||/^(data:|https?:|blob:|#)/.test(v)) continue;
+      el.setAttribute(attr, v + (v.indexOf('?')>-1?'&':'?') + 'sharecode=' + encodeURIComponent(SC));
+    }
+    var as=document.querySelectorAll('a[href]');
+    for(var j=0;j<as.length;j++){
+      var a=as[j], h=a.getAttribute('href');
+      if(!h||h.indexOf('sharecode=')>-1||/^(https?:|mailto:|tel:|javascript:|#)/.test(h)) continue;
+      a.setAttribute('href', h + (h.indexOf('?')>-1?'&':'?') + 'sharecode=' + encodeURIComponent(SC));
+    }
+  }
+  if(document.readyState==='loading') document.addEventListener('DOMContentLoaded',fix);
+  else fix();
+})();
+</script>
+<!-- sharecode-passthrough:end -->
 </head>
 <body>
     <div class="container">
