@@ -1,0 +1,148 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>多位数乘法 · 竖式第二行为什么要错位</title>
+<style>
+  :root{
+    --ink:#2b2a27; --muted:#7a7770; --line:#e6e2d8;
+    --paper:#fdfcf8; --card:#fff;
+    --blue:#1f5f8b; --orange:#e07a3f; --green:#3f8f6b;
+  }
+  *{box-sizing:border-box}
+  body{
+    margin:0; background:var(--paper); color:var(--ink);
+    font-family:system-ui,-apple-system,"PingFang SC","Hiragino Sans GB",sans-serif;
+    -webkit-font-smoothing:antialiased;
+  }
+  .wrap{max-width:900px; margin:0 auto; padding:28px 20px 60px}
+
+  h1{font-size:24px; margin:0 0 8px; letter-spacing:.5px}
+  .sub{color:var(--muted); font-size:14px; margin:0 0 20px; line-height:1.6}
+
+  /* 视频舞台 */
+  .stage{
+    position:relative; border-radius:16px; overflow:hidden;
+    background:#0d0d0f; border:1px solid var(--line);
+    box-shadow:0 6px 26px rgba(0,0,0,.10);
+  }
+  .stage video{
+    display:block; width:100%; height:auto; max-height:74vh;
+    background:#0d0d0f; outline:none;
+  }
+  /* 播放遮罩：默认就显示，点一下才开始播（不确定浏览器给不给自动播，一律手动） */
+  .playmask{
+    position:absolute; inset:0; z-index:3; width:100%; height:100%;
+    border:0; padding:0; cursor:pointer; color:#fff;
+    background:rgba(0,0,0,.42);
+    -webkit-backdrop-filter:blur(2px); backdrop-filter:blur(2px);
+    display:flex; flex-direction:column; align-items:center; justify-content:center; gap:14px;
+    font-family:inherit; font-size:16px; font-weight:600; letter-spacing:.5px;
+    transition:background .2s;
+  }
+  .playmask:hover{background:rgba(0,0,0,.32)}
+  .playmask .tri{
+    width:74px; height:74px; border-radius:50%;
+    background:rgba(255,255,255,.96); color:#1a1a1c;
+    display:flex; align-items:center; justify-content:center;
+    font-size:28px; padding-left:6px;
+    box-shadow:0 6px 22px rgba(0,0,0,.35);
+    transition:transform .18s;
+  }
+  .playmask:active .tri{transform:scale(.92)}
+  .playmask[hidden]{display:none}
+
+  /* 操作区 */
+  .actions{display:flex; gap:10px; flex-wrap:wrap; margin-top:18px}
+  .btn{
+    display:inline-flex; align-items:center; gap:6px;
+    padding:11px 18px; border-radius:11px; border:1px solid var(--line);
+    background:var(--card); color:var(--ink); text-decoration:none;
+    font-size:14.5px; font-weight:600; transition:transform .14s, box-shadow .14s, border-color .14s;
+  }
+  .btn:hover{transform:translateY(-1px); box-shadow:0 4px 14px rgba(0,0,0,.08); border-color:#d6d0c2}
+  .btn:active{transform:scale(.97)}
+  .btn.primary{background:var(--blue); color:#fff; border-color:var(--blue)}
+  .btn.primary:hover{border-color:var(--blue); box-shadow:0 5px 16px rgba(31,95,139,.28)}
+
+  .hint{font-size:13px; color:var(--muted); margin-top:16px; line-height:1.7}
+  .hint b{color:var(--orange)}
+
+  /* 要点卡 */
+  .keys{margin-top:26px; display:grid; gap:10px}
+  .key{
+    background:var(--card); border:1px solid var(--line); border-radius:12px;
+    padding:13px 16px; font-size:15px; line-height:1.7;
+  }
+  .key span{color:var(--blue); font-weight:600}
+
+  @media (max-width:600px){
+    .wrap{padding:22px 14px 56px}
+    h1{font-size:21px}
+    .stage video{max-height:56vh}
+    .btn{flex:1 1 auto; justify-content:center}
+  }
+</style>
+</head>
+<body>
+
+<div class="wrap">
+  <h1>多位数乘法</h1>
+  <p class="sub">竖式第二行为什么要错位 · 72 秒，有配音</p>
+
+  <div class="stage">
+    <video id="v" src="multiply-voice.mp4" poster="poster.jpg"
+           controls playsinline preload="auto"></video>
+    <button class="playmask" id="playmask">
+      <span class="tri">▶</span>
+      <span>点一下播放</span>
+    </button>
+  </div>
+
+  <div class="actions">
+    <a class="btn primary" href="multiply-voice.mp4" download>⬇ 下载到手机</a>
+    <a class="btn" href="../../261014/index.html">📖 读文字版</a>
+  </div>
+
+  <p class="hint">视频 3.5 MB，点中间的大按钮就开始。想看全屏，点播放条右下角的方框。</p>
+
+  <div class="keys">
+    <div class="key"><span>第二行往左挪一格</span>，因为它算的是「几十个」，不是一个一个。</div>
+    <div class="key"><span>满十进一</span>，是打包：十个一毛钱换一张一块钱，位置换了，钱没多。</div>
+    <div class="key">整件事只有一句话：<span>位置决定大小</span>。</div>
+  </div>
+</div>
+
+<script>
+(function(){
+  var v = document.getElementById('v');
+  var mask = document.getElementById('playmask');
+
+  // 不自动播放：一律等用户点。点下去一定成功，不存在"有时播有时不播"。
+  mask.addEventListener('click', function(){
+    mask.hidden = true;
+    v.play();
+  });
+
+  // 用原生播放条暂停后再点视频，遮罩不回来，避免挡住控制条
+})();
+</script>
+
+<!-- rourou-home-btn:start -->
+<style>
+#rourou-home-btn{position:fixed;left:14px;bottom:calc(14px + env(safe-area-inset-bottom,0px));z-index:9999;
+display:inline-flex;align-items:center;gap:6px;padding:10px 18px;border-radius:999px;
+background:rgba(255,255,255,0.92);color:#2d3436;font-size:15px;font-weight:600;
+text-decoration:none;box-shadow:0 4px 14px rgba(0,0,0,0.18);border:1px solid rgba(0,0,0,0.08);
+-webkit-backdrop-filter:blur(4px);backdrop-filter:blur(4px);transition:transform .15s,background .15s;}
+#rourou-home-btn:hover{background:#fff;transform:translateY(-2px);}
+@media (max-width:600px){#rourou-home-btn{padding:9px 14px;font-size:13px;left:10px;bottom:calc(10px + env(safe-area-inset-bottom,0px));}}
+/* 页面自带左下角悬浮按钮（如讲义的「↑ 返回目录」）时上移让位，避免两个按钮叠在一起 */
+.fab{bottom:calc(66px + env(safe-area-inset-bottom,0px)) !important;}
+@media (max-width:919px){.fab{bottom:calc(58px + env(safe-area-inset-bottom,0px)) !important;}}
+</style>
+<a id="rourou-home-btn" href="../../index.html">🏠 首页</a>
+<!-- rourou-home-btn:end -->
+</body>
+</html>

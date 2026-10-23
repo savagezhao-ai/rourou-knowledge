@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>世界历史小课 · 三部片子</title>
+<style>
+  :root{
+    --ink:#1f1b16; --ink2:#4a4139; --muted:#8a7f74;
+    --paper:#faf6ee; --card:#ffffff; --line:#e6ddcd;
+    --gold:#b8842f; --accent:#c0392b;
+  }
+  *{box-sizing:border-box}
+  body{
+    margin:0; padding:0;
+    background:
+      radial-gradient(900px 500px at 15% -10%, #fff9ec 0%, rgba(255,249,236,0) 60%),
+      var(--paper);
+    color:var(--ink);
+    font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;
+    line-height:1.7;
+    -webkit-font-smoothing:antialiased;
+  }
+  .wrap{max-width:820px; margin:0 auto; padding:44px 20px 64px}
+
+  /* 头部 */
+  header{text-align:center; margin-bottom:26px}
+  .kicker{
+    display:inline-block; font-size:12px; letter-spacing:.22em;
+    color:var(--gold); font-weight:700; margin-bottom:10px;
+  }
+  h1{
+    font-size:31px; margin:0 0 10px; letter-spacing:.04em; font-weight:800;
+    color:var(--ink);
+  }
+  .sub{font-size:15px; color:var(--ink2); margin:0}
+  .rule{
+    width:54px; height:3px; margin:18px auto 0;
+    background:linear-gradient(90deg,var(--gold),#e0c48a);
+    border-radius:2px;
+  }
+
+  /* 说明条 */
+  .notice{
+    display:flex; gap:11px; align-items:flex-start;
+    background:#fffdf6; border:1px solid var(--line); border-left:3px solid var(--gold);
+    border-radius:12px; padding:13px 15px; margin:24px 0 28px;
+    font-size:14px; color:var(--ink2); line-height:1.6;
+  }
+  .notice b{color:var(--ink)}
+  .notice em{font-style:normal; color:var(--accent); font-weight:600}
+
+  /* 视频卡 */
+  .card{
+    display:block; text-decoration:none; color:inherit;
+    background:var(--card); border:1px solid var(--line); border-radius:16px;
+    overflow:hidden; margin-bottom:22px;
+    box-shadow:0 2px 10px rgba(90,70,40,.06);
+    transition:transform .18s ease, box-shadow .18s ease;
+  }
+  .card:hover{transform:translateY(-2px); box-shadow:0 8px 24px rgba(90,70,40,.12)}
+  .card:active{transform:scale(.995)}
+
+  .thumb{position:relative; aspect-ratio:16/9; background:#1a1a1a; overflow:hidden}
+  .thumb img{
+    width:100%; height:100%; object-fit:cover; display:block;
+    transition:transform .5s ease;
+  }
+  .card:hover .thumb img{transform:scale(1.03)}
+  .thumb::after{
+    content:""; position:absolute; inset:0;
+    background:linear-gradient(180deg, rgba(0,0,0,0) 45%, rgba(0,0,0,.42) 100%);
+    pointer-events:none;
+  }
+  .play{
+    position:absolute; left:50%; top:50%; transform:translate(-50%,-50%);
+    width:62px; height:62px; border-radius:50%;
+    background:rgba(255,255,255,.94);
+    display:flex; align-items:center; justify-content:center;
+    box-shadow:0 4px 18px rgba(0,0,0,.32);
+    z-index:2;
+  }
+  .play::before{
+    content:""; display:block; margin-left:4px;
+    border-style:solid; border-width:12px 0 12px 20px;
+    border-color:transparent transparent transparent #1f1b16;
+  }
+  .dur{
+    position:absolute; right:10px; bottom:10px; z-index:2;
+    background:rgba(0,0,0,.72); color:#fff;
+    font-size:12px; font-weight:600; letter-spacing:.04em;
+    padding:3px 8px; border-radius:6px;
+    font-variant-numeric:tabular-nums;
+  }
+  .idx{
+    position:absolute; left:10px; top:10px; z-index:2;
+    background:rgba(255,255,255,.92); color:var(--ink);
+    font-size:12px; font-weight:700; letter-spacing:.06em;
+    padding:3px 9px; border-radius:6px;
+  }
+
+  .body{padding:16px 18px 18px}
+  .body h2{
+    font-size:19px; margin:0 0 8px; font-weight:700; letter-spacing:.02em;
+    display:flex; align-items:baseline; gap:8px; flex-wrap:wrap;
+  }
+  .body h2 span{font-size:13px; font-weight:500; color:var(--muted)}
+  .body p{margin:0; font-size:15px; color:var(--ink2); line-height:1.75}
+  .body p em{font-style:normal; color:var(--accent); font-weight:600}
+  .where{
+    margin-top:11px !important; padding-top:10px; border-top:1px dashed var(--line);
+    font-size:13px !important; color:var(--muted) !important; letter-spacing:.02em;
+  }
+  .where b{color:var(--gold); font-weight:700}
+
+  footer{
+    margin-top:34px; padding-top:20px; border-top:1px dashed var(--line);
+    font-size:13px; color:var(--muted); line-height:1.8;
+  }
+  footer a{color:var(--gold); text-decoration:none; border-bottom:1px solid rgba(184,132,47,.35)}
+  footer a:hover{border-bottom-color:var(--gold)}
+
+  @media (max-width:600px){
+    .wrap{padding:34px 14px 56px}
+    h1{font-size:25px}
+    .sub{font-size:14px}
+    .body{padding:14px 15px 16px}
+    .body h2{font-size:17px}
+    .body p{font-size:14.5px}
+    .play{width:54px; height:54px}
+    .play::before{border-width:10px 0 10px 17px}
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header>
+    <div class="kicker">世 界 历 史 小 课</div>
+    <h1>三部片子，看完两千年</h1>
+    <p class="sub">埃及 · 德国 · 英伦三岛　｜　每部不到十分钟</p>
+    <div class="rule"></div>
+  </header>
+
+  <div class="notice">
+    <span>🎬</span>
+    <div>
+      <b>三部片子都在同一篇公众号文章里，视频排在文末。</b><br>
+      点任意一张封面 → 打开文章 → 滑到最底，三个视频从左往右排成一行，想先看哪部就点哪个（微信里在线播放，不下载、不占手机空间）。<br>
+      下面每张卡底部都标了它<em>在文末排第几个</em>，滑到底可以直接对着找。
+    </div>
+  </div>
+
+  <!-- 1 埃及史 -->
+  <a class="card" href="https://mp.weixin.qq.com/s/NF4Xb5jiS_UlT_vFAcsgxg" target="_blank" rel="noopener">
+    <div class="thumb">
+      <img src="https://mmbiz.qpic.cn/mmbiz_jpg/SgR2Za9GiaQfcl7lsCoTc6cVHKuOOGDbNTbFhsWoaUw9lamDRSvVKrA6YyNdzh5vAwLHF7Y7hAxHG7VlWszgOUJb4j45CDvkn5IZGrzSwN2k/0?wx_fmt=jpeg"
+           alt="《埃及史》视频封面" referrerpolicy="no-referrer" loading="lazy">
+      <span class="idx">第 1 部</span>
+      <span class="play" aria-hidden="true"></span>
+      <span class="dur">9:19</span>
+    </div>
+    <div class="body">
+      <h2>《埃及史》<span>古埃及 · 三千年的起落</span></h2>
+      <p>金字塔不是重点，重点是它<em>怎么没的</em>。一条每年准时泛滥的河，逼出了记账；记账逼出文字和国家，一路堆到胡夫金字塔。后来军队外包给雇佣兵，钱交给希腊商人，信仰让给神庙——最后雇佣兵当了法老。</p>
+      <p class="where">📍 文末第 <b>1</b> 个（从左往右）</p>
+    </div>
+  </a>
+
+  <!-- 2 德国史 -->
+  <a class="card" href="https://mp.weixin.qq.com/s/NF4Xb5jiS_UlT_vFAcsgxg" target="_blank" rel="noopener">
+    <div class="thumb">
+      <img src="https://mmbiz.qpic.cn/mmbiz_jpg/SgR2Za9GiaQcEIk0kIEiaPmibwBD2wDaDlnOw5c7iawanic7hGJzb2uNBefAtgJfywXOtibrIR0qCciciaaGRMgK0A0vdGewicozVBgAdKuicLmBJlhsA/0?wx_fmt=jpeg"
+           alt="《德国史》视频封面" referrerpolicy="no-referrer" loading="lazy">
+      <span class="idx">第 2 部</span>
+      <span class="play" aria-hidden="true"></span>
+      <span class="dur">8:42</span>
+    </div>
+    <div class="body">
+      <h2>《德国史》<span>从日耳曼森林到柏林墙</span></h2>
+      <p>从公元 9 年罗马三个军团走进日耳曼森林、一个都没出来，讲到 1990 年柏林墙倒下。中间穿了三条线：德语怎么从方言变成书面语、古腾堡的印刷机怎么让一个想法几周就跑遍欧洲、柏林大学怎么让教授一边教书一边做研究。</p>
+      <p class="where">📍 文末第 <b>2</b> 个（从左往右，中间那个）</p>
+    </div>
+  </a>
+
+  <!-- 3 英伦三岛史 -->
+  <a class="card" href="https://mp.weixin.qq.com/s/NF4Xb5jiS_UlT_vFAcsgxg" target="_blank" rel="noopener">
+    <div class="thumb">
+      <img src="https://mmbiz.qpic.cn/sz_mmbiz_jpg/SgR2Za9GiaQfS55k6pPOpicyHtOluliaW5q4CQicKtcGNoJlnWCmXPsfuOJPD7u9nDaf5FgmR1DlvhEmH8mCOUymJ4HtFgQBS4gRE30ZufCzyRA/0?wx_fmt=jpeg"
+           alt="《英伦三岛史》视频封面" referrerpolicy="no-referrer" loading="lazy">
+      <span class="idx">第 3 部</span>
+      <span class="play" aria-hidden="true"></span>
+      <span class="dur">9:50</span>
+    </div>
+    <div class="body">
+      <h2>《英伦三岛史》<span>两千年只做一件事</span></h2>
+      <p>从哈德良长城到脱欧，两千年里英格兰一直在干同一件事：把旁边那几个岛<em>捏成自己家</em>。苏格兰捏住了，爱尔兰捏不住。</p>
+      <p class="where">📍 文末第 <b>3</b> 个（从左往右，最右边）</p>
+    </div>
+  </a>
+
+  <footer>
+    片子出自公众号「野蛮星球」2026 年 10 月 24 日的文章
+    <a href="https://mp.weixin.qq.com/s/NF4Xb5jiS_UlT_vFAcsgxg" target="_blank" rel="noopener">《一部十分钟的历史片，现在四十分钟就能出》</a>。<br>
+    视频托管在微信，这里只做引用，不转存。
+  </footer>
+
+</div>
+
+<!-- rourou-home-btn:start -->
+<style>
+#rourou-home-btn{position:fixed;left:14px;bottom:calc(14px + env(safe-area-inset-bottom,0px));z-index:9999;
+display:inline-flex;align-items:center;gap:6px;padding:10px 18px;border-radius:999px;
+background:rgba(255,255,255,0.92);color:#2d3436;font-size:15px;font-weight:600;
+text-decoration:none;box-shadow:0 4px 14px rgba(0,0,0,0.18);border:1px solid rgba(0,0,0,0.08);
+-webkit-backdrop-filter:blur(4px);backdrop-filter:blur(4px);transition:transform .15s,background .15s;}
+#rourou-home-btn:hover{background:#fff;transform:translateY(-2px);}
+@media (max-width:600px){#rourou-home-btn{padding:9px 14px;font-size:13px;left:10px;bottom:calc(10px + env(safe-area-inset-bottom,0px));}}
+/* 页面自带左下角悬浮按钮（如讲义的「↑ 返回目录」）时上移让位，避免两个按钮叠在一起 */
+.fab{bottom:calc(66px + env(safe-area-inset-bottom,0px)) !important;}
+@media (max-width:919px){.fab{bottom:calc(58px + env(safe-area-inset-bottom,0px)) !important;}}
+</style>
+<a id="rourou-home-btn" href="../../index.html">🏠 首页</a>
+<!-- rourou-home-btn:end -->
+</body>
+</html>

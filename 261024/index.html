@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🌀 都十月了，为什么还有台风？</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: "Microsoft YaHei", "PingFang SC", sans-serif;
+            background: linear-gradient(180deg, #ffeaa7 0%, #fab1a0 30%, #ff7675 60%, #fd79a8 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        .container {
+            max-width: 850px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 30px;
+            padding: 40px;
+            box-shadow: 0 25px 80px rgba(0,0,0,0.15);
+        }
+        .header {
+            text-align: center;
+            padding: 30px 0;
+            background: linear-gradient(135deg, #ff6b6b 0%, #feca57 50%, #48dbfb 100%);
+            border-radius: 20px;
+            margin-bottom: 30px;
+        }
+        .header h1 {
+            font-size: 48px;
+            color: white;
+            text-shadow: 3px 3px 6px rgba(0,0,0,0.2);
+        }
+        .subtitle {
+            font-size: 20px;
+            color: rgba(255,255,255,0.95);
+        }
+        h2 {
+            font-size: 32px;
+            color: #2d3436;
+            margin: 40px 0 20px;
+            padding: 15px 25px;
+            background: linear-gradient(90deg, #ff9ff3 0%, #feca57 100%);
+            border-radius: 15px;
+            display: inline-block;
+        }
+        p {
+            font-size: 20px;
+            line-height: 2;
+            color: #2d3436;
+            margin-bottom: 20px;
+            text-align: justify;
+        }
+        .image-container {
+            width: 100%;
+            margin: 30px 0;
+            text-align: center;
+        }
+        .dino-image {
+            width: 100%;
+            border-radius: 20px;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.2);
+        }
+        .image-caption {
+            color: #636e72;
+            font-size: 16px;
+            margin-top: 15px;
+            font-style: italic;
+            background: #ffeaa7;
+            display: inline-block;
+            padding: 8px 20px;
+            border-radius: 20px;
+        }
+        .fun-fact {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 25px;
+            border-radius: 20px;
+            margin: 25px 0;
+            font-size: 18px;
+            line-height: 1.8;
+        }
+        .fun-fact.pink {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+        }
+        .fun-fact.green {
+            background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);
+        }
+        .fun-fact.orange {
+            background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);
+        }
+        .fun-fact-title {
+            font-size: 22px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        .divider {
+            text-align: center;
+            font-size: 30px;
+            color: #ddd;
+            margin: 30px 0;
+        }
+        .quiz-section {
+            background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);
+            padding: 30px;
+            border-radius: 20px;
+            margin: 30px 0;
+        }
+        .quiz-title {
+            font-size: 28px;
+            color: #e17055;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .quiz-question {
+            background: white;
+            padding: 20px;
+            border-radius: 15px;
+            margin: 15px 0;
+            font-size: 18px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        /* ── 互动测试 v2 标准块（2026-10-24 起）──────────────────────
+           题目结构见 assets/quiz-block-template.html，答案写在 data-answer。
+           下面这些样式让它在本页正常显示，并让答题页抓取时不受影响。     */
+        .quiz-question .q-stem {
+            font-weight: bold;
+            margin-bottom: 10px;
+            line-height: 1.6;
+        }
+        .quiz-question .q-opts {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+        .quiz-question .q-opts li {
+            padding: 8px 12px;
+            margin: 6px 0;
+            background: #f8f9fa;
+            border-radius: 10px;
+            line-height: 1.55;
+        }
+        .quiz-question .q-opts li::before {
+            content: attr(data-k) ". ";
+            font-weight: bold;
+            color: #e17055;
+        }
+        .quiz-question .q-ans {
+            margin-top: 10px;
+            font-size: 16px;
+            color: #636e72;
+        }
+        .quiz-question .q-ans summary {
+            cursor: pointer;
+            color: #0984e3;
+            font-weight: 600;
+            outline: none;
+        }
+        .quiz-question .q-ans p {
+            margin: 8px 0 0;
+            padding: 10px 12px;
+            background: #f0f7ff;
+            border-left: 4px solid #0984e3;
+            border-radius: 8px;
+            line-height: 1.6;
+        }
+        .ending {
+            text-align: center;
+            padding: 40px 0;
+            margin-top: 40px;
+            background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);
+            border-radius: 20px;
+        }
+        .ending h3 { font-size: 32px; color: #2d3436; }
+        .ending p { text-align: center; font-size: 18px; color: #636e72; }
+        .back-home-btn {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 14px 30px;
+            background: rgba(0,0,0,0.08);
+            color: #2d3436;
+            text-decoration: none;
+            border-radius: 25px;
+            font-size: 18px;
+            border: 2px solid rgba(0,0,0,0.15);
+            transition: background 0.3s, transform 0.2s;
+        }
+        .back-home-btn:hover {
+            background: rgba(0,0,0,0.15);
+            transform: translateY(-2px);
+        }
+        .back-home-btn:active {
+            transform: translateY(0);
+        }
+        @media (max-width: 600px) {
+            .container { padding: 20px; }
+            h1 { font-size: 32px; }
+            h2 { font-size: 24px; }
+            p { font-size: 18px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🌀 都十月了，为什么还有台风？</h1>
+            <p class="subtitle">从台风「蔷琵」说起：海水记账、高压开车、冷空气添柴</p>
+        </div>
+        
+        
+<div class="image-container">
+    <img src="scene_01.webp" class="dino-image" alt="孩子趴在窗边看海面上的台风螺旋云团">
+    <div class="image-caption">十月底，海面还在冒着热气</div>
+</div>
+
+<p>2026 年 10 月 15 日下午，西北太平洋上悄悄生成了一个涡旋。它叫「蔷琵」（CHAMPI），名字来自老挝，意思是——一种花。</p>
+
+<p>到 10 月 23 日，这朵「花」已经长成了强台风，中心最大风力 14 级，位置在台北东偏南方向大约 185 公里的海面上。它的巅峰一度达到 <b>68 米每秒</b>——换成时速是 245 公里，比高铁还快一倍多。江苏东南部、上海、浙江中东部、福建东北部、台湾岛中北部，都下了大到暴雨。</p>
+
+<p>很多人会愣一下：都十月底了，台风怎么还在？台风不是夏天的事吗？</p>
+
+<h2>第一章　台风不看日历，它看水温</h2>
+
+<p>我们习惯把季节当成开关：夏天有台风，秋天没有。可台风根本不认日历，它认的是一个数字——<b>海面温度 26.5℃</b>。</p>
+
+<p>只要有一大片海水，表层温度超过 26.5℃，而且这层暖水足够厚（大约 50 米以上），台风就有可能「点得着」。这条线就像火柴的摩擦面：热海水是火柴盒，台风是那一下划出来的火。</p>
+
+<p>为什么偏偏是 26.5℃ 这个数？因为台风是一台<b>烧开水的机器</b>。它要把海水烧成水汽，水汽升到高空再凝成云，这一路上又放出热来把空气烘暖。海水越热、蒸发越快，这台机器进的「燃料」就越足。温度太低，水汽供不上，机器就转不起来。</p>
+
+<div class="fun-fact">
+    <div class="fun-fact-title">🔍 趣味知识</div>
+    台风内部的气压非常低，中心能低到 900 百帕左右，比标准大气压低了一百多百帕。这就像你用吸管喝饮料——外面的大气拼命往里挤，风就是这么挤出来的。
+</div>
+
+<p>那么问题来了：太阳最猛的六月，海水反而没那么热。为什么十月了，海还是暖的？</p>
+
+<h2>第二章　海洋是个巨大的热水袋，热得总慢半拍</h2>
+
+<div class="image-container">
+    <img src="scene_02.webp" class="dino-image" alt="海面之下的暖水层与深海冷水层剖面">
+    <div class="image-caption">太阳存进海里的热，秋天还没交完</div>
+</div>
+
+<p>这里有个特别朴素的原因：<b>水存热的本事比空气大得多</b>。</p>
+
+<p>把 1 克水加热 1℃，需要大约 4.2 焦耳的热量；把 1 克空气加热 1℃，只要 1 焦耳左右。差了四倍多。而整个海洋有几千米深、覆盖七成地球表面——它像一只巨大无比的热水袋，被太阳晒了一整个夏天，热全都存在里面。</p>
+
+<p>存得多，就升得慢；升得慢，凉得也慢。北半球接收太阳热量最多的时候是 6 月下旬，但海水温度的最高点要往后拖两三个月才出现。<b>九月海水最热，十月还在退烧的路上。</b>就像你关了火，一锅汤不会立刻变凉，它得慢慢散热。</p>
+
+<p>所以十月的西北太平洋，暖水层还很厚，26.5℃ 的等温线还盖着一大片洋面。台风的火柴盒还在，火自然还能划得着。</p>
+
+<p>但海水变热只是备好了燃料。要变成一场台风，还得有一套「搬运—释放」的循环，一共四步。</p>
+
+<p>第一步，海水蒸发。水从液态变成水汽，要偷偷吸走一大笔热——每克水大约 2260 焦耳，相当于把同样一克水加热 540℃ 的热量。所以海面蒸发的时候，其实是在<b>从海里搬走热量</b>。</p>
+
+<p>第二步，水汽上升。热空气轻，带着水汽往上飘。越往上越冷，水汽凝结成小水滴，这时它把之前吸走的那笔热<b>原封不动地还回来</b>。</p>
+
+<p>第三步，空气被烘得更暖。暖了就更轻，就继续上升；海面又有新的水汽补上来。只要海水够热，这个循环就会自己加速——这就是台风的发动机。</p>
+
+<p>第四步，地球自转给它「上发条」。上升的空气往中心挤，被地球自转一扭，就转成了涡旋。越挤越紧，越转越快，风速一路飙升。</p>
+
+<div class="fun-fact pink">
+    <div class="fun-fact-title">💨 趣味知识</div>
+    2013 年的秋台风「海燕」最大风速达到 78 米每秒，是 2000 年以来西北太平洋和南海的最强纪录，到现在还没被打破。「海燕」这个名字因为造成的灾难太重，已经被永久「除名」了。
+</div>
+
+<p>燃料有了，发动机也转了。那么，台风会往哪儿走？这件事，台风自己说了不算。</p>
+
+<h2>第三章　台风不认路，是一位「司机」在开车</h2>
+
+<div class="image-container">
+    <img src="scene_03.webp" class="dino-image" alt="台风沿着副热带高压南侧西行的示意图">
+    <div class="image-caption">河流改道，叶子只能跟着改道</div>
+</div>
+
+<p>台风自己不会挑路。它更像河里的一片叶子——叶子不会决定河流往哪儿流，它只是被水推着走。推着台风走的，是一团巨大的空气：<b>副热带高压</b>。</p>
+
+<p>副热带高压是一大片下沉气流形成的暖高压，常年待在副热带海面上，像一顶扣在海上的大锅盖。它的边缘有一圈稳定的气流，台风就顺着这圈气流往前跑。</p>
+
+<p>夏天，这顶锅盖位置偏北，台风沿着它的南侧往西偏北走，所以多登陆华南、华东。到了秋天，太阳往南退，锅盖也跟着<b>东退南移</b>，台风生成的位置更靠低纬度，走的路整体偏南，更多地冲着广东、海南、台湾去。</p>
+
+<p>更麻烦的是：秋天这位「司机」容易分心。北方的冷空气一南下，可能把这顶锅盖顶出个缺口。锅盖一断，原本向西的台风突然失去引导，就可能掉头北上，奔向日本；冷空气要是弱一点、来得晚一点，锅盖不断，台风就继续西行扑向我国沿海。</p>
+
+<p>「蔷琵」就是这样一朵让人揪心的花。气象专家说，10 月 21 日到 22 日是决定它命运的关键窗口——看冷空气和副高谁更强势。这种「临门一脚才定路线」的情况，正是秋台风最难预报的地方。</p>
+
+<div class="fun-fact green">
+    <div class="fun-fact-title">🏷️ 趣味知识</div>
+    台风的名字不是随便起的。西北太平洋有 14 个国家和地区各出 10 个名字，凑成 140 个，循环使用。「蔷琵」是老挝提供的，意思是一种花。哪个名字造成的灾害太严重，就会被永久除名、换成新名字——像被开除出名单。
+</div>
+
+<h2>第四章　冷空气是双刃剑，所以「秋台猛于虎」</h2>
+
+<div class="image-container">
+    <img src="scene_04.webp" class="dino-image" alt="南下冷空气与台风云系相遇，海面掀起巨浪">
+    <div class="image-caption">冷空气撞上台风，风更大，雨更猛</div>
+</div>
+
+<p>民间有句话叫「秋台猛于虎」。数据确实支持这个说法：1949 年到 2024 年的统计里，7 月生成的台风中，巅峰强度达到台风级及以上的占 59%，8 月 56%，9 月 64%，而 <b>10 月高达 74%</b>——是全年最高的。</p>
+
+<p>为什么秋天更容易出「狠角色」？冷空气是关键，它的作用像一把双刃剑。</p>
+
+<p><b>如果冷空气太强</b>，它会直接钻进台风的「心脏」。台风靠中心那团暖空气维持运转，这团暖空气叫暖心结构；冷空气一来，暖心被搅散，台风就像发动机熄火，迅速减弱，甚至会改头换面变成温带气旋——名字还在，脾气完全变了。</p>
+
+<p><b>如果冷空气不太强</b>，只在台风外围轻轻蹭一下，事情就反过来了：冷暖空气之间的气压差变得很大，风被「抽」得更急，台风北侧的风速加大，大风范围也跟着扩大。同时，暖湿空气被冷空气抬升，像被顶起来的热气球，一路狂凝成雨——暴雨可能下在离台风中心很远的地方，让人措手不及。</p>
+
+<p>还有两个天气条件在帮忙：秋天台风大多生成在遥远的洋面上，「海上跑道」长，有足够的时间和空间长大；秋季高空气流比较稳定，上下层的风速差（垂直风切变）小，台风不容易被「吹歪」，结构更对称、更结实。</p>
+
+<div class="fun-fact orange">
+    <div class="fun-fact-title">🌪️ 趣味知识</div>
+    成熟台风的云系直径能超过 1000 公里，比上海到北京的直线距离还远。可它的中心——台风眼——反而是晴天，风很小，有时还能看见星星。
+</div>
+
+<h2>第五章　知道了这些，我们该做什么？</h2>
+
+<div class="image-container">
+    <img src="scene_05.webp" class="dino-image" alt="孩子和家人一起准备手电、水和收音机">
+    <div class="image-caption">提前一点点准备，就能少很多麻烦</div>
+</div>
+
+<p>十月的台风，比夏天更需要认真对待，原因有三个：路线变数大（冷空气和副热带高压在拔河）；风雨范围大而分散，暴雨可能落在你想不到的地方；海水还很暖，台风靠近陆地后减弱得慢，赖着不走的时间更长。</p>
+
+<p>小朋友能做的事其实很具体：</p>
+
+<p>一、<b>看懂预警颜色</b>。台风预警从蓝、黄、橙到红，颜色越深越危险。看到橙色和红色，就别出门了。</p>
+
+<p>二、<b>不去海边看浪</b>。台风外围的浪最会骗人——看着离岸很远，一个浪头打上来就能把人卷走。拍「勇敢照片」是全世界最不划算的事。</p>
+
+<p>三、<b>暴雨天不趟水</b>。路面积水下面可能藏着被顶开的井盖，还可能有漏电的电线，两样都看不见。</p>
+
+<p>四、<b>家里提前备一点点</b>：一瓶水、一个手电、充满电的充电宝。不用囤，够一两天就行。</p>
+
+<p>五、<b>听大人的话</b>。阳台上的花盆、晾衣杆，台风来之前要收进来——被风吹下去砸到人，后果比你想的严重。</p>
+
+<p>最后留一个想象题。假如海洋不是这样「慢半拍」，而是太阳一晒立刻变热、一不晒立刻变凉，会怎么样？那台风季就会死死卡在盛夏那两个月，来得猛、去得快。正因为海水存热又慢放，台风季才会从盛夏一路拖到深秋，把十月也变成它的舞台。</p>
+
+<p>所以十月为什么还有台风？说到底，是海洋在还账——夏天太阳存进去的那笔热量，海洋要在秋天一点一点交还给大气。懂了这笔账，你就明白：台风不是「夏天的尾巴」，它只是热量的另一种走法。</p>
+
+<div class="quiz-section" data-quiz="2">
+    <div class="quiz-title">🎯 互动小测试</div>
+
+    <div class="quiz-question" data-answer="A">
+        <p class="q-stem">台风能不能生成，最关键的开关是什么？</p>
+        <ul class="q-opts">
+            <li data-k="A">海水温度够不够高</li>
+            <li data-k="B">日历上翻到了几月</li>
+            <li data-k="C">有没有冷空气南下</li>
+            <li data-k="D">太阳直射点在哪里</li>
+        </ul>
+        <details class="q-ans"><summary>看答案</summary>
+            <p><b>A</b>　解析：台风是烧海水的机器，表层水温要超过 26.5℃ 才点得着，和月份没有直接关系。</p>
+        </details>
+    </div>
+
+    <div class="quiz-question" data-answer="B">
+        <p class="q-stem">十月海水还很暖，最主要的原因是什么？</p>
+        <ul class="q-opts">
+            <li data-k="A">十月太阳离地球最近</li>
+            <li data-k="B">海水存热多、凉得慢</li>
+            <li data-k="C">十月阳光比七月更强</li>
+            <li data-k="D">海底火山一直在加热</li>
+        </ul>
+        <details class="q-ans"><summary>看答案</summary>
+            <p><b>B</b>　解析：水的比热容大约是空气的四倍，整个夏天存下的热要慢慢散，温度峰值比太阳最强的时候晚两三个月。</p>
+        </details>
+    </div>
+
+    <div class="quiz-question" data-answer="D">
+        <p class="q-stem">台风往哪个方向走，主要是谁在起作用？</p>
+        <ul class="q-opts">
+            <li data-k="A">台风自己决定方向</li>
+            <li data-k="B">地球自转的方向</li>
+            <li data-k="C">海水的温度高低</li>
+            <li data-k="D">副热带高压边缘</li>
+        </ul>
+        <details class="q-ans"><summary>看答案</summary>
+            <p><b>D</b>　解析：台风像河里的叶子，被大范围气流推着走，副热带高压的位置一挪，它的路线就跟着改。</p>
+        </details>
+    </div>
+
+    <div class="quiz-question" data-answer="B">
+        <p class="q-stem">冷空气遇到台风，可能带来什么结果？</p>
+        <ul class="q-opts">
+            <li data-k="A">一定让台风马上减弱</li>
+            <li data-k="B">让风更大、雨更猛</li>
+            <li data-k="C">把台风变成龙卷风</li>
+            <li data-k="D">让台风原地不动</li>
+        </ul>
+        <details class="q-ans"><summary>看答案</summary>
+            <p><b>B</b>　解析：冷空气不太强时只蹭到外围，气压差拉大、暖湿空气被抬升，风和雨都会加强；太强则会让台风熄火。</p>
+        </details>
+    </div>
+
+    <div class="quiz-question" data-answer="C">
+        <p class="q-stem">统计上，哪个月生成的台风更容易变强？</p>
+        <ul class="q-opts">
+            <li data-k="A">七月</li>
+            <li data-k="B">八月</li>
+            <li data-k="C">十月</li>
+            <li data-k="D">十二月</li>
+        </ul>
+        <details class="q-ans"><summary>看答案</summary>
+            <p><b>C</b>　解析：10 月生成的台风里，巅峰达到台风级及以上的占 74%，是全年最高；7 月 59%、8 月 56%、9 月 64%。</p>
+        </details>
+    </div>
+</div>
+
+        
+        <!-- ⬇⬇ 互动小测试：把 assets/quiz-block-template.html 里的标准块复制到这里 ⬇⬇
+             规则：5 题、4 选项、答案写 data-answer、选项字数相近、干扰项要像真的
+             写完必须跑 python3 update_quiz.py --only <日期目录>，体检不过不许发布 -->
+        
+        <div class="ending">
+            <h3>—— 完 ——</h3>
+            <p>谢谢阅读！希望你学到了很多知识！</p>
+            <p style="margin-top: 10px; font-size: 14px; color: #b2bec3;">本故事由 AI 助手小巴为小朋友精心制作 🚌</p>
+            <div style="text-align: left; margin-top: 15px;">
+                <a href="../index.html" class="back-home-btn">🏠 返回首页</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- rourou-home-btn:start -->
+    <style>
+    #rourou-home-btn{position:fixed;left:14px;bottom:calc(14px + env(safe-area-inset-bottom,0px));z-index:9999;
+    display:inline-flex;align-items:center;gap:6px;padding:10px 18px;border-radius:999px;
+    background:rgba(255,255,255,0.92);color:#2d3436;font-size:15px;font-weight:600;
+    text-decoration:none;box-shadow:0 4px 14px rgba(0,0,0,0.18);border:1px solid rgba(0,0,0,0.08);
+    -webkit-backdrop-filter:blur(4px);backdrop-filter:blur(4px);transition:transform .15s,background .15s;}
+    #rourou-home-btn:hover{background:#fff;transform:translateY(-2px);}
+    @media (max-width:600px){#rourou-home-btn{padding:9px 14px;font-size:13px;left:10px;bottom:calc(10px + env(safe-area-inset-bottom,0px));}}
+    </style>
+    <a id="rourou-home-btn" href="../index.html">🏠 首页</a>
+    <!-- rourou-home-btn:end -->
+</body>
+</html>
