@@ -160,37 +160,115 @@
 <script>
 (function(){
   var K='rourou_sc';
-  var cur=new URLSearchParams(location.search).get('sharecode');
-  if(cur){ try{ sessionStorage.setItem(K,cur); }catch(e){} }
-  else {
-    var sc=null;
-    try{ sc=sessionStorage.getItem(K); }catch(e){}
-    if(sc){
-      var u=new URL(location.href);
-      u.searchParams.set('sharecode',sc);
-      location.replace(u.toString());
+  var SC=null, cur=null;
+  try{
+    cur=new URLSearchParams(location.search).get('sharecode');
+    if(cur){ SC=cur; try{ sessionStorage.setItem(K,cur); }catch(e){} }
+    else { try{ SC=sessionStorage.getItem(K); }catch(e){} }
+  }catch(e){}
+  if(!SC) return;
+
+  // 站内地址补 sharecode；站外/已带参/非 http 返回 null
+  function withSC(u){
+    if(!u) return null;
+    try{
+      var x=new URL(u, location.href);
+      if(x.protocol!=='http:' && x.protocol!=='https:') return null;
+      if(x.origin!==location.origin) return null;
+      if(x.searchParams.get('sharecode')===SC) return null;
+      x.searchParams.set('sharecode',SC);
+      return x.href;
+    }catch(e){ return null; }
+  }
+
+  // 无参进入时补参数跳转（脚本捕获不到的情况兜底）
+  if(!cur){
+    var self=withSC(location.href);
+    if(self && !/[?&]sharecode=/.test(location.search)){
+      location.replace(self);
       return;
     }
   }
-  var SC=cur||(function(){ try{return sessionStorage.getItem(K);}catch(e){return null;} })();
-  if(!SC) return;
-  function fix(){
-    var els=document.querySelectorAll('img[src],video[src],source[src],link[rel=stylesheet][href],script[src]');
-    for(var i=0;i<els.length;i++){
-      var el=els[i], attr=el.hasAttribute('src')?'src':'href';
-      var v=el.getAttribute(attr);
-      if(!v||v.indexOf('sharecode=')>-1||/^(data:|https?:|blob:|#)/.test(v)) continue;
-      el.setAttribute(attr, v + (v.indexOf('?')>-1?'&':'?') + 'sharecode=' + encodeURIComponent(SC));
+
+  // ① 点击拦截：先于站内任何处理器，动态渲染的卡片也覆盖
+  document.addEventListener('click', function(e){
+    var t=e.target;
+    while(t && t!==document && t.tagName!=='A') t=t.parentNode;
+    if(!t || t===document) return;
+    if(t.target && t.target!=='_self') return;
+    var h=t.getAttribute('href');
+    if(!h || /^(mailto:|tel:|javascript:|#)/i.test(h)) return;
+    var nu=withSC(t.href);
+    if(!nu) return;
+    e.preventDefault();
+    e.stopPropagation();
+    location.href=nu;
+  }, true);
+
+  // ② 静态与动态插入的资源统一补参
+  var ATTRS=['src','href','poster','srcset'];
+  var SEL='img[src],img[srcset],video[src],video[poster],audio[src],source[src],source[srcset],'+
+          'script[src],link[rel=stylesheet][href],link[rel=preload][href],a[href]';
+  function fixOne(el,attr){
+    var v=el.getAttribute(attr);
+    if(!v) return;
+    if(attr==='srcset'){
+      var changed=false;
+      var parts=v.split(',').map(function(x){
+        var t=x.trim().split(/\s+/);
+        if(!t[0]) return x;
+        var nu=withSC(t[0]);
+        if(nu){ t[0]=nu; changed=true; }
+        return t.join(' ');
+      });
+      if(changed) el.setAttribute('srcset',parts.join(', '));
+      return;
     }
-    var as=document.querySelectorAll('a[href]');
-    for(var j=0;j<as.length;j++){
-      var a=as[j], h=a.getAttribute('href');
-      if(!h||h.indexOf('sharecode=')>-1||/^(https?:|mailto:|tel:|javascript:|#)/.test(h)) continue;
-      a.setAttribute('href', h + (h.indexOf('?')>-1?'&':'?') + 'sharecode=' + encodeURIComponent(SC));
+    var nu=withSC(v);
+    if(nu) el.setAttribute(attr,nu);
+  }
+  function fixEl(el){
+    for(var k=0;k<ATTRS.length;k++){
+      if(el.hasAttribute && el.hasAttribute(ATTRS[k])) fixOne(el,ATTRS[k]);
     }
   }
-  if(document.readyState==='loading') document.addEventListener('DOMContentLoaded',fix);
-  else fix();
+  function fix(root){
+    var scope=(root&&root.querySelectorAll)?root:document;
+    var els=scope.querySelectorAll(SEL);
+    for(var i=0;i<els.length;i++) fixEl(els[i]);
+  }
+
+  // ③ 资源加载失败时补参重试一次（防漏网）
+  document.addEventListener('error', function(e){
+    var el=e.target;
+    if(!el||!el.tagName) return;
+    var tag=el.tagName;
+    if(tag!=='IMG'&&tag!=='VIDEO'&&tag!=='SOURCE'&&tag!=='AUDIO') return;
+    if(el.getAttribute('data-sc-retry')) return;
+    var nu=withSC(el.getAttribute('src')||'');
+    if(!nu) return;
+    el.setAttribute('data-sc-retry','1');
+    el.setAttribute('src',nu);
+  }, true);
+
+  function boot(){
+    fix(document);
+    try{
+      new MutationObserver(function(ms){
+        for(var i=0;i<ms.length;i++){
+          var added=ms[i].addedNodes;
+          for(var j=0;j<added.length;j++){
+            var n=added[j];
+            if(n.nodeType!==1) continue;
+            fixEl(n);
+            if(n.querySelectorAll) fix(n);
+          }
+        }
+      }).observe(document.documentElement,{childList:true,subtree:true});
+    }catch(e){}
+  }
+  if(document.readyState==='loading') document.addEventListener('DOMContentLoaded',boot);
+  else boot();
 })();
 </script>
 <!-- sharecode-passthrough:end -->
