@@ -65,6 +65,28 @@ h1{font-size:23px;font-weight:700;letter-spacing:.2px}
 }
 .voiceHint[hidden]{display:none}
 @keyframes vhPulse{0%,100%{transform:translateX(-50%) scale(1)}50%{transform:translateX(-50%) scale(1.045)}}
+/* 开始挡板：iOS/Safari 规定页面不许自己出声，必须有一次真实点按。
+   与其让小朋友盯着「没声音的动画」发呆，不如把「点一下」做成看得见的一步。 */
+.gate{
+  position:fixed;inset:0;z-index:200;display:flex;align-items:center;justify-content:center;
+  padding:26px;text-align:center;
+  background:radial-gradient(130% 85% at 50% 0%,#0e1c2e 0%,#03060b 62%);
+}
+.gate[hidden]{display:none}
+.gateCard{max-width:430px;animation:gateIn .5s ease-out both}
+@keyframes gateIn{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+.gateIcon{font-size:56px;line-height:1;margin-bottom:16px;filter:drop-shadow(0 0 24px rgba(255,202,40,.6))}
+.gateCard h2{font-size:20px;font-weight:700;letter-spacing:.3px;line-height:1.45}
+.gateCard .gp{margin-top:13px;font-size:13.5px;line-height:1.85;color:#8fa6bd}
+.gateBtn{
+  margin-top:24px;padding:15px 32px;border-radius:999px;border:0;cursor:pointer;
+  font-family:inherit;font-size:16px;font-weight:800;background:#ffca28;color:#1a1200;
+  box-shadow:0 12px 34px rgba(255,202,40,.34);transition:transform .15s;
+  -webkit-tap-highlight-color:transparent;
+}
+.gateBtn:active{transform:scale(.96)}
+.gateTip{margin-top:17px;font-size:12.5px;line-height:1.7;color:#5d7386}
+.gateTip b{color:#ffca28;font-weight:700}
 @media (max-width:940px){
   .app{padding:12px 10px 24px}
   h1{font-size:18px}
@@ -90,7 +112,6 @@ h1{font-size:23px;font-weight:700;letter-spacing:.2px}
   @media (pointer:coarse){#home{min-height:38px}}
   @media (max-width:940px){.topbar{margin:-4px 0 2px}#home{padding:6px 10px;font-size:11.5px}}
 </style>
-
 <!-- sharecode-passthrough:start -->
 <script>
 (function(){
@@ -209,6 +230,15 @@ h1{font-size:23px;font-weight:700;letter-spacing:.2px}
 <!-- sharecode-passthrough:end -->
 </head>
 <body>
+<div class="gate" id="gate">
+  <div class="gateCard">
+    <div class="gateIcon">🌞</div>
+    <h2>太阳为什么不是从正东升起？</h2>
+    <p class="gp">4 段动画 · 全程中文语音讲解<br>手机上要先点一下才能出声，这是系统的规定</p>
+    <button class="gateBtn" id="gateBtn">▶ 开始播放（开语音）</button>
+    <p class="gateTip">iPhone 记得关掉侧边<b>静音开关</b>，音量调到一半以上</p>
+  </div>
+</div>
 <div class="app">
   <div class="topbar"><a id="home" href="../../index.html">🏠 返回首页</a></div>
 
@@ -1296,6 +1326,12 @@ var VOICE_MAP = {
 var SC = (function(){ try{ return new URLSearchParams(location.search).get("sharecode"); }catch(e){ return null; } })();
 function voiceURL(f){ return "voice/" + f + (SC ? "?sharecode=" + encodeURIComponent(SC) : ""); }
 
+/* iOS / Safari / 微信 一律禁止「页面一加载就出声」，必须有一次真实点按。
+   WebKit 只认 touchend / click / mousedown / keydown 带来的用户激活，
+   pointerdown 不算 —— 这就是之前「点屏幕还是没声、非得开关两下语音按钮」的根因。
+   所以：UNLOCKED 之前一律不碰 play()，等挡板按钮那一次真实 click 再开闸。 */
+var UNLOCKED = false;
+
 var VOICE_FILES = {}; for(var _k in VOICE_MAP) VOICE_FILES[VOICE_MAP[_k]] = 1;
 var WARMED = {};
 function warmNext(file){                       /* 提前把后面两句下好，句间不留空 */
@@ -1406,6 +1442,8 @@ var Narrator = {
     }
   },
   _speak:function(t){
+    /* 还没被用户点过：iOS 必定拒绝一次，别白试，也别让人以为坏了 */
+    if(!UNLOCKED){ this.speaking = false; this._stopWatch(); return; }
     var self = this, my = ++this.session;
     this.speaking = true;
     var file = VOICE_MAP[t];
@@ -1445,7 +1483,8 @@ var STAGES = [
   { el:document.getElementById("stg2"), dur:S2.dur, frame:frameS2, build:buildS2, loops:1 },
   { el:document.getElementById("stg3"), dur:S3.dur, frame:frameS3, build:buildS3, loops:1 }
 ];
-var cur = 0, tt = 0, playing = true, lastTs = 0, lapsLeft = 1, lastCap = "";
+var cur = 0, tt = 0, playing = false, lastTs = 0, lapsLeft = 1, lastCap = "";
+/* playing 先挂起，等挡板那一次点按再跑起来 —— 否则语音会被系统挡掉，动画却已经讲完了半段 */
 
 function showStage(i){
   cur = (i+STAGES.length)%STAGES.length;
@@ -1540,10 +1579,74 @@ document.getElementById("days0").addEventListener("click", function(e){
   if(Narrator.on) Narrator.force(lastCap);  /* 换日子＝换话题，立刻念新的一句 */
 });
 
-/* 语音默认打开，但手机不允许「没点过就出声」，所以首次点按/按键时开始念。 */
+/* ===== 出声解锁 + 开始挡板 =====
+   iOS 的静音键会直接把 <audio> 掐掉（展台上手机常年静音，这是第二个坑）。
+   把音频元素接进 Web Audio，声音就走「媒体音量」通道，绕过静音键。
+   接不上就退回一个没被接走的普通 <audio>，绝不让它彻底失声。 */
+var AC = null, WA_OK = false, EL_RAW = null, WA_CHECK = 0;
+function unlockAudio(){
+  var a = Narrator.el || (Narrator.el = new Audio());
+  var Ctx = window.AudioContext || window.webkitAudioContext;
+  if(Ctx){
+    try{
+      if(!AC) AC = new Ctx();
+      AC.createMediaElementSource(a).connect(AC.destination);
+      WA_OK = true;
+    }catch(e){
+      /* 已经接走过 / 浏览器不支持：换一个干净元素，保证还有普通通路 */
+      WA_OK = false;
+      if(!EL_RAW) EL_RAW = new Audio();
+      Narrator.el = EL_RAW;
+    }
+  }
+  if(AC && AC.state === "suspended"){ try{ AC.resume(); }catch(e){} }
+  /* 微信 iOS 里 AudioContext 偶尔一直挂在 suspended —— 那样声音会被吞掉，
+     一秒后复查，没跑起来就退回普通元素重播，宁可被静音键掐也不能彻底哑。 */
+  if(WA_OK){
+    clearTimeout(WA_CHECK);
+    var bound = a;
+    WA_CHECK = setTimeout(function(){
+      if(AC && AC.state === "running") return;
+      WA_OK = false;
+      try{ bound.pause(); }catch(e){}
+      if(!EL_RAW) EL_RAW = new Audio();
+      Narrator.el = EL_RAW;
+      var keep = Narrator.lastText;
+      if(UNLOCKED && keep) Narrator.force(keep);
+    }, 1400);
+  }
+  UNLOCKED = true;
+  return Narrator.el;
+}
+
+var GATE = document.getElementById("gate");
+function startAll(){
+  if(!GATE.hidden){
+    GATE.hidden = true;
+    hideVoiceHint();
+    unlockAudio();                 /* 必须在这一次手势栈里同步做完 */
+    playing = true;
+    lastTs = 0;
+    autoBtn.innerHTML = "❚❚ 暂停";
+    autoBtn.classList.add("on");
+    showStage(cur);                /* 会 lock 住首句，此刻在手势里，能出声 */
+  }
+}
+if(GATE){
+  document.getElementById("gateBtn").addEventListener("click", startAll);
+  /* 兜底：挡板被绕过（比如回退缓存、脚本报错）时，任意一次真实点按也能开闸 */
+  ["touchend","click","mousedown"].forEach(function(ev){
+    document.addEventListener(ev, function(){ if(!UNLOCKED) startAll(); }, true);
+  });
+  document.addEventListener("keydown", function(e){
+    if(!UNLOCKED && e.key === "Enter") startAll();
+  }, true);
+}
+
+/* 语音默认打开；解锁后如果还停在静音提示上，点提示也能继续 */
 document.addEventListener("pointerdown", nudgeVoice, { once:true });
-document.addEventListener("keydown", nudgeVoice, { once:true });
-setTimeout(function(){                       /* 被拦才提示，正常在播就别打扰 */
+setTimeout(function(){                       /* 有挡板就不必再提示，点挡板那一下已经能出声 */
+  if(GATE) return;
   if(!(Narrator.el && !Narrator.el.paused)) showVoiceHint();
 }, 1000);
 
@@ -1552,10 +1655,12 @@ requestAnimationFrame(tick);
 window.__dbg = {
   audio: function(){
     var a = Narrator.el;
-    if(!a) return null;
+    if(!a) return { unlocked:UNLOCKED, el:null };
     return { file:(a.currentSrc||a.src).split("/").pop().split("?")[0], paused:a.paused,
-             t:+a.currentTime.toFixed(2), dur:+((a.duration)||0).toFixed(2), rate:a.playbackRate };
+             t:+a.currentTime.toFixed(2), dur:+((a.duration)||0).toFixed(2), rate:a.playbackRate,
+             unlocked:UNLOCKED, webAudio:WA_OK, acState:AC ? AC.state : "none" };
   },
+  start: function(){ startAll(); },
   show: function(i){ showStage(i); },
   set: function(v){ playing = false; tt = v; STAGES[cur].frame(v); },
   go: function(){ playing = true; },
