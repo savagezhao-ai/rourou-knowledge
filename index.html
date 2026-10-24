@@ -73,44 +73,55 @@
         .refresh-btn:hover { transform: scale(1.1); box-shadow: 0 6px 20px rgba(0,0,0,0.3); }
         .refresh-btn:active { transform: scale(0.95); }
         /* ===== 关于本站 弹窗 ===== */
-        .modal-mask { position: fixed; inset: 0; background: rgba(38,26,58,0.58); backdrop-filter: blur(5px); display: none; align-items: flex-start; justify-content: center; padding: 40px 20px; z-index: 2000; overflow-y: auto; }
+        .modal-mask { position: fixed; inset: 0; background: rgba(38,26,58,0.58); backdrop-filter: blur(5px); display: none; align-items: flex-start; justify-content: center; padding: 20px; z-index: 2000; overflow-y: auto; }
         .modal-mask.open { display: flex; }
-        .modal { background: #fff; border-radius: 24px; max-width: 720px; width: 100%; position: relative; box-shadow: 0 30px 80px rgba(0,0,0,0.35); overflow: hidden; animation: modalIn 0.26s ease; }
+        .modal { background: #fff; margin: auto; border-radius: 22px; max-width: 1220px; width: 100%; position: relative; box-shadow: 0 30px 80px rgba(0,0,0,0.35); overflow: hidden; animation: modalIn 0.26s ease; }
         @keyframes modalIn { from { opacity: 0; transform: translateY(16px) scale(0.98); } to { opacity: 1; transform: none; } }
-        .modal-head { padding: 32px 34px 22px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: #fff; position: relative; }
-        .modal-head h2 { font-size: 26px; margin-bottom: 8px; }
-        .modal-head p { font-size: 15px; opacity: 0.88; line-height: 1.6; }
-        .modal-close { position: absolute; top: 18px; right: 18px; width: 36px; height: 36px; border-radius: 50%; border: none; background: rgba(255,255,255,0.2); color: #fff; font-size: 20px; cursor: pointer; line-height: 1; transition: background 0.2s; }
+        .modal-head { padding: 20px 30px 15px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: #fff; position: relative; }
+        .modal-head h2 { font-size: 22px; margin-bottom: 4px; }
+        .modal-head p { font-size: 13.5px; opacity: 0.88; line-height: 1.55; }
+        .modal-close { position: absolute; top: 14px; right: 16px; width: 32px; height: 32px; border-radius: 50%; border: none; background: rgba(255,255,255,0.2); color: #fff; font-size: 19px; cursor: pointer; line-height: 1; transition: background 0.2s; }
         .modal-close:hover { background: rgba(255,255,255,0.35); }
-        .modal-body { padding: 28px 34px 34px; }
-        .lede { font-size: 17px; line-height: 1.85; color: #2d3436; padding: 18px 20px; background: #f7f5fc; border-left: 4px solid #764ba2; border-radius: 0 14px 14px 0; margin-bottom: 26px; }
-        .m-sec { margin-bottom: 26px; }
-        .m-sec h3 { font-size: 17px; color: #5b3d8f; margin-bottom: 12px; display: flex; align-items: center; gap: 8px; }
+        .modal-body { padding: 18px 30px 20px; }
+        .lede { font-size: 14.5px; line-height: 1.7; color: #2d3436; padding: 11px 16px; background: #f7f5fc; border-left: 4px solid #764ba2; border-radius: 0 12px 12px 0; margin-bottom: 16px; }
+        .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0 32px; align-items: start; }
+        .m-sec { margin-bottom: 15px; }
+        .m-sec h3 { font-size: 15px; color: #5b3d8f; margin-bottom: 8px; display: flex; align-items: center; gap: 8px; }
         .m-sec h3::after { content: ""; flex: 1; height: 1px; background: #eceaf3; }
-        .m-sec p { font-size: 15px; color: #4a4a5a; line-height: 1.8; }
-        .split { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
-        .split-col { padding: 16px 18px; border-radius: 14px; }
+        .m-sec p { font-size: 13.5px; color: #4a4a5a; line-height: 1.7; }
+        .split { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+        .split-col { padding: 11px 13px; border-radius: 12px; }
         .split-col.human { background: #fff4e8; border: 1px solid #ffd9b0; }
         .split-col.machine { background: #eef2fd; border: 1px solid #ccd8f8; }
-        .split-col h4 { font-size: 14px; margin-bottom: 10px; }
+        .split-col h4 { font-size: 13px; margin-bottom: 6px; }
         .split-col.human h4 { color: #a0522d; }
         .split-col.machine h4 { color: #3b5bdb; }
         .split-col ul { list-style: none; }
-        .split-col li { font-size: 14px; color: #4a4a5a; line-height: 1.85; padding-left: 14px; position: relative; }
-        .split-col li::before { content: "·"; position: absolute; left: 4px; }
+        .split-col li { font-size: 13px; color: #4a4a5a; line-height: 1.65; padding-left: 13px; position: relative; }
+        .split-col li::before { content: "·"; position: absolute; left: 3px; }
         .steps { list-style: none; counter-reset: s; }
-        .steps li { counter-increment: s; position: relative; padding: 0 0 18px 46px; font-size: 15px; color: #4a4a5a; line-height: 1.75; }
-        .steps li::before { content: counter(s); position: absolute; left: 0; top: 0; width: 30px; height: 30px; border-radius: 50%; background: #f0ecfa; color: #764ba2; font-size: 14px; font-weight: bold; display: flex; align-items: center; justify-content: center; }
+        .steps li { counter-increment: s; position: relative; padding: 0 0 9px 38px; font-size: 13.5px; color: #4a4a5a; line-height: 1.62; }
+        .steps li::before { content: counter(s); position: absolute; left: 0; top: 0; width: 26px; height: 26px; border-radius: 50%; background: #f0ecfa; color: #764ba2; font-size: 12.5px; font-weight: bold; display: flex; align-items: center; justify-content: center; }
         .steps li:last-child { padding-bottom: 0; }
-        .steps li b { color: #2d3436; display: block; margin-bottom: 2px; }
-        .stack { display: flex; flex-wrap: wrap; gap: 8px; }
-        .chip { padding: 7px 14px; border-radius: 20px; font-size: 13px; background: #f2f4f8; color: #4a4a5a; }
+        .steps li b { color: #2d3436; }
+        .steps li b::after { content: "："; }
+        .stack { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 8px; }
+        .chip { padding: 5px 11px; border-radius: 18px; font-size: 12.5px; background: #f2f4f8; color: #4a4a5a; }
         .chip.hot { background: #eef2fd; color: #3b5bdb; }
-        .modal-foot { margin-top: 26px; padding-top: 20px; border-top: 1px dashed #e6e3ef; font-size: 13px; color: #8a8a9e; line-height: 1.8; }
+        .modal-foot { margin-top: 4px; padding-top: 11px; border-top: 1px dashed #e6e3ef; font-size: 12px; color: #8a8a9e; line-height: 1.7; }
 
         /* ===== 轻提示 ===== */
         .toast { position: fixed; left: 50%; bottom: 40px; transform: translate(-50%, 16px); background: rgba(45,52,54,0.94); color: #fff; padding: 14px 22px; border-radius: 14px; font-size: 14px; line-height: 1.7; max-width: 88vw; text-align: center; opacity: 0; transition: opacity .28s ease, transform .28s ease; z-index: 3000; pointer-events: none; }
         .toast.show { opacity: 1; transform: translate(-50%, 0); }
+
+        @media (max-width: 980px) {
+            .modal { max-width: 100%; }
+            .about-grid { grid-template-columns: 1fr; gap: 0; }
+            .lede { font-size: 15px; }
+            .m-sec h3 { font-size: 16px; }
+            .m-sec p, .steps li { font-size: 15px; line-height: 1.75; }
+            .split-col li { font-size: 14px; }
+        }
 
         @media (max-width: 600px) {
             .header h1 { font-size: 26px; letter-spacing: 0; }
@@ -127,7 +138,6 @@
             .split { grid-template-columns: 1fr; }
         }
     </style>
-
 <!-- sharecode-passthrough:start -->
 <script>
 (function(){
@@ -289,79 +299,84 @@
             <div class="modal-body">
                 <p class="lede">这个网站上没有一个字、一张图、一行代码是人敲出来的。<br>人只做三件事：<b>给方向、做判断、审内容</b>。</p>
 
-                <div class="m-sec">
-                    <h3>谁做了什么</h3>
-                    <div class="split">
-                        <div class="split-col human">
-                            <h4>人 · 一个孩子和一位家长</h4>
-                            <ul>
-                                <li>提供素材与选题方向</li>
-                                <li>判断内容对不对、好不好读</li>
-                                <li>内容审核与事实把关</li>
-                                <li>决定哪些能发、哪些要重做</li>
-                            </ul>
-                        </div>
-                        <div class="split-col machine">
-                            <h4>AI · 写、画、排版、发布</h4>
-                            <ul>
-                                <li>撰写全部文章正文</li>
-                                <li>生成全部插图</li>
-                                <li>编写网站代码与样式</li>
-                                <li>更新目录、构建、上线</li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="m-sec">
-                    <h3>一篇内容是怎么做出来的</h3>
-                    <ol class="steps">
-                        <li><b>人给一句话方向</b>比如「肉肉更新 10 月为何有台风」——最近这篇《十月了，为什么还有台风？》就是从这一句话开始的。</li>
-                        <li><b>AI 先做去重检查</b>扫描已有全部篇目，确认不重复，才允许动笔。</li>
-                        <li><b>AI 写正文</b>按第一性原理写：先讲清底层的「为什么」，再讲「怎么办」。那篇台风文分五章——水温开关、海洋比热、副高当司机、冷空气双刃剑、行动清单。</li>
-                        <li><b>AI 生成配图</b>提示词先写好，本地生成，逐张检查有没有崩坏。台风文第一版把台风画成了漏斗状龙卷风，改成「宽扁云盘、绝不是漏斗」后重出两张才过。</li>
-                        <li><b>初审</b>AI 先自查事实与逻辑，人再读一遍拍板：有没有讲错、孩子能不能看懂、会不会吓到人。</li>
-                        <li><b>工作流自动收尾</b>套模板成页、出 5 道题进题库、更新首页目录、构建，再自动推送到两个线上镜像。</li>
-                    </ol>
-                </div>
-
-                <div class="m-sec">
-                    <h3>技术栈</h3>
-                    <div class="stack">
-                        <span class="chip hot">DeepSeek · 主力模型</span>
-                        <span class="chip">本地 ComfyUI 出图</span>
-                        <span class="chip">本地生成 + 线上 API</span>
-                        <span class="chip">skill 工作流驱动</span>
-                        <span class="chip">纯静态 · 单文件 HTML</span>
-                    </div>
-                    <p>整套工作流的 Agent 基座在 2026 年从 QClaw 切换到了 WorkBuddy——skill、脚本、构建流程原样搬过来，同一份代码在两个平台上跑。</p>
-                </div>
-
-                <div class="m-sec">
-                    <h3>同一份代码，三个地方跑</h3>
-                    <div class="split">
-                        <div class="split-col">
-                            <h4>本地 · 独立运行</h4>
-                            <ul>
-                                <li>Mac 上常驻一个服务，本机自己就是一个完整站点</li>
-                                <li>断网、没信号也能打开</li>
-                                <li>现场演示的兜底方案</li>
-                            </ul>
-                        </div>
-                        <div class="split-col">
-                            <h4>线上 · 双镜像自动推送</h4>
-                            <ul>
-                                <li>腾讯云 CDN 托管：走国内节点，加载最快</li>
-                                <li>GitHub Pages：互联网备份镜像，微信里能直接打开</li>
-                                <li>内容改一次，工作流自动构建并推送两份</li>
-                            </ul>
+                <div class="about-grid">
+                    <div class="about-col">
+                    <div class="m-sec">
+                        <h3>谁做了什么</h3>
+                        <div class="split">
+                            <div class="split-col human">
+                                <h4>人 · 一个孩子和一位家长</h4>
+                                <ul>
+                                    <li>提供素材与选题方向</li>
+                                    <li>判断内容对不对、好不好读</li>
+                                    <li>内容审核与事实把关</li>
+                                    <li>决定哪些能发、哪些要重做</li>
+                                </ul>
+                            </div>
+                            <div class="split-col machine">
+                                <h4>AI · 写、画、排版、发布</h4>
+                                <ul>
+                                    <li>撰写全部文章正文</li>
+                                    <li>生成全部插图</li>
+                                    <li>编写网站代码与样式</li>
+                                    <li>更新目录、构建、上线</li>
+                                </ul>
+                            </div>
                         </div>
                     </div>
-                </div>
 
-                <div class="m-sec">
-                    <h3>为什么这本身就是一堂 AI 课</h3>
-                    <p>AI 不是「一键生成」。它可以被要求、被检查、被推翻——这个网站把每一步都摊开写了：哪一步是 AI 做的，哪一步是人拦下来的，哪一步做废重来。</p>
+                    <div class="m-sec">
+                        <h3>技术栈</h3>
+                        <div class="stack">
+                            <span class="chip hot">DeepSeek · 主力模型</span>
+                            <span class="chip">本地 ComfyUI 出图</span>
+                            <span class="chip">本地生成 + 线上 API</span>
+                            <span class="chip">skill 工作流驱动</span>
+                            <span class="chip">纯静态 · 单文件 HTML</span>
+                        </div>
+                        <p>整套工作流的 Agent 基座在 2026 年从 QClaw 切换到了 WorkBuddy——skill、脚本、构建流程原样搬过来，同一份代码在两个平台上跑。</p>
+                    </div>
+
+                    <div class="m-sec">
+                        <h3>为什么这本身就是一堂 AI 课</h3>
+                        <p>AI 不是「一键生成」。它可以被要求、被检查、被推翻——这个网站把每一步都摊开写了：哪一步是 AI 做的，哪一步是人拦下来的，哪一步做废重来。</p>
+                    </div>
+                    </div>
+                    <div class="about-col">
+                    <div class="m-sec">
+                        <h3>一篇内容是怎么做出来的</h3>
+                        <ol class="steps">
+                            <li><b>人给一句话方向</b>比如「肉肉更新 10 月为何有台风」——最近这篇《十月了，为什么还有台风？》就是从这一句话开始的。</li>
+                            <li><b>AI 先做去重检查</b>扫描已有全部篇目，确认不重复，才允许动笔。</li>
+                            <li><b>AI 写正文</b>按第一性原理写：先讲清底层的「为什么」，再讲「怎么办」。那篇台风文分五章——水温开关、海洋比热、副高当司机、冷空气双刃剑、行动清单。</li>
+                            <li><b>AI 生成配图</b>提示词先写好，本地生成，逐张检查有没有崩坏。台风文第一版把台风画成了漏斗状龙卷风，改成「宽扁云盘、绝不是漏斗」后重出两张才过。</li>
+                            <li><b>初审</b>AI 先自查事实与逻辑，人再读一遍拍板：有没有讲错、孩子能不能看懂、会不会吓到人。</li>
+                            <li><b>工作流自动收尾</b>套模板成页、出 5 道题进题库、更新首页目录、构建，再自动推送到两个线上镜像。</li>
+                        </ol>
+                    </div>
+
+                    <div class="m-sec">
+                        <h3>同一份代码，三个地方跑</h3>
+                        <div class="split">
+                            <div class="split-col">
+                                <h4>本地 · 独立运行</h4>
+                                <ul>
+                                    <li>Mac 上常驻一个服务，本机自己就是一个完整站点</li>
+                                    <li>断网、没信号也能打开</li>
+                                    <li>现场演示的兜底方案</li>
+                                </ul>
+                            </div>
+                            <div class="split-col">
+                                <h4>线上 · 双镜像自动推送</h4>
+                                <ul>
+                                    <li>腾讯云 CDN 托管：走国内节点，加载最快</li>
+                                    <li>GitHub Pages：互联网备份镜像，微信里能直接打开</li>
+                                    <li>内容改一次，工作流自动构建并推送两份</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    </div>
                 </div>
 
                 <div class="modal-foot">
