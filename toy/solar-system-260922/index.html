@@ -46,8 +46,8 @@
   }
   #panel{position:fixed;top:14px;left:14px;width:308px;padding:12px 13px 13px;z-index:20;
     transition:transform .25s ease,opacity .25s ease;}
-  body.collapsed #panel{transform:translateY(calc(-100% + 46px));}
-  body.collapsed #panel .pbody{opacity:0;pointer-events:none}
+  
+  body.collapsed #panel .pbody{opacity:0;pointer-events:none;max-height:0;overflow:hidden}
 
   .hd{display:flex;align-items:center;justify-content:space-between;margin-bottom:9px}
   .ttl{font-size:12.5px;font-weight:600;letter-spacing:1.4px;color:#eaf2ff}
@@ -183,7 +183,7 @@
     #infotitle{font-size:11px}
     .ir{font-size:10px}
     .ir b{font-size:9.5px}
-    body.collapsed #panel{transform:translateY(calc(-100% + 42px))}
+    
   }
   @media (max-width:860px){
     #panel{width:204px;top:8px;left:8px;padding:9px 10px 10px}
@@ -208,7 +208,7 @@
     .ir{font-size:9.5px}
     .ir b{font-size:9px}
     #collapse{width:22px;height:22px;font-size:13px}
-    body.collapsed #panel{transform:translateY(calc(-100% + 40px))}
+    
   }
   @media (max-width:720px){
     #panel{width:calc(100vw - 16px);top:8px;left:8px}
@@ -216,14 +216,6 @@
     #info{display:none}
   }
 </style>
-
-
-
-
-
-
-
-
 <!-- sharecode-passthrough:start -->
 <script>
 (function(){
@@ -4844,5 +4836,20 @@ three/build/three.module.js:
    *)
 */
 </script>
+
+<!-- rourou-home-btn:start -->
+<style>
+#rourou-home-btn{position:fixed;left:14px;bottom:calc(14px + env(safe-area-inset-bottom,0px));z-index:9999;
+display:inline-flex;align-items:center;gap:6px;padding:10px 18px;border-radius:999px;
+background:rgba(255,255,255,0.92);color:#2d3436;font-size:15px;font-weight:600;
+text-decoration:none;box-shadow:0 4px 14px rgba(0,0,0,0.18);border:1px solid rgba(0,0,0,0.08);
+-webkit-backdrop-filter:blur(4px);backdrop-filter:blur(4px);transition:transform .15s,background .15s;}
+#rourou-home-btn:hover{background:#fff;transform:translateY(-2px);}
+@media (max-width:600px){#rourou-home-btn{padding:9px 14px;font-size:13px;left:10px;bottom:calc(10px + env(safe-area-inset-bottom,0px));}}
+/* 本页左下角有 #info 天体信息卡（仅 >1100px 在左下），给首页按钮让位 */
+@media (min-width:1101px){#info{bottom:calc(64px + env(safe-area-inset-bottom,0px))}}
+</style>
+<a id="rourou-home-btn" href="../../index.html">🏠 首页</a>
+<!-- rourou-home-btn:end -->
 </body>
 </html>
