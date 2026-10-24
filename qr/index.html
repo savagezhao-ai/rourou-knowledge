@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>扫码看站 · 肉肉的 AI 科研小站</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: -apple-system, "PingFang SC", "Microsoft YaHei", "Hiragino Sans GB", "Noto Sans SC", sans-serif;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    min-height: 100vh; padding: 20px; padding-bottom: calc(24px + env(safe-area-inset-bottom, 0px));
+  }
+  .container { max-width: 720px; margin: 0 auto; }
+
+  .header {
+    text-align: center; padding: 30px 22px; background: rgba(255,255,255,0.96);
+    border-radius: 26px; margin-bottom: 18px; box-shadow: 0 18px 50px rgba(0,0,0,0.18);
+    position: relative; overflow: hidden;
+  }
+  .header::before { content: "📱"; position: absolute; font-size: 100px; opacity: 0.07;
+    top: -22px; right: -14px; transform: rotate(-12deg); }
+  .header h1 { font-size: 27px; color: #764ba2; margin-bottom: 8px; letter-spacing: .5px; }
+  .header p { font-size: 14px; color: #8a8a9e; line-height: 1.7; }
+
+  .panel {
+    background: rgba(255,255,255,0.96); border-radius: 24px; padding: 26px 20px 20px;
+    box-shadow: 0 12px 40px rgba(0,0,0,0.15); margin-bottom: 18px;
+  }
+  .dual { display: flex; gap: 16px; }
+  .col { flex: 1; display: flex; flex-direction: column; align-items: center; text-align: center; }
+
+  .box { padding: 10px; border: 2px solid #1a1a1a; border-radius: 16px; background: #fff; }
+  .box.warn { border-color: #e8710a; }
+  .box img { display: block; width: 100%; height: auto; image-rendering: pixelated; }
+
+  .cap { margin-top: 14px; font-size: 16px; font-weight: 700; line-height: 1.35; color: #1a1a1a; }
+  .cap.warn { color: #c2410c; }
+  .note { margin-top: 6px; font-size: 12.5px; line-height: 1.6; color: #6b7480; }
+  .note .slow { display: block; margin-top: 3px; color: #b45309; font-weight: 600; }
+  .note.warn { color: #c2410c; font-weight: 600; }
+
+  .url { margin-top: 8px; font-family: ui-monospace, "SF Mono", Menlo, monospace;
+    font-size: 11px; color: #98a1ab; line-height: 1.5; word-break: break-all; }
+  .url a { color: #6b7f96; text-decoration: none; border-bottom: 1px dotted #c3ccd6; }
+
+  .tip { margin-top: 22px; padding: 16px 18px; background: #fafbfc; border: 1px solid #e6eaef;
+    border-radius: 14px; font-size: 13px; line-height: 1.75; color: #4a5563; }
+  .tip b { color: #1a1a1a; }
+  .tip .t { display: block; font-size: 14px; font-weight: 700; color: #1a1a1a; margin-bottom: 6px; }
+
+  .feats { display: flex; gap: 12px; }
+  .feat { flex: 1; background: rgba(255,255,255,0.96); border-radius: 16px; padding: 16px;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.10); }
+  .feat b { display: block; font-size: 15px; color: #2d3436; margin-bottom: 5px; }
+  .feat span { font-size: 12px; color: #7b8794; line-height: 1.55; }
+
+  .foot { margin-top: 18px; text-align: center; font-size: 11.5px; color: rgba(255,255,255,0.75);
+    letter-spacing: .08em; }
+
+  /* 返回首页：与站内其它页面同一套悬浮按钮 */
+  #rourou-home-btn{position:fixed;left:14px;bottom:calc(14px + env(safe-area-inset-bottom,0px));z-index:9999;
+    display:inline-flex;align-items:center;gap:6px;padding:10px 18px;border-radius:999px;
+    background:rgba(255,255,255,0.92);color:#2d3436;font-size:15px;font-weight:600;
+    text-decoration:none;box-shadow:0 4px 14px rgba(0,0,0,0.18);border:1px solid rgba(0,0,0,0.08);
+    -webkit-backdrop-filter:blur(4px);backdrop-filter:blur(4px);transition:transform .15s,background .15s;}
+  #rourou-home-btn:hover{background:#fff;transform:translateY(-2px);}
+
+  @media (max-width: 560px) {
+    body { padding: 14px; }
+    .header { padding: 24px 18px; border-radius: 22px; }
+    .header h1 { font-size: 22px; }
+    .dual { flex-direction: column; gap: 22px; }
+    .col { width: 100%; }
+    .box img { width: 100%; max-width: 260px; margin: 0 auto; }
+    .feats { flex-direction: column; }
+    #rourou-home-btn{padding:9px 14px;font-size:13px;left:10px;bottom:calc(10px + env(safe-area-inset-bottom,0px));}
+  }
+</style>
+<!-- sharecode-passthrough:start -->
+<script>
+(function(){
+  var K='rourou_sc';
+  var SC=null, cur=null;
+  try{
+    cur=new URLSearchParams(location.search).get('sharecode');
+    if(cur){ SC=cur; try{ sessionStorage.setItem(K,cur); }catch(e){} }
+    else { try{ SC=sessionStorage.getItem(K); }catch(e){} }
+  }catch(e){}
+  if(!SC) return;
+
+  // 站内地址补 sharecode；站外/已带参/非 http 返回 null
+  function withSC(u){
+    if(!u) return null;
+    try{
+      var x=new URL(u, location.href);
+      if(x.protocol!=='http:' && x.protocol!=='https:') return null;
+      if(x.origin!==location.origin) return null;
+      if(x.searchParams.get('sharecode')===SC) return null;
+      x.searchParams.set('sharecode',SC);
+      return x.href;
+    }catch(e){ return null; }
+  }
+
+  // 无参进入时补参数跳转（脚本捕获不到的情况兜底）
+  if(!cur){
+    var self=withSC(location.href);
+    if(self && !/[?&]sharecode=/.test(location.search)){
+      location.replace(self);
+      return;
+    }
+  }
+
+  // ① 点击拦截：先于站内任何处理器，动态渲染的卡片也覆盖
+  document.addEventListener('click', function(e){
+    var t=e.target;
+    while(t && t!==document && t.tagName!=='A') t=t.parentNode;
+    if(!t || t===document) return;
+    if(t.target && t.target!=='_self') return;
+    var h=t.getAttribute('href');
+    if(!h || /^(mailto:|tel:|javascript:|#)/i.test(h)) return;
+    var nu=withSC(t.href);
+    if(!nu) return;
+    e.preventDefault();
+    e.stopPropagation();
+    location.href=nu;
+  }, true);
+
+  // ② 静态与动态插入的资源统一补参
+  var ATTRS=['src','href','poster','srcset'];
+  var SEL='img[src],img[srcset],video[src],video[poster],audio[src],source[src],source[srcset],'+
+          'script[src],link[rel=stylesheet][href],link[rel=preload][href],a[href]';
+  function fixOne(el,attr){
+    var v=el.getAttribute(attr);
+    if(!v) return;
+    if(attr==='srcset'){
+      var changed=false;
+      var parts=v.split(',').map(function(x){
+        var t=x.trim().split(/\s+/);
+        if(!t[0]) return x;
+        var nu=withSC(t[0]);
+        if(nu){ t[0]=nu; changed=true; }
+        return t.join(' ');
+      });
+      if(changed) el.setAttribute('srcset',parts.join(', '));
+      return;
+    }
+    var nu=withSC(v);
+    if(nu) el.setAttribute(attr,nu);
+  }
+  function fixEl(el){
+    for(var k=0;k<ATTRS.length;k++){
+      if(el.hasAttribute && el.hasAttribute(ATTRS[k])) fixOne(el,ATTRS[k]);
+    }
+  }
+  function fix(root){
+    var scope=(root&&root.querySelectorAll)?root:document;
+    var els=scope.querySelectorAll(SEL);
+    for(var i=0;i<els.length;i++) fixEl(els[i]);
+  }
+
+  // ③ 资源加载失败时补参重试一次（防漏网）
+  document.addEventListener('error', function(e){
+    var el=e.target;
+    if(!el||!el.tagName) return;
+    var tag=el.tagName;
+    if(tag!=='IMG'&&tag!=='VIDEO'&&tag!=='SOURCE'&&tag!=='AUDIO') return;
+    if(el.getAttribute('data-sc-retry')) return;
+    var nu=withSC(el.getAttribute('src')||'');
+    if(!nu) return;
+    el.setAttribute('data-sc-retry','1');
+    el.setAttribute('src',nu);
+  }, true);
+
+  function boot(){
+    fix(document);
+    try{
+      new MutationObserver(function(ms){
+        for(var i=0;i<ms.length;i++){
+          var added=ms[i].addedNodes;
+          for(var j=0;j<added.length;j++){
+            var n=added[j];
+            if(n.nodeType!==1) continue;
+            fixEl(n);
+            if(n.querySelectorAll) fix(n);
+          }
+        }
+      }).observe(document.documentElement,{childList:true,subtree:true});
+    }catch(e){}
+  }
+  if(document.readyState==='loading') document.addEventListener('DOMContentLoaded',boot);
+  else boot();
+})();
+</script>
+<!-- sharecode-passthrough:end -->
+</head>
+<body>
+<div class="container">
+
+  <div class="header">
+    <h1>📱 扫码看站</h1>
+    <p>两个地址内容完全一样，任选一个<br>扫给朋友、贴在展板上、印在纸上都行</p>
+  </div>
+
+  <div class="panel">
+    <div class="dual">
+
+      <div class="col">
+        <div class="box"><img src="qr-gh.png" alt="GitHub 二维码"></div>
+        <div class="cap">微信 / 相机扫一扫</div>
+        <div class="note">微信里直接打开，无需切换
+          <span class="slow">⚠ 国内加载可能稍慢，等几秒</span>
+        </div>
+        <div class="url"><a href="https://savagezhao-ai.github.io/rourou-knowledge/">savagezhao-ai.github.io<br>/rourou-knowledge</a></div>
+      </div>
+
+      <div class="col">
+        <div class="box warn"><img src="qr-wb.png" alt="腾讯镜像二维码"></div>
+        <div class="cap warn">⚠ 请用浏览器打开</div>
+        <div class="note warn">微信内打开可能会异常，<br>请用手机浏览器扫码</div>
+        <div class="url"><a href="https://rourou-ai-lab.app.workbuddy.host/?sharecode=ZJQJRDYO3B">rourou-ai-lab.app.workbuddy.host<br>/?sharecode=ZJQJRDYO3B</a></div>
+      </div>
+
+    </div>
+
+    <div class="tip">
+      <span class="t">怎么用</span>
+      左边（GitHub）—— 微信里直接看，不用切换，但国内加载稍慢，请等几秒。<br>
+      右边（腾讯）—— 加载更快，<b>请用手机浏览器扫</b>。若在微信里打开看到「请在浏览器中打开」：
+      先点右上角 <b>⋯</b> 选「在浏览器打开」；若没有这个选项，就点页面上的蓝色<b>「复制链接」</b>，
+      再到浏览器地址栏粘贴打开。
+    </div>
+  </div>
+
+  <div class="feats">
+    <div class="feat"><b>81 篇科普</b><span>台风、火山、电梯、桥梁……每篇配插图和测试题</span></div>
+    <div class="feat"><b>320 道测试题</b><span>随机抽 10 题，答完自动打分</span></div>
+    <div class="feat"><b>5 份学习讲义</b><span>周长、多位数乘法、世界历史小课</span></div>
+  </div>
+
+  <div class="foot">肉肉的 AI 科研小站 · 全 AI 制作的社区科技馆</div>
+
+</div>
+
+<a id="rourou-home-btn" href="../index.html">🏠 首页</a>
+</body>
+</html>
