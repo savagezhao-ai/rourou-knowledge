@@ -321,7 +321,7 @@
         <div class="flow-box" role="dialog" aria-modal="true" aria-labelledby="flowTitle">
             <button class="modal-close" onclick="closeFlow()" aria-label="关闭">×</button>
             <h2 id="flowTitle">内容流水线</h2>
-            <p class="flow-sub">一句话进去，一篇文章出来。人只看两道：大人看事实与分寸，孩子看读不读得懂。橙色虚线是退回重做的回流。</p>
+            <p class="flow-sub">一句话进去，一篇文章出来。人只看两道：大人看事实与分寸，孩子看读不读得懂。两道都能退回重做。</p>
             <div class="flow-canvas">
                 <svg class="flow-svg-desktop" viewBox="0 0 900 330" role="img" xmlns="http://www.w3.org/2000/svg">
                     <title>内容流水线</title>
@@ -336,7 +336,7 @@
                     </defs>
 
                     <rect x="30" y="46" width="250" height="76" rx="12" fill="#fff4e8" stroke="#f0cfa8" stroke-width="1"/>
-                    <text x="155" y="74" text-anchor="middle" font-size="15.5" font-weight="500" fill="#8a4b1f">1　我提问</text>
+                    <text x="155" y="74" text-anchor="middle" font-size="15.5" font-weight="500" fill="#8a4b1f">1　孩子提问</text>
                     <text x="155" y="100" text-anchor="middle" font-size="12.5" fill="#b0754a">「都十月了，为什么还有台风？」</text>
 
                     <rect x="315" y="46" width="250" height="76" rx="12" fill="#eef2fd" stroke="#ccd8f8" stroke-width="1"/>
@@ -352,7 +352,7 @@
                     <text x="725" y="254" text-anchor="middle" font-size="12.5" fill="#b0754a">大人先读 · 事实与分寸</text>
 
                     <rect x="315" y="200" width="250" height="76" rx="12" fill="#fff4e8" stroke="#f0cfa8" stroke-width="1"/>
-                    <text x="440" y="228" text-anchor="middle" font-size="15.5" font-weight="500" fill="#8a4b1f">5　我读一遍</text>
+                    <text x="440" y="228" text-anchor="middle" font-size="15.5" font-weight="500" fill="#8a4b1f">5　孩子读一遍</text>
                     <text x="440" y="254" text-anchor="middle" font-size="12.5" fill="#b0754a">读得懂吗、图对不对</text>
 
                     <rect x="30" y="200" width="250" height="76" rx="12" fill="#e8f7ee" stroke="#bfe4cf" stroke-width="1"/>
@@ -365,9 +365,11 @@
                     <line x1="600" y1="238" x2="569" y2="238" stroke="#b9b6c9" stroke-width="1.6" marker-end="url(#fl-arrow)"/>
                     <line x1="315" y1="238" x2="284" y2="238" stroke="#b9b6c9" stroke-width="1.6" marker-end="url(#fl-arrow)"/>
 
-                    <path d="M655 200 L655 161 L440 161 L440 126" fill="none" stroke="#e8890c" stroke-width="2.4" stroke-dasharray="8 5" marker-end="url(#fl-arrow-warm)"/>
+                    <path d="M655 200 L655 161 L440 161" fill="none" stroke="#e8890c" stroke-width="2.4" stroke-dasharray="8 5"/>
+                    <path d="M440 200 L440 126" fill="none" stroke="#e8890c" stroke-width="2.4" stroke-dasharray="8 5" marker-end="url(#fl-arrow-warm)"/>
                     <circle cx="655" cy="200" r="4" fill="#e8890c"/>
-                    <text x="548" y="147" text-anchor="middle" font-size="13" font-weight="500" fill="#c9760a">有问题 → 重写 / 重画</text>
+                    <circle cx="440" cy="200" r="4" fill="#e8890c"/>
+                    <text x="556" y="146" text-anchor="middle" font-size="13" font-weight="500" fill="#c9760a">有问题 → 重写 / 重画</text>
 
                     <rect x="30" y="292" width="12" height="12" rx="3" fill="#fff4e8" stroke="#f0cfa8" stroke-width="1"/>
                     <text x="50" y="298" font-size="12.5" fill="#8a8a9e">人</text>
@@ -390,7 +392,7 @@
                     </defs>
 
                     <rect x="40" y="24" width="280" height="62" rx="10" fill="#fff4e8" stroke="#f0cfa8" stroke-width="1"/>
-                    <text x="180" y="48" text-anchor="middle" font-size="15" font-weight="500" fill="#8a4b1f">1　我提问</text>
+                    <text x="180" y="48" text-anchor="middle" font-size="15" font-weight="500" fill="#8a4b1f">1　孩子提问</text>
                     <text x="180" y="69" text-anchor="middle" font-size="12" fill="#b0754a">「都十月了，为什么还有台风？」</text>
 
                     <rect x="40" y="116" width="280" height="62" rx="10" fill="#eef2fd" stroke="#ccd8f8" stroke-width="1"/>
@@ -406,7 +408,7 @@
                     <text x="180" y="345" text-anchor="middle" font-size="12" fill="#b0754a">大人先读 · 事实与分寸</text>
 
                     <rect x="40" y="392" width="280" height="62" rx="10" fill="#fff4e8" stroke="#f0cfa8" stroke-width="1"/>
-                    <text x="180" y="416" text-anchor="middle" font-size="15" font-weight="500" fill="#8a4b1f">5　我读一遍</text>
+                    <text x="180" y="416" text-anchor="middle" font-size="15" font-weight="500" fill="#8a4b1f">5　孩子读一遍</text>
                     <text x="180" y="437" text-anchor="middle" font-size="12" fill="#b0754a">读得懂吗、图对不对</text>
 
                     <rect x="40" y="484" width="280" height="62" rx="10" fill="#e8f7ee" stroke="#bfe4cf" stroke-width="1"/>
@@ -419,8 +421,10 @@
                     <line x1="180" y1="362" x2="180" y2="388" stroke="#b9b6c9" stroke-width="1.6" marker-end="url(#fl-m-arrow)"/>
                     <line x1="180" y1="454" x2="180" y2="480" stroke="#b9b6c9" stroke-width="1.6" marker-end="url(#fl-m-arrow)"/>
 
-                    <path d="M40 331 L20 331 L20 147 L32 147" fill="none" stroke="#e8890c" stroke-width="2.2" stroke-dasharray="7 5" marker-end="url(#fl-m-warm)"/>
+                    <path d="M40 423 L20 423 L20 147 L32 147" fill="none" stroke="#e8890c" stroke-width="2.2" stroke-dasharray="7 5" marker-end="url(#fl-m-warm)"/>
+                    <path d="M40 331 L20 331" fill="none" stroke="#e8890c" stroke-width="2.2" stroke-dasharray="7 5"/>
                     <circle cx="40" cy="331" r="3.5" fill="#e8890c"/>
+                    <circle cx="40" cy="423" r="3.5" fill="#e8890c"/>
 
                     <rect x="40" y="566" width="12" height="12" rx="3" fill="#fff4e8" stroke="#f0cfa8" stroke-width="1"/>
                     <text x="60" y="572" font-size="12" fill="#8a8a9e">人</text>
