@@ -110,6 +110,26 @@
         .chip.hot { background: #eef2fd; color: #3b5bdb; }
         .modal-foot { margin-top: 4px; padding-top: 11px; border-top: 1px dashed #e6e3ef; font-size: 12px; color: #8a8a9e; line-height: 1.7; }
 
+        /* ===== 流水线示意图 ===== */
+        .flow-btn { position: fixed; top: 25px; right: 25px; display: inline-flex; align-items: center; gap: 7px;
+            padding: 10px 16px; border-radius: 999px; border: 1.5px solid #ddd3f5; background: #f4f1fb;
+            color: #5b3d8f; font-family: inherit; font-size: 14.5px; font-weight: 500; cursor: pointer;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2); z-index: 1000; transition: transform 0.2s, box-shadow 0.2s; }
+        .flow-btn:hover { transform: translateY(-2px); box-shadow: 0 8px 22px rgba(0,0,0,0.26); }
+        .flow-mask { position: fixed; inset: 0; background: rgba(38,26,58,0.6); backdrop-filter: blur(5px);
+            display: none; align-items: flex-start; justify-content: center; padding: 24px 20px; z-index: 2100; overflow: auto; }
+        .flow-mask.open { display: flex; }
+        .flow-box { background: #fff; margin: auto; border-radius: 22px; width: min(1060px, 100%); padding: 20px 24px 22px;
+            position: relative; box-shadow: 0 30px 80px rgba(0,0,0,0.35); animation: modalIn 0.26s ease; }
+        .flow-box h2 { font-size: 20px; color: #3f2b63; margin-bottom: 4px; }
+        .flow-box .flow-sub { font-size: 13px; color: #8a8a9e; margin-bottom: 12px; }
+        .flow-canvas { overflow-x: auto; }
+        .flow-canvas svg { display: block; width: 100%; height: auto; }
+        .flow-canvas .flow-svg-mobile { display: none; }
+        .flow-box .modal-close { top: 14px; right: 14px; width: 32px; height: 32px; font-size: 19px;
+            background: #f2eef9; color: #5b3d8f; }
+        .flow-box .modal-close:hover { background: #e6dff5; }
+
         /* ===== 轻提示 ===== */
         .toast { position: fixed; left: 50%; bottom: 40px; transform: translate(-50%, 16px); background: rgba(45,52,54,0.94); color: #fff; padding: 14px 22px; border-radius: 14px; font-size: 14px; line-height: 1.7; max-width: 88vw; text-align: center; opacity: 0; transition: opacity .28s ease, transform .28s ease; z-index: 3000; pointer-events: none; }
         .toast.show { opacity: 1; transform: translate(-50%, 0); }
@@ -132,6 +152,12 @@
             .article-title { font-size: 20px; }
             .filter-btn { padding: 8px 14px; font-size: 13px; }
             .action-btn { padding: 7px 9px; font-size: 12.5px; gap: 4px; white-space: nowrap; }
+            .flow-btn { top: auto; bottom: 16px; right: 12px; padding: 8px 12px; font-size: 12.5px; }
+            .flow-box { padding: 16px 14px 18px; }
+            .flow-box h2 { font-size: 17px; }
+            .flow-box .flow-sub { font-size: 12px; }
+            .flow-canvas .flow-svg-desktop { display: none; }
+            .flow-canvas .flow-svg-mobile { display: block; }
             .modal-mask { padding: 16px 12px; }
             .modal-head { padding: 26px 22px 18px; }
             .modal-head h2 { font-size: 21px; }
@@ -258,6 +284,7 @@
 </head>
 <body>
     <button class="refresh-btn" onclick="location.reload()" title="刷新页面">🔄</button>
+    <button class="flow-btn" onclick="openFlow()" title="看内容流水线">🔀 流水线</button>
     <div class="container">
         <div class="header">
             <h1>🏛️ 肉肉的 AI 科研小站</h1>
@@ -287,6 +314,123 @@
 
         <div class="footer">
             <p>🏛️ 由 AI 工作流自动打理 · 人负责选题方向与内容审核</p>
+        </div>
+    </div>
+
+    <div class="flow-mask" id="flowModal" onclick="if(event.target===this)closeFlow()">
+        <div class="flow-box" role="dialog" aria-modal="true" aria-labelledby="flowTitle">
+            <button class="modal-close" onclick="closeFlow()" aria-label="关闭">×</button>
+            <h2 id="flowTitle">内容流水线</h2>
+            <p class="flow-sub">一句话进去，一篇文章出来。橙色虚线是出错时的回流——挑出来重做，不是一次过。</p>
+            <div class="flow-canvas">
+                <svg class="flow-svg-desktop" viewBox="0 0 900 330" role="img" xmlns="http://www.w3.org/2000/svg">
+                    <title>内容流水线</title>
+                    <desc>六个环节：我提问、AI 写正文、AI 画插图、我读第一遍挑错、爸爸把关、自动上线。橙色虚线表示挑错后回流重写重画。</desc>
+                    <defs>
+                        <marker id="fl-arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                            <path d="M2 1L8 5L2 9" fill="none" stroke="#b9b6c9" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+                        </marker>
+                        <marker id="fl-arrow-warm" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+                            <path d="M2 1L8 5L2 9" fill="none" stroke="#e8890c" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </marker>
+                    </defs>
+
+                    <rect x="30" y="46" width="250" height="76" rx="12" fill="#fff4e8" stroke="#f0cfa8" stroke-width="1"/>
+                    <text x="155" y="74" text-anchor="middle" font-size="15.5" font-weight="500" fill="#8a4b1f">1　我提问</text>
+                    <text x="155" y="100" text-anchor="middle" font-size="12.5" fill="#b0754a">「都十月了，为什么还有台风？」</text>
+
+                    <rect x="315" y="46" width="250" height="76" rx="12" fill="#eef2fd" stroke="#ccd8f8" stroke-width="1"/>
+                    <text x="440" y="74" text-anchor="middle" font-size="15.5" font-weight="500" fill="#3b5bdb">2　AI 写正文</text>
+                    <text x="440" y="100" text-anchor="middle" font-size="12.5" fill="#5a72c8">原则上五节 · 先讲为什么</text>
+
+                    <rect x="600" y="46" width="250" height="76" rx="12" fill="#eef2fd" stroke="#ccd8f8" stroke-width="1"/>
+                    <text x="725" y="74" text-anchor="middle" font-size="15.5" font-weight="500" fill="#3b5bdb">3　AI 画插图</text>
+                    <text x="725" y="100" text-anchor="middle" font-size="12.5" fill="#5a72c8">ComfyUI 本地出图</text>
+
+                    <rect x="600" y="200" width="250" height="76" rx="12" fill="#fff4e8" stroke="#f0cfa8" stroke-width="1"/>
+                    <text x="725" y="228" text-anchor="middle" font-size="15.5" font-weight="500" fill="#8a4b1f">4　我读第一遍</text>
+                    <text x="725" y="254" text-anchor="middle" font-size="12.5" fill="#b0754a">挑看不懂的、画错的</text>
+
+                    <rect x="315" y="200" width="250" height="76" rx="12" fill="#fff4e8" stroke="#f0cfa8" stroke-width="1"/>
+                    <text x="440" y="228" text-anchor="middle" font-size="15.5" font-weight="500" fill="#8a4b1f">5　爸爸把关</text>
+                    <text x="440" y="254" text-anchor="middle" font-size="12.5" fill="#b0754a">事实 · 分寸 · 发不发</text>
+
+                    <rect x="30" y="200" width="250" height="76" rx="12" fill="#e8f7ee" stroke="#bfe4cf" stroke-width="1"/>
+                    <text x="155" y="228" text-anchor="middle" font-size="15.5" font-weight="500" fill="#146b41">6　自动上线</text>
+                    <text x="155" y="254" text-anchor="middle" font-size="12.5" fill="#2b8a5c">构建 → 腾讯云 + GitHub</text>
+
+                    <line x1="280" y1="84" x2="311" y2="84" stroke="#b9b6c9" stroke-width="1.6" marker-end="url(#fl-arrow)"/>
+                    <line x1="565" y1="84" x2="596" y2="84" stroke="#b9b6c9" stroke-width="1.6" marker-end="url(#fl-arrow)"/>
+                    <line x1="725" y1="122" x2="725" y2="196" stroke="#b9b6c9" stroke-width="1.6" marker-end="url(#fl-arrow)"/>
+                    <line x1="600" y1="238" x2="569" y2="238" stroke="#b9b6c9" stroke-width="1.6" marker-end="url(#fl-arrow)"/>
+                    <line x1="315" y1="238" x2="284" y2="238" stroke="#b9b6c9" stroke-width="1.6" marker-end="url(#fl-arrow)"/>
+
+                    <path d="M655 200 L655 161 L440 161 L440 126" fill="none" stroke="#e8890c" stroke-width="2.4" stroke-dasharray="8 5" marker-end="url(#fl-arrow-warm)"/>
+                    <circle cx="655" cy="200" r="4" fill="#e8890c"/>
+                    <text x="548" y="147" text-anchor="middle" font-size="13" font-weight="500" fill="#c9760a">挑错 → 重写 / 重画</text>
+
+                    <rect x="30" y="292" width="12" height="12" rx="3" fill="#fff4e8" stroke="#f0cfa8" stroke-width="1"/>
+                    <text x="50" y="298" font-size="12.5" fill="#8a8a9e">人</text>
+                    <rect x="90" y="292" width="12" height="12" rx="3" fill="#eef2fd" stroke="#ccd8f8" stroke-width="1"/>
+                    <text x="110" y="298" font-size="12.5" fill="#8a8a9e">AI</text>
+                    <rect x="140" y="292" width="12" height="12" rx="3" fill="#e8f7ee" stroke="#bfe4cf" stroke-width="1"/>
+                    <text x="160" y="298" font-size="12.5" fill="#8a8a9e">自动</text>
+                    <text x="870" y="298" text-anchor="end" font-size="12.5" fill="#c9760a">橙色虚线 = 出错回流</text>
+                </svg>
+                <svg class="flow-svg-mobile" viewBox="0 0 360 620" role="img" xmlns="http://www.w3.org/2000/svg">
+                    <title>内容流水线</title>
+                    <desc>六个环节纵向排列，橙色虚线表示挑错后回流重写重画。</desc>
+                    <defs>
+                        <marker id="fl-m-arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                            <path d="M2 1L8 5L2 9" fill="none" stroke="#b9b6c9" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+                        </marker>
+                        <marker id="fl-m-warm" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+                            <path d="M2 1L8 5L2 9" fill="none" stroke="#e8890c" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </marker>
+                    </defs>
+
+                    <rect x="40" y="24" width="280" height="62" rx="10" fill="#fff4e8" stroke="#f0cfa8" stroke-width="1"/>
+                    <text x="180" y="48" text-anchor="middle" font-size="15" font-weight="500" fill="#8a4b1f">1　我提问</text>
+                    <text x="180" y="69" text-anchor="middle" font-size="12" fill="#b0754a">「都十月了，为什么还有台风？」</text>
+
+                    <rect x="40" y="116" width="280" height="62" rx="10" fill="#eef2fd" stroke="#ccd8f8" stroke-width="1"/>
+                    <text x="180" y="140" text-anchor="middle" font-size="15" font-weight="500" fill="#3b5bdb">2　AI 写正文</text>
+                    <text x="180" y="161" text-anchor="middle" font-size="12" fill="#5a72c8">原则上五节 · 先讲为什么</text>
+
+                    <rect x="40" y="208" width="280" height="62" rx="10" fill="#eef2fd" stroke="#ccd8f8" stroke-width="1"/>
+                    <text x="180" y="232" text-anchor="middle" font-size="15" font-weight="500" fill="#3b5bdb">3　AI 画插图</text>
+                    <text x="180" y="253" text-anchor="middle" font-size="12" fill="#5a72c8">ComfyUI 本地出图</text>
+
+                    <rect x="40" y="300" width="280" height="62" rx="10" fill="#fff4e8" stroke="#f0cfa8" stroke-width="1"/>
+                    <text x="180" y="324" text-anchor="middle" font-size="15" font-weight="500" fill="#8a4b1f">4　我读第一遍</text>
+                    <text x="180" y="345" text-anchor="middle" font-size="12" fill="#b0754a">挑看不懂的、画错的</text>
+
+                    <rect x="40" y="392" width="280" height="62" rx="10" fill="#fff4e8" stroke="#f0cfa8" stroke-width="1"/>
+                    <text x="180" y="416" text-anchor="middle" font-size="15" font-weight="500" fill="#8a4b1f">5　爸爸把关</text>
+                    <text x="180" y="437" text-anchor="middle" font-size="12" fill="#b0754a">事实 · 分寸 · 发不发</text>
+
+                    <rect x="40" y="484" width="280" height="62" rx="10" fill="#e8f7ee" stroke="#bfe4cf" stroke-width="1"/>
+                    <text x="180" y="508" text-anchor="middle" font-size="15" font-weight="500" fill="#146b41">6　自动上线</text>
+                    <text x="180" y="529" text-anchor="middle" font-size="12" fill="#2b8a5c">构建 → 腾讯云 + GitHub</text>
+
+                    <line x1="180" y1="86" x2="180" y2="112" stroke="#b9b6c9" stroke-width="1.6" marker-end="url(#fl-m-arrow)"/>
+                    <line x1="180" y1="178" x2="180" y2="204" stroke="#b9b6c9" stroke-width="1.6" marker-end="url(#fl-m-arrow)"/>
+                    <line x1="180" y1="270" x2="180" y2="296" stroke="#b9b6c9" stroke-width="1.6" marker-end="url(#fl-m-arrow)"/>
+                    <line x1="180" y1="362" x2="180" y2="388" stroke="#b9b6c9" stroke-width="1.6" marker-end="url(#fl-m-arrow)"/>
+                    <line x1="180" y1="454" x2="180" y2="480" stroke="#b9b6c9" stroke-width="1.6" marker-end="url(#fl-m-arrow)"/>
+
+                    <path d="M40 331 L20 331 L20 147 L32 147" fill="none" stroke="#e8890c" stroke-width="2.2" stroke-dasharray="7 5" marker-end="url(#fl-m-warm)"/>
+                    <circle cx="40" cy="331" r="3.5" fill="#e8890c"/>
+
+                    <rect x="40" y="566" width="12" height="12" rx="3" fill="#fff4e8" stroke="#f0cfa8" stroke-width="1"/>
+                    <text x="60" y="572" font-size="12" fill="#8a8a9e">人</text>
+                    <rect x="96" y="566" width="12" height="12" rx="3" fill="#eef2fd" stroke="#ccd8f8" stroke-width="1"/>
+                    <text x="116" y="572" font-size="12" fill="#8a8a9e">AI</text>
+                    <rect x="152" y="566" width="12" height="12" rx="3" fill="#e8f7ee" stroke="#bfe4cf" stroke-width="1"/>
+                    <text x="172" y="572" font-size="12" fill="#8a8a9e">自动</text>
+                    <text x="40" y="600" font-size="12" fill="#c9760a">橙色虚线＝挑错后重做，不是一次过</text>
+                </svg>
+            </div>
         </div>
     </div>
 
@@ -397,8 +541,17 @@
             document.getElementById("aboutModal").classList.remove("open");
             document.body.style.overflow = "";
         }
+        /* ================= 流水线示意图 ================= */
+        function openFlow() {
+            document.getElementById("flowModal").classList.add("open");
+            document.body.style.overflow = "hidden";
+        }
+        function closeFlow() {
+            document.getElementById("flowModal").classList.remove("open");
+            document.body.style.overflow = "";
+        }
         document.addEventListener("keydown", function (e) {
-            if (e.key === "Escape") closeAbout();
+            if (e.key === "Escape") { closeAbout(); closeFlow(); }
         });
 
         function toast(msg) {
@@ -578,8 +731,9 @@
 
         renderArticles();
 
-        // 支持直接用 #about 打开简介（便于分享链接给评委）
+        // 支持直接用 #about / #flow 打开（便于分享链接给评委）
         if (location.hash === "#about") openAbout();
+        if (location.hash === "#flow") openFlow();
     </script>
 </body>
 </html>
