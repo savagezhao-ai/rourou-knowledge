@@ -157,8 +157,6 @@
     body{padding-top:0; background:#fff;} .card{break-inside:avoid;}
   }
 </style>
-
-
 <!-- sharecode-passthrough:start -->
 <script>
 (function(){
@@ -315,7 +313,7 @@ const L = [
 
 /* ============ 第一章 动词家族 ============ */
 {
-  id:`l2`, ch:`第一章 · 动词家族`, lv:`基础`, name:`动词有三兄弟`, sub:`动作动词、be 动词、连系动词、情态动词，一眼分清`,
+  id:`l2`, ch:`第一章 · 动词家族`, lv:`基础`, name:`动词有四兄弟`, sub:`动作动词、be 动词、连系动词、情态动词，一眼分清`,
   body:`
     <p>动词不是只有一种。三年级会遇到四个家族，分工不一样：</p>
     <table class="tbl">
@@ -329,19 +327,21 @@ const L = [
     <div class="eg"><b>He <span class="o">is</span> a boy.</b><em>be 动词：他 = 男孩，像等号。</em></div>
     <div class="eg"><b>It <span class="o">looks</span> nice.</b><em>连系动词：它看起来不错。</em></div>
     <div class="eg"><b>He <span class="o">can</span> run.</b><em>情态动词：他能跑，说的是能不能。</em></div>
+    <div class="tip"><b>说明一句</b> be 动词严格说也算连系动词，它连接的同样是“是什么／怎么样”。这里把它单独拎出来，是因为它的形式最特殊：只有 am / is / are 三个，一变就整套换。</div>
     <h3>最要紧的一条</h3>
     <p>这四家里，<b>动作动词和连系动词</b>会跟着主语变样子（加 s 或不变）；<b>be 动词</b>自己有一套 am/is/are；<b>can 永远不变</b>。</p>
     <div class="rule"><div class="rt">发现规律</div>
       <p>句子里可以有两个动词成员：<b>情态动词 + 动作动词</b>（He can run）。</p>
-      <p>但 <b>be 动词和动作动词一般不同时出现</b>：要么 He is tall，要么 He runs。</p></div>
+      <p>也可以是 <b>be 动词 + 动作动词的 -ing 形式</b>（He is running）。这两种都算分工：只有前面那个变脸，后面那个不变。</p>
+      <p>真正不能叠的是这种：<b>He is run</b> —— be 后面直接跟原形，两个都想当队长，就错了。</p></div>
     <div class="key"><div class="kt">一句话记住</div><p>动作动词管做什么，be 是等号，连系动词管感觉，can 管能不能。</p></div>`,
   quiz:[
     {q:`下面哪个是动作动词？`, o:[`jump`,`can`,`happy`,`is`], a:0, w:`jump 是看得见、做得出的动作。is 是 be 动词（像等号），can 是情态动词（管能不能），happy 是形容词，根本不是动词。`},
     {q:`She ___ my sister. 空格该放哪一类词？`, o:[`连系动词`,`动作动词`,`情态动词`,`be 动词`], a:3, w:`“她 = 我妹妹”是等号关系，用 be 动词 is。动作动词放进去会变成“她跑我妹妹”，不成立；can 管的是能不能，也对不上。`},
     {q:`I ___ swim. 空格表示“会不会”，该放什么？`, o:[`can`,`is`,`am`,`do`], a:0, w:`can 表示能力，后面跟动词原形 swim。am 是 be 动词，不能直接接动作动词；is 跟 I 搭不上。`},
-    {q:`下面哪一句是错的？`, o:[`He is tall.`,`He can run.`,`He is run.`,`He runs.`], a:2, w:`be 动词（is）和动作动词（run）不能这样叠在一起。想说“他在跑”就用 He runs；“他是高个子”就用 He is tall。`},
-    {q:`It ___ nice.（它看起来不错）`, o:[`looks`,`is look`,`looking`,`look`], a:0, w:`it 是“一样东西”，单数，连系动词要加 s：looks。look 是原形（主语复数或 I/you 才用）；is look 是两个动词挤在一起，同样不允许。`},
-    {q:`同一个句子里，be 动词和动作动词能同时出现吗？`, o:[`不能，要么 He is tall，要么 He runs`,`只要加个 to 就行`,`只有在问句里能`,`能，He is run 就是`], a:0, w:`这两类动词各自“占一个动词位”，不能同时占。He is tall（be 动词）和 He runs（动作动词）各说各的事，硬合起来就错了。`}
+    {q:`下面哪一句是错的？`, o:[`He is tall.`,`He can run.`,`He is run.`,`He runs.`], a:2, w:`is 后面不能直接跟动词原形 run。想说“他跑”用 He runs；“他正在跑”要说 He is running（第 7 课）；“他是高个子”用 He is tall。`},
+    {q:`It ___ nice.（它看起来不错）`, o:[`looks`,`is look`,`looking`,`look`], a:0, w:`it 是“一样东西”，单数，连系动词要加 s：looks。look 是原形（主语复数或 I/you 才用）；is look 是 be 后面直接跟原形，也不行。`},
+    {q:`He is running. 里 be 动词和动作动词都有了，为什么不算错？`, o:[`因为 running 变成 -ing 后不再变脸，变脸的只有 is`,`因为两个动词本来就允许随便叠`,`因为只有在问句里才能这么写`,`因为 running 已经不算动词了`], a:0, w:`一个句子里只能有一个动词跟主语“变脸”。这里干这活的是 is，running 只说明“干什么”，不再随主语变，所以不冲突。写成 He is run 就不行 —— 两个都想当队长。这一条第 7 课会专门讲，现在先知道“be 后面跟 -ing 才算对”。`}
   ]
 },
 {
@@ -361,8 +361,9 @@ const L = [
       <p><b>am</b> 只跟 I；<b>are</b> 跟你、我们、他们；<b>is</b> 跟他她它、单个人、单个东西。</p>
       <p>不用背表格，问自己：前面是“我”吗？是“一大堆”吗？都不是就用 is。</p></div>
     <h3>缩写：把两个词捏成一个</h3>
-    <p>I am → <b>I'm</b>&nbsp;&nbsp; he is → <b>he's</b>&nbsp;&nbsp; she is → <b>she's</b>&nbsp;&nbsp; it is → <b>it's</b>&nbsp;&nbsp; they are → <b>they're</b>&nbsp;&nbsp; you are → <b>you're</b></p>
-    <div class="key"><div class="kt">一句话记住</div><p>我配 am，你／我们／他们配 are，他她它配 is。</p></div>`,
+    <p>I am → <b>I'm</b>&nbsp;&nbsp; he is → <b>he's</b>&nbsp;&nbsp; she is → <b>she's</b>&nbsp;&nbsp; it is → <b>it's</b>&nbsp;&nbsp; they are → <b>they're</b>&nbsp;&nbsp; we are → <b>we're</b>&nbsp;&nbsp; you are → <b>you're</b></p>
+    <div class="key"><div class="kt">一句话记住</div><p>我配 am，你／我们／他们配 are，他她它配 is。</p></div>
+    <div class="tip"><b>be 还有第二份工作</b> 它不只当等号，还能替动作扛“正在”：I am playing。这件事单独有一课（第 7 课），讲清楚为什么一句话里会同时出现 am 和 playing。</div>`,
   quiz:[
     {q:`I ___ nine.`, o:[`be`,`are`,`am`,`is`], a:2, w:`I 永远配 am，没有例外。is 配他她它；are 配你、我们、他们；be 只是这三个词的“总名字”，不能直接放进句子。`},
     {q:`She ___ my classmate.`, o:[`be`,`am`,`is`,`are`], a:2, w:`she 是“她”，只有一个人，属于单数 → is。am 只跟 I；are 跟复数或 you。`},
@@ -422,8 +423,8 @@ const L = [
     {q:`The tomato ___ red.`, o:[`looks`,`looked`,`look`,`looking`], a:0, w:`tomato 是一样东西（单数），连系动词要加 s：looks。look 是原形，留给复数主语或 I/you。`},
     {q:`I ___ happy today.`, o:[`feeling`,`feel`,`is feel`,`feels`], a:1, w:`I 后面动词不加 s，用原形 feel。feels 是给 he/she/it 的；feeling 是 -ing 形式，不能单独做谓语。`},
     {q:`The flowers ___ sweet.`, o:[`is smell`,`smell`,`smelling`,`smells`], a:1, w:`flowers 是复数（好几朵），动词用原形 smell。这正是“名词有 s、动词就没 s”的规则。`},
-    {q:`It ___ nice.（听起来不错）`, o:[`sound`,`is sound`,`sounding`,`sounds`], a:3, w:`it 是单数，加 s：sounds。sound 是原形；is sound 是两个动词叠在一起。`},
-    {q:`连系动词后面通常跟什么样的词？`, o:[`一个介词`,`表示“什么样”的词`,`另一个动词`,`一个数字`], a:1, w:`和 be 动词一样，后面跟 red、happy、nice 这类描述状态的词。跟动词就会变成两个动词叠用，是错的。`},
+    {q:`It ___ nice.（听起来不错）`, o:[`sound`,`is sound`,`sounding`,`sounds`], a:3, w:`it 是单数，加 s：sounds。sound 是原形；is sound 是 be 后面直接跟原形，也不行。`},
+    {q:`连系动词后面通常跟什么样的词？`, o:[`一个介词`,`表示“什么样”的词`,`另一个动词`,`一个数字`], a:1, w:`和 be 动词一样，后面跟 red、happy、nice 这类描述状态的词。后面直接跟动词原形就错了。`},
     {q:`下面哪个词不是连系动词？`, o:[`taste`,`can`,`feel`,`look`], a:1, w:`can 是情态动词，管“能不能”，后面跟动作原形。look（看起来）、feel（感觉）、taste（尝起来）都是连系动词，后面跟“什么样”。`}
   ]
 },
@@ -449,6 +450,71 @@ const L = [
     {q:`— Can you help me? — ___`, o:[`Yes, I can.`,`Yes, I am.`,`Yes, I do.`,`Yes, I help.`], a:0, w:`用 can 问，就用 can 答。Yes, I do 是给 Do you…? 的答句；Yes, I am 是给 Are you…? 的答句。`},
     {q:`下面哪一句是错的？`, o:[`He can't swim.`,`He cans swim.`,`He can swim.`,`Can he swim?`], a:1, w:`can 没有 cans 这种形式，he 后面也不变。加不加 s 是动作动词的事，情态动词不参与。`},
     {q:`can 后面可以直接加 to 吗？`, o:[`不可以，直接 can swim`,`可以，can to swim`,`只有在问句里加 to`,`只有复数主语才能加 to`], a:0, w:`can 后面直接跟原形，不加 to。想说“会游泳”就是 can swim，不是 can to swim。`}
+  ]
+},
+
+{
+  id:`l6b`, ch:`第一章 · 动词家族`, lv:`进阶`, name:`I am playing：为什么一句话里两个动词？`, sub:`be 不是“是”，它是替动作扛“正在”的那个帮手`,
+  body:`
+    <p>先看三句话，说的其实是同一件事：</p>
+    <div class="eg"><b>I play football.</b><em>我踢足球。（平时会踢）</em></div>
+    <div class="eg"><b>I <span class="o">am</span> play<span class="o">ing</span> football.</b><em>我正在踢足球。</em></div>
+    <div class="eg"><b>I can play football.</b><em>我会踢足球。</em></div>
+    <p>第二句里冒出来<b>两个动词</b>：am 和 playing。一句话不是只能有一个动词吗？很多人在这一步就卡住了，而且一直卡到中学。</p>
+
+    <h3>一、先说结论：一句话只有一个“队长”</h3>
+    <p>对，一个简单句里只能有<b class="k">一个动词跟主语“变脸”</b>。这个队长要干两件事：跟主语配（I 配 am，he 配 is），还要说明“什么时候”。</p>
+    <p>别的动词只能退到旁边，不许再变。所以 am 和 playing 里面，只能有一个变脸，另一个必须一动不动。</p>
+
+    <h3>二、be 其实有两份工作</h3>
+    <table class="tbl">
+      <tr><th>be 在干什么</th><th>例句</th><th>意思</th></tr>
+      <tr><td>当等号</td><td>I <b>am</b> a boy.</td><td>我是男孩（说身份）</td></tr>
+      <tr><td><b>当帮手</b></td><td>I <b>am</b> playing.</td><td>我正在踢（说正在发生）</td></tr>
+    </table>
+    <p>当帮手的时候，am 已经不表示“是”了。它只做一件事：告诉别人这句话说的是<b class="k">此刻正在发生</b>。</p>
+
+    <h3>三、为什么非得请 be 来帮忙</h3>
+    <p>因为 play 这个词只会说“踢”，它身上没有“正在”这个开关。要表示“正在”，英语得动两处：先借一个 be 来扛时间，再把 play 变成 playing。中文只加一个“在”，英语多了一步变形。</p>
+    <p>而“跟主语变脸”的活儿已经让 be 抢走了，play 只能退一步，变成 <b>playing</b>：不跟主语变，只表示“这个动作”。</p>
+
+    <h3>四、中文里其实也有两个词</h3>
+    <div class="rule"><div class="rt">对照着看</div>
+      <p>中文：我 <b>在</b> ＋ 踢 足球<br>
+         英语：I <b>am</b> ＋ playing football<br>
+         结构一模一样：一个词管“正在”，一个词说“干什么”。</p></div>
+    <p>你从小说“我在踢球”说得很顺，只是没留意过那个“在”。英语的 am/is/are 就是同一个位置上的东西。</p>
+
+    <h3>五、分工表（这张最该记住）</h3>
+    <table class="tbl">
+      <tr><th>谁</th><th>负责什么</th><th>变不变</th></tr>
+      <tr><td><b>be</b></td><td>跟主语走（am / is / are），管“正在”</td><td>随主语变</td></tr>
+      <tr><td><b>doing</b></td><td>说明“干什么”</td><td>永远是 -ing，一动不动</td></tr>
+    </table>
+    <p>所以：I <b>am</b> playing / He <b>is</b> playing / They <b>are</b> playing —— 变的只有前面那个 be，后面的 playing 一个字都没改。</p>
+
+    <h3>六、三种说法排个队</h3>
+    <table class="tbl">
+      <tr><th>想说的</th><th>结构</th><th>例子</th></tr>
+      <tr><td>平时会做</td><td>直接用动词（他她它加 s）</td><td>I play / He plays</td></tr>
+      <tr><td><b>正在做</b></td><td><b>be ＋ 动词ing</b></td><td>I am playing / He is playing</td></tr>
+      <tr><td>能做</td><td>can ＋ 原形</td><td>I can play / He can play</td></tr>
+    </table>
+
+    <h3>七、三个最常见的坑</h3>
+    <div class="warn"><div class="wt">坑 1：I playing.</div><p>少了个 be。playing 当不了队长，必须有人先把“正在”这件事扛起来。</p></div>
+    <div class="warn"><div class="wt">坑 2：I am play.</div><p>am 已经把“变脸”的位置占了，后面的 play 必须变成 playing，不能再是原形。</p></div>
+    <div class="warn"><div class="wt">坑 3：He is plays.</div><p>两个都在变脸。is 已经在管人称，play 就不能再用加 s 的形式，必须变成 <b>playing</b> → He is playing。<br>注意：光把 s 去掉写成 He is play，<b>也还是错的</b>。</p></div>
+
+    <div class="key"><div class="kt">一句话记住</div><p>be 管“谁 + 正在”，doing 管“干什么”；两个里面只有一个能变，另一个不许动。</p></div>
+    <div class="tip"><b>这节课只回答“为什么”</b> 为什么有两个词、哪个变哪个不变。至于什么时候说“正在”、什么时候说“平时”，后面专门讲。这条想通了，以后看到 am/is/are ＋ ing 就不会再觉得是两个动词在打架。</div>`,
+  quiz:[
+    {q:`I ___ reading a book.`, o:[`am`,`is`,`are`,`be`], a:0, w:`主语是 I，只能配 am。后面的 reading 不跟主语变，所以不用管它。`},
+    {q:`He is ___ football.`, o:[`play`,`plays`,`playing`,`played`], a:2, w:`be 后面必须是 -ing 形式：is playing。plays 那个 s 是“平时会踢”用的，跟 is 放在一起就重复了。`},
+    {q:`下面哪一句是对的？`, o:[`I am play.`,`I am playing.`,`I playing.`,`I am plays.`], a:1, w:`am 负责跟主语变脸，play 必须退成 playing。少一个不行，两个都变也不行。`},
+    {q:`They ___ playing in the garden.`, o:[`is`,`am`,`be`,`are`], a:3, w:`they 不止一个，配 are。变的只有 be，playing 一直不动。`},
+    {q:`下面哪一句是错的？`, o:[`She is singing.`,`He is run.`,`We are dancing.`,`They are swimming.`], a:1, w:`He is run 错在 run 没有变形：is 后面必须是 -ing 形式，得写成 running。不是“保留 run、另外补一个词”就能救回来的。`},
+    {q:`be 和 can 后面分别跟什么？`, o:[`都跟原形`,`都跟 -ing`,`be 跟原形，can 跟 -ing`,`be 跟 -ing，can 跟原形`], a:3, w:`be 后面跟 ing（am playing），can 后面跟原形（can play）。这两个最容易记反：can 属于情态动词家族，规矩就是“后面永远跟原形”。`}
   ]
 },
 
@@ -496,7 +562,7 @@ const L = [
       <tr><td>I</td><td>like</td><td>第一人称，不加 s</td></tr>
       <tr><td>you</td><td>like</td><td>第二人称，不加 s</td></tr>
       <tr><td class="hl">he / she / it</td><td class="hl">likes</td><td class="hl">第三人称单数 → 加 s</td></tr>
-      <tr><td>we / they</td><td>like</td><td>第三人称但复数，不加 s</td></tr>
+      <tr><td>we / they</td><td>like</td><td>复数，不加 s（we 是第一人称复数，they 是第三人称复数）</td></tr>
     </table>
     <div class="eg"><b>I <span class="o">like</span> apples.</b><em>我 → 原形</em></div>
     <div class="eg"><b>He <span class="o">likes</span> apples.</b><em>他（第三人称单数）→ 加 s</em></div>
@@ -523,11 +589,12 @@ const L = [
     <p>run → <b>runs</b>&nbsp;&nbsp; like → <b>likes</b>&nbsp;&nbsp; play → <b>plays</b>&nbsp;&nbsp; read → <b>reads</b>&nbsp;&nbsp; look → <b>looks</b></p>
     <h3>规则二：以 s、x、ch、sh、o 结尾，加 es</h3>
     <p>watch → <b>watches</b>&nbsp;&nbsp; go → <b>goes</b>&nbsp;&nbsp; do → <b>does</b>&nbsp;&nbsp; brush → <b>brushes</b>&nbsp;&nbsp; fix → <b>fixes</b></p>
-    <div class="tip"><b>为什么加 es？</b> 这些音本来就挤，硬加一个 s 读不出来：watch-s 读不出来，watch-es 就能读了。</div>
+    <div class="tip"><b>为什么加 es？</b> s、x、ch、sh 这些音本来就挤，硬加一个 s 读不出来：watch-s 读不出来，watch-es 就能读了。<br>o 结尾的 go、do 加 es 属于拼写习惯，读起来并不会因此多一个音。</div>
     <h3>规则三：辅音字母 + y 结尾，变 y 为 i 再加 es</h3>
     <p>study → <b>studies</b>&nbsp;&nbsp; fly → <b>flies</b>&nbsp;&nbsp; carry → <b>carries</b></p>
     <p>但如果 y 前面是元音字母（a、e、i、o、u），不用变，直接加 s：play → <b>plays</b>，stay → <b>stays</b></p>
-    <div class="warn"><div class="wt">三个特殊，单独记</div><p><b>have → has</b>&nbsp;&nbsp; <b>be → is</b>&nbsp;&nbsp; <b>do → does</b></p></div>
+    <div class="warn"><div class="wt">两个要单独记</div><p><b>have → has</b>（不是 haves）&nbsp;&nbsp; <b>do → does</b>（o 结尾加 es，但它俩变化大，单独记）</p></div>
+    <div class="tip"><b>be 动词不按这套走</b> 它没有“加 s”这一步，直接就是 am / is / are 三个，按主语挑一个（第 3 课）。</div>
     <table class="tbl">
       <tr><th>动词</th><th>加 s 后</th><th>属于哪条规则</th></tr>
       <tr><td>like</td><td class="hl">likes</td><td>规则一</td></tr>
@@ -537,13 +604,13 @@ const L = [
       <tr><td>play</td><td class="hl">plays</td><td>元音 + y，直接加 s</td></tr>
       <tr><td>have</td><td class="hl">has</td><td>特殊</td></tr>
     </table>
-    <div class="key"><div class="kt">一句话记住</div><p>普通加 s；s、x、ch、sh、o 后面加 es；辅音 + y 改成 ies；have 变 has。</p></div>`,
+    <div class="key"><div class="kt">一句话记住</div><p>普通加 s；s、x、ch、sh、o 后面加 es；辅音 + y 改成 ies；have 变 has、do 变 does。</p></div>`,
   quiz:[
     {q:`He ___ TV after school.（watch）`, o:[`watchies`,`watch`,`watches`,`watchs`], a:2, w:`watch 以 ch 结尾，按规则二加 es：watches。watchs 读不出来（三个辅音挤一起），所以必须加 es 才顺口。`},
-    {q:`My sister ___ to school by bus.（go）`, o:[`goes`,`go`,`gos`,`goies`], a:0, w:`go 以 o 结尾，加 es → goes。goes 的读音也多一个音，这是加 es 的原因。`},
+    {q:`My sister ___ to school by bus.（go）`, o:[`goes`,`go`,`gos`,`goies`], a:0, w:`go 以 o 结尾，这一类动词拼写上一律加 es：go→goes、do→does。goes 读起来并没有变长，加 es 只是拼写规定。`},
     {q:`Tom ___ English every day.（study）`, o:[`studies`,`study`,`studyes`,`studys`], a:0, w:`study 的结尾是“辅音字母 d + y”，按规则三把 y 变 i 再加 es → studies。如果 y 前面是元音（如 play），才直接加 s。`},
     {q:`She ___ in the park.（play）`, o:[`plaies`,`play`,`playes`,`plays`], a:3, w:`play 的 y 前面是元音字母 a，不用变，直接加 s → plays。这是规则三的例外方向，最容易和 study 搞混。`},
-    {q:`He ___ a new book.（have）`, o:[`haves'`,`haves`,`have`,`has`], a:3, w:`have 是特殊变化，第三人称单数是 has，不是 haves。三个特殊：have→has、be→is、do→does。`},
+    {q:`He ___ a new book.（have）`, o:[`haves'`,`haves`,`have`,`has`], a:3, w:`have 是特殊变化，第三人称单数是 has，不是 haves。同类要单独记的还有 do→does。be 动词不走加 s 这套，它直接用 is。`},
     {q:`brush 的第三人称单数怎么写？`, o:[`brushs`,`brushe`,`brushes`,`brushies`], a:2, w:`brush 以 sh 结尾，属于规则二，加 es → brushes。凡是结尾读音本来就“挤”的（s、x、ch、sh），都加 es。`}
   ]
 },
@@ -574,7 +641,7 @@ const L = [
     {q:`These ___ my new books.`, o:[`am`,`is`,`are`,`be`], a:2, w:`these（这些）本身就是复数，哪怕后面的 books 还没读到，也已经能定 are。`},
     {q:`The water in the lake ___ cold.`, o:[`are`,`be`,`am`,`is`], a:3, w:`water 是不可数名词，没有复数形式，当“一个”看 → is。别被 in the lake 干扰。`},
     {q:`My classmates ___ in the library.`, o:[`is`,`be`,`are`,`am`], a:2, w:`classmates 末尾有 s，是一堆人 → are。`},
-    {q:`下面哪一句是对的？`, o:[`The bird sings.`,`The bird are sing.`,`The birds sings.`,`The bird sing.`], a:0, w:`一只鸟 → sings，几只鸟 → sing，所以 The bird sings 才对。The birds sings 是两个 s 撞在一起；The bird sing 是单数主语却用了原形；The bird are sing 把 be 动词和动作动词叠在一起。`}
+    {q:`下面哪一句是对的？`, o:[`The bird sings.`,`The bird are sing.`,`The birds sings.`,`The bird sing.`], a:0, w:`一只鸟 → sings，几只鸟 → sing，所以 The bird sings 才对。The birds sings 是两个 s 撞在一起；The bird sing 是单数主语却用了原形；The bird are sing 有两个毛病：are 配了单数的 bird，而且 be 后面要跟 -ing 形式 —— 说“正在唱”得是 is singing。`}
   ]
 },
 {
@@ -583,7 +650,7 @@ const L = [
     <p>这是最容易乱的地方。记住一句总原则：</p>
     <div class="rule"><div class="rt">总原则</div>
       <p>变问句只做一件事 —— <b>把 be 或 can 搬到句首</b>。<br>
-      用 is 还是 are、加不加 s，<b>还是由主语决定</b>，搬位置不会改变它。</p></div>
+      用 is 还是 are，<b>还是由主语决定</b>，搬位置不会改变它。</p></div>
     <div class="eg"><b>He is happy. → <span class="o">Is</span> he happy?</b><em>he 是一个 → 还是 is。</em></div>
     <div class="eg"><b>They are happy. → <span class="o">Are</span> they happy?</b><em>they 是一堆 → 还是 are。</em></div>
     <div class="eg"><b>He can swim. → <span class="o">Can</span> he swim?</b><em>can 永远不变，搬过去就行。</em></div>
@@ -599,7 +666,7 @@ const L = [
     <div class="eg"><b><span class="o">Who are</span> they?</b><em>问一群人 → are。</em></div>
     <div class="eg"><b><span class="o">What is</span> this?</b><em>问一样东西 → is。</em></div>
     <div class="eg"><b><span class="o">What are</span> these?</b><em>问好几样 → are。</em></div>
-    <div class="tip"><b>边界说明</b> 句子里既没有 be 也没有 can（比如 He likes fish.）时，变问句要借 do / does：Does he like fish? 注意 does 一出现，后面动词回到原形。这一条以后系统学，现在先知道别把两个 s 叠在一起。</div>
+    <div class="tip"><b>边界说明</b> 句子里既没有 be 也没有 can（比如 He likes fish.）时，变问句要借 do / does：Does he like fish? 注意 does 一出现，后面动词回到原形。这一条第五章专门讲两课，现在先知道别把两个 s 叠在一起。</div>
     <div class="key"><div class="kt">一句话记住</div><p>问句只搬位置，单复数还是看主语；can 不变；问几个就用 is/are 的几个。</p></div>`,
   quiz:[
     {q:`把 He is happy. 变成问句：`, o:[`Are he happy?`,`Does he is happy?`,`Is he happy?`,`He is happy?`], a:2, w:`he 是“一个”，仍然是 is，只是把 is 搬到句首。Are he 是单复数配错；Does he is 把两个助动词硬塞在一起；He is happy? 只是加了个问号，语序没变。`},
@@ -666,7 +733,7 @@ const L = [
     <div class="tip"><b>最好记的三对</b> he/him、she/her、they/them。只要问一句：这个词是站在前面当队长，还是站在后面被作用？</div>
     <div class="key"><div class="kt">一句话记住</div><p>前面用主格，后面用宾格：I→me, he→him, she→her, we→us, they→them。</p></div>`,
   quiz:[
-    {q:`Look at ___.（she）`, o:[`hers`,`she`,`her`,`she's`], a:2, w:`at 是介词，后面必须用宾格 her。she 是主格，只能当主语；hers 是“她的（东西）”，这里后面没有名词，但语义也不对。`},
+    {q:`Look at ___.（she）`, o:[`hers`,`she`,`her`,`she's`], a:2, w:`at 是介词，后面必须用宾格 her。she 是主格，不能放在介词后面；hers 等于“her ＋ 东西”，本身已经把名词包进去了，意思也对不上。`},
     {q:`Can you help ___?（I）`, o:[`I`,`my`,`me`,`mine`], a:2, w:`动词 help 后面用宾格 me。不能用 I（主格）；my、mine 表示“我的”，是把“拥有”说出来的词，不是被帮的对象。`},
     {q:`Come with ___.（we）`, o:[`we`,`our`,`ours`,`us`], a:3, w:`介词 with 后面用宾格 us。判断口诀：动作或介词后面 → 宾格。`},
     {q:`I like ___.（they）`, o:[`their`,`they`,`them`,`theirs`], a:2, w:`动词 like 后面用宾格 them。their 是“他们的”，后面必须再跟名词（their books）。`},
@@ -746,7 +813,7 @@ const L = [
 {
   id:`l16`, ch:`第四章 · 疑问句`, lv:`基础`, name:`问句（一）：把 be 或 can 请到最前面`, sub:`只搬位置，别的都不动`,
   body:`
-    <p>想把一句话变成问句，最省力的办法是：<b class="o">把句子里那个特殊的词提到最前面。</b></p>
+    <p>句子里只要有 be 或 can，变问句就最省力：<b class="o">把那个词提到最前面。</b>（没有 be / can 的句子，要靠 do / does 帮忙，第五章专门讲两课。）</p>
     <div class="eg"><b>She is happy. → <span class="o">Is</span> she happy?</b><em>把 is 提到句首。</em></div>
     <div class="eg"><b>You can swim. → <span class="o">Can</span> you swim?</b><em>把 can 提到句首。</em></div>
     <p>注意三件事：① 被提走的词走了以后，原位空着，不用补东西；② 句首字母大写；③ 结尾用问号。</p>
@@ -785,6 +852,7 @@ const L = [
     <h3>语序：疑问词站最前面，后面照旧</h3>
     <div class="eg"><b><span class="o">What</span> is your goal?</b><em>疑问词 + is + 其余。</em></div>
     <div class="eg"><b><span class="o">Where</span> is it from?</b><em>疑问词 + is + 其余。</em></div>
+    <div class="eg"><b><span class="o">How</span> do you feel?</b><em>疑问词 + do + 其余。这句里的 do 是帮忙提问的词，以后专门学，现在整句记住就行。</em></div>
     <div class="eg"><b><span class="o">Which</span> book is yours, the red one or the blue one?</b><em>在几个东西里挑 → which。</em></div>
     <div class="rule"><div class="rt">发现规律</div>
       <p>这类问句不能只答 Yes 或 No，必须给出具体信息。答句常常就是“把问句倒回去”：What is this? → This is a tomato.</p></div>
@@ -829,14 +897,125 @@ const L = [
   ]
 },
 
+/* ============ 第五章 助动词 do ============ */
+{
+  id:`l18b`, ch:`第五章 · 助动词 do`, lv:`进阶`, name:`do / does：句子缺个帮手，才请它出场`, sub:`它不表示动作，只负责扛变化、占位置`,
+  body:`
+    <p>先看一句很普通的话：</p>
+    <div class="eg"><b>Tom likes fish.</b><em>汤姆喜欢鱼。一个动词 likes，句子就立住了。</em></div>
+    <p>现在要把它改成否定句（“汤姆不喜欢鱼”）和问句（“汤姆喜欢鱼吗”）。麻烦来了：句子里既没有 be，也没有 can，<b>没有谁可以被搬到前面去</b>。</p>
+    <div class="eg"><b>✘ Tom not likes fish.</b><em>not 直接塞进去，不成立。</em></div>
+    <div class="eg"><b>✘ Likes Tom fish?</b><em>把 likes 搬到最前面，也不成立。</em></div>
+    <p>英语的解决办法很直接：<b class="k">临时请一个帮手进来</b>。这个帮手就叫 do。</p>
+
+    <h3>do 是“帮手”，不是动作</h3>
+    <p>它在句子里不是让你去“做”什么，它只干三件活：</p>
+    <table class="tbl">
+      <tr><th>它干的活</th><th>长成什么样</th></tr>
+      <tr><td>① 扛住“跟着主语变”这件事</td><td>I / you / we / they → <b>do</b>；he / she / it / 一个人 → <b>does</b></td></tr>
+      <tr><td>② 占住否定词的位置</td><td>don't / doesn't 贴在动词前面</td></tr>
+      <tr><td>③ 站到问句的最前面</td><td>Do ...? / Does ...?</td></tr>
+    </table>
+    <div class="rule"><div class="rt">最要紧的一条</div>
+      <p>帮手已经把“加 s”这件活干掉了，后面那个动词就<b>不能再变脸</b>，必须回到原形。</p></div>
+    <div class="eg"><b>He <span class="o">doesn't like</span> fish.</b><em>does 已经带了 s，like 回原形。</em></div>
+    <div class="eg"><b>✘ He doesn't <span class="o">likes</span> fish.</b><em>两个都加 s，等于两个人抢一份活。</em></div>
+
+    <h3>否定句：don't / doesn't + 原形</h3>
+    <div class="eg"><b>I <span class="o">don't like</span> fish.</b><em>主语 I → don't。</em></div>
+    <div class="eg"><b>They <span class="o">don't like</span> fish.</b><em>they 是一堆 → don't。</em></div>
+    <div class="eg"><b>She <span class="o">doesn't like</span> fish.</b><em>she 是“她”，第三人称单数 → doesn't。</em></div>
+
+    <h3>疑问句：Do / Does 站到最前面</h3>
+    <div class="eg"><b><span class="o">Do</span> you like fish?</b><em>Yes, I do. / No, I don't.</em></div>
+    <div class="eg"><b><span class="o">Does</span> he like fish?</b><em>Yes, he does. / No, he doesn't.</em></div>
+    <div class="warn"><div class="wt">答句也得用 do / does</div>
+      <p>用 Do 问就用 do 答，用 Does 问就用 does 答。不能说 Yes, he is.，也不能在答句里把 like 搬回来。</p></div>
+
+    <h3>三个人抢同一份活：到底谁上场</h3>
+    <table class="tbl">
+      <tr><th>句子里已经有</th><th>谁来变否定／问句</th><th>例子</th></tr>
+      <tr><td>be 动词（am / is / are）</td><td>be 自己</td><td>He isn't tall. / Is he tall?</td></tr>
+      <tr><td>can</td><td>can 自己</td><td>He can't swim. / Can he swim?</td></tr>
+      <tr><td>只有一个动作动词</td><td>请 do / does</td><td>He doesn't swim. / Does he swim?</td></tr>
+    </table>
+    <div class="warn"><div class="wt">最常见的错</div>
+      <p>已经有人干活了，还再请一个：✘ Does he is happy? ✘ Do you can swim? —— 一个句子只留一个“变脸的人”。</p></div>
+
+    <h3>那肯定句要不要加 do？</h3>
+    <p>不要。肯定句里已经有动词在扛着了：</p>
+    <div class="eg"><b>He likes fish.</b><em>✔ 直接说，最干净。</em></div>
+    <div class="eg"><b>He does like fish.</b><em>语法上也对，但那是“他确实喜欢”的重读语气，三年级先不用。</em></div>
+    <div class="key"><div class="kt">一句话记住</div><p>句子缺个扛变化的，就请 do / does；它一上场，后面的动词回原形。</p></div>`,
+  quiz:[
+    {q:`Tom likes fish. 这句话要变否定句，为什么不能直接说 Tom not likes fish?`, o:[`因为句子里没有 be 也没有 can，得先请 do 的否定形式进来帮忙`,`因为 not 只能跟 be 动词一起用`,`因为 like 后面不能跟 fish`,`因为 Tom 是第三人称单数`], a:0, w:`not 不能直接塞在动词前面。句子里有 be 或 can 时，它们自己后面加 not 就行；这里只有一个动作动词 likes，得先请 doesn't 上场，动词再回原形：Tom doesn't like fish.`},
+    {q:`He ___ like fish.`, o:[`don't`,`doesn't`,`isn't`,`not`], a:1, w:`he 是第三人称单数，帮手要用 doesn't。don't 是给 I / you / we / they 的；isn't 后面要跟“是什么／怎么样”，不能跟动作动词 like；not 不能单独用。`},
+    {q:`They ___ play football on Mondays.`, o:[`doesn't`,`isn't`,`don't`,`aren't`], a:2, w:`they 是“他们”，算一堆，用 don't。doesn't 只跟第三人称单数；aren't 后面要跟“是什么／怎么样”，不能跟动作动词 play。`},
+    {q:`下面哪一句是对的？`, o:[`She doesn't likes music.`,`She don't like music.`,`She not likes music.`,`She doesn't like music.`], a:3, w:`she 用 doesn't；doesn't 已经把 s 扛走了，like 必须回原形。第一项两个 s 叠在一起，第二项 don't 配错主语，第四项 not 不能单独站在动词前面。`},
+    {q:`把 He plays basketball. 变成问句：`, o:[`Does he plays basketball?`,`Do he play basketball?`,`Does he play basketball?`,`Is he play basketball?`], a:2, w:`he 是第三人称单数 → Does 放句首；plays 的 s 交出去，play 回原形。Does he plays 是两边都加 s；Do he 是主语配错；Is he play 是 be 后面直接跟原形，不成立。`},
+    {q:`— Does your sister like apples? — ___`, o:[`Yes, she does.`,`Yes, she is.`,`Yes, she likes.`,`Yes, he does.`], a:0, w:`用 Does 问就用 does 答，your sister 换成 she。不能换成 is；简答里也不能把 like 再搬回来，只留助动词。`},
+    {q:`I ___ have any brothers.`, o:[`doesn't`,`am not`,`not`,`don't`], a:3, w:`主语是 I，用 don't。doesn't 只跟第三人称单数；am not 后面要跟“是什么／怎么样”，不能跟 have；not 不能单独用。`},
+    {q:`肯定句 He likes fish. 要不要加个 does，说成 He does likes fish?`, o:[`要，加了 does 更标准`,`不要，肯定句直接说 He likes fish.`,`要，但 does 后面得跟 likes`,`不要，但得改成 He do like fish.`], a:1, w:`肯定句里已经有一个动词在扛“加 s”的活（likes），不需要再请帮手。至于 He does like fish.，那是“他确实喜欢”的重读强调，小学阶段基本不用；而且就算用了，does 后面也必须回原形 like，绝不能是 likes。`}
+  ]
+},
+
+{
+  id:`l18c`, ch:`第五章 · 助动词 do`, lv:`挑战`, name:`do 的实战：改否定、改问句`, sub:`三步到位，外加四个最常见的坑`,
+  body:`
+    <p>知道 do 是帮手还不够，要能把句子改出来。给你一套固定动作，照着走就不会乱。</p>
+
+    <h3>一、把肯定句改成否定句</h3>
+    <div class="rule"><div class="rt">三步</div>
+      <p>① 看主语，定 don't 还是 doesn't&nbsp;&nbsp;→&nbsp;&nbsp;② 把它放在动词前面&nbsp;&nbsp;→&nbsp;&nbsp;③ 动词回到原形。</p></div>
+    <div class="eg"><b>Lily reads books. → Lily <span class="o">doesn't read</span> books.</b><em>Lily 相当于 she → doesn't；reads 的 s 交出去，read 回原形。</em></div>
+    <div class="eg"><b>We play football. → We <span class="o">don't play</span> football.</b><em>we 用 don't；play 本来就是原形，不用动。</em></div>
+
+    <h3>二、把肯定句改成问句</h3>
+    <div class="rule"><div class="rt">三步</div>
+      <p>① 定 do 还是 does&nbsp;&nbsp;→&nbsp;&nbsp;② 放到句首、首字母大写&nbsp;&nbsp;→&nbsp;&nbsp;③ 动词回原形，句号改问号。</p></div>
+    <div class="eg"><b>Tom plays the piano. → <span class="o">Does</span> Tom <span class="o">play</span> the piano?</b></div>
+    <div class="eg"><b>You like apples. → <span class="o">Do</span> you <span class="o">like</span> apples?</b></div>
+
+    <h3>三、有疑问词的时候放在哪儿</h3>
+    <p>疑问词站最前面，do / does 紧跟在它后面，顺序是：<b>疑问词 + do/does + 主语 + 原形</b>。</p>
+    <div class="eg"><b><span class="o">What do</span> you like?</b><em>你喜欢什么？</em></div>
+    <div class="eg"><b><span class="o">Where does</span> he live?</b><em>他住在哪儿？</em></div>
+    <p>选 do 还是 does，只看主语，跟前面的疑问词没关系。这一点和第四章一样：疑问词不改变单复数。</p>
+
+    <h3>四、两个缩写要认得</h3>
+    <table class="tbl">
+      <tr><th>全写</th><th>缩写</th><th>用在哪</th></tr>
+      <tr><td>do not</td><td><b>don't</b></td><td>I / you / we / they</td></tr>
+      <tr><td>does not</td><td><b>doesn't</b></td><td>he / she / it / 一个人</td></tr>
+    </table>
+    <p style="font-size:14px">注意：doesn't 里还留着一个 s，那是 <b>does</b> 的 s，不是后面动词的。</p>
+
+    <h3>五、四个坑，一个都别踩</h3>
+    <div class="warn"><div class="wt">坑 ①：两边都加 s</div><p>✘ He doesn't <b>likes</b> fish. → ✔ He doesn't <b>like</b> fish.</p></div>
+    <div class="warn"><div class="wt">坑 ②：Do 配了“他／她”</div><p>✘ <b>Do</b> he like fish? → ✔ <b>Does</b> he like fish?<br>判断只看主语：he 是一个人，就必须 does。</p></div>
+    <div class="warn"><div class="wt">坑 ③：有 be 又塞 do</div><p>✘ Do you <b>are</b> happy? → ✔ <b>Are</b> you happy?<br>are 已经在干活了，不用再请帮手。</p></div>
+    <div class="warn"><div class="wt">坑 ④：答句换了词</div><p>— Does he like fish? — ✘ Yes, he is. → ✔ Yes, he <b>does</b>.</p></div>
+    <div class="key"><div class="kt">一句话记住</div><p>先用主语定 do / does，再让动词回原形；有 be 有 can 就不请 do。</p></div>`,
+  quiz:[
+    {q:`把 Lily reads books. 改成否定句：`, o:[`Lily doesn't read books.`,`Lily doesn't reads books.`,`Lily don't read books.`,`Lily not reads books.`], a:0, w:`先看主语：Lily 相当于 she → doesn't；再把 reads 的 s 交出去，动词回原形 read。第二项两边都加 s，第三项主语配错，第四项 not 不能单独用。`},
+    {q:`把 Tom plays the piano. 改成问句：`, o:[`Do Tom play the piano?`,`Does Tom plays the piano?`,`Does Tom play the piano?`,`Tom plays the piano?`], a:2, w:`Tom 是“他”一个人 → Does 放句首；plays 的 s 交给 Does，play 回原形。Do Tom 是主语配错；Does Tom plays 是两边都加 s；最后一项只是加了个问号，语序没动。`},
+    {q:`— ___ she like music? — Yes, she does.`, o:[`Do`,`Can`,`Is`,`Does`], a:3, w:`答句是 Yes, she does，问句就必须用 Does —— 怎么答就怎么问。另外 she 是第三人称单数，本来也只能用 Does。`},
+    {q:`Where ___ your uncle live?`, o:[`do`,`does`,`is`,`are`], a:1, w:`疑问词 Where 站最前面，后面还是那套：your uncle 是“他”一个人 → does；live 回原形。疑问词只占位置，不改变主语的单复数。`},
+    {q:`What ___ you want for lunch?`, o:[`does`,`do`,`are`,`is`], a:1, w:`you 用 do。虽然前面有疑问词 what，选 do 还是 does 仍然只看主语，跟疑问词无关。`},
+    {q:`下面哪一句是错的？`, o:[`Do you like apples?`,`Does he like apples?`,`Do you are happy?`,`He doesn't like apples.`], a:2, w:`Do you are happy 里已经有 are 在扛变化了，再塞一个 do 就是两个帮手抢一份活，应该直接说 Are you happy?。其余三句都对。`},
+    {q:`“他没有兄弟姐妹。”该怎么说？`, o:[`He not has any brothers.`,`He doesn't has any brothers.`,`He don't have any brothers.`,`He doesn't have any brothers.`], a:3, w:`he 用 doesn't，后面动词回原形 have。doesn't has 是两个都变脸；don't have 是主语配错；not has 里 not 不能单独用。`},
+    {q:`don't 和 doesn't 分别等于什么？`, o:[`do not / does not`,`does not / do not`,`do not / did not`,`not do / not does`], a:0, w:`don't = do not，doesn't = does not：not 缩进去，中间那个 o 掉了。它们只是缩写，意思和用法完全一样。`}
+  ]
+},
+
 /* ============ 最终关 ============ */
 {
-  id:`l19`, ch:`最终关`, lv:`挑战`, name:`综合闯关`, sub:`16 道题，把前面学的全用上`,
+  id:`l19`, ch:`最终关`, lv:`挑战`, name:`综合闯关`, sub:`20 道题，把前面学的全用上`,
   body:`
-    <p>这一关没有新知识，只是把前面 18 课混在一起考。做错不要紧，看解析，再回去翻那一课。</p>
+    <p>这一关没有新知识，只是把前面每一课混在一起考。做错不要紧，看解析，再回去翻那一课。</p>
     <div class="rule"><div class="rt">做题顺序</div>
-      <p>① 找主语 → ② 数单复数 → ③ 定动词形式 → ④ 看是肯定、否定还是问句。</p></div>
-    <div class="key"><div class="kt">通关条件</div><p>16 题全部答对，才算真正拿到“语法小队长”。</p></div>`,
+      <p>① 找主语 → ② 数单复数 → ③ 定动词形式 → ④ 看是肯定、否定还是问句 → ⑤ 没有 be 也没有 can 的，就请 do / does。</p></div>
+    <div class="key"><div class="kt">通关条件</div><p>20 题都做完、错题都看懂了，就算通关；全对的话，回来领“全对”徽章。</p></div>`,
   quiz:[
     {q:`My sister ___ good at singing.`, o:[`is`,`are`,`be`,`am`], a:0, w:`my sister 是单个人（相当于 she）→ is。are 是给复数或 you 的，am 只跟 I。`},
     {q:`The children ___ happy.`, o:[`be`,`are`,`is`,`am`], a:1, w:`children 是 child 的不规则复数，意思是“孩子们”，算一堆 → are。别被词尾没有 s 骗到。`},
@@ -853,7 +1032,11 @@ const L = [
     {q:`— Are these your books? — ___`, o:[`Yes, they are.`,`Yes, these are.`,`Yes, they is.`,`Yes, it is.`], a:0, w:`these 换成 they，动词用 are。简答里不重复 these。`},
     {q:`下面哪一句是错的？`, o:[`The birds sings.`,`The bird sings.`,`The birds sing.`,`The bird can sing.`], a:0, w:`birds 已经是复数（有 s），动词必须回到原形。两边都有 s 是最典型的错误。`},
     {q:`The water in the lake ___ clean.`, o:[`am`,`are`,`be`,`is`], a:3, w:`water 不可数，当单数看 → is。中间的 in the lake 只是修饰，不改主语。`},
-    {q:`— Is he your teacher? — ___`, o:[`Yes, he can.`,`Yes, he does.`,`Yes, he are.`,`Yes, he is.`], a:3, w:`用 is 问就用 is 答。he 是单数，永远配 is，不能配 are。`}
+    {q:`— Is he your teacher? — ___`, o:[`Yes, he can.`,`Yes, he does.`,`Yes, he are.`,`Yes, he is.`], a:3, w:`用 is 问就用 is 答。he 是单数，永远配 is，不能配 are。`},
+    {q:`— ___ your brother like apples? — Yes, he does.`, o:[`Do`,`Does`,`Is`,`Are`], a:1, w:`答句是 Yes, he does，问句就得用 Does；而且 your brother 是“他”一个人，也只能用 Does。没有 be 也没有 can 的句子，变问句全靠 do / does。`},
+    {q:`Tom ___ like carrots.`, o:[`doesn't`,`don't`,`isn't`,`not`], a:0, w:`Tom 是第三人称单数 → doesn't；后面 like 保持原形。don't 是给 I / you / we / they 的；isn't 后面不能跟动作动词。`},
+    {q:`下面哪一句是对的？`, o:[`He doesn't likes fish.`,`He don't like fish.`,`He doesn't like fish.`,`He not like fish.`], a:2, w:`he 用 doesn't，而且 doesn't 已经把 s 扛走了，like 必须回原形。其余三项分别是：两边都加 s、主语配错、not 单独使用。`},
+    {q:`把 They play football. 变成问句：`, o:[`Do they play football?`,`Does they play football?`,`They play football?`,`Are they play football?`], a:0, w:`they 算一堆 → Do 放句首，play 本来就是原形不用动。Does they 是主语配错；第三项没改语序；Are they play 是 be 后面直接跟原形，不成立。`}
   ]
 }
 ];
@@ -870,7 +1053,9 @@ const REF = {
       <tr><td>be 动词</td><td>是什么、怎么样</td><td>会（am/is/are）</td><td>He is tall.</td></tr>
       <tr><td>连系动词</td><td>感觉起来怎么样</td><td>会（加 s）</td><td>It looks nice.</td></tr>
       <tr><td>情态动词</td><td>能不能</td><td>不变</td><td>He can swim.</td></tr>
+      <tr><td>be + 动词ing</td><td>正在做</td><td>be 变，ing 不变</td><td>He is running.</td></tr>
     </table>
+    <p style="font-size:13px;color:#5a6472;margin:6px 0 0">最后一行不是新家族，是 be 动词的第二份工作：替动作扛“正在”（第 7 课）。</p>
     <h2>② 主语 → 动词（最重要的一张表）</h2>
     <table class="tbl">
       <tr><th>主语</th><th>be</th><th>动作动词</th></tr>
@@ -881,7 +1066,7 @@ const REF = {
     </table>
     <h2>③ 加 s 的规则</h2>
     <p>一般 +s（likes）&nbsp;|&nbsp; s、x、ch、sh、o 结尾 +es（watches, goes）&nbsp;|&nbsp; 辅音+y 改 ies（studies）<br>
-    元音+y 直接加 s（plays）&nbsp;|&nbsp; 特殊：have→has，be→is</p>
+    元音+y 直接加 s（plays）&nbsp;|&nbsp; 特殊：have→has、do→does（be 走自己那套 am/is/are）</p>
     <h2>④ 代词三套</h2>
     <table class="tbl">
       <tr><th>主格（动词前）</th><td>I</td><td>you</td><td>he</td><td>she</td><td>it</td><td>we</td><td>they</td></tr>
@@ -892,12 +1077,13 @@ const REF = {
     <h2>⑤ 两种问句</h2>
     <table class="tbl">
       <tr><th>类型</th><th>怎么变</th><th>例子</th><th>怎么答</th></tr>
-      <tr><td>Yes/No 问句</td><td>把 be 或 can 提到句首</td><td>Is she happy?<br>Can you swim?</td><td>Yes, she is. / No, she isn't.<br>Yes, I can. / No, I can't.</td></tr>
-      <tr><td>疑问词问句</td><td>疑问词 + be/can + 其余</td><td>What is this?<br>Who are they?</td><td>给具体信息，不用 Yes/No</td></tr>
+      <tr><td>Yes/No 问句</td><td>把 be 或 can 提到句首；两个都没有，就请 do / does</td><td>Is she happy?<br>Can you swim?<br>Does he like fish?</td><td>Yes, she is. / No, she isn't.<br>Yes, I can. / No, I can't.<br>Yes, he does. / No, he doesn't.</td></tr>
+      <tr><td>疑问词问句</td><td>疑问词 + be/can/do/does + 其余</td><td>What is this?<br>Who are they?<br>Where does he live?</td><td>给具体信息，不用 Yes/No</td></tr>
     </table>
+    <p><b>助动词 do：</b>句子没有 be 也没有 can 时由它出场 —— 否定 don't / doesn't + 原形，疑问 Do / Does + 主语 + 原形。它一上场，后面动词必须回原形。</p>
     <p><b>疑问词：</b>what 问东西，where 问地方，who 问人，how 问感受，which 在几个里挑一个。</p>
     <p><b>问句里的单复数：</b>只搬位置，不改形式 —— he → is，they → are，can 永远不变。</p>
-    <h2>⑥ 最容易踩的八个坑</h2>
+    <h2>⑥ 最容易踩的十个坑</h2>
     <ul>
       <li>He <s>are</s> → He <b>is</b></li>
       <li>You <s>is</s> → You <b>are</b>（you 永远 are）</li>
@@ -907,6 +1093,8 @@ const REF = {
       <li>help <s>I</s> → help <b>me</b></li>
       <li><s>She</s> name → <b>Her</b> name</li>
       <li>The cat <s>it's</s> tail → <b>its</b> tail</li>
+      <li>He doesn't <s>likes</s> fish → He doesn't <b>like</b> fish</li>
+      <li><s>Do</s> he like fish? → <b>Does</b> he like fish?</li>
     </ul>
   </div>`
 };
@@ -942,7 +1130,7 @@ function renderTOC(){
   let html = `
   <div class="hero">
     <h1>三年级英语闯关小游戏 1</h1>
-    <p>三年级完整版 · 动词家族 · 主谓一致 · 代词与所有格 · 疑问句</p>
+    <p>三年级完整版 · 动词家族 · 现在进行时 · 主语和动词 · 代词与所有格 · 疑问句 · 助动词 do</p>
     <div class="how">
       <b>怎么用：</b>按顺序一课一课走。每课先看例子和规律，再做题；答完才能过关。
       答错会告诉你为什么，看不懂就回去再读一遍。第二章是重点，慢一点没关系。
