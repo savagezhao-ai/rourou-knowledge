@@ -1,0 +1,1201 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>三年级英语闯关小游戏1</title>
+<style>
+  :root{
+    --ink:#1d2433; --gray:#6b7688; --line:#e6e9f0;
+    --blue:#2b6de5; --blue-l:#eaf1fe;
+    --orange:#f08a24; --orange-l:#fff3e3;
+    --green:#17945a; --green-l:#e7f7ee;
+    --red:#d9463f; --red-l:#fdecea;
+    --paper:#fbfaf7; --card:#ffffff;
+  }
+  *{box-sizing:border-box; -webkit-tap-highlight-color:transparent;}
+  html,body{margin:0;padding:0;}
+  body{
+    font-family:-apple-system,"PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;
+    background:var(--paper); color:var(--ink); line-height:1.78;
+    font-size:16px; padding-top:58px;
+  }
+  #topbar{
+    position:fixed; top:0; left:0; right:0; height:58px; z-index:50;
+    background:rgba(251,250,247,.95); backdrop-filter:blur(8px);
+    border-bottom:1px solid var(--line); display:flex; align-items:center;
+    gap:14px; padding:0 18px;
+  }
+  #brand{font-weight:700; font-size:15px; letter-spacing:.3px; white-space:nowrap; cursor:pointer;
+    min-width:0; overflow:hidden; text-overflow:ellipsis;}
+  #brand span{color:var(--blue);}
+  #track{flex:1; height:9px; background:#e9edf4; border-radius:9px; overflow:hidden; min-width:50px;}
+  #fill{height:100%; width:0; background:linear-gradient(90deg,#4d8cf5,#2b6de5); border-radius:9px; transition:width .45s ease;}
+  #stars{font-size:13px; color:var(--gray); white-space:nowrap; font-variant-numeric:tabular-nums;}
+  #stars b{color:var(--orange); font-size:15px;}
+  main{max-width:790px; margin:0 auto; padding:26px 18px 90px;}
+
+  .hero{background:var(--card); border-radius:20px; padding:26px 24px; border:1px solid var(--line);
+        box-shadow:0 6px 22px rgba(29,36,51,.05); margin-bottom:22px;}
+  .hero h1{margin:0 0 6px; font-size:27px; letter-spacing:.5px;}
+  .hero p{margin:0; color:var(--gray); font-size:14.5px;}
+  .how{margin-top:16px; background:var(--blue-l); border-radius:12px; padding:12px 15px; font-size:14px; color:#2c3d5c;}
+  .how b{color:var(--blue);}
+  .grp{margin:26px 0 10px; font-size:13px; font-weight:700; color:var(--gray); letter-spacing:1.2px;}
+  .card{
+    display:flex; align-items:center; gap:14px; background:var(--card);
+    border:1px solid var(--line); border-radius:16px; padding:15px 18px; margin-bottom:10px;
+    cursor:pointer; transition:transform .14s ease, box-shadow .14s ease, border-color .14s;
+  }
+  .card:hover{transform:translateY(-2px); box-shadow:0 8px 20px rgba(29,36,51,.08); border-color:#cfd9ea;}
+  .card .no{
+    flex:0 0 40px; height:40px; border-radius:12px; background:var(--blue-l); color:var(--blue);
+    display:flex; align-items:center; justify-content:center; font-weight:700; font-size:16px;
+  }
+  .card.done .no{background:var(--green-l); color:var(--green);}
+  .card .tx{flex:1; min-width:0;}
+  .card .tx b{display:block; font-size:16px;}
+  .card .tx i{font-style:normal; font-size:13px; color:var(--gray);}
+  .card .rt{text-align:right; white-space:nowrap;}
+  .lv{display:inline-block; font-size:11px; padding:1px 7px; border-radius:20px; font-weight:700;}
+  .lv.b{background:#eaf1fe; color:#2b6de5;}
+  .lv.m{background:#fff3e3; color:#b96a10;}
+  .lv.h{background:#f1edfd; color:#7a5cd6;}
+  .card .st{font-size:12px; color:var(--gray); display:block; margin-top:2px;}
+  .card.done .st{color:var(--green); font-weight:600;}
+
+  .chap{display:inline-block; font-size:12px; font-weight:700; letter-spacing:1.2px;
+        color:var(--orange); background:var(--orange-l); padding:3px 10px; border-radius:20px; margin-bottom:10px;}
+  h1.lt{font-size:25px; margin:0 0 4px; line-height:1.35;}
+  .sub{color:var(--gray); font-size:14.5px; margin:0 0 20px;}
+  .content p{margin:0 0 12px;}
+  .content h3{font-size:17px; margin:24px 0 8px; padding-left:11px; border-left:4px solid var(--blue);}
+  .content ul{margin:0 0 12px; padding-left:22px;}
+  .content li{margin-bottom:6px;}
+  .eg{background:var(--card); border:1px solid var(--line); border-left:4px solid var(--blue);
+      border-radius:10px; padding:10px 14px; margin:0 0 10px; font-size:15.5px;}
+  .eg b{font-size:16.5px; display:block; letter-spacing:.2px; font-weight:600;}
+  .eg em{font-style:normal; color:var(--gray); font-size:14px; display:block; margin-top:2px;}
+  .eg.x{border-left-color:var(--red);}
+  .eg.x b{color:var(--red); text-decoration:line-through; text-decoration-color:rgba(217,70,63,.5);}
+  .rule{background:var(--green-l); border:1px solid #cdead9; border-radius:14px; padding:14px 16px; margin:16px 0;}
+  .rule .rt{font-size:12px; font-weight:700; color:var(--green); letter-spacing:1.2px; margin-bottom:5px;}
+  .rule p{margin:0 0 6px;}
+  .rule p:last-child{margin-bottom:0;}
+  .warn{background:var(--red-l); border:1px solid #f2c7c3; border-radius:14px; padding:14px 16px; margin:16px 0;}
+  .warn .wt{font-size:12px; font-weight:700; color:var(--red); letter-spacing:1.2px; margin-bottom:5px;}
+  .warn p{margin:0 0 5px;}
+  .warn p:last-child{margin-bottom:0;}
+  .tip{background:var(--orange-l); border:1px solid #f7ddba; border-radius:12px; padding:12px 15px;
+       font-size:14.5px; margin:14px 0; color:#6b4a1c;}
+  .tip b{color:#b96a10;}
+  .key{background:#eef2ff; border:1px dashed #b9c8ec; border-radius:14px; padding:14px 16px; margin:20px 0 6px;}
+  .key .kt{font-size:12px; font-weight:700; color:var(--blue); letter-spacing:1.2px; margin-bottom:4px;}
+  .key p{margin:0; font-size:16px; font-weight:600;}
+  table.tbl{width:100%; border-collapse:collapse; margin:10px 0 14px; font-size:15px; background:var(--card);}
+  table.tbl th,table.tbl td{border:1px solid var(--line); padding:8px 10px; text-align:center;}
+  table.tbl th{background:#f3f6fb; font-weight:600; color:#3a4a63;}
+  table.tbl td.hl{background:var(--blue-l); color:var(--blue); font-weight:600;}
+  table.tbl td.l{text-align:left;}
+  .k{color:var(--blue); font-weight:700;}
+  .o{color:var(--orange); font-weight:700;}
+
+  .quizwrap{margin-top:32px; border-top:2px dashed var(--line); padding-top:20px;}
+  .qh{font-size:18px; margin:0 0 14px; display:flex; align-items:baseline; gap:10px;}
+  .qh span{font-size:13px; color:var(--gray); font-weight:400;}
+  .q{background:var(--card); border:1px solid var(--line); border-radius:14px; padding:15px 17px; margin-bottom:12px;}
+  .q .qt{font-size:16px; margin:0 0 11px; font-weight:600;}
+  .opt{display:block; width:100%; text-align:left; background:#f7f9fc; border:1.5px solid #e3e8f1;
+       border-radius:10px; padding:10px 14px; margin-bottom:7px; font-size:15.5px; color:var(--ink);
+       cursor:pointer; font-family:inherit; transition:.14s;}
+  .opt:hover:not(:disabled){background:#eef3fb; border-color:#c2d3ee;}
+  .opt:disabled{cursor:default;}
+  .opt.ok{background:var(--green-l); border-color:#8ed3ae; color:#0f6b41; font-weight:600;}
+  .opt.bad{background:var(--red-l); border-color:#eeaeaa; color:#a83029;}
+  .opt .tag{margin-left:8px; font-size:12.5px; font-weight:700;}
+  .why{display:none; margin-top:9px; padding:10px 13px; border-radius:10px;
+       font-size:14.2px; line-height:1.72; border-left:4px solid var(--blue);
+       background:#f4f6fa; color:#41506b;}
+  .why.show{display:block;}
+  .why .wt2{display:block; font-size:12.5px; font-weight:700; letter-spacing:.6px; margin-bottom:3px;}
+  .why.ok{background:var(--green-l); border-color:#cdead9; border-left-color:var(--green); color:#0b5539;}
+  .why.ok .wt2{color:#127a4c;}
+  .why.ok b{color:#0a7c4a;}
+  .why.bad{background:var(--red-l); border-color:#f2c7c3; border-left-color:var(--red); color:#7d211c;}
+  .why.bad .wt2{color:#c0342c;}
+  .why.bad b{color:#a83029;}
+  .lockline{margin-top:8px; font-size:12px; color:#a7b0c0; letter-spacing:.2px;}
+  #summary{display:none;}
+  #summary.show{display:block; margin-top:16px; border-radius:14px; padding:14px 16px;
+    background:var(--card); border:1px solid var(--line); font-size:14.5px;}
+  #summary .big{font-size:17px; font-weight:700; margin-bottom:4px;}
+  #summary.allok{background:var(--green-l); border-color:#cdead9;}
+  #summary.allok .big{color:var(--green);}
+  #fx{position:fixed; inset:0; width:100%; height:100%; pointer-events:none; z-index:9999;}
+  .qfoot{display:flex; align-items:center; gap:14px; margin-top:18px;}
+  #finish{background:var(--blue); color:#fff; border:0; border-radius:12px; padding:13px 26px;
+    font-size:16px; font-weight:600; font-family:inherit; cursor:pointer; transition:.18s;}
+  #finish:disabled{background:#c8d2e2; cursor:not-allowed;}
+  #finish:not(:disabled):hover{background:#1e5cc9;}
+  .nav{display:flex; justify-content:space-between; gap:12px; margin-top:34px;}
+  .nav button{background:var(--card); border:1px solid var(--line); border-radius:11px; padding:11px 18px;
+    font-size:14.5px; color:#41506b; cursor:pointer; font-family:inherit; transition:.14s;}
+  .nav button:hover:not(:disabled){border-color:#c2d3ee; color:var(--blue);}
+  .nav button:disabled{opacity:.4; cursor:not-allowed;}
+  .done-badge{font-size:14px; color:var(--green); font-weight:600;}
+  .ref h2{font-size:19px; margin:26px 0 8px; padding-left:11px; border-left:4px solid var(--orange);}
+  .reset{display:block; margin:34px auto 0; background:none; border:0; color:#a7b0c0;
+         font-size:12.5px; cursor:pointer; text-decoration:underline; font-family:inherit;}
+  @media (max-width:520px){
+    body{font-size:15.5px;} .hero h1{font-size:23px;} h1.lt{font-size:21px;}
+    main{padding:20px 14px 70px;} #topbar{gap:10px; padding:0 12px;}
+    #brand{font-size:13px; min-width:0; overflow:hidden; text-overflow:ellipsis;} #stars{font-size:12px;}
+    .card{padding:13px 14px; gap:10px;} .card .tx i{display:none;}
+  }
+  @media print{
+    #topbar,.nav,.qfoot,.reset,#fx{display:none;}
+    body{padding-top:0; background:#fff;} .card{break-inside:avoid;}
+  }
+</style>
+<!-- sharecode-passthrough:start -->
+<script>
+(function(){
+  var K='rourou_sc';
+  var SC=null, cur=null;
+  try{
+    cur=new URLSearchParams(location.search).get('sharecode');
+    if(cur){ SC=cur; try{ sessionStorage.setItem(K,cur); }catch(e){} }
+    else { try{ SC=sessionStorage.getItem(K); }catch(e){} }
+  }catch(e){}
+  if(!SC) return;
+
+  // 站内地址补 sharecode；站外/已带参/非 http 返回 null
+  function withSC(u){
+    if(!u) return null;
+    try{
+      var x=new URL(u, location.href);
+      if(x.protocol!=='http:' && x.protocol!=='https:') return null;
+      if(x.origin!==location.origin) return null;
+      if(x.searchParams.get('sharecode')===SC) return null;
+      x.searchParams.set('sharecode',SC);
+      return x.href;
+    }catch(e){ return null; }
+  }
+
+  // 无参进入时补参数跳转（脚本捕获不到的情况兜底）
+  if(!cur){
+    var self=withSC(location.href);
+    if(self && !/[?&]sharecode=/.test(location.search)){
+      location.replace(self);
+      return;
+    }
+  }
+
+  // ① 点击拦截：先于站内任何处理器，动态渲染的卡片也覆盖
+  document.addEventListener('click', function(e){
+    var t=e.target;
+    while(t && t!==document && t.tagName!=='A') t=t.parentNode;
+    if(!t || t===document) return;
+    if(t.target && t.target!=='_self') return;
+    var h=t.getAttribute('href');
+    if(!h || /^(mailto:|tel:|javascript:|#)/i.test(h)) return;
+    var nu=withSC(t.href);
+    if(!nu) return;
+    e.preventDefault();
+    e.stopPropagation();
+    location.href=nu;
+  }, true);
+
+  // ② 静态与动态插入的资源统一补参
+  var ATTRS=['src','href','poster','srcset'];
+  var SEL='img[src],img[srcset],video[src],video[poster],audio[src],source[src],source[srcset],'+
+          'script[src],link[rel=stylesheet][href],link[rel=preload][href],a[href]';
+  function fixOne(el,attr){
+    var v=el.getAttribute(attr);
+    if(!v) return;
+    if(attr==='srcset'){
+      var changed=false;
+      var parts=v.split(',').map(function(x){
+        var t=x.trim().split(/\s+/);
+        if(!t[0]) return x;
+        var nu=withSC(t[0]);
+        if(nu){ t[0]=nu; changed=true; }
+        return t.join(' ');
+      });
+      if(changed) el.setAttribute('srcset',parts.join(', '));
+      return;
+    }
+    var nu=withSC(v);
+    if(nu) el.setAttribute(attr,nu);
+  }
+  function fixEl(el){
+    for(var k=0;k<ATTRS.length;k++){
+      if(el.hasAttribute && el.hasAttribute(ATTRS[k])) fixOne(el,ATTRS[k]);
+    }
+  }
+  function fix(root){
+    var scope=(root&&root.querySelectorAll)?root:document;
+    var els=scope.querySelectorAll(SEL);
+    for(var i=0;i<els.length;i++) fixEl(els[i]);
+  }
+
+  // ③ 资源加载失败时补参重试一次（防漏网）
+  document.addEventListener('error', function(e){
+    var el=e.target;
+    if(!el||!el.tagName) return;
+    var tag=el.tagName;
+    if(tag!=='IMG'&&tag!=='VIDEO'&&tag!=='SOURCE'&&tag!=='AUDIO') return;
+    if(el.getAttribute('data-sc-retry')) return;
+    var nu=withSC(el.getAttribute('src')||'');
+    if(!nu) return;
+    el.setAttribute('data-sc-retry','1');
+    el.setAttribute('src',nu);
+  }, true);
+
+  function boot(){
+    fix(document);
+    try{
+      new MutationObserver(function(ms){
+        for(var i=0;i<ms.length;i++){
+          var added=ms[i].addedNodes;
+          for(var j=0;j<added.length;j++){
+            var n=added[j];
+            if(n.nodeType!==1) continue;
+            fixEl(n);
+            if(n.querySelectorAll) fix(n);
+          }
+        }
+      }).observe(document.documentElement,{childList:true,subtree:true});
+    }catch(e){}
+  }
+  if(document.readyState==='loading') document.addEventListener('DOMContentLoaded',boot);
+  else boot();
+})();
+</script>
+<!-- sharecode-passthrough:end -->
+</head>
+<body>
+
+<div id="topbar">
+  <div id="brand">三年级英语闯关小游戏 <span>· 第 1 册</span></div>
+  <div id="track"><div id="fill"></div></div>
+  <div id="stars">过关 <b id="dn">0</b>/<b id="dt">0</b></div>
+</div>
+
+<main id="app"></main>
+
+<script>
+const L = [
+/* ============ 准备 ============ */
+{
+  id:`l1`, ch:`准备`, lv:`基础`, name:`一句话是怎么搭起来的`, sub:`每句话都在回答两个问题：谁？他怎么样／做什么？`,
+  body:`
+    <p>英语句子看起来花样很多，其实都在回答两个问题：</p>
+    <p><b class="k">① 谁？</b>（人或东西）&nbsp;&nbsp; <b class="k">② 他怎么样，或者他做什么？</b></p>
+    <div class="eg"><b>Tom runs.</b><em>汤姆跑。→ 谁？Tom。做什么？runs。</em></div>
+    <div class="eg"><b>Tom is happy.</b><em>汤姆很开心。→ 谁？Tom。怎么样？happy。</em></div>
+    <p>中间那个把两部分连起来的零件，就是<b class="o">动词</b>。动词是句子的发动机。</p>
+    <div class="rule"><div class="rt">发现规律</div>
+      <p>一句话 = <b>谁</b> + <b>动词</b> + <b>别的</b>。</p>
+      <p>而且动词不是随便挑的：<b>主语是谁，决定动词长什么样</b>。这是整本书的主线，后面几章都在讲它。</p></div>
+    <div class="eg"><b>I <span class="o">run</span>.</b><em>我跑。</em></div>
+    <div class="eg"><b>He <span class="o">runs</span>.</b><em>他跑。同一个“跑”，面对 he 就多了一个 s。</em></div>
+    <div class="key"><div class="kt">一句话记住</div><p>先找动词，再检查：动词长得对不对？它要跟着主语变。</p></div>`,
+  quiz:[
+    {q:`下面哪个词是动词？`, o:[`red（红的）`,`run（跑）`,`tomato（番茄）`,`happy（开心的）`], a:1, w:`run 表示一个动作，是动词。happy 和 red 说的是“什么样”，是形容词；tomato 是一个东西的名字，是名词 —— 这三类词都不能让句子动起来。`},
+    {q:`Tom is happy. 这句话在说 Tom “怎么样”还是“做什么”？`, o:[`做什么`,`怎么样`,`他叫什么名字`,`他在哪里`], a:1, w:`is 后面跟的是 happy，说的是状态（心情），不是动作。如果要说“做什么”，后面应该跟跑、跳、吃这类动作词。`},
+    {q:`Mum cooks noodles. 这句话里的“谁”（主语）是哪个词？`, o:[`noodles`,`Mum`,`the`,`cooks`], a:1, w:`Mum 是做动作的人，是主语；noodles 是动作落到的东西（宾语）；cooks 是动词本身。动词只跟主语配合，跟宾语无关。`},
+    {q:`I run. 和 He runs. 意思差不多，为什么 run 后面多了一个 s？`, o:[`因为 he 是第三人称单数`,`因为句子更长要凑个字母`,`因为 run 表示过去的事`,`因为对别人说话要客气`], a:0, w:`主语换了，动词的样子就得跟着换：I 是“我”，不加 s；he 是“他”，属于第三人称单数，要加 s。这是后面第二章的主线。`},
+    {q:`一个完整的句子，最少要有哪两部分？`, o:[`主语和动词`,`疑问词和问号`,`两个动词`,`名词和形容词`], a:0, w:`句子 = 谁 + 怎么样／做什么，所以“主语（谁）”和“动词”缺一不可。只有名词、没有动词，句子立不起来。`},
+    {q:`下面哪一句不是完整的句子？`, o:[`Tom is happy.`,`Tom can run.`,`Tom happy.`,`Tom runs.`], a:2, w:`Tom happy 只有“谁”和“什么样”，中间少了把它们连起来的动词，应该写成 Tom is happy。其余三句都有动词：runs、is、can run。`}
+  ]
+},
+
+/* ============ 第一章 动词家族 ============ */
+{
+  id:`l2`, ch:`第一章 · 动词家族`, lv:`基础`, name:`动词有三兄弟`, sub:`动作动词、be 动词、连系动词、情态动词，一眼分清`,
+  body:`
+    <p>动词不是只有一种。三年级会遇到四个家族，分工不一样：</p>
+    <table class="tbl">
+      <tr><th>家族</th><th>干什么用</th><th>常见成员</th></tr>
+      <tr><td><b>动作动词</b></td><td>说做什么（看得见）</td><td>run, jump, draw, sing, cook</td></tr>
+      <tr><td><b>be 动词</b></td><td>说是什么／怎么样（像等号）</td><td>am, is, are</td></tr>
+      <tr><td><b>连系动词</b></td><td>说感觉起来怎么样</td><td>look, feel, sound, taste, smell</td></tr>
+      <tr><td><b>情态动词</b></td><td>说能不能／可不可以</td><td>can（以后学 must, may）</td></tr>
+    </table>
+    <div class="eg"><b>He <span class="o">runs</span> in the park.</b><em>动作动词：他在公园里跑，看得见。</em></div>
+    <div class="eg"><b>He <span class="o">is</span> a boy.</b><em>be 动词：他 = 男孩，像等号。</em></div>
+    <div class="eg"><b>It <span class="o">looks</span> nice.</b><em>连系动词：它看起来不错。</em></div>
+    <div class="eg"><b>He <span class="o">can</span> run.</b><em>情态动词：他能跑，说的是能不能。</em></div>
+    <h3>最要紧的一条</h3>
+    <p>这四家里，<b>动作动词和连系动词</b>会跟着主语变样子（加 s 或不变）；<b>be 动词</b>自己有一套 am/is/are；<b>can 永远不变</b>。</p>
+    <div class="rule"><div class="rt">发现规律</div>
+      <p>句子里可以有两个动词成员：<b>情态动词 + 动作动词</b>（He can run）。</p>
+      <p>但 <b>be 动词和动作动词一般不同时出现</b>：要么 He is tall，要么 He runs。</p></div>
+    <div class="key"><div class="kt">一句话记住</div><p>动作动词管做什么，be 是等号，连系动词管感觉，can 管能不能。</p></div>`,
+  quiz:[
+    {q:`下面哪个是动作动词？`, o:[`jump`,`can`,`happy`,`is`], a:0, w:`jump 是看得见、做得出的动作。is 是 be 动词（像等号），can 是情态动词（管能不能），happy 是形容词，根本不是动词。`},
+    {q:`She ___ my sister. 空格该放哪一类词？`, o:[`连系动词`,`动作动词`,`情态动词`,`be 动词`], a:3, w:`“她 = 我妹妹”是等号关系，用 be 动词 is。动作动词放进去会变成“她跑我妹妹”，不成立；can 管的是能不能，也对不上。`},
+    {q:`I ___ swim. 空格表示“会不会”，该放什么？`, o:[`can`,`is`,`am`,`do`], a:0, w:`can 表示能力，后面跟动词原形 swim。am 是 be 动词，不能直接接动作动词；is 跟 I 搭不上。`},
+    {q:`下面哪一句是错的？`, o:[`He is tall.`,`He can run.`,`He is run.`,`He runs.`], a:2, w:`be 动词（is）和动作动词（run）不能这样叠在一起。想说“他在跑”就用 He runs；“他是高个子”就用 He is tall。`},
+    {q:`It ___ nice.（它看起来不错）`, o:[`looks`,`is look`,`looking`,`look`], a:0, w:`it 是“一样东西”，单数，连系动词要加 s：looks。look 是原形（主语复数或 I/you 才用）；is look 是两个动词挤在一起，同样不允许。`},
+    {q:`同一个句子里，be 动词和动作动词能同时出现吗？`, o:[`不能，要么 He is tall，要么 He runs`,`只要加个 to 就行`,`只有在问句里能`,`能，He is run 就是`], a:0, w:`这两类动词各自“占一个动词位”，不能同时占。He is tall（be 动词）和 He runs（动作动词）各说各的事，硬合起来就错了。`}
+  ]
+},
+{
+  id:`l3`, ch:`第一章 · 动词家族`, lv:`基础`, name:`be 动词：am / is / are`, sub:`它不是背出来的，是数出来的`,
+  body:`
+    <p>be 动词只有三个：<b class="o">am、is、are</b>。选哪一个，只看<b>站在前面的是谁</b>。</p>
+    <table class="tbl">
+      <tr><th>前面是谁</th><th>用哪个</th><th>例子</th></tr>
+      <tr><td>I（我）</td><td class="hl">am</td><td>I am nine.</td></tr>
+      <tr><td>he / she / it，或一个人、一样东西</td><td class="hl">is</td><td>She is my classmate.<br>The tomato is red.</td></tr>
+      <tr><td>you（你／你们）、we、they</td><td class="hl">are</td><td>You are kind.<br>They are happy.</td></tr>
+    </table>
+    <div class="eg"><b>I <span class="o">am</span> nine.</b><em>I 永远配 am，没有例外。</em></div>
+    <div class="eg"><b>It <span class="o">is</span> a garden.</b><em>东西用 it，配 is。</em></div>
+    <div class="eg"><b>We <span class="o">are</span> good friends.</b><em>不止一个，用 are。</em></div>
+    <div class="rule"><div class="rt">发现规律</div>
+      <p><b>am</b> 只跟 I；<b>are</b> 跟你、我们、他们；<b>is</b> 跟他她它、单个人、单个东西。</p>
+      <p>不用背表格，问自己：前面是“我”吗？是“一大堆”吗？都不是就用 is。</p></div>
+    <h3>缩写：把两个词捏成一个</h3>
+    <p>I am → <b>I'm</b>&nbsp;&nbsp; he is → <b>he's</b>&nbsp;&nbsp; she is → <b>she's</b>&nbsp;&nbsp; it is → <b>it's</b>&nbsp;&nbsp; they are → <b>they're</b>&nbsp;&nbsp; you are → <b>you're</b></p>
+    <div class="key"><div class="kt">一句话记住</div><p>我配 am，你／我们／他们配 are，他她它配 is。</p></div>`,
+  quiz:[
+    {q:`I ___ nine.`, o:[`be`,`are`,`am`,`is`], a:2, w:`I 永远配 am，没有例外。is 配他她它；are 配你、我们、他们；be 只是这三个词的“总名字”，不能直接放进句子。`},
+    {q:`She ___ my classmate.`, o:[`be`,`am`,`is`,`are`], a:2, w:`she 是“她”，只有一个人，属于单数 → is。am 只跟 I；are 跟复数或 you。`},
+    {q:`You ___ good at drawing.`, o:[`is`,`be`,`are`,`am`], a:2, w:`you 配 are，不管你面前是一个人还是一群人。这是最常见的一处错，看到 you 就直接想 are。`},
+    {q:`They ___ happy today.`, o:[`is`,`be`,`am`,`are`], a:3, w:`they 是“他们”，不止一个 → are。如果换成 he，就要用 is。`},
+    {q:`下面哪一句是错的？`, o:[`They are tall.`,`He is tall.`,`I am tall.`,`He are tall.`], a:3, w:`he 是单个人，只能配 is。He are 就是单复数配错了。`},
+    {q:`it is 的缩写是哪个？`, o:[`its`,`it's'`,`it is'`,`it's`], a:3, w:`it is 缩成 it's，撇号代替了被省略的 i。its 是另一个词，意思是“它的”，别混。`}
+  ]
+},
+{
+  id:`l4`, ch:`第一章 · 动词家族`, lv:`基础`, name:`be 动词说“不”`, sub:`否定和缩写，一句话说清`,
+  body:`
+    <p>想说“我不是／他不是／他们不是”，只要在 be 动词后面加 <b class="o">not</b>。</p>
+    <div class="eg"><b>I am <span class="o">not</span> tired.</b><em>我不累。</em></div>
+    <div class="eg"><b>He is <span class="o">not</span> my brother.</b><em>他不是我哥哥。</em></div>
+    <div class="eg"><b>They are <span class="o">not</span> in the library.</b><em>他们不在图书馆。</em></div>
+    <table class="tbl">
+      <tr><th>完整写法</th><th>缩写</th><th>意思</th></tr>
+      <tr><td>is not</td><td class="hl">isn't</td><td>不是</td></tr>
+      <tr><td>are not</td><td class="hl">aren't</td><td>不是</td></tr>
+      <tr><td>am not</td><td>没有缩写（只能说 I'm not）</td><td>不是</td></tr>
+    </table>
+    <div class="rule"><div class="rt">发现规律</div>
+      <p>not 永远贴在 be 动词后面，顺序是：谁 + be + not + 别的。</p></div>
+    <div class="tip"><b>唯一没有缩写的</b> am not 可以说成 I'm not，但不能说 I amn't。</div>
+    <div class="key"><div class="kt">一句话记住</div><p>说“不”很简单：be 动词后面加 not。</p></div>`,
+  quiz:[
+    {q:`I ___ not tired.`, o:[`is`,`be`,`am`,`are`], a:2, w:`否定句里 be 动词照样按主语选：I 配 am，只是后面多了一个 not。`},
+    {q:`isn't 是哪两个词缩起来的？`, o:[`am not`,`are not`,`do not`,`is not`], a:3, w:`isn't = is not，撇号替掉了 o。are not 是 aren't，am not 没有缩写，do not 是 don't（那是另一类动词的否定）。`},
+    {q:`They ___ (not) in the library.`, o:[`amn't`,`aren't`,`isn't`,`don't`], a:1, w:`they 配 are，否定就是 are not = aren't。amn't 这个写法根本不存在；don't 是动作动词的否定，可这句里没有动作动词。`},
+    {q:`下面哪一句写得对？`, o:[`I'm not happy.`,`I not am happy.`,`I not happy.`,`I amn't happy.`], a:0, w:`am not 没有缩写形式，只能写 I'm not 或 I am not。not 必须贴在 be 动词后面，不能跑到前面；最后一选项少了 be 动词。`},
+    {q:`He ___ my brother.（他不是我哥哥）`, o:[`aren't`,`isn't`,`amn't`,`doesn't`], a:1, w:`he 配 is，否定是 is not = isn't。aren't 是复数用的，amn't 不存在，doesn't 是给动作动词用的。`},
+    {q:`not 在否定句里放在什么位置？`, o:[`be 动词后面`,`be 动词前面`,`句首`,`句尾`], a:0, w:`顺序是：谁 + be + not + 别的，例如 He is not my brother。放在前面或句尾，意思就乱了。`}
+  ]
+},
+{
+  id:`l5`, ch:`第一章 · 动词家族`, lv:`进阶`, name:`连系动词：不是做，是看起来`, sub:`look / feel / sound / taste / smell + 什么样`,
+  body:`
+    <p>有些动词既不说“做”，也不是 am/is/are，它们说的是<b class="o">感觉起来怎么样</b>。这类叫<b>连系动词</b>。</p>
+    <table class="tbl">
+      <tr><th>词</th><th>什么意思</th><th>例子</th></tr>
+      <tr><td>look</td><td>看起来</td><td>The tomato <b>looks</b> red.</td></tr>
+      <tr><td>feel</td><td>感觉起来</td><td>I <b>feel</b> happy.</td></tr>
+      <tr><td>sound</td><td>听起来</td><td>It <b>sounds</b> nice.</td></tr>
+      <tr><td>taste</td><td>尝起来</td><td>The soup <b>tastes</b> good.</td></tr>
+      <tr><td>smell</td><td>闻起来</td><td>The flowers <b>smell</b> sweet.</td></tr>
+    </table>
+    <div class="eg"><b>He <span class="o">is</span> happy.</b><em>他（就是）很开心 —— 直接下结论。</em></div>
+    <div class="eg"><b>He <span class="o">looks</span> happy.</b><em>他看起来很开心 —— 根据样子判断。</em></div>
+    <div class="rule"><div class="rt">发现规律</div>
+      <p>连系动词后面跟“什么样”的词，和 be 动词后面一样；区别只在意思：be 直接说，连系动词凭感觉说。</p>
+      <p>它们也属于“会跟着主语变”的那一类：The tomato <b>looks</b> red.（主语单数，加 s）</p></div>
+    <div class="warn"><div class="wt">常见错误</div>
+      <p>The tomatoes <s>looks</s> red. → The tomatoes <b>look</b> red.（主语是复数，不能加 s）</p></div>
+    <div class="key"><div class="kt">一句话记住</div><p>连系动词是感觉的桥：看起来、感觉起来、听起来、尝起来、闻起来 + 什么样。</p></div>`,
+  quiz:[
+    {q:`The tomato ___ red.`, o:[`looks`,`looked`,`look`,`looking`], a:0, w:`tomato 是一样东西（单数），连系动词要加 s：looks。look 是原形，留给复数主语或 I/you。`},
+    {q:`I ___ happy today.`, o:[`feeling`,`feel`,`is feel`,`feels`], a:1, w:`I 后面动词不加 s，用原形 feel。feels 是给 he/she/it 的；feeling 是 -ing 形式，不能单独做谓语。`},
+    {q:`The flowers ___ sweet.`, o:[`is smell`,`smell`,`smelling`,`smells`], a:1, w:`flowers 是复数（好几朵），动词用原形 smell。这正是“名词有 s、动词就没 s”的规则。`},
+    {q:`It ___ nice.（听起来不错）`, o:[`sound`,`is sound`,`sounding`,`sounds`], a:3, w:`it 是单数，加 s：sounds。sound 是原形；is sound 是两个动词叠在一起。`},
+    {q:`连系动词后面通常跟什么样的词？`, o:[`一个介词`,`表示“什么样”的词`,`另一个动词`,`一个数字`], a:1, w:`和 be 动词一样，后面跟 red、happy、nice 这类描述状态的词。跟动词就会变成两个动词叠用，是错的。`},
+    {q:`下面哪个词不是连系动词？`, o:[`taste`,`can`,`feel`,`look`], a:1, w:`can 是情态动词，管“能不能”，后面跟动作原形。look（看起来）、feel（感觉）、taste（尝起来）都是连系动词，后面跟“什么样”。`}
+  ]
+},
+{
+  id:`l6`, ch:`第一章 · 动词家族`, lv:`进阶`, name:`情态动词 can：后面永远跟原形`, sub:`它自己不变，跟着它的动词也不变`,
+  body:`
+    <p><b class="o">can</b> 的意思是“能、会”。两条铁规矩：</p>
+    <div class="rule"><div class="rt">规矩一</div><p>can 自己永远不变：I can、he can、they can —— he 后面也不加 s。</p></div>
+    <div class="rule"><div class="rt">规矩二</div><p>can 后面永远跟动词原形：can swim，不是 can swims，也不是 can to swim。</p></div>
+    <div class="eg"><b>I <span class="o">can</span> swim.</b><em>我会游泳。</em></div>
+    <div class="eg"><b>He <span class="o">can</span> cook.</b><em>他会做饭。注意是 can，不是 cans。</em></div>
+    <div class="eg x"><b>He cans cook.</b><em>错：can 不加 s。</em></div>
+    <div class="eg x"><b>I can to swim.</b><em>错：can 后面不加 to。</em></div>
+    <h3>说“不会”和“会不会”</h3>
+    <p>不会：can + not = <b>can't</b>（也可写 cannot）→ I can't swim.</p>
+    <p>会不会：把 can 提到句首 → <b>Can</b> you help me? 答：Yes, I can. / No, I can't.</p>
+    <div class="tip"><b>为什么 can 这么省事？</b> 它是情态动词，这一家族的词都是“自己不变、后面跟原形”。以后学 must、may，规矩一样。</div>
+    <div class="key"><div class="kt">一句话记住</div><p>can 自己不变，后面跟原形；说不会加 not，问问题把 can 提到前面。</p></div>`,
+  quiz:[
+    {q:`He can ___.`, o:[`swims`,`to swim`,`swimming`,`swim`], a:3, w:`can 后面永远是原形 swim。can 已经表达了“第三人称”，后面那个动词就不用再变，所以不能 swims；can 后面也不加 to。`},
+    {q:`I ___ do the dishes.`, o:[`can to`,`am can`,`can`,`cans`], a:2, w:`can 自己永不变形，也没有 am can 这种说法。它像一把“万能钥匙”，谁拿都一样：I can、he can、they can。`},
+    {q:`You can ___.（cook）`, o:[`cooking`,`cook`,`cooks`,`to cook`], a:1, w:`还是原形 cook。判断方法：先看见 can，后面那个动词就“冻结”成原形，不管主语是谁。`},
+    {q:`— Can you help me? — ___`, o:[`Yes, I can.`,`Yes, I am.`,`Yes, I do.`,`Yes, I help.`], a:0, w:`用 can 问，就用 can 答。Yes, I do 是给 Do you…? 的答句；Yes, I am 是给 Are you…? 的答句。`},
+    {q:`下面哪一句是错的？`, o:[`He can't swim.`,`He cans swim.`,`He can swim.`,`Can he swim?`], a:1, w:`can 没有 cans 这种形式，he 后面也不变。加不加 s 是动作动词的事，情态动词不参与。`},
+    {q:`can 后面可以直接加 to 吗？`, o:[`不可以，直接 can swim`,`可以，can to swim`,`只有在问句里加 to`,`只有复数主语才能加 to`], a:0, w:`can 后面直接跟原形，不加 to。想说“会游泳”就是 can swim，不是 can to swim。`}
+  ]
+},
+
+/* ============ 第二章 主谓一致 ============ */
+{
+  id:`l7`, ch:`第二章 · 主语和动词（重点）`, lv:`进阶`, name:`第一步：数主语`, sub:`一个还是一堆，决定动词长什么样`,
+  body:`
+    <p>动词长什么样，只看一件事：<b class="o">主语是“一个”还是“一堆”</b>。</p>
+    <table class="tbl">
+      <tr><th>主语</th><th>算</th><th>be 动词</th><th>动作动词</th></tr>
+      <tr><td>I</td><td>特殊</td><td class="hl">am</td><td class="hl">play</td></tr>
+      <tr><td>you（你／你们）</td><td>特殊</td><td class="hl">are</td><td class="hl">play</td></tr>
+      <tr><td>he / she / it / Tom / the dog / my mother</td><td>一个</td><td class="hl">is</td><td class="hl">plays</td></tr>
+      <tr><td>we / they / Tom and Lily / the dogs</td><td>一堆</td><td class="hl">are</td><td class="hl">play</td></tr>
+    </table>
+    <div class="eg"><b>The dog <span class="o">plays</span> in the garden.</b><em>一只狗 → 一个 → 动词加 s。</em></div>
+    <div class="eg"><b>The dogs <span class="o">play</span> in the garden.</b><em>好几只狗 → 一堆 → 动词用原形。</em></div>
+    <div class="eg"><b>Tom and Lily <span class="o">are</span> friends.</b><em>两个人用 and 连起来 → 一堆 → are。</em></div>
+    <div class="rule"><div class="rt">发现规律</div>
+      <p><b>一个</b>（而且不是我、也不是你）→ 动词加 <b>s</b>，be 用 <b>is</b>。</p>
+      <p><b>一堆</b> → 动词用原形，be 用 <b>are</b>。</p>
+      <p><b>I</b> → am + 原形；<b>you</b> → are + 原形（you 不分单复数，永远 are）。</p></div>
+    <div class="tip"><b>怎么看出“一堆”？</b> 三个信号：① 名词后面有 s（dogs）；② 用 and 连了两个（Tom and Lily）；③ 主语是 we 或 they。</div>
+    <div class="warn"><div class="wt">最容易错</div><p>you <s>is</s> → you <b>are</b>；The dogs <s>runs</s> → The dogs <b>run</b>。</p></div>
+    <div class="key"><div class="kt">一句话记住</div><p>一个 → 加 s / is；一堆 → 原形 / are；I → am；you → are。</p></div>`,
+  quiz:[
+    {q:`The dog ___ in the garden.（play）`, o:[`play`,`plays`,`is play`,`playing`], a:1, w:`the dog 是一只，属于“一个”，动词加 s。play 是原形，给复数主语用。`},
+    {q:`The dogs ___ in the garden.（play）`, o:[`play`,`is play`,`playing`,`plays`], a:0, w:`dogs 末尾有 s，说明是“一堆”，动词回到原形 play。名词有 s，动词就不能再有 s。`},
+    {q:`Tom and Lily ___ good friends.`, o:[`are`,`is`,`be`,`am`], a:0, w:`and 把两个人连起来 = 一堆，用 are。这里的“一堆”不看 and 前面那个人是单数。`},
+    {q:`You ___ very kind.`, o:[`am`,`are`,`be`,`is`], a:1, w:`you 永远配 are，不管是一个还是一群人。这是最容易凭感觉选错的一处。`},
+    {q:`My mother ___ noodles very well.（cook）`, o:[`is cook`,`cooking`,`cooks`,`cook`], a:2, w:`my mother 是一个人，相当于 she → 动词加 s：cooks。`},
+    {q:`下面哪个主语算“一堆”？`, o:[`this book`,`the children`,`my father`,`the cat`], a:1, w:`the children 是“孩子们”，虽然词尾没有 s，但意思是好几个 → 算一堆，动词用原形。另外三个都是一个。`}
+  ]
+},
+{
+  id:`l8`, ch:`第二章 · 主语和动词（重点）`, lv:`进阶`, name:`第三人称单数：什么时候加 s`, sub:`三个条件同时满足才加 s`,
+  body:`
+    <p>“第三人称单数”听起来吓人，拆开就是三个条件：</p>
+    <div class="rule"><div class="rt">拆开看</div>
+      <p><b>第三人称</b> = 不是“我”，也不是“你”。（我＝第一人称，你＝第二人称，剩下的都是第三人称）</p>
+      <p><b>单数</b> = 只有一个。</p>
+      <p>所以 he、she、it、Tom、my father、the cat、this book —— 全是第三人称单数。</p></div>
+    <table class="tbl">
+      <tr><th>主语</th><th>动词</th><th>为什么</th></tr>
+      <tr><td>I</td><td>like</td><td>第一人称，不加 s</td></tr>
+      <tr><td>you</td><td>like</td><td>第二人称，不加 s</td></tr>
+      <tr><td class="hl">he / she / it</td><td class="hl">likes</td><td class="hl">第三人称单数 → 加 s</td></tr>
+      <tr><td>we / they</td><td>like</td><td>第三人称但复数，不加 s</td></tr>
+    </table>
+    <div class="eg"><b>I <span class="o">like</span> apples.</b><em>我 → 原形</em></div>
+    <div class="eg"><b>He <span class="o">likes</span> apples.</b><em>他（第三人称单数）→ 加 s</em></div>
+    <div class="eg"><b>They <span class="o">like</span> apples.</b><em>他们（复数）→ 原形，s 又没了</em></div>
+    <div class="warn"><div class="wt">一句话点破</div>
+      <p>名词的 s 和动词的 s <b>不会同时出现</b>：</p>
+      <p>The cat <b>likes</b> fish.（名词无 s，动词有 s）</p>
+      <p>The cats <b>like</b> fish.（名词有 s，动词无 s）</p></div>
+    <div class="key"><div class="kt">一句话记住</div><p>不是“我”、不是“你”、只有一个 → 动词加 s。</p></div>`,
+  quiz:[
+    {q:`He ___ apples.（like）`, o:[`liking`,`likes`,`like`,`is like`], a:1, w:`he 是第三人称单数（不是我、不是你、只有一个），动词加 s。`},
+    {q:`They ___ apples.（like）`, o:[`liking`,`is like`,`like`,`likes`], a:2, w:`they 是复数，用原形。第三人称单数要求“单数”，they 不满足这一条。`},
+    {q:`My father ___ English books.（read）`, o:[`reading`,`is read`,`read`,`reads`], a:3, w:`my father 相当于 he，是第三人称单数，加 s。`},
+    {q:`The cats ___ fish.（like）`, o:[`like`,`likes`,`is like`,`liking`], a:0, w:`cats 已经有复数 s，说明是好几只猫，动词回到原形。名词的 s 和动词的 s 不会同时出现。`},
+    {q:`下面哪个主语后面的动词要加 s？`, o:[`the bird`,`I`,`we`,`you`], a:0, w:`the bird 是一样东西，第三人称单数 → The bird sings。I 是第一人称，you 是第二人称，we 是复数，都不加 s。`},
+    {q:`名词的 s 和动词的 s 可以同时出现吗？`, o:[`看句子长短决定`,`可以，The cats likes fish`,`只有问句里可以`,`不可以，The cats like fish`], a:3, w:`两边的 s 只能出现一个。要么 The cat likes fish（名词无 s、动词有 s），要么 The cats like fish（名词有 s、动词无 s）。`}
+  ]
+},
+{
+  id:`l9`, ch:`第二章 · 主语和动词（重点）`, lv:`挑战`, name:`加 s 还是加 es：三条规则`, sub:`一条一条看词尾，不用背单词表`,
+  body:`
+    <p>确定要加 s 以后，还要看这个动词的结尾长什么样。三条规则：</p>
+    <h3>规则一：一般直接加 s</h3>
+    <p>run → <b>runs</b>&nbsp;&nbsp; like → <b>likes</b>&nbsp;&nbsp; play → <b>plays</b>&nbsp;&nbsp; read → <b>reads</b>&nbsp;&nbsp; look → <b>looks</b></p>
+    <h3>规则二：以 s、x、ch、sh、o 结尾，加 es</h3>
+    <p>watch → <b>watches</b>&nbsp;&nbsp; go → <b>goes</b>&nbsp;&nbsp; do → <b>does</b>&nbsp;&nbsp; brush → <b>brushes</b>&nbsp;&nbsp; fix → <b>fixes</b></p>
+    <div class="tip"><b>为什么加 es？</b> 这些音本来就挤，硬加一个 s 读不出来：watch-s 读不出来，watch-es 就能读了。</div>
+    <h3>规则三：辅音字母 + y 结尾，变 y 为 i 再加 es</h3>
+    <p>study → <b>studies</b>&nbsp;&nbsp; fly → <b>flies</b>&nbsp;&nbsp; carry → <b>carries</b></p>
+    <p>但如果 y 前面是元音字母（a、e、i、o、u），不用变，直接加 s：play → <b>plays</b>，stay → <b>stays</b></p>
+    <div class="warn"><div class="wt">三个特殊，单独记</div><p><b>have → has</b>&nbsp;&nbsp; <b>be → is</b>&nbsp;&nbsp; <b>do → does</b></p></div>
+    <table class="tbl">
+      <tr><th>动词</th><th>加 s 后</th><th>属于哪条规则</th></tr>
+      <tr><td>like</td><td class="hl">likes</td><td>规则一</td></tr>
+      <tr><td>watch</td><td class="hl">watches</td><td>规则二（ch 结尾）</td></tr>
+      <tr><td>go</td><td class="hl">goes</td><td>规则二（o 结尾）</td></tr>
+      <tr><td>study</td><td class="hl">studies</td><td>规则三（辅音 + y）</td></tr>
+      <tr><td>play</td><td class="hl">plays</td><td>元音 + y，直接加 s</td></tr>
+      <tr><td>have</td><td class="hl">has</td><td>特殊</td></tr>
+    </table>
+    <div class="key"><div class="kt">一句话记住</div><p>普通加 s；s、x、ch、sh、o 后面加 es；辅音 + y 改成 ies；have 变 has。</p></div>`,
+  quiz:[
+    {q:`He ___ TV after school.（watch）`, o:[`watchies`,`watch`,`watches`,`watchs`], a:2, w:`watch 以 ch 结尾，按规则二加 es：watches。watchs 读不出来（三个辅音挤一起），所以必须加 es 才顺口。`},
+    {q:`My sister ___ to school by bus.（go）`, o:[`goes`,`go`,`gos`,`goies`], a:0, w:`go 以 o 结尾，加 es → goes。goes 的读音也多一个音，这是加 es 的原因。`},
+    {q:`Tom ___ English every day.（study）`, o:[`studies`,`study`,`studyes`,`studys`], a:0, w:`study 的结尾是“辅音字母 d + y”，按规则三把 y 变 i 再加 es → studies。如果 y 前面是元音（如 play），才直接加 s。`},
+    {q:`She ___ in the park.（play）`, o:[`plaies`,`play`,`playes`,`plays`], a:3, w:`play 的 y 前面是元音字母 a，不用变，直接加 s → plays。这是规则三的例外方向，最容易和 study 搞混。`},
+    {q:`He ___ a new book.（have）`, o:[`haves'`,`haves`,`have`,`has`], a:3, w:`have 是特殊变化，第三人称单数是 has，不是 haves。三个特殊：have→has、be→is、do→does。`},
+    {q:`brush 的第三人称单数怎么写？`, o:[`brushs`,`brushe`,`brushes`,`brushies`], a:2, w:`brush 以 sh 结尾，属于规则二，加 es → brushes。凡是结尾读音本来就“挤”的（s、x、ch、sh），都加 es。`}
+  ]
+},
+{
+  id:`l10`, ch:`第二章 · 主语和动词（重点）`, lv:`挑战`, name:`实战：主语换了，动词跟着换`, sub:`三步法 + 四个最常见的坑`,
+  body:`
+    <p>做题时别急着看选项，先做三步：</p>
+    <div class="rule"><div class="rt">三步法</div>
+      <p><b>① 找主语</b>：动词前面那个“谁”。<br>
+      <b>② 数一数</b>：一个？一堆？是 I 还是 you？<br>
+      <b>③ 定形式</b>：一个 → is / 加 s；一堆 → are / 原形；I → am / 原形；you → are / 原形。</p></div>
+    <h3>坑一：主语藏得远</h3>
+    <div class="eg"><b>The tomatoes in the garden <span class="o">are</span> red.</b><em>主语是 tomatoes（复数），不是 garden。中间的 in the garden 只是说明位置。</em></div>
+    <h3>坑二：and 一连就变复数</h3>
+    <div class="eg"><b>My brother and I <span class="o">are</span> in the same school.</b><em>两个人 → are。被 and 连进去以后，“我”就不单独算了。</em></div>
+    <h3>坑三：these / those 是复数</h3>
+    <div class="eg"><b>These <span class="o">are</span> my books.</b><em>these（这些）是复数 → are。</em></div>
+    <h3>坑四：不可数的东西当单数</h3>
+    <div class="eg"><b>The water <span class="o">is</span> cold.</b><em>water 没有复数形式，当“一个”看，用 is。</em></div>
+    <div class="warn"><div class="wt">检查方法</div><p>做完把句子读一遍：The dogs runs 读起来别扭，因为两个 s 撞在一起了。名词有 s，动词就别再加 s。</p></div>
+    <div class="tip"><b>别搞混</b> 动词只看<span class="k">主语</span>，不看宾语。<br>
+      He <b>likes</b> apples. —— apples 是复数（好几个苹果），likes 照样加 s，因为主语是 he。<br>
+      宾语是一个还是一堆，跟动词一点关系都没有。</div>
+    <div class="key"><div class="kt">一句话记住</div><p>先找主语，再数单复数，最后才动动词 —— 别一上来就凭感觉选。</p></div>`,
+  quiz:[
+    {q:`The tomatoes in the garden ___ red.`, o:[`is`,`be`,`are`,`am`], a:2, w:`主语是 tomatoes（复数），不是紧挨着的 garden —— in the garden 只是说明位置。先找对主语，再定 is/are。`},
+    {q:`My brother and I ___ good at swimming.`, o:[`are`,`is`,`am`,`be`], a:0, w:`and 把“我哥哥”和“我”连成两个人 = 一堆，用 are。被 and 连进去以后，“我”就不再单独按 I 算了。`},
+    {q:`These ___ my new books.`, o:[`am`,`is`,`are`,`be`], a:2, w:`these（这些）本身就是复数，哪怕后面的 books 还没读到，也已经能定 are。`},
+    {q:`The water in the lake ___ cold.`, o:[`are`,`be`,`am`,`is`], a:3, w:`water 是不可数名词，没有复数形式，当“一个”看 → is。别被 in the lake 干扰。`},
+    {q:`My classmates ___ in the library.`, o:[`is`,`be`,`are`,`am`], a:2, w:`classmates 末尾有 s，是一堆人 → are。`},
+    {q:`下面哪一句是对的？`, o:[`The bird sings.`,`The bird are sing.`,`The birds sings.`,`The bird sing.`], a:0, w:`一只鸟 → sings，几只鸟 → sing，所以 The bird sings 才对。The birds sings 是两个 s 撞在一起；The bird sing 是单数主语却用了原形；The bird are sing 把 be 动词和动作动词叠在一起。`}
+  ]
+},
+{
+  id:`l11`, ch:`第二章 · 主语和动词（重点）`, lv:`挑战`, name:`疑问句里的单复数怎么定`, sub:`问句只搬位置，不改变动词的单复数`,
+  body:`
+    <p>这是最容易乱的地方。记住一句总原则：</p>
+    <div class="rule"><div class="rt">总原则</div>
+      <p>变问句只做一件事 —— <b>把 be 或 can 搬到句首</b>。<br>
+      用 is 还是 are、加不加 s，<b>还是由主语决定</b>，搬位置不会改变它。</p></div>
+    <div class="eg"><b>He is happy. → <span class="o">Is</span> he happy?</b><em>he 是一个 → 还是 is。</em></div>
+    <div class="eg"><b>They are happy. → <span class="o">Are</span> they happy?</b><em>they 是一堆 → 还是 are。</em></div>
+    <div class="eg"><b>He can swim. → <span class="o">Can</span> he swim?</b><em>can 永远不变，搬过去就行。</em></div>
+    <h3>回答时也要对上号</h3>
+    <table class="tbl">
+      <tr><th>问</th><th>肯定答</th><th>否定答</th></tr>
+      <tr><td>Is he your teacher?</td><td>Yes, he <b>is</b>.</td><td>No, he <b>isn't</b>.</td></tr>
+      <tr><td>Are they your friends?</td><td>Yes, they <b>are</b>.</td><td>No, they <b>aren't</b>.</td></tr>
+      <tr><td>Can she sing?</td><td>Yes, she <b>can</b>.</td><td>No, she <b>can't</b>.</td></tr>
+    </table>
+    <h3>疑问词当主语时：看你要问几个</h3>
+    <div class="eg"><b><span class="o">Who is</span> she?</b><em>问一个人 → is。</em></div>
+    <div class="eg"><b><span class="o">Who are</span> they?</b><em>问一群人 → are。</em></div>
+    <div class="eg"><b><span class="o">What is</span> this?</b><em>问一样东西 → is。</em></div>
+    <div class="eg"><b><span class="o">What are</span> these?</b><em>问好几样 → are。</em></div>
+    <div class="tip"><b>边界说明</b> 句子里既没有 be 也没有 can（比如 He likes fish.）时，变问句要借 do / does：Does he like fish? 注意 does 一出现，后面动词回到原形。这一条以后系统学，现在先知道别把两个 s 叠在一起。</div>
+    <div class="key"><div class="kt">一句话记住</div><p>问句只搬位置，单复数还是看主语；can 不变；问几个就用 is/are 的几个。</p></div>`,
+  quiz:[
+    {q:`把 He is happy. 变成问句：`, o:[`Are he happy?`,`Does he is happy?`,`Is he happy?`,`He is happy?`], a:2, w:`he 是“一个”，仍然是 is，只是把 is 搬到句首。Are he 是单复数配错；Does he is 把两个助动词硬塞在一起；He is happy? 只是加了个问号，语序没变。`},
+    {q:`把 They are happy. 变成问句：`, o:[`Do they are happy?`,`They are happy?`,`Are they happy?`,`Is they happy?`], a:2, w:`they 是一堆，用 are，搬到句首即可。变问句只搬位置，不改变动词的单复数形式。`},
+    {q:`— ___ your parents in the garden? — Yes, they are.`, o:[`Is`,`Are`,`Am`,`Do`], a:1, w:`parents 是复数，而且答句用的是 are，问句当然也是 Are。答句是最好的提示：怎么答就说明怎么问。`},
+    {q:`— ___ she sing well? — Yes, she can.`, o:[`Are`,`Does`,`Is`,`Can`], a:3, w:`答句用 can，问句就用 Can。另外这句里动词是原形 sing，前面必须有 can 撑着；用 Does 的话答句得是 Yes, she does。`},
+    {q:`___ are they?（问一群人是谁）`, o:[`What`,`How`,`Where`,`Who`], a:3, w:`问“谁”用 Who。后面用 are，因为问的是一群人 —— 疑问词在前，单复数照样看主语。`},
+    {q:`下面哪个问句是对的？`, o:[`Do they are happy?`,`Are they happy?`,`Is they happy?`,`Are he happy?`], a:1, w:`they 是一堆 → are。Is they happy? 用 is 配了复数；Are he happy? 用 are 配了单数；Do they are happy? 在 are 前面又塞了个 do，三个都不对。`}
+  ]
+},
+
+/* ============ 第三章 代词与所有格 ============ */
+{
+  id:`l12`, ch:`第三章 · 代词和所有格`, lv:`基础`, name:`主格：谁在做`, sub:`I / you / he / she / it / we / they`,
+  body:`
+    <p>说“谁”的时候不用一直重复名字，可以用代词。站在<b>动作前面</b>的那一组叫<b class="o">主格</b>。</p>
+    <table class="tbl">
+      <tr><th></th><th>单数</th><th>复数</th></tr>
+      <tr><td>第一人称</td><td class="hl">I 我</td><td class="hl">we 我们</td></tr>
+      <tr><td>第二人称</td><td class="hl">you 你</td><td class="hl">you 你们</td></tr>
+      <tr><td>第三人称</td><td class="hl">he 他 / she 她 / it 它</td><td class="hl">they 他们</td></tr>
+    </table>
+    <h3>什么时候用 he、she、it？</h3>
+    <ul>
+      <li><b>he</b>：男的、男孩、爸爸、哥哥</li>
+      <li><b>she</b>：女的、女孩、妈妈、姐姐</li>
+      <li><b>it</b>：东西、动物 → The book is new. <b>It</b> is new.</li>
+      <li><b>they</b>：两个以上的人和东西 → The tomatoes are red. <b>They</b> are red.</li>
+    </ul>
+    <div class="eg"><b>My father is a driver. <span class="o">He</span> is kind.</b><em>男 → he。</em></div>
+    <div class="eg"><b>The flowers are beautiful. <span class="o">They</span> are beautiful.</b><em>花（好几朵）→ they。</em></div>
+    <div class="rule"><div class="rt">发现规律</div>
+      <p>换成代词以后，动词不用改：My father <b>is</b> kind → He <b>is</b> kind；The tomatoes <b>are</b> red → They <b>are</b> red。</p>
+      <p>因为代词和原来的名词“脾气一样”：单数配单数，复数配复数。</p></div>
+    <div class="warn"><div class="wt">注意</div><p>把复数名词换成代词后，别忘了动词：The dogs run. → They <b>run</b>.（不是 runs）</p></div>
+    <div class="key"><div class="kt">一句话记住</div><p>主格：我 I、你 you、他 he、她 she、它 it、我们 we、他们 they。</p></div>`,
+  quiz:[
+    {q:`用代词替换 My father：___ is a driver.`, o:[`They`,`He`,`It`,`She`], a:1, w:`爸爸是男性、只有一个人 → He。换代词后动词不用改，还是 is。`},
+    {q:`用代词替换 The tomatoes：___ are red.`, o:[`We`,`They`,`It`,`He`], a:1, w:`好几样东西 → They。换完代词动词仍然是 are，因为 they 和复数名词“脾气一样”。`},
+    {q:`My sister and I are in the garden. ___ are in the garden.`, o:[`She`,`They`,`We`,`You`], a:2, w:`“我姐姐和我”包括说话人自己，等于“我们” → We。只有不包括自己时才用 they。`},
+    {q:`This book is new. ___ is new.`, o:[`She`,`It`,`He`,`They`], a:1, w:`书是东西 → It。英语里东西和动物都用 it，不用 he/she。`},
+    {q:`The dogs are friendly. ___ are friendly.`, o:[`It`,`They`,`He`,`Them`], a:1, w:`dogs 是复数 → They，动词仍是 are。Them 是宾格，只能放在动词后面，不能当主语。`},
+    {q:`下面哪个是主格（能当主语）？`, o:[`me`,`her`,`him`,`they`], a:3, w:`they 是主格，能站在动词前面当主语。me、him、her 都是宾格，只能放在动词或介词后面。`}
+  ]
+},
+{
+  id:`l13`, ch:`第三章 · 代词和所有格`, lv:`进阶`, name:`宾格：动作落到谁身上`, sub:`me / you / him / her / it / us / them`,
+  body:`
+    <p>代词还有另一套，专门用在<b>动作后面</b>——动作落到谁身上，就用<b class="o">宾格</b>。</p>
+    <table class="tbl">
+      <tr><th>主格（动作前）</th><th>宾格（动作／介词后）</th></tr>
+      <tr><td>I</td><td class="hl">me</td></tr>
+      <tr><td>you</td><td class="hl">you</td></tr>
+      <tr><td>he / she / it</td><td class="hl">him / her / it</td></tr>
+      <tr><td>we</td><td class="hl">us</td></tr>
+      <tr><td>they</td><td class="hl">them</td></tr>
+    </table>
+    <div class="eg"><b>Can you help <span class="o">me</span>?</b><em>帮的是“我”，用 me。</em></div>
+    <div class="eg"><b>Look at <span class="o">him</span>.</b><em>at 后面也用宾格。</em></div>
+    <div class="eg"><b>Come with <span class="o">us</span>.</b><em>跟我们一起来。</em></div>
+    <div class="eg x"><b>Can you help I?</b><em>错：动作后面不能用 I。</em></div>
+    <div class="rule"><div class="rt">发现规律</div>
+      <p><b>动词前面</b>用主格，<b>动词或介词后面</b>用宾格。<br>at、with、for、to 这些介词都是“小钩子”，后面一样要接宾格。</p></div>
+    <div class="tip"><b>最好记的三对</b> he/him、she/her、they/them。只要问一句：这个词是站在前面当队长，还是站在后面被作用？</div>
+    <div class="key"><div class="kt">一句话记住</div><p>前面用主格，后面用宾格：I→me, he→him, she→her, we→us, they→them。</p></div>`,
+  quiz:[
+    {q:`Look at ___.（she）`, o:[`hers`,`she`,`her`,`she's`], a:2, w:`at 是介词，后面必须用宾格 her。she 是主格，只能当主语；hers 是“她的（东西）”，这里后面没有名词，但语义也不对。`},
+    {q:`Can you help ___?（I）`, o:[`I`,`my`,`me`,`mine`], a:2, w:`动词 help 后面用宾格 me。不能用 I（主格）；my、mine 表示“我的”，是把“拥有”说出来的词，不是被帮的对象。`},
+    {q:`Come with ___.（we）`, o:[`we`,`our`,`ours`,`us`], a:3, w:`介词 with 后面用宾格 us。判断口诀：动作或介词后面 → 宾格。`},
+    {q:`I like ___.（they）`, o:[`their`,`they`,`them`,`theirs`], a:2, w:`动词 like 后面用宾格 them。their 是“他们的”，后面必须再跟名词（their books）。`},
+    {q:`___ is my brother. I often help ___.`, o:[`Him / he`,`He / he`,`He / his`,`He / him`], a:3, w:`句首当主语用主格 He；help 后面用宾格 him。一句话里两个位置不同，形式就不同 —— 这正是主格宾格要分的原因。`},
+    {q:`下面哪一句是错的？`, o:[`Can you help I?`,`I like them.`,`Look at him.`,`Come with us.`], a:0, w:`help 后面必须用宾格，应该是 help me。其余三句的 him、us、them 都是宾格，用对了。`}
+  ]
+},
+{
+  id:`l14`, ch:`第三章 · 代词和所有格`, lv:`进阶`, name:`所有格（一）：我的、你的、他的`, sub:`my / your / his / her / its / our / their —— 后面必须跟名词`,
+  body:`
+    <p>想说“<b>谁的</b>什么东西”，代词要换一副新面孔。这一套叫<b class="o">形容词性物主代词</b>，名字长，用法简单：</p>
+    <table class="tbl">
+      <tr><th>主语</th><th>所有格</th><th>例子</th></tr>
+      <tr><td>I</td><td class="hl">my 我的</td><td>my book</td></tr>
+      <tr><td>you</td><td class="hl">your 你的／你们的</td><td>your name</td></tr>
+      <tr><td>he</td><td class="hl">his 他的</td><td>his bike</td></tr>
+      <tr><td>she</td><td class="hl">her 她的</td><td>her bag</td></tr>
+      <tr><td>it</td><td class="hl">its 它的</td><td>its tail</td></tr>
+      <tr><td>we</td><td class="hl">our 我们的</td><td>our garden</td></tr>
+      <tr><td>they</td><td class="hl">their 他们的</td><td>their school</td></tr>
+    </table>
+    <div class="rule"><div class="rt">铁律</div><p>这一套词<b>不能单独站着</b>，后面必须跟一个名词：<br>✔ my book&nbsp;&nbsp;✘ This is my.<br>✔ This is my book.</p></div>
+    <div class="eg"><b>My father is a driver. <span class="o">His</span> name is Tom.</b><em>先说 my father（男），再说他的名字 → his。</em></div>
+    <div class="eg"><b>My sister likes flowers. <span class="o">Her</span> garden is beautiful.</b><em>姐姐（女）→ her。</em></div>
+    <h3>三组最容易混</h3>
+    <table class="tbl">
+      <tr><th>容易混</th><th>区别</th></tr>
+      <tr><td>she / her</td><td class="l">she 是“她”（做主语）；her 是“她的”或“她”（做宾语）</td></tr>
+      <tr><td>he / his</td><td class="l">he 是“他”；his 是“他的”</td></tr>
+      <tr><td>it's / its</td><td class="l">it's = it is（它是）；its = 它的</td></tr>
+    </table>
+    <div class="warn"><div class="wt">高频错误</div>
+      <p>The dog wags <s>it's</s> tail. → The dog wags <b>its</b> tail.</p>
+      <p><s>She</s> name is Lily. → <b>Her</b> name is Lily.</p></div>
+    <div class="key"><div class="kt">一句话记住</div><p>my、your、his、her、its、our、their —— 后面跟名词，不能单独用。</p></div>`,
+  quiz:[
+    {q:`This is ___ book.（我的）`, o:[`my`,`I`,`me`,`mine`], a:0, w:`“我的书”用 my，后面跟名词 book。I 是主格、me 是宾格，都不能修饰名词；mine 是“我的（东西）”，本身已包含名词，不能再加 book。`},
+    {q:`___ name is Lily.（她的）`, o:[`Hers`,`She`,`Him`,`Her`], a:3, w:`“她的名字”用 her。She 只能当主语（She is Lily）；Hers 是“她的（东西）”，后面不加名词。`},
+    {q:`My brother likes football. ___ favourite sport is football.`, o:[`He's`,`He`,`His`,`Him`], a:2, w:`后面有名词 favourite sport，前面要用“他的” → His。He 不能修饰名词；Him 是宾格；He's = He is，放进去变成“他是最喜欢的运动”。`},
+    {q:`The cat is waving ___ tail.（它的尾巴）`, o:[`it's`,`its`,`its'`,`it`], a:1, w:`its = 它的；it's = it is。这里要的是“它的”，而且 its 后面正好跟名词 tail，符合铁律。`},
+    {q:`下面哪一句是错的？`, o:[`This is my bag.`,`Their school is big.`,`This is my.`,`Her bag is red.`], a:2, w:`my 后面必须跟名词，不能单独站着。想说“这是我的”，要用 This is mine。`},
+    {q:`We love ___ school.`, o:[`ours`,`we`,`our`,`us`], a:2, w:`“我们的学校”用 our，后面跟名词 school。us 是宾格，we 是主格，ours 是“我们的（东西）”。`}
+  ]
+},
+{
+  id:`l15`, ch:`第三章 · 代词和所有格`, lv:`挑战`, name:`所有格（二）：加撇号 's`, sub:`Tom's book —— 名词后面挂个牌子`,
+  body:`
+    <p>不说代词的时候，也可以用<b>人名或东西的名字</b>表示“谁的”：在名词后面加 <b class="o">'s</b>。</p>
+    <div class="eg"><b>Tom<span class="o">'s</span> book</b><em>汤姆的书</em></div>
+    <div class="eg"><b>my sister<span class="o">'s</span> bag</b><em>我姐姐的包（是 sister's，不是 my's）</em></div>
+    <div class="eg"><b>the dog<span class="o">'s</span> tail</b><em>狗的尾巴</em></div>
+    <div class="rule"><div class="rt">语序</div>
+      <p><b>拥有者 + 's + 被拥有的东西</b>：Tom's book = 汤姆（拥有者）+ 's + 书。</p>
+      <p>跟中文正好<b>反过来</b>：中文说“汤姆的书”，英语是“汤姆's 书”。</p></div>
+    <h3>名词已经是复数怎么办？</h3>
+    <table class="tbl">
+      <tr><th>情况</th><th>写法</th><th>例子</th></tr>
+      <tr><td>单数名词</td><td class="hl">+'s</td><td>the boy's ball</td></tr>
+      <tr><td>复数名词（以 s 结尾）</td><td class="hl">只加 '</td><td>the boys' ball</td></tr>
+      <tr><td>不规则复数</td><td class="hl">+'s</td><td>the children's garden</td></tr>
+    </table>
+    <div class="tip"><b>怎么判断？</b> 看拥有者是一个还是一堆：一个男孩 → boy's；好几个男孩 → boys'。写之前先看那个名词有没有 s。</div>
+    <div class="warn"><div class="wt">高频错误</div>
+      <p>✔ my sister's bag&nbsp;&nbsp;✘ my's sister bag（my 不能加 's）</p></div>
+    <div class="key"><div class="kt">一句话记住</div><p>谁的什么东西：拥有者后面加 's，再放被拥有的东西。</p></div>`,
+  quiz:[
+    {q:`“汤姆的书”怎么写？`, o:[`Toms' book`,`Tom's book`,`Tom book's`,`Tom books'`], a:1, w:`拥有者 Tom 后面加 's，再放被拥有的东西 book。中文说“汤姆的书”，英语是“汤姆's 书”，顺序正好反过来。`},
+    {q:`“我姐姐的包”怎么写？`, o:[`my sisters' bag`,`my's sister bag`,`my sister's bag`,`my sister bag's`], a:2, w:`my 不能加 's（它本身已经是所有格）；'s 要加在真正的拥有者 sister 后面，再放被拥有的 bag。`},
+    {q:`好几个男孩的球（the boys）怎么写？`, o:[`the boys's ball`,`the boys ball's`,`the boy's balls`,`the boys' ball`], a:3, w:`boys 已经以 s 结尾，只加一个撇号：the boys' ball。再加 's 就重复了。`},
+    {q:`The ___ garden is big.（孩子们的）`, o:[`children`,`childrens`,`childrens'`,`children's`], a:3, w:`children 是不规则复数（词尾不带 s），所以照单数处理，加 's：children's。`},
+    {q:`下面哪一句是对的？`, o:[`This is the dog tail's.`,`This is dog's the tail.`,`This is the dogs tail's.`,`This is the dog's tail.`], a:3, w:`公式是：拥有者（the dog）+ 's + 被拥有的东西（tail）。其余三个都把 's 挂到了错的地方。`},
+    {q:`my's 这种写法对吗？`, o:[`只有问句里能加`,`只有复数主语才能加`,`不对，my 本身已是所有格，不能再加`,`对，所有格都能加 's`], a:2, w:`'s 是给名词用的（Tom、sister、dog）。my、your、his 这些已经是所有格代词，再加 's 就成了两个所有格叠在一起。`}
+  ]
+},
+
+/* ============ 第四章 疑问句 ============ */
+{
+  id:`l16`, ch:`第四章 · 疑问句`, lv:`基础`, name:`问句（一）：把 be 或 can 请到最前面`, sub:`只搬位置，别的都不动`,
+  body:`
+    <p>想把一句话变成问句，最省力的办法是：<b class="o">把句子里那个特殊的词提到最前面。</b></p>
+    <div class="eg"><b>She is happy. → <span class="o">Is</span> she happy?</b><em>把 is 提到句首。</em></div>
+    <div class="eg"><b>You can swim. → <span class="o">Can</span> you swim?</b><em>把 can 提到句首。</em></div>
+    <p>注意三件事：① 被提走的词走了以后，原位空着，不用补东西；② 句首字母大写；③ 结尾用问号。</p>
+    <h3>怎么回答？</h3>
+    <p>这种问句叫 Yes/No 问句，回答也用 Yes 或 No，而且<b>用哪个词问，就用哪个词答</b>：</p>
+    <table class="tbl">
+      <tr><th>问</th><th>肯定答</th><th>否定答</th></tr>
+      <tr><td>Is she happy?</td><td>Yes, she <b>is</b>.</td><td>No, she <b>isn't</b>.</td></tr>
+      <tr><td>Are you nine?</td><td>Yes, I <b>am</b>.</td><td>No, I'm <b>not</b>.</td></tr>
+      <tr><td>Can you swim?</td><td>Yes, I <b>can</b>.</td><td>No, I <b>can't</b>.</td></tr>
+    </table>
+    <div class="rule"><div class="rt">发现规律</div>
+      <p>问句和答句像照镜子：问句开头的词，在答句里再出现一次。用 is 问 → 用 is 答；用 can 问 → 用 can 答。</p></div>
+    <div class="key"><div class="kt">一句话记住</div><p>有 be 或 can，就把它们提到最前面；怎么问就怎么答。</p></div>`,
+  quiz:[
+    {q:`把 She is happy. 变成问句：`, o:[`Does she is happy?`,`She is happy?`,`Is she happy?`,`Is she happy.`], a:2, w:`把 is 提到句首，其余不动，句首大写、句尾问号。Is she happy. 虽然词序对了，但结尾是句号 —— 那是陈述句，不是问句。`},
+    {q:`把 You can swim. 变成问句：`, o:[`Can you swim?`,`You can swim?`,`Can you swims?`,`Do you can swim?`], a:0, w:`把 can 提到句首。Can you swims? 里的 swims 加了 -s，这就错了 —— can 后面的动词永远是原形。`},
+    {q:`— Is he your teacher? — ___（他不是）`, o:[`No, he not.`,`No, he isn't.`,`No, he don't.`,`No, he aren't.`], a:1, w:`用 is 问，答也用 is，否定是 isn't。aren't 是给复数的；don't 是动作动词的否定；No, he not 少了 be 动词。`},
+    {q:`— Are you nine? — ___`, o:[`Yes, I am.`,`Yes, I are.`,`Yes, you are.`,`Yes, I is.`], a:0, w:`问句里的 you 到了答句要换成 I，I 配 am。答句不能照抄 you —— 问的是“你”，答的是“我”。`},
+    {q:`把陈述句变问句，要把什么提到最前面？`, o:[`句尾的词`,`主语`,`宾语`,`be 动词或 can`], a:3, w:`有 be 就提 be，有 can 就提 can。主语位置不动，只是挪到了 be/can 后面。`},
+    {q:`下面哪个问句是错的？`, o:[`Does she is happy?`,`Is she happy?`,`Are they happy?`,`Can you swim?`], a:0, w:`Does she is happy 把两个助动词挤在一起。这句本来有 is，直接把 is 提到前面就够了：Is she happy?`}
+  ]
+},
+{
+  id:`l17`, ch:`第四章 · 疑问句`, lv:`进阶`, name:`问句（二）：疑问词放在最前面`, sub:`what / where / who / how / which`,
+  body:`
+    <p>Yes/No 问句只能回答“是或不是”。想知道<b>具体信息</b>，要用疑问词开头。</p>
+    <table class="tbl">
+      <tr><th>疑问词</th><th>问什么</th><th>例子</th></tr>
+      <tr><td>what</td><td>什么（东西、事情）</td><td><b>What</b> is this? — It's a tomato.</td></tr>
+      <tr><td>where</td><td>哪里（地点、来源）</td><td><b>Where</b> is it from? — It's from the sea.</td></tr>
+      <tr><td>who</td><td>谁（人）</td><td><b>Who</b> is she? — She's my classmate.</td></tr>
+      <tr><td>how</td><td>怎么样（感受、方式）</td><td><b>How</b> do you feel? — I'm happy.</td></tr>
+      <tr><td>which</td><td>哪一个（在几个里挑）</td><td><b>Which</b> book is yours? — The red one.</td></tr>
+    </table>
+    <h3>语序：疑问词站最前面，后面照旧</h3>
+    <div class="eg"><b><span class="o">What</span> is your goal?</b><em>疑问词 + is + 其余。</em></div>
+    <div class="eg"><b><span class="o">Where</span> is it from?</b><em>疑问词 + is + 其余。</em></div>
+    <div class="eg"><b><span class="o">Which</span> book is yours, the red one or the blue one?</b><em>在几个东西里挑 → which。</em></div>
+    <div class="rule"><div class="rt">发现规律</div>
+      <p>这类问句不能只答 Yes 或 No，必须给出具体信息。答句常常就是“把问句倒回去”：What is this? → This is a tomato.</p></div>
+    <div class="tip"><b>怎么选疑问词？</b> 问东西用 what，问地方用 where，问人用 who，问感受用 how，让人在几样里选一个用 which。</div>
+    <div class="key"><div class="kt">一句话记住</div><p>疑问词开头 + 问句语序；问什么答什么，不能拿 Yes/No 打发。</p></div>`,
+  quiz:[
+    {q:`— ___ is your goal? — My goal is to read ten books.`, o:[`What`,`Who`,`Which`,`Where`], a:0, w:`答句给的是“目标的内容”，问东西／事情用 what。Where 问地点，Who 问人，Which 要在几个里选。`},
+    {q:`— ___ is it from? — It's from the sea.`, o:[`How`,`Who`,`What`,`Where`], a:3, w:`from 表示来源，问“来自哪里”用 where。这是第四单元的核心句型 Where is it from?`},
+    {q:`— ___ is she? — She's my classmate.`, o:[`What`,`Which`,`Who`,`How`], a:2, w:`答的是一个人（我同学），问“谁”用 who。如果问 What is she，答案会是“她是老师／学生”这类身份名词，而且通常用 What does she do。`},
+    {q:`— ___ do you feel? — I'm happy.`, o:[`Where`,`How`,`Which`,`What`], a:1, w:`问感受、状态固定用 How do you feel?。这个句型要整句记住，不能换成 what。`},
+    {q:`— ___ book is yours, the red one or the blue one? — The red one.`, o:[`Where`,`What`,`Which`,`Who`], a:2, w:`已经给出两个候选让人挑一个，用 which。What 是开放式地问“什么书”，不涉及在几个里挑。`},
+    {q:`— What is this? — ___`, o:[`No, it isn't.`,`Yes, it is.`,`I'm nine.`,`It's a tomato.`], a:3, w:`疑问词问句不能拿 Yes/No 打发，必须给出具体信息。答句常常就是“把问句倒回去”：This is a tomato → It's a tomato。`}
+  ]
+},
+{
+  id:`l18`, ch:`第四章 · 疑问句`, lv:`挑战`, name:`怎么答：简答的三个规矩`, sub:`答句要和问句“对上号”`,
+  body:`
+    <p>会问还不够，答错一样扣分。答 Yes/No 问句有三个规矩：</p>
+    <div class="rule"><div class="rt">规矩一：用什么问，用什么答</div>
+      <p>Is …? → Yes, … is.&nbsp;&nbsp;Are …? → Yes, … are.&nbsp;&nbsp;Can …? → Yes, … can.</p></div>
+    <div class="rule"><div class="rt">规矩二：主语换成代词，单复数别丢</div>
+      <p>Is Tom your friend? → Yes, <b>he</b> is.（不是 Yes, Tom is.）<br>
+      Are Tom and Lily your friends? → Yes, <b>they</b> are.</p></div>
+    <div class="rule"><div class="rt">规矩三：简答不缩写</div>
+      <p>✔ Yes, it is.&nbsp;&nbsp;✘ Yes, it's.&nbsp;&nbsp;✔ No, I'm not.</p></div>
+    <div class="eg"><b>— Is this your book? — Yes, it is.</b><em>this 在答句里换成 it。</em></div>
+    <div class="eg"><b>— Are these your books? — Yes, they are.</b><em>these 换成 they，动词跟着用 are。</em></div>
+    <div class="eg"><b>— Can your sister sing? — Yes, she can.</b><em>your sister 换成 she。</em></div>
+    <h3>疑问词问句怎么答？</h3>
+    <p>不能只答 Yes/No，要给出具体信息，最好用完整句子：</p>
+    <div class="eg"><b>— Where is the library? — It's over there.</b></div>
+    <div class="eg"><b>— Who is she? — She's my classmate.</b><em>问人答人；用 she 回答 she。</em></div>
+    <div class="warn"><div class="wt">最常见的丢分点</div><p>问句是 Are they…? 答句却写 Yes, they is. —— 单复数一乱，整句就错。</p></div>
+    <div class="key"><div class="kt">一句话记住</div><p>怎么问怎么答，主语换代词，单复数保持一致，简答不缩写。</p></div>`,
+  quiz:[
+    {q:`— Is Tom your friend? — ___`, o:[`Yes, he is.`,`Yes, he does.`,`Yes, he are.`,`Yes, Tom is.`], a:0, w:`答句要把人名换成代词 he，动词跟着用 is。简答里不重复人名，是英语的习惯。`},
+    {q:`— Are these your books? — ___`, o:[`Yes, it is.`,`Yes, they are.`,`Yes, they is.`,`Yes, these is.`], a:1, w:`these 换成 they，动词用 are。these 是复数，换成 it 就单复数错位了。`},
+    {q:`— Is this your pen? — ___`, o:[`Yes, is it.`,`Yes, this is.`,`Yes, it's.`,`Yes, it is.`], a:3, w:`简答不缩写，所以不能说 Yes, it's；this 要换成 it；Yes, is it 语序反了。`},
+    {q:`— Who is she? — ___`, o:[`She's my classmate.`,`It's a book.`,`Yes, she is.`,`No, she isn't.`], a:0, w:`疑问词问句要回答具体信息，问人答人。用 Yes/No 回答 who 问句是最典型的丢分点。`},
+    {q:`— Can your sister swim? — ___`, o:[`Yes, she does.`,`Yes, she can.`,`Yes, she is.`,`Yes, she swim.`], a:1, w:`用 can 问就用 can 答；your sister 换成 she。答句里不能重复动词 swim，也不能换成 is/does。`},
+    {q:`简答里能不能用缩写？`, o:[`能，Yes, it's. 更省事`,`都可以缩写，口语里说得通就行`,`不能，要说 Yes, it is.`,`只有回答 No 时能缩写`], a:2, w:`肯定简答把 is/are/can 单独读出来，不缩写：Yes, it is. / Yes, they are. / Yes, I can.。否定简答可以缩写：No, it isn't. / No, I'm not.。`}
+  ]
+},
+
+/* ============ 最终关 ============ */
+{
+  id:`l19`, ch:`最终关`, lv:`挑战`, name:`综合闯关`, sub:`16 道题，把前面学的全用上`,
+  body:`
+    <p>这一关没有新知识，只是把前面 18 课混在一起考。做错不要紧，看解析，再回去翻那一课。</p>
+    <div class="rule"><div class="rt">做题顺序</div>
+      <p>① 找主语 → ② 数单复数 → ③ 定动词形式 → ④ 看是肯定、否定还是问句。</p></div>
+    <div class="key"><div class="kt">通关条件</div><p>16 题全部答对，才算真正拿到“语法小队长”。</p></div>`,
+  quiz:[
+    {q:`My sister ___ good at singing.`, o:[`is`,`are`,`be`,`am`], a:0, w:`my sister 是单个人（相当于 she）→ is。are 是给复数或 you 的，am 只跟 I。`},
+    {q:`The children ___ happy.`, o:[`be`,`are`,`is`,`am`], a:1, w:`children 是 child 的不规则复数，意思是“孩子们”，算一堆 → are。别被词尾没有 s 骗到。`},
+    {q:`He can ___ the dishes.`, o:[`to do`,`do`,`doing`,`does`], a:1, w:`can 后面跟原形 do。这里还有个固定搭配：do the dishes（洗碗），用 do 不用 make。`},
+    {q:`— ___ you swim? — Yes, I can.`, o:[`Are`,`Is`,`Can`,`Do`], a:2, w:`答句用 can，问句就是 Can。这是一条铁律：怎么问怎么答。`},
+    {q:`Look at ___. He is my brother.`, o:[`he`,`him`,`he's`,`his`], a:1, w:`at 是介词，后面用宾格 him。后半句的 He 才是主语 —— 同一个人的两种形式，位置不同形式就不同。`},
+    {q:`___ is the library? — It's over there.`, o:[`What`,`How`,`Who`,`Where`], a:3, w:`答句给的是地点（over there），所以问 where。`},
+    {q:`The tomato ___ red.`, o:[`looks`,`looking`,`look`,`looked`], a:0, w:`tomato 是单数，连系动词加 s → looks。looking 不能单独做谓语，需要 am/is/are 帮忙。`},
+    {q:`My brother and I ___ in the same school.`, o:[`is`,`be`,`am`,`are`], a:3, w:`and 连成两个人 = 一堆 → are。被 and 连进去之后，“我”不再按 I 配 am。`},
+    {q:`Tom ___ English every evening.（study）`, o:[`studyes`,`studys`,`study`,`studies`], a:3, w:`Tom 是第三人称单数；study 是“辅音 + y”结尾，变 y 为 i 加 es → studies。`},
+    {q:`My mother ___ dinner for us.（cook）`, o:[`cooking`,`cooked`,`cook`,`cooks`], a:3, w:`my mother = 她，第三人称单数，一般动词直接加 s → cooks。另外 cook dinner 是“做晚饭”的固定搭配。`},
+    {q:`This is ___ bag.（我的）`, o:[`I`,`my`,`mine`,`me`], a:1, w:`后面有名词 bag，用 my。mine 是“我的（东西）”，本身已含名词，不能再加 bag。`},
+    {q:`The ___ tail is long.（狗的）`, o:[`dogs`,`dogs'`,`dog's`,`dog`], a:2, w:`拥有者是一只狗（单数名词）→ dog + 's。dogs' 是“好几只狗的”，dogs 是复数名词本身，都不对。`},
+    {q:`— Are these your books? — ___`, o:[`Yes, they are.`,`Yes, these are.`,`Yes, they is.`,`Yes, it is.`], a:0, w:`these 换成 they，动词用 are。简答里不重复 these。`},
+    {q:`下面哪一句是错的？`, o:[`The birds sings.`,`The bird sings.`,`The birds sing.`,`The bird can sing.`], a:0, w:`birds 已经是复数（有 s），动词必须回到原形。两边都有 s 是最典型的错误。`},
+    {q:`The water in the lake ___ clean.`, o:[`am`,`are`,`be`,`is`], a:3, w:`water 不可数，当单数看 → is。中间的 in the lake 只是修饰，不改主语。`},
+    {q:`— Is he your teacher? — ___`, o:[`Yes, he can.`,`Yes, he does.`,`Yes, he are.`,`Yes, he is.`], a:3, w:`用 is 问就用 is 答。he 是单数，永远配 is，不能配 are。`}
+  ]
+}
+];
+
+/* ============ 速查表 ============ */
+const REF = {
+  name:`一页速查表`, sub:`打印出来贴在书桌前`,
+  body:`
+  <div class="ref">
+    <h2>① 动词家族</h2>
+    <table class="tbl">
+      <tr><th>家族</th><th>用法</th><th>跟主语变吗</th><th>例子</th></tr>
+      <tr><td>动作动词</td><td>做什么</td><td>会（加 s）</td><td>He runs.</td></tr>
+      <tr><td>be 动词</td><td>是什么、怎么样</td><td>会（am/is/are）</td><td>He is tall.</td></tr>
+      <tr><td>连系动词</td><td>感觉起来怎么样</td><td>会（加 s）</td><td>It looks nice.</td></tr>
+      <tr><td>情态动词</td><td>能不能</td><td>不变</td><td>He can swim.</td></tr>
+    </table>
+    <h2>② 主语 → 动词（最重要的一张表）</h2>
+    <table class="tbl">
+      <tr><th>主语</th><th>be</th><th>动作动词</th></tr>
+      <tr><td>I</td><td class="hl">am</td><td class="hl">play</td></tr>
+      <tr><td>you（你／你们）</td><td class="hl">are</td><td class="hl">play</td></tr>
+      <tr><td>he / she / it / 一个人 / 一样东西</td><td class="hl">is</td><td class="hl">plays</td></tr>
+      <tr><td>we / they / 一大堆</td><td class="hl">are</td><td class="hl">play</td></tr>
+    </table>
+    <h2>③ 加 s 的规则</h2>
+    <p>一般 +s（likes）&nbsp;|&nbsp; s、x、ch、sh、o 结尾 +es（watches, goes）&nbsp;|&nbsp; 辅音+y 改 ies（studies）<br>
+    元音+y 直接加 s（plays）&nbsp;|&nbsp; 特殊：have→has，be→is</p>
+    <h2>④ 代词三套</h2>
+    <table class="tbl">
+      <tr><th>主格（动词前）</th><td>I</td><td>you</td><td>he</td><td>she</td><td>it</td><td>we</td><td>they</td></tr>
+      <tr><th>宾格（动词后）</th><td class="hl">me</td><td class="hl">you</td><td class="hl">him</td><td class="hl">her</td><td class="hl">it</td><td class="hl">us</td><td class="hl">them</td></tr>
+      <tr><th>所有格（＋名词）</th><td class="hl">my</td><td class="hl">your</td><td class="hl">his</td><td class="hl">her</td><td class="hl">its</td><td class="hl">our</td><td class="hl">their</td></tr>
+    </table>
+    <p>名词所有格：Tom<b>'s</b> book&nbsp;|&nbsp;复数已带 s：the boys<b>'</b> ball&nbsp;|&nbsp;不规则：children<b>'s</b></p>
+    <h2>⑤ 两种问句</h2>
+    <table class="tbl">
+      <tr><th>类型</th><th>怎么变</th><th>例子</th><th>怎么答</th></tr>
+      <tr><td>Yes/No 问句</td><td>把 be 或 can 提到句首</td><td>Is she happy?<br>Can you swim?</td><td>Yes, she is. / No, she isn't.<br>Yes, I can. / No, I can't.</td></tr>
+      <tr><td>疑问词问句</td><td>疑问词 + be/can + 其余</td><td>What is this?<br>Who are they?</td><td>给具体信息，不用 Yes/No</td></tr>
+    </table>
+    <p><b>疑问词：</b>what 问东西，where 问地方，who 问人，how 问感受，which 在几个里挑一个。</p>
+    <p><b>问句里的单复数：</b>只搬位置，不改形式 —— he → is，they → are，can 永远不变。</p>
+    <h2>⑥ 最容易踩的八个坑</h2>
+    <ul>
+      <li>He <s>are</s> → He <b>is</b></li>
+      <li>You <s>is</s> → You <b>are</b>（you 永远 are）</li>
+      <li>He <s>cans</s> → He <b>can</b></li>
+      <li>can <s>to</s> swim → can <b>swim</b></li>
+      <li>The dogs <s>runs</s> → The dogs <b>run</b></li>
+      <li>help <s>I</s> → help <b>me</b></li>
+      <li><s>She</s> name → <b>Her</b> name</li>
+      <li>The cat <s>it's</s> tail → <b>its</b> tail</li>
+    </ul>
+  </div>`
+};
+
+/* ============ 引擎 ============ */
+const KEY = `eng-gram-3-progress-v2`;
+let state = {done:[]};
+try{ state = JSON.parse(localStorage.getItem(KEY)) || {done:[]}; }catch(e){ state = {done:[]}; }
+if(!Array.isArray(state.done)) state.done = [];
+
+const app = document.getElementById(`app`);
+const fill = document.getElementById(`fill`);
+const dn = document.getElementById(`dn`);
+const TOTAL = L.length;
+
+function save(){ try{ localStorage.setItem(KEY, JSON.stringify(state)); }catch(e){} }
+function isDone(d){ return state.done.indexOf(d.id) > -1; }
+function paintBar(){
+  const n = state.done.filter(function(id){ return L.some(function(l){ return l.id === id; }); }).length;
+  fill.style.width = (n / TOTAL * 100) + `%`;
+  dn.textContent = n;
+  document.getElementById(`dt`).textContent = TOTAL;
+}
+function go(h){ location.hash = h; }
+
+function renderTOC(){
+  const groups = [];
+  L.forEach(function(l, i){
+    let g = groups.filter(function(x){ return x.ch === l.ch; })[0];
+    if(!g){ g = {ch:l.ch, items:[]}; groups.push(g); }
+    g.items.push({l:l, i:i});
+  });
+  let html = `
+  <div class="hero">
+    <h1>三年级英语闯关小游戏 1</h1>
+    <p>三年级完整版 · 动词家族 · 主谓一致 · 代词与所有格 · 疑问句</p>
+    <div class="how">
+      <b>怎么用：</b>按顺序一课一课走。每课先看例子和规律，再做题；答完才能过关。
+      答错会告诉你为什么，看不懂就回去再读一遍。第二章是重点，慢一点没关系。
+    </div>
+  </div>`;
+  groups.forEach(function(g){
+    html += `<div class="grp">` + g.ch + `</div>`;
+    g.items.forEach(function(it){
+      const l = it.l, d = isDone(l);
+      const cls = l.lv === `基础` ? `b` : (l.lv === `进阶` ? `m` : `h`);
+      html += `
+      <div class="card ` + (d ? `done` : ``) + `" data-i="` + it.i + `">
+        <div class="no">` + (d ? `✓` : (it.i + 1)) + `</div>
+        <div class="tx"><b>` + l.name + `</b><i>` + l.sub + `</i></div>
+        <div class="rt">
+          <span class="lv ` + cls + `">` + l.lv + `</span>
+          <span class="st">` + (d ? `已过关` : l.quiz.length + ` 题`) + `</span>
+        </div>
+      </div>`;
+    });
+  });
+  html += `
+  <div class="grp">附录</div>
+  <div class="card" data-ref="1">
+    <div class="no">速</div>
+    <div class="tx"><b>` + REF.name + `</b><i>` + REF.sub + `</i></div>
+    <div class="rt"><span class="st">可打印</span></div>
+  </div>
+  <button class="reset" id="reset">清空进度，从头再来</button>`;
+  app.innerHTML = html;
+
+  app.querySelectorAll(`.card[data-i]`).forEach(function(el){
+    el.addEventListener(`click`, function(){ go(`lesson-` + el.dataset.i); });
+  });
+  app.querySelector(`.card[data-ref]`).addEventListener(`click`, function(){ go(`ref`); });
+  document.getElementById(`reset`).addEventListener(`click`, function(){
+    state.done = []; save(); paintBar(); renderTOC();
+  });
+  window.scrollTo(0, 0);
+}
+
+function renderRef(){
+  app.innerHTML = `
+    <div class="chap">附录</div>
+    <h1 class="lt">一页速查表</h1>
+    <p class="sub">把最重要的表格放在一起，复习和考前看这一页就够。</p>
+    ` + REF.body + `
+    <div class="nav"><button id="back">← 回到目录</button><span></span></div>`;
+  document.getElementById(`back`).addEventListener(`click`, function(){ go(``); });
+  window.scrollTo(0, 0);
+}
+
+function renderLesson(idx){
+  const d = L[idx];
+  app.innerHTML = `
+    <div class="chap">` + d.ch + ` &nbsp;·&nbsp; ` + d.lv + `</div>
+    <h1 class="lt">` + d.name + `</h1>
+    <p class="sub">` + d.sub + `</p>
+    <div class="content">` + d.body + `</div>
+    <div class="quizwrap">
+      <h2 class="qh">练一练 <span>共 ` + d.quiz.length + ` 题 · 每题四个选项，只有一个机会</span></h2>
+      <div id="qs"></div>
+      <div id="summary"></div>
+      <div class="qfoot">
+        <button id="finish" disabled>完成这一课</button>
+        <span id="score" class="done-badge"></span>
+      </div>
+    </div>
+    <div class="nav">
+      <button id="prev" ` + (idx === 0 ? `disabled` : ``) + `>← 上一课</button>
+      <button id="toc">目录</button>
+      <button id="next" ` + (idx === L.length - 1 ? `disabled` : ``) + `>下一课 →</button>
+    </div>`;
+  document.getElementById(`prev`).addEventListener(`click`, function(){ if(idx > 0) go(`lesson-` + (idx - 1)); });
+  document.getElementById(`next`).addEventListener(`click`, function(){ if(idx < L.length - 1) go(`lesson-` + (idx + 1)); });
+  document.getElementById(`toc`).addEventListener(`click`, function(){ go(``); });
+  buildQuiz(d, idx);
+  window.scrollTo(0, 0);
+}
+
+/* ============ 撒礼花 ============ */
+let fxRunning = false;
+function confetti(){
+  const cv = document.getElementById(`fx`);
+  if(!cv || fxRunning) return;
+  const ctx = cv.getContext(`2d`);
+  const dpr = window.devicePixelRatio || 1;
+  cv.width = window.innerWidth * dpr;
+  cv.height = window.innerHeight * dpr;
+  ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+  const W = window.innerWidth, H = window.innerHeight;
+  const colors = [`#2b6de5`,`#f08a24`,`#17945a`,`#d9463f`,`#7a5cd6`,`#f5c542`,`#38b6d6`];
+  const ps = [];
+  for(let i = 0; i < 120; i++){
+    const x = W * (0.06 + Math.random() * 0.88);
+    ps.push({
+      x: x, y: H * 0.94 + Math.random() * 30,
+      vx: (x < W / 2 ? 1.6 : -1.6) + (Math.random() - 0.5) * 5,
+      vy: -(11 + Math.random() * 9),
+      w: 4 + Math.random() * 7, h: 7 + Math.random() * 9,
+      rot: Math.random() * Math.PI, vr: (Math.random() - 0.5) * 0.4,
+      c: colors[i % colors.length]
+    });
+  }
+  fxRunning = true;
+  const t0 = performance.now();
+  let last = t0;
+  function frame(t){
+    const dt = Math.min(34, t - last); last = t;
+    const k = dt / 16.67;
+    ctx.clearRect(0, 0, W, H);
+    for(let i = 0; i < ps.length; i++){
+      const p = ps[i];
+      p.vy += 0.42 * k;
+      p.vx *= (1 - 0.006 * k);
+      p.x += p.vx * k; p.y += p.vy * k; p.rot += p.vr * k;
+      ctx.save();
+      ctx.translate(p.x, p.y); ctx.rotate(p.rot);
+      ctx.globalAlpha = Math.max(0, Math.min(1, 1 - Math.max(0, p.y - H * 0.58) / (H * 0.5)));
+      ctx.fillStyle = p.c;
+      ctx.fillRect(-p.w / 2, -p.h / 2, p.w, p.h);
+      ctx.restore();
+    }
+    if(t - t0 < 2100){
+      requestAnimationFrame(frame);
+    } else {
+      ctx.clearRect(0, 0, W, H);
+      fxRunning = false;
+    }
+  }
+  requestAnimationFrame(frame);
+}
+
+function buildQuiz(d, idx){
+  const wrap = document.getElementById(`qs`);
+  const finish = document.getElementById(`finish`);
+  const scoreEl = document.getElementById(`score`);
+  const sumEl = document.getElementById(`summary`);
+  let answered = 0, right = 0;
+  const wrongNo = [];
+  if(isDone(d)){ finish.textContent = `已过关 · 回目录`; }
+
+  function update(){
+    scoreEl.textContent = `已答 ` + answered + `/` + d.quiz.length + `　答对 ` + right;
+    finish.disabled = answered < d.quiz.length;
+    if(answered === d.quiz.length){
+      const all = (right === d.quiz.length);
+      sumEl.className = `show` + (all ? ` allok` : ``);
+      let txt;
+      if(all){
+        txt = `<div class="big">全对！` + d.quiz.length + ` 题全中 🎉</div>本课的知识点你已经拿下了，可以点下面的按钮过关。`;
+      } else {
+        const listTxt = wrongNo.length <= 5
+          ? `错的是第 ` + wrongNo.join(`、`) + ` 题。`
+          : `错了 ` + wrongNo.length + ` 题。`;
+        txt = `<div class="big">本课完成：答对 ` + right + ` / ` + d.quiz.length + `（` +
+              Math.round(right * 100 / d.quiz.length) + `%）</div>` + listTxt +
+              `每题下面的红框里就是正确答案和原因，往上翻一眼再点过关；` +
+              `也可以先回目录，明天再做一遍。`;
+      }
+      sumEl.innerHTML = txt;
+    }
+  }
+
+  d.quiz.forEach(function(q, qi){
+    const box = document.createElement(`div`);
+    box.className = `q`;
+    const qt = document.createElement(`p`);
+    qt.className = `qt`;
+    qt.textContent = (qi + 1) + `. ` + q.q;
+    box.appendChild(qt);
+
+    const why = document.createElement(`div`);
+    why.className = `why`;
+
+    q.o.forEach(function(text, oi){
+      const b = document.createElement(`button`);
+      b.className = `opt`;
+      b.type = `button`;
+      b.innerHTML = `<b>` + `ABCD`[oi] + `</b>．` + text;
+      b.addEventListener(`click`, function(){
+        if(box.dataset.ans) return;          // 只判一次，改答案无效
+        box.dataset.ans = `1`;
+        answered++;
+        const btns = box.querySelectorAll(`.opt`);
+        btns.forEach(function(x){ x.disabled = true; });
+
+        if(oi === q.a){
+          right++;
+          b.classList.add(`ok`);
+          b.insertAdjacentHTML(`beforeend`, `<span class="tag">✓ 你选对了</span>`);
+          why.className = `why ok show`;
+          why.innerHTML = `<span class="wt2">✓ 答对了 · 为什么这么答</span>` + q.w;
+          confetti();
+        } else {
+          wrongNo.push(qi + 1);
+          b.classList.add(`bad`);
+          b.insertAdjacentHTML(`beforeend`, `<span class="tag">✗ 你选的</span>`);
+          btns[q.a].classList.add(`ok`);
+          btns[q.a].insertAdjacentHTML(`beforeend`, `<span class="tag">正确答案</span>`);
+          why.className = `why bad show`;
+          why.innerHTML = `<span class="wt2">✗ 答错了 · 正确答案是 ` + `ABCD`[q.a] + `</span>` + q.w;
+        }
+        const lk = document.createElement(`div`);
+        lk.className = `lockline`;
+        lk.textContent = `本题已判定，再点选项不会改变结果。`;
+        box.appendChild(lk);
+        update();
+      });
+      box.appendChild(b);
+    });
+    box.appendChild(why);
+    wrap.appendChild(box);
+  });
+
+  update();
+
+  finish.addEventListener(`click`, function(){
+    if(isDone(d)){ go(``); return; }
+    if(state.done.indexOf(d.id) < 0){ state.done.push(d.id); save(); paintBar(); }
+    if(idx < L.length - 1) go(`lesson-` + (idx + 1));
+    else go(``);
+  });
+}
+
+function route(){
+  const h = location.hash.replace(`#`, ``);
+  if(h.indexOf(`lesson-`) === 0){
+    const i = parseInt(h.slice(7), 10);
+    if(!isNaN(i) && L[i]){ renderLesson(i); return; }
+  }
+  if(h === `ref`){ renderRef(); return; }
+  renderTOC();
+}
+window.addEventListener(`hashchange`, route);
+document.getElementById(`brand`).addEventListener(`click`, function(){ go(``); });
+paintBar();
+route();
+</script>
+<canvas id="fx"></canvas>
+
+<!-- rourou-home-btn:start -->
+<style>
+#rourou-home-btn{position:fixed;left:14px;bottom:calc(14px + env(safe-area-inset-bottom,0px));z-index:9999;
+display:inline-flex;align-items:center;gap:6px;padding:10px 18px;border-radius:999px;
+background:rgba(255,255,255,0.92);color:#2d3436;font-size:15px;font-weight:600;
+text-decoration:none;box-shadow:0 4px 14px rgba(0,0,0,0.18);border:1px solid rgba(0,0,0,0.08);
+-webkit-backdrop-filter:blur(4px);backdrop-filter:blur(4px);transition:transform .15s,background .15s;}
+#rourou-home-btn:hover{background:#fff;transform:translateY(-2px);}
+@media (max-width:600px){#rourou-home-btn{padding:9px 14px;font-size:13px;left:10px;bottom:calc(10px + env(safe-area-inset-bottom,0px));}}
+/* 页面自带左下角悬浮按钮（如讲义的「↑ 返回目录」）时上移让位，避免两个按钮叠在一起 */
+.fab{bottom:calc(66px + env(safe-area-inset-bottom,0px)) !important;}
+@media (max-width:919px){.fab{bottom:calc(58px + env(safe-area-inset-bottom,0px)) !important;}}
+</style>
+<a id="rourou-home-btn" href="../../index.html">🏠 首页</a>
+<!-- rourou-home-btn:end -->
+</body>
+</html>
