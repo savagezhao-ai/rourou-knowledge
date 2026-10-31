@@ -45,6 +45,21 @@
         .filter-btn.active { background: #fff; color: #764ba2; border-color: #fff; font-weight: bold; box-shadow: 0 4px 15px rgba(0,0,0,0.2); }
         .filter-btn .count { font-size: 12px; opacity: 0.7; margin-left: 4px; }
 
+        /* 两级分类：一级大类 + 二级子类 */
+        .filter-bar.primary { gap: 12px; margin-bottom: 14px; }
+        .filter-btn.primary-btn { padding: 12px 26px; font-size: 16.5px; font-weight: 600; }
+        .sub-bar { display: none; flex-wrap: wrap; gap: 8px; justify-content: center;
+            max-width: 660px; margin: 0 auto 22px; padding: 12px 12px; border-radius: 18px;
+            background: rgba(255,255,255,0.10); border: 1px solid rgba(255,255,255,0.18); }
+        .sub-bar.show { display: flex; animation: subIn .26s ease; }
+        @keyframes subIn { from { opacity: 0; transform: translateY(-6px); } to { opacity: 1; transform: none; } }
+        .sub-btn { padding: 7px 16px; border-radius: 18px; border: 1.5px solid rgba(255,255,255,0.35);
+            background: rgba(255,255,255,0.12); color: #fff; font-size: 14px; cursor: pointer;
+            transition: all .18s; white-space: nowrap; }
+        .sub-btn:hover { background: rgba(255,255,255,0.28); }
+        .sub-btn.active { background: rgba(255,255,255,0.95); color: #6a3d9a; border-color: #fff; font-weight: bold; }
+        .sub-btn .count { font-size: 11.5px; opacity: .7; margin-left: 3px; }
+
         .article-list { display: flex; flex-direction: column; gap: 14px; }
         .article-card { background: rgba(255,255,255,0.95); border-radius: 18px; padding: 17px 20px 18px; box-shadow: 0 8px 30px rgba(0,0,0,0.13); transition: transform 0.3s ease, box-shadow 0.3s ease; cursor: pointer; text-decoration: none; color: inherit; display: block; }
         .article-card:hover { transform: translateY(-5px); box-shadow: 0 15px 50px rgba(0,0,0,0.2); }
@@ -146,11 +161,15 @@
         @media (max-width: 600px) {
             .header { padding: 16px 10px; }
             .header h1 { font-size: 23px; letter-spacing: 0; }
-            .header .subtitle { font-size: 12.5px; line-height: 1.4; white-space: nowrap; }
-            .header-actions { gap: 5px; margin-top: 10px; padding: 0; flex-wrap: nowrap; }
+            .header .subtitle { font-size: 12.5px; line-height: 1.4; white-space: normal; }
+            .header-actions { gap: 5px; margin-top: 10px; padding: 0; flex-wrap: wrap; justify-content: center; }
             .article-header { flex-direction: column; gap: 10px; }
             .article-title { font-size: 20px; }
             .filter-btn { padding: 8px 14px; font-size: 13px; }
+            .filter-bar.primary { gap: 8px; }
+            .filter-btn.primary-btn { padding: 9px 15px; font-size: 14px; }
+            .sub-bar { gap: 6px; padding: 10px 8px; margin-bottom: 18px; }
+            .sub-btn { padding: 6px 12px; font-size: 12.5px; }
             .action-btn { padding: 7px 9px; font-size: 12.5px; gap: 4px; white-space: nowrap; }
             .flow-btn { top: auto; bottom: 16px; right: 12px; padding: 8px 12px; font-size: 12.5px; }
             .flow-box { padding: 16px 14px 18px; }
@@ -165,7 +184,6 @@
             .split { grid-template-columns: 1fr; }
         }
     </style>
-
 <!-- sharecode-passthrough:start -->
 <script>
 (function(){
@@ -297,18 +315,24 @@
             </div>
         </div>
 
-        <!-- 分类筛选 -->
-        <div class="filter-bar">
-            <button class="filter-btn active" data-cat="all" onclick="filterArticles('all')">📚 全部 <span class="count">83</span></button>
-            <button class="filter-btn elder-highlight" data-cat="elder" onclick="filterArticles('elder')">🧓 AI 科学养老 <span class="count">4</span></button>
-            <button class="filter-btn note-highlight" data-cat="note" onclick="filterArticles('note')">📚 学习讲义 <span class="count">6</span></button>
-            <button class="filter-btn toy-highlight" data-cat="toy" onclick="filterArticles('toy')">🧸 小玩具 <span class="count">3</span></button>
-            <button class="filter-btn" data-cat="earth" onclick="filterArticles('earth')">🌍 自然地球 <span class="count">31</span></button>
-            <button class="filter-btn" data-cat="tech" onclick="filterArticles('tech')">🚀 科技探索 <span class="count">13</span></button>
-            <button class="filter-btn" data-cat="health" onclick="filterArticles('health')">🌱 环保健康 <span class="count">12</span></button>
-            <button class="filter-btn" data-cat="transport" onclick="filterArticles('transport')">🚂 交通工程 <span class="count">6</span></button>
-            <button class="filter-btn" data-cat="math" onclick="filterArticles('math')">🧮 趣味数学 <span class="count">5</span></button>
-            <button class="filter-btn" data-cat="safety" onclick="filterArticles('safety')">🛡️ 安全常识 <span class="count">4</span></button>
+        <!-- 分类筛选：一级四大类 -->
+        <div class="filter-bar primary">
+            <button class="filter-btn primary-btn active" data-group="all" onclick="selectGroup('all')">📚 全部 <span class="count">83</span></button>
+            <button class="filter-btn primary-btn" data-group="sci" onclick="selectGroup('sci')">🔬 孩子科普 <span class="count">71</span></button>
+            <button class="filter-btn primary-btn" data-group="learn" onclick="selectGroup('learn')">📖 孩子学习 <span class="count">6</span></button>
+            <button class="filter-btn primary-btn" data-group="fun" onclick="selectGroup('fun')">🎮 娱乐 <span class="count">3</span></button>
+            <button class="filter-btn primary-btn" data-group="elder" onclick="selectGroup('elder')">🧓 老人 <span class="count">3</span></button>
+        </div>
+
+        <!-- 二级子类：仅在选中「孩子科普」时出现 -->
+        <div class="sub-bar" id="subBar">
+            <button class="sub-btn active" data-cat="sci" onclick="selectSub('sci')">全部科普 <span class="count">71</span></button>
+            <button class="sub-btn" data-cat="earth" onclick="selectSub('earth')">🌍 自然地球 <span class="count">31</span></button>
+            <button class="sub-btn" data-cat="tech" onclick="selectSub('tech')">🚀 科技探索 <span class="count">13</span></button>
+            <button class="sub-btn" data-cat="health" onclick="selectSub('health')">🌱 环保健康 <span class="count">12</span></button>
+            <button class="sub-btn" data-cat="transport" onclick="selectSub('transport')">🚂 交通工程 <span class="count">6</span></button>
+            <button class="sub-btn" data-cat="math" onclick="selectSub('math')">🧮 趣味数学 <span class="count">5</span></button>
+            <button class="sub-btn" data-cat="safety" onclick="selectSub('safety')">🛡️ 安全常识 <span class="count">4</span></button>
         </div>
 
         <div class="article-list" id="article-list"></div>
@@ -675,7 +699,16 @@
             note: "📚 学习讲义"
         };
 
-        let activeCat = "all";
+        // 一级大类 → 二级子类映射（elder/fun/learn 只有一个子类，等价于自身）
+        const GROUPS = {
+            sci: ["earth", "tech", "health", "transport", "safety", "math"],
+            learn: ["note"],
+            fun: ["toy"],
+            elder: ["elder"]
+        };
+
+        let activeGroup = "all";   // 一级：all | sci | learn | fun | elder
+        let activeCat = "all";     // 过滤用的键：all | sci | 具体子类(earth/note/…)
 
         function renderArticles() {
             const listContainer = document.getElementById("article-list");
@@ -693,7 +726,10 @@
                 .map(o => o.item);
 
             if (activeCat !== "all") {
-                filtered = filtered.filter(a => a.cat === activeCat);
+                const grp = GROUPS[activeCat];
+                filtered = grp
+                    ? filtered.filter(a => grp.includes(a.cat))
+                    : filtered.filter(a => a.cat === activeCat);
             }
 
             if (filtered.length === 0) {
@@ -717,26 +753,80 @@
             syncCounts();
         }
 
-        // 分类计数从 articles 数组实时统计，避免新增文章后手改按钮数字
+        // 计数从 articles 数组实时统计，新增文章后无需手改按钮数字
         function syncCounts() {
             const tally = { all: articles.length };
             articles.forEach(a => { tally[a.cat] = (tally[a.cat] || 0) + 1; });
-            document.querySelectorAll(".filter-btn[data-cat]").forEach(btn => {
-                const n = tally[btn.dataset.cat];
+            const groupTally = { all: articles.length };
+            Object.keys(GROUPS).forEach(g => {
+                groupTally[g] = GROUPS[g].reduce((s, c) => s + (tally[c] || 0), 0);
+            });
+
+            document.querySelectorAll(".filter-btn[data-group]").forEach(btn => {
+                const n = groupTally[btn.dataset.group];
+                const box = btn.querySelector(".count");
+                if (box && n != null) box.textContent = n;
+            });
+            document.querySelectorAll(".sub-btn[data-cat]").forEach(btn => {
+                const c = btn.dataset.cat;
+                const n = (c === "sci") ? groupTally.sci : tally[c];
                 const box = btn.querySelector(".count");
                 if (box && n != null) box.textContent = n;
             });
         }
 
-        function filterArticles(cat) {
-            activeCat = cat;
-            document.querySelectorAll(".filter-btn").forEach(b => {
-                b.classList.toggle("active", b.dataset.cat === cat);
+        // 只更新按钮高亮与二级栏显隐，不重绘列表
+        function syncChrome() {
+            document.querySelectorAll(".filter-btn[data-group]").forEach(btn => {
+                const g = btn.dataset.group;
+                const on = (g === "all") ? (activeCat === "all") : (activeGroup === g);
+                btn.classList.toggle("active", on);
             });
+
+            const sub = document.getElementById("subBar");
+            const show = (activeGroup === "sci");
+            sub.classList.toggle("show", show);
+            if (show) {
+                sub.querySelectorAll(".sub-btn").forEach(btn => {
+                    btn.classList.toggle("active", btn.dataset.cat === activeCat);
+                });
+            }
+        }
+
+        function selectGroup(g) {
+            activeGroup = g;
+            if (g === "all") activeCat = "all";
+            else if (g === "sci") activeCat = "sci";   // 科普默认看全部子类
+            else activeCat = g;                        // learn / fun / elder 直接映射
+            syncChrome();
             renderArticles();
         }
 
+        function selectSub(cat) {
+            activeCat = cat;                            // "sci" 或具体子类
+            syncChrome();
+            renderArticles();
+        }
+
+        // 兼容旧调用（页面内其他位置可能还引用 filterArticles）
+        function filterArticles(cat) {
+            if (GROUPS[cat] || cat === "all") return selectGroup(cat);
+            return selectSub(cat);
+        }
+
         renderArticles();
+        syncChrome();
+
+        // 支持 ?g=sci / ?c=earth 直达某个分类（便于分享给评委）
+        (function initFromQuery() {
+            const q = new URLSearchParams(location.search);
+            const g = q.get("g"), c = q.get("c");
+            if (c) {
+                const owner = Object.keys(GROUPS).find(k => GROUPS[k].includes(c));
+                if (owner) { activeGroup = owner; selectSub(c); return; }
+            }
+            if (g && (g === "all" || GROUPS[g])) selectGroup(g);
+        })();
 
         // 支持直接用 #about / #flow 打开（便于分享链接给评委）
         if (location.hash === "#about") openAbout();
