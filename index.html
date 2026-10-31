@@ -832,5 +832,27 @@
         if (location.hash === "#about") openAbout();
         if (location.hash === "#flow") openFlow();
     </script>
+
+<!-- link-fallback:start -->
+<script>
+(function () {
+  // 兜底：某些环境（预览面板 / 部分手机浏览器）会吞掉 <a> 的默认跳转。
+  // 点击后 700ms 若页面仍未变化，就显式跳一次，保证文章一定能打开。
+  document.addEventListener("click", function (e) {
+    if (e.defaultPrevented || e.button !== 0) return;
+    if (e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
+    var t = e.target;
+    var a = t && t.closest ? t.closest("a[href]") : null;
+    if (!a || (a.target && a.target !== "_self")) return;
+    var h = a.getAttribute("href");
+    if (!h || /^(#|javascript:|mailto:|tel:)/i.test(h)) return;
+    var here = location.href;
+    setTimeout(function () {
+      if (location.href === here) location.href = a.href;
+    }, 700);
+  }, false);
+})();
+</script>
+<!-- link-fallback:end -->
 </body>
 </html>
