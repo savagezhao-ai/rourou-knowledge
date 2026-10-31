@@ -1,0 +1,562 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>火星号：一架会飞的船，飞了七十九年</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: "Microsoft YaHei", "PingFang SC", sans-serif;
+            background: linear-gradient(180deg, #a8d8ea 0%, #7fb3d5 30%, #4a7fa5 60%, #2c4a63 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        .container {
+            max-width: 850px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 30px;
+            padding: 40px;
+            box-shadow: 0 25px 80px rgba(0,0,0,0.15);
+        }
+        .header {
+            text-align: center;
+            padding: 30px 0;
+            background: linear-gradient(135deg, #1e5f8a 0%, #4fa8d8 50%, #ffb347 100%);
+            border-radius: 20px;
+            margin-bottom: 30px;
+        }
+        .header h1 {
+            font-size: 46px;
+            color: white;
+            text-shadow: 3px 3px 6px rgba(0,0,0,0.25);
+        }
+        .subtitle {
+            font-size: 20px;
+            color: rgba(255,255,255,0.95);
+        }
+        h2 {
+            font-size: 30px;
+            color: #1a3a4f;
+            margin: 40px 0 20px;
+            padding: 15px 25px;
+            background: linear-gradient(90deg, #a8d8ea 0%, #ffd59e 100%);
+            border-radius: 15px;
+            display: inline-block;
+        }
+        p {
+            font-size: 20px;
+            line-height: 2;
+            color: #22333f;
+            margin-bottom: 20px;
+            text-align: justify;
+        }
+        .image-container {
+            width: 100%;
+            margin: 30px 0;
+            text-align: center;
+        }
+        .dino-image {
+            width: 100%;
+            border-radius: 20px;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.2);
+        }
+        .image-caption {
+            color: #4d5f6b;
+            font-size: 16px;
+            margin-top: 15px;
+            font-style: italic;
+            background: #e6f2f8;
+            display: inline-block;
+            padding: 8px 20px;
+            border-radius: 20px;
+        }
+        .fun-fact {
+            background: linear-gradient(135deg, #1e5f8a 0%, #3d8ab5 100%);
+            color: white;
+            padding: 25px;
+            border-radius: 20px;
+            margin: 25px 0;
+            font-size: 18px;
+            line-height: 1.8;
+        }
+        .fun-fact.pink {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+        }
+        .fun-fact.green {
+            background: linear-gradient(135deg, #43aa8b 0%, #2a9d8f 100%);
+        }
+        .fun-fact.orange {
+            background: linear-gradient(135deg, #f4a261 0%, #e76f51 100%);
+        }
+        .fun-fact-title {
+            font-size: 22px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        .divider {
+            text-align: center;
+            font-size: 30px;
+            color: #ddd;
+            margin: 30px 0;
+        }
+        .quiz-section {
+            background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);
+            padding: 30px;
+            border-radius: 20px;
+            margin: 30px 0;
+        }
+        .quiz-title {
+            font-size: 28px;
+            color: #e17055;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .quiz-question {
+            background: white;
+            padding: 20px;
+            border-radius: 15px;
+            margin: 15px 0;
+            font-size: 18px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        .quiz-question .q-stem {
+            font-weight: bold;
+            margin-bottom: 10px;
+            line-height: 1.6;
+        }
+        .quiz-question .q-opts {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+        .quiz-question .q-opts li {
+            padding: 8px 12px;
+            margin: 6px 0;
+            background: #f8f9fa;
+            border-radius: 10px;
+            line-height: 1.55;
+        }
+        .quiz-question .q-opts li::before {
+            content: attr(data-k) ". ";
+            font-weight: bold;
+            color: #e17055;
+        }
+        .quiz-question .q-ans {
+            margin-top: 10px;
+            font-size: 16px;
+            color: #636e72;
+        }
+        .quiz-question .q-ans summary {
+            cursor: pointer;
+            color: #0984e3;
+            font-weight: 600;
+            outline: none;
+        }
+        .quiz-question .q-ans p {
+            margin: 8px 0 0;
+            padding: 10px 12px;
+            background: #f0f7ff;
+            border-left: 4px solid #0984e3;
+            border-radius: 8px;
+            line-height: 1.6;
+        }
+        .ending {
+            text-align: center;
+            padding: 40px 0;
+            margin-top: 40px;
+            background: linear-gradient(135deg, #cfe8f5 0%, #ffd9c0 100%);
+            border-radius: 20px;
+        }
+        .ending h3 { font-size: 32px; color: #1a3a4f; }
+        .ending p { text-align: center; font-size: 18px; color: #4d5f6b; }
+        .back-home-btn {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 14px 30px;
+            background: rgba(0,0,0,0.08);
+            color: #22333f;
+            text-decoration: none;
+            border-radius: 25px;
+            font-size: 18px;
+            border: 2px solid rgba(0,0,0,0.15);
+            transition: background 0.3s, transform 0.2s;
+        }
+        .back-home-btn:hover { background: rgba(0,0,0,0.15); transform: translateY(-2px); }
+        @media (max-width: 600px) {
+            .container { padding: 20px; }
+            .header h1 { font-size: 30px; }
+            h2 { font-size: 24px; }
+            p { font-size: 18px; }
+        }
+    </style>
+<!-- sharecode-passthrough:start -->
+<script>
+(function(){
+  var K='rourou_sc';
+  var SC=null, cur=null;
+  try{
+    cur=new URLSearchParams(location.search).get('sharecode');
+    if(cur){ SC=cur; try{ sessionStorage.setItem(K,cur); }catch(e){} }
+    else { try{ SC=sessionStorage.getItem(K); }catch(e){} }
+  }catch(e){}
+  if(!SC) return;
+
+  // 站内地址补 sharecode；站外/已带参/非 http 返回 null
+  function withSC(u){
+    if(!u) return null;
+    try{
+      var x=new URL(u, location.href);
+      if(x.protocol!=='http:' && x.protocol!=='https:') return null;
+      if(x.origin!==location.origin) return null;
+      if(x.searchParams.get('sharecode')===SC) return null;
+      x.searchParams.set('sharecode',SC);
+      return x.href;
+    }catch(e){ return null; }
+  }
+
+  // 无参进入时补参数跳转（脚本捕获不到的情况兜底）
+  if(!cur){
+    var self=withSC(location.href);
+    if(self && !/[?&]sharecode=/.test(location.search)){
+      location.replace(self);
+      return;
+    }
+  }
+
+  // ① 点击拦截：先于站内任何处理器，动态渲染的卡片也覆盖
+  document.addEventListener('click', function(e){
+    var t=e.target;
+    while(t && t!==document && t.tagName!=='A') t=t.parentNode;
+    if(!t || t===document) return;
+    if(t.target && t.target!=='_self') return;
+    var h=t.getAttribute('href');
+    if(!h || /^(mailto:|tel:|javascript:|#)/i.test(h)) return;
+    var nu=withSC(t.href);
+    if(!nu) return;
+    e.preventDefault();
+    e.stopPropagation();
+    location.href=nu;
+  }, true);
+
+  // ② 静态与动态插入的资源统一补参
+  var ATTRS=['src','href','poster','srcset'];
+  var SEL='img[src],img[srcset],video[src],video[poster],audio[src],source[src],source[srcset],'+
+          'script[src],link[rel=stylesheet][href],link[rel=preload][href],a[href]';
+  function fixOne(el,attr){
+    var v=el.getAttribute(attr);
+    if(!v) return;
+    if(attr==='srcset'){
+      var changed=false;
+      var parts=v.split(',').map(function(x){
+        var t=x.trim().split(/\s+/);
+        if(!t[0]) return x;
+        var nu=withSC(t[0]);
+        if(nu){ t[0]=nu; changed=true; }
+        return t.join(' ');
+      });
+      if(changed) el.setAttribute('srcset',parts.join(', '));
+      return;
+    }
+    var nu=withSC(v);
+    if(nu) el.setAttribute(attr,nu);
+  }
+  function fixEl(el){
+    for(var k=0;k<ATTRS.length;k++){
+      if(el.hasAttribute && el.hasAttribute(ATTRS[k])) fixOne(el,ATTRS[k]);
+    }
+  }
+  function fix(root){
+    var scope=(root&&root.querySelectorAll)?root:document;
+    var els=scope.querySelectorAll(SEL);
+    for(var i=0;i<els.length;i++) fixEl(els[i]);
+  }
+
+  // ③ 资源加载失败时补参重试一次（防漏网）
+  document.addEventListener('error', function(e){
+    var el=e.target;
+    if(!el||!el.tagName) return;
+    var tag=el.tagName;
+    if(tag!=='IMG'&&tag!=='VIDEO'&&tag!=='SOURCE'&&tag!=='AUDIO') return;
+    if(el.getAttribute('data-sc-retry')) return;
+    var nu=withSC(el.getAttribute('src')||'');
+    if(!nu) return;
+    el.setAttribute('data-sc-retry','1');
+    el.setAttribute('src',nu);
+  }, true);
+
+  function boot(){
+    fix(document);
+    try{
+      new MutationObserver(function(ms){
+        for(var i=0;i<ms.length;i++){
+          var added=ms[i].addedNodes;
+          for(var j=0;j<added.length;j++){
+            var n=added[j];
+            if(n.nodeType!==1) continue;
+            fixEl(n);
+            if(n.querySelectorAll) fix(n);
+          }
+        }
+      }).observe(document.documentElement,{childList:true,subtree:true});
+    }catch(e){}
+  }
+  if(document.readyState==='loading') document.addEventListener('DOMContentLoaded',boot);
+  else boot();
+})();
+</script>
+<!-- sharecode-passthrough:end -->
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>火星号：一架会飞的船</h1>
+            <p class="subtitle">它飞了七十九年，最后停在了博物馆的草地上</p>
+        </div>
+
+        <div class="image-container">
+            <img src="scene_01.webp" alt="巨大的四发水上飞机停在湖面上" class="dino-image">
+            <div class="image-caption">一架从湖面上起飞的巨兽——它不是照片合成的，是七十多年前真的东西</div>
+        </div>
+
+        <h2>第一章 · 湖面上的最后一飞</h2>
+
+        <p>2024 年 8 月 11 日下午，加拿大西海岸的一个湖（Sproat Lake）边上，挤满了人。</p>
+
+        <p>他们来看一架飞机起飞。这架飞机老得离谱——1945 年造出来的，比在场大多数人的爸爸妈妈都老。它的名字叫「夏威夷火星号」（Hawaii Mars）。</p>
+
+        <p>它慢慢滑到湖面上，四台发动机的螺旋桨越转越快，水花被吹成一大片白雾。然后它抬起头，离开了水面。</p>
+
+        <p>天上有九架喷气式教练机排着队给它伴飞。沿着温哥华岛，它飞过了好几个小镇，每个镇的人都跑到岸边抬头看。傍晚，它落在一片海湾里，后来被拖上岸、架上一个能转 360 度的拖车，运进了一座航空博物馆。</p>
+
+        <p><b>自此，天空中再也没有这种飞机了。</b></p>
+
+        <p>这一篇，我们要讲清楚两件事：它的前半生是怎么来的，后半生又为什么走上一条完全没人预料到的路。</p>
+
+        <div class="fun-fact">
+            <div class="fun-fact-title">🤔 趣味知识</div>
+            「火星号」不是一架，而是一型飞机。它叫 Martin JRM Mars（马丁 JRM「火星」）。从 1945 到 1948 年，全世界<b>总共只造了 7 架</b>，每架都起了自己的名字：Marianas、Philippine、Marshall、Caroline，以及两架都叫 Hawaii 的。
+        </div>
+
+        <h2>第二章 · 前半生（上）：为什么非得造这么大的船</h2>
+
+        <p>要看懂这架飞机，得先回到 1940 年前后，问一个最朴素的问题：</p>
+
+        <p><b>飞机为什么需要一个「机场」？</b></p>
+
+        <p>因为飞机在地面上跑不快，飞不起来。飞机的机翼要产生升力，升力靠的是<b>速度</b>——空气从机翼上流过越快，压差越大，托起来的力量就越大。而要加速到能起飞的速度，需要一条又长又平又硬的路。</p>
+
+        <p>二战前，太平洋上到处是水。从美国西海岸飞到夏威夷，中间三千多公里，全是海。那时候没有今天这种遍布岛屿的大型机场，也没有能一口气飞这么远的可靠飞机。</p>
+
+        <div class="image-container">
+            <img src="scene_02.webp" alt="二战时期大型水上飞机停在港口水面" class="dino-image">
+            <div class="image-caption">港口就是跑道，海岸就是停机坪——水，是那时唯一到处都有的「路」</div>
+        </div>
+
+        <p>于是工程师想到了一个很聪明的办法：<b>既然到处都有水，那就把水面当成跑道。</b></p>
+
+        <p>水是平的，而且到处都是；水面足够长，长到几乎无限。这就是「水上飞机」（flying boat，飞船）流行起来的根本原因——它不是一种爱好，它是当年唯一现实的长途越洋方案。</p>
+
+        <p>美国海军 1938 年向马丁公司提出要求：造一架能横跨大洋、飞得特别远的巨型水上飞机，用来巡逻和运输。原型机编号 XPB2M-1，名字就叫 Mars——火星。</p>
+
+        <p>工程师怎么把它做大的？方法特别实在：<b>把已经在用的 PBM「水手」巡逻水上飞机，按比例放大。</b>发动机多加两台，机翼加长，机身做成船的样子。1942 年 6 月 23 日，它第一次飞了起来。</p>
+
+        <div class="fun-fact orange">
+            <div class="fun-fact-title">📏 趣味知识</div>
+            火星号的翼展是 <b>61 米（200 英尺）</b>。今天最大的客机波音 777 翼展大约 65 米，也就是说——一架 1945 年的螺旋桨水上飞机，翅膀跟现代巨型客机是同一个量级。
+        </div>
+
+        <h2>第三章 · 前半生（下）：一架「船」要飞起来，得解决三件麻烦事</h2>
+
+        <p>把飞机造成船的样子，听起来只是外形问题。其实不是——它牵扯到三组互相打架的物理要求。</p>
+
+        <p><b>第一件：它得浮得起来。</b></p>
+
+        <p>船能浮在水上，是阿基米德发现的道理：物体排开多少水，水就给它多大的向上托力。火星号装满东西重七十多吨，这就意味着它的机身（船体）必须排开七十多吨的水才能不沉。所以它的船身做得又宽又深，像一艘真正的船。</p>
+
+        <p>可是宽大的船身飞起来时是个巨大的「风口袋」，会增加阻力。飞机想要细长，船想要胖大——这是第一个矛盾。</p>
+
+        <p><b>第二件：它得从水里「挣脱」出来。</b></p>
+
+        <p>这是水上飞机最反直觉的地方。你以为难点是飞起来，其实难点是<b>加速到飞起来之前的那一段</b>。</p>
+
+        <p>飞机停在水里时，整个船身泡在水里，水对它的阻力极大。随着速度增加，水会沿着船身往上爬，把飞机「吸」住不放。这个阶段水阻最大，飞机最吃力。</p>
+
+        <p>突破点叫「上台阶」（on the step）。工程师在船身底部做了一道横向的折角（断阶），让水和船身之间进入空气，把吸力切断。一旦飞机「踩上台阶」，船身大部分离开水面，只剩一小片在水上滑行——阻力突然掉下来，飞机就能继续加速、抬头、离水。</p>
+
+        <div class="image-container">
+            <img src="scene_03.webp" alt="水上飞机在湖面高速滑行溅起水花" class="dino-image">
+            <div class="image-caption">踩上台阶的那一刻：整架飞机像打水漂的石片，只靠一点点船底贴着水面</div>
+        </div>
+
+        <p>这也是为什么它需要<b>四台</b>发动机——不是因为它想飞得更快，而是因为从水里挣脱的那几十秒，需要非常大的推力，而且还得留出安全余量：万一有一台坏了，剩下的还要能把飞机从水面上拉起来。在湖中间，你可没法靠边停车。</p>
+
+        <p><b>第三件：它得装得下、飞得远。</b></p>
+
+        <p>四台 18 缸的星型活塞发动机（Wright R-3350），巡航速度大约 300 公里每小时。这个速度今天看来慢，但它能一次带走成吨的货物，跨越大洋。</p>
+
+        <p>它真的干过大事。1949 年 3 月，同型的 Caroline Mars 一次载了 <b>269 人</b>从圣迭戈飞到旧金山，创下了当时的载客世界纪录。</p>
+
+        <div class="fun-fact green">
+            <div class="fun-fact-title">🎯 趣味知识</div>
+            火星号的名字都取自太平洋：Marianas（马里亚纳）、Philippine（菲律宾）、Marshall（马绍尔）、Caroline（加罗林）、Hawaii（夏威夷）。它服务的航线是旧金山到檀香山——一条除了水，什么都没有的航线。
+        </div>
+
+        <h2>第四章 · 后半生：喷气机来了，它去当消防员</h2>
+
+        <p>好日子没过多久。</p>
+
+        <p>1950 年代，喷气式飞机出现了，陆地上的机场也越修越多、越修越长。这时候人们重新算了一笔账：</p>
+
+        <p>水上飞机把「水面」当跑道，好处是随处可降；代价是——<b>水会拖住你</b>。船身宽大，阻力高，速度上不去；而喷气机在又长又平的混凝土跑道上，可以轻松跑到 900 公里每小时。</p>
+
+        <p>当「跑道」不再是稀缺资源，「水面」这个优势就消失了。1956 年，美国海军把剩下的火星号全部推到岸边封存。巨型水上飞机这个物种，眼看着就要灭绝。</p>
+
+        <p>但故事在这里拐了一个大弯。</p>
+
+        <p>1959 年，加拿大不列颠哥伦比亚省（BC）的林业公司把这批飞机买了下来，改装成了<b>灭火飞机</b>（water bomber）。</p>
+
+        <p>这个改装的思路，简直是给水上飞机量身定做的：</p>
+
+        <p><b>扑森林大火，最缺的从来不是水，而是「把水快速送到火上」的能力。</b></p>
+
+        <p>普通消防飞机得飞回机场、落地、加水、再起飞，一个来回几十分钟。而水上飞机不用落地——它只要从湖面上低空滑过，把一根管子伸进水里，边滑边吸。火星号吸满 <b>27000 升</b>（约 27 吨）水，只需要在水面上滑行 <b>22 秒</b>。然后它飞起来，一次把这 27 吨水倒在相当于四个足球场那么大的火场上。</p>
+
+        <div class="fun-fact pink">
+            <div class="fun-fact-title">🔥 趣味知识</div>
+            对水上灭火机来说，湖就是它的「加油站」。BC 省到处是湖，火星号加一次水的时间，比你去饮水机接一杯水还短——22 秒，27 吨。
+        </div>
+
+        <p>就这样，这些本该进废铁厂的老飞机，在加拿大西海岸又干了五十年的活，红白涂装成了那一带最有辨识度的风景。很多当地人的房子，是这几架 1945 年的老飞机保住的。</p>
+
+        <p>代价也在累积。1961 年一架在事故中坠毁，1962 年另一架被风暴彻底损坏。到最后，只剩下两架：夏威夷火星号和菲律宾火星号。</p>
+
+        <h2>第五章 · 谢幕，以及它留下的问题</h2>
+
+        <p>夏威夷火星号一直飞到 2016 年，然后停在了湖上，一停就是八年。</p>
+
+        <p>2024 年 8 月 11 日，它完成了最后一次飞行，进了 BC 航空博物馆。另一架菲律宾火星号在 2025 年 2 月飞到美国亚利桑那州的皮马航空博物馆。为了这次飞行，工程师把夏威夷火星号上还能用的发动机拆下来装到它身上——因为世界上已经找不到备件了。</p>
+
+        <div class="image-container">
+            <img src="scene_04.webp" alt="博物馆草地上展出的巨型水上飞机" class="dino-image">
+            <div class="image-caption">从湖面到草坪：七十九年的航程，最后不到一公里</div>
+        </div>
+
+        <p>那么，巨型水上飞机的故事结束了吗？</p>
+
+        <p>没有完全结束。<b>中国正在造的 AG600「鲲龙」，就是同一思路的现代版</b>——一架专门用来森林灭火和水上救援的大型水陆两栖飞机。有意思的是，2015 年，火星号还短期租给过国际试飞员学校，用来帮中国的大型水陆两栖飞机项目做大飞机水上操纵的训练。老师，是七十岁的老飞机。</p>
+
+        <p>但它和火星号有一个根本区别：AG600 用的是 turboprop（涡桨），速度更快，机身设计更现代。而火星号代表的那种「用船身排水换取水上起降」的极端设计，已经走到头了。</p>
+
+        <p>回头看这架飞机的一生，最值得记住的不是它有多大，而是它为什么会出现、又为什么会消失：</p>
+
+        <p><b>它出现，是因为那时候世界上没有跑道；它消失，是因为跑道修好了。</b></p>
+
+        <p>一个设计是不是好设计，从来不只看它自己有多巧妙，还要看它所依赖的世界是什么样子。世界一变，最聪明的方案也可能一夜之间变成最笨的方案——</p>
+
+        <p>但如果它足够结实，也许还能在没人想到的地方，再干五十年活。</p>
+
+        <div class="image-container">
+            <img src="scene_05.webp" alt="孩子们在博物馆仰望巨型水上飞机" class="dino-image">
+            <div class="image-caption">它不再飞了，但它还在讲一个道理：设计永远在和世界谈判</div>
+        </div>
+
+        <div class="fun-fact">
+            <div class="fun-fact-title">🛠️ 趣味知识</div>
+            火星号是<b>最后一种投入量产的巨型水上飞机</b>。它退役之后，人类再也没有造过这个量级的飞船。所以「夏威夷火星号」最后一次起飞，不只是一架飞机退役，而是一整个类别从天空中消失。
+        </div>
+
+        <div class="quiz-section" data-quiz="2">
+            <div class="quiz-title">🎯 互动小测试</div>
+
+            <div class="quiz-question" data-answer="B">
+                <p class="q-stem">当年工程师为什么要把飞机造成船的样子？</p>
+                <ul class="q-opts">
+                    <li data-k="A">船形机身飞起来阻力更小</li>
+                    <li data-k="B">那时海上没有可用的机场</li>
+                    <li data-k="C">海军要求它能停在水里休息</li>
+                    <li data-k="D">船形机身装货比机舱更多</li>
+                </ul>
+                <details class="q-ans"><summary>看答案</summary>
+                    <p><b>B</b>　解析：跨太平洋航线上没有长跑道，而水面到处都有、又足够长，等于天然的跑道。</p>
+                </details>
+            </div>
+
+            <div class="quiz-question" data-answer="D">
+                <p class="q-stem">水上飞机从水面加速时，最吃力的阶段是什么？</p>
+                <ul class="q-opts">
+                    <li data-k="A">刚松开缆绳开始滑行的时候</li>
+                    <li data-k="B">已经离水升到半空的时候</li>
+                    <li data-k="C">降落接触水面的第一秒</li>
+                    <li data-k="D">还没踩上台阶的半滑行状态</li>
+                </ul>
+                <details class="q-ans"><summary>看答案</summary>
+                    <p><b>D</b>　解析：这时船身大半个泡在水里，水会吸住机身，阻力最大；踩上台阶后只剩一小片贴水，阻力骤降。</p>
+                </details>
+            </div>
+
+            <div class="quiz-question" data-answer="A">
+                <p class="q-stem">火星号后来改成灭火飞机，最大的好处是什么？</p>
+                <ul class="q-opts">
+                    <li data-k="A">能在湖面滑行时就地吸水</li>
+                    <li data-k="B">载水量比陆基飞机更大些</li>
+                    <li data-k="C">飞行速度比喷气机更快</li>
+                    <li data-k="D">可在火场上空长时间悬停投水</li>
+                </ul>
+                <details class="q-ans"><summary>看答案</summary>
+                    <p><b>A</b>　解析：不用落地回机场加水，滑行 22 秒吸满 27 吨，来回周期因此大大缩短。</p>
+                </details>
+            </div>
+
+            <div class="quiz-question" data-answer="C">
+                <p class="q-stem">为什么这类巨型水上飞机最终被淘汰了？</p>
+                <ul class="q-opts">
+                    <li data-k="A">发动机太旧了，全球零件早已停产</li>
+                    <li data-k="B">机身太大，港口无法停靠</li>
+                    <li data-k="C">陆地机场普及，水面不再稀缺</li>
+                    <li data-k="D">载重量不够，装不下更多货物</li>
+                </ul>
+                <details class="q-ans"><summary>看答案</summary>
+                    <p><b>C</b>　解析：它最大的本钱是「随处可降」，跑道一多，这个优势就没了，而宽船身高阻力反倒成了负担。</p>
+                </details>
+            </div>
+
+            <div class="quiz-question" data-answer="B">
+                <p class="q-stem">火星号当年造了多少架？</p>
+                <ul class="q-opts">
+                    <li data-k="A">二十架，正好两个中队</li>
+                    <li data-k="B">七架，每架都有名字</li>
+                    <li data-k="C">五十架，战时分批交付</li>
+                    <li data-k="D">两架，一架原型一架量产</li>
+                </ul>
+                <details class="q-ans"><summary>看答案</summary>
+                    <p><b>B</b>　解析：海军原订 20 架，战争结束后砍到只剩生产线上那几架，最终造了 7 架。</p>
+                </details>
+            </div>
+        </div>
+
+        <div class="ending">
+            <h3>—— 完 ——</h3>
+            <p>谢谢阅读！希望你学到了很多知识！</p>
+            <p style="margin-top: 10px; font-size: 14px; color: #b2bec3;">本故事由 AI 助手小巴为小朋友精心制作 🚌</p>
+            <div style="text-align: left; margin-top: 15px;">
+                <a href="../index.html" class="back-home-btn">🏠 返回首页</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- rourou-home-btn:start -->
+    <style>
+    #rourou-home-btn{position:fixed;left:14px;bottom:calc(14px + env(safe-area-inset-bottom,0px));z-index:9999;
+    display:inline-flex;align-items:center;gap:6px;padding:10px 18px;border-radius:999px;
+    background:rgba(255,255,255,0.92);color:#2d3436;font-size:15px;font-weight:600;
+    text-decoration:none;box-shadow:0 4px 14px rgba(0,0,0,0.18);border:1px solid rgba(0,0,0,0.08);
+    -webkit-backdrop-filter:blur(4px);backdrop-filter:blur(4px);transition:transform .15s,background .15s;}
+    #rourou-home-btn:hover{background:#fff;transform:translateY(-2px);}
+    @media (max-width:600px){#rourou-home-btn{padding:9px 14px;font-size:13px;left:10px;bottom:calc(10px + env(safe-area-inset-bottom,0px));}}
+    </style>
+    <a id="rourou-home-btn" href="../index.html">🏠 首页</a>
+    <!-- rourou-home-btn:end -->
+</body>
+</html>
