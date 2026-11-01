@@ -1,0 +1,554 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>温室效应：那 33 度是怎么被捂住的</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: "Microsoft YaHei", "PingFang SC", sans-serif;
+            background: linear-gradient(180deg, #a8d8ea 0%, #7fb3d5 30%, #4a7fa5 60%, #2c4a63 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        .container {
+            max-width: 850px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 30px;
+            padding: 40px;
+            box-shadow: 0 25px 80px rgba(0,0,0,0.15);
+        }
+        .header {
+            text-align: center;
+            padding: 30px 0;
+            background: linear-gradient(135deg, #1e5f8a 0%, #4fa8d8 50%, #ffb347 100%);
+            border-radius: 20px;
+            margin-bottom: 30px;
+        }
+        .header h1 {
+            font-size: 46px;
+            color: white;
+            text-shadow: 3px 3px 6px rgba(0,0,0,0.25);
+        }
+        .subtitle {
+            font-size: 20px;
+            color: rgba(255,255,255,0.95);
+        }
+        h2 {
+            font-size: 30px;
+            color: #1a3a4f;
+            margin: 40px 0 20px;
+            padding: 15px 25px;
+            background: linear-gradient(90deg, #a8d8ea 0%, #ffd59e 100%);
+            border-radius: 15px;
+            display: inline-block;
+        }
+        p {
+            font-size: 20px;
+            line-height: 2;
+            color: #22333f;
+            margin-bottom: 20px;
+            text-align: justify;
+        }
+        .image-container {
+            width: 100%;
+            margin: 30px 0;
+            text-align: center;
+        }
+        .dino-image {
+            width: 100%;
+            border-radius: 20px;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.2);
+        }
+        .image-caption {
+            color: #4d5f6b;
+            font-size: 16px;
+            margin-top: 15px;
+            font-style: italic;
+            background: #e6f2f8;
+            display: inline-block;
+            padding: 8px 20px;
+            border-radius: 20px;
+        }
+        .fun-fact {
+            background: linear-gradient(135deg, #1e5f8a 0%, #3d8ab5 100%);
+            color: white;
+            padding: 25px;
+            border-radius: 20px;
+            margin: 25px 0;
+            font-size: 18px;
+            line-height: 1.8;
+        }
+        .fun-fact.pink {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+        }
+        .fun-fact.green {
+            background: linear-gradient(135deg, #43aa8b 0%, #2a9d8f 100%);
+        }
+        .fun-fact.orange {
+            background: linear-gradient(135deg, #f4a261 0%, #e76f51 100%);
+        }
+        .fun-fact-title {
+            font-size: 22px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        .divider {
+            text-align: center;
+            font-size: 30px;
+            color: #ddd;
+            margin: 30px 0;
+        }
+        .quiz-section {
+            background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);
+            padding: 30px;
+            border-radius: 20px;
+            margin: 30px 0;
+        }
+        .quiz-title {
+            font-size: 28px;
+            color: #e17055;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .quiz-question {
+            background: white;
+            padding: 20px;
+            border-radius: 15px;
+            margin: 15px 0;
+            font-size: 18px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        .quiz-question .q-stem {
+            font-weight: bold;
+            margin-bottom: 10px;
+            line-height: 1.6;
+        }
+        .quiz-question .q-opts {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+        .quiz-question .q-opts li {
+            padding: 8px 12px;
+            margin: 6px 0;
+            background: #f8f9fa;
+            border-radius: 10px;
+            line-height: 1.55;
+        }
+        .quiz-question .q-opts li::before {
+            content: attr(data-k) ". ";
+            font-weight: bold;
+            color: #e17055;
+        }
+        .quiz-question .q-ans {
+            margin-top: 10px;
+            font-size: 16px;
+            color: #636e72;
+        }
+        .quiz-question .q-ans summary {
+            cursor: pointer;
+            color: #0984e3;
+            font-weight: 600;
+            outline: none;
+        }
+        .quiz-question .q-ans p {
+            margin: 8px 0 0;
+            padding: 10px 12px;
+            background: #f0f7ff;
+            border-left: 4px solid #0984e3;
+            border-radius: 8px;
+            line-height: 1.6;
+        }
+        .ending {
+            text-align: center;
+            padding: 40px 0;
+            margin-top: 40px;
+            background: linear-gradient(135deg, #cfe8f5 0%, #ffd9c0 100%);
+            border-radius: 20px;
+        }
+        .ending h3 { font-size: 32px; color: #1a3a4f; }
+        .ending p { text-align: center; font-size: 18px; color: #4d5f6b; }
+        .back-home-btn {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 14px 30px;
+            background: rgba(0,0,0,0.08);
+            color: #22333f;
+            text-decoration: none;
+            border-radius: 25px;
+            font-size: 18px;
+            border: 2px solid rgba(0,0,0,0.15);
+            transition: background 0.3s, transform 0.2s;
+        }
+        .back-home-btn:hover { background: rgba(0,0,0,0.15); transform: translateY(-2px); }
+        @media (max-width: 600px) {
+            .container { padding: 20px; }
+            .header h1 { font-size: 30px; }
+            h2 { font-size: 24px; }
+            p { font-size: 18px; }
+        }
+    </style>
+<!-- sharecode-passthrough:start -->
+<script>
+(function(){
+  var K='rourou_sc';
+  var SC=null, cur=null;
+  try{
+    cur=new URLSearchParams(location.search).get('sharecode');
+    if(cur){ SC=cur; try{ sessionStorage.setItem(K,cur); }catch(e){} }
+    else { try{ SC=sessionStorage.getItem(K); }catch(e){} }
+  }catch(e){}
+  if(!SC) return;
+
+  // 站内地址补 sharecode；站外/已带参/非 http 返回 null
+  function withSC(u){
+    if(!u) return null;
+    try{
+      var x=new URL(u, location.href);
+      if(x.protocol!=='http:' && x.protocol!=='https:') return null;
+      if(x.origin!==location.origin) return null;
+      if(x.searchParams.get('sharecode')===SC) return null;
+      x.searchParams.set('sharecode',SC);
+      return x.href;
+    }catch(e){ return null; }
+  }
+
+  // 无参进入时补参数跳转（脚本捕获不到的情况兜底）
+  if(!cur){
+    var self=withSC(location.href);
+    if(self && !/[?&]sharecode=/.test(location.search)){
+      location.replace(self);
+      return;
+    }
+  }
+
+  // ① 点击拦截：先于站内任何处理器，动态渲染的卡片也覆盖
+  document.addEventListener('click', function(e){
+    var t=e.target;
+    while(t && t!==document && t.tagName!=='A') t=t.parentNode;
+    if(!t || t===document) return;
+    if(t.target && t.target!=='_self') return;
+    var h=t.getAttribute('href');
+    if(!h || /^(mailto:|tel:|javascript:|#)/i.test(h)) return;
+    var nu=withSC(t.href);
+    if(!nu) return;
+    e.preventDefault();
+    e.stopPropagation();
+    location.href=nu;
+  }, true);
+
+  // ② 静态与动态插入的资源统一补参
+  var ATTRS=['src','href','poster','srcset'];
+  var SEL='img[src],img[srcset],video[src],video[poster],audio[src],source[src],source[srcset],'+
+          'script[src],link[rel=stylesheet][href],link[rel=preload][href],a[href]';
+  function fixOne(el,attr){
+    var v=el.getAttribute(attr);
+    if(!v) return;
+    if(attr==='srcset'){
+      var changed=false;
+      var parts=v.split(',').map(function(x){
+        var t=x.trim().split(/\s+/);
+        if(!t[0]) return x;
+        var nu=withSC(t[0]);
+        if(nu){ t[0]=nu; changed=true; }
+        return t.join(' ');
+      });
+      if(changed) el.setAttribute('srcset',parts.join(', '));
+      return;
+    }
+    var nu=withSC(v);
+    if(nu) el.setAttribute(attr,nu);
+  }
+  function fixEl(el){
+    for(var k=0;k<ATTRS.length;k++){
+      if(el.hasAttribute && el.hasAttribute(ATTRS[k])) fixOne(el,ATTRS[k]);
+    }
+  }
+  function fix(root){
+    var scope=(root&&root.querySelectorAll)?root:document;
+    var els=scope.querySelectorAll(SEL);
+    for(var i=0;i<els.length;i++) fixEl(els[i]);
+  }
+
+  // ③ 资源加载失败时补参重试一次（防漏网）
+  document.addEventListener('error', function(e){
+    var el=e.target;
+    if(!el||!el.tagName) return;
+    var tag=el.tagName;
+    if(tag!=='IMG'&&tag!=='VIDEO'&&tag!=='SOURCE'&&tag!=='AUDIO') return;
+    if(el.getAttribute('data-sc-retry')) return;
+    var nu=withSC(el.getAttribute('src')||'');
+    if(!nu) return;
+    el.setAttribute('data-sc-retry','1');
+    el.setAttribute('src',nu);
+  }, true);
+
+  function boot(){
+    fix(document);
+    try{
+      new MutationObserver(function(ms){
+        for(var i=0;i<ms.length;i++){
+          var added=ms[i].addedNodes;
+          for(var j=0;j<added.length;j++){
+            var n=added[j];
+            if(n.nodeType!==1) continue;
+            fixEl(n);
+            if(n.querySelectorAll) fix(n);
+          }
+        }
+      }).observe(document.documentElement,{childList:true,subtree:true});
+    }catch(e){}
+  }
+  if(document.readyState==='loading') document.addEventListener('DOMContentLoaded',boot);
+  else boot();
+})();
+</script>
+<!-- sharecode-passthrough:end -->
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>温室效应：那 33 度是怎么被捂住的</h1>
+            <p class="subtitle">1824 年，傅里叶算完地球的热账，发现它本该比现在冷 33 ℃</p>
+        </div>
+
+        <div class="image-container">
+            <img src="scene_01.webp" alt="卡通风格：一颗地球盖着一层半透明被子，边缘飘出红色热气" class="dino-image">
+            <div class="image-caption">地球不是被太阳烤热的，是被一层看不见的东西留住了热</div>
+        </div>
+
+        <h2>第一章 · 一张对不上的热账</h2>
+
+        <p>1824 年，法国物理学家约瑟夫·傅里叶在研究热怎么在物体里流动时，顺手算了一道关于地球的题：太阳每年送来多少能量，地球平均该有多少度。</p>
+
+        <p>结果和实测对不上。把太阳送来的能量平摊到整个地球表面，地球的平均温度应该只有大约 −18 ℃。可实际测下来，地表平均在 15 ℃ 左右。</p>
+
+        <p><b>差了 33 ℃。</b></p>
+
+        <p>最容易想到的解释是：太阳把地球烤热了。但如果是"烤"，地球应该更热才对——算出来的 −18 ℃ 是偏冷的那一边。所以问题不在热量进不来，而在热量<b>出不去</b>。</p>
+
+        <p>一个常被拿来打比方的例子是玻璃花房：阳光透过玻璃照进来，里面的热跑不掉，于是比外面暖。这个比喻好记，但它<b>把机制讲错了</b>。花房变暖，主要原因是玻璃挡住了空气对流——热空气被关在里面出不去。地球外面既没有玻璃也没有墙，它保温靠的是另一套东西：大气里某些气体，会拦住往外走的<b>红外线</b>。</p>
+
+        <p>1856 年，美国科学家尤妮丝·富特（Eunice Foote）做过一个很朴素的实验：两个玻璃瓶，一个装普通空气，一个装二氧化碳，一起放到太阳下晒。装二氧化碳的那个瓶子，温度升得更高。</p>
+
+        <p>三年后，英国物理学家约翰·廷德尔（John Tyndall）用红外光谱把这件事看得更细：二氧化碳和水汽会吸收特定波长的红外线。太阳光能穿过去，地球发出的那种看不见的光，会被拦下一部分。</p>
+
+        <p>那么，为什么偏偏是红外线被拦住，可见光却能顺利进来？</p>
+
+        <div class="fun-fact">
+            <div class="fun-fact-title">🤔 温室效应不是"温室"的效应</div>
+            玻璃花房保温，主要靠阻止热空气对流跑掉；地球的温室效应，靠的是气体吸收红外线。名字借错了，机制其实完全不同。
+        </div>
+
+        <h2>第二章 · 进来的光，和出去的光，不是同一种光</h2>
+
+        <p>关键在一件事：<b>进来的光和出去的光，波长不一样。</b></p>
+
+        <p>太阳表面大约 5500 ℃，它发出的能量峰值在 0.5 微米附近——也就是眼睛能看见的可见光。地球表面只有 15 ℃ 左右，往外辐射的峰值落在 10 微米附近，属于红外线。</p>
+
+        <p>同一个大气层，对这两种波长的态度完全不同。</p>
+
+        <p>氮气占大气 78%，氧气占 21%，它们几乎不吸收红外线。原因在分子结构：这两个都是对称的双原子分子，振动时电荷分布不变，不产生变化的电偶极矩，红外线穿过去它们基本不理。</p>
+
+        <div class="image-container">
+            <img src="scene_02.webp" alt="赛博朋克风格：一束黄白色短波光穿过大气层落到地面，地面向上射出暗红色长波，其中一部分被半透明气膜挡住" class="dino-image">
+            <div class="image-caption">黄色的是进来的可见光，暗红色的是想出去的红外线——大部分被那层气体留下了</div>
+        </div>
+
+        <p>二氧化碳不一样。它虽然是直线分子（O=C=O），但有一种"弯曲振动"会让分子两头出现一正一负，形成变化的电偶极矩。这个振动的频率，正好对上 15 微米左右的红外线，于是这一段被牢牢吃住。水汽则在 6.3 微米和 2.7 微米附近有强吸收带。</p>
+
+        <p>数字能说明这扇门有多窄：到达大气顶的太阳辐射平均约 340 瓦每平方米，其中约 100 瓦被云和地面反射回太空，剩下约 240 瓦被地气系统吸收。为了收支平衡，地球也必须以红外线的形式，往外送走 240 瓦每平方米。麻烦就出在这 240 瓦往外走的那段路。</p>
+
+        <p>如果大气对红外线完全透明，这 240 瓦会干脆利落地跑掉。可 15 微米附近的这条窄缝被二氧化碳堵住了一部分，能量就得在路上多绕几圈。</p>
+
+        <p>那它绕的这几圈，究竟发生了什么？</p>
+
+        <div class="fun-fact orange">
+            <div class="fun-fact-title">🌡 一条 15 微米的窄缝</div>
+            二氧化碳最凶的吸收带中心在 15 微米附近。地球红外辐射的峰值在 10 微米左右，紧挨着这条带——不是正中心，而是擦着边。
+        </div>
+
+        <h2>第三章 · 它不把热反射回来，它把热"还"下来</h2>
+
+        <p>很多人以为温室效应是"大气把热量反射回地面"。这个说法不对。反射是光碰到镜面弹回来，而红外线被二氧化碳吸收之后，分子并不会把它原样弹回去。</p>
+
+        <p>真实过程是：分子吸收了这份能量，内部振动加剧，接着在极短的时间里重新发射一份红外线。<b>重新发射的方向是随机的</b>——可能向上，可能向下，也可能斜着。平均下来，大约一半朝下。</p>
+
+        <p>于是地表除了接收太阳光，还持续接收一份从天上来的红外线。这份下行长波辐射，全球平均约 333 瓦每平方米，比太阳直接加热地表的约 161 瓦每平方米还要多出一倍。</p>
+
+        <p>换句话说，<b>地表一半以上的能量输入，来自天空而不是太阳直射</b>。这就是整件事最反常识的地方：温室效应不是把热挡在门外，而是把热在低层空气和地面之间来回倒手，让它迟迟走不掉。</p>
+
+        <div class="image-container">
+            <img src="scene_03.webp" alt="赛博朋克风格：橙色气膜悬在城市上空，成排红光从膜底垂落回街道，只有几缕细光逃向太空" class="dino-image">
+            <div class="image-caption">不是弹回来，而是被吸收后重新发射：一半逃走，一半落回地面</div>
+        </div>
+
+        <p>还有一个更精确的说法。大气并不是从地面开始就往外辐射的。靠近地面的一两公里空气又稠又湿，红外线走不了多远就会被吸收掉；真正能把热量直接送进太空的，是大约 5 到 6 公里高处那一层比较稀薄的空气。</p>
+
+        <p>而对流层有个规律：越往上越冷，平均每升高 1 公里，温度下降约 6.5 ℃。</p>
+
+        <p>把这两件事拼起来，就得到温室效应的杠杆：当二氧化碳变多，能直接向太空散热的那一层会被迫升高，升到更冷、辐射更弱的地方。为了把同样多的能量送出去，地面只好变得更热一点。</p>
+
+        <p>那为什么二氧化碳只是增加了那么一点，就够撬动温度？</p>
+
+        <div class="fun-fact green">
+            <div class="fun-fact-title">🔁 每吸收一次，就多"押"一次</div>
+            一份红外能量在被真正放进太空之前，往往要经历好几次"吸收—再发射"。每一次都有机会被送回地面，能量就这样在低层大气里越拖越久。
+        </div>
+
+        <h2>第四章 · 一点点气体，为什么够用</h2>
+
+        <p>先看数量级。1958 年，查尔斯·基林（Charles Keeling）在夏威夷冒纳罗亚山顶开始连续测量大气二氧化碳浓度，当时是 315 ppm（ppm 指百万分之一）。2025 年 5 月，同一个观测站的月均值第一次越过 430 ppm。</p>
+
+        <p>从比例上看，二氧化碳只占大气的万分之四左右。这么少的东西，凭什么管用？</p>
+
+        <p>第一个原因：15 微米吸收带的中心，早在工业革命之前就接近饱和了——那里的红外线几乎百分百被吸收，再加二氧化碳也不会多吸。真正还在起作用的，是这条带的<b>两翼</b>：波长稍微偏离中心的那些位置，吸收还没有满。浓度增加，翼部吸收跟着增强，像一扇慢慢被关紧的门。</p>
+
+        <p>第二个原因：这个增强是对数的，不是线性的。常用的简化算法是，辐射强迫约等于 5.35 乘以「现在浓度 ÷ 原来浓度」的自然对数，单位瓦每平方米。从 280 ppm 加到 560 ppm，算出来约 3.7 瓦每平方米。翻一倍也只多这么点，所以它既不是线性的放大，也不是可以不当回事。</p>
+
+        <p>第三个原因，也是最容易被忽略的：水汽。按贡献算，水汽是最大的温室气体，约占整个温室效应的一半；二氧化碳约占 20%，云约占 25%，剩下的是甲烷、氧化亚氮和臭氧。</p>
+
+        <p>但水汽有个特点：它自己不会长期堆积。多出来的水汽会凝成雨落回地面，平均在大气里只待 9 天左右。所以水汽是被动的——温度升高，空气能容纳的水汽就多，大约每升 1 ℃ 多 7%；水汽再多，又进一步保温。这叫正反馈。</p>
+
+        <p>这个反馈会不会失控？目前的观测认为不会：相对湿度大体保持稳定，水汽是跟着温度走的，不是自己往前冲。</p>
+
+        <div class="fun-fact pink">
+            <div class="fun-fact-title">🧮 一年排放，一半留下</div>
+            人类每年排放的二氧化碳里，约有一半被海洋和陆地吸收，另一半留在大气中。留一半听着不多，但 170 年攒下来，浓度就从 280 ppm 涨到了 430 ppm 以上。
+        </div>
+
+        <h2>第五章 · 金星很热，火星很冷，这 33 度是好事还是坏事</h2>
+
+        <p>拿两个邻居对照，能看清温室效应的边界在哪里。</p>
+
+        <p>金星大气 96% 是二氧化碳，地表温度约 464 ℃，气压是地球的 92 倍。看上去像是"二氧化碳多就热"的铁证。但要看清楚一点：金星大气里的二氧化碳总量，约为地球的 15 万倍。它的热不只是成分问题，更是<b>总量</b>问题——再加上失控的水汽逃逸和硫酸云，它走上的是一条完全不同的路。</p>
+
+        <p>火星大气 95% 也是二氧化碳，但气压只有 6 毫巴，不到地球的百分之一。它的温室效应只额外贡献了约 5 ℃。</p>
+
+        <p>所以决定温度的不是"二氧化碳占多少比例"，而是"每平方米地面上方，一共压着多少个二氧化碳分子"——这叫柱密度。</p>
+
+        <div class="image-container">
+            <img src="scene_04.webp" alt="写实照片：冒纳罗亚山顶的白色观测站穹顶立在云海之上，黄昏的橙红色阳光打在金属表面" class="dino-image">
+            <div class="image-caption">冒纳罗亚山顶的观测站，从 1958 年起，每天记录一次这个数字</div>
+        </div>
+
+        <p>这也说明：33 ℃ 的温室效应本身不是坏事。没有它，地球平均温度是 −18 ℃，海洋会冻住。真正在变的是<b>速率</b>：末次冰期结束到工业革命前，地球用了一万年才升温 4 到 5 ℃；而从 1850 年前后到现在，170 年就升了约 1.3 ℃。</p>
+
+        <p>对这个速率，科学界方向判断一致，但也存在明确分歧。政府间气候变化专门委员会（IPCC）2021 年的报告给出的平衡态气候敏感度是 2.5 到 4 ℃，最佳估计 3 ℃——意思是二氧化碳翻倍后，长期看会升温这么多。区间上下差了 1.5 ℃，主要不确定性来自云：低云反射阳光、起冷却作用，高云像被子、起保温作用，两者叠加后净效果偏哪边，目前还没有定论。</p>
+
+        <p>区域差别也很大：北极的升温速度是全球平均的 2 到 4 倍，因为冰雪融化后露出深色海面，吸收更多阳光——又一个正反馈。</p>
+
+        <p>正因为降温这么难，有人提出更激进的办法：往平流层撒硫酸盐颗粒，或者往轨道上放遮阳膜，把一小部分阳光直接挡掉。这类方案在物理上确实能降温，但代价也很清楚——它们会同时改掉季风和水循环，而且一旦停手，温度会在几年内快速弹回来。这不是一个可以随时反悔的开关。</p>
+
+        <p>至于冰盖会不会越过某个临界点、海洋还能吸走多少，这些问题至今没有被解决，答案还压在观测数据里。基林曲线还在往上走，山顶的仪器每天仍在记录。</p>
+
+        <div class="image-container">
+            <img src="scene_05.webp" alt="未来科幻风格：近地轨道上的反光薄膜阵列在地球晨昏线上展开，白色与铬色构件反射金光" class="dino-image">
+            <div class="image-caption">有人提出过往太空放遮阳膜，但代价和风险，现在都还算不清</div>
+        </div>
+
+        <div class="fun-fact">
+            <div class="fun-fact-title">🌍 从 −18 ℃ 到 15 ℃</div>
+            这 33 ℃ 的差距，是几十亿年演化出来的巧合。它让水能保持液态，也让人类多了一个必须小心维护的平衡。
+        </div>
+
+        <div class="quiz-section" data-quiz="2">
+            <div class="quiz-title">🎯 互动小测试</div>
+
+            <div class="quiz-question" data-answer="D">
+                <p class="q-stem">按太阳送来的能量算，地球表面本该比现在冷多少？</p>
+                <ul class="q-opts">
+                    <li data-k="A">大约冷 3 度</li>
+                    <li data-k="B">大约冷 10 度</li>
+                    <li data-k="C">大约冷 60 度</li>
+                    <li data-k="D">大约冷 33 度</li>
+                </ul>
+                <details class="q-ans"><summary>看答案</summary>
+                    <p><b>D</b>　解析：算出来是 −18 ℃，实测约 15 ℃，差 33 ℃。这份差额就是温室效应做的功。</p>
+                </details>
+            </div>
+
+            <div class="quiz-question" data-answer="B">
+                <p class="q-stem">大气里哪些气体最容易拦住往外走的红外线？</p>
+                <ul class="q-opts">
+                    <li data-k="A">氮气和氧气，它们合计占了 99%</li>
+                    <li data-k="B">二氧化碳和水汽，吸收带对上</li>
+                    <li data-k="C">氩气和氧气，分子个头大</li>
+                    <li data-k="D">氦气和氢气，跑得特别快</li>
+                </ul>
+                <details class="q-ans"><summary>看答案</summary>
+                    <p><b>B</b>　解析：氮气氧气对称、振动时不产生电偶极矩；二氧化碳和水汽的振动频率正好落在红外波段。</p>
+                </details>
+            </div>
+
+            <div class="quiz-question" data-answer="A">
+                <p class="q-stem">二氧化碳吸收红外线之后，这份能量去了哪里？</p>
+                <ul class="q-opts">
+                    <li data-k="A">被分子重新发射，方向随机</li>
+                    <li data-k="B">像镜子一样原样反射回地面</li>
+                    <li data-k="C">变成可见光射向太空</li>
+                    <li data-k="D">被分子永久封存起来</li>
+                </ul>
+                <details class="q-ans"><summary>看答案</summary>
+                    <p><b>A</b>　解析：吸收后很快再发射，方向随机，一半朝下。所以它增加的是"下行长波"，不是反射。</p>
+                </details>
+            </div>
+
+            <div class="quiz-question" data-answer="C">
+                <p class="q-stem">为什么只增加一点二氧化碳，也能让地表更暖？</p>
+                <ul class="q-opts">
+                    <li data-k="A">因为它的浓度每年都会翻一倍</li>
+                    <li data-k="B">因为二氧化碳比空气重得多</li>
+                    <li data-k="C">因为吸收带的边缘还没有吸满</li>
+                    <li data-k="D">因为它挡住了太阳的可见光</li>
+                </ul>
+                <details class="q-ans"><summary>看答案</summary>
+                    <p><b>C</b>　解析：15 微米的中心早就饱和，起作用的是带的两翼。翼部每加深一点，都还能量化成瓦每平方米。</p>
+                </details>
+            </div>
+
+            <div class="quiz-question" data-answer="B">
+                <p class="q-stem">火星二氧化碳占 95%，为什么反而比地球冷？</p>
+                <ul class="q-opts">
+                    <li data-k="A">火星离太阳比地球远一倍</li>
+                    <li data-k="B">大气太薄，分子总数太少</li>
+                    <li data-k="C">火星的二氧化碳不吸收红外</li>
+                    <li data-k="D">火星完全没有水汽在保温</li>
+                </ul>
+                <details class="q-ans"><summary>看答案</summary>
+                    <p><b>B</b>　解析：火星气压只有 6 毫巴，柱密度极低，温室效应只贡献约 5 ℃。决定温度的是总量，不是比例。</p>
+                </details>
+            </div>
+        </div>
+
+        <div class="ending">
+            <h3>—— 完 ——</h3>
+            <p>谢谢阅读。希望你学到了很多知识。</p>
+            <p style="margin-top: 10px; font-size: 14px; color: #b2bec3;">本故事由 AI 助手小巴为小朋友精心制作 🚌</p>
+            <div style="text-align: left; margin-top: 15px;">
+                <a href="../index.html" class="back-home-btn">🏠 返回首页</a>
+            </div>
+        </div>
+    </div>
+
+
+<!-- rourou-home-btn:start -->
+<style>
+#rourou-home-btn{position:fixed;left:14px;bottom:calc(14px + env(safe-area-inset-bottom,0px));z-index:9999;
+display:inline-flex;align-items:center;gap:6px;padding:10px 18px;border-radius:999px;
+background:rgba(255,255,255,0.92);color:#2d3436;font-size:15px;font-weight:600;
+text-decoration:none;box-shadow:0 4px 14px rgba(0,0,0,0.18);border:1px solid rgba(0,0,0,0.08);
+-webkit-backdrop-filter:blur(4px);backdrop-filter:blur(4px);transition:transform .15s,background .15s;}
+#rourou-home-btn:hover{background:#fff;transform:translateY(-2px);}
+@media (max-width:600px){#rourou-home-btn{padding:9px 14px;font-size:13px;left:10px;bottom:calc(10px + env(safe-area-inset-bottom,0px));}}
+/* 页面自带左下角悬浮按钮（如讲义的「↑ 返回目录」）时上移让位，避免两个按钮叠在一起 */
+.fab{bottom:calc(66px + env(safe-area-inset-bottom,0px)) !important;}
+@media (max-width:919px){.fab{bottom:calc(58px + env(safe-area-inset-bottom,0px)) !important;}}
+</style>
+<a id="rourou-home-btn" href="../index.html">🏠 首页</a>
+<!-- rourou-home-btn:end -->
+</body>
+</html>
