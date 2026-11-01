@@ -1,0 +1,690 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>萤火虫的光为什么不烫手</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: "Microsoft YaHei", "PingFang SC", sans-serif;
+            background: linear-gradient(180deg, #a8d8ea 0%, #7fb3d5 30%, #4a7fa5 60%, #2c4a63 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        .container {
+            max-width: 850px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 30px;
+            padding: 40px;
+            box-shadow: 0 25px 80px rgba(0,0,0,0.15);
+        }
+        .header {
+            text-align: center;
+            padding: 30px 0;
+            background: linear-gradient(135deg, #1e5f8a 0%, #4fa8d8 50%, #ffb347 100%);
+            border-radius: 20px;
+            margin-bottom: 30px;
+        }
+        .header h1 {
+            font-size: 46px;
+            color: white;
+            text-shadow: 3px 3px 6px rgba(0,0,0,0.25);
+        }
+        .subtitle {
+            font-size: 20px;
+            color: rgba(255,255,255,0.95);
+        }
+        h2 {
+            font-size: 30px;
+            color: #1a3a4f;
+            margin: 40px 0 20px;
+            padding: 15px 25px;
+            background: linear-gradient(90deg, #a8d8ea 0%, #ffd59e 100%);
+            border-radius: 15px;
+            display: inline-block;
+        }
+        p {
+            font-size: 20px;
+            line-height: 2;
+            color: #22333f;
+            margin-bottom: 20px;
+            text-align: justify;
+        }
+        .image-container {
+            width: 100%;
+            margin: 30px 0;
+            text-align: center;
+        }
+        .dino-image {
+            width: 100%;
+            border-radius: 20px;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.2);
+        }
+        .image-caption {
+            color: #4d5f6b;
+            font-size: 16px;
+            margin-top: 15px;
+            font-style: italic;
+            background: #e6f2f8;
+            display: inline-block;
+            padding: 8px 20px;
+            border-radius: 20px;
+        }
+        .fun-fact {
+            background: linear-gradient(135deg, #1e5f8a 0%, #3d8ab5 100%);
+            color: white;
+            padding: 25px;
+            border-radius: 20px;
+            margin: 25px 0;
+            font-size: 18px;
+            line-height: 1.8;
+        }
+        .fun-fact.pink {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+        }
+        .fun-fact.green {
+            background: linear-gradient(135deg, #43aa8b 0%, #2a9d8f 100%);
+        }
+        .fun-fact.orange {
+            background: linear-gradient(135deg, #f4a261 0%, #e76f51 100%);
+        }
+        .fun-fact-title {
+            font-size: 22px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        .divider {
+            text-align: center;
+            font-size: 30px;
+            color: #ddd;
+            margin: 30px 0;
+        }
+        .quiz-section {
+            background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);
+            padding: 30px;
+            border-radius: 20px;
+            margin: 30px 0;
+        }
+        .quiz-title {
+            font-size: 28px;
+            color: #e17055;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .quiz-question {
+            background: white;
+            padding: 20px;
+            border-radius: 15px;
+            margin: 15px 0;
+            font-size: 18px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        .quiz-question .q-stem {
+            font-weight: bold;
+            margin-bottom: 10px;
+            line-height: 1.6;
+        }
+        .quiz-question .q-opts {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+        .quiz-question .q-opts li {
+            padding: 8px 12px;
+            margin: 6px 0;
+            background: #f8f9fa;
+            border-radius: 10px;
+            line-height: 1.55;
+        }
+        .quiz-question .q-opts li::before {
+            content: attr(data-k) ". ";
+            font-weight: bold;
+            color: #e17055;
+        }
+        .quiz-question .q-ans {
+            margin-top: 10px;
+            font-size: 16px;
+            color: #636e72;
+        }
+        .quiz-question .q-ans summary {
+            cursor: pointer;
+            color: #0984e3;
+            font-weight: 600;
+            outline: none;
+        }
+        .quiz-question .q-ans p {
+            margin: 8px 0 0;
+            padding: 10px 12px;
+            background: #f0f7ff;
+            border-left: 4px solid #0984e3;
+            border-radius: 8px;
+            line-height: 1.6;
+        }
+        .ending {
+            text-align: center;
+            padding: 40px 0;
+            margin-top: 40px;
+            background: linear-gradient(135deg, #cfe8f5 0%, #ffd9c0 100%);
+            border-radius: 20px;
+        }
+        .ending h3 { font-size: 32px; color: #1a3a4f; }
+        .ending p { text-align: center; font-size: 18px; color: #4d5f6b; }
+        .back-home-btn {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 14px 30px;
+            background: rgba(0,0,0,0.08);
+            color: #22333f;
+            text-decoration: none;
+            border-radius: 25px;
+            font-size: 18px;
+            border: 2px solid rgba(0,0,0,0.15);
+            transition: background 0.3s, transform 0.2s;
+        }
+        .back-home-btn:hover { background: rgba(0,0,0,0.15); transform: translateY(-2px); }
+        @media (max-width: 600px) {
+            .container { padding: 20px; }
+            .header h1 { font-size: 30px; }
+            h2 { font-size: 24px; }
+            p { font-size: 18px; }
+        }
+    </style>
+<!-- sharecode-passthrough:start -->
+<script>
+(function(){
+  var K='rourou_sc';
+  var SC=null, cur=null;
+  try{
+    cur=new URLSearchParams(location.search).get('sharecode');
+    if(cur){ SC=cur; try{ sessionStorage.setItem(K,cur); }catch(e){} }
+    else { try{ SC=sessionStorage.getItem(K); }catch(e){} }
+  }catch(e){}
+  if(!SC) return;
+
+  // 站内地址补 sharecode；站外/已带参/非 http 返回 null
+  function withSC(u){
+    if(!u) return null;
+    try{
+      var x=new URL(u, location.href);
+      if(x.protocol!=='http:' && x.protocol!=='https:') return null;
+      if(x.origin!==location.origin) return null;
+      if(x.searchParams.get('sharecode')===SC) return null;
+      x.searchParams.set('sharecode',SC);
+      return x.href;
+    }catch(e){ return null; }
+  }
+
+  // 无参进入时补参数跳转（脚本捕获不到的情况兜底）
+  if(!cur){
+    var self=withSC(location.href);
+    if(self && !/[?&]sharecode=/.test(location.search)){
+      location.replace(self);
+      return;
+    }
+  }
+
+  // ① 点击拦截：先于站内任何处理器，动态渲染的卡片也覆盖
+  document.addEventListener('click', function(e){
+    var t=e.target;
+    while(t && t!==document && t.tagName!=='A') t=t.parentNode;
+    if(!t || t===document) return;
+    if(t.target && t.target!=='_self') return;
+    var h=t.getAttribute('href');
+    if(!h || /^(mailto:|tel:|javascript:|#)/i.test(h)) return;
+    var nu=withSC(t.href);
+    if(!nu) return;
+    e.preventDefault();
+    e.stopPropagation();
+    location.href=nu;
+  }, true);
+
+  // ② 静态与动态插入的资源统一补参
+  var ATTRS=['src','href','poster','srcset'];
+  var SEL='img[src],img[srcset],video[src],video[poster],audio[src],source[src],source[srcset],'+
+          'script[src],link[rel=stylesheet][href],link[rel=preload][href],a[href]';
+  function fixOne(el,attr){
+    var v=el.getAttribute(attr);
+    if(!v) return;
+    if(attr==='srcset'){
+      var changed=false;
+      var parts=v.split(',').map(function(x){
+        var t=x.trim().split(/\s+/);
+        if(!t[0]) return x;
+        var nu=withSC(t[0]);
+        if(nu){ t[0]=nu; changed=true; }
+        return t.join(' ');
+      });
+      if(changed) el.setAttribute('srcset',parts.join(', '));
+      return;
+    }
+    var nu=withSC(v);
+    if(nu) el.setAttribute(attr,nu);
+  }
+  function fixEl(el){
+    for(var k=0;k<ATTRS.length;k++){
+      if(el.hasAttribute && el.hasAttribute(ATTRS[k])) fixOne(el,ATTRS[k]);
+    }
+  }
+  function fix(root){
+    var scope=(root&&root.querySelectorAll)?root:document;
+    var els=scope.querySelectorAll(SEL);
+    for(var i=0;i<els.length;i++) fixEl(els[i]);
+  }
+
+  // ③ 资源加载失败时补参重试一次（防漏网）
+  document.addEventListener('error', function(e){
+    var el=e.target;
+    if(!el||!el.tagName) return;
+    var tag=el.tagName;
+    if(tag!=='IMG'&&tag!=='VIDEO'&&tag!=='SOURCE'&&tag!=='AUDIO') return;
+    if(el.getAttribute('data-sc-retry')) return;
+    var nu=withSC(el.getAttribute('src')||'');
+    if(!nu) return;
+    el.setAttribute('data-sc-retry','1');
+    el.setAttribute('src',nu);
+  }, true);
+
+  function boot(){
+    fix(document);
+    try{
+      new MutationObserver(function(ms){
+        for(var i=0;i<ms.length;i++){
+          var added=ms[i].addedNodes;
+          for(var j=0;j<added.length;j++){
+            var n=added[j];
+            if(n.nodeType!==1) continue;
+            fixEl(n);
+            if(n.querySelectorAll) fix(n);
+          }
+        }
+      }).observe(document.documentElement,{childList:true,subtree:true});
+    }catch(e){}
+  }
+  if(document.readyState==='loading') document.addEventListener('DOMContentLoaded',boot);
+  else boot();
+})();
+</script>
+<!-- sharecode-passthrough:end -->
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>萤火虫的光为什么不烫手</h1>
+            <p class="subtitle">课本上说它的发光效率是 88%，2008 年有人重测了一遍：41%</p>
+        </div>
+
+        <div class="image-container">
+            <img src="scene_01.webp" alt="儿童卡通风格：夏夜稻田边，一只萤火虫提着一盏黄绿色小灯飞过草叶" class="dino-image">
+            <div class="image-caption">它的灯不靠烧，靠一次化学反应</div>
+        </div>
+
+        <h2>第一章 · 稻田边的那盏小灯</h2>
+
+        <p>6 月底，江南的稻田边。日落后四十分钟，天刚黑透，气温还有 26 ℃。</p>
+
+        <p>草叶上方浮着一个绿点。它亮一下，暗两秒多，再亮。像有人按着一个很慢的开关。</p>
+
+        <p>换算一下：一分钟里，它亮不了三十次。</p>
+
+        <p>伸手去接它，指尖不会有温度。这盏灯不烫。</p>
+
+        <p>但「不烫」常常被说成「不发热」。这两个说法不一样。</p>
+
+        <p>它其实会发热，只是那份热少到你摸不出来。就像冬天的暖手宝，摸着温和，其实一直在放热。</p>
+
+        <p>少到什么程度，后面算给你看。</p>
+
+        <p>先说这虫子是谁。全世界已知的萤火虫有 2000 多种。</p>
+
+        <p>它们不是一种虫，而是一整个科。萤科属于甲虫，翅膀外面盖着硬壳。</p>
+
+        <p>中国记录到 100 多种。田里那一只，多半是黄缘萤或者端黑萤。</p>
+
+        <p>也不是所有种类都会亮。有些白天活动的种，成虫根本不发光。</p>
+
+        <p>所以「萤火虫都会发光」这句话，本身就要打个折。</p>
+
+        <p>这一篇讲清三件事：光是怎么造出来的、为什么非要一闪一闪、这些年为什么越来越少见。</p>
+
+        <div class="fun-fact">
+            <div class="fun-fact-title">🔦 它其实是甲虫</div>
+            萤火虫不是蝇，也不是蚊。它归在鞘翅目，跟瓢虫、天牛是远亲。前翅硬得像壳，叫鞘翅，飞行时张开当挡板用。
+        </div>
+
+        <h2>第二章 · 一盏灯要凑齐三样材料</h2>
+
+        <p>灯长在腹部末端。雄虫两节，雌虫一节，里面塞满发光细胞。</p>
+
+        <p>细胞就是生物最小的结构单位。发光细胞里有两种关键东西。</p>
+
+        <p>一种叫荧光素，它就是燃料。</p>
+
+        <p>另一种叫荧光素酶。酶就是一类专门给化学反应加速的东西。</p>
+
+        <p>光有这两样还不够。还得有氧气，和一种叫 ATP 的能量分子。</p>
+
+        <p>ATP 就是细胞里的现钱。所有要花能量的活儿，都刷它付账。</p>
+
+        <p>三样凑齐，反应开始。氧气把荧光素氧化，产物身上多出一份能量。</p>
+
+        <p>这份能量撑不住，要甩出去。甩出来的那一小份，就是光子。</p>
+
+        <p>光子就是光的最小一份。一份一份攒够，才成为你看见的亮。</p>
+
+        <p>这盏灯的颜色，波长在 560 纳米附近。波长就是光的个头。</p>
+
+        <p>纳米就是毫米的一百万分之一。560 纳米这个长度，正好落在黄和绿之间。</p>
+
+        <p>所以萤火虫的光是黄绿色的。少数种类偏橙，也有偏红的。</p>
+
+        <p>接下来是关键的账：一百个燃料分子反应，有几个真的发出了光。</p>
+
+        <p>2008 年，东京大学的秋山英文团队把这个数测了出来：41%。</p>
+
+        <p>《自然·光子学》登了这篇论文。剩下那将近六成，没有变成光，变成了热。</p>
+
+        <p>这个结果当时挺意外。因为在它之前，教科书上写的是 88%。</p>
+
+        <p>一次重测，把效率砍掉一半。这就是科学里常有的事。</p>
+
+        <p>41% 放在灯里算什么水平？白炽灯约 5%。最好的 LED 约 40% 到 50%。</p>
+
+        <p>这里要说明一句：萤火虫的 41% 按分子数算，白炽灯的 5% 按能量算，两者不能严格对比。</p>
+
+        <p>一只指甲盖长的虫子，跟我们最好的灯打了个平手。</p>
+
+        <p>相当于一个人用算盘，算出了电子计算机的结果。</p>
+
+        <div class="image-container">
+            <img src="scene_02.webp" alt="赛博朋克风格：萤火虫体表透出内部结构，气管像树枝一样分叉，末端挤满发光的细胞" class="dino-image">
+            <div class="image-caption">气管像树枝一样分叉，每一根末端都挤着发光的细胞——光就是从这些细胞里出来的</div>
+        </div>
+
+        <p>打个比方。烧柴是整堆一起发热，亮只是顺手跑出来的一点副产品。</p>
+
+        <p>萤火虫不是烧。它是让一个分子单独抖一下，把能量精准地甩成一个光子。</p>
+
+        <p>真实情况是：精准也不等于百分之百。抖歪的那六成，还是变成热。</p>
+
+        <p>只是这份热太少。一次闪光大约抛出 10 万亿个光子。</p>
+
+        <p>换算一下：这些光全折成热，也不够让一克水升 0.001 ℃。普通温度计根本读不出来。</p>
+
+        <p>所以「冷光」这个词不太准。它不是不热，是热得太少。</p>
+
+        <p>那它为什么要一闪一闪，不干脆一直亮着？</p>
+
+        <div class="fun-fact orange">
+            <div class="fun-fact-title">💡 那 88% 是从哪来的</div>
+            早期测法是把虫子的光跟一盏标准灯比亮度。这种比法会漏掉很多光，也会把「理想条件下的上限」当成实测值。2008 年那次是直接数光子的。
+        </div>
+
+        <h2>第三章 · 开关捏在氧气手里</h2>
+
+        <p>发光细胞不是泡在空气里。它挨着一套细管子，叫气管。</p>
+
+        <p>气管就是昆虫的呼吸管道。空气顺着管子，直接送到细胞旁边。</p>
+
+        <p>氧气从气管渗进发光细胞，反应才能往下走。</p>
+
+        <p>所以氧气既是原料，又是刹车。给多少，它说了算。</p>
+
+        <p>细胞里还有一种结构，叫线粒体。它是细胞的锅炉房，平时也在烧氧。</p>
+
+        <p>线粒体贴着气管那一侧排成一圈，像一排站在门口的人。</p>
+
+        <p>平时氧气一进门，就被它们先抢走。发光细胞拿不到。</p>
+
+        <p>要发光的时候，神经发一道信号下去。</p>
+
+        <p>气管边上的细胞收到信号，放出一氧化氮。这是一种气体，分子式是 NO。</p>
+
+        <p>它让线粒体暂停大约 1 毫秒。</p>
+
+        <p>这 1 毫秒里没人抢氧。氧气一下涌进发光细胞，灯就亮了。</p>
+
+        <div class="image-container">
+            <img src="scene_03.webp" alt="赛博朋克风格：一根气管伸进发光器，成排黑色线粒体堵住管口，黄绿色光从另一侧漫出" class="dino-image">
+            <div class="image-caption">氧气被拦一下再放行，就是这盏灯的开关——一次开合约一毫秒</div>
+        </div>
+
+        <p>光一出来，一氧化氮又被分解掉。线粒体恢复抢氧，灯灭。</p>
+
+        <p>一亮一灭，一圈一圈转。这个开关，2001 年才被塔夫茨大学的特里默团队找到。</p>
+
+        <p>论文发在《科学》上。在那之前，人们只知道反应，不知道谁按开关。</p>
+
+        <p>不过这套解释还有争议。有些种类的闪光节奏，用它还讲不全。</p>
+
+        <p>打个比方：像地铁闸机口。线粒体是堵在前面的人，一氧化氮是保安。</p>
+
+        <p>保安把人拦下一秒钟，后面的队伍才过得去。过了这一秒，闸口又堵上。</p>
+
+        <p>光靠开关还不够。还得回答：为什么不常亮。</p>
+
+        <p>两个原因。第一，常亮太费。第二，闪本身就是信号，常亮没有信息。</p>
+
+        <p>费不费这件事有人量过。闪烁时，萤火虫的耗氧量比静止时高约 40%。</p>
+
+        <p>而走动的时候，是高约 60%。也就是说，发光比走路还省一点。</p>
+
+        <p>还跟温度有关。天越热，闪得越快；天凉，节奏就慢下来。</p>
+
+        <p>这是化学反应的脾气，温度高，反应就快，灯的点灭也跟着快。</p>
+
+        <p>那这串闪光，到底是给谁看的？</p>
+
+        <div class="fun-fact green">
+            <div class="fun-fact-title">🌬 一毫秒的窗口</div>
+            氧气不能一直开着。氧气一多，反应就失控，能量全变成热。用线粒体当闸门、用一氧化氮当保安，等于给这盏灯装了一个精确到千分之一秒的调光器。
+        </div>
+
+        <h2>第四章 · 同一种光，三种用法</h2>
+
+        <p>第一种是相亲。</p>
+
+        <p>雄虫飞，边飞边闪。雌虫趴在草叶上，看到节奏对得上，就回一下。</p>
+
+        <p>节奏是有讲究的：亮多久、暗多久、飞什么路线，每个种都不一样。</p>
+
+        <p>北美有一种常见的萤火虫，雄虫亮 0.2 秒，隔 2.2 秒再来一次。</p>
+
+        <p>雌虫大概 0.5 秒之后回应。节奏差一点，她就不理。</p>
+
+        <p>这是它们认亲戚的方式。同一个种才用同一套码。</p>
+
+        <p>打个比方：一个村子好几种方言，口音不对，门就不开。</p>
+
+        <p>第二种是骗。</p>
+
+        <p>有一类叫 Photuris 的萤火虫，雌虫会模仿别的种类的回应节奏。</p>
+
+        <p>别的种的雄虫以为遇上对象，飞过去，被吃掉。</p>
+
+        <p>1975 年，《科学》上有一篇论文专门讲这件事，标题里用了「蛇蝎美人」这个词。</p>
+
+        <p>同一盏灯，在相亲的语境里是情话，在捕食的语境里是圈套。</p>
+
+        <p>第三种是警告。</p>
+
+        <p>萤火虫的卵、幼虫、蛹，都会亮。幼虫的光弱，但整夜不熄。</p>
+
+        <p>它白天躲在落叶下面，晚上爬出来找蜗牛，把消化液注进去，再吸。</p>
+
+        <p>它体内有一种毒素，叫萤蟾蜍二烯内酯。名字很长，作用很简单：让吃它的动物难受。</p>
+
+        <p>有人拿蜥蜴做过实验。蜥蜴吞下萤火虫会吐出来，之后见到发光的虫子就绕开。</p>
+
+        <p>所以幼虫那点微光是一块牌子：我有毒，别碰。</p>
+
+        <p>三种语言，共用一套器官。上亿年攒下来的本事，现在出了什么问题？</p>
+
+        <div class="image-container">
+            <img src="scene_04.webp" alt="写实照片：夏夜潮湿的草坡，一只萤火虫停在草叶尖端发光，背景是虚化的暗绿" class="dino-image">
+            <div class="image-caption">多数雌虫翅退化，飞不起来，只能趴在草尖等一个对得上的节奏</div>
+        </div>
+
+        <div class="fun-fact purple">
+            <div class="fun-fact-title">🎭 会学口音的捕食者</div>
+            捕食性拟态并不常见。雌虫要记住不止一种「方言」，还得在对的时间点回话，早半秒晚半秒都会露馅。
+        </div>
+
+        <h2>第五章 · 灯在变少，账还没算完</h2>
+
+        <p>2020 年 2 月，《生物科学》上发了一篇全球评估。</p>
+
+        <p>团队问了 350 位萤火虫专家，请他们给本地的威胁排序。</p>
+
+        <p>排第一的是栖息地消失。</p>
+
+        <p>萤火虫要的是潮湿地：水田、溪边、湿地、红树林，一样都不能少。</p>
+
+        <p>马来西亚有一种会同步闪的萤火虫，只住在红树林里。</p>
+
+        <p>红树林改成棕榈园和养殖场之后，它的数量掉得很厉害。</p>
+
+        <p>排第二的有点意外，是人造光。</p>
+
+        <p>全球陆地约 23% 的地方，夜里有人造光。路灯、广告牌、车灯，都比月亮亮。</p>
+
+        <p>雌虫要靠那点闪光找雄虫。背景一亮，信号就淹在里面。</p>
+
+        <p>有些种类的雌虫，还靠发光把雄虫引过来吃。光一乱，连捕食的节奏都乱。</p>
+
+        <p>排第三的是农药。</p>
+
+        <p>萤火虫的幼虫期最长两年，成虫只有一到两周。</p>
+
+        <p>两年都待在地下或者水下，农药正好洒在这段时间里。</p>
+
+        <p>还有一笔账没算清：到底少了多少。</p>
+
+        <p>全球大多数种类，没有长期的种群数据。少数有数的，比如马来西亚的同步萤、英国的夜光萤，下降明显。</p>
+
+        <p>其他地方多是观察者的零星记录，不成系统。</p>
+
+        <p>这也是研究团队自己承认的短板：没有基线，就没法算跌幅。</p>
+
+        <p>哪一种真的在降、降得多快，学界目前还没有共识。</p>
+
+        <p>那普通人能做什么？其实就三件小事。</p>
+
+        <p>院子里少开一盏朝外的灯。草坪上少喷一次杀虫剂。留一小片不修剪的草。</p>
+
+        <p>都不是大事。但萤火虫要的本来也不多。</p>
+
+        <p>这些办法的前提是水要干净、夜要够黑。缺一样，效果就打折。</p>
+
+        <p>回到开头。这盏灯的全部意义，是让另一只看见。</p>
+
+        <p>如果我们把夜照亮了，是不是反而让它看不见了？</p>
+
+        <div class="image-container">
+            <img src="scene_05.webp" alt="未来科幻风格：城市边缘保留的一段暗色湿地，低亮度暖黄步道灯只照脚下，成片萤火虫在草间升起" class="dino-image">
+            <div class="image-caption">把光收在脚下，把夜还给它们——这是少数可以马上做的事</div>
+        </div>
+
+        <div class="fun-fact">
+            <div class="fun-fact-title">🌏 它是一支温度计</div>
+            萤火虫对水污染和光污染都敏感。一片地方还能看到成群萤火虫，通常说明水干净、夜够黑、草没被剃光。它不只是一场景观。
+        </div>
+
+        <div class="quiz-section" data-quiz="2">
+            <div class="quiz-title">🎯 互动小测试</div>
+
+            <div class="quiz-question" data-answer="C">
+                <p class="q-stem">萤火虫的光摸上去不烫，真正的原因是？</p>
+                <ul class="q-opts">
+                    <li data-k="A">它的化学反应完全不产生热</li>
+                    <li data-k="B">它的光属于红外线，本来就不热</li>
+                    <li data-k="C">它确实发热，只是总热量极小</li>
+                    <li data-k="D">光线还没到皮肤就被空气吸走</li>
+                </ul>
+                <details class="q-ans"><summary>看答案</summary>
+                    <p><b>C</b>　解析：一百个燃料分子里约有六十个没发出光，能量变成了热。但一次闪光总共才一万亿个光子，这点热测不出来。</p>
+                </details>
+            </div>
+
+            <div class="quiz-question" data-answer="B">
+                <p class="q-stem">发光反应要凑齐的材料，下面哪一组是对的？</p>
+                <ul class="q-opts">
+                    <li data-k="A">荧光素、二氧化碳、水</li>
+                    <li data-k="B">荧光素、酶和氧气</li>
+                    <li data-k="C">叶绿素、阳光和水</li>
+                    <li data-k="D">荧光素、氮气和糖</li>
+                </ul>
+                <details class="q-ans"><summary>看答案</summary>
+                    <p><b>B</b>　解析：燃料是荧光素，加速反应的是荧光素酶，氧化剂是氧气，另外还要一份叫作 ATP 的能量。</p>
+                </details>
+            </div>
+
+            <div class="quiz-question" data-answer="D">
+                <p class="q-stem">一闪一闪的开关，最后落在谁身上？</p>
+                <ul class="q-opts">
+                    <li data-k="A">落在翅膀上，飞一下亮一下</li>
+                    <li data-k="B">落在复眼上，看见光才亮</li>
+                    <li data-k="C">落在腹部的肌肉上，收缩就亮</li>
+                    <li data-k="D">落在氧气上，由气管送氧控制</li>
+                </ul>
+                <details class="q-ans"><summary>看答案</summary>
+                    <p><b>D</b>　解析：一氧化氮让线粒体暂停抢氧约一毫秒，氧气涌进发光细胞，灯就亮。氧一断，灯就灭。</p>
+                </details>
+            </div>
+
+            <div class="quiz-question" data-answer="A">
+                <p class="q-stem">幼虫整夜亮着那点微光，主要用来做什么？</p>
+                <ul class="q-opts">
+                    <li data-k="A">警告天敌：我有毒，别吃</li>
+                    <li data-k="B">照亮地面，方便找蜗牛</li>
+                    <li data-k="C">吸引异性，准备马上交配</li>
+                    <li data-k="D">给同伴指路，避免走散</li>
+                </ul>
+                <details class="q-ans"><summary>看答案</summary>
+                    <p><b>A</b>　解析：幼虫体内有毒素。实验里蜥蜴吞下后会吐出来，之后见到发光的虫子就绕开。</p>
+                </details>
+            </div>
+
+            <div class="quiz-question" data-answer="B">
+                <p class="q-stem">按 2020 年那份全球评估，排第二的威胁是？</p>
+                <ul class="q-opts">
+                    <li data-k="A">农药的广泛使用</li>
+                    <li data-k="B">夜间的人造光</li>
+                    <li data-k="C">气候变暖</li>
+                    <li data-k="D">游客的捕捉采集</li>
+                </ul>
+                <details class="q-ans"><summary>看答案</summary>
+                    <p><b>B</b>　解析：专家把栖息地消失排在第一位，人造光排第二，农药第三。背景一亮，雌虫就看不清雄虫的闪光。</p>
+                </details>
+            </div>
+        </div>
+
+        <div class="ending">
+            <h3>—— 完 ——</h3>
+            <p>谢谢阅读。希望你学到了很多知识。</p>
+            <p style="margin-top: 10px; font-size: 14px; color: #b2bec3;">本故事由 AI 助手小巴为小朋友精心制作 🚌</p>
+            <div style="text-align: left; margin-top: 15px;">
+                <a href="../index.html" class="back-home-btn">🏠 返回首页</a>
+            </div>
+        </div>
+    </div>
+
+
+<!-- rourou-home-btn:start -->
+<style>
+#rourou-home-btn{position:fixed;left:14px;bottom:calc(14px + env(safe-area-inset-bottom,0px));z-index:9999;
+display:inline-flex;align-items:center;gap:6px;padding:10px 18px;border-radius:999px;
+background:rgba(255,255,255,0.92);color:#2d3436;font-size:15px;font-weight:600;
+text-decoration:none;box-shadow:0 4px 14px rgba(0,0,0,0.18);border:1px solid rgba(0,0,0,0.08);
+-webkit-backdrop-filter:blur(4px);backdrop-filter:blur(4px);transition:transform .15s,background .15s;}
+#rourou-home-btn:hover{background:#fff;transform:translateY(-2px);}
+@media (max-width:600px){#rourou-home-btn{padding:9px 14px;font-size:13px;left:10px;bottom:calc(10px + env(safe-area-inset-bottom,0px));}}
+/* 页面自带左下角悬浮按钮（如讲义的「↑ 返回目录」）时上移让位，避免两个按钮叠在一起 */
+.fab{bottom:calc(66px + env(safe-area-inset-bottom,0px)) !important;}
+@media (max-width:919px){.fab{bottom:calc(58px + env(safe-area-inset-bottom,0px)) !important;}}
+</style>
+<a id="rourou-home-btn" href="../index.html">🏠 首页</a>
+<!-- rourou-home-btn:end -->
+</body>
+</html>
