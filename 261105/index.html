@@ -1,0 +1,663 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>霜打菜变甜，糖没多只是换了形状</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: "Microsoft YaHei", "PingFang SC", sans-serif;
+            background: linear-gradient(180deg, #d7ecd9 0%, #a8d5ba 30%, #5b9a7d 60%, #2d5f4a 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        .container {
+            max-width: 850px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 30px;
+            padding: 40px;
+            box-shadow: 0 25px 80px rgba(0,0,0,0.15);
+        }
+        .header {
+            text-align: center;
+            padding: 30px 0;
+            background: linear-gradient(135deg, #1b4332 0%, #40916c 50%, #f4a261 100%);
+            border-radius: 20px;
+            margin-bottom: 30px;
+        }
+        .header h1 {
+            font-size: 44px;
+            color: white;
+            text-shadow: 3px 3px 6px rgba(0,0,0,0.25);
+        }
+        .subtitle {
+            font-size: 20px;
+            color: rgba(255,255,255,0.95);
+            padding: 0 20px;
+        }
+        h2 {
+            font-size: 29px;
+            color: #14342a;
+            margin: 40px 0 20px;
+            padding: 15px 25px;
+            background: linear-gradient(90deg, #b7e4c7 0%, #ffd6a5 100%);
+            border-radius: 15px;
+            display: inline-block;
+        }
+        p {
+            font-size: 20px;
+            line-height: 2;
+            color: #22332c;
+            margin-bottom: 20px;
+            text-align: justify;
+        }
+        .image-container {
+            width: 100%;
+            margin: 30px 0;
+            text-align: center;
+        }
+        .dino-image {
+            width: 100%;
+            border-radius: 20px;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.2);
+        }
+        .image-caption {
+            color: #4d5f56;
+            font-size: 16px;
+            margin-top: 15px;
+            font-style: italic;
+            background: #e8f3ea;
+            display: inline-block;
+            padding: 8px 20px;
+            border-radius: 20px;
+        }
+        .fun-fact {
+            background: linear-gradient(135deg, #1b4332 0%, #40916c 100%);
+            color: white;
+            padding: 25px;
+            border-radius: 20px;
+            margin: 25px 0;
+            font-size: 18px;
+            line-height: 1.8;
+        }
+        .fun-fact.pink {
+            background: linear-gradient(135deg, #d67c9a 0%, #b04a6a 100%);
+        }
+        .fun-fact.green {
+            background: linear-gradient(135deg, #43aa8b 0%, #2a9d8f 100%);
+        }
+        .fun-fact.orange {
+            background: linear-gradient(135deg, #e08e4f 0%, #c96a3e 100%);
+        }
+        .fun-fact.purple {
+            background: linear-gradient(135deg, #7a6bb5 0%, #5a4a94 100%);
+        }
+        .fun-fact-title {
+            font-size: 22px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        .quiz-section {
+            background: linear-gradient(135deg, #e6f2ea 0%, #ffe3c9 100%);
+            padding: 30px;
+            border-radius: 20px;
+            margin: 30px 0;
+        }
+        .quiz-title {
+            font-size: 28px;
+            color: #2d6a4f;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .quiz-question {
+            background: white;
+            padding: 20px;
+            border-radius: 15px;
+            margin: 15px 0;
+            font-size: 18px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        .quiz-question .q-stem {
+            font-weight: bold;
+            margin-bottom: 10px;
+            line-height: 1.6;
+        }
+        .quiz-question .q-opts {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+        .quiz-question .q-opts li {
+            padding: 8px 12px;
+            margin: 6px 0;
+            background: #f8f9fa;
+            border-radius: 10px;
+            line-height: 1.55;
+        }
+        .quiz-question .q-opts li::before {
+            content: attr(data-k) ". ";
+            font-weight: bold;
+            color: #2d6a4f;
+        }
+        .quiz-question .q-ans {
+            margin-top: 10px;
+            font-size: 16px;
+            color: #636e72;
+        }
+        .quiz-question .q-ans summary {
+            cursor: pointer;
+            color: #0984e3;
+            font-weight: 600;
+            outline: none;
+        }
+        .quiz-question .q-ans p {
+            margin: 8px 0 0;
+            padding: 10px 12px;
+            background: #f0f7ff;
+            border-left: 4px solid #0984e3;
+            border-radius: 8px;
+            line-height: 1.6;
+        }
+        .ending {
+            text-align: center;
+            padding: 40px 0;
+            margin-top: 40px;
+            background: linear-gradient(135deg, #d8ecdf 0%, #ffe3c9 100%);
+            border-radius: 20px;
+        }
+        .ending h3 { font-size: 32px; color: #14342a; }
+        .ending p { text-align: center; font-size: 18px; color: #4d5f56; }
+        .back-home-btn {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 14px 30px;
+            background: rgba(0,0,0,0.08);
+            color: #22332c;
+            text-decoration: none;
+            border-radius: 25px;
+            font-size: 18px;
+            border: 2px solid rgba(0,0,0,0.15);
+            transition: background 0.3s, transform 0.2s;
+        }
+        .back-home-btn:hover { background: rgba(0,0,0,0.15); transform: translateY(-2px); }
+        @media (max-width: 600px) {
+            .container { padding: 20px; }
+            .header h1 { font-size: 28px; }
+            h2 { font-size: 23px; }
+            p { font-size: 18px; }
+        }
+    </style>
+<!-- sharecode-passthrough:start -->
+<script>
+(function(){
+  var K='rourou_sc';
+  var SC=null, cur=null;
+  try{
+    cur=new URLSearchParams(location.search).get('sharecode');
+    if(cur){ SC=cur; try{ sessionStorage.setItem(K,cur); }catch(e){} }
+    else { try{ SC=sessionStorage.getItem(K); }catch(e){} }
+  }catch(e){}
+  if(!SC) return;
+
+  // 站内地址补 sharecode；站外/已带参/非 http 返回 null
+  function withSC(u){
+    if(!u) return null;
+    try{
+      var x=new URL(u, location.href);
+      if(x.protocol!=='http:' && x.protocol!=='https:') return null;
+      if(x.origin!==location.origin) return null;
+      if(x.searchParams.get('sharecode')===SC) return null;
+      x.searchParams.set('sharecode',SC);
+      return x.href;
+    }catch(e){ return null; }
+  }
+
+  // 无参进入时补参数跳转（脚本捕获不到的情况兜底）
+  if(!cur){
+    var self=withSC(location.href);
+    if(self && !/[?&]sharecode=/.test(location.search)){
+      location.replace(self);
+      return;
+    }
+  }
+
+  // ① 点击拦截：先于站内任何处理器，动态渲染的卡片也覆盖
+  document.addEventListener('click', function(e){
+    var t=e.target;
+    while(t && t!==document && t.tagName!=='A') t=t.parentNode;
+    if(!t || t===document) return;
+    if(t.target && t.target!=='_self') return;
+    var h=t.getAttribute('href');
+    if(!h || /^(mailto:|tel:|javascript:|#)/i.test(h)) return;
+    var nu=withSC(t.href);
+    if(!nu) return;
+    e.preventDefault();
+    e.stopPropagation();
+    location.href=nu;
+  }, true);
+
+  // ② 静态与动态插入的资源统一补参
+  var ATTRS=['src','href','poster','srcset'];
+  var SEL='img[src],img[srcset],video[src],video[poster],audio[src],source[src],source[srcset],'+
+          'script[src],link[rel=stylesheet][href],link[rel=preload][href],a[href]';
+  function fixOne(el,attr){
+    var v=el.getAttribute(attr);
+    if(!v) return;
+    if(attr==='srcset'){
+      var changed=false;
+      var parts=v.split(',').map(function(x){
+        var t=x.trim().split(/\s+/);
+        if(!t[0]) return x;
+        var nu=withSC(t[0]);
+        if(nu){ t[0]=nu; changed=true; }
+        return t.join(' ');
+      });
+      if(changed) el.setAttribute('srcset',parts.join(', '));
+      return;
+    }
+    var nu=withSC(v);
+    if(nu) el.setAttribute(attr,nu);
+  }
+  function fixEl(el){
+    for(var k=0;k<ATTRS.length;k++){
+      if(el.hasAttribute && el.hasAttribute(ATTRS[k])) fixOne(el,ATTRS[k]);
+    }
+  }
+  function fix(root){
+    var scope=(root&&root.querySelectorAll)?root:document;
+    var els=scope.querySelectorAll(SEL);
+    for(var i=0;i<els.length;i++) fixEl(els[i]);
+  }
+
+  // ③ 资源加载失败时补参重试一次（防漏网）
+  document.addEventListener('error', function(e){
+    var el=e.target;
+    if(!el||!el.tagName) return;
+    var tag=el.tagName;
+    if(tag!=='IMG'&&tag!=='VIDEO'&&tag!=='SOURCE'&&tag!=='AUDIO') return;
+    if(el.getAttribute('data-sc-retry')) return;
+    var nu=withSC(el.getAttribute('src')||'');
+    if(!nu) return;
+    el.setAttribute('data-sc-retry','1');
+    el.setAttribute('src',nu);
+  }, true);
+
+  function boot(){
+    fix(document);
+    try{
+      new MutationObserver(function(ms){
+        for(var i=0;i<ms.length;i++){
+          var added=ms[i].addedNodes;
+          for(var j=0;j<added.length;j++){
+            var n=added[j];
+            if(n.nodeType!==1) continue;
+            fixEl(n);
+            if(n.querySelectorAll) fix(n);
+          }
+        }
+      }).observe(document.documentElement,{childList:true,subtree:true});
+    }catch(e){}
+  }
+  if(document.readyState==='loading') document.addEventListener('DOMContentLoaded',boot);
+  else boot();
+})();
+</script>
+<!-- sharecode-passthrough:end -->
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>霜打菜变甜，糖没多只是换了形状</h1>
+            <p class="subtitle">2024 年春节，霜打菠菜卖到断货。测定说它的糖翻了倍，总碳水却几乎没变</p>
+        </div>
+
+        <div class="image-container">
+            <img src="scene_01.webp" alt="儿童卡通风格：霜降清晨的菜地，青菜叶片上覆着一层白霜，一个孩子蹲在田埂边伸手摸叶子" class="dino-image">
+            <div class="image-caption">叶子背面那层白，是水汽直接凝成的冰晶</div>
+        </div>
+
+        <h2>第一章 · 霜降后第三天，菜叶上结了一层白</h2>
+
+        <p>霜降在十月二十三日前后。这个节气一过，长江边的菜地会变个样。</p>
+
+        <p>清晨六点，露水在菜叶背面结成一层白。用手一抹，是凉的细粉，就像撒了层细盐。</p>
+
+        <p>地里的上海青，三天前还硬挺着。现在掐一下叶柄，脆，但带着点软。</p>
+
+        <p>老菜农管这叫霜打菜。他们知道该收了，再晚几天就要坏事。</p>
+
+        <p>「霜打的青菜分外甜」这句老话，古书里有影子。西晋的陆机写过，苦菜经霜之后「甜脆而美」。</p>
+
+        <p>但变甜的原因，跟多数人想的不一样。</p>
+
+        <p>糖并没有凭空变多。</p>
+
+        <p>一棵青菜长成之后，体内存下的总碳是固定的。变的是形状：原本不甜的淀粉，被拆成了甜的糖。</p>
+
+        <p>2024 年 2 月，春节前后。电商平台的霜打菠菜、霜打白萝卜卖到断货。央视网那篇报道里，天津农学院的王丽娟教授给的解释也是这样：淀粉水解成糖，总量没增。</p>
+
+        <p>这一篇讲清两件事：拆淀粉为什么能防冻；同样是青菜，夏天那批为什么反而苦。</p>
+
+        <div class="fun-fact">
+            <div class="fun-fact-title">🌡 霜不是天上掉下来的</div>
+            霜是近地面的水汽直接凝成的冰晶。它只要一个条件：地面温度降到 0℃ 附近。晴朗无风的夜里最容易结霜，因为地面散热最快，像没盖被子的床。
+        </div>
+
+        <h2>第二章 · 淀粉拆成糖，是给自己造防冻液</h2>
+
+        <p>先认识淀粉。它是一长串葡萄糖，串得很紧。不溶于水，也没有甜味。</p>
+
+        <p>葡萄糖就是糖最小的那个单位。把它串起来是淀粉，拆开来就是甜的。</p>
+
+        <p>干这活的是淀粉酶。酶就是一类专门给化学反应加速的蛋白质，好比一把剪刀。</p>
+
+        <p>温度一低，这把剪刀反而更忙。有测定显示，霜打之后淀粉酶的活性提高约 1.8 倍。</p>
+
+        <p>链被一段段剪开。先成麦芽糖，再成葡萄糖。</p>
+
+        <p>这时的青菜，内部换了一副样子。淀粉占总干重的比例，从约 20% 降到 8% 以下。可溶性糖则从 6% 升到 14% 左右。相当于存货里有三分之二换了形态。</p>
+
+        <p>同一批物质，只是换了个形态。</p>
+
+        <p>为什么要换？</p>
+
+        <p>因为淀粉不溶于水，糖溶于水。</p>
+
+        <p>细胞就是生物体最小的结构单位，里面装的是水。糖溶进去，水里的东西变多了。
+
+这个变化叫浓度升高。浓度就是同样多的水里，溶了多少东西。浓度一高，冰点就往下走。</p>
+
+        <p>换算一下：水里每多溶 1 摩尔每千克的糖，冰点只降 1.86℃。一摩尔糖约 180 克，差不多一小碗。要让冰点降 5℃，得溶进去三小碗。</p>
+
+        <p>这是按理想溶液算的。真实细胞液里还有盐、氨基酸和蛋白，情况更复杂。但方向没错：溶得越多，越不容易结冰。</p>
+
+        <p>冬天给汽车加防冻液，是同一个思路。乙二醇溶进水里，冰点能压到零下三十几度。</p>
+
+        <p>青菜买不起乙二醇。它只能自己造糖。</p>
+
+        <p>还有第二笔账。</p>
+
+        <p>低温下，植物的呼吸也慢了。呼吸好比烧柴取暖，烧的就是糖。</p>
+
+        <p>白天光合作用造的糖，夜里本该烧掉一部分。天冷了，烧得少，剩下的就攒下来。</p>
+
+        <p>光合作用就是用光把水和二氧化碳拼成糖，这是植物所有的收入来源。</p>
+
+        <p>一边拆淀粉，一边少消耗。两个动作同一个方向，糖就厚了。</p>
+
+        <p>糖够多，水就不容易冻。可细胞里除了水，还有别的东西。</p>
+
+        <p>光靠糖，够吗？</p>
+
+        <div class="fun-fact orange">
+            <div class="fun-fact-title">🍬 土豆放冰箱也会变甜</div>
+            同一个机制。生土豆放进 4℃ 的冰箱，几天后炒出来是甜的。低温把淀粉拆成了糖，厨师反而怕这个。
+        </div>
+
+        <h2>第三章 · 糖不够用，还得靠第二套装备</h2>
+
+        <p>要讲清楚这一章，得先看细胞长什么样。</p>
+
+        <p>植物细胞外面围着一圈细胞壁，硬的。里面是一层细胞膜，薄，像一层油。</p>
+
+        <p>水结冰，体积会涨。涨在细胞外面，和涨在细胞里面，后果完全不同。</p>
+
+        <p>先说外面。</p>
+
+        <p>温度往下走，冰先在细胞壁和细胞膜之间的缝隙里长出来。那里水多，又宽松。</p>
+
+        <p>冰一长，就把周围的水吸过去。细胞里的水被抽走，细胞开始瘪。</p>
+
+        <p>这看起来糟糕，其实还有救。细胞膜没破，等温度回来，水能重新吸回去。</p>
+
+        <p>再说里面。</p>
+
+        <p>温度跌得太狠，冰会直接在细胞内部结。这里的冰晶像小刀，四面都有棱。</p>
+
+        <p>细胞膜只有几纳米厚。纳米就是毫米的一百万分之一，几纳米大约是一根头发直径的万分之一。冰晶一顶，就破了。</p>
+
+        <p>破了就回不来。里面的东西漏出去，接触空气，氧化变黑。</p>
+
+        <p>这就是霜打和冻伤的分界。同一个降温，一个变甜，一个烂掉。</p>
+
+        <p>除了糖，植物还会备几样东西。</p>
+
+        <p>一样是脯氨酸。它是一种氨基酸，氨基酸就是拼蛋白质的积木。脯氨酸能把水分子抓住。它的效果，好比在一排整齐的砖里塞进几个歪的，冰就排不成格子。
+
+实验室里的观测显示，把青菜放在零下几度处理几天，这套装备会一样样上线。</p>
+
+        <p>一样是可溶性蛋白。其中有一类叫脱水素，名字就是它的工作：在脱水的时候护住膜。</p>
+
+        <p>还有抗冻蛋白。它会贴在小的冰晶表面，让冰晶长不大。</p>
+
+        <p>膜本身也会改。低温下，膜里的不饱和脂肪酸比例升高。不饱和的意思是链上多几个拐弯，拐弯多了不容易冻硬。</p>
+
+        <p>这些装备不是霜降那天临时造的。它们要几天时间，一样一样攒出来。</p>
+
+        <p>所以「霜打」是个过程，不是一瞬间的事。</p>
+
+        <p>那么，为什么同一片地，夏天长出来的菜是苦的？</p>
+
+        <div class="fun-fact green">
+            <div class="fun-fact-title">🧊 冻豆腐为什么全是洞</div>
+            豆腐里的水结成冰晶，把结构撑开。化冻后水走了，留下一个个空洞。植物被冻伤是同一个道理，只是撑破的是细胞膜，没法复原。
+        </div>
+
+        <h2>第四章 · 苦味是另一笔账，夏天在往反方向走</h2>
+
+        <p>现在说苦。</p>
+
+        <p>我们常吃的青菜，多数属于十字花科：白菜、芥菜、油菜、萝卜、菜心。</p>
+
+        <p>这一科有一个共同的化学特征。它们体内有芥子油苷，这是一类含硫的次生代谢物。次生代谢物就是植物专门造出来、不用于生长的那些化学物质。</p>
+
+        <p>芥子油苷本身不苦。它和黑芥子酶分开放，一个在液泡里，一个在细胞质里。液泡是细胞里装水的大袋子，细胞质是袋子外面的空间。</p>
+
+        <p>细胞完整的时候，两者碰不到。</p>
+
+        <p>细胞一破，就碰上了。好比两个分开放的化学品，罐子一碎就混到一起。切开、咀嚼、或者被霜冻伤，都会破。</p>
+
+        <p>黑芥子酶一接手，芥子油苷就分解。产物里有异硫氰酸酯，苦，而且辣。</p>
+
+        <p>这是植物的防身术。虫子咬一口，辣得受不了，下次就不来了。</p>
+
+        <p>人尝到的苦，是这套武器的一个副产品。</p>
+
+        <p>温度在这里起什么作用？</p>
+
+        <p>低温下，芥子油苷的合成会放慢。有测定给出这样一组数：霜打前，青菜的总芥子油苷在 1.2 到 1.6 微摩尔每克。霜打后，降到 0.4 到 0.6。</p>
+
+        <p>少了差不多六成。</p>
+
+        <p>糖在涨，苦味物质在落。两个方向一起走，甜就显得更突出。</p>
+
+        <p>那夏天呢？</p>
+
+        <p>夏天是反方向。气温高，硫苷合成活跃。有报道说，日均温超过 25℃ 之后，油菜的总芥子油苷能提高三成以上。</p>
+
+        <p>还有第二笔账，跟糖有关。</p>
+
+        <p>夏天青菜长得快。从种到收，25 到 30 天就够，差不多一个月。</p>
+
+        <p>秋冬要慢得多，得 60 到 90 天，是夏天的两三倍。</p>
+
+        <p>长得快，糖就攒不够。同样的苦味物质，糖少的时候更显苦。</p>
+
+        <p>这不是味觉的错觉，是浓度比的问题。</p>
+
+        <p>第三笔账是抽薹。</p>
+
+        <p>天一热，青菜会从长叶子转向开花。茎往上窜，这叫抽薹。</p>
+
+        <p>抽薹之后，叶片开始老化。纤维素和木质素增多，这两样是植物的骨架材料，嚼起来发柴。</p>
+
+        <p>所以夏天那盘青菜的苦，是三件事叠在一起：硫苷多、糖少、叶子老。</p>
+
+        <p>这里要说一句不确定的。</p>
+
+        <p>2025 年，《浙江农业学报》登了一篇研究。作者拿 20 份叶用芥菜，比较夏天和秋冬两季。</p>
+
+        <p>结果有点出乎意料。夏季芥菜的芥子油苷、可溶性糖、抗坏血酸，都显著高于秋冬季。</p>
+
+        <p>更意外的是后面一句：大多数夏季芥菜确实有苦味，可苦味跟芥子油苷这些指标对不上号。</p>
+
+        <p>也就是说，苦不只来自芥子油苷。还有别的物质在起作用，具体是哪几种，学界还在找，尚未确定。</p>
+
+        <p>科学里常有这种事。一个解释听起来很顺，数据一细看，还有一半没说清。</p>
+
+        <p>那低温到底改了什么？把菜塞进冰箱行不行？</p>
+
+        <div class="fun-fact pink">
+            <div class="fun-fact-title">🥬 大棚菜为什么不如露天</div>
+            同一个品种，大棚里种出来的萝卜白菜，口感不如露天打过霜的。缺的主要是昼夜温差：白天造糖，夜里低温少消耗。
+        </div>
+
+        <h2>第五章 · 霜和冻伤之间，只隔几度</h2>
+
+        <p>甜这件事，只在特定条件下成立。</p>
+
+        <p>第一条边界：不是所有菜都扛得住。</p>
+
+        <p>能霜打的是抗寒蔬菜。白菜、菠菜、芥菜、萝卜、菜心、上海青，这一类。</p>
+
+        <p>喜温蔬菜不行。番茄、茄子、黄瓜、辣椒、豆角，原产热带亚热带，没有拆淀粉抗冻这套本事。</p>
+
+        <p>一遇霜冻，它们的细胞膜会发生相变，里面的东西渗漏出来。表现是水渍状、褐变、发蔫。</p>
+
+        <p>第二条边界：温度过了就是冻伤。</p>
+
+        <p>轻霜在零下 2 到 5℃ 之间，菜还能扛。再低，或者冻的时间太长，细胞里的冰晶大面积长起来，膜被成片刺破。</p>
+
+        <p>这时的菜叶会软烂、发黑，还有不正常的苦味。已经不是好不好吃的问题，是不能吃了。</p>
+
+        <p>所以霜打菜贵，贵在窗口短。菜农得在转化完成、冻伤之前的那几天收完。</p>
+
+        <p>第三条边界：冰箱做不出霜打菜。</p>
+
+        <p>家用冰箱能降温，但给不了三样东西。</p>
+
+        <p>一是活体代谢。采收后的菜，光合停了，造不出新糖，只能消耗。</p>
+
+        <p>二是昼夜温差。霜打的关键是白天造、夜里省。冰箱里恒温，这个循环断了。</p>
+
+        <p>三是结霜的条件。霜要在地面附近形成，得有水汽，还得让地面的热散得快。冰箱的冷是另一套机制。</p>
+
+        <p>代价也说一句。霜打菜的细胞已经受过一次伤，不耐放。买回来最好几天内吃完，别囤。</p>
+
+        <p>还没解决的问题，有两个。</p>
+
+        <p>一个是苦味的确切来源。前面那篇研究已经说明，芥子油苷解释不了一切。剩下的部分是什么，还在找。</p>
+
+        <p>另一个是最佳采收期。霜打几天最甜？不同品种、不同地区，答案不一样。目前主要靠经验，误差可能有一两天。</p>
+
+        <p>想往下走，可以看两个方向。</p>
+
+        <p>一个是冻梨。东北的秋天摘下来，又硬又涩。冻过再化，变软变甜。用的也是这套办法，只是对象换成了水果。</p>
+
+        <p>另一个是热带水果为什么怕冰箱。比如香蕉、芒果，放进去几天就发黑。原因和番茄被霜打一样：它们是喜温的，低温对它们不是锻炼，是伤害。</p>
+
+        <p>同一套物理，两个方向。</p>
+
+        <div class="fun-fact purple">
+            <div class="fun-fact-title">🍐 冻梨变甜，账是一样的</div>
+            低温把淀粉拆成糖，也把细胞壁里的果胶拆松了。所以冻梨化开之后又甜又软，咬一口汁水就流下来。
+        </div>
+
+        <div class="quiz-section" data-quiz="2">
+            <div class="quiz-title">🎯 互动小测试</div>
+
+            <div class="quiz-question" data-answer="B">
+                <p class="q-stem">霜打菜吃起来更甜，主要原因是什么？</p>
+                <ul class="q-opts">
+                    <li data-k="A">低温让青菜新造出了大量糖分</li>
+                    <li data-k="B">原有的淀粉被拆成了可溶的糖</li>
+                    <li data-k="C">菜里的水分蒸发，甜味被浓缩了</li>
+                    <li data-k="D">霜本身带一点甜味渗进了叶片</li>
+                </ul>
+                <details class="q-ans"><summary>看答案</summary>
+                    <p><b>B</b>　解析：总碳是固定的。变的是形态，淀粉水解成葡萄糖、蔗糖和果糖，能溶于水，舌头就尝到甜。</p>
+                </details>
+            </div>
+
+            <div class="quiz-question" data-answer="C">
+                <p class="q-stem">糖溶进细胞液之后，为什么能让菜抗冻？</p>
+                <ul class="q-opts">
+                    <li data-k="A">糖会发热，把冰晶融化掉</li>
+                    <li data-k="B">糖把水完全吸干，没有水可冻</li>
+                    <li data-k="C">溶液浓度升高，冰点跟着下降</li>
+                    <li data-k="D">糖在叶面结一层膜挡住冷空气</li>
+                </ul>
+                <details class="q-ans"><summary>看答案</summary>
+                    <p><b>C</b>　解析：水里每多溶 1 摩尔每千克的糖，冰点大约降 1.86℃。溶质越多，越不容易结冰，汽车防冻液是同一个道理。</p>
+                </details>
+            </div>
+
+            <div class="quiz-question" data-answer="D">
+                <p class="q-stem">霜打和冻伤的分界，落在哪件事上？</p>
+                <ul class="q-opts">
+                    <li data-k="A">霜是白的还是透明的一层</li>
+                    <li data-k="B">发生在地面还是在叶面上</li>
+                    <li data-k="C">温度降到了零上还是零下</li>
+                    <li data-k="D">冰晶长在细胞外还是内</li>
+                </ul>
+                <details class="q-ans"><summary>看答案</summary>
+                    <p><b>D</b>　解析：冰在外面长，细胞脱水但膜完好，回暖能恢复。冰在细胞内部长，会刺破只有几纳米厚的膜，不可逆。</p>
+                </details>
+            </div>
+
+            <div class="quiz-question" data-answer="A">
+                <p class="q-stem">夏天青菜苦味重，下面哪条不是主要原因？</p>
+                <ul class="q-opts">
+                    <li data-k="A">夏天的青菜含糖量比冬天更高</li>
+                    <li data-k="B">高温让芥子油苷的合成更活跃</li>
+                    <li data-k="C">生长周期短，糖分来不及积累</li>
+                    <li data-k="D">天热抽薹，叶片老化纤维变多</li>
+                </ul>
+                <details class="q-ans"><summary>看答案</summary>
+                    <p><b>A</b>　解析：夏天长得快，糖攒得少，不是更多。糖少时同样的苦味物质更显苦，这是浓度比的问题。</p>
+                </details>
+            </div>
+
+            <div class="quiz-question" data-answer="B">
+                <p class="q-stem">把青菜放进家用冰箱，为什么做不出霜打菜？</p>
+                <ul class="q-opts">
+                    <li data-k="A">冰箱的温度太低，会把菜直接冻坏</li>
+                    <li data-k="B">菜已采收，光合停了也没温差</li>
+                    <li data-k="C">冰箱里湿度太高，糖会被稀释掉</li>
+                    <li data-k="D">冰箱的冷气会带走叶片的淀粉</li>
+                </ul>
+                <details class="q-ans"><summary>看答案</summary>
+                    <p><b>B</b>　解析：霜打靠的是白天造糖、夜里少消耗这个循环。采收后光合停了，冰箱里又是恒温，两个条件都缺。</p>
+                </details>
+            </div>
+        </div>
+
+        <div class="ending">
+            <h3>—— 完 ——</h3>
+            <p>谢谢阅读。希望你学到了很多知识。</p>
+            <p style="margin-top: 10px; font-size: 14px; color: #b2bec3;">本故事由 AI 助手小巴为小朋友精心制作 🚌</p>
+            <div style="text-align: left; margin-top: 15px;">
+                <a href="../index.html" class="back-home-btn">🏠 返回首页</a>
+            </div>
+        </div>
+    </div>
+
+<!-- rourou-home-btn:start -->
+<style>
+#rourou-home-btn{position:fixed;left:14px;bottom:calc(14px + env(safe-area-inset-bottom,0px));z-index:9999;
+display:inline-flex;align-items:center;gap:6px;padding:10px 18px;border-radius:999px;
+background:rgba(255,255,255,0.92);color:#2d3436;font-size:15px;font-weight:600;
+text-decoration:none;box-shadow:0 4px 14px rgba(0,0,0,0.18);border:1px solid rgba(0,0,0,0.08);
+-webkit-backdrop-filter:blur(4px);backdrop-filter:blur(4px);transition:transform .15s,background .15s;}
+#rourou-home-btn:hover{background:#fff;transform:translateY(-2px);}
+@media (max-width:600px){#rourou-home-btn{padding:9px 14px;font-size:13px;left:10px;bottom:calc(10px + env(safe-area-inset-bottom,0px));}}
+/* 页面自带左下角悬浮按钮（如讲义的「↑ 返回目录」）时上移让位，避免两个按钮叠在一起 */
+.fab{bottom:calc(66px + env(safe-area-inset-bottom,0px)) !important;}
+@media (max-width:919px){.fab{bottom:calc(58px + env(safe-area-inset-bottom,0px)) !important;}}
+</style>
+<a id="rourou-home-btn" href="../index.html">🏠 首页</a>
+<!-- rourou-home-btn:end -->
+</body>
+</html>
