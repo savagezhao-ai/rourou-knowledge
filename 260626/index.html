@@ -346,9 +346,34 @@ background:rgba(255,255,255,0.92);color:#2d3436;font-size:15px;font-weight:600;
 text-decoration:none;box-shadow:0 4px 14px rgba(0,0,0,0.18);border:1px solid rgba(0,0,0,0.08);
 -webkit-backdrop-filter:blur(4px);backdrop-filter:blur(4px);transition:transform .15s,background .15s;}
 #rourou-home-btn:hover{background:#fff;transform:translateY(-2px);}
-@media (max-width:600px){#rourou-home-btn{padding:9px 14px;font-size:13px;left:10px;bottom:calc(10px + env(safe-area-inset-bottom,0px));}}
+/* 融合站按钮：深色一颗，表示"去上一层门户"，与白色的站内首页区分开 */
+#rourou-portal-btn{position:fixed;left:14px;bottom:calc(66px + env(safe-area-inset-bottom,0px));z-index:9999;
+display:inline-flex;align-items:center;gap:6px;padding:9px 16px;border-radius:999px;
+background:rgba(45,52,54,0.82);color:#fff;font-size:14px;font-weight:600;letter-spacing:.2px;
+text-decoration:none;box-shadow:0 4px 14px rgba(0,0,0,0.22);border:1px solid rgba(255,255,255,0.20);
+-webkit-backdrop-filter:blur(4px);backdrop-filter:blur(4px);transition:transform .15s,background .15s;}
+#rourou-portal-btn:hover{background:rgba(45,52,54,0.94);transform:translateY(-2px);}
+@media (max-width:600px){
+  #rourou-home-btn{padding:9px 14px;font-size:13px;left:10px;bottom:calc(10px + env(safe-area-inset-bottom,0px));}
+  #rourou-portal-btn{padding:8px 13px;font-size:12.5px;left:10px;bottom:calc(60px + env(safe-area-inset-bottom,0px));}
+}
+/* 页面自带左下角悬浮按钮（如讲义的「↑ 返回目录」）时上移让位，避免按钮叠在一起 */
+.fab{bottom:calc(120px + env(safe-area-inset-bottom,0px)) !important;}
+@media (max-width:919px){.fab{bottom:calc(112px + env(safe-area-inset-bottom,0px)) !important;}}
 </style>
 <a id="rourou-home-btn" href="../index.html">🏠 首页</a>
+<a id="rourou-portal-btn" href="../../index.html">🏛 融合站</a>
+<script>
+/* 融合站只在 NAS 部署里有（站点根 /index.html）；GitHub Pages 那边是 404。
+   探一次 HEAD，探不到就收起来，免得线上留一颗死链按钮。 */
+(function () {
+    var a = document.getElementById('rourou-portal-btn');
+    if (!a || !window.fetch) return;
+    fetch(a.getAttribute('href'), { method: 'HEAD' }).then(function (r) {
+        if (!r.ok) a.parentNode.removeChild(a);
+    }).catch(function () { a.parentNode.removeChild(a); });
+})();
+</script>
 <!-- rourou-home-btn:end -->
 </body>
 </html>

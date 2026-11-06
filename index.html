@@ -22,6 +22,9 @@
         .action-btn.quiz:hover { transform: translateY(-2px); box-shadow: 0 10px 28px rgba(102,126,234,0.45); }
         .action-btn.qr { background: #e8f7ee; color: #16794a; border-color: #c8e9d6; text-decoration: none; }
         .action-btn.qr:hover { background: #d7f0e3; transform: translateY(-2px); box-shadow: 0 8px 22px rgba(22,121,74,0.20); }
+        /* 回到上层「本地融合站」门户；发布到没有融合站的地方时脚本会把它收起来 */
+        .action-btn.portal { background: #2d3436; color: #fff; text-decoration: none; }
+        .action-btn.portal:hover { background: #1b2123; transform: translateY(-2px); box-shadow: 0 8px 22px rgba(0,0,0,0.28); }
         .action-btn .badge { font-size: 11px; background: rgba(255,255,255,0.28); padding: 2px 8px; border-radius: 10px; }
 
         /* 老人分类：暖色，与其它分类区分 */
@@ -309,6 +312,7 @@
             <h1>🏛️ 肉肉的 AI 科研小站</h1>
             <p class="subtitle">全 AI 制作的社区科技馆 · 写给爷爷奶奶，也写给小朋友</p>
             <div class="header-actions">
+                <a class="action-btn portal" id="portal-back" href="../index.html">← 融合站</a>
                 <button class="action-btn about" onclick="openAbout()">📖 关于本站</button>
                 <button class="action-btn quiz" onclick="startQuiz()">🧠 科学素养测试</button>
                 <a class="action-btn qr" href="qr/index.html">📱 扫码看站</a>
@@ -858,5 +862,16 @@
 })();
 </script>
 <!-- link-fallback:end -->
+<script>
+/* 「← 融合站」指向站点根（NAS 上的本地融合站）。GitHub Pages 那边根路径是 404，
+   探不到就把这颗按钮收起来，免得线上留一颗死链。 */
+(function () {
+    var a = document.getElementById('portal-back');
+    if (!a || !window.fetch) return;
+    fetch(a.getAttribute('href'), { method: 'HEAD' }).then(function (r) {
+        if (!r.ok) a.parentNode.removeChild(a);
+    }).catch(function () { a.parentNode.removeChild(a); });
+})();
+</script>
 </body>
 </html>
