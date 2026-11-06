@@ -1,0 +1,617 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>无线充电：为什么离得越远越没用</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: "Microsoft YaHei", "PingFang SC", sans-serif;
+            background: linear-gradient(180deg, #ffeaa7 0%, #fab1a0 30%, #ff7675 60%, #fd79a8 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        .container {
+            max-width: 850px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 30px;
+            padding: 40px;
+            box-shadow: 0 25px 80px rgba(0,0,0,0.15);
+        }
+        .header {
+            text-align: center;
+            padding: 30px 0;
+            background: linear-gradient(135deg, #ff6b6b 0%, #feca57 50%, #48dbfb 100%);
+            border-radius: 20px;
+            margin-bottom: 30px;
+        }
+        .header h1 {
+            font-size: 48px;
+            color: white;
+            text-shadow: 3px 3px 6px rgba(0,0,0,0.2);
+        }
+        .subtitle {
+            font-size: 20px;
+            color: rgba(255,255,255,0.95);
+        }
+        h2 {
+            font-size: 32px;
+            color: #2d3436;
+            margin: 40px 0 20px;
+            padding: 15px 25px;
+            background: linear-gradient(90deg, #ff9ff3 0%, #feca57 100%);
+            border-radius: 15px;
+            display: inline-block;
+        }
+        p {
+            font-size: 20px;
+            line-height: 2;
+            color: #2d3436;
+            margin-bottom: 20px;
+            text-align: justify;
+        }
+        .image-container {
+            width: 100%;
+            margin: 30px 0;
+            text-align: center;
+        }
+        .dino-image {
+            display: block;
+            width: 100%;
+            border-radius: 20px;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.2);
+            /* 出图规格 1080×1280；先把图位按这个比例占住，图没生成时也是一块
+               正常大小的淡绿占位，不会塌成一条、也不会是破图图标 */
+            aspect-ratio: 1080 / 1280;
+            object-fit: cover;
+            background: #e9f2ec;
+        }
+        .image-caption {
+            color: #636e72;
+            font-size: 16px;
+            margin-top: 15px;
+            font-style: italic;
+            background: #ffeaa7;
+            display: inline-block;
+            padding: 8px 20px;
+            border-radius: 20px;
+        }
+        .fun-fact {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 25px;
+            border-radius: 20px;
+            margin: 25px 0;
+            font-size: 18px;
+            line-height: 1.8;
+        }
+        .fun-fact.pink {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+        }
+        .fun-fact.green {
+            background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);
+        }
+        .fun-fact.orange {
+            background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);
+        }
+        .fun-fact-title {
+            font-size: 22px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        .divider {
+            text-align: center;
+            font-size: 30px;
+            color: #ddd;
+            margin: 30px 0;
+        }
+        .quiz-section {
+            background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);
+            padding: 30px;
+            border-radius: 20px;
+            margin: 30px 0;
+        }
+        .quiz-title {
+            font-size: 28px;
+            color: #e17055;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .quiz-question {
+            background: white;
+            padding: 20px;
+            border-radius: 15px;
+            margin: 15px 0;
+            font-size: 18px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        /* ── 互动测试 v2 标准块（2026-10-24 起）──────────────────────
+           题目结构见 assets/quiz-block-template.html，答案写在 data-answer。
+           下面这些样式让它在本页正常显示，并让答题页抓取时不受影响。     */
+        .quiz-question .q-stem {
+            font-weight: bold;
+            margin-bottom: 10px;
+            line-height: 1.6;
+        }
+        .quiz-question .q-opts {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+        .quiz-question .q-opts li {
+            padding: 8px 12px;
+            margin: 6px 0;
+            background: #f8f9fa;
+            border-radius: 10px;
+            line-height: 1.55;
+        }
+        .quiz-question .q-opts li::before {
+            content: attr(data-k) ". ";
+            font-weight: bold;
+            color: #e17055;
+        }
+        .quiz-question .q-ans {
+            margin-top: 10px;
+            font-size: 16px;
+            color: #636e72;
+        }
+        .quiz-question .q-ans summary {
+            cursor: pointer;
+            color: #0984e3;
+            font-weight: 600;
+            outline: none;
+        }
+        .quiz-question .q-ans p {
+            margin: 8px 0 0;
+            padding: 10px 12px;
+            background: #f0f7ff;
+            border-left: 4px solid #0984e3;
+            border-radius: 8px;
+            line-height: 1.6;
+        }
+        .ending {
+            text-align: center;
+            padding: 40px 0;
+            margin-top: 40px;
+            background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);
+            border-radius: 20px;
+        }
+        .ending h3 { font-size: 32px; color: #2d3436; }
+        .ending p { text-align: center; font-size: 18px; color: #636e72; }
+        .back-home-btn {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 14px 30px;
+            background: rgba(0,0,0,0.08);
+            color: #2d3436;
+            text-decoration: none;
+            border-radius: 25px;
+            font-size: 18px;
+            border: 2px solid rgba(0,0,0,0.15);
+            transition: background 0.3s, transform 0.2s;
+        }
+        .back-home-btn:hover {
+            background: rgba(0,0,0,0.15);
+            transform: translateY(-2px);
+        }
+        .back-home-btn:active {
+            transform: translateY(0);
+        }
+        @media (max-width: 600px) {
+            .container { padding: 20px; }
+            h1 { font-size: 32px; }
+            h2 { font-size: 24px; }
+            p { font-size: 18px; }
+        }
+    </style>
+<!-- sharecode-passthrough:start -->
+<script>
+(function(){
+  var K='rourou_sc';
+  var SC=null, cur=null;
+  try{
+    cur=new URLSearchParams(location.search).get('sharecode');
+    if(cur){ SC=cur; try{ sessionStorage.setItem(K,cur); }catch(e){} }
+    else { try{ SC=sessionStorage.getItem(K); }catch(e){} }
+  }catch(e){}
+  if(!SC) return;
+
+  // 站内地址补 sharecode；站外/已带参/非 http 返回 null
+  function withSC(u){
+    if(!u) return null;
+    try{
+      var x=new URL(u, location.href);
+      if(x.protocol!=='http:' && x.protocol!=='https:') return null;
+      if(x.origin!==location.origin) return null;
+      if(x.searchParams.get('sharecode')===SC) return null;
+      x.searchParams.set('sharecode',SC);
+      return x.href;
+    }catch(e){ return null; }
+  }
+
+  // 无参进入时补参数跳转（脚本捕获不到的情况兜底）
+  if(!cur){
+    var self=withSC(location.href);
+    if(self && !/[?&]sharecode=/.test(location.search)){
+      location.replace(self);
+      return;
+    }
+  }
+
+  // ① 点击拦截：先于站内任何处理器，动态渲染的卡片也覆盖
+  document.addEventListener('click', function(e){
+    var t=e.target;
+    while(t && t!==document && t.tagName!=='A') t=t.parentNode;
+    if(!t || t===document) return;
+    if(t.target && t.target!=='_self') return;
+    var h=t.getAttribute('href');
+    if(!h || /^(mailto:|tel:|javascript:|#)/i.test(h)) return;
+    var nu=withSC(t.href);
+    if(!nu) return;
+    e.preventDefault();
+    e.stopPropagation();
+    location.href=nu;
+  }, true);
+
+  // ② 静态与动态插入的资源统一补参
+  var ATTRS=['src','href','poster','srcset'];
+  var SEL='img[src],img[srcset],video[src],video[poster],audio[src],source[src],source[srcset],'+
+          'script[src],link[rel=stylesheet][href],link[rel=preload][href],a[href]';
+  function fixOne(el,attr){
+    var v=el.getAttribute(attr);
+    if(!v) return;
+    if(attr==='srcset'){
+      var changed=false;
+      var parts=v.split(',').map(function(x){
+        var t=x.trim().split(/\s+/);
+        if(!t[0]) return x;
+        var nu=withSC(t[0]);
+        if(nu){ t[0]=nu; changed=true; }
+        return t.join(' ');
+      });
+      if(changed) el.setAttribute('srcset',parts.join(', '));
+      return;
+    }
+    var nu=withSC(v);
+    if(nu) el.setAttribute(attr,nu);
+  }
+  function fixEl(el){
+    for(var k=0;k<ATTRS.length;k++){
+      if(el.hasAttribute && el.hasAttribute(ATTRS[k])) fixOne(el,ATTRS[k]);
+    }
+  }
+  function fix(root){
+    var scope=(root&&root.querySelectorAll)?root:document;
+    var els=scope.querySelectorAll(SEL);
+    for(var i=0;i<els.length;i++) fixEl(els[i]);
+  }
+
+  // ③ 资源加载失败时补参重试一次（防漏网）
+  document.addEventListener('error', function(e){
+    var el=e.target;
+    if(!el||!el.tagName) return;
+    var tag=el.tagName;
+    if(tag!=='IMG'&&tag!=='VIDEO'&&tag!=='SOURCE'&&tag!=='AUDIO') return;
+    if(el.getAttribute('data-sc-retry')) return;
+    var nu=withSC(el.getAttribute('src')||'');
+    if(!nu) return;
+    el.setAttribute('data-sc-retry','1');
+    el.setAttribute('src',nu);
+  }, true);
+
+  function boot(){
+    fix(document);
+    try{
+      new MutationObserver(function(ms){
+        for(var i=0;i<ms.length;i++){
+          var added=ms[i].addedNodes;
+          for(var j=0;j<added.length;j++){
+            var n=added[j];
+            if(n.nodeType!==1) continue;
+            fixEl(n);
+            if(n.querySelectorAll) fix(n);
+          }
+        }
+      }).observe(document.documentElement,{childList:true,subtree:true});
+    }catch(e){}
+  }
+  if(document.readyState==='loading') document.addEventListener('DOMContentLoaded',boot);
+  else boot();
+})();
+</script>
+<!-- sharecode-passthrough:end -->
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>无线充电：为什么离得越远越没用</h1>
+            <p class="subtitle">2017 年 9 月，一块 5 瓦的板子让手机不插线就能充。板子和手机之间，只隔 4 毫米。</p>
+        </div>
+        
+        <!-- ══════════════════════════════════════════════════════════════
+             配图是骨架的一部分，不是内容的一部分。
+             5 个 image-container 已经写好在这里，位置固定：
+               scene_01 = 头图
+               scene_02/03/04/05 = 第 2/3/4/5 章末尾各一张
+             你只填两种占位符，不要自己加/删 <img>，也不要写新的 image-container：
+               ALT1~ALT5 = 画面描述（给读屏和搜索用，一句话）
+               CAP1~CAP5 = 图注（一句人话，说这张图在解释什么）
+             第 1 章不配图；第 5 章末尾那张（科幻）就是收尾。
+             ══════════════════════════════════════════════════════════════ -->
+
+        <div class="image-container">
+            <img src="scene_01.webp" alt="手机放在圆形无线充电板上充电的卡通插画" class="dino-image">
+            <div class="image-caption">板子和手机之间没有线，只有看不见的磁场在跑</div>
+        </div>
+
+        
+<h2>第一章 · 一块板子，为什么能不插线就充电</h2>
+
+<p>2017 年 9 月，苹果在加州库比蒂诺发布 iPhone X。这台手机背面换成了玻璃，因为金属会挡住背后的东西。它支持一种 5 瓦的充电方式：把手机放上一块板子，不用插线。</p>
+
+<p>同一时期，星巴克门店的桌面上，已经嵌进了一圈圈的充电标识。</p>
+
+<p>放下手机，屏幕亮起，电池图标旁边多出一个小闪电。没有插头，没有接口，也没有「对准」这个动作。看上去像电自己飘了过去。</p>
+
+<p>可你把手机往旁边挪两厘米。充电停了。垫一本书，隔开三厘米，也停了。</p>
+
+<p>这就有点怪。一根两米长的充电线，能从桌子这头走到那头。一块板子，连一厘米都跨不过去。既然叫「无线」，这段距离为什么这么抠？</p>
+
+<p>要回答它，得先看清板子里到底发生了什么。它不像广播电台那样把能量撒向四周。它更接近变压器，就像电线杆上那个嗡嗡响的铁盒子。不同的是，变压器的两半被强行拆开，中间塞进了空气。</p>
+
+<p>接下来两章要回答的，是两个连着的问题。能量到底是怎么从板子钻进手机的？这个「钻」，为什么必须贴着才算数？</p>
+
+<div class="fun-fact">
+    <div class="fun-fact-title">🧲 一块板子里，其实藏着一排线圈</div>
+    拆开无线充电板，看到的不是一个圆圈，而是一排排摆好的线圈，像蜂窝。手机落在哪一格上方，就让哪一格工作。这样随手一放也能碰上，不用精确摆正。
+</div>
+
+
+        
+<h2>第二章 · 能量过不去，是磁场在里面来回跑</h2>
+
+<p>板子和手机里各有一个线圈，都是铜线绕成的扁圆盘。板子里那个，通的是每秒变十万次左右的交流电。</p>
+
+<p>每变一次方向，线圈周围就冒出一次磁场。磁场就是一股看不见的力，能让附近的铁屑排成队。</p>
+
+<p>这股力穿过空气，穿过手机后盖，落到手机里的线圈上。就像水从一根管子流进另一根，只是这里流的不是水，是力。</p>
+
+<p>线圈里的电子被这股力推着走，于是有了电压。电压就是推动电荷往前走的压力，压力不够，电荷就不动。</p>
+
+<p>这一套，物理学家叫电磁感应。法拉第在 1831 年第一次把它做出来，后来的发电机全靠它。</p>
+
+<p>接下来的问题是：为什么非得用这么快的电，不能直接用家里的电？</p>
+
+<p>家里的电是 50 赫兹，一秒钟变 50 次。线圈里被推出来的电压高低，跟磁场变化的快慢成正比。变化越慢，推出来的电压越低，低到几乎没用。</p>
+
+<p>这就是为什么要把它提上去。频率，就是每秒变化的次数。提到 100 千赫兹，也就是每秒十万次，同样的线圈就能干活了，比家里的电快了两千多倍。</p>
+
+<p>那再快些呢？不行。电流，就是电荷在导线里的流动。电流有个怪脾气：每秒变化的次数越多，它越往导线表面挤，真正导电的面积越小。挤出来的结果就是发热。</p>
+
+<p>高到一定程度，线圈还会变成一根天线，把能量当电波射出去。射出去的能量收不回来，还会干扰旁边的设备。</p>
+
+<p>所以法规给它画了个圈。2023 年，中国发布了一份《无线充电设备无线电管理暂行规定》。手机这类设备，只能工作在 100 到 148.5 千赫兹之间。</p>
+
+<p>额定功率就是它能稳定送出的能量速度，上限是 80 瓦。换算一下，80 瓦的板子给一块 4000 毫安时的电池充电，十几分钟就能充满。这份规定从 2024 年 9 月 1 日起施行。</p>
+
+<div class="fun-fact pink">
+    <div class="fun-fact-title">📻 这个频率，比你家交流电快两千倍</div>
+    中国电网是 50 赫兹，一秒变 50 次。Qi 标准起步就是 87 千赫兹，中国法规允许到 148.5 千赫兹。中间差了两千到三千倍。
+</div>
+
+<p>把这套流程串起来看，它其实就是一台被拆散的变压器。变压器靠一块铁芯把磁场圈住，几乎不漏。无线充电故意抽掉铁芯，让磁场走空气。走空气的代价，就是漏。</p>
+
+<p>漏掉多少，取决于两个线圈隔多远。那么，为什么贴紧一点，它就能补回来？</p>
+
+
+        <div class="image-container">
+            <img src="scene_02.webp" alt="无线充电器内部两个线圈之间磁力线的剖面示意" class="dino-image">
+            <div class="image-caption">发射线圈通上高频交流电，磁场穿过空气打进接收线圈</div>
+        </div>
+
+        
+<h2>第三章 · 隔开 4 毫米可以，隔开 4 厘米就断</h2>
+
+<p>线圈之间的距离，是这套系统里最敏感的一个数。</p>
+
+<p>无线充电板的设计间隙，通常是 4 到 5 毫米。这个尺寸不是随便定的。它刚好够放下一层塑料外壳，再套一个普通手机壳。</p>
+
+<p>为什么不能多给一点？因为磁场跑不远。一个线圈在空间里产生的磁场，强度随距离掉得非常快，大致按距离的三次方衰减。距离翻一倍，强度只剩八分之一。</p>
+
+<p>这跟手电筒不一样。手电筒照十米，光还看得见；照二十米，只是暗了一点。磁场不是这样，它几乎被锁在线圈附近。</p>
+
+<p>真实情况还要更麻烦。发射线圈和接收线圈之间，靠的是耦合。</p>
+
+<p>好比两个人对喊：离得近，听得清；离得远，只剩嗡嗡声。耦合系数，就是这两个人听清彼此的程度。</p>
+
+<p>手机和板子对准、贴紧的时候，耦合系数能做到 0.5 以上。拉开到 4 厘米，这个数会掉到 0.05 以下，效率基本崩掉。</p>
+
+<p>能量在路上还要一层层损耗。适配器把家里的电转成低压直流，损失约一成。板子里的电路再把直流变回高频交流，又损失一些。磁场传过去、接收线圈收回来、手机里整流稳压、最后充进电池，每一道都要扣一点。</p>
+
+<p>把这些乘起来，手机无线充电的总效率大概在 60% 到 80%。有线充电是 85% 到 95%。差的那十几个百分点，全部变成了热。</p>
+
+<p>热是能摸到的。充一会儿，板子和手机背面都温温的，就是这个原因。</p>
+
+<p>位置歪了更糟。漏出去的磁场没被接收线圈接住，就打在附近的金属上，在那里激起涡流，涡流生热。这就是为什么很多充电板会一直闪灯提醒你摆正。</p>
+
+<div class="fun-fact green">
+    <div class="fun-fact-title">📏 手机壳的厚度有讲究</div>
+    3 毫米以内的塑料壳问题不大。金属壳、带磁吸片的壳、里面夹着卡片，都可能让耦合变差。金属会吃掉磁场，卡片里的芯片则可能被加热。
+</div>
+
+<p>那有没有办法把这段距离拉开？</p>
+
+
+        <div class="image-container">
+            <img src="scene_03.webp" alt="线圈间距越大磁场越弱的三段式对比示意图" class="dino-image">
+            <div class="image-caption">贴着时光环饱满，一拉开就只剩一圈暗淡的余辉</div>
+        </div>
+
+        
+<h2>第四章 · 想拉开距离，就得让两个线圈唱同一个调</h2>
+
+<p>2007 年，麻省理工学院的一个团队做了个实验。他们用了两个直径 60 厘米的线圈。两个线圈隔开 2 米，点亮了一盏 60 瓦的灯泡，效率大约 40%。</p>
+
+<p>这个实验用的是另一种办法：磁共振。前面说的耦合，要求两个线圈贴得很近。磁共振不要求。</p>
+
+<p>它让发射和接收两边振动在同一个频率上。好比两个音叉调成同一个音高，敲响一个，另一个会跟着响。</p>
+
+<p>真实情况是：线圈自己有一个固有频率，由它的电感和电容决定。两边调到一样，能量就能在很弱的耦合下传过去，距离能拉到几十厘米。</p>
+
+<p>代价是线圈必须做大，频率还得对得非常准。2007 年那套装置的线圈有 60 厘米宽，塞不进手机。</p>
+
+<p>手机走的是另一条路：靠磁铁对准。</p>
+
+<p>2023 年，无线充电联盟发布了 Qi2 标准，在充电板和手机背面各加一圈磁铁。它的活不是「吸住」，而是「对准」。磁铁把两个线圈的圆心强行拉到一条轴上，位置误差从一两厘米缩到几乎为零。</p>
+
+<p>对齐的好处很直接：耦合系数上去了，效率上去了，发热降下来了。Qi2 标准起初定在 15 瓦，后来往上提到了 25 瓦。</p>
+
+<p>2020 年苹果的 MagSafe 用的是同一套思路。它是 15 瓦，比当时通用的 5 瓦、7.5 瓦高出一截。代价是手机里多了一圈磁铁，机身重了几克。</p>
+
+<p>那能不能干脆隔空几米充电？实验室里能做到，市面上还不行。这中间的差距，下一章说。</p>
+
+<div class="fun-fact orange">
+    <div class="fun-fact-title">🧲 磁吸那一圈，主要不是用来吸的</div>
+    很多人以为磁铁是为了把手机固定住，防止滑落。它真正的活是对准：让两个线圈的圆心落在同一条轴上。对齐之后，同样的功率能少发热，充电也更快。
+</div>
+
+
+        <div class="image-container">
+            <img src="scene_04.webp" alt="未来房间里桌椅地面都能给设备供电的场景" class="dino-image">
+            <div class="image-caption">如果地板里也埋上线圈，距离就不成问题——代价是整间屋子都得改</div>
+        </div>
+
+        
+<h2>第五章 · 省下的那根线，代价记在电表上</h2>
+
+<p>无线充电的方便是真的。但它不是免费的。</p>
+
+<p>第一笔账是效率。前面算过，无线是 60% 到 80%，有线是 85% 到 95%。这就像用两只桶挑水，一只底下有个小孔，路上总要洒掉一些，而洒掉的水你照样付过钱。</p>
+
+<p>换算一下：同样充进 10 瓦时，无线要从插座多取 2 到 4 瓦时。一台手机一年充 365 次，多耗的电大约 1 到 2 度。差不多是一盏 10 瓦的 LED 灯连开一个星期。</p>
+
+<p>第二笔账是发热。效率差的那部分不会消失，它变成热。夏天把手机放在板上充一夜，电池长期处在 35 摄氏度以上，老化会加快。</p>
+
+<p>第三笔账是异物。板子上落了一枚硬币、一串钥匙，或者一张带芯片的卡，磁场会在金属里激起涡流，几十秒就能烫手。所以正规的充电板都带异物检测，靠监测线圈的电感变化或者温度来判断，发现异常就断电。</p>
+
+<p>这一条目前还没有完全解决。轻薄的铝箔、锡纸，检测起来就容易漏过去，而这类东西恰恰常出现在快递包装和零食袋上。</p>
+
+<p>第四笔账关乎另一群人。心脏起搏器、胰岛素泵这类植入设备，对磁场敏感。厂商的说明书一般会写，让使用者和充电板保持 15 厘米以上距离。</p>
+
+<p>然后再加一条法规。中国把手机无线充电的额定功率压在 80 瓦以内。这不是技术做不到，是怕它干扰别的无线电业务。频率是公共资源，用的人多了就得排队。</p>
+
+<p>那真正的隔空充电呢？用射频、用激光，把能量像信号一样发射出去，实验室里有原型。但它卡在同一个地方：能量越分散，能收回来的就越少；想提高功率，就得提高发射强度，而强度是有安全上限的。</p>
+
+<p>所以今天这块板子的边界很清楚：它只在几毫米之内成立，超出这个范围就失效。它解决的是「不用插」这件事，不是「不用靠近」这件事。</p>
+
+<p>至于长期贴在这么强的磁场旁边，对人体有没有影响，目前尚无定论。学界还在做跟踪调查，结论没有出来之前，谨慎一点不吃亏。</p>
+
+<p>再往后一步，问题就变了：如果手机能自己挪到充电板上，那还需要人动手把它放上去吗？</p>
+
+<div class="fun-fact">
+    <div class="fun-fact-title">🔌 板子空着，也在耗电</div>
+    无线充电板不放电手机的时候，并不是完全断电。待机功耗一般在 0.1 到 0.5 瓦，一年累积下来约 1 到 4 度电。不算多，但插着不用确实在走表。
+</div>
+
+
+        <div class="image-container">
+            <img src="scene_05.webp" alt="红外热像下手机与充电板发热的真实照片" class="dino-image">
+            <div class="image-caption">效率差的十几个百分点，最后都变成了摸得到的热</div>
+        </div>
+        
+
+        <div class="quiz-section" data-quiz="2">
+            <div class="quiz-title">🎯 互动小测试</div>
+
+            <div class="quiz-question" data-answer="B">
+                <p class="q-stem">无线充电板和手机之间，能量主要靠什么传过去？</p>
+                <ul class="q-opts">
+                    <li data-k="A">蓝牙信号握手后传输</li>
+                    <li data-k="B">不断变化的磁场</li>
+                    <li data-k="C">静电吸附带的电</li>
+                    <li data-k="D">红外线直接照射</li>
+                </ul>
+                <details class="q-ans"><summary>看答案</summary>
+                    <p><b>B</b>　解析：发射线圈通高频交流电，产生变化的磁场，再在接收线圈里感应出电压。这是法拉第 1831 年就做出来的电磁感应。</p>
+                </details>
+            </div>
+
+            <div class="quiz-question" data-answer="D">
+                <p class="q-stem">为什么无线充电必须把手机贴得很近？</p>
+                <ul class="q-opts">
+                    <li data-k="A">贴紧才不会漏电伤人</li>
+                    <li data-k="B">板子要接触上才通电</li>
+                    <li data-k="C">手机壳挡住了信号</li>
+                    <li data-k="D">磁场随距离衰减极快</li>
+                </ul>
+                <details class="q-ans"><summary>看答案</summary>
+                    <p><b>D</b>　解析：线圈的磁场强度大致按距离的三次方衰减。距离翻一倍，强度只剩八分之一，耦合系数会低到传不动。</p>
+                </details>
+            </div>
+
+            <div class="quiz-question" data-answer="C">
+                <p class="q-stem">中国法规规定手机无线充电的额定功率上限是多少瓦？</p>
+                <ul class="q-opts">
+                    <li data-k="A">50 瓦</li>
+                    <li data-k="B">65 瓦</li>
+                    <li data-k="C">80 瓦</li>
+                    <li data-k="D">120 瓦</li>
+                </ul>
+                <details class="q-ans"><summary>看答案</summary>
+                    <p><b>C</b>　解析：2023 年发布的管理暂行规定把上限定在 80 瓦，2024 年 9 月 1 日起施行。限制的原因是怕干扰其他无线电业务。</p>
+                </details>
+            </div>
+
+            <div class="quiz-question" data-answer="A">
+                <p class="q-stem">Qi2 标准里手机背后那圈磁铁，最主要的作用是什么？</p>
+                <ul class="q-opts">
+                    <li data-k="A">让两个线圈的圆心对齐</li>
+                    <li data-k="B">把手机牢牢吸住，防止它滑落</li>
+                    <li data-k="C">给线圈提供额外电力</li>
+                    <li data-k="D">帮手机加速散热降温</li>
+                </ul>
+                <details class="q-ans"><summary>看答案</summary>
+                    <p><b>A</b>　解析：磁铁把线圈位置误差从一两厘米压到几乎为零。对齐之后耦合系数上升，同样的功率发热更少。</p>
+                </details>
+            </div>
+
+            <div class="quiz-question" data-answer="B">
+                <p class="q-stem">手机放在充电板上会发热，热量主要来自哪里？</p>
+                <ul class="q-opts">
+                    <li data-k="A">电池自身发热，与充电方式无关</li>
+                    <li data-k="B">传输过程中损耗的能量</li>
+                    <li data-k="C">磁铁相互摩擦生热</li>
+                    <li data-k="D">板子内部散热风扇</li>
+                </ul>
+                <details class="q-ans"><summary>看答案</summary>
+                    <p><b>B</b>　解析：无线充电总效率约 60% 到 80%，比有线的 85% 到 95% 低。差出来的那部分没有凭空消失，全都变成了热。</p>
+                </details>
+            </div>
+        </div>
+        
+        <div class="ending">
+            <h3>—— 完 ——</h3>
+            <p>谢谢阅读！希望你学到了很多知识！</p>
+            <p style="margin-top: 10px; font-size: 14px; color: #b2bec3;">本故事由 AI 助手小巴为小朋友精心制作 🚌</p>
+            <div style="text-align: left; margin-top: 15px;">
+                <a href="../index.html" class="back-home-btn">🏠 返回首页</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- rourou-home-btn:start -->
+    <style>
+    #rourou-home-btn{position:fixed;left:14px;bottom:calc(14px + env(safe-area-inset-bottom,0px));z-index:9999;
+    display:inline-flex;align-items:center;gap:6px;padding:10px 18px;border-radius:999px;
+    background:rgba(255,255,255,0.92);color:#2d3436;font-size:15px;font-weight:600;
+    text-decoration:none;box-shadow:0 4px 14px rgba(0,0,0,0.18);border:1px solid rgba(0,0,0,0.08);
+    -webkit-backdrop-filter:blur(4px);backdrop-filter:blur(4px);transition:transform .15s,background .15s;}
+    #rourou-home-btn:hover{background:#fff;transform:translateY(-2px);}
+    @media (max-width:600px){#rourou-home-btn{padding:9px 14px;font-size:13px;left:10px;bottom:calc(10px + env(safe-area-inset-bottom,0px));}}
+    </style>
+    <a id="rourou-home-btn" href="../index.html">🏠 首页</a>
+    <!-- rourou-home-btn:end -->
+</body>
+</html>
