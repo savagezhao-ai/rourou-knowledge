@@ -1,0 +1,659 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>烤焦的那层壳，香和危险是同一件事</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: "Microsoft YaHei", "PingFang SC", sans-serif;
+            background: linear-gradient(180deg, #ffeaa7 0%, #fab1a0 30%, #ff7675 60%, #fd79a8 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        .container {
+            max-width: 850px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 30px;
+            padding: 40px;
+            box-shadow: 0 25px 80px rgba(0,0,0,0.15);
+        }
+        .header {
+            text-align: center;
+            padding: 30px 0;
+            background: linear-gradient(135deg, #ff6b6b 0%, #feca57 50%, #48dbfb 100%);
+            border-radius: 20px;
+            margin-bottom: 30px;
+        }
+        .header h1 {
+            font-size: 48px;
+            color: white;
+            text-shadow: 3px 3px 6px rgba(0,0,0,0.2);
+        }
+        .subtitle {
+            font-size: 20px;
+            color: rgba(255,255,255,0.95);
+        }
+        h2 {
+            font-size: 32px;
+            color: #2d3436;
+            margin: 40px 0 20px;
+            padding: 15px 25px;
+            background: linear-gradient(90deg, #ff9ff3 0%, #feca57 100%);
+            border-radius: 15px;
+            display: inline-block;
+        }
+        p {
+            font-size: 20px;
+            line-height: 2;
+            color: #2d3436;
+            margin-bottom: 20px;
+            text-align: justify;
+        }
+        .image-container {
+            width: 100%;
+            margin: 30px 0;
+            text-align: center;
+        }
+        .dino-image {
+            display: block;
+            width: 100%;
+            border-radius: 20px;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.2);
+            /* 出图规格 1080×1280；先把图位按这个比例占住，图没生成时也是一块
+               正常大小的淡绿占位，不会塌成一条、也不会是破图图标 */
+            aspect-ratio: 1080 / 1280;
+            object-fit: cover;
+            background: #e9f2ec;
+        }
+        .image-caption {
+            color: #636e72;
+            font-size: 16px;
+            margin-top: 15px;
+            font-style: italic;
+            background: #ffeaa7;
+            display: inline-block;
+            padding: 8px 20px;
+            border-radius: 20px;
+        }
+        .fun-fact {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 25px;
+            border-radius: 20px;
+            margin: 25px 0;
+            font-size: 18px;
+            line-height: 1.8;
+        }
+        .fun-fact.pink {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+        }
+        .fun-fact.green {
+            background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);
+        }
+        .fun-fact.orange {
+            background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);
+        }
+        .fun-fact-title {
+            font-size: 22px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        .divider {
+            text-align: center;
+            font-size: 30px;
+            color: #ddd;
+            margin: 30px 0;
+        }
+        .quiz-section {
+            background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);
+            padding: 30px;
+            border-radius: 20px;
+            margin: 30px 0;
+        }
+        .quiz-title {
+            font-size: 28px;
+            color: #e17055;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .quiz-question {
+            background: white;
+            padding: 20px;
+            border-radius: 15px;
+            margin: 15px 0;
+            font-size: 18px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        /* ── 互动测试 v2 标准块（2026-10-24 起）──────────────────────
+           题目结构见 assets/quiz-block-template.html，答案写在 data-answer。
+           下面这些样式让它在本页正常显示，并让答题页抓取时不受影响。     */
+        .quiz-question .q-stem {
+            font-weight: bold;
+            margin-bottom: 10px;
+            line-height: 1.6;
+        }
+        .quiz-question .q-opts {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+        .quiz-question .q-opts li {
+            padding: 8px 12px;
+            margin: 6px 0;
+            background: #f8f9fa;
+            border-radius: 10px;
+            line-height: 1.55;
+        }
+        .quiz-question .q-opts li::before {
+            content: attr(data-k) ". ";
+            font-weight: bold;
+            color: #e17055;
+        }
+        .quiz-question .q-ans {
+            margin-top: 10px;
+            font-size: 16px;
+            color: #636e72;
+        }
+        .quiz-question .q-ans summary {
+            cursor: pointer;
+            color: #0984e3;
+            font-weight: 600;
+            outline: none;
+        }
+        .quiz-question .q-ans p {
+            margin: 8px 0 0;
+            padding: 10px 12px;
+            background: #f0f7ff;
+            border-left: 4px solid #0984e3;
+            border-radius: 8px;
+            line-height: 1.6;
+        }
+        .ending {
+            text-align: center;
+            padding: 40px 0;
+            margin-top: 40px;
+            background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);
+            border-radius: 20px;
+        }
+        .ending h3 { font-size: 32px; color: #2d3436; }
+        .ending p { text-align: center; font-size: 18px; color: #636e72; }
+        .back-home-btn {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 14px 30px;
+            background: rgba(0,0,0,0.08);
+            color: #2d3436;
+            text-decoration: none;
+            border-radius: 25px;
+            font-size: 18px;
+            border: 2px solid rgba(0,0,0,0.15);
+            transition: background 0.3s, transform 0.2s;
+        }
+        .back-home-btn:hover {
+            background: rgba(0,0,0,0.15);
+            transform: translateY(-2px);
+        }
+        .back-home-btn:active {
+            transform: translateY(0);
+        }
+        @media (max-width: 600px) {
+            .container { padding: 20px; }
+            h1 { font-size: 32px; }
+            h2 { font-size: 24px; }
+            p { font-size: 18px; }
+        }
+    </style>
+<!-- sharecode-passthrough:start -->
+<script>
+(function(){
+  var K='rourou_sc';
+  var SC=null, cur=null;
+  try{
+    cur=new URLSearchParams(location.search).get('sharecode');
+    if(cur){ SC=cur; try{ sessionStorage.setItem(K,cur); }catch(e){} }
+    else { try{ SC=sessionStorage.getItem(K); }catch(e){} }
+  }catch(e){}
+  if(!SC) return;
+
+  // 站内地址补 sharecode；站外/已带参/非 http 返回 null
+  function withSC(u){
+    if(!u) return null;
+    try{
+      var x=new URL(u, location.href);
+      if(x.protocol!=='http:' && x.protocol!=='https:') return null;
+      if(x.origin!==location.origin) return null;
+      if(x.searchParams.get('sharecode')===SC) return null;
+      x.searchParams.set('sharecode',SC);
+      return x.href;
+    }catch(e){ return null; }
+  }
+
+  // 无参进入时补参数跳转（脚本捕获不到的情况兜底）
+  if(!cur){
+    var self=withSC(location.href);
+    if(self && !/[?&]sharecode=/.test(location.search)){
+      location.replace(self);
+      return;
+    }
+  }
+
+  // ① 点击拦截：先于站内任何处理器，动态渲染的卡片也覆盖
+  document.addEventListener('click', function(e){
+    var t=e.target;
+    while(t && t!==document && t.tagName!=='A') t=t.parentNode;
+    if(!t || t===document) return;
+    if(t.target && t.target!=='_self') return;
+    var h=t.getAttribute('href');
+    if(!h || /^(mailto:|tel:|javascript:|#)/i.test(h)) return;
+    var nu=withSC(t.href);
+    if(!nu) return;
+    e.preventDefault();
+    e.stopPropagation();
+    location.href=nu;
+  }, true);
+
+  // ② 静态与动态插入的资源统一补参
+  var ATTRS=['src','href','poster','srcset'];
+  var SEL='img[src],img[srcset],video[src],video[poster],audio[src],source[src],source[srcset],'+
+          'script[src],link[rel=stylesheet][href],link[rel=preload][href],a[href]';
+  function fixOne(el,attr){
+    var v=el.getAttribute(attr);
+    if(!v) return;
+    if(attr==='srcset'){
+      var changed=false;
+      var parts=v.split(',').map(function(x){
+        var t=x.trim().split(/\s+/);
+        if(!t[0]) return x;
+        var nu=withSC(t[0]);
+        if(nu){ t[0]=nu; changed=true; }
+        return t.join(' ');
+      });
+      if(changed) el.setAttribute('srcset',parts.join(', '));
+      return;
+    }
+    var nu=withSC(v);
+    if(nu) el.setAttribute(attr,nu);
+  }
+  function fixEl(el){
+    for(var k=0;k<ATTRS.length;k++){
+      if(el.hasAttribute && el.hasAttribute(ATTRS[k])) fixOne(el,ATTRS[k]);
+    }
+  }
+  function fix(root){
+    var scope=(root&&root.querySelectorAll)?root:document;
+    var els=scope.querySelectorAll(SEL);
+    for(var i=0;i<els.length;i++) fixEl(els[i]);
+  }
+
+  // ③ 资源加载失败时补参重试一次（防漏网）
+  document.addEventListener('error', function(e){
+    var el=e.target;
+    if(!el||!el.tagName) return;
+    var tag=el.tagName;
+    if(tag!=='IMG'&&tag!=='VIDEO'&&tag!=='SOURCE'&&tag!=='AUDIO') return;
+    if(el.getAttribute('data-sc-retry')) return;
+    var nu=withSC(el.getAttribute('src')||'');
+    if(!nu) return;
+    el.setAttribute('data-sc-retry','1');
+    el.setAttribute('src',nu);
+  }, true);
+
+  function boot(){
+    fix(document);
+    try{
+      new MutationObserver(function(ms){
+        for(var i=0;i<ms.length;i++){
+          var added=ms[i].addedNodes;
+          for(var j=0;j<added.length;j++){
+            var n=added[j];
+            if(n.nodeType!==1) continue;
+            fixEl(n);
+            if(n.querySelectorAll) fix(n);
+          }
+        }
+      }).observe(document.documentElement,{childList:true,subtree:true});
+    }catch(e){}
+  }
+  if(document.readyState==='loading') document.addEventListener('DOMContentLoaded',boot);
+  else boot();
+})();
+</script>
+<!-- sharecode-passthrough:end -->
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>烤焦的那层壳，香和危险是同一件事</h1>
+            <p class="subtitle">2015 年 10 月 26 日，一份报告把培根和香烟放进了同一格。当天全球头条都在问：还能吃吗。</p>
+        </div>
+        
+        <!-- ══════════════════════════════════════════════════════════════
+             配图是骨架的一部分，不是内容的一部分。
+             5 个 image-container 已经写好在这里，位置固定：
+               scene_01 = 头图
+               scene_02/03/04/05 = 第 2/3/4/5 章末尾各一张
+             你只填两种占位符，不要自己加/删 <img>，也不要写新的 image-container：
+               ALT1~ALT5 = 画面描述（给读屏和搜索用，一句话）
+               CAP1~CAP5 = 图注（一句人话，说这张图在解释什么）
+             第 1 章不配图；第 5 章末尾那张（科幻）就是收尾。
+             ══════════════════════════════════════════════════════════════ -->
+
+        <div class="image-container">
+            <img src="scene_01.webp" alt="炭火烤架上冒烟的肉串，表面焦褐" class="dino-image">
+            <div class="image-caption">同一块肉，火一碰就变褐，香味也就出来了</div>
+        </div>
+
+        <h2>第一章 · 一份报告，把培根和香烟放进了同一格</h2>
+
+<p>2015 年 10 月 26 日，法国里昂。世界卫生组织下属的国际癌症研究机构发布了一份评估报告。</p>
+
+<p>第二天，全球报纸用了同一类标题：培根和香烟同级。</p>
+
+<p>火腿、培根、香肠被列进「1 类致癌物」。同一格里还有烟草、石棉和酒精饮料。消息传开，很多人第一反应是：那还能吃吗。</p>
+
+<p>机构随后专门发了一份说明。里面有一句关键的话：分类说的是证据有多强，不是危险有多大。</p>
+
+<p>这句话不太容易听懂。就像天气预报说「今天有大风」和「今天有台风」，都归进了大风这个词，破坏力却差着好几个等级。</p>
+
+<p>同样在 1 类，抽一辈子烟和每天早上吃两片培根，代价完全不是一回事。</p>
+
+<p>但报告里有一个数字，确实不太好受。每天吃 50 克加工肉，结直肠癌的风险比不吃的人高出 18%。</p>
+
+<p>50 克，大约是一根半烤肠。这个 18% 到底意味着什么？它和周末那顿烧烤，又是什么关系？</p>
+
+<p>要回答它，得从肉碰到火的那一刻说起。先看一件更基础的事：为什么烤过的肉那么香，水煮的就不香？</p>
+
+<div class="fun-fact">
+    <div class="fun-fact-title">📋 分类是按证据排的，不是按毒性排的</div>
+    1 类只说明「有足够证据证明它能让人得癌」，不说明「吃到多少会得」。同组的还有晒多了太阳、木屑粉尘和中式咸鱼。危险程度要看剂量、频率和接触方式。
+</div>
+
+        <h2>第二章 · 140 度以上，肉才开始变成另一种东西</h2>
+
+<p>把一块五花肉放进清水里煮。半小时后捞出来，肉是灰白色的，闻着有点腥。</p>
+
+<p>同一块肉放到炭火上。几十秒，表面就变褐。再一会儿，边卷起来，香味冲出来。</p>
+
+<p>差别卡在一个温度门槛上。</p>
+
+<p>水在常压下烧开是 100 ℃，之后温度就不再往上涨。烤架上的肉，表面能到 150 ℃、200 ℃，甚至更高。</p>
+
+<p>过了这个门槛，肉里的氨基酸和糖会撞在一起，生成几百种新分子。这套反应叫美拉德反应，就是让食物变褐、变香的那一串化学反应。</p>
+
+<p>氨基酸，就是蛋白质拆开之后的小段。糖不一定是甜的那种，肉里本来也有。</p>
+
+<p>这些新分子里有吡嗪、呋喃这类东西。名字不好记，作用是让鼻子闻到那股焦香。</p>
+
+<p>换算一下：140 ℃ 到 165 ℃ 之间，这套反应跑得最快。低于这个区间，慢到你看不出来。</p>
+
+<p>这就解释了一个日常现象。不管灶上火烧得多旺，锅里的水最多只有 100 ℃。就像烧开水冲茶，水再滚也不会更烫。</p>
+
+<p>所以水煮的肉，温度被水锁在 100 ℃ 以下。要让它变香，只能把水赶走，让温度冲过 140 ℃。这就是煎、烤、炸的意义。</p>
+
+<p>同一套反应在别处也在跑：面包皮、咖啡豆、煎饺底面、烤鸭的脆皮。都是褐色的，都在 140 ℃ 以上。</p>
+
+<p>问题是，这套反应不只生产香味。它还顺手产生了另一样东西。</p>
+
+<div class="fun-fact">
+    <div class="fun-fact-title">🍞 面包皮和烤鸭，用的是同一套反应</div>
+    把面包片放进烤箱，表面变褐、变脆、变香，走的也是美拉德反应。蒸馒头不会变色，因为蒸汽的温度只有 100 ℃ 左右，够不到那条线。
+</div>
+
+        <div class="image-container">
+            <img src="scene_02.webp" alt="同一块肉一半浸在沸水里、一半架在炭火上，剖面里的颜色表示温度由外向内递减" class="dino-image">
+            <div class="image-caption">同样一块肉：左边煮到灰白，右边烤出焦壳，往里的温度一层层不同</div>
+        </div>
+
+        <h2>第三章 · 焦壳里的第一种危险，是肉自己造的</h2>
+
+<p>200 ℃ 的烤架上，肉的变化不止在表面。</p>
+
+<p>肉里有肌酸，就是肌肉用来存能量的那种小分子。它和氨基酸、糖一起，在 150 ℃ 以上会生成另一类分子：杂环胺。</p>
+
+<p>杂环胺这个名字听着陌生，指的是十几个结构相近的化合物。它们最集中在肉的表面，也就是那层焦壳里。</p>
+
+<p>生成量跟三件事有关：温度、时间、翻面。</p>
+
+<p>温度上，150 ℃ 以下几乎不生成。200 ℃ 以上，数量级地往上翻。</p>
+
+<p>就像煎鸡蛋。油温不够时，蛋白半天不焦。一过那个温度，几秒钟就围出一圈褐边。</p>
+
+<p>时间上，同样是 200 ℃，烤 10 分钟和烤 4 分钟差得很远。</p>
+
+<p>翻面最容易被忽略。一面烤到底，那面会一直升温。每分钟翻一次，表面温度来不及冲上去。</p>
+
+<p>有实验做过直接对比：把肉先放进微波炉转 2 分钟，倒掉流出来的汁，再上烤架。杂环胺少了大约九成。</p>
+
+<p>道理不复杂。微波炉把肉从里到外加热到半熟，烤架上只需要几十秒上色。高温总时长砍掉大半，生成量跟着掉。</p>
+
+<p>反过来，最容易出事的是冷冻的肉直接上架。外面已经焦了，里面还是冰的。为了让中间熟，你只能接着烤，外面就一直烧着。</p>
+
+<p>这里有个容易混的地方。焦得发黑的那一块，苦味不是「更香」，是碳化了。碳本身没有风味，只有苦和涩。</p>
+
+<p>那烤鱼、烤鸡翅是不是更安全？不一定。杂环胺的前体是肌酸，凡是肌肉都含，鱼和鸡一样跑不掉。</p>
+
+<p>上面这些，都还发生在肉自己身上。那么，从炭火上飘起来的那股烟，又是另一回事吗？</p>
+
+<div class="fun-fact">
+    <div class="fun-fact-title">🌡 家用烤箱到不了那个温度</div>
+    普通家用烤箱最高一般 250 ℃，中档 180 到 200 ℃。木炭燃烧的火焰温度能到 800 ℃ 以上。同样叫「烤」，温度差着三四倍，生成的东西也不一样。
+</div>
+
+        <div class="image-container">
+            <img src="scene_03.webp" alt="烤架剖面：肉表面焦壳与向内部递减的温度" class="dino-image">
+            <div class="image-caption">越靠外越烫，焦壳里积的东西也最多</div>
+        </div>
+
+        <h2>第四章 · 烟里落下来的，走的是另一条路</h2>
+
+<p>把镜头拉远一点，看整个烤架。</p>
+
+<p>肉的脂肪在高温下化成油，一滴一滴掉下去。油落在炭上，啪一声，冒起一股白烟。</p>
+
+<p>这股烟往上走，正对着肉。烟里的颗粒会粘在表面，一层一层叠上去。</p>
+
+<p>这些颗粒里有一类物质叫多环芳烃。其中最出名的一个是苯并芘，属于 1 类致癌物。</p>
+
+<p>跟杂环胺不同，多环芳烃不是肉自己造的。它是油脂燃烧不完全的产物，从外面落到肉上。</p>
+
+<p>所以它跟「肉有多焦」关系不大，跟「有没有烟往上熏」关系很大。好比站在下风口，别人抽烟你也躲不开。</p>
+
+<p>同一块肉，架在炭火上直烤，和用锡纸包起来烤，前者表面的苯并芘可能高出一个数量级。</p>
+
+<p>还有第三条路，它出现在烤肉店的菜单上。</p>
+
+<p>培根卷金针菇、香肠、火腿片。这些是加工肉，里面加了亚硝酸盐。亚硝酸盐本身没那么可怕，它的作用是挡住肉毒杆菌，那是真能要命的东西。</p>
+
+<p>但亚硝酸盐遇到肉里的胺类，在高温下会生成亚硝胺。亚硝胺是明确致癌的。</p>
+
+<p>一个日常对照：家里的剩菜放冰箱，第二天再热，亚硝酸盐也会升高一点。但正常饮食那个量，跟长期大量吃加工肉不在一个量级。</p>
+
+<p>三条路就这样叠在同一块肉上。一条在肉里，是杂环胺。一条从天而降，是多环芳烃。一条出在配料上，是亚硝胺。</p>
+
+<p>那么回到最要紧的那个问题：18% 到底该怎么理解？</p>
+
+<div class="fun-fact">
+    <div class="fun-fact-title">🥓 一根烤肠大约 50 克</div>
+    报告里说的「每天 50 克加工肉」，换算成日常食物，差不多是一根半烤肠，或者两片火腿，或者三片培根。是每天，不是每次。
+</div>
+
+        <div class="image-container">
+            <img src="scene_04.webp" alt="油脂滴落炭火升起的白烟正对着上方的肉" class="dino-image">
+            <div class="image-caption">油滴下去烧出的烟，是另一条完全不同的路</div>
+        </div>
+
+        <h2>第五章 · 18% 是概率，不是判决书</h2>
+
+<p>先说这个数字怎么算出来的。</p>
+
+<p>「风险高出 18%」是相对风险。它比的不是「吃的人里有多少得癌」，而是「吃的人比不吃的人多出几成」。</p>
+
+<p>看绝对值。在多数国家，一个人一生中得结直肠癌的概率大约是 5% 到 6%。</p>
+
+<p>在这个基础上加 18%，变成 6% 到 7%。也就是说，100 个人里从 5 个变成 6 个。</p>
+
+<p>这就像天气预报说降雨概率 30%。意思是十次这样的天气里，大约三次下雨，不是今天一定下。</p>
+
+<p>不是翻倍，不是必然，更不是「吃了就完了」。</p>
+
+<p>而且这 50 克说的是每天，是长年的习惯。不是周末那一顿。</p>
+
+<p>这里要交代一句不确定。这些数字主要来自流行病学调查，也就是长期追踪一大群人的饮食和健康记录。调查能看出关联，但很难把烤肉从其他生活习惯里单独摘干净。杂环胺在人身上的剂量关系，目前还没有定论。烤到几分焦才算多，学界也没有一条公认的界线。</p>
+
+<p>更麻烦的是，风险从来不是一个数，是一串条件。</p>
+
+<p>同样是 50 克，天天吃和一年吃三次不一样。明火直烤和烤箱烤不一样。配一大盘蔬菜和配一瓶啤酒，也不一样。</p>
+
+<p>蔬菜里的膳食纤维能加快肠道排空，缩短有害物质贴着肠壁的时间。这个观察在多项研究里重复出现过。</p>
+
+<p>那具体怎么办？下面几条都有实验支撑，不是猜的。</p>
+
+<p>把肉切小、切薄，缩短烤的时间。提前用微波炉预煮两分钟，把汁水倒掉。烤的时候勤翻面，别让一面一直贴着高温。</p>
+
+<p>用锡纸包着烤，或者垫烤盘，别让油滴到炭上。腌一下再烤，红酒、啤酒、柠檬汁、大蒜、迷迭香都有人试过，杂环胺能降四成到九成。</p>
+
+<p>配蔬菜和水果一起吃。最后一件事最容易被忽略：焦黑的那一块别吃，它的主要成分就是碳。</p>
+
+<p>有人会问，那是不是干脆别吃烧烤。从营养看，烤肉的蛋白质和铁跟炖肉差不了多少。风险集中在焦壳和那股烟上，把这两样管住，一顿烧烤的代价就小很多。</p>
+
+<p>真正要留意的，是「每天」这两个字。偶尔一顿和天天一顿，中间隔着一整个数量级。</p>
+
+<p>还有一个没解决的问题。为什么有人抽一辈子烟没事，有人不抽烟也得肺癌？个体差异在癌症里占多大比重，现在依然是开放问题。饮食只是其中一项，不是全部。</p>
+
+<p>想再往下看，可以去查那份报告的原文，也就是国际癌症研究机构的专著第 114 卷。</p>
+
+<div class="fun-fact">
+    <div class="fun-fact-title">🥬 烤蔬菜几乎没有杂环胺</div>
+    杂环胺的前体是肌酸，植物里没有。所以烤茄子、烤玉米、烤蘑菇基本不产生这一类。但烤焦的部分仍然会生成丙烯酰胺，那是另一条路，2021 年欧盟专门为它定过限量。
+</div>
+
+        <div class="image-container">
+            <img src="scene_05.webp" alt="烤架旁的蔬菜拼盘、锡纸包和计时器" class="dino-image">
+            <div class="image-caption">缩短时间、隔开明火、配上蔬菜，能把代价压下来</div>
+        </div>
+        
+        <!-- ⬇⬇ 互动小测试：把 assets/quiz-block-template.html 里的标准块复制到这里 ⬇⬇
+             规则：5 题、4 选项、答案写 data-answer、选项字数相近、干扰项要像真的
+             写完必须跑 python3 update_quiz.py --only <日期目录>，体检不过不许发布 -->
+        
+        <div class="quiz-section" data-quiz="2">
+            <div class="quiz-title">🎯 互动小测试</div>
+
+            <div class="quiz-question" data-answer="B">
+                <p class="q-stem">水煮的肉为什么不香，而烤的肉很香？</p>
+                <ul class="q-opts">
+                    <li data-k="A">因为烤的时候加了油和调料</li>
+                    <li data-k="B">因为水最多到一百度，烤能过热</li>
+                    <li data-k="C">因为烤会把肉里的水分全赶走</li>
+                    <li data-k="D">因为炭火本身带有焦香味</li>
+                </ul>
+                <details class="q-ans"><summary>看答案</summary>
+                    <p><b>B</b>　解析：变香那套反应要 140 ℃ 以上才跑起来。常压下水的温度被锁在 100 ℃，锅再大火也上不去。</p>
+                </details>
+            </div>
+
+            <div class="quiz-question" data-answer="D">
+                <p class="q-stem">杂环胺最集中在肉的哪个部分？</p>
+                <ul class="q-opts">
+                    <li data-k="A">骨头的缝隙里</li>
+                    <li data-k="B">肉块最中心的部位</li>
+                    <li data-k="C">流出来的肉汁里</li>
+                    <li data-k="D">焦褐的那层壳上</li>
+                </ul>
+                <details class="q-ans"><summary>看答案</summary>
+                    <p><b>D</b>　解析：肌酸、氨基酸和糖的反应发生在受热最强的表面，所以焦壳里最多，中心反而少。</p>
+                </details>
+            </div>
+
+            <div class="quiz-question" data-answer="A">
+                <p class="q-stem">苯并芘主要是怎么跑到肉上去的？</p>
+                <ul class="q-opts">
+                    <li data-k="A">油滴下去烧出的烟带上来的</li>
+                    <li data-k="B">肉里的肌酸自己变出来的</li>
+                    <li data-k="C">腌料里的盐和糖反应出来的</li>
+                    <li data-k="D">炭本身碎屑粘上去的</li>
+                </ul>
+                <details class="q-ans"><summary>看答案</summary>
+                    <p><b>A</b>　解析：脂肪滴在热源上不完全燃烧，烟里的颗粒往上飘，粘在肉的表面。用锡纸包住就断掉这条路。</p>
+                </details>
+            </div>
+
+            <div class="quiz-question" data-answer="C">
+                <p class="q-stem">「1 类致癌物」这个分类说明什么？</p>
+                <ul class="q-opts">
+                    <li data-k="A">它的毒性和香烟完全一样</li>
+                    <li data-k="B">吃一点就会得癌症</li>
+                    <li data-k="C">证明它致癌的证据很充分</li>
+                    <li data-k="D">它比其他致癌物更危险</li>
+                </ul>
+                <details class="q-ans"><summary>看答案</summary>
+                    <p><b>C</b>　解析：分类只衡量证据强度，不衡量危险大小。同组里既有烟草，也有晒多太阳和咸鱼。</p>
+                </details>
+            </div>
+
+            <div class="quiz-question" data-answer="B">
+                <p class="q-stem">下面哪种做法能明显减少杂环胺？</p>
+                <ul class="q-opts">
+                    <li data-k="A">把肉冻硬了直接上烤架</li>
+                    <li data-k="B">先用微波炉转两分钟再烤</li>
+                    <li data-k="C">一直不翻面让它慢慢熟透</li>
+                    <li data-k="D">多刷几层油防止粘架子</li>
+                </ul>
+                <details class="q-ans"><summary>看答案</summary>
+                    <p><b>B</b>　解析：预煮让肉半熟，上架只要几十秒上色，高温总时长大幅缩短，实验里能降到原来的十分之一左右。</p>
+                </details>
+            </div>
+        </div>
+
+        <div class="ending">
+            <h3>—— 完 ——</h3>
+            <p>谢谢阅读！希望你学到了很多知识！</p>
+            <p style="margin-top: 10px; font-size: 14px; color: #b2bec3;">本故事由 AI 助手小巴为小朋友精心制作 🚌</p>
+            <div style="text-align: left; margin-top: 15px;">
+                <a href="../index.html" class="back-home-btn">🏠 返回首页</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- rourou-home-btn:start -->
+    <style>
+    #rourou-home-btn{position:fixed;left:14px;bottom:calc(14px + env(safe-area-inset-bottom,0px));z-index:9999;
+    display:inline-flex;align-items:center;gap:6px;padding:10px 18px;border-radius:999px;
+    background:rgba(255,255,255,0.92);color:#2d3436;font-size:15px;font-weight:600;
+    text-decoration:none;box-shadow:0 4px 14px rgba(0,0,0,0.18);border:1px solid rgba(0,0,0,0.08);
+    -webkit-backdrop-filter:blur(4px);backdrop-filter:blur(4px);transition:transform .15s,background .15s;}
+    #rourou-home-btn:hover{background:#fff;transform:translateY(-2px);}
+    /* 融合站按钮：深色一颗，表示"去上一层门户"，与白色的站内首页区分开 */
+    #rourou-portal-btn{position:fixed;left:14px;bottom:calc(66px + env(safe-area-inset-bottom,0px));z-index:9999;
+    display:inline-flex;align-items:center;gap:6px;padding:9px 16px;border-radius:999px;
+    background:rgba(45,52,54,0.82);color:#fff;font-size:14px;font-weight:600;letter-spacing:.2px;
+    text-decoration:none;box-shadow:0 4px 14px rgba(0,0,0,0.22);border:1px solid rgba(255,255,255,0.20);
+    -webkit-backdrop-filter:blur(4px);backdrop-filter:blur(4px);transition:transform .15s,background .15s;}
+    #rourou-portal-btn:hover{background:rgba(45,52,54,0.94);transform:translateY(-2px);}
+    @media (max-width:600px){
+      #rourou-home-btn{padding:9px 14px;font-size:13px;left:10px;bottom:calc(10px + env(safe-area-inset-bottom,0px));}
+      #rourou-portal-btn{padding:8px 13px;font-size:12.5px;left:10px;bottom:calc(60px + env(safe-area-inset-bottom,0px));}
+    }
+    /* 页面自带左下角悬浮按钮（如讲义的「↑ 返回目录」）时上移让位，避免按钮叠在一起 */
+    .fab{bottom:calc(120px + env(safe-area-inset-bottom,0px)) !important;}
+    @media (max-width:919px){.fab{bottom:calc(112px + env(safe-area-inset-bottom,0px)) !important;}}
+    </style>
+    <a id="rourou-home-btn" href="../index.html">🏠 首页</a>
+    <a id="rourou-portal-btn" href="../../index.html">🏛 融合站</a>
+    <script>
+    /* 融合站只在 NAS 部署里有（站点根 /index.html）；GitHub Pages 那边是 404。
+       探一次 HEAD，探不到就收起来，免得线上留一颗死链按钮。 */
+    (function () {
+        var a = document.getElementById('rourou-portal-btn');
+        if (!a || !window.fetch) return;
+        fetch(a.getAttribute('href'), { method: 'HEAD' }).then(function (r) {
+            if (!r.ok) a.parentNode.removeChild(a);
+        }).catch(function () { a.parentNode.removeChild(a); });
+    })();
+    </script>
+    <!-- rourou-home-btn:end -->
+</body>
+</html>
