@@ -1,0 +1,576 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>鹬蚌相争：为什么赢的是没参战的那个</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: "Microsoft YaHei", "PingFang SC", sans-serif;
+            background: linear-gradient(180deg, #ffeaa7 0%, #fab1a0 30%, #ff7675 60%, #fd79a8 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        .container {
+            max-width: 850px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 30px;
+            padding: 40px;
+            box-shadow: 0 25px 80px rgba(0,0,0,0.15);
+        }
+        .header {
+            text-align: center;
+            padding: 30px 0;
+            background: linear-gradient(135deg, #ff6b6b 0%, #feca57 50%, #48dbfb 100%);
+            border-radius: 20px;
+            margin-bottom: 30px;
+        }
+        .header h1 {
+            font-size: 48px;
+            color: white;
+            text-shadow: 3px 3px 6px rgba(0,0,0,0.2);
+        }
+        .subtitle {
+            font-size: 20px;
+            color: rgba(255,255,255,0.95);
+        }
+        h2 {
+            font-size: 32px;
+            color: #2d3436;
+            margin: 40px 0 20px;
+            padding: 15px 25px;
+            background: linear-gradient(90deg, #ff9ff3 0%, #feca57 100%);
+            border-radius: 15px;
+            display: inline-block;
+        }
+        p {
+            font-size: 20px;
+            line-height: 2;
+            color: #2d3436;
+            margin-bottom: 20px;
+            text-align: justify;
+        }
+        .image-container {
+            width: 100%;
+            margin: 30px 0;
+            text-align: center;
+        }
+        .dino-image {
+            display: block;
+            width: 100%;
+            border-radius: 20px;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.2);
+            /* 出图规格 1080×1280；先把图位按这个比例占住，图没生成时也是一块
+               正常大小的淡绿占位，不会塌成一条、也不会是破图图标 */
+            aspect-ratio: 1080 / 1280;
+            object-fit: cover;
+            background: #e9f2ec;
+        }
+        .image-caption {
+            color: #636e72;
+            font-size: 16px;
+            margin-top: 15px;
+            font-style: italic;
+            background: #ffeaa7;
+            display: inline-block;
+            padding: 8px 20px;
+            border-radius: 20px;
+        }
+        .fun-fact {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 25px;
+            border-radius: 20px;
+            margin: 25px 0;
+            font-size: 18px;
+            line-height: 1.8;
+        }
+        .fun-fact.pink {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+        }
+        .fun-fact.green {
+            background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);
+        }
+        .fun-fact.orange {
+            background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);
+        }
+        .fun-fact-title {
+            font-size: 22px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        .divider {
+            text-align: center;
+            font-size: 30px;
+            color: #ddd;
+            margin: 30px 0;
+        }
+        .quiz-section {
+            background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);
+            padding: 30px;
+            border-radius: 20px;
+            margin: 30px 0;
+        }
+        .quiz-title {
+            font-size: 28px;
+            color: #e17055;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .quiz-question {
+            background: white;
+            padding: 20px;
+            border-radius: 15px;
+            margin: 15px 0;
+            font-size: 18px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        /* ── 互动测试 v2 标准块（2026-10-24 起）──────────────────────
+           题目结构见 assets/quiz-block-template.html，答案写在 data-answer。
+           下面这些样式让它在本页正常显示，并让答题页抓取时不受影响。     */
+        .quiz-question .q-stem {
+            font-weight: bold;
+            margin-bottom: 10px;
+            line-height: 1.6;
+        }
+        .quiz-question .q-opts {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+        .quiz-question .q-opts li {
+            padding: 8px 12px;
+            margin: 6px 0;
+            background: #f8f9fa;
+            border-radius: 10px;
+            line-height: 1.55;
+        }
+        .quiz-question .q-opts li::before {
+            content: attr(data-k) ". ";
+            font-weight: bold;
+            color: #e17055;
+        }
+        .quiz-question .q-ans {
+            margin-top: 10px;
+            font-size: 16px;
+            color: #636e72;
+        }
+        .quiz-question .q-ans summary {
+            cursor: pointer;
+            color: #0984e3;
+            font-weight: 600;
+            outline: none;
+        }
+        .quiz-question .q-ans p {
+            margin: 8px 0 0;
+            padding: 10px 12px;
+            background: #f0f7ff;
+            border-left: 4px solid #0984e3;
+            border-radius: 8px;
+            line-height: 1.6;
+        }
+        .ending {
+            text-align: center;
+            padding: 40px 0;
+            margin-top: 40px;
+            background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);
+            border-radius: 20px;
+        }
+        .ending h3 { font-size: 32px; color: #2d3436; }
+        .ending p { text-align: center; font-size: 18px; color: #636e72; }
+        .back-home-btn {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 14px 30px;
+            background: rgba(0,0,0,0.08);
+            color: #2d3436;
+            text-decoration: none;
+            border-radius: 25px;
+            font-size: 18px;
+            border: 2px solid rgba(0,0,0,0.15);
+            transition: background 0.3s, transform 0.2s;
+        }
+        .back-home-btn:hover {
+            background: rgba(0,0,0,0.15);
+            transform: translateY(-2px);
+        }
+        .back-home-btn:active {
+            transform: translateY(0);
+        }
+        @media (max-width: 600px) {
+            .container { padding: 20px; }
+            h1 { font-size: 32px; }
+            h2 { font-size: 24px; }
+            p { font-size: 18px; }
+        }
+    </style>
+<!-- sharecode-passthrough:start -->
+<script>
+(function(){
+  var K='rourou_sc';
+  var SC=null, cur=null;
+  try{
+    cur=new URLSearchParams(location.search).get('sharecode');
+    if(cur){ SC=cur; try{ sessionStorage.setItem(K,cur); }catch(e){} }
+    else { try{ SC=sessionStorage.getItem(K); }catch(e){} }
+  }catch(e){}
+  if(!SC) return;
+
+  // 站内地址补 sharecode；站外/已带参/非 http 返回 null
+  function withSC(u){
+    if(!u) return null;
+    try{
+      var x=new URL(u, location.href);
+      if(x.protocol!=='http:' && x.protocol!=='https:') return null;
+      if(x.origin!==location.origin) return null;
+      if(x.searchParams.get('sharecode')===SC) return null;
+      x.searchParams.set('sharecode',SC);
+      return x.href;
+    }catch(e){ return null; }
+  }
+
+  // 无参进入时补参数跳转（脚本捕获不到的情况兜底）
+  if(!cur){
+    var self=withSC(location.href);
+    if(self && !/[?&]sharecode=/.test(location.search)){
+      location.replace(self);
+      return;
+    }
+  }
+
+  // ① 点击拦截：先于站内任何处理器，动态渲染的卡片也覆盖
+  document.addEventListener('click', function(e){
+    var t=e.target;
+    while(t && t!==document && t.tagName!=='A') t=t.parentNode;
+    if(!t || t===document) return;
+    if(t.target && t.target!=='_self') return;
+    var h=t.getAttribute('href');
+    if(!h || /^(mailto:|tel:|javascript:|#)/i.test(h)) return;
+    var nu=withSC(t.href);
+    if(!nu) return;
+    e.preventDefault();
+    e.stopPropagation();
+    location.href=nu;
+  }, true);
+
+  // ② 静态与动态插入的资源统一补参
+  var ATTRS=['src','href','poster','srcset'];
+  var SEL='img[src],img[srcset],video[src],video[poster],audio[src],source[src],source[srcset],'+
+          'script[src],link[rel=stylesheet][href],link[rel=preload][href],a[href]';
+  function fixOne(el,attr){
+    var v=el.getAttribute(attr);
+    if(!v) return;
+    if(attr==='srcset'){
+      var changed=false;
+      var parts=v.split(',').map(function(x){
+        var t=x.trim().split(/\s+/);
+        if(!t[0]) return x;
+        var nu=withSC(t[0]);
+        if(nu){ t[0]=nu; changed=true; }
+        return t.join(' ');
+      });
+      if(changed) el.setAttribute('srcset',parts.join(', '));
+      return;
+    }
+    var nu=withSC(v);
+    if(nu) el.setAttribute(attr,nu);
+  }
+  function fixEl(el){
+    for(var k=0;k<ATTRS.length;k++){
+      if(el.hasAttribute && el.hasAttribute(ATTRS[k])) fixOne(el,ATTRS[k]);
+    }
+  }
+  function fix(root){
+    var scope=(root&&root.querySelectorAll)?root:document;
+    var els=scope.querySelectorAll(SEL);
+    for(var i=0;i<els.length;i++) fixEl(els[i]);
+  }
+
+  // ③ 资源加载失败时补参重试一次（防漏网）
+  document.addEventListener('error', function(e){
+    var el=e.target;
+    if(!el||!el.tagName) return;
+    var tag=el.tagName;
+    if(tag!=='IMG'&&tag!=='VIDEO'&&tag!=='SOURCE'&&tag!=='AUDIO') return;
+    if(el.getAttribute('data-sc-retry')) return;
+    var nu=withSC(el.getAttribute('src')||'');
+    if(!nu) return;
+    el.setAttribute('data-sc-retry','1');
+    el.setAttribute('src',nu);
+  }, true);
+
+  function boot(){
+    fix(document);
+    try{
+      new MutationObserver(function(ms){
+        for(var i=0;i<ms.length;i++){
+          var added=ms[i].addedNodes;
+          for(var j=0;j<added.length;j++){
+            var n=added[j];
+            if(n.nodeType!==1) continue;
+            fixEl(n);
+            if(n.querySelectorAll) fix(n);
+          }
+        }
+      }).observe(document.documentElement,{childList:true,subtree:true});
+    }catch(e){}
+  }
+  if(document.readyState==='loading') document.addEventListener('DOMContentLoaded',boot);
+  else boot();
+})();
+</script>
+<!-- sharecode-passthrough:end -->
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>鹬蚌相争：为什么赢的是没参战的那个</h1>
+            <p class="subtitle">1974 年，一位英国生物学家把「鹬蚌相争」写成了一道算式。答案有点反常识。</p>
+        </div>
+        
+        <!-- ══════════════════════════════════════════════════════════════
+             配图是骨架的一部分，不是内容的一部分。
+             5 个 image-container 已经写好在这里，位置固定：
+               scene_01 = 头图
+               scene_02/03/04/05 = 第 2/3/4/5 章末尾各一张
+             你只填两种占位符，不要自己加/删 <img>，也不要写新的 image-container：
+               ALT1~ALT5 = 画面描述（给读屏和搜索用，一句话）
+               CAP1~CAP5 = 图注（一句人话，说这张图在解释什么）
+             第 1 章不配图；第 5 章末尾那张（科幻）就是收尾。
+             ══════════════════════════════════════════════════════════════ -->
+
+        <div class="image-container">
+            <img src="scene_01.webp" alt="卡通画：一只长嘴水鸟的喙被蚌壳夹住，两方僵在原地，远处岸上站着一个人影" class="dino-image">
+            <div class="image-caption">夹住容易，松开却要两边同时松手——这才是「死锁」真正难的地方。</div>
+        </div>
+
+        <h2>第一章 · 两千年前的一句话，被写成了一道算式</h2>
+<p>1974 年，英国苏塞克斯大学的约翰·梅纳德·史密斯发表了一篇论文。题目叫《动物冲突的博弈论》。</p>
+<p>他想算清楚一件事：两只动物抢同一份食物，到底该撑多久。</p>
+<p>这问题听着像小孩吵架。但它有严格的答案。</p>
+<p>撑住的每一秒都要付钱。付的是体力和时间。赢来的东西却只有一份。所以拖得越久，账越难看。</p>
+<p>鹬和蚌就是这样。蚌夹住鹬的嘴，鹬抽不出来。蚌合不上壳，鹬吃不到肉。两边都动不了。</p>
+<p>鹬的喙长约 4 厘米，细得像根针。蚌的壳能长到 10 厘米，闭壳肌一收，力量足够夹住鸟嘴。</p>
+<p>就像两个人同时抓住一本书的两端，都想要，谁都不松手。书没被撕开，两个人也读不成。</p>
+<p><strong>这篇要讲的最反常识的一点在这里：最后赢的那个，什么都没做。</strong></p>
+<p>渔翁没有更聪明，也没有更用力。他只是站在一个别人腾不出来的位置上。这个位置，是那两只动物自己让出来的。</p>
+<p>那么，为什么「咬着不放」会一路亏下去？先得把这场对峙写成一道算式。</p>
+<div class="fun-fact">
+    <div class="fun-fact-title">🦪 鹬和蚌，真会夹住吗</div>
+    鹬是一类小型水鸟，长嘴专门插进泥沙里找虫吃。蚌靠两片壳和一条闭壳肌保护自己。闭壳肌一收，壳就合上，力量足够夹住鸟嘴。野外确实有鸟被贝壳夹住、最后动弹不得的记录。这条「死锁」不是寓言编的，它有原型。
+</div>
+
+        <h2>第二章 · 对峙的账单，是按分钟记的</h2>
+<p>把这场对峙写成算式，只要两个字母。</p>
+<p>V 是争的东西值多少。C 是每秒要付多少。撑了 t 秒，赢了拿 V，输了白付 C 乘 t。</p>
+<p>关键在于这两样东西的形状不一样。收益是一次性的，一口价。成本是连续的，一秒一秒往上加。</p>
+<p>打个比方：两个人守着一台正在充电的手机。谁先走谁没得用。可守着的时候，两人都干不了别的。时间越长，错过的事越多。</p>
+<p>所以决定结果的不是谁更凶，是 V 除以 C 这个比值。</p>
+<p>比值大，说明奖品值钱、等待便宜，硬扛划算。比值小，说明奖品一般、等待很贵，早退早好。</p>
+<p>鹬和蚌的比值是多少？鹬赢了是一顿饭，蚌赢了是一条命。两边都把 C 顶到了极限。这个比值不是变小，是崩了。</p>
+<p>换个数字看得更清楚。把奖品价值设成 10，每秒等待成本设成 1。算下来，平均撑 10 秒就该走了。换算一下，差不多是喝完一口水的工夫。</p>
+<p>成本一涨到 2，平均只撑 5 秒。奖品没变小，是等待变贵了，账立刻翻脸。</p>
+<p>这只是个简化说法。真实动物的疲劳不是均匀的，拖到后面每一秒都更贵。</p>
+<p>可要是等待能一直撑下去，为什么大多数动物没有演化成死磕到底？</p>
+<div class="fun-fact pink">
+    <div class="fun-fact-title">📐 算出来的答案，是「随机撤退」</div>
+    如果两边都不知道对方能撑多久，最好的办法是事先定一个随机的时间点。到点就走，绝不恋战。算出来的平均对峙时长，等于 V 除以 C。奖品翻一倍，对峙翻一倍。等待成本翻一倍，对峙减半。
+</div>
+
+        <div class="image-container">
+            <img src="scene_02.webp" alt="赛博朋克风格的画面：两股力量对峙的能量场，中间竖着一根不断上涨的计价柱" class="dino-image">
+            <div class="image-caption">收益是一口价，成本是一秒一秒往上加。这两条线的形状不一样，结局就定了。</div>
+        </div>
+
+        <h2>第三章 · 大多数动物把架打成了仪式</h2>
+<p>硬扛这么亏，自然界为什么还有这么多对峙？</p>
+<p>1973 年，史密斯和乔治·普莱斯在《自然》杂志 246 卷上发表了一个更早的模型。它只有两种角色：鹰和鸽。</p>
+<p>鹰是死打到底，受伤也打。鸽是虚张声势，对方不让就走。</p>
+<p>算出来的结果有点意外。</p>
+<p>如果全群都是鹰，每次碰面都要见血。平均下来，每只鹰的得分都很低。如果全群都是鸽，只要出现一只鹰，它就能场场白拿。</p>
+<p>稳下来的搭配是混着来。多数时候摆姿态，少数时候真动手。这种搭配，学界叫混合策略，意思就是随机换着出牌。</p>
+<p>真实记录在苏格兰的朗姆岛。1979 年起，研究者在那里长期观察红鹿。</p>
+<p>发情季里，雄鹿先比嗓门。谁的声音先弱，谁就退。一头成年雄鹿约 190 公斤，差不多是两个成年人的体重。</p>
+<p>那 30 天里它几乎不吃东西，体重会掉 20% 左右。换算一下，一头 190 公斤的鹿，一个月要掉近 40 公斤。省下的力气，全押在一件事上：守住母鹿群。</p>
+<p>这组数字是在朗姆岛测的。别的岛上测出来差别不小，学界对它能不能代表全部红鹿，还有争议。</p>
+<p>打个比方：两个司机在窄路上遇上，用喇叭和眼神比气势。谁先倒车谁丢面子。可真撞上去，两个人都得进修理厂。</p>
+<p>鹬和蚌的麻烦是，这套仪式失灵了。壳一合上，就没有「叫两声退一步」的余地。只能硬撑到一方彻底撑不住。</p>
+<p>那么第三个角色，是什么时候进场的？</p>
+<div class="fun-fact green">
+    <div class="fun-fact-title">🦌 吼叫为什么能代替打架</div>
+    雄鹿的吼叫不是随便喊。研究者测过，吼声的高低和长短能反映体型。所以两只鹿不用真顶角，光靠听就能分出高下。省下的力气要用在更值的地方：看住母鹿群，别让第三只鹿插手。
+</div>
+
+        <div class="image-container">
+            <img src="scene_03.webp" alt="赛博朋克风格的画面：两只鹿在雾气中对峙，只靠声音较量，没有真正接触" class="dino-image">
+            <div class="image-caption">吼叫能反映体型，所以不用真打就能分出高下。仪式化打斗，就是把架打成一场考试。</div>
+        </div>
+
+        <h2>第四章 · 渔翁拿走的不是战利品，是空档</h2>
+<p>两方对峙时，会空出一个位置。</p>
+<p>不是地理上的位置，是注意力和防守的位置。两个人的力气全押在对方身上，背后就没人看了。</p>
+<p>打个比方：两个人抢一台正在充电的手机，谁也没注意插座被别人拔了。手机还在，电没了。</p>
+<p>渔翁站在这个位置上。他不需要更快，也不需要更强。他只需要在场，然后等。</p>
+<p>这里有个不太舒服的结论。对峙拖得越久，渔翁的收益越大。他什么都不用做。</p>
+<p>那为什么两边不抽一点力气去防他？</p>
+<p>因为抽出来就输了正面。防守背后，等于在对手面前让步。这个两难没有便宜的解法。</p>
+<p>1950 年，兰德公司的梅里尔·弗勒德和梅尔文·德雷舍做了个实验。两个人各自选一次「合作」或「背叛」，一共玩了 100 次。都选背叛时，两人都拿低分。结果多数人还是选了背叛。</p>
+<p>后来阿尔伯特·塔克给它取名，叫囚徒困境。它讲的正是这件事：明知一起退让最好，可单方面退让最惨。所以谁都不敢先动。</p>
+<p>那么，这个「谁都不敢先动」的死圈，究竟靠什么打开？</p>
+<div class="fun-fact orange">
+    <div class="fun-fact-title">🧩 那个实验玩了整整 100 次</div>
+    研究者发现，人不会一路硬到底，也不会一直让。他们会在「报复」和「原谅」之间来回摆。这个发现，后来成了研究合作怎么开始的起点。
+</div>
+
+        <div class="image-container">
+            <img src="scene_04.webp" alt="科幻风格的画面：两个人全部注意力锁在彼此身上，背后一个空位亮着光" class="dino-image">
+            <div class="image-caption">空档不是运气。它是对峙的必然产物：资源全押正面，背后就一定没人。</div>
+        </div>
+
+        <h2>第五章 · 渔翁也有空手而归的时候</h2>
+<p>这个故事最容易被讲错的地方，是把它当成「聪明人赢」。</p>
+<p>实际上有三个条件，缺一个，渔翁就白等。</p>
+<p>第一，奖品得还在。鹬和蚌真咬到死，壳碎了，嘴断了，渔翁捡到的是一堆废料。这时候不叫渔翁得利，叫一起完蛋。</p>
+<p>第二，渔翁得在场。空档客观存在，但得有人站在那儿。所以更准的说法是「谁在场谁得利」，不是「谁聪明谁得利」。</p>
+<p>第三，两边不能是同一伙的。同一个集团下两个品牌打价格战，钱从左手换到右手，第三方还是自己。</p>
+<p>2012 年 8 月 15 日，中国的京东和苏宁开打价格战。两家都喊「比对方便宜」。不到 10 天，火药味就淡了。</p>
+<p>原因不难推。真打到底，钱先烧完的是自己，不是对方。而且打到某个点，奖品本身也会坏掉：顾客记住了「这两家总在演戏」。</p>
+<p>打个比方：两个邻居为一道墙吵了三年。墙没砌成，两家的院子先荒了。</p>
+<p>所以僵持有个天花板。过了那个点，双方都会开始找台阶。</p>
+<p>还没解决的问题在这里。在人类社会里，那个「渔翁」往往不是一个人。他是一群分散的受益者，比如等降价的买家、看热闹的对手。受益的人太多太散，就没人需要为那个空档负责。</p>
+<p>历史上有多少次对峙最后变成「一起完蛋」，目前没有系统的统计。能找到的多是单项记录，拼不出全貌。</p>
+<p>想再往下走，可以去查「消耗战」模型在另外两个地方的应用：就是前面那道「撑多久才退」的题，用它去算拍卖里的抬价、罢工里的僵持。它们和鹬蚌，是同一道算式。</p>
+<div class="fun-fact">
+    <div class="fun-fact-title">⚠️ 价格战为什么打不长</div>
+    那几天两家都发了「比价公告」。公告里的承诺，事后很难兑现。因为「同款商品更便宜」这句话，要限定型号、批次、地区才有意义。条件一换，价格就换。这也是这类战争往往打不长的原因。
+</div>
+
+        <div class="image-container">
+            <img src="scene_05.webp" alt="写实照片风格：河滩上一只被夹住的鸟、一堆碎壳，和一个空手离开的人" class="dino-image">
+            <div class="image-caption">打到壳碎嘴断，第三方捡到的只是废料。渔翁得利有它的前提。</div>
+        </div>
+        
+        <!-- ⬇⬇ 互动小测试：把 assets/quiz-block-template.html 里的标准块复制到这里 ⬇⬇
+             规则：5 题、4 选项、答案写 data-answer、选项字数相近、干扰项要像真的
+             写完必须跑 python3 update_quiz.py --only <日期目录>，体检不过不许发布 -->
+        
+                <div class="quiz-section" data-quiz="2">
+            <div class="quiz-title">🎯 互动小测试</div>
+
+            <div class="quiz-question" data-answer="B">
+                <p class="q-stem">按消耗战的算式，对峙双方最怕的是哪种情况？</p>
+                <ul class="q-opts">
+                    <li data-k="A">奖品特别值钱，自己又不着急</li>
+                    <li data-k="B">奖品一般，可每一秒都耗得很贵</li>
+                    <li data-k="C">对手看起来比自己更能沉得住气</li>
+                    <li data-k="D">旁边还站着第三个人在看热闹</li>
+                </ul>
+                <details class="q-ans"><summary>看答案</summary>
+                    <p><b>B</b>　解析：决定输赢的是 V 除以 C。奖品不值钱、等待很贵，这个比值就小，硬扛纯属亏本。</p>
+                </details>
+            </div>
+
+            <div class="quiz-question" data-answer="D">
+                <p class="q-stem">鹰鸽模型算出来，一群动物里最稳定的搭配是什么？</p>
+                <ul class="q-opts">
+                    <li data-k="A">全群都是鹰，谁也不敢来抢</li>
+                    <li data-k="B">全群都是鸽，大家和平相处</li>
+                    <li data-k="C">一半鹰一半鸽，按数量平分</li>
+                    <li data-k="D">多数摆姿态，少数真动手</li>
+                </ul>
+                <details class="q-ans"><summary>看答案</summary>
+                    <p><b>D</b>　解析：全鹰要见血，全鸽会被白拿。稳下来的是混合策略：平时虚张声势，遇到硬茬才真打。</p>
+                </details>
+            </div>
+
+            <div class="quiz-question" data-answer="A">
+                <p class="q-stem">红鹿发情季靠吼叫分高下，这样做省下了什么？</p>
+                <ul class="q-opts">
+                    <li data-k="A">省下体力和受伤的风险</li>
+                    <li data-k="B">省下了找母鹿的时间</li>
+                    <li data-k="C">省下了长角要用的钙质</li>
+                    <li data-k="D">省下了巡视地盘的脚程</li>
+                </ul>
+                <details class="q-ans"><summary>看答案</summary>
+                    <p><b>A</b>　解析：真顶角会受伤，也可能断角。吼声能反映体型，听一听就分出高下，比动手便宜得多。</p>
+                </details>
+            </div>
+
+            <div class="quiz-question" data-answer="C">
+                <p class="q-stem">按这篇文章的说法，渔翁能得利主要是因为什么？</p>
+                <ul class="q-opts">
+                    <li data-k="A">他比争斗的两方更聪明</li>
+                    <li data-k="B">他力气更大，能一把全拿走</li>
+                    <li data-k="C">双方把防守全押给了对方</li>
+                    <li data-k="D">他等了很久，运气终于来了</li>
+                </ul>
+                <details class="q-ans"><summary>看答案</summary>
+                    <p><b>C</b>　解析：得利靠的是结构，不是脑子。两方的注意力全在正面，背后就空出来了。</p>
+                </details>
+            </div>
+
+            <div class="quiz-question" data-answer="B">
+                <p class="q-stem">下面哪种情况，渔翁其实拿不到好处？</p>
+                <ul class="q-opts">
+                    <li data-k="A">争斗的双方实力差不多</li>
+                    <li data-k="B">奖品在对峙中被彻底毁掉</li>
+                    <li data-k="C">第三方一直在旁边等着</li>
+                    <li data-k="D">对峙已经持续了很长时间</li>
+                </ul>
+                <details class="q-ans"><summary>看答案</summary>
+                    <p><b>B</b>　解析：壳碎了、嘴断了，捡到的只是废料。这时候不是渔翁得利，是一起完蛋。</p>
+                </details>
+            </div>
+        </div>
+        
+        <div class="ending">
+            <h3>—— 完 ——</h3>
+            <p>谢谢阅读！希望你学到了很多知识！</p>
+            <p style="margin-top: 10px; font-size: 14px; color: #b2bec3;">本故事由 AI 助手小巴为小朋友精心制作 🚌</p>
+            <div style="text-align: left; margin-top: 15px;">
+                <a href="../index.html" class="back-home-btn">🏠 返回首页</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- rourou-home-btn:start -->
+    <style>
+    #rourou-home-btn{position:fixed;left:14px;bottom:calc(14px + env(safe-area-inset-bottom,0px));z-index:9999;
+    display:inline-flex;align-items:center;gap:6px;padding:10px 18px;border-radius:999px;
+    background:rgba(255,255,255,0.92);color:#2d3436;font-size:15px;font-weight:600;
+    text-decoration:none;box-shadow:0 4px 14px rgba(0,0,0,0.18);border:1px solid rgba(0,0,0,0.08);
+    -webkit-backdrop-filter:blur(4px);backdrop-filter:blur(4px);transition:transform .15s,background .15s;}
+    #rourou-home-btn:hover{background:#fff;transform:translateY(-2px);}
+    /* 融合站按钮：深色一颗，表示"去上一层门户"，与白色的站内首页区分开 */
+    #rourou-portal-btn{position:fixed;left:14px;bottom:calc(66px + env(safe-area-inset-bottom,0px));z-index:9999;
+    display:inline-flex;align-items:center;gap:6px;padding:9px 16px;border-radius:999px;
+    background:rgba(45,52,54,0.82);color:#fff;font-size:14px;font-weight:600;letter-spacing:.2px;
+    text-decoration:none;box-shadow:0 4px 14px rgba(0,0,0,0.22);border:1px solid rgba(255,255,255,0.20);
+    -webkit-backdrop-filter:blur(4px);backdrop-filter:blur(4px);transition:transform .15s,background .15s;}
+    #rourou-portal-btn:hover{background:rgba(45,52,54,0.94);transform:translateY(-2px);}
+    @media (max-width:600px){
+      #rourou-home-btn{padding:9px 14px;font-size:13px;left:10px;bottom:calc(10px + env(safe-area-inset-bottom,0px));}
+      #rourou-portal-btn{padding:8px 13px;font-size:12.5px;left:10px;bottom:calc(60px + env(safe-area-inset-bottom,0px));}
+    }
+    /* 页面自带左下角悬浮按钮（如讲义的「↑ 返回目录」）时上移让位，避免按钮叠在一起 */
+    .fab{bottom:calc(120px + env(safe-area-inset-bottom,0px)) !important;}
+    @media (max-width:919px){.fab{bottom:calc(112px + env(safe-area-inset-bottom,0px)) !important;}}
+    </style>
+    <a id="rourou-home-btn" href="../index.html">🏠 首页</a>
+    <a id="rourou-portal-btn" href="../../index.html">🏛 融合站</a>
+    <script>
+    /* 融合站只在 NAS 部署里有（站点根 /index.html）；GitHub Pages 那边是 404。
+       探一次 HEAD，探不到就收起来，免得线上留一颗死链按钮。 */
+    (function () {
+        var a = document.getElementById('rourou-portal-btn');
+        if (!a || !window.fetch) return;
+        fetch(a.getAttribute('href'), { method: 'HEAD' }).then(function (r) {
+            if (!r.ok) a.parentNode.removeChild(a);
+        }).catch(function () { a.parentNode.removeChild(a); });
+    })();
+    </script>
+    <!-- rourou-home-btn:end -->
+</body>
+</html>
