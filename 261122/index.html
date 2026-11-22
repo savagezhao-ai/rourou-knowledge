@@ -1,0 +1,512 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>山羊和绵羊的叫声，一样吗</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: "Microsoft YaHei", "PingFang SC", sans-serif;
+            background: linear-gradient(180deg, #ffeaa7 0%, #fab1a0 30%, #ff7675 60%, #fd79a8 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        .container {
+            max-width: 850px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 30px;
+            padding: 40px;
+            box-shadow: 0 25px 80px rgba(0,0,0,0.15);
+        }
+        .header {
+            text-align: center;
+            padding: 30px 0;
+            background: linear-gradient(135deg, #ff6b6b 0%, #feca57 50%, #48dbfb 100%);
+            border-radius: 20px;
+            margin-bottom: 30px;
+        }
+        .header h1 {
+            font-size: 48px;
+            color: white;
+            text-shadow: 3px 3px 6px rgba(0,0,0,0.2);
+        }
+        .subtitle {
+            font-size: 20px;
+            color: rgba(255,255,255,0.95);
+        }
+        h2 {
+            font-size: 32px;
+            color: #2d3436;
+            margin: 40px 0 20px;
+            padding: 15px 25px;
+            background: linear-gradient(90deg, #ff9ff3 0%, #feca57 100%);
+            border-radius: 15px;
+            display: inline-block;
+        }
+        p {
+            font-size: 20px;
+            line-height: 2;
+            color: #2d3436;
+            margin-bottom: 20px;
+            text-align: justify;
+        }
+        .image-container {
+            width: 100%;
+            margin: 30px 0;
+            text-align: center;
+        }
+        .dino-image {
+            display: block;
+            width: 100%;
+            border-radius: 20px;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.2);
+            /* 出图规格 1080×1280；先把图位按这个比例占住，图没生成时也是一块
+               正常大小的淡绿占位，不会塌成一条、也不会是破图图标 */
+            aspect-ratio: 1080 / 1280;
+            object-fit: cover;
+            background: #e9f2ec;
+        }
+        .image-caption {
+            color: #636e72;
+            font-size: 16px;
+            margin-top: 15px;
+            font-style: italic;
+            background: #ffeaa7;
+            display: inline-block;
+            padding: 8px 20px;
+            border-radius: 20px;
+        }
+        .fun-fact {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 25px;
+            border-radius: 20px;
+            margin: 25px 0;
+            font-size: 18px;
+            line-height: 1.8;
+        }
+        .fun-fact.pink {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+        }
+        .fun-fact.green {
+            background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);
+        }
+        .fun-fact.orange {
+            background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);
+        }
+        .fun-fact-title {
+            font-size: 22px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        .divider {
+            text-align: center;
+            font-size: 30px;
+            color: #ddd;
+            margin: 30px 0;
+        }
+        .quiz-section {
+            background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);
+            padding: 30px;
+            border-radius: 20px;
+            margin: 30px 0;
+        }
+        .quiz-title {
+            font-size: 28px;
+            color: #e17055;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .quiz-question {
+            background: white;
+            padding: 20px;
+            border-radius: 15px;
+            margin: 15px 0;
+            font-size: 18px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        /* ── 互动测试 v2 标准块（2026-10-24 起）──────────────────────
+           题目结构见 assets/quiz-block-template.html，答案写在 data-answer。
+           下面这些样式让它在本页正常显示，并让答题页抓取时不受影响。     */
+        .quiz-question .q-stem {
+            font-weight: bold;
+            margin-bottom: 10px;
+            line-height: 1.6;
+        }
+        .quiz-question .q-opts {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+        .quiz-question .q-opts li {
+            padding: 8px 12px;
+            margin: 6px 0;
+            background: #f8f9fa;
+            border-radius: 10px;
+            line-height: 1.55;
+        }
+        .quiz-question .q-opts li::before {
+            content: attr(data-k) ". ";
+            font-weight: bold;
+            color: #e17055;
+        }
+        .quiz-question .q-ans {
+            margin-top: 10px;
+            font-size: 16px;
+            color: #636e72;
+        }
+        .quiz-question .q-ans summary {
+            cursor: pointer;
+            color: #0984e3;
+            font-weight: 600;
+            outline: none;
+        }
+        .quiz-question .q-ans p {
+            margin: 8px 0 0;
+            padding: 10px 12px;
+            background: #f0f7ff;
+            border-left: 4px solid #0984e3;
+            border-radius: 8px;
+            line-height: 1.6;
+        }
+        .ending {
+            text-align: center;
+            padding: 40px 0;
+            margin-top: 40px;
+            background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);
+            border-radius: 20px;
+        }
+        .ending h3 { font-size: 32px; color: #2d3436; }
+        .ending p { text-align: center; font-size: 18px; color: #636e72; }
+        .back-home-btn {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 14px 30px;
+            background: rgba(0,0,0,0.08);
+            color: #2d3436;
+            text-decoration: none;
+            border-radius: 25px;
+            font-size: 18px;
+            border: 2px solid rgba(0,0,0,0.15);
+            transition: background 0.3s, transform 0.2s;
+        }
+        .back-home-btn:hover {
+            background: rgba(0,0,0,0.15);
+            transform: translateY(-2px);
+        }
+        .back-home-btn:active {
+            transform: translateY(0);
+        }
+        @media (max-width: 600px) {
+            .container { padding: 20px; }
+            h1 { font-size: 32px; }
+            h2 { font-size: 24px; }
+            p { font-size: 18px; }
+        }
+
+    /* 叫声对照播放器 */
+    .sound-compare{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin:26px 0;}
+    .sound-card{background:#f4f9f4;border:2px solid #b8e0c2;border-radius:18px;padding:16px;text-align:center;}
+    .sound-card.goat{background:#fff6e8;border-color:#ffd8a0;}
+    .sound-name{font-size:19px;font-weight:700;color:#2d3436;margin-bottom:4px;}
+    .sound-note{font-size:14px;color:#636e72;margin-bottom:12px;}
+    .sound-card audio{width:100%;max-width:100%;height:40px;}
+    @media(max-width:600px){.sound-compare{grid-template-columns:1fr;}}
+    </style>
+<!-- sharecode-passthrough:start -->
+<script>
+(function(){
+  var K='rourou_sc';
+  var SC=null, cur=null;
+  try{
+    cur=new URLSearchParams(location.search).get('sharecode');
+    if(cur){ SC=cur; try{ sessionStorage.setItem(K,cur); }catch(e){} }
+    else { try{ SC=sessionStorage.getItem(K); }catch(e){} }
+  }catch(e){}
+  if(!SC) return;
+
+  // 站内地址补 sharecode；站外/已带参/非 http 返回 null
+  function withSC(u){
+    if(!u) return null;
+    try{
+      var x=new URL(u, location.href);
+      if(x.protocol!=='http:' && x.protocol!=='https:') return null;
+      if(x.origin!==location.origin) return null;
+      if(x.searchParams.get('sharecode')===SC) return null;
+      x.searchParams.set('sharecode',SC);
+      return x.href;
+    }catch(e){ return null; }
+  }
+
+  // 无参进入时补参数跳转（脚本捕获不到的情况兜底）
+  if(!cur){
+    var self=withSC(location.href);
+    if(self && !/[?&]sharecode=/.test(location.search)){
+      location.replace(self);
+      return;
+    }
+  }
+
+  // ① 点击拦截：先于站内任何处理器，动态渲染的卡片也覆盖
+  document.addEventListener('click', function(e){
+    var t=e.target;
+    while(t && t!==document && t.tagName!=='A') t=t.parentNode;
+    if(!t || t===document) return;
+    if(t.target && t.target!=='_self') return;
+    var h=t.getAttribute('href');
+    if(!h || /^(mailto:|tel:|javascript:|#)/i.test(h)) return;
+    var nu=withSC(t.href);
+    if(!nu) return;
+    e.preventDefault();
+    e.stopPropagation();
+    location.href=nu;
+  }, true);
+
+  // ② 静态与动态插入的资源统一补参
+  var ATTRS=['src','href','poster','srcset'];
+  var SEL='img[src],img[srcset],video[src],video[poster],audio[src],source[src],source[srcset],'+
+          'script[src],link[rel=stylesheet][href],link[rel=preload][href],a[href]';
+  function fixOne(el,attr){
+    var v=el.getAttribute(attr);
+    if(!v) return;
+    if(attr==='srcset'){
+      var changed=false;
+      var parts=v.split(',').map(function(x){
+        var t=x.trim().split(/\s+/);
+        if(!t[0]) return x;
+        var nu=withSC(t[0]);
+        if(nu){ t[0]=nu; changed=true; }
+        return t.join(' ');
+      });
+      if(changed) el.setAttribute('srcset',parts.join(', '));
+      return;
+    }
+    var nu=withSC(v);
+    if(nu) el.setAttribute(attr,nu);
+  }
+  function fixEl(el){
+    for(var k=0;k<ATTRS.length;k++){
+      if(el.hasAttribute && el.hasAttribute(ATTRS[k])) fixOne(el,ATTRS[k]);
+    }
+  }
+  function fix(root){
+    var scope=(root&&root.querySelectorAll)?root:document;
+    var els=scope.querySelectorAll(SEL);
+    for(var i=0;i<els.length;i++) fixEl(els[i]);
+  }
+
+  // ③ 资源加载失败时补参重试一次（防漏网）
+  document.addEventListener('error', function(e){
+    var el=e.target;
+    if(!el||!el.tagName) return;
+    var tag=el.tagName;
+    if(tag!=='IMG'&&tag!=='VIDEO'&&tag!=='SOURCE'&&tag!=='AUDIO') return;
+    if(el.getAttribute('data-sc-retry')) return;
+    var nu=withSC(el.getAttribute('src')||'');
+    if(!nu) return;
+    el.setAttribute('data-sc-retry','1');
+    el.setAttribute('src',nu);
+  }, true);
+
+  function boot(){
+    fix(document);
+    try{
+      new MutationObserver(function(ms){
+        for(var i=0;i<ms.length;i++){
+          var added=ms[i].addedNodes;
+          for(var j=0;j<added.length;j++){
+            var n=added[j];
+            if(n.nodeType!==1) continue;
+            fixEl(n);
+            if(n.querySelectorAll) fix(n);
+          }
+        }
+      }).observe(document.documentElement,{childList:true,subtree:true});
+    }catch(e){}
+  }
+  if(document.readyState==='loading') document.addEventListener('DOMContentLoaded',boot);
+  else boot();
+})();
+</script>
+<!-- sharecode-passthrough:end -->
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>山羊和绵羊的叫声，一样吗</h1>
+            <p class="subtitle">2025 年，志愿者听录音分辨情绪，结果只比瞎猜好一点。两种叫声的差别，到底藏在哪里。</p>
+        </div>
+        
+        <!-- ══════════════════════════════════════════════════════════════
+             配图是骨架的一部分，不是内容的一部分。
+             5 个 image-container 已经写好在这里，位置固定：
+               scene_01 = 头图
+               scene_02/03/04/05 = 第 2/3/4/5 章末尾各一张
+             你只填两种占位符，不要自己加/删 <img>，也不要写新的 image-container：
+               ALT1~ALT5 = 画面描述（给读屏和搜索用，一句话）
+               CAP1~CAP5 = 图注（一句人话，说这张图在解释什么）
+             第 1 章不配图；第 5 章末尾那张（科幻）就是收尾。
+             ══════════════════════════════════════════════════════════════ -->
+
+        <div class="image-container">
+            <img src="scene_01.webp" alt="山坡上，一只山羊和一只绵羊并排站着张嘴鸣叫，声波在两者之间交错" class="dino-image">
+            <div class="image-caption">同样是咩一声，听感却不一样。差别从哪来？</div>
+        </div>
+
+        <h2>第一章 · 两段录音，多数人能分对，却说不清差在哪</h2>
+<p>把山羊和绵羊的叫声录下来，放给没养过羊的人听。多数人能分出哪段是绵羊，哪段是山羊。可要问差在哪里，答案往往说不清。</p>
+<p>2025 年，一个研究团队做了类似的实验。志愿者听山羊在不同情境下的叫声，判断它的情绪。结果比随机猜测好一些，但没有好太多。</p>
+<p>这说明一件反常识的事。两种羊的叫声确实不同，但不同不等于好认。人的耳朵只抓住了一部分线索。</p>
+<p>打个比方，就像听两种方言。都能听出不是本地话，真要分辨口音来自哪个县，就难了。</p>
+<p>那声音到底从哪来，差异又藏在哪一层？</p>
+<div class="fun-fact green"><div class="fun-fact-title">两种写法</div>羊叫在中文里写成「咩」。英文里，山羊常写作 maa，绵羊常写作 baa。拼写不同，正是听感不同的痕迹。</div>
+
+        <h2>第二章 · 声音从一对薄膜开始，空腔再把它改了样</h2>
+<p>声音都从喉咙里的一对薄膜开始。这对薄膜叫声带，气流冲过去，它就来回振动。就像吹一张纸的边，纸会嗡嗡响。</p>
+<p>振动的快慢，就是频率。频率的单位是赫兹，指每秒振动多少次。人耳能听的范围，大约 20 到 20000 赫兹。</p>
+<p>声带只是声源。声音离开喉咙，还要经过嘴和鼻子。这些空腔会把某些频率放大，把另一些压下去。真实情况是，同一副声带换个空腔，听感就变了。</p>
+<p>吉他也是这个道理。弦决定音高，琴身决定音色。羊的脑袋就是那个琴身。</p>
+<p>既然都有声带和空腔，两者的差别出在哪一段？</p>
+<div class="fun-fact"><div class="fun-fact-title">薄膜出声</div>声带就是一对薄膜。气流冲过去，薄膜一开一合，声音就出来了。振动越快，听上去越尖。</div>
+
+        <div class="image-container">
+            <img src="scene_02.webp" alt="一只羊的喉咙剖面，一对薄膜被气流吹动，旁边画着振动的吉他弦" class="dino-image">
+            <div class="image-caption">声带是一对薄膜。气流冲过去，薄膜振动就出声。</div>
+        </div>
+
+        <h2>第三章 · 频率、响度和颤音，三处都不同</h2>
+<p>先听两段真实录音。上面是山羊，12 秒；下面是绵羊，8 秒。两段都取自公有领域的野外记录。</p>
+<div class="sound-compare">
+  <div class="sound-card goat">
+    <div class="sound-name">山羊的叫声</div>
+    <div class="sound-note">12 秒 · 一群山羊此起彼伏</div>
+    <audio controls preload="metadata" src="goat.mp3">你的浏览器不支持音频播放。</audio>
+  </div>
+  <div class="sound-card">
+    <div class="sound-name">绵羊的叫声</div>
+    <div class="sound-note">8 秒 · 落在录音里的几声回应</div>
+    <audio controls preload="metadata" src="sheep.mp3">你的浏览器不支持音频播放。</audio>
+  </div>
+</div>
+<p>声学记录给出一组数字。山羊叫声的主要频率，多在 4000 赫兹以下。绵羊的叫声，多在 2500 赫兹以下。不同测量的结果差别不小，这只是大致范围。人说话的声音大约落在 1000 赫兹附近，换算一下，山羊的音调比人高出一截。</p>
+<p>响度也不同。有记录把山羊叫声记到 80 分贝，绵羊约 60 分贝。60 分贝大约等于正常说话的音量，80 分贝相当于路边车流。分贝每增加 10，听起来的响度大约翻一倍。</p>
+<p>还有颤音。绵羊的叫声常带上下起伏，山羊的更平、更直接。研究者用声学软件看波形，就能看到这种不同。</p>
+<p>打个比方，山羊像吹短哨，绵羊像拉长音。真实情况是声带振动快慢和空腔形状一起决定了这些差别。</p>
+<p>听见了差别之后，下一个问题是：为什么会分成这样？</p>
+<div class="fun-fact orange"><div class="fun-fact-title">素材出处</div>本页两段录音来自 Wikimedia Commons，均标注为公有领域。山羊素材原长 43 秒，裁到 12 秒；绵羊素材原长 8 秒。</div>
+
+        <div class="image-container">
+            <img src="scene_03.webp" alt="左右分屏对比：左边山羊叫声波形尖而密，右边绵羊波形起伏拉长" class="dino-image">
+            <div class="image-caption">频率、响度、颤音，三处都留下了可测的差别。</div>
+        </div>
+
+        <h2>第四章 · 驯化走了两条路，叫声也跟着分了工</h2>
+<p>山羊和绵羊约在 10000 年前先后被驯化。驯化就是人把野生动物一代代养成了家养的。但两者走的路不一样。</p>
+<p>山羊更独立，爱爬高，遇到动静会先报警。绵羊更依赖群体，落单就紧张，叫声主要用来保持联系。</p>
+<p>打个比方，山羊像站岗的，喊一声是提醒大家；绵羊像在人群里找伴，喊一声是问你在哪。真实区别在于各自的生活环境，不在嗓门大小。</p>
+<p>叫声还能报身份。野外有记录，母羊能从上百只羊里认出自己孩子的叫声。研究者做过实验，把羔羊换到别处，母羊的反应会变。</p>
+<p>既然都是家养的，为什么一个偏报警，一个偏联系？</p>
+<div class="fun-fact pink"><div class="fun-fact-title">认得出孩子</div>母羊靠叫声里的线索，能从一群羊里找到自己的羔羊。这一能力在绵羊身上被反复观察过。</div>
+
+        <div class="image-container">
+            <img src="scene_04.webp" alt="场景对照：山羊爬上石头警戒张望，绵羊挤在羊群里与同伴依偎" class="dino-image">
+            <div class="image-caption">驯化走了两条路，叫声也跟着分了工。</div>
+        </div>
+
+        <h2>第五章 · 趋势不是铁律，还有说不清的地方</h2>
+<p>上面说的都是趋势，不是铁律。同一只山羊，高兴和害怕时的叫声能差出一大截。2022 年有研究指出，人能听出山羊叫声里的情绪线索，但判断得并不准。年龄也起作用，小羊的叫声比成年羊尖。</p>
+<p>还有个边界要讲清。这些数字只有在圈养品种身上才站得住。野生的山羊和绵羊，叫声记录少得多，学界对它们的差异还没有一致结论。超出圈养这个范围，上面那些频率就不一定成立。</p>
+<p>打个比方，用两段录音就把两种羊分开，像看两片叶子就认识一片森林。真实的叫声是一个范围，不是一条固定的线。</p>
+<p>剩下的难题是自动识别。有人尝试用程序分辨羊的叫声，看能不能提前发现生病或慌张的个体。这条路还早，误差有多大仍在争论。可查的方向，是声学监测在牧场里的实地测试。</p>
+<div class="fun-fact"><div class="fun-fact-title">还在争</div>自动识别羊的叫声目前处在研究阶段。能从录音里听出情绪，和能准确判断它是哪只羊、生了什么病，是两回事。</div>
+
+        <div class="image-container">
+            <img src="scene_05.webp" alt="牧场远景，录音传感器对着羊群，天空有淡淡的数据波形" class="dino-image">
+            <div class="image-caption">趋势不等于铁律，自动识别还有很多没弄清的地方。</div>
+        </div>
+        
+        <!-- ⬇⬇ 互动小测试：把 assets/quiz-block-template.html 里的标准块复制到这里 ⬇⬇
+             规则：5 题、4 选项、答案写 data-answer、选项字数相近、干扰项要像真的
+             写完必须跑 python3 update_quiz.py --only <日期目录>，体检不过不许发布 -->
+        
+
+        <div class="quiz-section">
+            <h2 class="quiz-title">互动小测试</h2>
+            <div class="quiz-question" data-answer="D">
+                <div class="q-stem">山羊和绵羊的叫声，主要差别不包括下面哪一项？</div>
+                <ul class="q-opts"><li data-k="A">频率高低</li><li data-k="B">响度大小</li><li data-k="C">有无颤音</li><li data-k="D">有无声带</li></ul>
+                <details class="q-ans"><summary>看解析</summary><p>两者都有声带，都用一对薄膜振动发声。差别出在振动快慢、空腔形状和叫声起伏上。</p></details>
+            </div>
+            <div class="quiz-question" data-answer="A">
+                <div class="q-stem">文章用哪个例子解释声带是怎么发出声音的？</div>
+                <ul class="q-opts"><li data-k="A">气流吹动纸边</li><li data-k="B">手指敲一面鼓</li><li data-k="C">两根弦相互摩擦</li><li data-k="D">用力拍一下手</li></ul>
+                <details class="q-ans"><summary>看解析</summary><p>气流冲过薄膜会让它振动，就像吹纸片边沿发出嗡嗡声。声带也是一对薄膜。</p></details>
+            </div>
+            <div class="quiz-question" data-answer="C">
+                <div class="q-stem">山羊叫声的主要频率，多落在哪个范围？</div>
+                <ul class="q-opts"><li data-k="A">100 到 500 赫兹</li><li data-k="B">1000 到 2500 赫兹</li><li data-k="C">2000 到 4000 赫兹</li><li data-k="D">8000 到 12000 赫兹</li></ul>
+                <details class="q-ans"><summary>看解析</summary><p>记录显示山羊多在 2000 到 4000 赫兹，绵羊多在 1000 到 2500 赫兹。不同测量差别不小。</p></details>
+            </div>
+            <div class="quiz-question" data-answer="B">
+                <div class="q-stem">文中提到，这些叫声数字主要来自哪类羊？</div>
+                <ul class="q-opts"><li data-k="A">野生的山羊</li><li data-k="B">圈养的品种</li><li data-k="C">刚出生的羊羔</li><li data-k="D">年老的种羊</li></ul>
+                <details class="q-ans"><summary>看解析</summary><p>数字多来自圈养品种。野生个体的叫声记录少得多，学界还没有一致结论。</p></details>
+            </div>
+            <div class="quiz-question" data-answer="C">
+                <div class="q-stem">关于自动识别羊的叫声，文章是什么态度？</div>
+                <ul class="q-opts"><li data-k="A">已经完全成熟</li><li data-k="B">毫无研究价值</li><li data-k="C">仍在研究，误差未定</li><li data-k="D">只能识别不能记录</li></ul>
+                <details class="q-ans"><summary>看解析</summary><p>这条路还早，误差有多大仍在争论。可查的方向是声学监测在牧场里的实地测试。</p></details>
+            </div>
+        </div>
+
+        <div class="ending">
+            <h3>—— 完 ——</h3>
+            <p>谢谢阅读！希望你学到了很多知识！</p>
+            <p style="margin-top: 10px; font-size: 14px; color: #b2bec3;">本故事由 AI 助手小巴为小朋友精心制作 🚌</p>
+            <div style="text-align: left; margin-top: 15px;">
+                <a href="../index.html" class="back-home-btn">🏠 返回首页</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- rourou-home-btn:start -->
+    <style>
+    #rourou-home-btn{position:fixed;left:14px;bottom:calc(14px + env(safe-area-inset-bottom,0px));z-index:9999;
+    display:inline-flex;align-items:center;gap:6px;padding:10px 18px;border-radius:999px;
+    background:rgba(255,255,255,0.92);color:#2d3436;font-size:15px;font-weight:600;
+    text-decoration:none;box-shadow:0 4px 14px rgba(0,0,0,0.18);border:1px solid rgba(0,0,0,0.08);
+    -webkit-backdrop-filter:blur(4px);backdrop-filter:blur(4px);transition:transform .15s,background .15s;}
+    #rourou-home-btn:hover{background:#fff;transform:translateY(-2px);}
+    /* 融合站按钮：深色一颗，表示"去上一层门户"，与白色的站内首页区分开 */
+    #rourou-portal-btn{position:fixed;left:14px;bottom:calc(66px + env(safe-area-inset-bottom,0px));z-index:9999;
+    display:inline-flex;align-items:center;gap:6px;padding:9px 16px;border-radius:999px;
+    background:rgba(45,52,54,0.82);color:#fff;font-size:14px;font-weight:600;letter-spacing:.2px;
+    text-decoration:none;box-shadow:0 4px 14px rgba(0,0,0,0.22);border:1px solid rgba(255,255,255,0.20);
+    -webkit-backdrop-filter:blur(4px);backdrop-filter:blur(4px);transition:transform .15s,background .15s;}
+    #rourou-portal-btn:hover{background:rgba(45,52,54,0.94);transform:translateY(-2px);}
+    @media (max-width:600px){
+      #rourou-home-btn{padding:9px 14px;font-size:13px;left:10px;bottom:calc(10px + env(safe-area-inset-bottom,0px));}
+      #rourou-portal-btn{padding:8px 13px;font-size:12.5px;left:10px;bottom:calc(60px + env(safe-area-inset-bottom,0px));}
+    }
+    /* 页面自带左下角悬浮按钮（如讲义的「↑ 返回目录」）时上移让位，避免按钮叠在一起 */
+    .fab{bottom:calc(120px + env(safe-area-inset-bottom,0px)) !important;}
+    @media (max-width:919px){.fab{bottom:calc(112px + env(safe-area-inset-bottom,0px)) !important;}}
+    </style>
+    <a id="rourou-home-btn" href="../index.html">🏠 首页</a>
+    <a id="rourou-portal-btn" href="../../index.html">🏛 融合站</a>
+    <script>
+    /* 融合站只在 NAS 部署里有（站点根 /index.html）；GitHub Pages 那边是 404。
+       探一次 HEAD，探不到就收起来，免得线上留一颗死链按钮。 */
+    (function () {
+        var a = document.getElementById('rourou-portal-btn');
+        if (!a || !window.fetch) return;
+        fetch(a.getAttribute('href'), { method: 'HEAD' }).then(function (r) {
+            if (!r.ok) a.parentNode.removeChild(a);
+        }).catch(function () { a.parentNode.removeChild(a); });
+    })();
+    </script>
+    <!-- rourou-home-btn:end -->
+</body>
+</html>
