@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>非洲大蜗牛：为什么不能碰</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: "Microsoft YaHei", "PingFang SC", sans-serif;
+            background: linear-gradient(180deg, #ffeaa7 0%, #fab1a0 30%, #ff7675 60%, #fd79a8 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        .container {
+            max-width: 850px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 30px;
+            padding: 40px;
+            box-shadow: 0 25px 80px rgba(0,0,0,0.15);
+        }
+        .header {
+            text-align: center;
+            padding: 30px 0;
+            background: linear-gradient(135deg, #ff6b6b 0%, #feca57 50%, #48dbfb 100%);
+            border-radius: 20px;
+            margin-bottom: 30px;
+        }
+        .header h1 {
+            font-size: 48px;
+            color: white;
+            text-shadow: 3px 3px 6px rgba(0,0,0,0.2);
+        }
+        .subtitle {
+            font-size: 20px;
+            color: rgba(255,255,255,0.95);
+        }
+        h2 {
+            font-size: 32px;
+            color: #2d3436;
+            margin: 40px 0 20px;
+            padding: 15px 25px;
+            background: linear-gradient(90deg, #ff9ff3 0%, #feca57 100%);
+            border-radius: 15px;
+            display: inline-block;
+        }
+        p {
+            font-size: 20px;
+            line-height: 2;
+            color: #2d3436;
+            margin-bottom: 20px;
+            text-align: justify;
+        }
+        .image-container {
+            width: 100%;
+            margin: 30px 0;
+            text-align: center;
+        }
+        .dino-image {
+            display: block;
+            width: 100%;
+            border-radius: 20px;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.2);
+            /* 出图规格 1080×1280；先把图位按这个比例占住，图没生成时也是一块
+               正常大小的淡绿占位，不会塌成一条、也不会是破图图标 */
+            aspect-ratio: 1080 / 1280;
+            object-fit: cover;
+            background: #e9f2ec;
+        }
+        .image-caption {
+            color: #636e72;
+            font-size: 16px;
+            margin-top: 15px;
+            font-style: italic;
+            background: #ffeaa7;
+            display: inline-block;
+            padding: 8px 20px;
+            border-radius: 20px;
+        }
+        .fun-fact {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 25px;
+            border-radius: 20px;
+            margin: 25px 0;
+            font-size: 18px;
+            line-height: 1.8;
+        }
+        .fun-fact.pink {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+        }
+        .fun-fact.green {
+            background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);
+        }
+        .fun-fact.orange {
+            background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);
+        }
+        .fun-fact-title {
+            font-size: 22px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        .divider {
+            text-align: center;
+            font-size: 30px;
+            color: #ddd;
+            margin: 30px 0;
+        }
+        .quiz-section {
+            background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);
+            padding: 30px;
+            border-radius: 20px;
+            margin: 30px 0;
+        }
+        .quiz-title {
+            font-size: 28px;
+            color: #e17055;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .quiz-question {
+            background: white;
+            padding: 20px;
+            border-radius: 15px;
+            margin: 15px 0;
+            font-size: 18px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        /* ── 互动测试 v2 标准块（2026-10-24 起）──────────────────────
+           题目结构见 assets/quiz-block-template.html，答案写在 data-answer。
+           下面这些样式让它在本页正常显示，并让答题页抓取时不受影响。     */
+        .quiz-question .q-stem {
+            font-weight: bold;
+            margin-bottom: 10px;
+            line-height: 1.6;
+        }
+        .quiz-question .q-opts {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+        .quiz-question .q-opts li {
+            padding: 8px 12px;
+            margin: 6px 0;
+            background: #f8f9fa;
+            border-radius: 10px;
+            line-height: 1.55;
+        }
+        .quiz-question .q-opts li::before {
+            content: attr(data-k) ". ";
+            font-weight: bold;
+            color: #e17055;
+        }
+        .quiz-question .q-ans {
+            margin-top: 10px;
+            font-size: 16px;
+            color: #636e72;
+        }
+        .quiz-question .q-ans summary {
+            cursor: pointer;
+            color: #0984e3;
+            font-weight: 600;
+            outline: none;
+        }
+        .quiz-question .q-ans p {
+            margin: 8px 0 0;
+            padding: 10px 12px;
+            background: #f0f7ff;
+            border-left: 4px solid #0984e3;
+            border-radius: 8px;
+            line-height: 1.6;
+        }
+        .ending {
+            text-align: center;
+            padding: 40px 0;
+            margin-top: 40px;
+            background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);
+            border-radius: 20px;
+        }
+        .ending h3 { font-size: 32px; color: #2d3436; }
+        .ending p { text-align: center; font-size: 18px; color: #636e72; }
+        .back-home-btn {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 14px 30px;
+            background: rgba(0,0,0,0.08);
+            color: #2d3436;
+            text-decoration: none;
+            border-radius: 25px;
+            font-size: 18px;
+            border: 2px solid rgba(0,0,0,0.15);
+            transition: background 0.3s, transform 0.2s;
+        }
+        .back-home-btn:hover {
+            background: rgba(0,0,0,0.15);
+            transform: translateY(-2px);
+        }
+        .back-home-btn:active {
+            transform: translateY(0);
+        }
+        @media (max-width: 600px) {
+            .container { padding: 20px; }
+            h1 { font-size: 32px; }
+            h2 { font-size: 24px; }
+            p { font-size: 18px; }
+        }
+    </style>
+<!-- sharecode-passthrough:start -->
+<script>
+(function(){
+  var K='rourou_sc';
+  var SC=null, cur=null;
+  try{
+    cur=new URLSearchParams(location.search).get('sharecode');
+    if(cur){ SC=cur; try{ sessionStorage.setItem(K,cur); }catch(e){} }
+    else { try{ SC=sessionStorage.getItem(K); }catch(e){} }
+  }catch(e){}
+  if(!SC) return;
+
+  // 站内地址补 sharecode；站外/已带参/非 http 返回 null
+  function withSC(u){
+    if(!u) return null;
+    try{
+      var x=new URL(u, location.href);
+      if(x.protocol!=='http:' && x.protocol!=='https:') return null;
+      if(x.origin!==location.origin) return null;
+      if(x.searchParams.get('sharecode')===SC) return null;
+      x.searchParams.set('sharecode',SC);
+      return x.href;
+    }catch(e){ return null; }
+  }
+
+  // 无参进入时补参数跳转（脚本捕获不到的情况兜底）
+  if(!cur){
+    var self=withSC(location.href);
+    if(self && !/[?&]sharecode=/.test(location.search)){
+      location.replace(self);
+      return;
+    }
+  }
+
+  // ① 点击拦截：先于站内任何处理器，动态渲染的卡片也覆盖
+  document.addEventListener('click', function(e){
+    var t=e.target;
+    while(t && t!==document && t.tagName!=='A') t=t.parentNode;
+    if(!t || t===document) return;
+    if(t.target && t.target!=='_self') return;
+    var h=t.getAttribute('href');
+    if(!h || /^(mailto:|tel:|javascript:|#)/i.test(h)) return;
+    var nu=withSC(t.href);
+    if(!nu) return;
+    e.preventDefault();
+    e.stopPropagation();
+    location.href=nu;
+  }, true);
+
+  // ② 静态与动态插入的资源统一补参
+  var ATTRS=['src','href','poster','srcset'];
+  var SEL='img[src],img[srcset],video[src],video[poster],audio[src],source[src],source[srcset],'+
+          'script[src],link[rel=stylesheet][href],link[rel=preload][href],a[href]';
+  function fixOne(el,attr){
+    var v=el.getAttribute(attr);
+    if(!v) return;
+    if(attr==='srcset'){
+      var changed=false;
+      var parts=v.split(',').map(function(x){
+        var t=x.trim().split(/\s+/);
+        if(!t[0]) return x;
+        var nu=withSC(t[0]);
+        if(nu){ t[0]=nu; changed=true; }
+        return t.join(' ');
+      });
+      if(changed) el.setAttribute('srcset',parts.join(', '));
+      return;
+    }
+    var nu=withSC(v);
+    if(nu) el.setAttribute(attr,nu);
+  }
+  function fixEl(el){
+    for(var k=0;k<ATTRS.length;k++){
+      if(el.hasAttribute && el.hasAttribute(ATTRS[k])) fixOne(el,ATTRS[k]);
+    }
+  }
+  function fix(root){
+    var scope=(root&&root.querySelectorAll)?root:document;
+    var els=scope.querySelectorAll(SEL);
+    for(var i=0;i<els.length;i++) fixEl(els[i]);
+  }
+
+  // ③ 资源加载失败时补参重试一次（防漏网）
+  document.addEventListener('error', function(e){
+    var el=e.target;
+    if(!el||!el.tagName) return;
+    var tag=el.tagName;
+    if(tag!=='IMG'&&tag!=='VIDEO'&&tag!=='SOURCE'&&tag!=='AUDIO') return;
+    if(el.getAttribute('data-sc-retry')) return;
+    var nu=withSC(el.getAttribute('src')||'');
+    if(!nu) return;
+    el.setAttribute('data-sc-retry','1');
+    el.setAttribute('src',nu);
+  }, true);
+
+  function boot(){
+    fix(document);
+    try{
+      new MutationObserver(function(ms){
+        for(var i=0;i<ms.length;i++){
+          var added=ms[i].addedNodes;
+          for(var j=0;j<added.length;j++){
+            var n=added[j];
+            if(n.nodeType!==1) continue;
+            fixEl(n);
+            if(n.querySelectorAll) fix(n);
+          }
+        }
+      }).observe(document.documentElement,{childList:true,subtree:true});
+    }catch(e){}
+  }
+  if(document.readyState==='loading') document.addEventListener('DOMContentLoaded',boot);
+  else boot();
+})();
+</script>
+<!-- sharecode-passthrough:end -->
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>非洲大蜗牛：为什么不能碰</h1>
+            <p class="subtitle">2026 年 9 月，广州绿化带出现一只壳比拳头还大的蜗牛。它不咬人，却进了重点管理名录。</p>
+        </div>
+        
+        <!-- ══════════════════════════════════════════════════════════════
+             配图是骨架的一部分，不是内容的一部分。
+             5 个 image-container 已经写好在这里，位置固定：
+               scene_01 = 头图
+               scene_02/03/04/05 = 第 2/3/4/5 章末尾各一张
+             你只填两种占位符，不要自己加/删 <img>，也不要写新的 image-container：
+               ALT1~ALT5 = 画面描述（给读屏和搜索用，一句话）
+               CAP1~CAP5 = 图注（一句人话，说这张图在解释什么）
+             第 1 章不配图；第 5 章末尾那张（科幻）就是收尾。
+             ══════════════════════════════════════════════════════════════ -->
+
+        <div class="image-container">
+            <img src="scene_01.webp" alt="雨后绿化带里，一只拳头大的黄褐色蜗牛爬过湿地面，旁边一只本地小蜗牛作对比" class="dino-image">
+            <div class="image-caption">一只蜗牛比拳头还大。它为什么会出现在这里？</div>
+        </div>
+
+        <h2>第一章 · 雨后冒出一只拳头大的蜗牛</h2>
+<p>2026 年 9 月，广州一处绿化带。等红灯的人拍下一只蜗牛，壳比成年人的拳头还大。视频传开后，很多人认出它是非洲大蜗牛。</p>
+<p>它的正式名字叫褐云光滑玛瑙螺，学名 Lissachatina fulica。原产非洲东部，1931 年首次在中国大陆被记录，最先在厦门扎根。</p>
+<p>2000 年，世界自然保护联盟把它列进世界 100 种恶性外来入侵物种。2003 年，它进入中国第一批外来入侵物种名单。2022 年，它又进了重点管理名录。</p>
+<p>反常识的地方在这里。它不咬人，动作慢得像没睡醒。可专家的提醒只有四个字：别碰别吃。</p>
+<p>打个比方，看着像一只没睡醒的大蜗牛，实际身份却是重点管控对象。</p>
+<p>它凭什么泛滥起来，危害又落在哪些地方？</p>
+<div class="fun-fact green"><div class="fun-fact-title">有多大</div>最大的标本完全伸展时，从鼻子到尾巴长 39.3 厘米，重 900 克。这个重量，和一只小兔子差不多。</div>
+
+        <h2>第二章 · 两只在一起就能繁殖，卵一周就孵化</h2>
+<p>先看繁殖。非洲大蜗牛是雌雄同体，就是每一只都同时有雄性和雌性的生殖器官。两只碰到一起，双方都能产卵。</p>
+<p>数量很吓人。一份调查记录，一次产卵 30 到 700 个。另一份资料说，一年产 5 到 6 次，一生能产 6000 多个卵。不同来源的数字差别不小，这只是大致范围。</p>
+<p>卵埋在土里，1 周左右就能孵化。换算一下，十来天就多出一窝小螺。能活多久取决于环境，一般是 5 到 6 年。算下来，几只螺一个雨季就能变成一片。</p>
+<p>为什么没人管住它？在老家东非，鸟、青蛙、甲虫都吃它。到了新地方，壳太硬，鸟类基本啃不动。天敌一少，数量就压不住。</p>
+<p>打个比方，就像一款游戏里把所有天敌都删掉，只剩繁殖键。那下一步要问：这么多螺，吃掉了什么？</p>
+<div class="fun-fact"><div class="fun-fact-title">雌雄同体</div>两只非洲大蜗牛交配，双方都会产卵。它还能把精子存起来，隔很久再用来受精。</div>
+
+        <div class="image-container">
+            <img src="scene_02.webp" alt="潮湿土壤剖面，一堆乳白色圆形卵埋在土中，旁边两只蜗牛正在交配，周围有细小幼虫爬出" class="dino-image">
+            <div class="image-caption">两只在一起就能繁殖，卵埋进土里一周孵化。</div>
+        </div>
+
+        <h2>第三章 · 一张带齿的舌头，啃得动水泥</h2>
+<p>它几乎什么都吃。农作物、林木、果树、蔬菜、花卉都在菜单上。有统计说，受害植物超过 500 个品种，所以有人叫它田园杀手。</p>
+<p>靠的是嘴里的齿舌。齿舌就是一条布满小齿的舌头，像一把锉刀。分析发现，上面的小齿约 2.5 万个。它吃东西不是咬，是来回锉。</p>
+<p>这把锉刀能磨碎菜叶，也能啃水泥。它不是为了搞破坏，是为了补钙。壳要长硬，就得从外界弄来钙。</p>
+<p>一晚上它能吃掉超过自身体重 3 倍的食物。换算一下，一只 900 克的螺，一夜能啃掉近 3 公斤植物。</p>
+<p>打个比方，一队螺进菜园，像一群带着锉刀的小推土机。可它带来的麻烦，远不止吃菜这一桩。</p>
+<p>那些更隐蔽的麻烦，又是怎么进人体的？</p>
+<div class="fun-fact orange"><div class="fun-fact-title">锉刀舌头</div>齿舌是软体动物特有的进食器官。上面的小齿一排排长着，用坏了还能替换。</div>
+
+        <div class="image-container">
+            <img src="scene_03.webp" alt="放大的蜗牛头部侧面，一条布满细密小齿的舌头正贴着菜叶来回锉，叶面出现缺口" class="dino-image">
+            <div class="image-caption">带齿的舌头像锉刀，连水泥都能啃动。</div>
+        </div>
+
+        <h2>第四章 · 真正咬人的不是它，是它身上的线虫</h2>
+<p>它不咬人。真正让人进医院的，是一种寄生虫，叫广州管圆线虫。寄生虫就是住在别的生物身上、靠对方过日子的生物。</p>
+<p>这条线虫的一生要换宿主。成虫住在老鼠的肺里，虫卵随鼠粪排出。蜗牛吃掉带卵的粪便，就成了中间宿主，线虫在它体内长成幼虫。</p>
+<p>人不是这条路的终点。人吃下生的螺肉，或者手碰过螺再揉眼睛，幼虫才可能进入人体。它们会往脑脊液里钻，引起持续发热和剧烈头痛，这就是嗜酸性脑膜炎。</p>
+<p>感染有多常见？深圳疾控的提醒里给过一组数。广州、深圳等地蜗牛的带虫率是 27% 到 41%。</p>
+<p>一只螺体内平均有 150 条以上的幼虫，相当于一个线虫小旅馆。另一份记录给出 27.3% 和 72 条，口径并不一致。</p>
+<p>它身上还带细菌。细菌就是肉眼看不见的微小生物，绿脓杆菌、沙门氏菌、大肠杆菌都在其中。摸完不洗手，皮肤可能发痒、红肿。</p>
+<p>打个比方，蜗牛像个搭便车的，线虫才是乘客。那是不是碰一下就会出事？</p>
+<div class="fun-fact pink"><div class="fun-fact-title">谁才是源头</div>线虫的成虫住在老鼠肺里。2009 年一项全国调查认为，真正把这种病扩散开的，主要是另一种淡水螺，非洲大蜗牛帮了忙。</div>
+
+        <div class="image-container">
+            <img src="scene_04.webp" alt="循环示意：老鼠肺部有线虫，鼠粪落地，蜗牛取食后体内出现幼虫，箭头指向人体脑部轮廓" class="dino-image">
+            <div class="image-caption">线虫住在老鼠肺里，蜗牛只是中间的一站。</div>
+        </div>
+
+        <h2>第五章 · 别摸别吃，但也不用恐慌</h2>
+<p>先把边界讲清。感染的前提是生食螺肉，或者伤口、黏膜接触它的黏液。远远看见、绕开走，不会出事。正常洗手，也不用恐慌。</p>
+<p>真要处理，戴橡胶手套，用夹子夹进带盖垃圾桶。撒盐或生石灰能让它脱水。徒手抓过，要用肥皂搓洗 3 分钟以上；碰过它的果蔬，用流动水冲 5 到 10 分钟。</p>
+<p>症状有窗口。接触后 72 小时内出现发热、头痛、呕吐，要去急诊说明接触史。早发现能靠驱虫和抗炎治疗恢复，拖久了可能伤到神经系统。</p>
+<p>还有说不清的地方。带虫率各地差得远，学界对非洲大蜗牛和淡水螺各占多少责任仍有争议。有研究推测，云南的种群可能是从另一条贸易线进来的，这个说法还没定论。</p>
+<p>打个比方，知道它有害只是第一步，弄清它在本地食物链里扮演什么角色，还得靠调查。可查的方向，是疾控部门历年的寄生虫监测报告。</p>
+<div class="fun-fact"><div class="fun-fact-title">遇到怎么办</div>不抓、不踩、不养、不吃。雨后绿化带里见到，绕行即可；一定要清理，就戴手套用工具。</div>
+
+        <div class="image-container">
+            <img src="scene_05.webp" alt="戴橡胶手套的手用长夹夹起蜗牛放进带盖垃圾桶，旁边菜园里有人用流动水冲洗叶菜" class="dino-image">
+            <div class="image-caption">不摸不吃、戴手套清理，是能做到的防护。</div>
+        </div>
+        
+        <!-- ⬇⬇ 互动小测试：把 assets/quiz-block-template.html 里的标准块复制到这里 ⬇⬇
+             规则：5 题、4 选项、答案写 data-answer、选项字数相近、干扰项要像真的
+             写完必须跑 python3 update_quiz.py --only <日期目录>，体检不过不许发布 -->
+        
+
+        <div class="quiz-section">
+            <h2 class="quiz-title">互动小测试</h2>
+            <div class="quiz-question" data-answer="A">
+                <div class="q-stem">非洲大蜗牛第一次在中国大陆被记录是哪一年？</div>
+                <ul class="q-opts"><li data-k="A">1931 年</li><li data-k="B">1984 年</li><li data-k="C">2000 年</li><li data-k="D">2022 年</li></ul>
+                <details class="q-ans"><summary>看解析</summary><p>全国调查记录显示，1931 年首次在大陆发现，最早在厦门扎根。2000 年和 2022 年是两份名录的年份。</p></details>
+            </div>
+            <div class="quiz-question" data-answer="B">
+                <div class="q-stem">广州管圆线虫的成虫，主要住在哪类动物体内？</div>
+                <ul class="q-opts"><li data-k="A">鸟类</li><li data-k="B">鼠类</li><li data-k="C">鱼类</li><li data-k="D">蛙类</li></ul>
+                <details class="q-ans"><summary>看解析</summary><p>成虫住在老鼠肺里，虫卵随鼠粪排出。蜗牛吃下虫卵，才变成中间宿主。</p></details>
+            </div>
+            <div class="quiz-question" data-answer="C">
+                <div class="q-stem">它靠嘴里哪个部位把植物磨碎？</div>
+                <ul class="q-opts"><li data-k="A">坚硬的喙</li><li data-k="B">锋利的牙</li><li data-k="C">带齿的舌</li><li data-k="D">分叉的须</li></ul>
+                <details class="q-ans"><summary>看解析</summary><p>它用齿舌进食。那条舌头上有约 2.5 万个微小齿，像锉刀一样来回磨。</p></details>
+            </div>
+            <div class="quiz-question" data-answer="D">
+                <div class="q-stem">路上遇到非洲大蜗牛，正确做法是哪一项？</div>
+                <ul class="q-opts"><li data-k="A">徒手抓起来看</li><li data-k="B">踩碎后喂鸟</li><li data-k="C">用水冲进沟</li><li data-k="D">戴手套夹走</li></ul>
+                <details class="q-ans"><summary>看解析</summary><p>戴手套，用夹子夹进带盖垃圾桶。不抓、不踩、不吃，也不要随手丢进水沟。</p></details>
+            </div>
+            <div class="quiz-question" data-answer="B">
+                <div class="q-stem">关于各地报告的带虫率，文章是什么态度？</div>
+                <ul class="q-opts"><li data-k="A">数字完全一致</li><li data-k="B">各地差别不小</li><li data-k="C">已经全部查清</li><li data-k="D">与疾病无关</li></ul>
+                <details class="q-ans"><summary>看解析</summary><p>不同来源给出 27% 到 41% 和 27.3% 等不同口径。学界对责任划分仍有争议。</p></details>
+            </div>
+        </div>
+
+        <div class="ending">
+            <h3>—— 完 ——</h3>
+            <p>谢谢阅读！希望你学到了很多知识！</p>
+            <p style="margin-top: 10px; font-size: 14px; color: #b2bec3;">本故事由 AI 助手小巴为小朋友精心制作 🚌</p>
+            <div style="text-align: left; margin-top: 15px;">
+                <a href="../index.html" class="back-home-btn">🏠 返回首页</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- rourou-home-btn:start -->
+    <style>
+    #rourou-home-btn{position:fixed;left:14px;bottom:calc(14px + env(safe-area-inset-bottom,0px));z-index:9999;
+    display:inline-flex;align-items:center;gap:6px;padding:10px 18px;border-radius:999px;
+    background:rgba(255,255,255,0.92);color:#2d3436;font-size:15px;font-weight:600;
+    text-decoration:none;box-shadow:0 4px 14px rgba(0,0,0,0.18);border:1px solid rgba(0,0,0,0.08);
+    -webkit-backdrop-filter:blur(4px);backdrop-filter:blur(4px);transition:transform .15s,background .15s;}
+    #rourou-home-btn:hover{background:#fff;transform:translateY(-2px);}
+    /* 融合站按钮：深色一颗，表示"去上一层门户"，与白色的站内首页区分开 */
+    #rourou-portal-btn{position:fixed;left:14px;bottom:calc(66px + env(safe-area-inset-bottom,0px));z-index:9999;
+    display:inline-flex;align-items:center;gap:6px;padding:9px 16px;border-radius:999px;
+    background:rgba(45,52,54,0.82);color:#fff;font-size:14px;font-weight:600;letter-spacing:.2px;
+    text-decoration:none;box-shadow:0 4px 14px rgba(0,0,0,0.22);border:1px solid rgba(255,255,255,0.20);
+    -webkit-backdrop-filter:blur(4px);backdrop-filter:blur(4px);transition:transform .15s,background .15s;}
+    #rourou-portal-btn:hover{background:rgba(45,52,54,0.94);transform:translateY(-2px);}
+    @media (max-width:600px){
+      #rourou-home-btn{padding:9px 14px;font-size:13px;left:10px;bottom:calc(10px + env(safe-area-inset-bottom,0px));}
+      #rourou-portal-btn{padding:8px 13px;font-size:12.5px;left:10px;bottom:calc(60px + env(safe-area-inset-bottom,0px));}
+    }
+    /* 页面自带左下角悬浮按钮（如讲义的「↑ 返回目录」）时上移让位，避免按钮叠在一起 */
+    .fab{bottom:calc(120px + env(safe-area-inset-bottom,0px)) !important;}
+    @media (max-width:919px){.fab{bottom:calc(112px + env(safe-area-inset-bottom,0px)) !important;}}
+    </style>
+    <a id="rourou-home-btn" href="../index.html">🏠 首页</a>
+    <a id="rourou-portal-btn" href="../../index.html">🏛 融合站</a>
+    <script>
+    /* 融合站只在 NAS 部署里有（站点根 /index.html）；GitHub Pages 那边是 404。
+       探一次 HEAD，探不到就收起来，免得线上留一颗死链按钮。 */
+    (function () {
+        var a = document.getElementById('rourou-portal-btn');
+        if (!a || !window.fetch) return;
+        fetch(a.getAttribute('href'), { method: 'HEAD' }).then(function (r) {
+            if (!r.ok) a.parentNode.removeChild(a);
+        }).catch(function () { a.parentNode.removeChild(a); });
+    })();
+    </script>
+    <!-- rourou-home-btn:end -->
+</body>
+</html>
